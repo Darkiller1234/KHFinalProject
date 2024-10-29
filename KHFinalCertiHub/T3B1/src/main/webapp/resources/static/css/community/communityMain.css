@@ -25,6 +25,8 @@
     width: 100%;
 }
 
+#listArea table 
+
 #listArea div div {
     display: flex;
 }

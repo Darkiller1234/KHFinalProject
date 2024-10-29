@@ -26,53 +26,31 @@
             <button>ㅁ</button>
         </div>
         <div id="listArea">
-            <div class="swiper-container">
-                <div class="swiper-wrapper btn-group" role="group" aria-label="Basic radio toggle button group">
-                    <div class="swiper-slide">
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                        <label class="btn btn-outline-primary" for="btnradio1">전체</label>
-                    </div>
-                    
-                    <div class="swiper-slide">
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btnradio2">공지</label>
-                    </div>
-            
-                    <div class="swiper-slide">
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btnradio3">자유</label>
-                    </div>
-            
-                    <div class="swiper-slide">
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btnradio4">질문(자유)</label>
-                    </div>
-                    
-                    <div class="swiper-slide">
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btnradio5">질문(코딩)</label>
-                    </div>
-            
-                    <div class="swiper-slide">
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio6" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btnradio6">후기</label>
-                    </div>
-            
-                    <div class="swiper-slide">
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio7" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btnradio7">문제집/강의 추천</label>
-                    </div>
-            
-                    <div class="swiper-slide">
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio8" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btnradio8">문제집 거래</label>
-                    </div>
-                </div>
-            
-                <!-- 네비게이션 버튼 -->
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-            </div>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                <label class="btn btn-outline-primary" for="btnradio1">전체</label>
+              
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btnradio2">공지</label>
+              
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btnradio3">자유</label>
+                
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btnradio4">질문(자유)</label>
+                
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btnradio5">질문(코딩)</label>
+                
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio6" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btnradio6">후기</label>
+                
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio7" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btnradio7">문제집/강의 추천</label>
+                
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio8" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btnradio8">문제집 거래</label>
+              </div>
             <table>
                 <tr>
                     <th>탭</th>
