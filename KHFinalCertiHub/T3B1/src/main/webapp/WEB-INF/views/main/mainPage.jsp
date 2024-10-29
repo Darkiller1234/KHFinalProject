@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-    <%@ include file="./common/header.jsp"%>
+    <%@ include file="../common/header.jsp"%>
     메인 페이지의 내용
 </body>
 </html>

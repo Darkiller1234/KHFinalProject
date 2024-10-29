@@ -8,6 +8,6 @@ public class MainController {
 	
 	@RequestMapping("main")
 	public String mainPage() {
-		return "main";
+		return "main/mainPage";
 	}
 }
