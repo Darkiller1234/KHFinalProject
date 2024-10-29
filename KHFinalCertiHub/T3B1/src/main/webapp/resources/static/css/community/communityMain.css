@@ -1,0 +1,30 @@
+#certiSelect{
+    background-color: #83C5BE;
+    width: 100%;
+    height: 140px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#certiSelect * {
+    font-size: 32px;
+    margin: 40px;
+}
+
+#certiSelect button {
+    background: none;
+    border: none;
+}
+
+#listArea {
+    width: 70%;
+}
+
+#listArea table {
+    width: 100%;
+}
+
+#listArea div div {
+    display: flex;
+}
