@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Header</title>
-<link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/static/css/common/default.css">
+<link rel="stylesheet" href="<%=contextPath%>/resources/static/css/common/default.css">
 <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/common/header.css">
 </head>
 <body>
