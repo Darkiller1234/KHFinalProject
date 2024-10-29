@@ -8,8 +8,10 @@
 <title>Header</title>
 <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/common/default.css">
 <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/common/header.css">
+<script src="<%=contextPath%>/resources/static/js/common/header.js"></script>
+
 </head>
-<body>
+<body onload="init()">
     <div class="wrapper">
 
         <div class="menu">
@@ -18,7 +20,7 @@
             </div>
 
             <div class="navi">
-                
+
                 <div class="navi-head">
                     <ul>
                         <li>자격증 정보</li>
@@ -29,6 +31,7 @@
                     </ul>
                 </div>
 
+                
                 <div class="navi-body">
                     <ul>
                         <li class="submenu">
@@ -36,7 +39,7 @@
                                 <li><a href="">자격증 검색</a></li>
                             </ul>
                         </li> 
-        
+
                         <li class="submenu">
                             <ul>
                                 <li><a href="">정보처리기사</a></li>
@@ -45,22 +48,22 @@
                                 <li><a href="">빅데이터 분석기사</a></li>
                             </ul>
                         </li> 
-        
+
                         <li class="submenu">
                             <ul>
                                 <li><a href="">멘토 / 멘티</a></li>
                                 <li><a href="">스터디 그룹</a></li>
                             </ul>
                         </li> 
-        
+
                         <li class="submenu">
                             <ul>
                                 <li><a href="">개인 페이지</a></li>
                                 <li><a href="">메시지</a></li>
                             </ul>
                         </li> 
-        
-                        <li class="submenu">
+
+                        <li class="submenu last">
                             <ul>
                                 <li><a href="">컴파일러</a></li>
                                 <li><a href="">챗봇 도우미</a></li>
@@ -77,6 +80,7 @@
                 <img src="<%=contextPath%>/resources/static/img/button/menu_button.png">
             </div>
         </div>
+        
     </div>
 </body>
 </html>
