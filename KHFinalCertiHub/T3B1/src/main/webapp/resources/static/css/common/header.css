@@ -71,6 +71,10 @@
         width: 100%;
     }
 
+    .navi-body a:hover{
+        color:#83C5BE;
+    }
+
     .navi-body > ul {
         display: flex;
         justify-content: center;
