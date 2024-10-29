@@ -8,6 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	응애
+	<% response.sendRedirect("main"); %>
 </body>
 </html>
