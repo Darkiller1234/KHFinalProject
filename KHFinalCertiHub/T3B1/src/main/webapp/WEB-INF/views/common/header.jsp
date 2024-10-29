@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Header</title>
-<link rel="stylesheet" href="../../../WEB-INF/static/css/common/default.css">
-<link rel="stylesheet" href="../../../WEB-INF/static/css/common/header.css">
+<link rel="stylesheet" href="<%=contextPath%>/resources/static/css/common/default.css">
+<link rel="stylesheet" href="<%=contextPath%>/resources/static/css/common/header.css">
 </head>
 <body>
     <div class="navi">
