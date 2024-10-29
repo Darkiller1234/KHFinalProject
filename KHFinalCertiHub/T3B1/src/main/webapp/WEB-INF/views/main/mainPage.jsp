@@ -4,10 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>서티허브</title>
 </head>
 <body>
     <%@ include file="../common/header.jsp"%>
-    메인 페이지의 내용
+    <div class="wrapper">
+        메인 페이지의 내용
+    </div>
 </body>
 </html>

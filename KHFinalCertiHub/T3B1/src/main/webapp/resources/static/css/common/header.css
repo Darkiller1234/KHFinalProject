@@ -1,4 +1,47 @@
-.navi{
+.menu{
     width:100%;
     height:62px;
+    display:flex;
+    justify-content: space-between;
+}
+
+/* 사이트 로고 이미지 */
+.menu .logo img{
+    width:165px;
+    height:50px;
+}
+
+/* 메뉴 영역 */
+.navi{
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+}
+
+/* 메뉴 헤더 영역 */
+.navi-head{
+    width: 100%;
+}
+
+.navi-head ul{
+    display: flex;
+}
+
+.navi-head ul li {
+    flex: 1;
+    text-align: center;
+}
+
+/* 서브메뉴 영역 */
+.navi-body{
+    width: 100%;
+}
+
+.navi-body > ul {
+    display: flex;
+}
+
+.navi-body > ul li{
+    flex: 1;
+    text-align: center;
 }
