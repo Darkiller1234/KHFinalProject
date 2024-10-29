@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+footer{
+    max-width: 1250px;
+}
+.ft1{
+    background-color: #EDF6F9;
+    height: 55px;
+    padding: 16px;
+}
+
+.ft1>a{
+    text-decoration: none;
+    border: none;
+    align-items: center;
+    font-size: 14px;
+    color: black;
+}
+
+.ft2{
+    background-color: #83C5BE;
+    border: 2px solid #006D77;
+    font-size: 12px;
+    color: #EDF6F9;
+    padding: 12px;
+}

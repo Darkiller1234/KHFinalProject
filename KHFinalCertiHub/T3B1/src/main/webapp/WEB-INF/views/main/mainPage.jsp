@@ -8,6 +8,8 @@
 </head>
 <body>
     <%@ include file="../common/header.jsp"%>
+    
     메인 페이지의 내용
+    <%@ include file="../common/footer.jsp"%>
 </body>
 </html>
