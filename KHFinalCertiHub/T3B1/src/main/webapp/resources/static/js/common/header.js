@@ -52,12 +52,20 @@ function naviEventHanlder(){
         naviBody.onmouseout = null;
         
         naviHeadList.forEach( (el) => {
-                document.querySelector(`.${el.dataset.name}`).style.display = "none"
+                let subEl = document.querySelector(`.${el.dataset.name}`);
+                subEl.style.display = "none"
+
                 el.onmouseover = () => {
-                    document.querySelector(`.${el.dataset.name}`).style.display = "block"
+                    subEl.style.display = "block"
+                    naviBody.onmouseover = () => {
+                        subEl.style.display = "block"
+                    }
                 };
                 el.onmouseout = () => {
-                    document.querySelector(`.${el.dataset.name}`).style.display = "none"
+                    subEl.style.display = "none"
+                    naviBody.onmouseout = () => {
+                        subEl.style.display = "none"
+                    }
                 };
             }
         )
