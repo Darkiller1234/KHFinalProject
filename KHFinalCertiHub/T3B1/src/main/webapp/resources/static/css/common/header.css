@@ -1,4 +1,123 @@
-.navi{
+.menu{
     width:100%;
     height:62px;
+    display:flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #006D77;
+    position: relative;
+}
+
+@media (min-width: 721px) {
+    /* 사이트 로고 이미지 */
+    .menu .logo img{
+        width:155px;
+        height:50px;
+    }
+
+    /* 메뉴 영역 */
+    .navi{
+        width: 100%;
+        display:flex;
+        align-items: center;
+    }
+
+    /* 메뉴 헤더 영역 */
+    .navi-head{
+        width: 100%;
+    }
+
+    .navi-head ul{
+        display: flex;
+        align-items: center;
+    }
+
+    .navi-head ul li:hover{
+        color:#83C5BE;
+    }
+
+    .navi-head ul li {
+        flex: 1;
+        text-align: center;
+    }
+
+    /* 메뉴 기타 영역 */
+    .menu .etc{
+        min-width: 135px;
+        text-align: center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .menu .etc a{
+        flex:1;
+        font-size: 12px;
+    }
+
+    .menu .etc img {
+        width: 30px;
+        height: 30px;
+    }
+
+    /* 서브메뉴 영역 */
+    .navi-body{
+        position: absolute;
+        top:61px; /* menu 높이 - border 1px */
+        left:0;
+        display: none;
+        background-color: #EDEDED;
+        padding-left:155px; /* logo size */
+        padding-right:135px; /* etc size */
+        width: 100%;
+    }
+
+    .navi-body a:hover{
+        color:#83C5BE;
+    }
+
+    .navi-body > ul {
+        display: flex;
+        justify-content: center;
+    }
+
+    .navi-body > ul li{
+        flex:1;
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    .navi-body .submenu {
+        border-left:1px solid #83C5BE;
+    }
+
+    .navi-body .submenu.last {
+        border-right:1px solid #83C5BE;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 720px) {
+    /* 사이트 로고 이미지 */
+    .menu .logo img{
+        width:155px;
+        height:50px;
+    }
+
+    .navi{
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    /* 사이트 로고 이미지 */
+    .menu .logo img{
+        content: url(../../img/logo/logo.png);
+        background-repeat: no-repeat;
+        width:70px;
+        height:50px;
+    }
+
+    .navi{
+        display: none;
+    }
+    
 }

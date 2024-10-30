@@ -1,4 +1,20 @@
 *{
     box-sizing: border-box;
+    font-size: 16px;
+    padding: 0px;
+    margin: 0px;
+}
+
+a{
+    text-decoration-line:none; /* a 태그 밑줄 제거 */
+    color: inherit; /* 부모 요소 색깔을 따르도록 설정 */
+}
+
+ul,ol,li{
+    list-style: none;
+}
+
+.wrapper{
     max-width: 1250px;
+    margin:0 auto;
 }
