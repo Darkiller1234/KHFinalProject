@@ -41,7 +41,7 @@
     }
 
     /* 메뉴 기타 영역 */
-    .menu .etc{
+    .menu .section{
         min-width: 135px;
         text-align: center;
         display: flex;
@@ -49,12 +49,12 @@
         align-items: center;
     }
 
-    .menu .etc a{
+    .menu .section a{
         flex:1;
         font-size: 12px;
     }
 
-    .menu .etc img {
+    .menu .section img {
         width: 30px;
         height: 30px;
     }
@@ -67,7 +67,7 @@
         display: none;
         background-color: #EDEDED;
         padding-left:155px; /* logo size */
-        padding-right:135px; /* etc size */
+        padding-right:135px; /* section size */
         width: 100%;
     }
 
@@ -105,10 +105,12 @@
     /* 메뉴 헤더 영역 */
     .navi{
         width: 100%;
+        position:absolute;
+        top:61px;
     }
 
     /* 메뉴 기타 영역 */
-    .menu .etc{
+    .menu .section{
         min-width: 135px;
         text-align: center;
         display: flex;
@@ -116,12 +118,12 @@
         align-items: center;
     }
 
-    .menu .etc a{
+    .menu .section a{
         flex:1;
         font-size: 12px;
     }
 
-    .menu .etc img {
+    .menu .section img {
         width: 30px;
         height: 30px;
     }
@@ -142,7 +144,7 @@
     }
 
     /* 메뉴 기타 영역 */
-    .menu .etc{
+    .menu .section{
         min-width: 135px;
         text-align: center;
         display: flex;
@@ -150,12 +152,12 @@
         align-items: center;
     }
 
-    .menu .etc a{
+    .menu .section a{
         flex:1;
         font-size: 12px;
     }
 
-    .menu .etc img {
+    .menu .section img {
         width: 30px;
         height: 30px;
     }
