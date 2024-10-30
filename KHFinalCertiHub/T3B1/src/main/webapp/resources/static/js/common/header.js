@@ -45,11 +45,13 @@ function onResizeHandler(){
 function naviResizeHandler(){
     const navi = document.querySelector(".navi");
     const naviHead = document.querySelector(".navi-head");
+    const naviBody = document.querySelector(".navi-body")
 
     let isPCView = window.innerWidth >= 721;
 
     navi.style.display = isPCView ? "flex" : "none";
     naviHead.style.display = isPCView ? "block" : "none";
+    naviBody.style.display = "none";
 }
 
 /* pc버전은 메뉴버튼을 누르면 navi-body를 숨겼다 보여줌 */
