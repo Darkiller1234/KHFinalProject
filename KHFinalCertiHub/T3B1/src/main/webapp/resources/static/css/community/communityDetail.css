@@ -1,0 +1,153 @@
+.menu {
+    z-index: 1000;
+}
+
+#certiSelect{           /* 상단 게시판 이름 표시 및 게시판 변경 */
+    background-color: #83C5BE;
+}
+
+#certiSelect * {
+    font-size: 32px;
+}
+
+#middle-area {          /* 중간 게시판 컨텐츠들 */
+    width: 100%;
+    display: flex;
+}
+#middle-area > div {
+    margin: 1.25rem;
+}
+
+#listArea {             /* 글 리스트들 */
+    width: 70%;
+}
+
+#listArea table {
+    width: 100%;
+}
+
+#listArea table tr:first-child {
+    background-color: #83C5BE;
+}
+
+#listArea div div {
+    display: flex;
+}
+
+#popular-list-div {     /* 인기글 리스트 */
+    width: 30%;
+}
+
+#popular-list-div div div{
+    background-color: #EDF6F9;
+    border: #83C5BE 1px solid;
+    width: 100%;
+    padding: 10px;
+}
+
+.sticky-element {
+    position: sticky;
+    top: 30px; 
+    transition: top 0.3s; /* 부드러운 애니메이션 */
+}
+
+#popular-list-area-all {
+    background-color: #EDF6F9;
+    border: #83C5BE 1px solid;
+    width: 100%;
+}
+
+#search-area{ /* 검색/글쓰기 구역 */
+    display: flex;
+    justify-content: space-around;
+    height: 40px;
+}
+
+#search-area div:nth-child(2) {
+    background-color: #ffffff;
+    border: #83C5BE 3px solid;
+    border-radius: 40px;
+}
+
+#search-area div:nth-child(2) input {
+    border: none;
+}
+
+#search-area div:nth-child(2) select{  /* 제목, 내용 등 셀렉트 박스 */
+    width: 100px;
+    border: none;
+    left: 10px;
+    border-radius: 40px;
+    background-color: none;
+}
+
+#search-area select {
+    width: 100px;
+    /* border: #83C5BE 4px soild ; */
+    border-radius: 40px;
+    background-color: none;
+}
+
+#search-area div:nth-child(2) select:focus, #search-area select:focus{  /* focus 시 외부라인 나타나는거 제거 */
+    outline: none;
+}
+
+#detail-area div:nth-child(1), #detail-area div:nth-child(2){     /* 글 구역 */
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+
+
+#detail-area div:nth-child(4) {         /* 좋/싫/신고 버튼 div */
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* 신고 버튼은 오른쪽, 나머지는 중앙 */
+    padding: 0 20px; /* 양쪽에 여백 추가 */
+}
+
+#detail-area div:nth-child(4) > div {       /* 좋/싫 버튼 div */
+    display: flex;
+    gap: 10px; /* 버튼 사이 간격 설정 */
+    margin: 0 auto; /* 중앙 정렬 */
+    padding-left: 40px;                 /* 신고버튼으로 인한 좌측쏠림 해결 */
+}
+
+#detail-area div:nth-child(4) > button {        /* 신고 버튼 */
+    width: 40px;
+}
+
+#detail-area div:nth-child(5) > div > div {     /* 댓글 area */
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+}
+
+#detail-area div:nth-child(6) {         /* 댓글 페이지 변경 (아래쪽 123 버튼) */
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+#detail-area div:nth-child(7) {      /* 댓글 작성 area */
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 10px;
+}
+
+#detail-area div:nth-child(7) > textarea {
+    width: 100%;
+    padding: 10px;
+    height: 100px;
+    text-align: start;
+    resize: none;
+}
+
+#detail-area div:nth-child(7) > button {
+    width: 130px;
+    height: 40px;
+    margin-left: auto;
+}
