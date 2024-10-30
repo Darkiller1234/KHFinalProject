@@ -13,4 +13,9 @@ public class CommunityController {
 		
 		return "community/communityMain";
 	}
+	@RequestMapping("detail.cm")
+	public String CommunityDetail() {
+		
+		return "community/communityDetail";
+	}
 }

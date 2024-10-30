@@ -19,8 +19,8 @@
 
   <body>
     <%@ include file="../common/header.jsp" %>
-      <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/community/communityMain.css">
-      <script src="<%=contextPath%>/resources/static/js/community/communityMain.js"></script>
+      <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/community/communityDetail.css">
+      <script src="<%=contextPath%>/resources/static/js/community/communityDetail.js"></script>
       <div class="wrapper">
         <nav class="navbar bg-body-tertiary" id="certiSelect">
           <div class="container-fluid">
@@ -47,8 +47,54 @@
             </div>
           </div>
         </nav>
+
         <div id="middle-area">
           <div id="listArea">
+            <div id="detail-area">
+              <div>
+                <div>
+                  <p>질문(자유)</p>
+                  <p>이거 왜 안됨?</p>
+                </div>
+                <div>
+                  <button>삭제</button>
+                  <button>수정</button>
+                </div>
+                
+              </div>
+              <div>
+                <p>윤대한</p>
+                <p>추천 1 | 비추천 9999 | 댓글 9999 | 조회수 10000 | 17:48</p>
+              </div>
+              <div>
+                왜 안됨?
+              </div>
+              <div>
+                <div>
+                  <button>좋아요</button>
+                  <button>싫어요</button>
+                </div>
+                <button>신고</button>
+              </div>
+              <div>
+                <div>
+                  <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" alt="">
+                  <div>
+                    <p>윤대한</p>
+                    <p>왜 안알려줌? 빨리 알려주셈</p>
+                    <div>
+                      <button>답글</button>
+                      |
+                      <button>신고</button>
+                      |
+                      <button>삭제</button>
+                      |
+                      <button>수정</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
               <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
               <label class="btn btn-outline-primary" for="btnradio1">전체</label>

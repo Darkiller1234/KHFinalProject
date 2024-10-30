@@ -71,8 +71,37 @@
     background-color: none;
 }
 
-#search-area select
+#search-area select {
+    width: 100px;
+    /* border: #83C5BE 4px soild ; */
+    border-radius: 40px;
+    background-color: none;
+}
 
 #search-area div:nth-child(2) select:focus, #search-area select:focus{  /* focus 시 외부라인 나타나는거 제거 */
     outline: none;
+}
+
+#detail-area div:nth-child(1), #detail-area div:nth-child(2){     /* 글 구역 */
+    display: flex;
+    justify-content: space-between;
+}
+
+#detail-area div:nth-child(4) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* 신고 버튼은 오른쪽, 나머지는 중앙 */
+    padding: 0 20px; /* 양쪽에 여백 추가 */
+}
+
+#detail-area div:nth-child(4) > div {
+    display: flex;
+    gap: 10px; /* 버튼 사이 간격 설정 */
+    margin: 0 auto; /* 중앙 정렬 */
+}
+
+#detail-area div:nth-child(5) > div > div {     /* 댓글 area */
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
 }
