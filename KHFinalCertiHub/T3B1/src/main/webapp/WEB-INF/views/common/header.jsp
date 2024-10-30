@@ -21,27 +21,26 @@
             </div>
 
             <div class="navi">
-
                 <div class="navi-head">
                     <ul>
-                        <li>자격증 정보</li>
-                        <li>커뮤니티</li>
-                        <li>스터디룸</li>
-                        <li>개인 페이지</li>
-                        <li>기타</li>
+                        <li data-name="license">자격증 정보</li>
+                        <li data-name="community">커뮤니티</li>
+                        <li data-name="study">스터디룸</li>
+                        <li data-name="personal">개인 페이지</li>
+                        <li data-name="etc">기타</li>
                     </ul>
                 </div>
 
                 
                 <div class="navi-body">
                     <ul>
-                        <li class="submenu">
+                        <li class="submenu license">
                             <ul>
                                 <li><a href="">자격증 검색</a></li>
                             </ul>
                         </li> 
 
-                        <li class="submenu">
+                        <li class="submenu community">
                             <ul>
                                 <li><a href="">정보처리기사</a></li>
                                 <li><a href="">네트워크 관리사</a></li>
@@ -50,21 +49,21 @@
                             </ul>
                         </li> 
 
-                        <li class="submenu">
+                        <li class="submenu study">
                             <ul>
                                 <li><a href="">멘토 / 멘티</a></li>
                                 <li><a href="">스터디 그룹</a></li>
                             </ul>
                         </li> 
 
-                        <li class="submenu">
+                        <li class="submenu personal">
                             <ul>
                                 <li><a href="">개인 페이지</a></li>
                                 <li><a href="">메시지</a></li>
                             </ul>
                         </li> 
 
-                        <li class="submenu last">
+                        <li class="submenu last etc">
                             <ul>
                                 <li><a href="">컴파일러</a></li>
                                 <li><a href="">챗봇 도우미</a></li>
@@ -75,7 +74,7 @@
 
             </div>
 
-            <div class="etc">
+            <div class="section">
                 <a href="">로그인</a>
                 <a href="">회원가입</a>
                 <img src="<%=contextPath%>/resources/static/img/button/menu_button.png">
