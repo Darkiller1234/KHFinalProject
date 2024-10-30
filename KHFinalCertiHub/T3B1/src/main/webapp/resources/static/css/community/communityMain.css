@@ -1,3 +1,16 @@
+.menu {
+    z-index: 1000;
+}
+
+.navbar-brand, .nav-link{ /* 네비바 현재게시판 */
+    margin-left: 10px;
+    color: black;
+}
+
+.navbar-brand:hover, .nav-link:hover{ /* 네비바 현재게시판 */
+    color: #006D77;
+}
+
 #certiSelect{           /* 상단 게시판 이름 표시 및 게시판 변경 */
     background-color: #83C5BE;
 }
@@ -34,7 +47,7 @@
     width: 30%;
 }
 
-#popular-list-div div{
+#popular-list-div div div{
     background-color: #EDF6F9;
     border: #83C5BE 1px solid;
     width: 100%;
@@ -53,13 +66,13 @@
     height: 40px;
 }
 
-#search-area div:nth-child(2) {
+#search-area div:nth-child(2) {         /* 검색창 전체 */
     background-color: #ffffff;
     border: #83C5BE 3px solid;
     border-radius: 40px;
 }
 
-#search-area div:nth-child(2) input {
+#search-area div:nth-child(2) input {      /* 검색창 입력창 */ 
     border: none;
 }
 
@@ -75,4 +88,13 @@
 
 #search-area div:nth-child(2) select:focus, #search-area select:focus{  /* focus 시 외부라인 나타나는거 제거 */
     outline: none;
+}
+
+
+
+
+.sticky-element {
+    position: sticky;
+    top: 30px; 
+    transition: top 0.3s; /* 부드러운 애니메이션 */
 }

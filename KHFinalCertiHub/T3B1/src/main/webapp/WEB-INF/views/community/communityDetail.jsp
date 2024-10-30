@@ -94,6 +94,15 @@
                   </div>
                 </div>
               </div>
+              <div>
+                <button>1</button>
+                <button>2</button>
+                <button>></button>
+              </div>
+              <div>
+                <textarea placeholder="댓은 거울"></textarea>
+                <button>작성</button>
+              </div>
             </div>
             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
               <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
@@ -163,13 +172,71 @@
               <button>글쓰기</button>
             </div>
           </div>
-          <div id="popular-list-div">
-            <div id="popular-list-area-all">
-              asdf
+          <div id="popular-list-div" >
+            <div class="sticky-element">
+              <div id="popular-list-area-all">
+                <h2>전체 인기글</h2>
+                <table>
+                  <tr>
+                    <th>제목</th>
+                    <th>댓글수</th>
+                    <th>추천수</th>
+                  </tr>
+                  <tr>
+                    <td>이거 왜 안됨?</td>
+                    <td>[9999]</td>
+                    <td>-9999</td>
+                  </tr>
+                  <tr>
+                    <td>응애 살려저</td>
+                    <td>[1]</td>
+                    <td>50</td>
+                  </tr>
+                  <tr>
+                    <td>야근 싫다!</td>
+                    <td>[10]</td>
+                    <td>255</td>
+                  </tr>
+                  <tr>
+                    <td>스택 오버플로우</td>
+                    <td>[256[</td>
+                    <td>-0</td>
+                  </tr>
+                </table>
+              </div>
+              <br>
+              <div id="popular-list-area-this">
+                <h2>이 게시판의 인기글</h2>
+                <table>
+                  <tr>
+                    <th>제목</th>
+                    <th>댓글수</th>
+                    <th>추천수</th>
+                  </tr>
+                  <tr>
+                    <td>이거 왜 안됨?</td>
+                    <td>[9999]</td>
+                    <td>-9999</td>
+                  </tr>
+                  <tr>
+                    <td>응애 살려저</td>
+                    <td>[1]</td>
+                    <td>50</td>
+                  </tr>
+                  <tr>
+                    <td>야근 싫다!</td>
+                    <td>[10]</td>
+                    <td>255</td>
+                  </tr>
+                  <tr>
+                    <td>스택 오버플로우</td>
+                    <td>[256[</td>
+                    <td>-0</td>
+                  </tr>
+                </table>
+              </div>
             </div>
-            <div id="popular-list-area-this">
-              asdf
-            </div>
+            
           </div>
 
         </div>
