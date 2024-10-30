@@ -21,7 +21,6 @@
             </div>
 
             <div class="navi">
-
                 <div class="navi-head">
                     <ul>
                         <li>자격증 정보</li>

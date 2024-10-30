@@ -102,8 +102,28 @@
         height:50px;
     }
 
+    /* 메뉴 헤더 영역 */
     .navi{
-        display: none;
+        width: 100%;
+    }
+
+    /* 메뉴 기타 영역 */
+    .menu .etc{
+        min-width: 135px;
+        text-align: center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .menu .etc a{
+        flex:1;
+        font-size: 12px;
+    }
+
+    .menu .etc img {
+        width: 30px;
+        height: 30px;
     }
 }
 
@@ -116,8 +136,28 @@
         height:50px;
     }
 
+    /* 메뉴 헤더 영역 */
     .navi{
-        display: none;
+        width: 100%;
+    }
+
+    /* 메뉴 기타 영역 */
+    .menu .etc{
+        min-width: 135px;
+        text-align: center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .menu .etc a{
+        flex:1;
+        font-size: 12px;
+    }
+
+    .menu .etc img {
+        width: 30px;
+        height: 30px;
     }
     
 }
