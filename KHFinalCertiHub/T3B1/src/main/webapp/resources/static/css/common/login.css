@@ -1,0 +1,126 @@
+/* 페이지 전체 설정 */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f3f3f3;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 로그인 박스 스타일 */
+.content {
+    width: 100%;
+    max-width: 400px;
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 제목과 안내 문구 */
+.content h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.content h3 {
+    text-align: center;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* 수평선 스타일 */
+.hr {
+    border: solid 1px #83c5be;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* 입력 필드 스타일 */
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #83c5be;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    background-color: #EDF6F9;
+}
+
+/* 버튼 스타일 */
+.btns {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.btn-primary {
+    background-color: #006d77;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+}
+
+/* 회원가입, 아이디 찾기, 비밀번호 찾기 링크 스타일 */
+.form-group div {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.form-group div a {
+    color: #006d77;
+    text-decoration: none;
+}
+
+.form-group div a:hover {
+    text-decoration: underline;
+}
+
+/* 또는 텍스트 */
+p {
+    text-align: center;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+/* 소셜 로그인 버튼 스타일 */
+.social-login {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.social-login button {
+    width: 48%;
+    padding: 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.google-btn {
+    background-color: #DB4437;
+}
+
+.kakao-btn {
+    background-color: #2DB400;
+}

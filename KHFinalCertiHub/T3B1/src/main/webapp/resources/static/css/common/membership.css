@@ -38,10 +38,6 @@ body{
     cursor: pointer;
 }
 
-.form-group {
-    margin-bottom: 15px;
-}
-
 .form-group  label {
     display: block;
     font-weight: bold;
@@ -50,10 +46,12 @@ body{
 
 .form-group input[type="text"] {
     width: 100%;
-    padding: 10px;
+    padding: 15px;
     border: 1px solid #83c5be;
     border-radius: 5px;
     box-sizing: border-box;
+    margin-bottom: 20px;
+    background-color: #EDF6F9;
 }
 
 .btns {
@@ -81,4 +79,21 @@ body{
 
 .btn-primary {
     background-color: #006d77;
+}
+
+.hr {
+    border: solid 1px #83c5be;
+    width: 100%;
+}
+
+p {
+    text-align: center;
+}
+
+.google-btn {
+    background-color: #DB4437;
+}
+
+.kakao-btn {
+    background-color: #2DB400;
 }
