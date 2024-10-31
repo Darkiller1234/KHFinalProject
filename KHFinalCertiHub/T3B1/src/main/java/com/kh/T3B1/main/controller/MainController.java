@@ -10,4 +10,9 @@ public class MainController {
 	public String mainPage() {
 		return "main/mainPage";
 	}
+	
+	@RequestMapping("modal")
+	public String modal() {
+		return "common/popup";
+	}
 }

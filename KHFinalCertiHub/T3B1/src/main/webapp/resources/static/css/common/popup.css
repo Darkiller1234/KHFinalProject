@@ -1,0 +1,39 @@
+.modal-content{
+    border:10px solid #006D77;
+}
+
+.modal-header{
+    display:flex;
+    justify-content: center;
+    border:0;
+}
+
+.modal-header img{
+    width:155px;
+    height:50px;
+}
+
+.modal-body{
+    text-align: center;
+    font-size: 24px;
+    color:#006D77;
+}
+
+.modal-footer{
+    display: flex;
+    justify-content: center;
+    border:0;
+}
+
+.modal-footer button{
+    width:135px;
+    height:60px;
+    background-color: #006D77;
+    color: white;
+    border:0;
+    border-radius: 5px;
+}
+
+.modal-footer button:hover{
+    opacity: 0.9;
+}
