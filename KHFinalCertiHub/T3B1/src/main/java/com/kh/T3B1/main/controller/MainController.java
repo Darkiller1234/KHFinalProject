@@ -10,4 +10,15 @@ public class MainController {
 	public String mainPage() {
 		return "main/mainPage";
 	}
+	
+	// 테스트용 경로들, 서비스시 없앨것
+	@RequestMapping("modal")
+	public String modal() {
+		return "common/popup";
+	}
+	
+	@RequestMapping("profile")
+	public String profile() {
+		return "common/profile";
+	}
 }

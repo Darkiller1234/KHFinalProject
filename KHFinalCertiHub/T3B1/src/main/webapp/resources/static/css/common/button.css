@@ -1,0 +1,9 @@
+.btn-primary {
+    border: solid 1px #006d77;
+    color: white;
+    background-color: #006d77;
+    width: 200px; /* 고정 너비 설정 (원하는 크기로 조정 가능) */
+    padding: 15px; /* 패딩 설정 */
+    font-size: 18px; /* 폰트 크기 설정 */
+    border-radius: 5px;
+}
