@@ -12,6 +12,8 @@ a{
 
 ul,ol,li{
     list-style: none;
+    padding: 0; /* Bootstrap5 패딩 제거용 */
+    margin: 0; /* Bootstrap5 마진 제거용 */
 }
 
 .wrapper{
