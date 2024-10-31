@@ -102,11 +102,46 @@
         height:50px;
     }
 
-    /* 메뉴 헤더 영역 */
+    /* 메뉴 영역 */
     .navi{
         width: 100%;
         position:absolute;
         top:61px;
+    }
+
+    /* 메뉴 헤더 영역 */
+    .navi-head{
+        width: 30%;
+        background-color: #EDF6F9;
+    }
+
+    .navi-head ul{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .navi-head ul li:hover{
+        color:#83C5BE;
+    }
+
+    .navi-head ul li {
+        padding: 10px 0 10px 20px;
+        flex: 1;
+    }
+
+    /* 서브메뉴 영역 */
+    .navi-body{
+        background-color: #EDEDED;
+        width: 70%;
+    }
+
+    .navi-body .submenu{
+        display: none;
+    }
+
+    .navi-body > ul li{
+        flex:1;
+        margin: 10px 0 0 10px;
     }
 
     /* 메뉴 기타 영역 */
@@ -138,9 +173,49 @@
         height:50px;
     }
 
-    /* 메뉴 헤더 영역 */
+    /* 메뉴 영역 */
     .navi{
         width: 100%;
+        position:absolute;
+        top:61px;
+        display: flex;
+    }
+
+    /* 메뉴 헤더 영역 */
+    .navi-head{
+        width: 30%;
+        background-color: #EDF6F9;
+    }
+
+    .navi-head ul{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .navi-head ul li:hover{
+        color:#83C5BE;
+    }
+
+    .navi-head ul li {
+        padding: 10px 0 10px 20px;
+        padding-left: 10px;
+        flex: 1;
+    }
+
+    /* 서브메뉴 영역 */
+    .navi-body{
+        background-color: #EDEDED;
+        width: 70%;
+    }
+
+    .navi-body .submenu{
+        display: none;
+    }
+
+    .navi-body > ul li{
+        flex:1;
+        margin: 10px 0 0 10px;
     }
 
     /* 메뉴 기타 영역 */
