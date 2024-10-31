@@ -7,6 +7,7 @@ function init(){
 }
 
 function onResizeHandler(){
+    console.log("resize 실행됨")
     initNaviDisplay(); // 화면 사이즈별 Navi 요소 display 설정
     naviEventHanlder(); // 화면 사이즈에 맞춰서 navi 이벤트 부여
     menuButtonEventHandler(); // 화면 사이즈에 맞춰서 menuButton 이벤트 설정
