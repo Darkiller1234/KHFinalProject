@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CommunityController {
 	
 	
-	@RequestMapping("main.cm")
+	@RequestMapping("list.cm")
 	public String CommunityMain() {
 		
 		return "community/communityMain";
