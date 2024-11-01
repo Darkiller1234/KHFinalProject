@@ -1,35 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<% String contextPath = request.getContextPath(); %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/common/default.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/member/idfind.css">
+<link rel="stylesheet" href="<%=contextPath%>/resources/static/css/common/default.css">
+<link rel="stylesheet" href="<%=contextPath%>/resources/static/css/member/idfind.css">
     <title>아이디 찾기</title>
 </head>
 <body>
     <div class="wrapper">
-        <div class="content">
-            <br><br>
-            <h2>아이디 찾기</h2> 
+        <h2>아이디 찾기</h2> 
+        <div class="hr"></div>
+        <h3>아이디를 받을 방식을 선택해주세요.</h3>
 
-            <br>
-
-            <div class="hr"></div>
-
-            <h3>아이디를 받을 방식을 선택해주세요.</h3>
-
-            <form action="inset.me" method="post" id="idfind">
-                <div class="form-group">
-                    <label for="Phone">전화번호</label>
-                    <input type="tel" id="Phone" name="Phone" required>
-                    <button type="submit">휴대전화 번호로 전송</button>
-                </div>
-            </form>
-
-        </div>
+        <form action="" method="post" id="idfind" onsubmit="return handleSubmit(event);">
+            <div class="form-group">
+                <button type="button" class="btn phone" id="phoneButton" onclick="setSendMethod('phone')">
+                    휴대전화 번호로 전송
+                    <img src="<%=contextPath%>/resources/static/img/member/Phone.png">
+                </button>
+                <button type="button" class="btn email" id="emailButton" onclick="setSendMethod('email')">
+                    이메일로 전송
+                    <img src="<%=contextPath%>/resources/static/img/member/Email.png">
+                </button>
+            </div>
+            <div class="next-button">
+                <button type="submit" class="btn btn-primary">다음</button>
+            </div>
+            <input type="hidden" name="sendMethod" id="sendMethod" />
+        </form>
     </div>
+
+    <script src="<%=contextPath%>/resources/static/js/common/idfind.js"></script> <!-- 여기에 JavaScript 파일 경로 추가 -->
 </body>
 </html>

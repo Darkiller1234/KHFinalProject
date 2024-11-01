@@ -110,3 +110,9 @@ p {
     border: solid 1px #006d77; /* 테두리 색상을 006D77로 설정 */
     color: black; /* 글자색은 검은색 유지 */
 }
+
+.btn-primary {
+    background-color: #006d77;
+    cursor: pointer;
+    color: white;
+}

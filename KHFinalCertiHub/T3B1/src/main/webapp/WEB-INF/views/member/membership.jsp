@@ -34,25 +34,25 @@
                 <form action="insert.me" method="post" id="membershipForm">
                     <div class="form-group">
                         <label for="userId">* 아이디</label> 
-                        <input type="text" class="form-control" id="userId" placeholder="여기에 PlaceHolder 입력" name="userId" required>
+                        <input type="text" class="form-control" id="userId" placeholder="아이디 입력" name="userId" required>
 
                         <label for="userPwd">* 비밀번호</label>
-                        <input type="text" class="form-control" id="userPwd" placeholder="여기에 PlaceHolder 입력" name="userPwd" required>
+                        <input type="text" class="form-control" id="userPwd" placeholder="비밀번호 입력" name="userPwd" required>
 
                         <label for="checkPwd">* 비밀번호 확인</label>
-                        <input type="text" class="form-control" id="checkPwd" placeholder="여기에 PlaceHolder 입력" name="checkPwd" required>
+                        <input type="text" class="form-control" id="checkPwd" placeholder="비밀번호 입력" name="checkPwd" required>
                         
                         <label for="Name">* 이름</label>
-                        <input type="text" class="form-control" id="Name" placeholder="여기에 PlaceHolder 입력" name="Name" required>
+                        <input type="text" class="form-control" id="Name" placeholder="이름 입력" name="Name" required>
 
                         <label for="nickName">* 닉네임</label>
-                        <input type="text" class="form-control" id="nickName" placeholder="여기에 PlaceHolder 입력" name="nickName" required>
+                        <input type="text" class="form-control" id="nickName" placeholder="닉네임 입력" name="nickName" required>
 
                         <label for="Email">* 이메일</label>
-                        <input type="text" class="form-control" id="Email" placeholder="여기에 PlaceHolder 입력" name="Email" required>
+                        <input type="text" class="form-control" id="Email" placeholder="이메일 입력" name="Email" required>
 
                         <label for="Phone">* 전화번호</label>
-                        <input type="text" class="form-control" id="Phone" placeholder="여기에 PlaceHolder 입력(-없이)" name="Phone" required>
+                        <input type="text" class="form-control" id="Phone" placeholder="전화번호 입력(-없이)" name="Phone" required>
                         </div>
                         <br>
                         <div class="btns">

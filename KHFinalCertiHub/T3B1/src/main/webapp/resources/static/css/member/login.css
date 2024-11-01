@@ -76,6 +76,17 @@ body {
     color: white;
 }
 
+.btn-primary:hover{
+    background-color: #006D77;
+    opacity: 0.9;
+}
+
+.btn-primary:focus{
+    background-color: #006D77;
+    box-shadow: 0px 0px 0px 5px #ccf0ec;
+    opacity: 0.9;
+}
+
 /* 회원가입, 아이디 찾기, 비밀번호 찾기 링크 스타일 */
 .form-group div {
     display: flex;
