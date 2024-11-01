@@ -47,7 +47,7 @@
 
 .sticky-element {
     position: sticky;
-    top: 30px; 
+    top: 20px; 
     transition: top 0.3s; /* 부드러운 애니메이션 */
 }
 
