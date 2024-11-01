@@ -177,6 +177,15 @@
         </div>
     </div>
 
+    <div class="loading-section">
+        <div class="loading-alert">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            멘토 로딩중...
+        </div>
+    </div>
+
     <%@ include file="../common/footer.jsp" %>
 </body>
 </html>
