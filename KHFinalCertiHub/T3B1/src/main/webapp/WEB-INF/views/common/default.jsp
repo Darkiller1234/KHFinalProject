@@ -145,68 +145,70 @@
     -->
     <div id="listArea">
         <div class="listArea-div1">
-            <div>
                 <div>
-                    <div class="listArea-div1-tab">
-                        탭
+                    <div>
+                        <div class="listArea-div1-tab">
+                            탭
+                        </div>
+                        <div class="listArea-div1-title">
+                            제목
+                        </div>
+                        <div class="listArea-div1-replyCount">
+                            [댓글숫자]
+                        </div>
                     </div>
-                    <div class="listArea-div1-title">
-                        제목
-                    </div>
-                    <div class="listArea-div1-replyCount">
-                        [댓글숫자]
-                    </div>
-                </div>
-                <div>
-                    <div class="listArea-div1-writter">
-                        작성자
-                    </div>
-                    <div class="listArea-div1-date">
-                        작성일
-                    </div>
-                    <div class="listArea-div1-viewCount">
-                        조회수
-                    </div>
-                    <div class="listArea-div1-dogchu">
-                        추천수
+                    <div>
+                        <div class="listArea-div1-writter">
+                            작성자
+                        </div>
+                        <div class="listArea-div1-date">
+                            작성일
+                        </div>
+                        <div class="listArea-div1-viewCount">
+                            조회수
+                        </div>
+                        <div class="listArea-div1-dogchu">
+                            추천수
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="listArea-div2">
-            <div>
+            <div class="listArea-div2">
                 <div>
-                    <div class="listArea-div2-tab">
-                        공지
+                    <div>
+                        <div class="listArea-div2-tab">
+                            공지
+                        </div>
+                        <div class="listArea-div2-title">
+                            왜 안되는지는 저도 잘 모릅니다. 하하하.
+                        </div>
+                        <div class="listArea-div2-replyCount">
+                            [0]
+                        </div>
                     </div>
-                    <div class="listArea-div2-title">
-                        왜 안되는지는 저도 잘 모릅니다. 하하하.
+                <div>
+                    <div class="listArea-div2-writter">
+                        윤대한
                     </div>
-                    <div class="listArea-div2-replyCount">
-                        [0]
-                    </div>
-                </div>
-            <div>
-                <div class="listArea-div2-writter">
-                    윤대한
-                </div>
-                <div class="listArea-div2-rightStuff">
-                    <div class="listArea-div2-date">
-                        18:10
-                    </div>
-                    | 
-                    <div class="listArea-div2-viewCount">
-                        조회수 5
-                    </div>
-                    | 
-                    <div class="listArea-div2-dogchu">
-                        추천수 0
+                    <div class="listArea-div2-rightStuff">
+                        <div class="listArea-div2-date">
+                            18:10
+                        </div>
+                        | 
+                        <div class="listArea-div2-viewCount">
+                            조회수 5
+                        </div>
+                        | 
+                        <div class="listArea-div2-dogchu">
+                            추천수 0
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- 입력창(인풋창) -->
     <div class="form-group">
         <label for="userId">아이디</label> 
         <input type="text" class="form-control" id="userId" placeholder="여기에 PlaceHolder 입력" name="userId" required>
@@ -215,5 +217,12 @@
         <input type="text" class="form-control" id="userPwd" placeholder="여기에 PlaceHolder 입력" name="userPwd" required>
     </div>
 
+    <!-- 검색창 -->
+    <form class="search-form" onSubmit="return false;">
+        <input type="text">
+        <button class="rounded-circle" onclick="alert('클릭됨')">
+            <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
+        </button> 
+    </form>
 </body>
 </html>
