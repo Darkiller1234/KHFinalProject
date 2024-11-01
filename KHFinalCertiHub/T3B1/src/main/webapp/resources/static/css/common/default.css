@@ -498,7 +498,7 @@ div1과 div2의 구조가 다름
 .custom-select {
     position: relative;
     width: 120px;
-    }
+}
 
 .select-box {
     display: flex;
@@ -568,4 +568,45 @@ div1과 div2의 구조가 다름
     box-sizing: border-box;
     margin-bottom: 15px;
     background-color: #EDF6F9;
+}
+
+.form-group input[type="text"]:focus{
+    box-shadow: 0px 0px 0px 3px #ccf0ec;
+}
+
+/* 검색창(서치바) */
+.search-form{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    width:500px;
+    height:45px;
+    border:3px solid #83C5BE;
+    border-radius: 25px;
+    /* input이 border영역을 침범하면 padding 조절 */
+    padding-left:15px;
+    padding-right:3px;
+}
+
+.search-form input[type="text"]{
+    width:90%;
+    padding:5px 10px;
+}
+
+.search-form input[type="text"]:focus{
+    outline:none;
+}
+
+.search-form button{
+    width:35px;
+    height:35px;
+    border: none;
+    background-color: #006D77;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-form img{
+    width:100%;
 }
