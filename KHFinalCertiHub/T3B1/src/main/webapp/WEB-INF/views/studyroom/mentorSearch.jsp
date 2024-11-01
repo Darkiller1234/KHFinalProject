@@ -12,7 +12,7 @@
 <body>
     <%@ include file="../common/header.jsp" %>
 
-    <div class="wrapper">
+    <div class="wrapper padding">
         <div class="page-title font-size-title">멘토 찾기</div>
 
         <form class="search-section" onsubmit="return false;">
@@ -58,7 +58,7 @@
                     <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
                 </div>
                 <div class="mentor-name font-size-subtitle">User01</div>
-                <div class="symbol-license">정보처리기사</div>
+                <div class="symbol-license">빅데이터분석기사</div>
                 <div class="member-intro font-size-footer">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
                 <div class="mentor-valid">질문가능</div>
             </div>
@@ -69,6 +69,36 @@
                 </div>
                 <div class="mentor-name font-size-subtitle">User01</div>
                 <div class="symbol-license">정보처리기사</div>
+                <div class="member-intro font-size-footer">릭컬하자 트릭컬</div>
+                <div class="mentor-valid">질문가능</div>
+            </div>
+
+            <div class="mentor-card">
+                <div class="profile-img small">
+                    <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                </div>
+                <div class="mentor-name font-size-subtitle">User01</div>
+                <div class="symbol-license">네트워크관리사</div>
+                <div class="member-intro font-size-footer"></div>
+                <div class="mentor-valid">질문가능</div>
+            </div>
+
+            <div class="mentor-card">
+                <div class="profile-img small">
+                    <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                </div>
+                <div class="mentor-name font-size-subtitle">User01</div>
+                <div class="symbol-license">빅데이터분석기사</div>
+                <div class="member-intro font-size-footer">돌리랑 도트가 제일좋아</div>
+                <div class="mentor-valid">질문가능</div>
+            </div>
+
+            <div class="mentor-card">
+                <div class="profile-img small">
+                    <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                </div>
+                <div class="mentor-name font-size-subtitle">User01</div>
+                <div class="symbol-license">빅데이터분석기사</div>
                 <div class="member-intro font-size-footer">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
                 <div class="mentor-valid">질문가능</div>
             </div>
@@ -78,7 +108,7 @@
                     <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
                 </div>
                 <div class="mentor-name font-size-subtitle">User01</div>
-                <div class="symbol-license">정보처리기사</div>
+                <div class="symbol-license">빅데이터분석기사</div>
                 <div class="member-intro font-size-footer">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
                 <div class="mentor-valid">질문가능</div>
             </div>
@@ -88,7 +118,7 @@
                     <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
                 </div>
                 <div class="mentor-name font-size-subtitle">User01</div>
-                <div class="symbol-license">정보처리기사</div>
+                <div class="symbol-license">빅데이터분석기사</div>
                 <div class="member-intro font-size-footer">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
                 <div class="mentor-valid">질문가능</div>
             </div>
@@ -98,7 +128,7 @@
                     <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
                 </div>
                 <div class="mentor-name font-size-subtitle">User01</div>
-                <div class="symbol-license">정보처리기사</div>
+                <div class="symbol-license">빅데이터분석기사</div>
                 <div class="member-intro font-size-footer">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
                 <div class="mentor-valid">질문가능</div>
             </div>
@@ -108,7 +138,7 @@
                     <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
                 </div>
                 <div class="mentor-name font-size-subtitle">User01</div>
-                <div class="symbol-license">정보처리기사</div>
+                <div class="symbol-license">빅데이터분석기사</div>
                 <div class="member-intro font-size-footer">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
                 <div class="mentor-valid">질문가능</div>
             </div>
@@ -118,7 +148,7 @@
                     <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
                 </div>
                 <div class="mentor-name font-size-subtitle">User01</div>
-                <div class="symbol-license">정보처리기사</div>
+                <div class="symbol-license">빅데이터분석기사</div>
                 <div class="member-intro font-size-footer">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
                 <div class="mentor-valid">질문가능</div>
             </div>
@@ -128,27 +158,7 @@
                     <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
                 </div>
                 <div class="mentor-name font-size-subtitle">User01</div>
-                <div class="symbol-license">정보처리기사</div>
-                <div class="member-intro font-size-footer">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
-                <div class="mentor-valid">질문가능</div>
-            </div>
-
-            <div class="mentor-card">
-                <div class="profile-img small">
-                    <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
-                </div>
-                <div class="mentor-name font-size-subtitle">User01</div>
-                <div class="symbol-license">정보처리기사</div>
-                <div class="member-intro font-size-footer">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
-                <div class="mentor-valid">질문가능</div>
-            </div>
-
-            <div class="mentor-card">
-                <div class="profile-img small">
-                    <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
-                </div>
-                <div class="mentor-name font-size-subtitle">User01</div>
-                <div class="symbol-license">정보처리기사</div>
+                <div class="symbol-license">빅데이터분석기사</div>
                 <div class="member-intro font-size-footer">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
                 <div class="mentor-valid">질문가능</div>
             </div>
