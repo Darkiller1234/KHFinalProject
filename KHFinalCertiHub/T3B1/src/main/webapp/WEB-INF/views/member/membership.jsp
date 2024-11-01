@@ -13,7 +13,7 @@
     <div class="wrapper">
         <div class="content">
             <br><br>
-            <div class="innerOuter">
+
                 <h2>회원가입</h2>
 
                 <br>
@@ -59,7 +59,6 @@
                         </div>
                     </div>
                 </form>
-            </div>
         </div>
     </div>
 </body>
