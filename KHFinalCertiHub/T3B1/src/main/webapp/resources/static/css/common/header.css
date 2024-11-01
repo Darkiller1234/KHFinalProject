@@ -68,6 +68,7 @@
         padding-left:155px; /* logo size */
         padding-right:135px; /* section size */
         width: 100%;
+        z-index: 10; /* 최상위값 필요 */
     }
 
     .navi-body a:hover{

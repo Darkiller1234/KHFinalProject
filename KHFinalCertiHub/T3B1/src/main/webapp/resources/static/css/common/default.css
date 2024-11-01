@@ -31,7 +31,6 @@ a:visited {color: #333;}
 .wrapper{
     max-width: 1250px;
     margin:0 auto;
-    padding:0 17px;
 }
 
 /* 폰트 크기 */
@@ -492,8 +491,8 @@ div1과 div2의 구조가 다름
 }
 
 .profile-img.small{
-    width:150px;
-    height:150px;
+    width:125px;
+    height:125px;
 }
 
 .profile-img img{
