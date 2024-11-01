@@ -619,3 +619,8 @@ div1과 div2의 구조가 다름
 .search-form img{
     width:100%;
 }
+
+/* 페이지 제목 */
+.page-title{
+    padding:20px 0;
+} 

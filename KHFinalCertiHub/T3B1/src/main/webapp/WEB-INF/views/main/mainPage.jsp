@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>서티허브</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/common/mainPage.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/common/default.css"> 
 </head>
 
 <body>
