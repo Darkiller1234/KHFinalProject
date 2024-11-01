@@ -17,7 +17,7 @@
         <div class="hr"></div>
         <h3>아이디를 받을 방식을 선택해주세요.</h3>
 
-        <form action="" method="post" id="idfind" onsubmit="return handleSubmit(event);">
+        <form action="idfindpage" method="post" id="idfind" onsubmit="return handleSubmit(event);">
             <div class="form-group">
                 <button type="button" class="btn phone" id="phoneButton" onclick="setSendMethod('phone')">
                     휴대전화 번호로 전송
@@ -29,12 +29,12 @@
                 </button>
             </div>
             <div class="next-button">
-                <button type="submit" class="btn btn-primary">다음</button>
+                <button type="button" class="btn-primary" id="nextButton" onclick="handleSubmit(event)">다음</button>
             </div>
             <input type="hidden" name="sendMethod" id="sendMethod" />
         </form>
     </div>
 
-    <script src="<%=contextPath%>/resources/static/js/common/idfind.js"></script> <!-- 여기에 JavaScript 파일 경로 추가 -->
+    <script src="<%=contextPath%>/resources/static/js/member/idfind.js"></script>
 </body>
 </html>
