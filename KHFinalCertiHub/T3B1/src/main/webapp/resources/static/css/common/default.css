@@ -33,6 +33,10 @@ a:visited {color: #333;}
     margin:0 auto;
 }
 
+.padding{
+    padding:0 1.25rem;
+}
+
 /* 폰트 크기 */
 .font-size-title{
     font-size: 32px;

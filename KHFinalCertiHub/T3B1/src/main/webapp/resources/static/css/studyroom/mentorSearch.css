@@ -1,11 +1,18 @@
 /* 검색 form 부분 */
 .search-section{
     display:flex;
+    justify-content: space-between;
 }
 
 /* 검색 옵션 부분 */
 .search-option{
     display:flex;
+    justify-content: flex-end;
+}
+
+/* 검색 옵션 부분 */
+.search-option .select-box{
+    margin-left:10px;
 }
 
 /* 멘토 카드 목록 */
@@ -17,6 +24,7 @@
 
 /* 멘토 카드 */
 .mentor-card{
+    min-width: 157px;
     position: relative;
     height:300px;
     border-radius: 5px;
@@ -55,12 +63,23 @@
 }
 
 @media (min-width: 721px) {
+    /* 검색 텍스트 부분 */
+    .search-section .search-form{
+        width:75%;
+        margin-right:10px;
+    }
+
     .mentor-card{
         width:calc(20% - 25px);
     }
 }
 
 @media (min-width: 481px) and (max-width: 720px) {
+    .search-section .search-form{
+        width:75%;
+        margin-right:10px;
+    }
+
     .mentor-card{
         width:calc(33% - 15px);
     }
