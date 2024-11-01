@@ -70,10 +70,10 @@ crossorigin="anonymous"></script>
 
                         <li class="submenu community">
                             <ul>
-                                <li><a href="<%=contextPath%>/main.cm">정보처리기사</a></li>
-                                <li><a href="<%=contextPath%>/main.cm">네트워크 관리사</a></li>
-                                <li><a href="<%=contextPath%>/main.cm">정보보안기사</a></li>
-                                <li><a href="<%=contextPath%>/main.cm">빅데이터 분석기사</a></li>
+                                <li><a href="<%=contextPath%>/list.cm">정보처리기사</a></li>
+                                <li><a href="<%=contextPath%>/list.cm">네트워크 관리사</a></li>
+                                <li><a href="<%=contextPath%>/list.cm">정보보안기사</a></li>
+                                <li><a href="<%=contextPath%>/list.cm">빅데이터 분석기사</a></li>
                             </ul>
                         </li> 
 
