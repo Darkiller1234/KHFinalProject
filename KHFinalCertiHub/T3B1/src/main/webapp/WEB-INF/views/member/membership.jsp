@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/common/membership.css">
-	<script src="${pageContext.request.contextPath}/resources/static/js/common/membership.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/member/membership.css">
+<script src="${pageContext.request.contextPath}/resources/static/js/common/membership.js"></script>
 <title>회원가입</title>
 </head>
 <body>
