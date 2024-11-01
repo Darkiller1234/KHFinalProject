@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<% String contextPath = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/common/default.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/member/login.css">
-<script src="${pageContext.request.contextPath}/resources/static/js/common/login.js"></script>
+<link rel="stylesheet" href="<%=contextPath%>/resources/static/css/common/default.css">
+<link rel="stylesheet" href="<%=contextPath%>/resources/static/css/member/login.css">
+<script src="<%=contextPath%>/resources/static/js/common/login.js"></script>
 <title>로그인</title>
 </head>
 <body>
@@ -34,7 +36,7 @@
                     </div>
 
                     <div>
-                        <a href="membership">회원가입</a> |
+                        <a href="<%=contextPath%>/membership">회원가입</a> |
                         <a href="#">아이디 찾기</a> |
                         <a href="#">비밀번호 찾기</a>
                     </div>

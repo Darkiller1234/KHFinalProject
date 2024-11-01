@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<% String contextPath = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/common/default.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/member/membership.css">
-<script src="${pageContext.request.contextPath}/resources/static/js/common/membership.js"></script>
+<link rel="stylesheet" href="<%=contextPath%>/resources/static/css/common/default.css">
+<link rel="stylesheet" href="<%=contextPath%>/resources/static/css/member/membership.css">
+<script src="<%=contextPath%>/resources/static/js/common/membership.js"></script>
 <title>회원가입</title>
 </head>
 <body>
