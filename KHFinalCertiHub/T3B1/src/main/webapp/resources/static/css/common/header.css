@@ -7,6 +7,10 @@
     position: relative;
 }
 
+.navi{
+    z-index: 10; /* 최상위값 필요 */
+}
+
 @media (min-width: 721px) {
     /* 사이트 로고 이미지 */
     .menu .logo img{

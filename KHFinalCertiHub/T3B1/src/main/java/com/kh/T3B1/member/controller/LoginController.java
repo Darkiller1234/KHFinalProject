@@ -8,6 +8,6 @@ public class LoginController {
 	
 	@RequestMapping("login")
 	public String mainPage() {
-		return "main/login";
+		return "member/login";
 	}
 }
