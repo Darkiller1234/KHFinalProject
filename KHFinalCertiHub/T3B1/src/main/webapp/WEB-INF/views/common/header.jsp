@@ -103,8 +103,8 @@ crossorigin="anonymous"></script>
             </div>
 
             <div class="section font-size-footer">
-                <a href="">로그인</a>
-                <a href="">회원가입</a>
+                <a href="login">로그인</a>
+                <a href="membership">회원가입</a>
                 <img src="<%=contextPath%>/resources/static/img/button/menu_button.png">
             </div>
         </div>
