@@ -207,5 +207,13 @@
         </div>
     </div>
 
+    <div class="form-group">
+        <label for="userId">아이디</label> 
+        <input type="text" class="form-control" id="userId" placeholder="여기에 PlaceHolder 입력" name="userId" required>
+    
+        <label for="userPwd">비밀번호</label>
+        <input type="text" class="form-control" id="userPwd" placeholder="여기에 PlaceHolder 입력" name="userPwd" required>
+    </div>
+
 </body>
 </html>
