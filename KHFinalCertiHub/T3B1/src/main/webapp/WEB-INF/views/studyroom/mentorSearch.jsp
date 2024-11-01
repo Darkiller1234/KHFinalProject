@@ -20,7 +20,7 @@
         </div>
         <div class="mentor-list">
             <div class="mentor-card">
-
+                
             </div>
         </div>
     </div>
