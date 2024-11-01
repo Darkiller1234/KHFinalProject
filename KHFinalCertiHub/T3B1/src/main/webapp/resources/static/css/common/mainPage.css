@@ -1,10 +1,7 @@
-* {
-    margin: 0;
-    box-sizing: border-box;
+img{
+    width: 100%;
 }
-.wrapper{
-    max-width: 1250px;
-}
+
 .banner>img {
      display: block;
      margin: auto;
