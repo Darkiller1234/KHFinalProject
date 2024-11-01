@@ -492,8 +492,8 @@ div1과 div2의 구조가 다름
 }
 
 .profile-img.small{
-    width:150px;
-    height:150px;
+    width:125px;
+    height:125px;
 }
 
 .profile-img img{
