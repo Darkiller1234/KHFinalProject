@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/common/default.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/member/login.css">
 <script src="${pageContext.request.contextPath}/resources/static/js/common/login.js"></script>
 <title>로그인</title>
