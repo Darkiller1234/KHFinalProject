@@ -10,7 +10,7 @@ public class CommunityController {
 	
 	@RequestMapping("list.cm")
 	public String CommunityMain() {
-		
+
 		return "community/communityMain";
 	}
 	@RequestMapping("detail.cm")

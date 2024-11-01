@@ -1,12 +1,53 @@
-.page-title{
-    padding-left: 17px;
-}
-
-.mentor-list{
-    width: 100%;
+/* 검색 form 부분 */
+.search-section{
     display:flex;
 }
 
+/* 검색 옵션 부분 */
+.search-option{
+    display:flex;
+}
+
+/* 멘토 카드 목록 */
+.mentor-list{
+    display: flex;
+    flex-wrap:wrap;
+}
+
+/* 멘토 카드 */
 .mentor-card{
-    flex: 1;
+    height:350px;
+    border-radius: 5px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+.mentor-card:hover{
+    box-shadow: 5px 5px 0px 3px #ccf0ec;
+}
+
+@media (min-width: 721px) {
+    .mentor-card{
+        width:20%;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 720px) {
+    .mentor-card{
+        width:33%;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-section{
+        display:flex;
+        flex-direction: column-reverse;
+        flex-wrap: wrap;
+        align-items: flex-end;
+    }
+    .mentor-card{
+        width:50%;
+    }
 }
