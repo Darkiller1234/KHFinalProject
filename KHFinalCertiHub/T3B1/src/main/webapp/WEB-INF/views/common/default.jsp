@@ -82,7 +82,7 @@
     <!-- 셀렉트박스 -->
     <div class="custom-select">
         <div class="select-box">
-          경기 <span class="arrow">▼</span>
+          기본값 <span class="arrow">▼</span>
         </div>
         <ul class="options">
           <li>내용</li>
@@ -90,8 +90,9 @@
           <li>내용</li>
           <li>내용</li>
         </ul>
-      </div>
-      <script src="${pageContext.request.contextPath}/resources/static/js/common/selectBox.js"></script>
+    </div>
+
+    <script src="${pageContext.request.contextPath}/resources/static/js/common/selectBox.js"></script>
 
     <!-- 게시판 목록(리스트, 테이블)-->
     <!--
@@ -218,11 +219,12 @@
     </div>
 
     <!-- 검색창 -->
-    <form class="search-form" onSubmit="return false;">
+    
+    <div class="search-form">
         <input type="text">
         <button class="rounded-circle" onclick="alert('클릭됨')">
             <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
         </button> 
-    </form>
+    </div>
 </body>
 </html>

@@ -14,13 +14,143 @@
 
     <div class="wrapper">
         <div class="page-title font-size-title">멘토 찾기</div>
-        <div class="search-section">
-            <div class="search-inout"></div>
-            <div class="search-option"></div>
-        </div>
+
+        <form class="search-section" onsubmit="return false;">
+            <div class="search-form">
+                <input type="text">
+                <button class="rounded-circle" onclick="alert('클릭됨')">
+                    <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
+                </button> 
+            </div>
+
+            <div class="search-option">
+                <!-- 셀렉트 박스 수정 예정 -->
+                <div class="custom-select">
+                    <div class="select-box">
+                      경기 <span class="arrow">▼</span>
+                    </div>
+                    <ul class="options">
+                      <li>내용</li>
+                      <li>내용</li>
+                      <li>내용</li>
+                      <li>내용</li>
+                    </ul>
+                </div>
+
+                <div class="custom-select">
+                    <div class="select-box">
+                      경기 <span class="arrow">▼</span>
+                    </div>
+                    <ul class="options">
+                      <li>내용</li>
+                      <li>내용</li>
+                      <li>내용</li>
+                      <li>내용</li>
+                    </ul>
+                </div>
+
+            </div>
+        </form>
+
         <div class="mentor-list">
             <div class="mentor-card">
-                
+                <div class="profile-img small">
+                    <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                </div>
+                <div class="mentor-name font-size-subtitle">User01</div>
+                <div class="symbol-license">정보처리기사</div>
+                <div class="member-intro font-size-footer">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
+                <div class="mentor-valid">질문가능</div>
+            </div>
+
+            <div class="mentor-card">
+                <div class="profile-img small">
+                    <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                </div>
+                <div class="mentor-name font-size-subtitle">User01</div>
+                <div class="symbol-license">정보처리기사</div>
+                <div class="member-intro font-size-footer">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
+                <div class="mentor-valid">질문가능</div>
+            </div>
+
+            <div class="mentor-card">
+                <div class="profile-img small">
+                    <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                </div>
+                <div class="mentor-name font-size-subtitle">User01</div>
+                <div class="symbol-license">정보처리기사</div>
+                <div class="member-intro font-size-footer">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
+                <div class="mentor-valid">질문가능</div>
+            </div>
+
+            <div class="mentor-card">
+                <div class="profile-img small">
+                    <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                </div>
+                <div class="mentor-name font-size-subtitle">User01</div>
+                <div class="symbol-license">정보처리기사</div>
+                <div class="member-intro font-size-footer">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
+                <div class="mentor-valid">질문가능</div>
+            </div>
+
+            <div class="mentor-card">
+                <div class="profile-img small">
+                    <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                </div>
+                <div class="mentor-name font-size-subtitle">User01</div>
+                <div class="symbol-license">정보처리기사</div>
+                <div class="member-intro font-size-footer">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
+                <div class="mentor-valid">질문가능</div>
+            </div>
+
+            <div class="mentor-card">
+                <div class="profile-img small">
+                    <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                </div>
+                <div class="mentor-name font-size-subtitle">User01</div>
+                <div class="symbol-license">정보처리기사</div>
+                <div class="member-intro font-size-footer">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
+                <div class="mentor-valid">질문가능</div>
+            </div>
+
+            <div class="mentor-card">
+                <div class="profile-img small">
+                    <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                </div>
+                <div class="mentor-name font-size-subtitle">User01</div>
+                <div class="symbol-license">정보처리기사</div>
+                <div class="member-intro font-size-footer">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
+                <div class="mentor-valid">질문가능</div>
+            </div>
+
+            <div class="mentor-card">
+                <div class="profile-img small">
+                    <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                </div>
+                <div class="mentor-name font-size-subtitle">User01</div>
+                <div class="symbol-license">정보처리기사</div>
+                <div class="member-intro font-size-footer">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
+                <div class="mentor-valid">질문가능</div>
+            </div>
+
+            <div class="mentor-card">
+                <div class="profile-img small">
+                    <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                </div>
+                <div class="mentor-name font-size-subtitle">User01</div>
+                <div class="symbol-license">정보처리기사</div>
+                <div class="member-intro font-size-footer">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
+                <div class="mentor-valid">질문가능</div>
+            </div>
+
+            <div class="mentor-card">
+                <div class="profile-img small">
+                    <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                </div>
+                <div class="mentor-name font-size-subtitle">User01</div>
+                <div class="symbol-license">정보처리기사</div>
+                <div class="member-intro font-size-footer">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
+                <div class="mentor-valid">질문가능</div>
             </div>
         </div>
     </div>
