@@ -11,14 +11,10 @@ public class MainController {
 		return "main/mainPage";
 	}
 	
-	// 테스트용 경로들, 서비스시 없앨것
-	@RequestMapping("modal")
-	public String modal() {
-		return "common/popup";
+	// css 테스트용 경로, 배포시 제거할 것
+	@RequestMapping("cssTest")
+	public String cssTest() {
+		return "common/default";
 	}
-	
-	@RequestMapping("profile")
-	public String profile() {
-		return "common/profile";
-	}
+
 }
