@@ -1,3 +1,10 @@
+* {
+    font-family: "Noto Sans KR", sans-serif;
+    font-optical-sizing: auto;
+    /* font-weight: <weight>; */
+    font-style: normal;
+}
+
 .menu {
     z-index: 1000;
 }
@@ -20,6 +27,7 @@
 }
 
 #middle-area {          /* 중간 게시판 컨텐츠들 */
+    max-width: 100%;
     width: 100%;
     display: flex;
 }
@@ -27,38 +35,62 @@
     margin: 1.25rem;
 }
 
-#listArea {             /* 글 리스트들 */
-    width: 70%;
+
+/* 
+.listArea-table1 {
+    max-width: 100%;
+    table-layout: fixed;
 }
 
-#listArea table {
-    width: 100%;
-}
-
-#listArea table tr:first-child {
+.listArea-table1-info{
     background-color: #83C5BE;
 }
 
-#listArea div div {
-    display: flex;
+.listArea-table1 tr {
+    max-width: 100%;
 }
 
-#popular-list-div {     /* 인기글 리스트 */
-    width: 30%;
+.listArea-table1 tr :nth-child(1){
+    width: 100px;
+    text-align: center;
 }
 
-#popular-list-div div div{
-    background-color: #EDF6F9;
-    border: #83C5BE 1px solid;
-    width: 100%;
-    padding: 10px;
+.listArea-table1 tr :nth-child(2) :nth-child(1){
+
 }
 
-#popular-list-area-all {
-    background-color: #EDF6F9;
-    border: #83C5BE 1px solid;
-    width: 100%;
+.listArea-table1 tr :nth-child(3){
+    width: 90px;
+    text-align: center;
 }
+
+.listArea-table1 tr :nth-child(4){
+    width: 60px;
+}
+
+.listArea-table1 tr :nth-child(5){
+    width: 45px;
+}
+
+.listArea-table1 tr :nth-child(6){
+    width: 45px;
+}
+
+.listArea-table1-replyCount {
+    width: fit-content;
+}
+
+
+
+.listArea-table1 * {
+    font-size: 16px;
+    white-space: nowrap;         
+    overflow: hidden;            
+    text-overflow: ellipsis;     
+}
+ */
+
+
 
 #search-area{ /* 검색/글쓰기 구역 */
     display: flex;
@@ -84,17 +116,58 @@
     background-color: none;
 }
 
-#search-area select
+#popular-list-div {     /* 인기글 리스트 */
+    width: 250px;
+    min-width: 250px;
+}
+
+#popular-list-div div div{
+    background-color: #EDF6F9;
+    border: #83C5BE 1px solid;
+    width: 100%;
+    padding: 10px;
+}
+
+#popular-list-area-all {
+    background-color: #EDF6F9;
+    border: #83C5BE 1px solid;
+    width: 100%;
+}
+
+.sticky-element {
+    position: sticky;
+    top: 20px; 
+    transition: top 0.3s; /* 부드러운 애니메이션 */
+}
 
 #search-area div:nth-child(2) select:focus, #search-area select:focus{  /* focus 시 외부라인 나타나는거 제거 */
     outline: none;
 }
 
+@media (min-width: 901px) {
+    .listArea-div2{
+        display: none;
+    }
 
+    #listArea{
+        max-width: calc(100% - 330px) !important;
+    }
+}
 
+@media (min-width: 721px) and (max-width: 900px){
+    #popular-list-div {     /* 인기글 리스트 */
+        display: none;
+    }
+}
 
-.sticky-element {
-    position: sticky;
-    top: 30px; 
-    transition: top 0.3s; /* 부드러운 애니메이션 */
+@media (min-width: 481px) and (max-width: 720px) {
+    #popular-list-div {     /* 인기글 리스트 */
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    #popular-list-div {     /* 인기글 리스트 */
+        display: none;
+    }
 }

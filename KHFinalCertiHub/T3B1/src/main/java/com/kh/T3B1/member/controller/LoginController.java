@@ -4,10 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class MemberController {
+public class LoginController {
 	
 	@RequestMapping("login")
 	public String mainPage() {
-		return "main/member";
+		return "main/login";
 	}
 }
