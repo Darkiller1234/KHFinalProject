@@ -51,7 +51,6 @@
 
     .menu .section a{
         flex:1;
-        font-size: 12px;
     }
 
     .menu .section img {
@@ -143,6 +142,10 @@
         flex:1;
         margin: 10px 0 0 10px;
     }
+    
+    .navi-body a:hover{
+        color:#83C5BE;
+    }
 
     /* 메뉴 기타 영역 */
     .menu .section{
@@ -216,6 +219,11 @@
     .navi-body > ul li{
         flex:1;
         margin: 10px 0 0 10px;
+    }
+
+    
+    .navi-body a:hover{
+        color:#83C5BE;
     }
 
     /* 메뉴 기타 영역 */

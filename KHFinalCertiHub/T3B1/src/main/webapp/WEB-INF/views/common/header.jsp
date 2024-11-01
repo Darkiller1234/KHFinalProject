@@ -44,11 +44,11 @@ crossorigin="anonymous"></script>
             <div class="logo">
                 <img 
                     src="<%=contextPath%>/resources/static/img/logo/logo_big.png"
-                    onclick="location.href='main'
+                    onclick="location.href='<%=contextPath%>/main'
                 ">
             </div>
 
-            <div class="navi">
+            <div class="navi font-size-content">
                 <div class="navi-head">
                     <ul>
                         <li data-name="license">자격증 정보</li>
@@ -60,7 +60,7 @@ crossorigin="anonymous"></script>
                 </div>
 
                 
-                <div class="navi-body">
+                <div class="navi-body font-size-content">
                     <ul>
                         <li class="submenu license">
                             <ul>
@@ -70,16 +70,16 @@ crossorigin="anonymous"></script>
 
                         <li class="submenu community">
                             <ul>
-                                <li><a href="main.cm">정보처리기사</a></li>
-                                <li><a href="main.cm">네트워크 관리사</a></li>
-                                <li><a href="main.cm">정보보안기사</a></li>
-                                <li><a href="main.cm">빅데이터 분석기사</a></li>
+                                <li><a href="<%=contextPath%>/main.cm">정보처리기사</a></li>
+                                <li><a href="<%=contextPath%>/main.cm">네트워크 관리사</a></li>
+                                <li><a href="<%=contextPath%>/main.cm">정보보안기사</a></li>
+                                <li><a href="<%=contextPath%>/main.cm">빅데이터 분석기사</a></li>
                             </ul>
                         </li> 
 
                         <li class="submenu study">
                             <ul>
-                                <li><a href="">멘토 / 멘티</a></li>
+                                <li><a href="<%=contextPath%>/mentor/search">멘토 / 멘티</a></li>
                                 <li><a href="">스터디 그룹</a></li>
                             </ul>
                         </li> 
@@ -102,7 +102,7 @@ crossorigin="anonymous"></script>
 
             </div>
 
-            <div class="section">
+            <div class="section font-size-footer">
                 <a href="">로그인</a>
                 <a href="">회원가입</a>
                 <img src="<%=contextPath%>/resources/static/img/button/menu_button.png">
