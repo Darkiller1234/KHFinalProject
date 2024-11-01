@@ -4,10 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class MembershipController {
+public class IdFindController {
 	
-	@RequestMapping("membership")
+	@RequestMapping("idfind")
 	public String mainPage() {
-		return "member/membership";
+		return "member/idfind";
 	}
 }
