@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/common/default.css">
 <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/member/login.css">
-<script src="<%=contextPath%>/resources/static/js/common/login.js"></script>
+<script src="<%=contextPath%>/resources/static/js/member/login.js"></script>
 <title>로그인</title>
 </head>
 <body>

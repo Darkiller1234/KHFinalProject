@@ -9,12 +9,11 @@ body {
     align-items: center;
 }
 
-/* 로그인 박스 스타일 */
 .content {
     width: 100%;
     max-width: 400px;
     background-color: #ffffff;
-    padding: 30px 40px;
+    padding: 20px 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -96,12 +95,16 @@ body {
 }
 
 .form-group div a {
-    color: #006d77;
-    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
 }
 
 .form-group div a:hover {
-    text-decoration: underline;
+    color: #006D77;
+    text-decoration: none;
+    text-align: center;
 }
 
 /* 또는 텍스트 */
@@ -134,4 +137,82 @@ p {
 
 .kakao-btn {
     background-color: #2DB400;
+}
+
+/* 미디어 쿼리 */
+@media (max-width: 768px) {
+    .content {
+        padding: 20px; /* 패딩을 줄여서 공간 활용 */
+        max-width: 90%; /* 최대 너비를 화면의 90%로 설정 */
+    }
+
+    .content h2 {
+        font-size: 22px; /* 제목 글씨 크기 조정 */
+    }
+
+    .content h3 {
+        font-size: 14px; /* 부제목 글씨 크기 조정 */
+    }
+
+    .form-group input[type="text"] {
+        padding: 10px; /* 패딩 조정 */
+    }
+
+    .btn-primary {
+        padding: 10px; /* 버튼 패딩 조정 */
+        font-size: 14px; /* 버튼 글씨 크기 조정 */
+    }
+
+    .social-login button {
+        padding: 8px; /* 소셜 로그인 버튼 패딩 조정 */
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        margin: 0; /* 전체 여백 제거 */
+    }
+
+    .wrapper {
+        margin: 20px; /* 여백 줄이기 */
+    }
+
+    .content {
+        padding: 15px; /* 패딩 조정 */
+        max-width: 100%; /* 최대 너비를 100%로 설정 */
+    }
+
+    .content h2 {
+        font-size: 20px; /* 제목 글씨 크기 조정 */
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="password"],
+    .form-group input[type="tel"] {
+        padding: 8px; /* 패딩 조정 */
+    }
+
+    .btn-primary {
+        padding: 8px; /* 버튼 패딩 조정 */
+        font-size: 14px; /* 버튼 글씨 크기 조정 */
+    }
+
+    .social-login {
+        flex-direction: column; /* 소셜 로그인 버튼 세로 정렬 */
+        align-items: center; /* 중앙 정렬 */
+        gap: 10px; /* 버튼 간격 조정 */
+    }
+
+    .form-group div {
+        display: flex; /* Flexbox 사용 */
+        flex-direction: column; /* 세로로 쌓이게 설정 */
+        align-items: center; /* 중앙 정렬 */
+        gap: 10px; /* 각 항목 간격 조정 */
+    }
+
+    .form-group div a {
+        margin-bottom: 10px; /* 아래쪽 여백 조정 */
+        font-size: 14px; /* 링크 글씨 크기 조정 */
+    }
 }
