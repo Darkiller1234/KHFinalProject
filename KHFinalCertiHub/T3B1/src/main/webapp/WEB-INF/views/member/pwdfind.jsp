@@ -8,16 +8,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/common/default.css">
-<link rel="stylesheet" href="<%=contextPath%>/resources/static/css/member/idfind.css">
-    <title>아이디 찾기</title>
+<link rel="stylesheet" href="<%=contextPath%>/resources/static/css/member/pwdfind.css">
+    <title>비밀번호 찾기</title>
 </head>
 <body>
     <div class="wrapper">
-        <h2>아이디 찾기</h2> 
+        <h2>비밀번호 찾기</h2> 
         <div class="hr"></div>
-        <h3>아이디를 받을 방식을 선택해주세요.</h3>
+        <h3>비밀번호를 받을 방식을 선택해주세요.</h3>
 
-        <form action="idfindpage" method="post" id="idfind" onsubmit="return handleSubmit(event);">
+        <form action="pwdfindpage" method="post" id="idfind" onsubmit="return handleSubmit(event);">
             <div class="form-group">
                 <button type="button" class="btn phone" id="phoneButton" onclick="setSendMethod('phone')">
                     휴대전화 번호로 전송
@@ -35,6 +35,6 @@
         </form>
     </div>
 
-    <script src="<%=contextPath%>/resources/static/js/member/idfind.js"></script>
+    <script src="<%=contextPath%>/resources/static/js/member/pwdfind.js"></script>
 </body>
 </html>

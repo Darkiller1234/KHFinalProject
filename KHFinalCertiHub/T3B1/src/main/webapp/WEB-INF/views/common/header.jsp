@@ -37,7 +37,7 @@ crossorigin="anonymous"></script>
 <script src="<%=contextPath%>/resources/static/js/common/header.js"></script>
 
 </head>
-<body onload="init()">
+<body onload="init(`${pageContext.request.contextPath}`,`${pageName}`, `${optional}`)">
     <div class="wrapper">
 
         <div class="menu">
@@ -103,8 +103,8 @@ crossorigin="anonymous"></script>
             </div>
 
             <div class="section font-size-footer">
-                <a href="">로그인</a>
-                <a href="">회원가입</a>
+                <a href="<%=contextPath%>/login">로그인</a>
+                <a href="<%=contextPath%>/membership">회원가입</a>
                 <img src="<%=contextPath%>/resources/static/img/button/menu_button.png">
             </div>
         </div>
