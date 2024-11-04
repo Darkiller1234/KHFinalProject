@@ -59,11 +59,7 @@ h2 {
     margin-top: 10px; /* 버튼 위쪽 간격 추가 */
 }
 
-/* 호버 효과 제거 */
-.btn-primary:hover {
-    /* background-color: #004f5d; */
-    /* transform: translateY(-2px); */
-}
+
 
 .btn-primary:focus {
     outline: none;
