@@ -28,6 +28,11 @@
     padding: 0 5px;
 }
 
+/* 멘토 카드 */
+.mentor-card:hover{
+    box-shadow: 5px 5px 0px 3px #ccf0ec;
+}
+
 /* 멘토 로딩창 */
 .loading-section{
     display: flex;

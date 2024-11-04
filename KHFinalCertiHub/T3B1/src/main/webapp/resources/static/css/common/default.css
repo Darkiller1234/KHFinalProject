@@ -633,10 +633,6 @@ div1과 div2의 구조가 다름
     padding: 10px;
 }
 
-.mentor-card:hover{
-    box-shadow: 5px 5px 0px 3px #ccf0ec;
-}
-
 .mentor-card div{
     overflow: hidden;
     text-overflow: ellipsis;
