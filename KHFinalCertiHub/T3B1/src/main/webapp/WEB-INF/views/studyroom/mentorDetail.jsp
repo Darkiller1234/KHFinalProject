@@ -7,7 +7,7 @@
     <title>서티허브 - 멘토 정보</title>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/studyroom/mentorDetail.css">
-    <script src="${pageContext.request.contextPath}/resources/static/js/common/scroll.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
 </head>
 <body>
     <%@ include file="../common/header.jsp" %>

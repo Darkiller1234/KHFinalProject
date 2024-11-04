@@ -1,9 +1,14 @@
-function init(){
+function init(contextPath, pageName, optional){
     window.onresize = () => {
         onResizeHandler();
     };
-
     onResizeHandler();
+
+    switch(pageName){
+        case "mentorSearch":
+            initMentorSearch(contextPath); // contextPath
+            break;
+    }
 }
 
 function onResizeHandler(){

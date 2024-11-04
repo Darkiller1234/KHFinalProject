@@ -505,7 +505,7 @@ div1과 div2의 구조가 다름
 }
 
 /* 셀렉트박스 css */
-.custom-select {
+/* .custom-select {
     width: 120px;
 }
 
@@ -552,6 +552,67 @@ div1과 div2의 구조가 다름
 .select-box.active + .options {
     display: block;
 }
+
+.select:focus + .icoArrow img {
+    transform: rotate(180deg);
+} */
+
+/* 셀렉트박스v2 css */
+.custom-select{
+    width:120px;
+    display: flex;
+    position: relative;
+    justify-content: center;
+}
+
+.button-select {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border: 2px solid #83C5BE;
+    border-radius: 30px 30px 30px 30px;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    background-color: transparent;
+}
+
+.button-select img{
+    width:25px;
+    height:25px;
+    margin-left: 10px;
+    transition: .3s;
+}
+
+.button-select:focus{
+    outline: none;
+}
+
+.button-select:focus img{
+    transform: rotate(180deg);
+}
+
+.item-list{
+    position: absolute;
+    top:100%;
+    min-width: 80%;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    z-index: 1;
+    overflow: hidden;
+}
+
+.item{
+    padding:10px 10px;
+}
+
+.item:hover{
+    background-color: #EDF6F9;
+}
+
+
   
 /* 입력창(인풋창) */
 .form-group {
