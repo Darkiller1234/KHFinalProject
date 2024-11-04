@@ -1,0 +1,124 @@
+/* 전체 화면을 채우고 중앙 정렬 */
+body {
+    font-family: Arial, sans-serif; /* 기본 글꼴 설정 */
+    background-color: #FFFFFF; /* 배경 색상 변경 */
+    display: flex; /* Flexbox 사용 */
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    height: 100vh; /* 화면 높이를 100% 사용 */
+    margin: 0; /* 기본 여백 제거 */
+}
+
+/* wrapper 클래스를 위한 스타일 */
+.wrapper {
+    background-color: #EDF6F9; /* 내부 색상 설정 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+    padding: 20px; /* 내부 여백 */
+    width: 90%; /* 너비를 90%로 설정 */
+    max-width: 400px; /* 최대 너비 설정 */
+}
+
+/* 제목 및 부제목 스타일 */
+h2 {
+    text-align: center; /* 제목 중앙 정렬 */
+    color: #000000; /* 제목 색상 변경 */
+}
+
+h3 {
+    text-align: center; /* 부제목 중앙 정렬 */
+    color: #333; /* 부제목 색상 */
+    margin-bottom: 20px; /* 아래쪽 여백 추가 */
+}
+
+/* 버튼 스타일 */
+.form-group {
+    display: flex; /* 버튼을 수평으로 배치 */
+    justify-content: space-between; /* 버튼 사이 간격 설정 */
+    margin-bottom: 20px; /* 아래쪽 여백 추가 */
+}
+
+.btn {
+    flex: 1; /* 버튼이 동일한 너비로 확장 */
+    padding: 15px; /* 내부 여백을 키움 */
+    margin: 0 5px; /* 좌우 여백 추가 */
+    border: none; /* 테두리 제거 */
+    border-radius: 5px; /* 둥근 모서리 */
+    color: #FFFFFF; /* 글자 색상 */
+    font-size: 18px; /* 글자 크기를 키움 */
+    cursor: pointer; /* 마우스 포인터 변경 */
+    transition: background-color 0.3s, border 0.3s; /* 배경색과 테두리 변화에 애니메이션 추가 */
+}
+
+/* 버튼 스타일 */
+.btn.phone,
+.btn.email {
+    background-color: #EDF6F9; /* 버튼 배경 색상 */
+    border: 2px solid #83C5BE; /* 버튼 테두리 색상 */
+    color: #000000; /* 글자 색상 */
+}
+
+/* 클릭된 상태에서 스타일 */
+.btn.phone.active,
+.btn.email.active {
+    background-color: #83C5BE; /* 클릭 시 배경 색상 */
+    border: 2px solid #006D77; /* 클릭 시 테두리 색상 */
+}
+
+/* 수평 구분선 스타일 */
+.hr {
+    height: 1px; /* 높이 설정 */
+    background-color: #006D77; /* 색상 설정 */
+    margin: 20px 0; /* 여백 설정 */
+}
+
+/* 다음 버튼을 중앙에 배치 */
+.next-button {
+    display: flex; /* 플렉스박스를 사용하여 중앙 배치 */
+    justify-content: center; /* 중앙 정렬 */
+    margin-top: 20px; /* 위쪽 여백 추가 */
+}
+
+/* 다음 버튼 스타일 */
+.btn-primary {
+    border: solid 3px #83C5BE; /* 바깥쪽 테두리 색상 변경 */
+    color: white; /* 글자 색상 */
+    background-color: #006d77; /* 버튼 배경 색상 */
+    width: 100%; /* 너비를 100%로 설정 */
+    padding: 15px; /* 패딩 설정 */
+    font-size: 18px; /* 폰트 크기 설정 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    position: relative; /* 포지션을 상대적으로 설정하여 테두리 효과를 적용할 수 있게 함 */
+    z-index: 1; /* 다른 요소보다 위에 놓이도록 설정 */
+}
+
+/* 버튼 위에 올려질 투명한 배경을 설정하여 테두리를 더욱 부각시킴 */
+.btn-primary:before {
+    content: '';
+    position: absolute;
+    top: -3px; /* 테두리 두께에 따라 위쪽 위치 조정 */
+    left: -3px; /* 테두리 두께에 따라 왼쪽 위치 조정 */
+    right: -3px; /* 테두리 두께에 따라 오른쪽 위치 조정 */
+    bottom: -3px; /* 테두리 두께에 따라 아래쪽 위치 조정 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    border: solid 3px #83C5BE; /* 테두리 색상 */
+    opacity: 0; /* 기본적으로 보이지 않게 설정 */
+    transition: opacity 0.3s; /* 테두리 호버 시 애니메이션 효과 */
+    z-index: -1; /* 버튼 뒤쪽에 배치 */
+}
+
+/* 호버 시 테두리 표시 */
+.btn-primary:hover:before {
+    opacity: 1; /* 호버 시 테두리 보이도록 설정 */
+}
+
+/* 다음 버튼 호버 효과 */
+.btn-primary:hover {
+    background-color: #006D77; /* 호버 시 배경 색상 */
+    opacity: 0.9; /* 호버 시 투명도 변화 */
+}
+
+.btn-primary:focus {
+    background-color: #006D77; /* 포커스 시 배경 색상 */
+    opacity: 0.9; /* 포커스 시 투명도 변화 */
+}
