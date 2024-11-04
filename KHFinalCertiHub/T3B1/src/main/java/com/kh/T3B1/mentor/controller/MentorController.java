@@ -11,4 +11,9 @@ public class MentorController {
 	public String mentorSearch() {
 		return "studyroom/mentorSearch";
 	}
+	
+	@RequestMapping("/detail")
+	public String mentorDetail() {
+		return "studyroom/mentorDetail";
+	}
 }
