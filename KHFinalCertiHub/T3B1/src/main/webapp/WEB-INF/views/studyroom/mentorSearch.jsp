@@ -7,13 +7,14 @@
     <title>서티허브 - 멘토찾기</title>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/studyroom/mentorSearch.css">
-    <script src="${pageContext.request.contextPath}/resources/static/js/common/scroll.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/static/js/studyroom/mentorSearch.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
 </head>
 <body>
     <%@ include file="../common/header.jsp" %>
 
     <div class="wrapper padding">
-        <div class="page-title font-size-title">멘토 찾기</div>
+        <div class="page-title font-size-title">멘토 찾기</div>    
 
         <form class="search-section" onsubmit="return false;">
             <div class="search-form">
@@ -24,32 +25,10 @@
             </div>
 
             <div class="search-option">
-                <!-- 셀렉트 박스 수정 예정 -->
-                <div class="custom-select">
-                    <div class="select-box">
-                      경기 <span class="arrow">▼</span>
-                    </div>
-                    <ul class="options">
-                      <li>내용</li>
-                      <li>내용</li>
-                      <li>내용</li>
-                      <li>내용</li>
-                    </ul>
-                </div>
-
-                <div class="custom-select">
-                    <div class="select-box">
-                      경기 <span class="arrow">▼</span>
-                    </div>
-                    <ul class="options">
-                      <li>내용</li>
-                      <li>내용</li>
-                      <li>내용</li>
-                      <li>내용</li>
-                    </ul>
-                </div>
-
+                <div class="custom-select"></div>
+                <div class="custom-select"></div>
             </div>
+
         </form>
 
         <div class="mentor-list">

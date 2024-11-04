@@ -37,7 +37,7 @@ crossorigin="anonymous"></script>
 <script src="<%=contextPath%>/resources/static/js/common/header.js"></script>
 
 </head>
-<body onload="init()">
+<body onload="init(`${pageContext.request.contextPath}`,`${pageName}`, `${optional}`)">
     <div class="wrapper">
 
         <div class="menu">
