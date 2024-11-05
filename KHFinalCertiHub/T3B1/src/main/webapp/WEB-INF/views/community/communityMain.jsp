@@ -15,10 +15,9 @@
   <body>
     <%@ include file="../common/header.jsp" %>
       <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/community/communityMain.css">
-      <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/common/board.css">
       
       <div class="wrapper">
-        <nav class="navbar bg-body-tertiary" id="certiSelect">
+        <nav class="navbar bg-body-tertiary page-title" id="certiSelect">
           <div class="container-fluid">
             <a class="navbar-brand" href="#">정보처리기사</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -35,9 +34,6 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="#">빅데이터 분석기사</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
               </ul>
             </div>
@@ -125,7 +121,7 @@
                   </div>
                 </div>
               </div>
-              <div>
+              <div onclick="location.href='<%=contextPath%>/detail.cm'">
                 <div>
                   <div class="listArea-div1-tab">
                     질문(자유)
@@ -375,7 +371,7 @@
                   </div>
                 </div>
               </div>
-              <div class="listArea-div1-info">
+              <div onclick="location.href='<%=contextPath%>/detail.cm'">
                 <div>
                   <div class="listArea-div2-tab">
                     질문(자유)
@@ -931,65 +927,20 @@
           <div id="popular-list-div" >
             <div class="sticky-element">
               <div id="popular-list-area-all">
-                <h2>전체 인기글</h2>
-                <table>
-                  <tr>
-                    <th>제목</th>
-                    <th>댓글수</th>
-                    <th>추천수</th>
-                  </tr>
-                  <tr>
-                    <td>이거 왜 안됨?</td>
-                    <td>[9999]</td>
-                    <td>-9999</td>
-                  </tr>
-                  <tr>
-                    <td>응애 살려저</td>
-                    <td>[1]</td>
-                    <td>50</td>
-                  </tr>
-                  <tr>
-                    <td>야근 싫다!</td>
-                    <td>[10]</td>
-                    <td>255</td>
-                  </tr>
-                  <tr>
-                    <td>스택 오버플로우</td>
-                    <td>[256[</td>
-                    <td>-0</td>
-                  </tr>
-                </table>
+                <h2 class="font-size-subtitle">전체 인기글</h2>
+                <div class="popular-list-info">
+                  <span>제목</span><span>댓글수</span><span>추천수</span>
+                </div>
               </div>
               <br>
               <div id="popular-list-area-this">
-                <h2>이 게시판의 인기글</h2>
-                <table>
-                  <tr>
-                    <th>제목</th>
-                    <th>댓글수</th>
-                    <th>추천수</th>
-                  </tr>
-                  <tr>
-                    <td>이거 왜 안됨?</td>
-                    <td>[9999]</td>
-                    <td>-9999</td>
-                  </tr>
-                  <tr>
-                    <td>응애 살려저</td>
-                    <td>[1]</td>
-                    <td>50</td>
-                  </tr>
-                  <tr>
-                    <td>야근 싫다!</td>
-                    <td>[10]</td>
-                    <td>255</td>
-                  </tr>
-                  <tr>
-                    <td>스택 오버플로우</td>
-                    <td>[256[</td>
-                    <td>-0</td>
-                  </tr>
-                </table>
+                <h2 class="font-size-subtitle">이 게시판의 인기글</h2>
+                <div class="popular-list-info">
+                  <span>제목</span><span>댓글수</span><span>추천수</span>
+                </div>
+                <div>
+                  <span>이거 왜 안됨?모녀듀어펴ㅠ어뎌륭더</span><span>[99999]</span><span>-999999</span>
+                </div>
               </div>
             </div>
             

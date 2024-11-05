@@ -112,9 +112,17 @@
 #popular-list-div {     /* 인기글 리스트 */
     width: 250px;
     min-width: 250px;
+    
 }
 
-#popular-list-div div div{
+#popular-list-div *{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+#popular-list-div > div > div{
     background-color: #EDF6F9;
     border: #83C5BE 1px solid;
     width: 100%;
@@ -131,6 +139,21 @@
     position: sticky;
     top: 20px; 
     transition: top 0.3s; /* 부드러운 애니메이션 */
+}
+
+#popular-list-area-all > div, #popular-list-area-this > div{
+    display: flex;
+}
+
+#popular-list-area-all > div > span:nth-of-type(1), #popular-list-area-this > div > span:nth-of-type(1){
+    width: 170px;
+    max-width: 170px;
+}
+
+#popular-list-area-all > div > span:nth-of-type(2), #popular-list-area-all > div > span:nth-of-type(3), #popular-list-area-this > div > span:nth-of-type(2), #popular-list-area-this > div > span:nth-of-type(3){
+    min-width: 60px;
+    max-width: 60px;
+    text-align: center;
 }
 
 #search-area div:nth-child(2) select:focus, #search-area select:focus{  /* focus 시 외부라인 나타나는거 제거 */
@@ -163,4 +186,5 @@
     #popular-list-div {     /* 인기글 리스트 */
         display: none;
     }
+    
 }
