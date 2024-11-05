@@ -132,6 +132,7 @@ function createSelectBox(selectBox, data){
     div : 안에 테이블을 생성할 영역
     data = {
         url: contextPath + "이동할 경로 ex)/study/detail",
+        titleIndex: n( n번째 요소를 타이틀로 설정 )
         header : [
             "제목",
             "작성자",
@@ -168,7 +169,12 @@ function createList(div, data){
 
         header.appendChild(th)
     })
-    header.firstChild.className = "title"
+
+    // titleIndex를 data에 넣지않으면, 맨 앞 요소를 title로 간주
+    // titleIndex 값이 있다면 해당 숫자번째 요소를 title로 설정
+    const titleIndex = data?.titleIndex === undefined ? 0 : data.titleIndex - 1;
+
+    header.children[titleIndex].className = "title"
     board.appendChild(header)
     
     data.boardList.forEach(post => {
