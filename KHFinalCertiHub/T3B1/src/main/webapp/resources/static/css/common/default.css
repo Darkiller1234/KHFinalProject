@@ -784,6 +784,10 @@ div1과 div2의 구조가 다름
     table-layout: fixed; /* table 요소의 크기를 동일하게 고정 */
 }
 
+.board tr{
+    border-radius: 5px;
+}
+
 .board th, .board td{
     height:40px;
     text-align: center;
