@@ -1,3 +1,8 @@
+function init(contextPath){
+    initSelectBox(contextPath)
+    initBoard()
+}
+
 function initSelectBox(contextPath){
     const selectBoxList = document.querySelectorAll('.custom-select');
 
@@ -16,6 +21,35 @@ function initSelectBox(contextPath){
 
         createSelectBox(selectBox, data)
     })
+}
+
+function initBoard(){
+    const testBoard = document.querySelector('.test-board');
+    
+    let data = {
+        header : [
+            "제목",
+            "작성자",
+            "작성일",
+            "조회",
+        ],
+        boardList : [
+            [
+                "제목입니다1",
+                "user01",
+                "2024.11.05",
+                "111",
+            ],
+            [
+                "제목입니다2",
+                "user01",
+                "2024.11.05",
+                "222",
+            ]
+        ]
+    }
+
+    createList(testBoard, data)
 }
 
 /*
@@ -37,7 +71,11 @@ function createSelectBox(selectBox, data){
     // 서버에 보낼 input값을 표시할 요소
     const button = document.createElement('button');
     button.className = 'button-select';
-    button.innerText = data.default;
+
+    const buttonText = document.createElement('div');
+    buttonText.innerText = data.default;
+
+    button.appendChild(buttonText);
 
     // 셀렉트박스의 삼각형 이미지
     const buttonImg = document.createElement('img');
@@ -83,6 +121,67 @@ function createSelectBox(selectBox, data){
     selectBox.appendChild(input);
     selectBox.appendChild(button);
     selectBox.appendChild(itemList);
+}
+
+/*
+    테이블 생성 함수
+    %주의사항 : 첫번째 데이터는 무조건 title로 간주 %
+
+    div : 안에 테이블을 생성할 영역
+    data = {
+        header : [
+            "제목",
+            "작성자",
+            "삭제",
+            ...
+        ],
+        boardList : [
+            [
+                "제목입니다1",
+                "user01",
+                "<button>삭제</button>",
+                ...
+            ],
+            [
+                "제목입니다2",
+                "user01",
+                "<button>삭제</button>",
+                ...
+            ]
+        ]
+    }
+*/
+function createList(div, data){
+    const board = document.createElement('table')
+    board.className = 'board'
+
+    const header = document.createElement('tr')
+    header.className = 'header bgcolor2'
+
+    /* 테이블 헤더 생성 */
+    data.header.forEach(head => {
+        let th = document.createElement('th')
+        th.innerText = head
+
+        header.appendChild(th)
+    })
+    header.firstChild.className = "title"
+    board.appendChild(header)
+    
+    data.boardList.forEach(post => {
+        let tr = document.createElement('tr')
+
+        post.forEach(data => {
+            let td = document.createElement('td')
+            td.innerHTML = data;
+            
+            tr.appendChild(td)
+        })
+        tr.firstChild.className = "title"
+        board.appendChild(tr)
+    })
+
+    div.appendChild(board)
 }
 
 function topScroll(){
