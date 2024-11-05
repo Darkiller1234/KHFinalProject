@@ -18,11 +18,11 @@
             <!-- 사이드바 -->
             <div class="sidebar">
                 <ul>
-                    <li><a href="#공지">공지</a></li>
-                    <li><a href="#자격증인증">자격증 인증</a></li>
-                    <li><a href="#게시글관리">게시글 관리</a></li>
-                    <li><a href="#신고목록">신고 목록</a></li>
-                    <li><a href="#유저관리">유저 관리</a></li>
+                    <li><a href="manager/notice">공지</a></li>
+                    <li><a href="#">자격증 인증</a></li>
+                    <li><a href="#">게시글 관리</a></li>
+                    <li><a href="#">신고 목록</a></li>
+                    <li><a href="#">유저 관리</a></li>
                 </ul>
             </div>
             <!-- 콘텐츠 영역 -->
@@ -116,7 +116,7 @@
                         <td><button>X</button></td>
                     </tr>
                 </table>
-                
+
                 <!-- 페이징바 -->
                 <div class="pagination">
                     <span class="page-arrow">&lt;</span>
