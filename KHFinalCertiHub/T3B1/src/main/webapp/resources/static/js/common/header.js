@@ -8,6 +8,15 @@ function init(contextPath, pageName, optional){
         case "mentorSearch":
             initMentorSearch(contextPath); // contextPath
             break;
+        case "studySearch":
+            initStudySearch(contextPath);
+            break;
+        case "studyDetail":
+            initStudyDetail(contextPath);
+            break;
+        case "studyWrite":
+            initStudyWrite(contextPath);
+            break;
     }
 }
 

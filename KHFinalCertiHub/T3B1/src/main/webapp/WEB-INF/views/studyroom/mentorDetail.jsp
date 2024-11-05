@@ -24,7 +24,7 @@
                 <div class="symbol-license">빅데이터분석기사</div>
                 <div class="member-intro font-size-footer">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
                 <div class="mentor-valid accept"><img src="<%=contextPath%>/resources/static/img/button/valid_icon.png">질문가능</div>
-                <button class="btn-primary">신청하기</button>
+                <button class="btn-primary"  data-bs-toggle="modal" data-bs-target="#apply-modal">신청하기</button>
             </div>
 
             <div class="mentor-info">
@@ -144,6 +144,36 @@
         <div class="bottom-options">
             <button onclick="topScroll()" class="top-button rounded-circle"><img src="${pageContext.request.contextPath}/resources/static/img/button/arrow_up_icon.png"></button>
         </div>
+
+        
+        <!-- 모달창 -->
+        <div class="modal" id="apply-modal">
+            <div class="modal-dialog">
+            <div class="modal-content">
+        
+                <!-- Modal Header -->
+                <div class="modal-header">
+                <h4 class="modal-title">                
+                    <img 
+                    src="<%=contextPath%>/resources/static/img/logo/logo_big.png"
+                    ">
+                </h4>
+                </div>
+        
+                <!-- Modal body -->
+                <div class="modal-body">
+                신청되었습니다.
+                </div>
+        
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                <button type="button" data-bs-dismiss="modal">닫기</button>
+                </div>
+        
+            </div>
+            </div>
+        </div>
+
     </div>
 
     <%@ include file="../common/footer.jsp" %>
