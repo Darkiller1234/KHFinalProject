@@ -1,6 +1,6 @@
 function initStudySearch(contextPath){
     initSelectBox(contextPath)
-    initBoard()
+    initBoard(contextPath)
 }
 
 function initSelectBox(contextPath){
@@ -22,40 +22,11 @@ function initSelectBox(contextPath){
     })
 }
 
-
-
-/*
-    테이블 생성 함수
-    %주의사항 : 첫번째 데이터는 무조건 title로 간주 %
-
-    div : 안에 테이블을 생성할 영역
-    data = {
-        header : [
-            "제목",
-            "작성자",
-            "삭제",
-            ...
-        ],
-        boardList : [
-            [
-                "제목입니다1",
-                "user01",
-                "<button>삭제</button>",
-                ...
-            ],
-            [
-                "제목입니다2",
-                "user01",
-                "<button>삭제</button>",
-                ...
-            ]
-        ]
-    }
-*/
-function initBoard(){
+function initBoard(contextPath){
     const boardList = document.querySelector('.board-content');
     
     let data = {
+        url: contextPath + "/study/detail",
         header : [
             "제목",
             "작성자",

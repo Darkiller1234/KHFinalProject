@@ -131,6 +131,7 @@ function createSelectBox(selectBox, data){
 
     div : 안에 테이블을 생성할 영역
     data = {
+        url: contextPath + "이동할 경로 ex)/study/detail",
         header : [
             "제목",
             "작성자",
@@ -180,6 +181,9 @@ function createList(div, data){
             tr.appendChild(td)
         })
         tr.firstChild.className = "title"
+        tr.firstChild.onclick = () => {
+            location.href= data.url
+        }
         board.appendChild(tr)
     })
 
