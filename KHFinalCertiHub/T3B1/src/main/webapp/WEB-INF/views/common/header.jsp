@@ -27,6 +27,10 @@ crossorigin="anonymous"></script>
     crossorigin="anonymous">
 </script>
 
+<!-- summernote -->
+<link href="${pageContext.request.contextPath}/resources/static/lib/summernote/summernote-bs5.css" rel="stylesheet">
+<script src="${pageContext.request.contextPath}/resources/static/lib/summernote/summernote-bs5.js"></script>
+
 <!-- Google font -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -87,7 +91,7 @@ crossorigin="anonymous"></script>
                         <li class="submenu personal">
                             <ul>
                                 <li><a href="">개인 페이지</a></li>
-                                <li><a href="">메시지</a></li>
+                                <li><a href="<%=contextPath%>/message/main">메시지</a></li>
                             </ul>
                         </li> 
 

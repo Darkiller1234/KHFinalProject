@@ -186,8 +186,8 @@ function createList(div, data){
             
             tr.appendChild(td)
         })
-        tr.firstChild.className = "title"
-        tr.firstChild.onclick = () => {
+        tr.children[titleIndex].className = "title"
+        tr.children[titleIndex].className = () => {
             location.href= data.url
         }
         board.appendChild(tr)
