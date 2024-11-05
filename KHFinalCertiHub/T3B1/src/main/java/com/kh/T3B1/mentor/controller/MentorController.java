@@ -5,17 +5,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("mentor")
+@RequestMapping("/mentor")
 public class MentorController {
 	
-	@RequestMapping("/search")
-	public String mentorSearch(Model m) {
+	@RequestMapping("search")
+	public String mentorSearchPage(Model m) {
 		m.addAttribute("pageName","mentorSearch");
 		return "studyroom/mentorSearch";
 	}
 	
-	@RequestMapping("/detail")
-	public String mentorDetail() {
+	@RequestMapping("detail")
+	public String mentorDetailPage() {
 		return "studyroom/mentorDetail";
 	}
 }
