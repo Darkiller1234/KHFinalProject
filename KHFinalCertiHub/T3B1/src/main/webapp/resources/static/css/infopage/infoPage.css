@@ -1,0 +1,17 @@
+.container{
+    width: 100%;
+    height: 100px;
+    background-color: #83C5BE;
+
+}
+
+.navbar{
+    display: block;
+    background-color: #83C5BE;
+    text-align: center;
+    margin: auto;
+}
+
+.navbar-item{
+    font-size: 32px;
+}
