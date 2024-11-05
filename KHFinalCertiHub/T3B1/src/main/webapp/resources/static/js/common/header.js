@@ -11,6 +11,12 @@ function init(contextPath, pageName, optional){
         case "communitySearch":
             initCommunitySearch(contextPath); // contextPath
             break;
+        case "studySearch":
+            initStudySearch(contextPath);
+            break;
+        case "studyDetail":
+            initStudyDetail(contextPath);
+            break;
     }
 }
 
