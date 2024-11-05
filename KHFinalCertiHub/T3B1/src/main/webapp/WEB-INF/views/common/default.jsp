@@ -247,7 +247,7 @@
         <script src="${pageContext.request.contextPath}/resources/static/js/common/scroll.js"></script>
         필요
     -->
-    <div class="mobile-options">
+    <div class="bottom-options">
         <button onclick="topScroll()" class="top-button rounded-circle"><img src="${pageContext.request.contextPath}/resources/static/img/button/arrow_up_icon.png"></button>
     </div>
 
