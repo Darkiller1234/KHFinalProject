@@ -19,4 +19,10 @@ public class StudyController {
 		m.addAttribute("pageName","studyDetail");
 		return "studyroom/studyDetail";
 	}
+	
+	@RequestMapping("write")
+	public String studyWritePage(Model m) {
+		m.addAttribute("pageName","studyWrite");
+		return "studyroom/studyWrite";
+	}
 }

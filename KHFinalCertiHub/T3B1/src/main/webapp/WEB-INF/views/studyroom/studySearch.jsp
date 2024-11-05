@@ -37,7 +37,7 @@
         </div>
 
         <div class="board-option">
-            <button type="submit" class="btn btn-primary">
+            <button class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/study/write'">
                 <img src="${pageContext.request.contextPath}/resources/static/img/button/pencil_icon.png">
                 글쓰기
             </button>
