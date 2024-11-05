@@ -14,6 +14,7 @@ img{
  .layer1 {
      display: flex;
      margin: 10px auto;
+     gap: 25px;
  }
 
  .calendar {
@@ -45,11 +46,13 @@ img{
  .layer2 {
      display: flex;
      justify-content: space-around;
+     margin: 10px auto;
+     gap: 10px;
  }
 
  .bestBoard {
      border: 1px solid #83C5BE;
-     width: 520px;
+     width: 590px;
      height: 317px;
      border-radius: 5px;
      box-sizing: border-box;
@@ -66,7 +69,7 @@ img{
 
  .notice {
      border: 1px solid #83C5BE;
-     width: 550px;
+     width: 590px;
      height: 317px;
      border-radius: 5px;
      box-sizing: border-box;
