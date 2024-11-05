@@ -1,5 +1,5 @@
 function initManagerPage(contextPath){
-    const boardList = document.querySelector('.board-section');
+    const boardList = document.querySelector('.board-notice');
 
     let data = {
         url: contextPath + "/manager/notice",

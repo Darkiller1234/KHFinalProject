@@ -7,10 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 페이지</title>
 
-    
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/member/manager.css">
-    <script src="${pageContext.request.contextPath}/resources/static/js/member/manager.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/manager/certify.css">
+    <script src="${pageContext.request.contextPath}/resources/static/js/manager/certify.js"></script>
     <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
+
 </head>
 <body>
     <%@ include file="../common/header.jsp" %>
@@ -38,7 +38,7 @@
                     </button> 
                 </div>
 
-                <div class="board-section"></div>
+                <div class="board-certify"></div>
 
                 <!-- 페이징바 -->
                 <div class="pagination">

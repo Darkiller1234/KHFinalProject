@@ -19,9 +19,24 @@ function init(contextPath, pageName, optional){
             initManagerPage(contextPath);
             break;
 
+        case "certifyPage":
+            initCertifyPage(contextPath);
+            break;
+
+        case "listPage":
+            initListPage(contextPath);
+            break;
+
+        case "reportPage":
+            initReportPage(contextPath);
+            break;
+
+        case "userPage":
+            initUserPage(contextPath);
+            break;
+
         case "studyWrite":
             initStudyWrite(contextPath);
-
             break;
     }
 }
