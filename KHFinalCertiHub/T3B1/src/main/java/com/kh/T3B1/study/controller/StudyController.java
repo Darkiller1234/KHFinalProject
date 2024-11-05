@@ -15,7 +15,8 @@ public class StudyController {
 	}
 	
 	@RequestMapping("detail")
-	public String studyDetailPage() {
+	public String studyDetailPage(Model m) {
+		m.addAttribute("pageName","studyDetail");
 		return "studyroom/studyDetail";
 	}
 }
