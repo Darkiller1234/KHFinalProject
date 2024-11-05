@@ -91,6 +91,17 @@
     height: 40px;
 }
 
+#search-area div:nth-child(1) {
+    background-color: #ffffff;
+    border: #83C5BE 3px solid;
+    border-radius: 40px;
+}
+
+#search-area div:nth-child(1) select {
+    border: none;
+    border-radius: 40px;
+}
+
 #search-area div:nth-child(2) {         /* 검색창 전체 */
     background-color: #ffffff;
     border: #83C5BE 3px solid;

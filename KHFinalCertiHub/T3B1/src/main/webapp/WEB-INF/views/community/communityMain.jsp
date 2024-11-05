@@ -121,7 +121,7 @@
                   </div>
                 </div>
               </div>
-              <div onclick="location.href='<%=contextPath%>/detail.cm'">
+              <div onclick="redirect('<%=contextPath%>/detail.cm')">
                 <div>
                   <div class="listArea-div1-tab">
                     질문(자유)
@@ -904,12 +904,14 @@
               <span class="page-num active">2</span>
             </div>
             <div id="search-area">
-              <select>
+              <div>
+                <select>
                 <option value="1" selected>최신순</option>
                 <option value="2">추천순</option>
                 <option value="3"></option>
                 <option value="4">Three</option>
               </select>
+              </div>
               <div>
                 <select>
                   <option value="1" selected>제목</option>
