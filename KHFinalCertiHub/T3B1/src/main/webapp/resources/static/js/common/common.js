@@ -1,9 +1,10 @@
+/* init 부터  */
 function init(contextPath){
-    initSelectBox(contextPath)
-    initBoard()
+    testSelectBox(contextPath)
+    testBoard()
 }
 
-function initSelectBox(contextPath){
+function testSelectBox(contextPath){
     const selectBoxList = document.querySelectorAll('.custom-select');
 
     selectBoxList.forEach(selectBox => {
@@ -23,7 +24,7 @@ function initSelectBox(contextPath){
     })
 }
 
-function initBoard(){
+function testBoard(){
     const testBoard = document.querySelector('.test-board');
     
     let data = {
@@ -51,6 +52,7 @@ function initBoard(){
 
     createList(testBoard, data)
 }
+/* 여기까지 완성시 없앨것 */
 
 /*
     셀렉트 박스 생성함수
