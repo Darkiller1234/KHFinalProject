@@ -80,6 +80,14 @@ body {
     max-width: 400px; /* 최대 너비를 설정 */
 }
 
+.board {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.pagination {
+    margin-top: 10px;
+}
+
 
 /* 푸터 스타일 */
 footer {
