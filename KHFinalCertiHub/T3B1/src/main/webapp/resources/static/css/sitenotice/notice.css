@@ -1,0 +1,87 @@
+/* 기본 스타일 */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #ffffff; /* 페이지 배경색 */
+    margin: 0;
+    display: flex; /* 플렉스 박스 사용 */
+    flex-direction: column; /* 수직 방향 정렬 */
+    height: 100vh; /* 전체 화면 높이 */
+}
+
+.wrapper {
+    display: flex; /* 플렉스 박스 사용 */
+    flex: 1; /* 남은 공간 차지 */
+    width: 100%; /* 전체 너비 사용 */
+    max-width: 1320px; /* 최대 너비 설정 */
+    margin: 0 auto; /* 중앙 정렬 */
+}
+
+.container {
+    display: flex; /* 플렉스 레이아웃 사용 */
+    padding: 0 !important;
+}
+
+
+/* 콘텐츠 영역 스타일 */
+.content {
+    flex: 1; /* 남은 공간 차지 */
+    background-color: #ffffff; /* 콘텐츠 배경색 */
+    padding: 40px; /* 패딩 추가 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    height: calc(100vh - 100px); /* 헤더를 제외한 전체 높이 사용 */
+}
+
+/* 콘텐츠 영역 스타일 */
+.content {
+    flex: 1; /* 남은 공간 차지 */
+    background-color: #ffffff; /* 콘텐츠 배경색 */
+    padding: 40px; /* 패딩 추가 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    height: calc(100vh - 100px); /* 헤더를 제외한 전체 높이 사용 */
+    display: flex; /* 플렉스 박스 사용 */
+    flex-direction: column; /* 수직 방향 정렬 */
+    align-items: center; /* 수평 중앙 정렬 */
+}
+
+/* 제목 스타일 추가 */
+.content h2 {
+    margin-bottom: 20px;
+    text-align: left;
+    width: 100%;
+}
+
+/* 검색폼 스타일 */
+.search-form {
+    display: flex; /* 플렉스 박스 사용 */
+    justify-content: center; /* 중앙 정렬 */
+    margin: 20px 0; /* 위아래 여백 */
+    width: 100%; /* 부모 요소의 너비를 차지 */
+    max-width: 400px; /* 최대 너비를 설정 */
+}
+
+/* custom-select을 오른쪽에 위치시키기 */
+.search-form {
+    display: flex; /* 플렉스 박스 사용 */
+    justify-content: space-between; /* 양쪽 정렬 */
+    align-items: center; /* 중앙 수평 정렬 */
+}
+
+.custom-select {
+    margin-left: auto; /* 오른쪽으로 정렬 */
+    /* 추가적인 여백을 원하면 margin-right를 추가할 수 있습니다 */
+}
+
+.board {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.pagination {
+    margin-top: 10px;
+}
+
+/* 푸터 스타일 */
+footer {
+    width: 100%; /* 전체 너비 사용 */
+    background-color: #EDF6F9; /* 푸터 배경색 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+}
