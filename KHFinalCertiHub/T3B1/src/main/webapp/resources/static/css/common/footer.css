@@ -8,6 +8,8 @@
     background-color: #EDF6F9;
     height: 55px;
     padding: 16px;
+    width: 100%;
+
 }
 
 .ft1>a{
@@ -19,6 +21,7 @@
 }
 
 .ft2{
+    width: 100%;
     background-color: #83C5BE;
     border: 2px solid #006D77;
     font-size: 12px;
