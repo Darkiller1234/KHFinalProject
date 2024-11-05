@@ -19,7 +19,9 @@
                             <li>
                                 <a class="navbar-item" href="#">정보처리기사</a>
                             </li>
-                                <!-- <a class="navbar-item" href="#">정보보안기사</a>
+                            <!-- <li>
+                                <a class="navbar-item" href="#">정보보안기사</a>
+                            </li>
                             <li>
                                 <a class="navbar-item" href="#">네트워크관리사</a>
                             </li>
