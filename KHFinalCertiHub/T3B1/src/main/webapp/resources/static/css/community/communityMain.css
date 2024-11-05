@@ -95,6 +95,9 @@
     background-color: #ffffff;
     border: #83C5BE 3px solid;
     border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #search-area div:nth-child(1) select {
@@ -118,6 +121,27 @@
     left: 10px;
     border-radius: 40px;
     background-color: none;
+    padding-left: 5px;
+}
+
+.rounded-circle{
+    height: 34px;
+    width: 34px;
+    border: none;
+    background-color: #83C5BE;
+}
+
+.rounded-circle img {
+    width: 100%;
+}
+
+#search-area > :nth-child(3){
+    width: 135px;
+    height: 40;
+    background-color: #484848;
+    color: white;
+    border: none;
+    border-radius: 10px;
 }
 
 #popular-list-div {     /* 인기글 리스트 */

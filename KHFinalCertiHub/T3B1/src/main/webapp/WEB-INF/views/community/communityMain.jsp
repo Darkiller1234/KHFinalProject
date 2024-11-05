@@ -807,96 +807,6 @@
               </div>
             </div>
 
-            <!-- <table class="listArea-table1">
-              <tr class="listArea-table1-info">
-                <th class="listArea-table1-tab">탭</th>
-                <th class="listArea-table1-title">제목 <span class="listArea-table1-replyCount">[댓글숫자]</span></th>
-                <th>작성자</th>
-                <th>작성일</th>
-                <th>조회수</th>
-                <th>추천수</th>
-              </tr>
-              <tr class="listArea-table1-noti">
-                <td>공지</td>
-                <td>왜 안되는지는 저도 잘 모릅니다. 하하하. <span class="listArea-table1-replyCount">[0]</span></td>
-                <td>윤대한</td>
-                <td>18:10</td>
-                <td>5</td>
-                <td>0</td>
-              </tr>
-              <tr>
-                <td>질문(자유)</td>
-                <td>이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨?<span class="listArea-table1-replyCount">[9999]</span></td>
-                <td>윤대한</td>
-                <td>2024.10.22</td>
-                <td>10000</td>
-                <td>-9999</td>
-              </tr>
-              <tr>
-                <td>질문(자유)</td>
-                <td>이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? <span class="listArea-table1-replyCount">[9999]</span></td>
-                <td>윤대한</td>
-                <td>2024.10.22</td>
-                <td>10000</td>
-                <td>-9999</td>
-              </tr>
-              <tr>
-                <td>질문(자유)</td>
-                <td>이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? <span class="listArea-table1-replyCount">[9999]</span></td>
-                <td>윤대한</td>
-                <td>2024.10.22</td>
-                <td>10000</td>
-                <td>-9999</td>
-              </tr>
-              <tr>
-                <td>질문(자유)</td>
-                <td>이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? <span class="listArea-table1-replyCount">[9999]</span></td>
-                <td>윤대한</td>
-                <td>2024.10.22</td>
-                <td>10000</td>
-                <td>-9999</td>
-              </tr>
-              <tr>
-                <td>질문(자유)</td>
-                <td>이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? <span class="listArea-table1-replyCount">[9999]</span></td>
-                <td>윤대한</td>
-                <td>2024.10.22</td>
-                <td>10000</td>
-                <td>-9999</td>
-              </tr>
-              <tr>
-                <td>질문(자유)</td>
-                <td>이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? <span class="listArea-table1-replyCount">[9999]</span></td>
-                <td>윤대한</td>
-                <td>2024.10.22</td>
-                <td>10000</td>
-                <td>-9999</td>
-              </tr>
-              <tr>
-                <td>질문(자유)</td>
-                <td>이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? <span class="listArea-table1-replyCount">[9999]</span></td>
-                <td>윤대한</td>
-                <td>2024.10.22</td>
-                <td>10000</td>
-                <td>-9999</td>
-              </tr>
-              <tr>
-                <td>질문(자유)</td>
-                <td>이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? <span class="listArea-table1-replyCount">[9999]</span></td>
-                <td>윤대한</td>
-                <td>2024.10.22</td>
-                <td>10000</td>
-                <td>-9999</td>
-              </tr>
-              <tr>
-                <td>질문(자유)</td>
-                <td>이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? <span class="listArea-table1-replyCount">[9999]</span></td>
-                <td>윤대한</td>
-                <td>2024.10.22</td>
-                <td>10000</td>
-                <td>-9999</td>
-              </tr>
-            </table> -->
             
             
             <div class="pagination">
@@ -908,8 +818,6 @@
                 <select>
                 <option value="1" selected>최신순</option>
                 <option value="2">추천순</option>
-                <option value="3"></option>
-                <option value="4">Three</option>
               </select>
               </div>
               <div>
@@ -920,10 +828,15 @@
                   <option value="4">글쓴이</option>
                 </select>
                 <input type="text">
-                <button>검색</button>
+                <button class="rounded-circle" onclick="alert('클릭됨')">
+                    <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
+                </button> 
               </div>
               
-              <button>글쓰기</button>
+              <button>
+                <img src="<%=contextPath%>/resources/static/img/button/write.png" alt="">
+                글쓰기
+              </button>
             </div>
           </div>
           <div id="popular-list-div" >

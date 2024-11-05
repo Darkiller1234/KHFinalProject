@@ -9,7 +9,7 @@ function init(contextPath, pageName, optional){
             initMentorSearch(contextPath); // contextPath
             break;
         case "communitySearch":
-            initCommunitySearch(contextPath); // contextPath
+            // initCommunitySearch(contextPath); // contextPath
             break;
         case "studySearch":
             initStudySearch(contextPath);
