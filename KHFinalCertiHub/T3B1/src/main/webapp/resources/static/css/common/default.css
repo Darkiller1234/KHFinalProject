@@ -319,6 +319,7 @@ div1과 div2의 구조가 다름
 .listArea-div2-tab {
     justify-content: center;
     text-align: center;
+    padding-left: 10px;
 }
 
 .listArea-div2-title {
@@ -334,9 +335,7 @@ div1과 div2의 구조가 다름
 }
 
 .listArea-div2-writter {
-    min-width: 90px;
     justify-content: left;
-    text-align: left;
     padding-left: 10px;
 }
 
@@ -377,6 +376,10 @@ div1과 div2의 구조가 다름
         min-width: 130px;
     }
 
+    .listArea-div2-writter {
+        text-align: center;
+        min-width: 130px;
+    }
 
     .listArea-div1 {
         display: none;
@@ -396,9 +399,13 @@ div1과 div2의 구조가 다름
         display: none;
     }
 
+    .listArea-div2-writter {
+        text-align: left;
+        min-width: fit-content;
+    }
+
     .listArea-div2-tab {
         min-width: fit-content;
-        padding-left: 10px;
     }
 }
 

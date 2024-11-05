@@ -8,14 +8,42 @@ function init(contextPath, pageName, optional){
         case "mentorSearch":
             initMentorSearch(contextPath); // contextPath
             break;
+        case "communitySearch":
+            // initCommunitySearch(contextPath); // contextPath
+            break;
         case "studySearch":
             initStudySearch(contextPath);
             break;
         case "studyDetail":
             initStudyDetail(contextPath);
             break;
+
+        case "managerPage":
+            initManagerPage(contextPath);
+            break;
+
+        case "certifyPage":
+            initCertifyPage(contextPath);
+            break;
+
+        case "listPage":
+            initListPage(contextPath);
+            break;
+
+        case "reportPage":
+            initReportPage(contextPath);
+            break;
+
+        case "userPage":
+            initUserPage(contextPath);
+            break;
+
         case "studyWrite":
             initStudyWrite(contextPath);
+            break;
+
+        case "noticePage":
+            initNoticePage(contextPath);
             break;
     }
 }

@@ -2,6 +2,15 @@
     z-index: 1000;
 }
 
+.navbar-brand, .nav-link{ /* 네비바 현재게시판 */
+    margin-left: 10px;
+    color: black;
+}
+
+.navbar-brand:hover, .nav-link:hover{ /* 네비바 현재게시판 */
+    color: #006D77;
+}
+
 #certiSelect{           /* 상단 게시판 이름 표시 및 게시판 변경 */
     background-color: #83C5BE;
 }
@@ -17,10 +26,18 @@
 #middle-area > div {
     margin: 1.25rem;
 }
-
-#listArea {             /* 글 리스트들 */
+/*
+#listArea {              글 리스트들 
     width: 70%;
 }
+*/
+
+#listArea * {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 
 #listArea table {
     width: 100%;
@@ -34,21 +51,115 @@
     display: flex;
 }
 
-#popular-list-div {     /* 인기글 리스트 */
-    width: 30%;
+#detail-area > div:nth-child(1){
+    border-width: 1px 0px !important;
+    border: solid black;
+    background-color: #EDF6F9;
+    padding: 3px;
 }
 
-#popular-list-div div div{
+#detail-area > div:nth-child(2){
+    border-width: 0px 0px 1px 0px !important;
+    border: solid black;
+    padding: 3px;
+}
+
+#detail-area > div:nth-child(3){
+    min-height: 5rem;
+    padding: 10px;
+}
+
+#detail-area > div:nth-child(1) > div:nth-child(2){
+    gap: 5px;
+}
+
+#detail-area > div:nth-child(1) > div:nth-child(2) button {
+    width: 78px;
+    height: 30px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: none;
+    color: #ffffff;
+    padding-right: 5px;
+}
+
+#detail-area > div:nth-child(1) > div:nth-child(2) button:nth-child(1){
+    background-color: #E29578;
+}
+
+#detail-area > div:nth-child(1) > div:nth-child(2) button:nth-child(2){
+    background-color: #006D77;
+}
+
+#detail-area > div:nth-child(1) > div:nth-child(2) button img{
+    width: 26px;
+    height: 26px;
+}
+
+
+
+#search-area div:nth-child(2) {         /* 검색창 전체 */
+    background-color: #ffffff;
+    border: #83C5BE 3px solid;
+    border-radius: 40px;
+}
+
+#search-area div:nth-child(2) input {      /* 검색창 입력창 */ 
+    border: none;
+}
+
+#search-area div:nth-child(2) select{  /* 제목, 내용 등 셀렉트 박스 */
+    width: 100px;
+    border: none;
+    left: 10px;
+    border-radius: 40px;
+    background-color: none;
+    padding-left: 5px;
+}
+
+
+
+.rounded-circle{
+    height: 34px;
+    width: 34px;
+    border: none;
+    background-color: #83C5BE;
+}
+
+.rounded-circle img {
+    width: 100%;
+}
+
+#search-area > :nth-child(3){
+    width: 135px;
+    height: 40;
+    background-color: #484848;
+    color: white;
+    border: none;
+    border-radius: 10px;
+}
+
+
+#popular-list-div {     /* 인기글 리스트 */
+    width: 250px;
+    min-width: 250px;
+    
+}
+
+#popular-list-div *{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+#popular-list-div > div > div{
     background-color: #EDF6F9;
     border: #83C5BE 1px solid;
     width: 100%;
     padding: 10px;
-}
-
-.sticky-element {
-    position: sticky;
-    top: 20px; 
-    transition: top 0.3s; /* 부드러운 애니메이션 */
 }
 
 #popular-list-area-all {
@@ -57,10 +168,49 @@
     width: 100%;
 }
 
+.sticky-element {
+    position: sticky;
+    top: 20px; 
+    transition: top 0.3s; /* 부드러운 애니메이션 */
+}
+
+#popular-list-area-all > div, #popular-list-area-this > div{
+    display: flex;
+}
+
+#popular-list-area-all > div > span:nth-of-type(1), #popular-list-area-this > div > span:nth-of-type(1){
+    width: 170px;
+    max-width: 170px;
+}
+
+#popular-list-area-all > div > span:nth-of-type(2), #popular-list-area-all > div > span:nth-of-type(3), #popular-list-area-this > div > span:nth-of-type(2), #popular-list-area-this > div > span:nth-of-type(3){
+    min-width: 60px;
+    max-width: 60px;
+    text-align: center;
+}
+
+#search-area div:nth-child(2) select:focus, #search-area select:focus{  /* focus 시 외부라인 나타나는거 제거 */
+    outline: none;
+}
+
 #search-area{ /* 검색/글쓰기 구역 */
     display: flex;
     justify-content: space-around;
     height: 40px;
+}
+
+#search-area div:nth-child(1) {
+    background-color: #ffffff;
+    border: #83C5BE 3px solid;
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#search-area div:nth-child(1) select {
+    border: none;
+    border-radius: 40px;
 }
 
 #search-area div:nth-child(2) {
@@ -115,8 +265,32 @@
     padding-left: 40px;                 /* 신고버튼으로 인한 좌측쏠림 해결 */
 }
 
-#detail-area div:nth-child(4) > button {        /* 신고 버튼 */
-    width: 40px;
+#detail-area div:nth-child(4) > div > button{       /* 버튼 */
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+}
+
+#detail-area > div:nth-child(4) > button{   /*신고*/
+    min-width: 60px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: #E29578;
+    border: none;
+}
+
+#detail-area div:nth-child(4) > div > button:nth-child(1){       /* 좋 버튼 */
+    background-color: #EDF6F9;
+    color: #83C5BE;
+    border: 1px solid #83C5BE;
+    border-radius: 5px;
+}
+
+#detail-area div:nth-child(4) > div > button:nth-child(2){       /* 싫 버튼 */
+    background-color: #ffddd2;
+    color: #E29578;
+    border: 1px solid #E29578;
+    border-radius: 5px;
 }
 
 #detail-area div:nth-child(5) > div > div {     /* 댓글 area */
@@ -150,4 +324,41 @@
     width: 130px;
     height: 40px;
     margin-left: auto;
+}
+
+
+.pagination {
+    justify-content: center;
+    margin: 5px 0;
+}
+
+
+
+@media (min-width: 901px) {
+    .listArea-div2{
+        display: none;
+    }
+
+    #listArea{
+        max-width: calc(100% - 330px) !important;
+    }
+}
+
+@media (min-width: 721px) and (max-width: 900px){
+    #popular-list-div {     /* 인기글 리스트 */
+        display: none;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 720px) {
+    #popular-list-div {     /* 인기글 리스트 */
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    #popular-list-div {     /* 인기글 리스트 */
+        display: none;
+    }
+    
 }
