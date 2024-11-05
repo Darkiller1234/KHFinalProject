@@ -6,8 +6,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class InfoPageController {
 
-	@RequestMapping("info")
+	@RequestMapping("search")
 	public String searchPage() {
 		return "infoPage/searchPage";
 	}
+	
+	@RequestMapping("info")
+	public String infoPage() {
+		return "infoPage/infoPage";
+	}
+	
 }
