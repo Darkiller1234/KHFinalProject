@@ -8,6 +8,7 @@
 .search-option{
     display:flex;
     justify-content: flex-end;
+    gap:10px;
 }
 
 /* 검색 옵션 부분 */

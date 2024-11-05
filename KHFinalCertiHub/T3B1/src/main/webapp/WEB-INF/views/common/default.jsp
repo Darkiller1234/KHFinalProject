@@ -16,8 +16,10 @@
     crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/common/default.css">
+
+    <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
 </head>
-<body>
+<body onload="init(`${pageContext.request.contextPath}`)">
     <!-- 버튼 -->
     <div class="btns">
         <button type="submit" class="btn btn-primary">로그인</button>
@@ -36,13 +38,13 @@
 
     <!-- 페이징바 -->
     <div class="pagination">
-        <span class="page-arrow"><</span>
+        <span class="page-arrow">&lt;</span>
         <span class="page-num">1</span>
         <span class="page-num active">2</span>
         <span class="page-num">3</span>
         <span class="page-num">4</span>
         <span class="page-num">5</span>
-        <span class="page-arrow">></span>
+        <span class="page-arrow">&gt;</span>
     </div>
 
     <!-- 팝업(모달)-->
@@ -80,7 +82,7 @@
     </div>
 
     <!-- 셀렉트박스 -->
-    <div class="custom-select">
+    <!-- <div class="custom-select">
         <div class="select-box">
           기본값 <span class="arrow">▼</span>
         </div>
@@ -90,9 +92,11 @@
           <li>내용</li>
           <li>내용</li>
         </ul>
-    </div>
+    </div> -->
 
-    <script src="${pageContext.request.contextPath}/resources/static/js/common/selectBox.js"></script>
+    <!-- 셀렉트박스 v2 -->
+    <div class="custom-select">
+    </div>
 
     <!-- 게시판 목록(리스트, 테이블)-->
     <!--
@@ -239,7 +243,7 @@
     </div>
 
     <!-- 
-        모바일 전용 버튼( 맨 위로 스크롤 ) 
+        맨 위로 스크롤 버튼
         <script src="${pageContext.request.contextPath}/resources/static/js/common/scroll.js"></script>
         필요
     -->
@@ -247,5 +251,27 @@
         <button onclick="topScroll()" class="top-button rounded-circle"><img src="${pageContext.request.contextPath}/resources/static/img/button/arrow_up_icon.png"></button>
     </div>
 
+    <!--
+        <table class="board">
+            <tr class="header bgcolor2">
+                <th class="title">제목</th>
+                <th>작성자</th>
+                <th>작성일</th>
+                <th>조회</th>
+            </tr>
+
+            <tr>
+                <td class="title">제목입니다1</td>
+                <td>user01</td>
+                <td>2024.11.05</td>
+                <td>111</td>
+            </tr>
+        </table>
+    -->
+    <!-- 게시판 -->
+    <div class="test-board">
+    </div>    
+
+    <br><br>
 </body>
 </html>
