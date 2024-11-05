@@ -14,6 +14,9 @@ function init(contextPath, pageName, optional){
         case "studyDetail":
             initStudyDetail(contextPath);
             break;
+        case "managerPage":
+            initManagerPage(contextPath);
+            break;
     }
 }
 

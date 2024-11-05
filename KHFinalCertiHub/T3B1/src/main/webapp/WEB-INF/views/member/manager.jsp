@@ -6,23 +6,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 페이지</title>
+
+    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/member/manager.css">
+    <script src="${pageContext.request.contextPath}/resources/static/js/member/manager.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
 </head>
 <body>
     <%@ include file="../common/header.jsp" %>
-
-    <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/member/manager.css">
-    <script src="<%=contextPath%>/resources/static/js/member/manager.js"></script>
 
     <div class="wrapper">
         <div class="container">
             <!-- 사이드바 -->
             <div class="sidebar">
                 <ul>
-                    <li><a href="manager/notice">공지</a></li>
-                    <li><a href="#">자격증 인증</a></li>
-                    <li><a href="#">게시글 관리</a></li>
-                    <li><a href="#">신고 목록</a></li>
-                    <li><a href="#">유저 관리</a></li>
+                    <li><a href="<%=contextPath%>/manager/notice">공지</a></li>
+                    <li><a href="<%=contextPath%>/manager/certify">자격증 인증</a></li>
+                    <li><a href="<%=contextPath%>/manager/list">게시글 관리</a></li>
+                    <li><a href="<%=contextPath%>/manager/report">신고 목록</a></li>
+                    <li><a href="<%=contextPath%>/manager/user">유저 관리</a></li>
                 </ul>
             </div>
             <!-- 콘텐츠 영역 -->
@@ -36,86 +38,7 @@
                     </button> 
                 </div>
 
-                <table class="board">
-                    <tr class="header bgcolor2">
-                        <th>NO.</th>
-                        <th>제목</th>
-                        <th>등록일</th>
-                        <th>조회수</th>
-                        <th>삭제</th>
-                    </tr>
-        
-                    <tr>
-                        <td>1</td>
-                        <td>공지사항</td>
-                        <td>2024.11.05</td>
-                        <td>1111</td>
-                        <td><button>X</button></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>공지사항</td>
-                        <td>2024.10.05</td>
-                        <td>1000</td>
-                        <td><button>X</button></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>공지사항</td>
-                        <td>2024.08.05</td>
-                        <td>978</td>
-                        <td><button>X</button></td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>공지사항</td>
-                        <td>2024.06.05</td>
-                        <td>846</td>
-                        <td><button>X</button></td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>공지사항</td>
-                        <td>2024.04.05</td>
-                        <td>753</td>
-                        <td><button>X</button></td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>공지사항</td>
-                        <td>2024.02.05</td>
-                        <td>489</td>
-                        <td><button>X</button></td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td>공지사항</td>
-                        <td>2023.12.05</td>
-                        <td>1010</td>
-                        <td><button>X</button></td>
-                    </tr>
-                    <tr>
-                        <td>8</td>
-                        <td>공지사항</td>
-                        <td>2023.10.05</td>
-                        <td>654</td>
-                        <td><button>X</button></td>
-                    </tr>
-                    <tr>
-                        <td>9</td>
-                        <td>공지사항</td>
-                        <td>2023.08.05</td>
-                        <td>800</td>
-                        <td><button>X</button></td>
-                    </tr>
-                    <tr>
-                        <td>10</td>
-                        <td>공지사항</td>
-                        <td>2023.06.05</td>
-                        <td>1024</td>
-                        <td><button>X</button></td>
-                    </tr>
-                </table>
+                <div class="board-section"></div>
 
                 <!-- 페이징바 -->
                 <div class="pagination">
