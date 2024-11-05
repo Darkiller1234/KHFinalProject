@@ -251,5 +251,30 @@
         <button onclick="topScroll()" class="top-button rounded-circle"><img src="${pageContext.request.contextPath}/resources/static/img/button/arrow_up_icon.png"></button>
     </div>
 
+    <!--
+        <table class="board">
+            <tr class="header bgcolor2">
+                <th class="title">제목</th>
+                <th>작성자</th>
+                <th>작성일</th>
+                <th>조회</th>
+            </tr>
+
+            <tr>
+                <td class="title">제목입니다1</td>
+                <td>user01</td>
+                <td>2024.11.05</td>
+                <td>111</td>
+            </tr>
+        </table>
+    -->
+    <!-- 게시판 -->
+    <div class="test-board">
+    </div>    
+
+    <div class="test-board2">
+    </div>    
+
+    <br><br>
 </body>
 </html>
