@@ -11,6 +11,9 @@ function init(contextPath, pageName, optional){
         case "studySearch":
             initStudySearch(contextPath);
             break;
+        case "studyDetail":
+            initStudyDetail(contextPath);
+            break;
     }
 }
 
