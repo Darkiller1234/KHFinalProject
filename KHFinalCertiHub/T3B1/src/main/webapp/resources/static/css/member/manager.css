@@ -1,154 +1,89 @@
-* {
-    margin: 0;
-    box-sizing: border-box;
-}
-
+/* 기본 스타일 */
 body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* 전체 화면을 채우도록 설정 */
-}
-
-.menu {
-    width: 100%;
-    height: 62px;
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid #006D77;
-    position: fixed; /* 헤더를 고정 위치로 설정 */
-    top: 0; /* 화면 상단에 고정 */
-    left: 0;
-    right: 0;
-    z-index: 1000; /* 다른 요소들보다 위에 표시 */
-}
-
-.navi {
-    z-index: 10; /* 최상위값 필요 */
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #ffffff; /* 페이지 배경색 */
+    margin: 0;
+    display: flex; /* 플렉스 박스 사용 */
+    flex-direction: column; /* 수직 방향 정렬 */
+    height: 100vh; /* 전체 화면 높이 */
 }
 
 .wrapper {
-    flex: 1; /* 공간을 채우도록 설정 */
-    display: flex;
-    flex-direction: column; /* 내부 요소들이 수직으로 정렬되도록 설정 */
-    margin-top: 62px; /* 헤더 높이만큼 여백 추가 */
-    margin-bottom: 55px; /* 푸터 높이만큼 여백 추가 */
+    display: flex; /* 플렉스 박스 사용 */
+    flex: 1; /* 남은 공간 차지 */
+    width: 100%; /* 전체 너비 사용 */
+    max-width: 1320px; /* 최대 너비 설정 */
+    margin: 0 auto; /* 중앙 정렬 */
 }
 
-footer {
-    position: fixed; /* 푸터를 고정 위치로 설정 */
-    bottom: 0; /* 화면 하단에 고정 */
-    left: 0;
-    right: 0; /* 오른쪽 경계도 0으로 설정하여 전체 너비를 사용 */
-    width: 100%; /* 전체 너비 */
-    /* max-width: 1250px; */ /* 이 줄을 주석 처리하거나 제거 */
-    margin: 0 auto; /* 가운데 정렬 */
-    z-index: 1000; /* 헤더와 같은 레이어로 설정 */
+.container {
+    display: flex; /* 플렉스 레이아웃 사용 */
+    padding: 0 !important;
 }
 
-.ft1 {
-    background-color: #EDF6F9;
-    height: 55px;
-    padding: 16px;
+.sidebar {
+    background-color: #EDF6F9; /* 사이드바 배경색 */
+    width: 200px; /* 사이드바 너비 */
+    padding: 20px;
+    height: calc(100vh - 100px); /* 헤더를 제외한 전체 높이 사용 */
+    justify-content: flex-start;
 }
 
-.ft1 > a {
-    text-decoration: none;
-    border: none;
-    align-items: center;
-    font-size: 14px;
-    color: black;
+.sidebar ul {
+    list-style-type: none; /* 리스트 스타일 제거 */
+    padding: 0; /* 패딩 제거 */
 }
 
-.ft2 {
-    background-color: #83C5BE;
-    border: 2px solid #006D77;
-    font-size: 12px;
-    color: #EDF6F9;
-    padding: 12px;
+.sidebar li {
+    margin-bottom: 15px; /* 항목 간 여백 */
 }
 
-/* 추가적인 스타일 - 검색창, 리스트, 페이징 바 */
+.sidebar a {
+    text-decoration: none; /* 링크의 밑줄 제거 */
+    color: #006D77; /* 링크 색상 */
+}
+
+/* 콘텐츠 영역 스타일 */
+.content {
+    flex: 1; /* 남은 공간 차지 */
+    background-color: #ffffff; /* 콘텐츠 배경색 */
+    padding: 40px; /* 패딩 추가 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    height: calc(100vh - 100px); /* 헤더를 제외한 전체 높이 사용 */
+}
+
+/* 콘텐츠 영역 스타일 */
+.content {
+    flex: 1; /* 남은 공간 차지 */
+    background-color: #ffffff; /* 콘텐츠 배경색 */
+    padding: 40px; /* 패딩 추가 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    height: calc(100vh - 100px); /* 헤더를 제외한 전체 높이 사용 */
+    display: flex; /* 플렉스 박스 사용 */
+    flex-direction: column; /* 수직 방향 정렬 */
+    align-items: center; /* 수평 중앙 정렬 */
+}
+
+/* 제목 스타일 추가 */
+.content h2 {
+    margin-bottom: 20px;
+    text-align: left;
+    width: 100%;
+}
+
+/* 검색폼 스타일 */
 .search-form {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    height: 45px;
-    border: 3px solid #83C5BE;
-    border-radius: 25px;
-    padding-left: 15px;
-    padding-right: 3px;
+    display: flex; /* 플렉스 박스 사용 */
+    justify-content: center; /* 중앙 정렬 */
+    margin: 20px 0; /* 위아래 여백 */
+    width: 100%; /* 부모 요소의 너비를 차지 */
+    max-width: 400px; /* 최대 너비를 설정 */
 }
 
-.search-form input[type="text"] {
-    width: 90%;
-    padding: 5px 10px;
-}
 
-.search-form input[type="text"]:focus {
-    outline: none;
-}
-
-.search-form button {
-    width: 35px;
-    height: 35px;
-    border: none;
-    background-color: #006D77;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.search-form img {
-    width: 100%;
-}
-
-.list-item {
-    margin: 10px 0; /* 리스트 항목 간격 */
-}
-
-.pagination {
-    display: flex;
-    align-items: center;
-    font-family: Arial, sans-serif;
-}
-
-.page-arrow,
-.page-num {
-    margin: 0 8px;
-    cursor: pointer;
-    color: #007272;
-}
-
-.page-num {
-    padding: 5px 10px;
-    border-radius: 50%;
-}
-
-.page-num.active {
-    background-color: #007272;
-    color: white;
-}
-
-/* 미디어 쿼리 */
-@media (min-width: 721px) {
-    /* 사이트 로고 이미지 */
-    .menu .logo img {
-        width: 155px;
-        height: 50px;
-    }
-
-    /* 기타 미디어 쿼리 스타일은 그대로 유지 */
-}
-
-@media (max-width: 720px) {
-    footer {
-        /* 너비 조정 또는 다른 스타일 변경 가능 */
-    }
-}
-
-@media (max-width: 480px) {
-    footer {
-        /* 모바일에 맞게 스타일 조정 가능 */
-    }
+/* 푸터 스타일 */
+footer {
+    width: 100%; /* 전체 너비 사용 */
+    background-color: #EDF6F9; /* 푸터 배경색 */
+    text-align: center; /* 텍스트 중앙 정렬 */
 }
