@@ -71,7 +71,11 @@ function createSelectBox(selectBox, data){
     // 서버에 보낼 input값을 표시할 요소
     const button = document.createElement('button');
     button.className = 'button-select';
-    button.innerText = data.default;
+
+    const buttonText = document.createElement('div');
+    buttonText.innerText = data.default;
+
+    button.appendChild(buttonText);
 
     // 셀렉트박스의 삼각형 이미지
     const buttonImg = document.createElement('img');

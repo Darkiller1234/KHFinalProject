@@ -575,11 +575,21 @@ div1과 div2의 구조가 다름
     cursor: pointer;
     font-family: Arial, sans-serif;
     background-color: transparent;
+    white-space: nowrap;
+    width:100%;
+}
+
+.button-select  div{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 95px;
 }
 
 .button-select img{
     width:25px;
+    min-width: 25px;
     height:25px;
+    min-height:25px;
     margin-left: 10px;
     transition: .3s;
 }
