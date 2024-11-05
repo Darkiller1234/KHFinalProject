@@ -899,9 +899,9 @@
             </table> -->
             
             
-            <div>
-              <button>1</button>
-              <button>2</button>
+            <div class="pagination">
+              <span class="page-num">1</span>
+              <span class="page-num active">2</span>
             </div>
             <div id="search-area">
               <select>

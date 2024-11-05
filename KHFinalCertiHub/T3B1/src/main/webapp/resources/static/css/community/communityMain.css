@@ -188,3 +188,11 @@
     }
     
 }
+
+
+
+/*검색창*/
+.pagination {
+    justify-content: center;
+    margin: 5px 0;
+}
