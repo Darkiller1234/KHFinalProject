@@ -41,6 +41,10 @@ function init(contextPath, pageName, optional){
         case "studyWrite":
             initStudyWrite(contextPath);
             break;
+
+        case "noticePage":
+            initNoticePage(contextPath);
+            break;
     }
 }
 
