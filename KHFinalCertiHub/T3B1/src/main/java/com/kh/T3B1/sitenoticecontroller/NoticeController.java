@@ -12,4 +12,5 @@ public class NoticeController {
 		m.addAttribute("pageName", "noticePage");
 		return "sitenotice/notice";
 	}
+	
 }
