@@ -18,4 +18,9 @@ public class CommunityController {
 		c.addAttribute("pageName","commuDInit");
 		return "community/communityDetail";
 	}
+	@RequestMapping("write.cm")
+	public String CommunityWrite(Model c) {
+		c.addAttribute("pageName","commuWInit");
+		return "community/communityWrite";
+	}
 }
