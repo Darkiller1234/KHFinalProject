@@ -202,6 +202,26 @@
                     </div>
                 </div>
 
+                <div class="date">
+                    <div>2024년 11월 6일</div>
+                </div>
+
+                <div class="message">
+                    <div class="message-card">
+                        <div class="thumbnail" data-bs-toggle="modal" data-bs-target="#userModal">
+                            <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                        </div>
+                        <div class="info">
+                            <div class="user-name">
+                                User01
+                                <img src="<%=contextPath%>/resources/static/img/button/manager_icon.png">
+                            </div>
+                            <div class="content">
+                                과거 메시지1
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- 채팅방 선택전 표시 -->
                 <!-- <div class="not-found">
