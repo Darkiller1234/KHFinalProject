@@ -1,0 +1,49 @@
+#middle-view-profileInfo {
+    width: 100%;
+    display: flex;
+
+}
+
+.left-view{
+    width: 50%;
+}
+
+.right-view{
+    width: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (min-width: 721px){
+    #non-full-view {
+        display: none;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 720px) {
+    #full-view{
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    #full-view{
+        display: none;
+    }
+}
