@@ -45,6 +45,9 @@ function init(contextPath, pageName, optional){
         case "noticePage":
             initNoticePage(contextPath);
             break;
+        case "infoPage":
+            initInfoPage(contextPath);
+            break;
     }
 }
 
