@@ -230,6 +230,87 @@
     width:24px;
 }
 
+/* 모달 */
+.modal .modal-header{
+    padding:10px;
+    padding-bottom: 0;
+}
+
+.modal .modal-content{
+    border: 0;
+}
+
+.modal-header .modal-title{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.modal-header .modal-title img{
+    width:150px;
+    height:150px;
+}
+
+.modal-header .close-button{
+    position: absolute;
+    top:0;
+    right:0;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    background-color: transparent;
+}
+
+.modal-header .close-button img{
+    width: 100%;
+    height: 100%;
+}
+
+.modal .modal-body{
+    gap:3px;
+    padding:10px;
+    padding-bottom: 0;
+}
+
+.modal-body .mentor-valid{
+    position: static;
+}
+
+.modal .modal-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color:black;
+}
+
+.modal .modal-body img{
+    width:24px;
+    height: 24px;
+}
+
+.modal .look-license{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap:10px;
+}
+
+.modal .look-license .mentor-valid{
+    white-space: nowrap;
+}
+
+.modal .modal-footer button{
+    width: 135px;
+    height: 40px;
+}
+
 /* 내용 없을때 표시 */
 .not-found{
     height:100%;
@@ -276,4 +357,20 @@
     .option-text{
         display:none;
     }
+
+    .modal-header .modal-title img{
+        width:100px;
+        height:100px;
+    }
+
+    .modal-header .close-button{
+        width: 50px;
+        height: 50px;
+    }
+
+    .modal-header .close-button img{
+        width: 100%;
+        height: 100%;
+    }
+    
 }

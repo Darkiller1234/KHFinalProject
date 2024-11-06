@@ -71,7 +71,33 @@
                     <label>
                         <input type="radio" name="talkroom-option" onclick="talkroomClick(this)">
                         <div class="talkroom">
-                            <div class="thumbnail">
+                            <div class="thumbnail" data-bs-toggle="modal" data-bs-target="#talkroomModal">
+                                <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                            </div>
+                            <div class="talkroom-info">
+                                <div class="talkroom-name">제2934325회 정처기 스터디방</div>
+                                <div class="last-talk">테스트용 메시지입니다람쥐썬더!!!!!</div>
+                            </div>
+                        </div>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="talkroom-option" onclick="talkroomClick(this)">
+                        <div class="talkroom">
+                            <div class="thumbnail" data-bs-toggle="modal" data-bs-target="#userModal">
+                                <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                            </div>
+                            <div class="talkroom-info">
+                                <div class="talkroom-name">User01</div>
+                                <div class="last-talk">코미는 낮보다 밤이 좋아 그런데 요즘 내가 점점이상해 버터랑 똑같아 사료먹으면</div>
+                            </div>
+                        </div>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="talkroom-option" onclick="talkroomClick(this)">
+                        <div class="talkroom">
+                            <div class="thumbnail" data-bs-toggle="modal" data-bs-target="#userModal">
                                 <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
                             </div>
                             <div class="talkroom-info">
@@ -81,38 +107,12 @@
                         </div>
                     </label>
 
-                    <label>
-                        <input type="radio" name="talkroom-option" onclick="talkroomClick(this)">
-                        <div class="talkroom">
-                            <div class="thumbnail">
-                                <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
-                            </div>
-                            <div class="talkroom-info">
-                                <div class="talkroom-name">User01</div>
-                                <div class="last-talk">테스트용 메시지입니다...</div>
-                            </div>
-                        </div>
-                    </label>
-
-                    <label>
-                        <input type="radio" name="talkroom-option" onclick="talkroomClick(this)">
-                        <div class="talkroom">
-                            <div class="thumbnail">
-                                <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
-                            </div>
-                            <div class="talkroom-info">
-                                <div class="talkroom-name">User01</div>
-                                <div class="last-talk">테스트용 메시지입니다...</div>
-                            </div>
-                        </div>
-                    </label>
-
                     <div class="talkroom">
                         <div class="thumbnail">
                             <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
                         </div>
                         <div class="talkroom-info">
-                            <div class="talkroom-name">User01님의 멘티 신청</div>
+                            <div class="talkroom-name" data-bs-toggle="modal" data-bs-target="#talkroomModal">User01님의 멘티 신청</div>
                             <div class="last-talk">수락하시겠습니까?</div>
                             <div class="option">
                                 <button class="btn-accept">수락</button>
@@ -126,7 +126,7 @@
                             <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
                         </div>
                         <div class="talkroom-info">
-                            <div class="talkroom-name">User01님의 스터디 신청</div>
+                            <div class="talkroom-name" data-bs-toggle="modal" data-bs-target="#talkroomModal">User01님의 스터디 신청</div>
                             <div class="last-talk">정보보안기사 30일 용사 스터디그룹</div>
                             <div class="option">
                                 <button class="btn-accept">수락</button>
@@ -152,7 +152,7 @@
 
                 <div class="message mine">
                     <div class="message-card">
-                        <div class="thumbnail">
+                        <div class="thumbnail" data-bs-toggle="modal" data-bs-target="#userModal">
                             <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
                         </div>
                         <div class="info">
@@ -164,7 +164,7 @@
 
                 <div class="message mine">
                     <div class="message-card">
-                        <div class="thumbnail">
+                        <div class="thumbnail" data-bs-toggle="modal" data-bs-target="#userModal">
                             <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
                         </div>
                         <div class="info">
@@ -176,7 +176,7 @@
 
                 <div class="message">
                     <div class="message-card">
-                        <div class="thumbnail">
+                        <div class="thumbnail" data-bs-toggle="modal" data-bs-target="#userModal">
                             <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
                         </div>
                         <div class="info">
@@ -221,6 +221,71 @@
 
         </div>
 	</div>
+
+    <div class="modal" id="talkroomModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+        
+                <!-- Modal Header -->
+                <div class="modal-header">
+                <h4 class="modal-title">                
+                    <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                    <div>제2934325회 정처기 스터디방</div>
+                    <button class="close-button" data-bs-dismiss="modal"><img src="<%=contextPath%>/resources/static/img/button/x_icon.png"></button>
+                </h4>
+                </div>
+        
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="mentor-valid accept font-size-content"><img src="<%=contextPath%>/resources/static/img/button/person_icon_light.png">12명</div>
+                </div>
+        
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" data-bs-dismiss="modal">상세 페이지로</button>
+                </div>
+        
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="userModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+        
+                <!-- Modal Header -->
+                <div class="modal-header">
+                <h4 class="modal-title">                
+                    <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                    <button class="close-button" data-bs-dismiss="modal"><img src="<%=contextPath%>/resources/static/img/button/x_icon.png"></button>
+                </h4>
+                </div>
+        
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div>User01</div>
+                    <div class="mentor-valid reject font-size-content"><img src="<%=contextPath%>/resources/static/img/button/manager_icon.png">멘토</div>
+                    <div class="symbol-license font-size-subtitle">빅데이터분석기사</div>
+                    <div class="member-intro font-size-content">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
+                    <div class="font-size-subtitle">최근 관심 자격증</div>
+                    <div class="look-license">
+                        <div class="mentor-valid accept font-size-content">정보처리기사</div>
+                        <div class="mentor-valid accept font-size-content">빅데이터분석기사</div>
+                        <div class="mentor-valid accept font-size-content">네트워크관리사</div>
+                        <div class="mentor-valid accept font-size-content">정보보안기사</div>
+                        <div class="mentor-valid accept font-size-content">빅데이터분석기사</div>
+                    </div>
+                </div>
+        
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" data-bs-dismiss="modal">상세 페이지로</button>
+                </div>
+        
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>
