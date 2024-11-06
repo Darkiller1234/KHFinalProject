@@ -46,12 +46,18 @@ function init(contextPath, pageName, optional){
             initNoticePage(contextPath);
             break;
 
+
+        case "noticeWrite":
+            initNoticeWrite(contextPath);
+            break;
+
         case "commuDInit":
             commuDInit(contextPath);
             break;
 
         case "commuWInit":
             commuWInit(contextPath);
+
             break;
     }
 }
