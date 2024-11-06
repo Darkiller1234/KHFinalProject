@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <title>서티허브</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/main/mainPage.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/common/default.css"> 
+    
 </head>
 
 <body>
     <%@ include file="../common/header.jsp" %>
+    <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/main/mainPage.css">
+    <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/common/default.css"> 
         <div class="wrapper">
             <div class="banner">
                 <img src="<%=contextPath%>/resources/static/img/temporary/mainBanner.png" alt="">
