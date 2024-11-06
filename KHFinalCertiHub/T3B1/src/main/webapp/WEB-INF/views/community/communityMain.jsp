@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
+    <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/static/js/community/communityMain.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <title>Document</title>
@@ -814,25 +816,20 @@
               <span class="page-num active">2</span>
             </div>
             <div id="search-area">
-              <div>
-                <select>
+              <div id="selectbox1" class="custom-select">
+                <!-- <select>
                 <option value="1" selected>최신순</option>
                 <option value="2">추천순</option>
-              </select>
+              </select> -->
               </div>
               <div>
-                <select>
-                  <option value="1" selected>제목</option>
-                  <option value="2">내용</option>
-                  <option value="3">제목+내용</option>
-                  <option value="4">글쓴이</option>
-                </select>
+                <div id="selectbox2" class="custom-select">
+                </div>
                 <input type="text">
-                <button class="rounded-circle" onclick="alert('클릭됨')">
-                    <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
-                </button> 
+                  <button class="rounded-circle" onclick="alert('클릭됨')">
+                      <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
+                  </button> 
               </div>
-              
               <button>
                 <img src="<%=contextPath%>/resources/static/img/button/write.png" alt="">
                 글쓰기
@@ -867,7 +864,7 @@
 
 
       <!-- <%@ include file="../common/footer.jsp"%> -->
-      <script src="<%=contextPath%>/resources/static/js/community/communityMain.js"></script>
+      
   </body>
 
   </html>
