@@ -34,8 +34,12 @@
                 <!-- 테이블 -->
                 <div class="site-notice"></div>
 
-                <div class="btns">
-                    <button type="submit" class="btn btn-primary">글쓰기</button>
+                <!-- 버튼 -->
+                <div class="board-option">
+                    <button class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/noticewrite'">
+                        <img src="${pageContext.request.contextPath}/resources/static/img/button/pencil_icon.png">
+                        글쓰기
+                    </button>
                 </div>
 
                 <!-- 페이징바 -->

@@ -95,3 +95,37 @@ footer {
     background-color: #EDF6F9; /* 푸터 배경색 */
     text-align: center; /* 텍스트 중앙 정렬 */
 }
+
+@media (min-width: 721px) {
+    /* 이 영역은 721px 이상 화면에 대한 스타일입니다. */
+}
+
+@media (min-width: 481px) and (max-width: 720px) {
+    /* 검색 텍스트 부분 */
+    .search-section .search-form {
+        width: 65%;
+    }
+
+    /* '등록일' 열 숨기기 (3번째 열) */
+    .board tr td:nth-child(3) {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-section .search-form{
+        width: 100%;
+    }
+
+    .board tr :nth-child(1) {
+        display: none;
+    }
+
+    .board tr :nth-child(3) {
+        display: none;
+    }
+
+    .board tr :nth-child(4) {
+        display: none;
+    }
+}
