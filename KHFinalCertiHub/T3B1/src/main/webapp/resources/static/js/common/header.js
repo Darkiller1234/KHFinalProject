@@ -45,19 +45,8 @@ function init(contextPath, pageName, optional){
         case "noticePage":
             initNoticePage(contextPath);
             break;
-
-
-        case "noticeWrite":
-            initNoticeWrite(contextPath);
-            break;
-
-        case "commuDInit":
-            commuDInit(contextPath);
-            break;
-
-        case "commuWInit":
-            commuWInit(contextPath);
-
+        case "infoPage":
+            initInfoPage(contextPath);
             break;
     }
 }

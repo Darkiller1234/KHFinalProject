@@ -130,7 +130,7 @@
                 </div>
 
             </div>
-            <script src="<%=contextPath%>/resources/static/js/infopage/searchPage.js"></script>
+            <script src="<%=contextPath%>/resources/static/js/infopage/tab.js"></script>
 
             <%@ include file="../common/footer.jsp" %>
     </body>

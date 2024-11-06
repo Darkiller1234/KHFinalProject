@@ -6,6 +6,9 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>searchPage</title>
+        <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/static/js/infopage/selectBox.js"></script>
+
     </head>
 
     <body>
@@ -13,29 +16,30 @@
             <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/common/default.css">
             <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/infopage/infoPage.css">
             <div class="wrapper">
-                <nav id="certiSelect">
-                    <div class="container">
-                        <ul class="navbar">
-                            <li>
-                                <a class="navbar-item" href="#">정보처리기사</a>
-                            </li>
-                            <!-- <li>
-                                <a class="navbar-item" href="#">정보보안기사</a>
-                            </li>
-                            <li>
-                                <a class="navbar-item" href="#">네트워크관리사</a>
-                            </li>
-                            <li>
-                                <a class="navbar-item" href="#">빅데이터분석기사</a>
-                            </li>
-                            <li>
-                                <a class="navbar-item" href="#">Home</a>
-                            </li> -->
-                        </ul>
+                <div class="container">
+                    <div class="certi">
+                        <h1>정보처리기사</h1>
                     </div>
-                </nav>
+                </div>
+                <div class="tab-container">
+                    <ul class="tabs">
+                        <li class="tab-link current" data-tab="tab-1">홈</li>
+                        <li class="tab-link" data-tab="tab-2">자료실</li>
+                    </ul>
+                    <div id="tab-1" class="tab-content current">
+                        홈
+                    </div>
+                    <div id="tab-2" class="tab-content">
+                        <div class="selectBox">
+                            <div class="custom-select"></div>
+                        </div>
+                        <div class="board-content"></div>
+                    </div>
+                </div>
             </div>
-            
+
+            <script src="<%=contextPath%>/resources/static/js/infopage/infoPage.js"></script>
+
 
             <%@ include file="../common/footer.jsp" %>
     </body>
