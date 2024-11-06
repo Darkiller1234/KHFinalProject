@@ -9,7 +9,7 @@ function init(contextPath, pageName, optional){
             initMentorSearch(contextPath); // contextPath
             break;
         case "communitySearch":
-            // initCommunitySearch(contextPath); // contextPath
+            commuMInit(contextPath);
             break;
         case "studySearch":
             initStudySearch(contextPath);
@@ -44,6 +44,14 @@ function init(contextPath, pageName, optional){
 
         case "noticePage":
             initNoticePage(contextPath);
+            break;
+
+        case "commuDInit":
+            commuDInit(contextPath);
+            break;
+
+        case "commuWInit":
+            commuWInit(contextPath);
             break;
     }
 }
