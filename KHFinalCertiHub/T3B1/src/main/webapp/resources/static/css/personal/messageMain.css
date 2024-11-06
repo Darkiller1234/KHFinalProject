@@ -1,9 +1,15 @@
-.wrapper.message{
+.wrapper.calcHeight{
     display:flex;
     height:calc(100vh - 62px);
 }
 
 /* 맨 왼쪽 사이드 메뉴 */
+.side{
+    display: flex;
+    position:relative;
+}
+
+/* 사이드 메뉴 내 선택창(멘토, 스터디그룹, 알림)*/
 .side-menu{
     width:100px;
     min-width: 100px;
@@ -33,27 +39,138 @@
 
 /* 사이트 메뉴 선택시 나오는 멘토(스터디그룹)목록 */
 .side-extend{
+    display:none;
+    position: absolute;
+    background-color: white;
+    left:100px; /* side-menu 크기 */
     width:30%;
-    min-width:300px;
-    border-right:1px solid #83C5BE
+    min-width:380px;
+    height: 100%;
+    border-right:1px solid #83C5BE;
+    overflow-y: auto;
+    /* 스크롤 표시 제거 */
+    -ms-overflow-style: none; /* 인터넷 익스플로러 */
+    scrollbar-width: none; /* 파이어폭스 */
+}
+
+/* 스크롤 표시 제거 ( 크롬, 사파리, 오페라, 엣지 ) */
+.side-extend::-webkit-scrollbar{
+    display: none;
 }
 
 .side-extend .not-found img{
     width:50%;
 }
 
-.side-extend form{
-    width:100%;
+.side-extend .side-search{
+    width: 100%;
+    position: sticky;
+    top: 0px;
+    background-color: white;
+    z-index: 1;
+    padding:10px;
 }
 
-.side-extend .search-form{
-    margin:10px;
-    width:calc(100% - 20px);
+.side-search .search-form{
+    width: 100%;
+}
+
+.side-extend .content{
+    width:100%;
+    height:calc(100% - 65px);
+    display:flex;
+    flex-direction: column;
+}
+
+.side-extend .content input[type='radio']{
+    display: none;
+}
+
+.side-extend .content input[type='radio']:checked + div{
+    background-color: #FFDDD2;
+}
+
+.content .talkroom{
+    width:100%;
+    height:80px;
+    display: flex;
+}
+
+.talkroom .thumbnail{
+    width:20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+
+.talkroom .thumbnail img{
+    width: 100%;
+}
+
+.talkroom .talkroom-info{
+    width:80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding:0 5px;
+}
+
+.talkroom-info div{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.talkroom .option{
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.talkroom .option button{
+    width:75px;
+    height:30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.talkroom .option button:hover{
+    opacity: 0.9;
+}
+
+.talkroom .option button:focus{
+    box-shadow: none;
+    opacity: 0.9;
+}
+
+.btn-accept{
+    background-color: white;
+    border:1px solid black;
+    border-radius: 5px;
 }
 
 /* 메세지 표시 영역 */
 .message-section{
-    width:70%;
+    width:100%;
+}
+
+.message-section .message-window{
+    display: flex;
+    flex-direction: column-reverse;
+    width:100%;
+    /* 100% - 45(search-form 높이) + 20(search-form margin 10 + 10) */
+    height:calc(100% - 65px);
+    overflow-y: auto;
+    /* 스크롤 표시 제거 */
+    -ms-overflow-style: none; /* 인터넷 익스플로러 */
+    scrollbar-width: none; /* 파이어폭스 */
+}
+
+/* 스크롤 표시 제거 ( 크롬, 사파리, 오페라, 엣지 ) */
+.message-window::-webkit-scrollbar{
+    display: none;
 }
 
 .message-section .not-found img{
@@ -65,10 +182,138 @@
     width:calc(100% - 20px);
 }
 
+/* 메시지 창 */
+.message{
+    width: 100%;
+    display:flex;
+}
+
+.message.mine{
+    justify-content: flex-end;
+}
+
+.message.mine .message-card{
+    background-color: #FFDDD2;
+}
+
+.message-card{
+    display: flex;
+    border:1px solid black;
+    border-radius: 5px;
+    margin: 10px;
+    max-width: 70%;
+    padding:5px;
+
+    box-shadow: 0 1px 1px rgba(0,0,0,0.11), 
+    0 2px 2px rgba(0,0,0,0.11), 
+    0 4px 4px rgba(0,0,0,0.11), 
+    0 6px 8px rgba(0,0,0,0.11),
+    0 8px 16px rgba(0,0,0,0.11);
+}
+
+.message-card .thumbnail{
+    width:70px;
+    padding: 10px;
+}
+
+.message-card .thumbnail img{
+    width: 50px;
+    height: 50px;
+}
+
+.message .user-name{
+    display: flex;
+    align-items: center;
+}
+
+.message-card .user-name img{
+    width:24px;
+}
+
+/* 모달 */
+.modal .modal-header{
+    padding:10px;
+    padding-bottom: 0;
+}
+
+.modal .modal-content{
+    border: 0;
+}
+
+.modal-header .modal-title{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.modal-header .modal-title img{
+    width:150px;
+    height:150px;
+}
+
+.modal-header .close-button{
+    position: absolute;
+    top:0;
+    right:0;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    background-color: transparent;
+}
+
+.modal-header .close-button img{
+    width: 100%;
+    height: 100%;
+}
+
+.modal .modal-body{
+    gap:3px;
+    padding:10px;
+    padding-bottom: 0;
+}
+
+.modal-body .mentor-valid{
+    position: static;
+}
+
+.modal .modal-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color:black;
+}
+
+.modal .modal-body img{
+    width:24px;
+    height: 24px;
+}
+
+.modal .look-license{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap:10px;
+}
+
+.modal .look-license .mentor-valid{
+    white-space: nowrap;
+}
+
+.modal .modal-footer button{
+    width: 135px;
+    height: 40px;
+}
+
 /* 내용 없을때 표시 */
 .not-found{
-    /* 100% - 45(form 높이) + 20(form margin 10 + 10)*/
-    height:calc(100% - 65px);
+    height:100%;
     display:flex;
     flex-direction: column;
     justify-content: center;
@@ -79,17 +324,13 @@
     margin:5px 10px;
 }
 
-@media (min-width: 721px) {
-
-}
-
 @media (min-width: 481px) and (max-width: 720px) {
-    .side-extend{
-        display:none;
-    }
-
     .message-section{
         width:calc(100% - 100px);
+    }
+
+    .message-card{
+        max-width: 100%;
     }
 }
 
@@ -100,14 +341,36 @@
     }
 
     .side-extend{
-        display:none;
+        width:100%;
+        left:70px; /* side-menu 크기 */
+        min-width: calc(100vw - 70px);
     }
 
     .message-section{
         width:calc(100% - 70px);
     }
 
+    .message-card{
+        max-width: 90%;
+    }
+
     .option-text{
         display:none;
     }
+
+    .modal-header .modal-title img{
+        width:100px;
+        height:100px;
+    }
+
+    .modal-header .close-button{
+        width: 50px;
+        height: 50px;
+    }
+
+    .modal-header .close-button img{
+        width: 100%;
+        height: 100%;
+    }
+    
 }
