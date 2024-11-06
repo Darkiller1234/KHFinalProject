@@ -1,4 +1,9 @@
 function initNoticePage(contextPath) {
+    initBoardList(contextPath);
+    initSelectPage(contextPath);
+}
+
+function initBoardList(contextPath){
     const boardList = document.querySelector('.site-notice');
 
     let data = {
@@ -27,4 +32,22 @@ function initNoticePage(contextPath) {
     }
 
     createList(boardList, data)
+}
+
+function initSelectPage(contextPath) {
+    const selectBoxList = document.querySelector(".site-select");
+
+    const data = {
+        name : 'number',
+        default : '갯수',
+        imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
+        items : [
+            '5개',
+            '10개',
+            '15개',
+            '20개'
+        ]
+    }
+
+    createSelectBox(selectBoxList,data)
 }
