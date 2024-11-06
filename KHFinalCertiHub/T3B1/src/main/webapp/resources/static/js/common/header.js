@@ -45,6 +45,10 @@ function init(contextPath, pageName, optional){
         case "noticePage":
             initNoticePage(contextPath);
             break;
+
+        case "noticeWrite":
+            initNoticeWrite(contextPath);
+            break;
     }
 }
 

@@ -106,4 +106,36 @@ footer {
     width: 100%; /* 전체 너비 사용 */
     background-color: #EDF6F9; /* 푸터 배경색 */
     text-align: center; /* 텍스트 중앙 정렬 */
+    padding: 10px 0; /* 상하 여백 추가 */
+    box-sizing: border-box; /* 여백 포함 */
+}
+
+@media (min-width: 721px) {
+
+}
+
+@media (min-width: 481px) and (max-width: 720px) {
+    .option{
+        flex-direction: column;
+    }
+    .option button{
+        width:calc(100% - 1.25rem);
+    }
+}
+
+@media (max-width: 480px) {
+    .option{
+        flex-direction: column;
+    }
+    .option button{
+        width:calc(100% - 1.25rem);
+    }
+}
+
+/* 작은 화면용 스타일 */
+@media (max-width: 480px) {
+    footer {
+        font-size: 14px; /* 작은 화면에서 글자 크기 조정 */
+        padding: 15px 10px; /* 패딩 추가 */
+    }
 }

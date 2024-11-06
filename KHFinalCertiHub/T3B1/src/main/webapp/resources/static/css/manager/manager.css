@@ -95,3 +95,79 @@ footer {
     background-color: #EDF6F9; /* 푸터 배경색 */
     text-align: center; /* 텍스트 중앙 정렬 */
 }
+
+/* 태블릿용 미디어 쿼리 (1024px 이하) */
+@media (max-width: 1024px) {
+    .container {
+        flex-direction: column; /* 사이드바와 콘텐츠를 수직 정렬 */
+    }
+
+    .sidebar {
+        width: 100%; /* 전체 너비 사용 */
+        height: auto; /* 높이를 콘텐츠에 맞추기 */
+        padding: 15px;
+    }
+
+    .content {
+        width: 100%;
+        padding: 30px;
+    }
+}
+
+/* 모바일용 미디어 쿼리 (720px 이하) */
+@media (max-width: 720px) {
+    .wrapper {
+        max-width: 100%;
+    }
+
+    .content {
+        padding: 20px;
+        border-radius: 5px;
+    }
+
+    .sidebar {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .search-form {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .table {
+        width: 100%;
+        font-size: 0.9em;
+    }
+
+    .table th, .table td {
+        padding: 8px;
+    }
+}
+
+/* 모바일에서 '등록일'과 '조회수' 열 숨기기 */
+@media (max-width: 480px) {
+    .table th:nth-child(3), /* '등록일' 열 */
+    .table td:nth-child(3),
+    .table th:nth-child(4), /* '조회수' 열 */
+    .table td:nth-child(4) {
+        display: none; /* 해당 열 숨기기 */
+    }
+
+    /* 'NO.', '제목', '삭제' 열만 보이게 설정 */
+    .table th:nth-child(1), /* 'NO.' 열 */
+    .table th:nth-child(2), /* '제목' 열 */
+    .table th:nth-child(5), /* '삭제' 열 */
+    .table td:nth-child(1), /* 'NO.' 열 */
+    .table td:nth-child(2), /* '제목' 열 */
+    .table td:nth-child(5) { /* '삭제' 열 */
+        display: table-cell; /* 해당 열 표시 */
+    }
+
+    /* 삭제 버튼 스타일 수정 (공간 확보) */
+    .table td:nth-child(5) {
+        font-size: 0.8em;
+        padding: 8px;
+    }
+}
+
