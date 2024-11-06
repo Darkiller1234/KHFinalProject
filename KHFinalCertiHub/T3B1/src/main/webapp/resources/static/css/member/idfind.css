@@ -124,62 +124,10 @@ h3 {
 }
 
 /* 미디어 쿼리 */
-@media (max-width: 768px) {
-    /* 768px 이하에서 적용할 스타일 */
-    .wrapper {
-        padding: 15px; /* 내부 여백 조정 */
-    }
-
-    h2 {
-        font-size: 22px; /* 제목 글씨 크기 조정 */
-    }
-
-    h3 {
-        font-size: 14px; /* 부제목 글씨 크기 조정 */
-    }
-
-    .btn {
-        font-size: 16px; /* 버튼 글씨 크기 조정 */
-    }
-}
-
 @media (max-width: 480px) {
-    /* 480px 이하에서 적용할 스타일 */
-    h2 {
-        font-size: 20px; /* 제목 글씨 크기 조정 */
-    }
-
-    h3 {
-        font-size: 12px; /* 부제목 글씨 크기 조정 */
-    }
-
-    .btn {
-        font-size: 14px; /* 버튼 글씨 크기 조정 */
-        padding: 10px; /* 버튼 패딩 조정 */
-    }
-
-    /* 버튼 간격 조정 */
     .form-group {
-        flex-direction: column; /* 세로 방향으로 변경 */
-        align-items: center; /* 중앙 정렬 */
-    }
-
-    .btn {
-        margin: 5px 0; /* 버튼 간격 조정 */
-        width: 100%; /* 버튼을 전체 너비로 설정 */
-    }
-
-    /* 이미지와 텍스트의 위치 조정 */
-    .form-group div {
-        display: flex; /* Flexbox 사용 */
-        flex-direction: column; /* 세로 방향으로 쌓이게 변경 */
-        align-items: center; /* 중앙 정렬 */
-        margin-bottom: 10px; /* 아래쪽 여백 추가 */
-    }
-
-    .form-group img {
-        margin-top: 5px; /* 이미지와 텍스트 사이 여백 추가 */
-        width: 30px; /* 이미지 크기 조정 */
-        height: auto; /* 비율에 맞게 자동 조정 */
+        flex-direction: column; /* 모바일 화면에서 버튼을 세로로 배치 */
     }
 }
+
+
