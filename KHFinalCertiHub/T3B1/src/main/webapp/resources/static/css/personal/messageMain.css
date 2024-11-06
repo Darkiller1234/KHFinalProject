@@ -1,0 +1,113 @@
+.wrapper.message{
+    display:flex;
+    height:calc(100vh - 62px);
+}
+
+/* 맨 왼쪽 사이드 메뉴 */
+.side-menu{
+    width:100px;
+    min-width: 100px;
+    background-color: #EDF6F9;
+    text-align: center;
+}
+
+.side-menu .option{
+    background-color: #EDF6F9;
+}
+
+.side-menu img{
+    width:100%;
+}
+
+.side-menu input[type='radio']{
+    display:none;
+}
+
+.side-menu input[type='radio']:checked + div{
+    background-color: #83C5BE;
+}
+
+.side-menu input[type='radio']:checked + div img{
+    filter: invert(49%) sepia(27%) saturate(2363%) hue-rotate(134deg) brightness(62%) contrast(94%);
+}
+
+/* 사이트 메뉴 선택시 나오는 멘토(스터디그룹)목록 */
+.side-extend{
+    width:30%;
+    min-width:300px;
+    border-right:1px solid #83C5BE
+}
+
+.side-extend .not-found img{
+    width:50%;
+}
+
+.side-extend form{
+    width:100%;
+}
+
+.side-extend .search-form{
+    margin:10px;
+    width:calc(100% - 20px);
+}
+
+/* 메세지 표시 영역 */
+.message-section{
+    width:70%;
+}
+
+.message-section .not-found img{
+    width:20%;
+}
+
+.message-section .search-form{
+    margin:10px;
+    width:calc(100% - 20px);
+}
+
+/* 내용 없을때 표시 */
+.not-found{
+    /* 100% - 45(form 높이) + 20(form margin 10 + 10)*/
+    height:calc(100% - 65px);
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.not-found div{
+    margin:5px 10px;
+}
+
+@media (min-width: 721px) {
+
+}
+
+@media (min-width: 481px) and (max-width: 720px) {
+    .side-extend{
+        display:none;
+    }
+
+    .message-section{
+        width:calc(100% - 100px);
+    }
+}
+
+@media (max-width: 480px) {
+    .side-menu{
+        width: 70px;
+        min-width: 70px;
+    }
+
+    .side-extend{
+        display:none;
+    }
+
+    .message-section{
+        width:calc(100% - 70px);
+    }
+
+    .option-text{
+        display:none;
+    }
+}
