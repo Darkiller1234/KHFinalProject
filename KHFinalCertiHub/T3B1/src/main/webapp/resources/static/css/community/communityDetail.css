@@ -2,6 +2,14 @@
     z-index: 1000;
 }
 
+footer {
+    z-index: -1000;
+}
+
+.item-list {
+    z-index: 1000;
+}
+
 .navbar-brand, .nav-link{ /* 네비바 현재게시판 */
     margin-left: 10px;
     color: black;
@@ -32,22 +40,13 @@
 }
 */
 
-#listArea * {
+/* #listArea * {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-}
+} */
 
-
-#listArea table {
-    width: 100%;
-}
-
-#listArea table tr:first-child {
-    background-color: #83C5BE;
-}
-
-#listArea div div {
+#listArea > div > div {
     display: flex;
 }
 
@@ -55,19 +54,68 @@
     border-width: 1px 0px !important;
     border: solid black;
     background-color: #EDF6F9;
-    padding: 3px;
+    padding: 3px 5px;
 }
+
+#detail-area > div:nth-child(1) > div {
+    display: flex;
+}
+
+#detail-area > div:nth-child(1) > div > p:nth-child(1){
+    min-width: fit-content;
+}
+
+#detail-area > div:nth-child(2) > div > p{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
 
 #detail-area > div:nth-child(2){
     border-width: 0px 0px 1px 0px !important;
     border: solid black;
-    padding: 3px;
+    padding: 3px 5px;
 }
 
 #detail-area > div:nth-child(3){
     min-height: 5rem;
     padding: 10px;
 }
+
+#detail-area > div:nth-child(4){
+    padding-bottom: 20px !important;
+}
+
+#replys{
+    border-bottom: 1px solid #AEAEAE;
+    border-top: 1px solid #AEAEAE;
+}
+
+.reply { /* 댓글 하나 속성 */
+    width: 100%;
+    padding: 20px 10px;
+    /* padding-bottom: 20px !important;
+    padding-top: 20px; */
+    display: flex;
+    gap: 10px;
+}
+
+.reply > img {
+    width: 100px;
+    height: 100px;
+}
+
+.reply button {
+    background: none;
+    border: none;
+}
+
+.reply div div {
+    gap: 5px;
+}
+
 
 #detail-area > div:nth-child(1) > div:nth-child(2){
     gap: 5px;
@@ -99,6 +147,15 @@
 }
 
 
+#search-area {
+    overflow: visible;
+}
+
+
+#search-area * {
+    overflow: visible !important;
+}
+
 
 #search-area div:nth-child(2) {         /* 검색창 전체 */
     background-color: #ffffff;
@@ -106,17 +163,18 @@
     border-radius: 40px;
 }
 
-#search-area div:nth-child(2) input {      /* 검색창 입력창 */ 
-    border: none;
-}
-
 #search-area div:nth-child(2) select{  /* 제목, 내용 등 셀렉트 박스 */
-    width: 100px;
+    /* width: 100px;
     border: none;
     left: 10px;
     border-radius: 40px;
     background-color: none;
-    padding-left: 5px;
+    padding-left: 5px; */
+}
+
+
+#selectbox2 > button {
+    border: none;
 }
 
 
@@ -133,8 +191,8 @@
 }
 
 #search-area > :nth-child(3){
-    width: 135px;
-    height: 40;
+    min-width: 135px;
+    height: 40px;
     background-color: #484848;
     color: white;
     border: none;
@@ -197,52 +255,53 @@
     display: flex;
     justify-content: space-around;
     height: 40px;
+    
 }
 
 #search-area div:nth-child(1) {
-    background-color: #ffffff;
+    /* background-color: #ffffff;
     border: #83C5BE 3px solid;
     border-radius: 40px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
 }
 
 #search-area div:nth-child(1) select {
-    border: none;
-    border-radius: 40px;
+    /* border: none;
+    border-radius: 40px; */
 }
 
 #search-area div:nth-child(2) {
-    background-color: #ffffff;
+    /* background-color: #ffffff;
     border: #83C5BE 3px solid;
-    border-radius: 40px;
+    border-radius: 40px; */
 }
 
 #search-area div:nth-child(2) input {
-    border: none;
+    /* border: none; */
 }
 
 #search-area div:nth-child(2) select{  /* 제목, 내용 등 셀렉트 박스 */
-    width: 100px;
+    /* width: 100px;
     border: none;
     left: 10px;
     border-radius: 40px;
-    background-color: none;
+    background-color: none; */
 }
 
 #search-area select {
-    width: 100px;
-    /* border: #83C5BE 4px soild ; */
+    /* width: 100px;
+    /* border: #83C5BE 4px soild ; 
     border-radius: 40px;
-    background-color: none;
+    background-color: none; */
 }
 
 #search-area div:nth-child(2) select:focus, #search-area select:focus{  /* focus 시 외부라인 나타나는거 제거 */
-    outline: none;
+    /* outline: none; */
 }
 
-#detail-area div:nth-child(1), #detail-area div:nth-child(2){     /* 글 구역 */
+#detail-area > div:nth-child(1), #detail-area > div:nth-child(2){     /* 글 구역 */
     display: flex;
     justify-content: space-between;
 }
@@ -262,7 +321,7 @@
     display: flex;
     gap: 10px; /* 버튼 사이 간격 설정 */
     margin: 0 auto; /* 중앙 정렬 */
-    padding-left: 40px;                 /* 신고버튼으로 인한 좌측쏠림 해결 */
+    padding-left: 60px;                 /* 신고버튼으로 인한 좌측쏠림 해결 */
 }
 
 #detail-area div:nth-child(4) > div > button{       /* 버튼 */
@@ -305,25 +364,53 @@
     gap: 10px;
 }
 
-#detail-area div:nth-child(7) {      /* 댓글 작성 area */
+.reply-write {      /* 댓글 작성 area */
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    margin: 20px 10px;
     gap: 10px;
+    border: #006D77 1px solid;
+    background-color: #EDF6F9;
+    border-radius: 5px;
 }
 
-#detail-area div:nth-child(7) > textarea {
+.focused {
+    display: flex !important;
+}
+
+.reply-write > textarea {
     width: 100%;
     padding: 10px;
     height: 100px;
     text-align: start;
     resize: none;
+    background: none;
+    
 }
 
-#detail-area div:nth-child(7) > button {
+.reply-write > textarea:focus {
+    outline: none;
+}
+
+.reply-write > button {
     width: 130px;
     height: 40px;
     margin-left: auto;
+    display: none;
+    background-color: white;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.reply-write > button > span{
+    margin-right: 10px;
+}
+
+.reply-write > button > img{
+    width: 20px;
 }
 
 
@@ -361,4 +448,43 @@
         display: none;
     }
     
+}
+
+
+@media (max-width: 690px) {
+    #search-area {
+        display: grid;
+        grid-template-areas:
+            "a c"
+            "b b";
+        grid-gap: 10px; /* 요소 간의 간격 */
+        height: auto;
+        
+    }
+
+    #search-area > :nth-child(1) {
+        grid-area: a;
+        max-height: 40px;
+    }
+
+    #search-area > :nth-child(2) {
+        grid-area: b;
+        max-height: 40px;
+        justify-content: space-between;
+    }
+
+    #search-area > :nth-child(2) input {
+        width: auto;
+    }
+
+    #search-area > :nth-child(3) {
+        grid-area: c;
+        max-height: 40px;
+        max-width: 130px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-left: auto;
+    }
+
 }

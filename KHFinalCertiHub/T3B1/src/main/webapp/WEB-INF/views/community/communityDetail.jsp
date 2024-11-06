@@ -8,14 +8,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
+    
+    <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/static/js/community/communityDetail.js"></script>
     <title>Document</title>
   </head>
 
   <body>
     <%@ include file="../common/header.jsp" %>
       <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/community/communityDetail.css">
-      <script src="<%=contextPath%>/resources/static/js/community/communityDetail.js"></script>
+        
       <div class="wrapper">
         <nav class="navbar bg-body-tertiary page-title" id="certiSelect">
           <div class="container-fluid">
@@ -46,7 +48,7 @@
               <div>
                 <div>
                   <p>질문(자유)</p>
-                  <p>이거 왜 안됨?</p>
+                  <p>이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?</p>
                 </div>
                 <div>
                   <button><img src="<%=contextPath%>/resources/static/img/button/delete.png" alt="">삭제</button>
@@ -68,13 +70,13 @@
                 </div>
                 <button>신고</button>
               </div>
-              <div>
-                <div>
+              <div id="replys">
+                <div class="reply">
                   <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" alt="">
                   <div>
-                    <p>윤대한</p>
-                    <p>왜 안알려줌? 빨리 알려주셈</p>
-                    <div>
+                    <p class="font-size-subtitle">윤대한</p>
+                    <p class="font-size-content">왜 안알려줌? 빨리 알려주셈</p>
+                    <div class="font-size-footer">
                       <button>답글</button>
                       |
                       <button>신고</button>
@@ -86,15 +88,19 @@
                   </div>
                 </div>
               </div>
-              <div>
-                <button>1</button>
-                <button>2</button>
-                <button>></button>
+              <div class="pagination">
+                <span class="page-num">1</span>
+                <span class="page-num active">2</span>
+                <span class="page-arrow">></span>
               </div>
-              <div>
-                <textarea placeholder="댓은 거울"></textarea>
-                <button>작성</button>
-              </div>
+                
+              <form action="">
+                <div class="reply-write">
+                  <textarea id="reply-write-area" placeholder="댓은 거울"></textarea>
+                  <button id="reply-write-btn"><img src="<%=contextPath%>/resources/static/img/button/Vector.png" alt=""><span class="font-size-subtitle">작성</span></button>
+                </div>
+              </form>
+              
             </div>
             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
               <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
@@ -869,24 +875,21 @@
               <span class="page-num active">2</span>
             </div>
             <div id="search-area">
-              <div>
-                <select>
+              <div id="selectbox1" class="custom-select">
+                <!-- <select>
                 <option value="1" selected>최신순</option>
                 <option value="2">추천순</option>
-              </select>
+              </select> -->
               </div>
               <div>
-                <select>
-                  <option value="1" selected>제목</option>
-                  <option value="2">내용</option>
-                  <option value="3">제목+내용</option>
-                  <option value="4">글쓴이</option>
-                </select>
+                <div id="selectbox2" class="custom-select">
+                </div>
                 <input type="text">
-                <button class="rounded-circle" onclick="alert('클릭됨')">
-                    <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
-                </button> 
+                  <button class="rounded-circle" onclick="alert('클릭됨')">
+                      <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
+                  </button> 
               </div>
+              
               
               <button>
                 <img src="<%=contextPath%>/resources/static/img/button/write.png" alt="">
@@ -921,7 +924,7 @@
       </div>
 
 
-      <!-- <%@ include file="../common/footer.jsp"%> -->
+      <%@ include file="../common/footer.jsp"%>
   </body>
 
   </html>
