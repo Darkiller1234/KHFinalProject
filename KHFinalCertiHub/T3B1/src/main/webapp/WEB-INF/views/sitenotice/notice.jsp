@@ -29,10 +29,14 @@
                 </div>
 
                 <!-- 셀렉트박스 -->
-                <div class="custom-select"></div>
+                <div class="site-select"></div>
 
                 <!-- 테이블 -->
                 <div class="site-notice"></div>
+
+                <div class="btns">
+                    <button type="submit" class="btn btn-primary">글쓰기</button>
+                </div>
 
                 <!-- 페이징바 -->
                 <div class="pagination">
