@@ -35,20 +35,62 @@
 .side-extend{
     width:30%;
     min-width:300px;
-    border-right:1px solid #83C5BE
+    border-right:1px solid #83C5BE;
+    overflow-y: auto;
 }
 
 .side-extend .not-found img{
     width:50%;
 }
 
-.side-extend form{
+.side-extend .side-search{
+    width: 100%;
+    position: sticky;
+    top: 0px;
+    background-color: white;
+    z-index: 1;
+    padding:10px;
+}
+
+.side-search .search-form{
+    width: 100%;
+}
+
+.side-extend .content{
     width:100%;
 }
 
-.side-extend .search-form{
-    margin:10px;
-    width:calc(100% - 20px);
+.side-extend .content input[type='radio']{
+    display: none;
+}
+
+.side-extend .content input[type='radio']:checked + div{
+    background-color: #FFDDD2;
+}
+
+.content .talkroom{
+    width:100%;
+    height:80px;
+    display: flex;
+}
+
+.talkroom .talkroom-thumbnail{
+    width:20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+
+.talkroom .talkroom-thumbnail img{
+    width: 100%;
+}
+
+.talkroom .talkroom-info{
+    width:80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 /* 메세지 표시 영역 */

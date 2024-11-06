@@ -3,3 +3,9 @@ function sideClick(_this){
 
     sideNotFound.style.display = 'none';
 }
+
+function talkroomClick(_this){
+    const messageNotFound = document.querySelector('.message-section .not-found');
+
+    messageNotFound.style.display = 'none';
+}

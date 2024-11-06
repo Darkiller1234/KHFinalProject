@@ -56,16 +56,162 @@
         
         <div class="side-extend">
 
-            <form onsubmit="return false;">
+            <div class="side-search">
                 <div class="search-form">
                     <input type="text">
                     <button class="rounded-circle" onclick="alert('클릭됨')">
                         <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
                     </button> 
                 </div>
-            </form>
+            </div>
 
             <div class="content">
+                
+                <label>
+                    <input type="radio" name="talkroom-option" onclick="talkroomClick(this)">
+                    <div class="talkroom">
+                        <div class="talkroom-thumbnail">
+                            <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                        </div>
+                        <div class="talkroom-info">
+                            <div class="talkroom-name font-size-subtitle">User01</div>
+                            <div class="last-talk">테스트용 메시지입니다...</div>
+                        </div>
+                    </div>
+                </label>
+
+                <label>
+                    <input type="radio" name="talkroom-option" onclick="talkroomClick(this)">
+                    <div class="talkroom">
+                        <div class="talkroom-thumbnail">
+                            <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                        </div>
+                        <div class="talkroom-info">
+                            <div class="talkroom-name font-size-subtitle">User01</div>
+                            <div class="last-talk">테스트용 메시지입니다...</div>
+                        </div>
+                    </div>
+                </label>
+                <label>
+                    <input type="radio" name="talkroom-option" onclick="talkroomClick(this)">
+                    <div class="talkroom">
+                        <div class="talkroom-thumbnail">
+                            <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                        </div>
+                        <div class="talkroom-info">
+                            <div class="talkroom-name font-size-subtitle">User01</div>
+                            <div class="last-talk">테스트용 메시지입니다...</div>
+                        </div>
+                    </div>
+                </label>
+                <label>
+                    <input type="radio" name="talkroom-option" onclick="talkroomClick(this)">
+                    <div class="talkroom">
+                        <div class="talkroom-thumbnail">
+                            <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                        </div>
+                        <div class="talkroom-info">
+                            <div class="talkroom-name font-size-subtitle">User01</div>
+                            <div class="last-talk">테스트용 메시지입니다...</div>
+                        </div>
+                    </div>
+                </label>
+                <label>
+                    <input type="radio" name="talkroom-option" onclick="talkroomClick(this)">
+                    <div class="talkroom">
+                        <div class="talkroom-thumbnail">
+                            <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                        </div>
+                        <div class="talkroom-info">
+                            <div class="talkroom-name font-size-subtitle">User01</div>
+                            <div class="last-talk">테스트용 메시지입니다...</div>
+                        </div>
+                    </div>
+                </label>
+                <label>
+                    <input type="radio" name="talkroom-option" onclick="talkroomClick(this)">
+                    <div class="talkroom">
+                        <div class="talkroom-thumbnail">
+                            <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                        </div>
+                        <div class="talkroom-info">
+                            <div class="talkroom-name font-size-subtitle">User01</div>
+                            <div class="last-talk">테스트용 메시지입니다...</div>
+                        </div>
+                    </div>
+                </label>
+                <label>
+                    <input type="radio" name="talkroom-option" onclick="talkroomClick(this)">
+                    <div class="talkroom">
+                        <div class="talkroom-thumbnail">
+                            <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                        </div>
+                        <div class="talkroom-info">
+                            <div class="talkroom-name font-size-subtitle">User01</div>
+                            <div class="last-talk">테스트용 메시지입니다...</div>
+                        </div>
+                    </div>
+                </label>
+                <label>
+                    <input type="radio" name="talkroom-option" onclick="talkroomClick(this)">
+                    <div class="talkroom">
+                        <div class="talkroom-thumbnail">
+                            <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                        </div>
+                        <div class="talkroom-info">
+                            <div class="talkroom-name font-size-subtitle">User01</div>
+                            <div class="last-talk">테스트용 메시지입니다...</div>
+                        </div>
+                    </div>
+                </label>
+                <label>
+                    <input type="radio" name="talkroom-option" onclick="talkroomClick(this)">
+                    <div class="talkroom">
+                        <div class="talkroom-thumbnail">
+                            <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                        </div>
+                        <div class="talkroom-info">
+                            <div class="talkroom-name font-size-subtitle">User01</div>
+                            <div class="last-talk">테스트용 메시지입니다...</div>
+                        </div>
+                    </div>
+                </label>
+                <label>
+                    <input type="radio" name="talkroom-option" onclick="talkroomClick(this)">
+                    <div class="talkroom">
+                        <div class="talkroom-thumbnail">
+                            <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                        </div>
+                        <div class="talkroom-info">
+                            <div class="talkroom-name font-size-subtitle">User01</div>
+                            <div class="last-talk">테스트용 메시지입니다...</div>
+                        </div>
+                    </div>
+                </label>
+                <label>
+                    <input type="radio" name="talkroom-option" onclick="talkroomClick(this)">
+                    <div class="talkroom">
+                        <div class="talkroom-thumbnail">
+                            <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                        </div>
+                        <div class="talkroom-info">
+                            <div class="talkroom-name font-size-subtitle">User01</div>
+                            <div class="last-talk">테스트용 메시지입니다...</div>
+                        </div>
+                    </div>
+                </label>
+                <label>
+                    <input type="radio" name="talkroom-option" onclick="talkroomClick(this)">
+                    <div class="talkroom">
+                        <div class="talkroom-thumbnail">
+                            <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                        </div>
+                        <div class="talkroom-info">
+                            <div class="talkroom-name font-size-subtitle">User01</div>
+                            <div class="last-talk">테스트용 메시지입니다...</div>
+                        </div>
+                    </div>
+                </label>
                 
             </div>
             
@@ -86,14 +232,12 @@
                 <div class="font-size-content">채팅방을 선택해 대화를 시작하세요.</div>
             </div>
 
-            <form onsubmit="return false;">
-                <div class="search-form">
-                    <input type="text">
-                    <button class="rounded-circle" onclick="alert('클릭됨')">
-                        <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
-                    </button> 
-                </div>
-            </form>
+            <div class="search-form">
+                <input type="text">
+                <button class="rounded-circle" onclick="alert('클릭됨')">
+                    <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
+                </button> 
+            </div>
 
         </div>
 	</div>
