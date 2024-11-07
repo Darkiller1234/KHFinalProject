@@ -1,15 +1,120 @@
 #middle-view-profileInfo {
     width: 100%;
     display: flex;
+    gap: 1.25rem;
+}
+
+.left-view > div, .right-view > div {
+    margin-top: 10px;
+}
+
+#simple-profile-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+#member-name {
+    padding: 20px 12px;
+    border-radius: 5px;
+}
+
+.profile-image {
+    border-radius: 100%;
 
 }
 
-.left-view{
-    width: 50%;
+.like-heart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #EDF6F9;
+    border-radius: 5px;
+    gap: 5px;
+    padding: 0px 5px;
+    
 }
 
-.right-view{
-    width: 50%;
+.like-heart button {
+    background: none;
+    border: none;
+}
+
+.like-heart img {
+    padding-bottom: 1.5px;
+}
+
+#favor-certi {
+    display: grid;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+#favor-certi p {
+    grid-column: 1/4;
+    margin-bottom: 5px;
+}
+
+#favor-certi span {
+    background-color: #EDF6F9;
+    width: fit-content;
+    text-align: center;
+    margin: 3px auto;
+    padding: 0px 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#own-certi, #history-list,  #intro-detail{
+    background-color: #EDF6F9;
+    border: #006D77 1px solid;
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 3px;
+}
+
+#own-certi-view p{
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.bottom-view {
+    margin: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.bottom-view > div:nth-child(1) {
+    background-color: #EDF6F9;
+}
+
+.bottom-view > div:nth-child(2) {
+    background-color: #006D77;
+    color: white;
+}
+
+.bottom-view > div:nth-child(2) > button {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 5px;
+    background: none;
+    border: none;
+    color: white;
+    width: 150px;
+    height: 40px;
+    padding: 0px;
+    font-size: 24px !important;
+}
+
+.bottom-view > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
 }
 
 
@@ -27,23 +132,78 @@
 
 
 
-
+.bottom-view {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
 
 
 @media (min-width: 721px){
-    #non-full-view {
+    .left-view{
+        width: 50%;
+    }
+    
+    .right-view{
+        width: 50%;
+    }
+
+    #certiSelect {
         display: none;
     }
 }
 
 @media (min-width: 481px) and (max-width: 720px) {
-    #full-view{
+    .left-view{
+        width: 100%;
+    }
+    
+    .right-view{
+        width: 100%;
+    }
+
+    #category-btn{
         display: none;
+    }
+
+    #middle-view-profileInfo {
+        flex-direction: column;
     }
 }
 
 @media (max-width: 480px) {
-    #full-view{
+    .left-view{
+        width: 100%;
+    }
+    
+    .right-view{
+        width: 100%;
+    }
+
+    #category-btn{
         display: none;
     }
+
+    #middle-view-profileInfo {
+        flex-direction: column;
+    }
 }
+
+
+
+
+.look-license{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap:10px;
+    white-space: nowrap;
+}
+
+
+
+
+
+
+

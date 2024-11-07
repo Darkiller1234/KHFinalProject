@@ -1,0 +1,74 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (min-width: 721px){
+    .left-view{
+        width: 50%;
+    }
+    
+    .right-view{
+        width: 50%;
+    }
+
+    #certiSelect {
+        display: none;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 720px) {
+    .left-view{
+        width: 100%;
+    }
+    
+    .right-view{
+        width: 100%;
+    }
+
+    #category-btn{
+        display: none;
+    }
+
+    #middle-view-profileInfo {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .left-view{
+        width: 100%;
+    }
+    
+    .right-view{
+        width: 100%;
+    }
+
+    #category-btn{
+        display: none;
+    }
+
+    #middle-view-profileInfo {
+        flex-direction: column;
+    }
+}
