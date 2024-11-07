@@ -24,7 +24,7 @@
                         <div id="member-name" class="font-size-title">
                             스타레일고수가될거야 님의 페이지
                         </div>
-                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group" id="category-btn">
                             <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off"
                                 checked>
                             <label class="btn btn-outline-primary" for="btnradio1">프로필 정보</label>
@@ -32,14 +32,32 @@
                             <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
                             <label class="btn btn-outline-primary" for="btnradio2">스케쥴</label>
                         </div>
+
+                        <nav class="navbar bg-body-tertiary page-title font-size-subtitle" id="certiSelect">
+                            <div class="container-fluid">
+                                <a class="navbar-brand font-size-subtitle" href="#">프로필 정보</a>
+                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                                    aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon">ㅁ</span>
+                                </button>
+                                <div class="collapse navbar-collapse" id="navbarNav">
+                                    <ul class="navbar-nav">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" aria-current="page" href="#">스케줄</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
                     </div>
                     <div id="middle-view-profileInfo">
                         <div class="left-view">
                             <div id="simple-profile-view">
-                                <img class="profile-image" src="" alt="">
+                                <img class="profile-image" src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" alt="">
                                 <p class="font-size-subtitle">스타레일고수가될거야</p>
                                 <div class="like-heart">
-                                    <img src="" alt="하트">
+                                    <button><img src="<%=contextPath%>/resources/static/img/profile/heart.png" alt="하트"></button>
                                     <p>234</p>
                                 </div>
                                 <p class="font-size-content">청계천</p>
@@ -62,10 +80,10 @@
                             <div id="history-view">
                                 <p class="font-size-subtitle">경력</p>
                                 <div id="history-list" class="font-size-content">
-                                    <p>IT 전문 회사 5초 근무
-                                        2000 ~ 2000 네이버 개발직
-                                        2000 ~ 2000 네이트 임원
-                                        2000 ~ 2000 넥슨 잠복근무</p>
+                                    IT 전문 회사 5초 근무<br>
+                                        2000 ~ 2000 네이버 개발직<br>
+                                        2000 ~ 2000 네이트 임원<br>
+                                        2000 ~ 2000 넥슨 잠복근무<br>
                                 </div>
                             </div>
                             <div id="intro-view">
@@ -79,94 +97,21 @@
                         </div>
                     </div>
                     <div class="bottom-view">
-                        <div>
-                            <img src="" alt="체크">
+                        <div class="font-size-content">
+                            <img src="<%=contextPath%>/resources/static/img/personalPage/check.png" alt="체크">
                             <p>질문가능</p>
                         </div>
-                        <div>
-                            <img src="" alt="전화중아이콘">
-                            <p>신청하기</p>
-                        </div>
-                    </div>
-
-                </div>
-                <div id="non-full-view">
-                    <nav class="navbar bg-body-tertiary page-title font-size-title" id="certiSelect">
-                        <div class="container-fluid">
-                            <a class="navbar-brand font-size-title" href="#">스타레일고수가될거야 님의 페이지</a>
-                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                                aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon">ㅁ</span>
+                        <div class="font-size-subtitle">
+                            <button>
+                                <img src="<%=contextPath%>/resources/static/img/personalPage/Phonecall.png" alt="전화중아이콘">
+                                <p>신청하기</p>
                             </button>
-                            <div class="collapse navbar-collapse" id="navbarNav">
-                                <ul class="navbar-nav">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" href="#">프로필 정보</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" href="#">스케줄</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </nav>
-
-                    <div id="simple-profile-view">
-                        <img class="profile-image" src="" alt="">
-                        <p class="font-size-subtitle">스타레일고수가될거야</p>
-                        <div class="like-heart">
-                            <img src="" alt="하트">
-                            <p>234</p>
-                        </div>
-                        <p class="font-size-content">청계천</p>
-                        <div id="favor-certi">
-                            <p class="font-size-subtitle">관심 자격증</p>
-                            <span>정보처리기사</span>
-                            <span>네트워크관리사</span>
-                            <span>빅데이터분석기사</span>
-                            <span>정보보안기사</span>
+                            
                         </div>
                     </div>
-
-                    <div id="history-view">
-                        <p class="font-size-subtitle">경력</p>
-                        <div id="history-list" class="font-size-content">
-                            <p>IT 전문 회사 5초 근무
-                                2000 ~ 2000 네이버 개발직
-                                2000 ~ 2000 네이트 임원
-                                2000 ~ 2000 넥슨 잠복근무</p>
-                        </div>
-                    </div>
-                    <div id="intro-view">
-                        <p class="font-size-subtitle">자기소개</p>
-                        <div id="intro-detail" class="font-size-content">
-                            <p>
-                                김용하 청계천에 빠뜨리고 싶어
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="bottom-view">
-                        <div>
-                            <img src="" alt="체크">
-                            <p>질문가능</p>
-                        </div>
-                        <div>
-                            <img src="" alt="전화중아이콘">
-                            <p>신청하기</p>
-                        </div>
-                    </div>
-                    
-                </div>
-
-                <div id="full-view-schedule">
 
                 </div>
-
-                <div id="non-full-view-schedule">
-
-                </div>
+                
             </div>
             <%@ include file="../common/footer.jsp" %>
                 <script src="<%=contextPath%>/resources/static/js/community/communityMain.js"></script>
