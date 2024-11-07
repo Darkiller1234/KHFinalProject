@@ -12,10 +12,12 @@ $(document).ready(function () {
     })
 
 })
-
+// 셀렉트박스
 function initInfoPage(contextPath){
     initSelectBox(contextPath)
     initList(contextPath)
+    SiSelectBox(contextPath)
+    GunSelectBox(contextPath)
 }
 
 function initSelectBox(contextPath){
@@ -36,6 +38,56 @@ function initSelectBox(contextPath){
         createSelectBox(selectBox, data)
     })
 }
+
+function SiSelectBox(contextPath){
+    const selectBoxList = document.querySelectorAll('.si-select');
+    console.log(selectBoxList[0]);
+    selectBoxList.forEach(selectBox => {
+        let data = {
+            name : 'si-list',
+            default : '서울',
+            imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
+            items : [
+                '경기도',
+                '인천',
+                '부산',
+                '경북',
+                '경남',
+                '전북',
+                '전남',
+                '충북',
+                '충남',
+                '강원도',
+                '대전',
+                '제주',
+            ]
+        }
+
+        createSelectBox(selectBox, data)
+    })
+}
+
+function GunSelectBox(contextPath){
+    const selectBoxList = document.querySelectorAll('.gun-select');
+    console.log(selectBoxList[0]);
+    selectBoxList.forEach(selectBox => {
+        let data = {
+            name : 'gun-list',
+            default : '강남',
+            imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
+            items : [
+                '강서',
+                '도봉',
+                '서부'
+            ]
+        }
+
+        createSelectBox(selectBox, data)
+    })
+}
+
+
+
 
 function initList(contextPath){
     const boardList = document.querySelector('.board-content'); 
@@ -115,3 +167,19 @@ function initList(contextPath){
 
     createList(boardList, data)
 }
+
+// 아코디언 메뉴 버튼
+document.addEventListener("DOMContentLoaded", function () {
+    const toggles = document.querySelectorAll(".accordion-toggle");
+
+    toggles.forEach(toggle => {
+        toggle.addEventListener("click", function () {
+            const content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        });
+    });
+});
