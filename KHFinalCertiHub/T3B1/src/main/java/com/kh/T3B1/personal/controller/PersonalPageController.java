@@ -12,5 +12,11 @@ public class PersonalPageController {
 		p.addAttribute("pageName", "personalView");
 		return "personal/anotherPageView";
 	}
+	
+	@RequestMapping("certiRegi.pp")
+	public String PersonalPageCertiApplication(Model p) {
+		p.addAttribute("pageName", "personalCertiRegi");
+		return "personal/personalCertiRegi";
+	}
 
 }
