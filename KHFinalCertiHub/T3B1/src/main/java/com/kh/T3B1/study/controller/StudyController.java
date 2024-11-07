@@ -14,6 +14,12 @@ public class StudyController {
 		return "studyroom/studySearch";
 	}
 	
+	@RequestMapping("detail")
+	public String studyDetailPage(Model m) {
+		m.addAttribute("pageName","studyDetail");
+		return "studyroom/studyDetail";
+	}
+	
 	@RequestMapping("list")
 	public String studyBoardPage(Model m) {
 		m.addAttribute("pageName","studyBoard");
@@ -21,7 +27,7 @@ public class StudyController {
 	}
 	
 	@RequestMapping("board")
-	public String studyDetailPage(Model m) {
+	public String studyBoardViewPage(Model m) {
 		m.addAttribute("pageName","studyBoardView");
 		return "studyroom/studyBoardView";
 	}

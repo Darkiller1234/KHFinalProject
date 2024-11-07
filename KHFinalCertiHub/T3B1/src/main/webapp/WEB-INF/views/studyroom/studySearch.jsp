@@ -34,124 +34,124 @@
 
         <div class="mentor-list">
 
-            <div class="mentor-card" onclick="location.href='${pageContext.request.contextPath}/mentor/detail'">
+            <div class="mentor-card" onclick="location.href='${pageContext.request.contextPath}/study/detail'">
                 <div class="profile-img small">
                     <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
                 </div>
                 <div class="study-name">제 243921회 김순자 할머니와 함께하는 정보처리기사 스터디그룹</div>
-                <div class="member-number accept font-size-content"><img src="<%=contextPath%>/resources/static/img/button/person_icon_light.png">12명</div>
+                <div class="tag bgcolor3 font-size-content"><img src="<%=contextPath%>/resources/static/img/button/person_icon_light.png">12명</div>
                 <div class="study-intro font-size-footer">반드시 붙어야지</div>
-                <div class="mentor-valid accept"><img src="<%=contextPath%>/resources/static/img/button/valid_icon.png">모집중</div>
+                <div class="tag valid bgcolor3"><img src="<%=contextPath%>/resources/static/img/button/valid_icon.png">모집중</div>
             </div>
 
-            <div class="mentor-card" onclick="location.href='${pageContext.request.contextPath}/mentor/detail'">
+            <div class="mentor-card" onclick="location.href='${pageContext.request.contextPath}/study/detail'">
                 <div class="profile-img small">
                     <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
                 </div>
                 <div class="study-name">제 243921회 김첨지 할아버지와 함께하는 정보처리기사 스터디그룹</div>
-                <div class="member-number accept font-size-content"><img src="<%=contextPath%>/resources/static/img/button/person_icon_light.png">3명</div>
+                <div class="tag bgcolor3 font-size-content"><img src="<%=contextPath%>/resources/static/img/button/person_icon_light.png">3명</div>
                 <div class="study-intro font-size-footer">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
-                <div class="mentor-valid reject"><img src="<%=contextPath%>/resources/static/img/button/stop_icon.png">모집마감</div>
+                <div class="tag valid bgcolor4"><img src="<%=contextPath%>/resources/static/img/button/stop_icon.png">모집마감</div>
             </div>
 
-            <div class="mentor-card" onclick="location.href='${pageContext.request.contextPath}/mentor/detail'">
+            <div class="mentor-card" onclick="location.href='${pageContext.request.contextPath}/study/detail'">
                 <div class="profile-img small">
                     <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
                 </div>
                 <div class="study-name">제 243921회 김순자 할머니와 함께하는 정보처리기사 스터디그룹</div>
-                <div class="member-number accept font-size-content"><img src="<%=contextPath%>/resources/static/img/button/person_icon_light.png">12명</div>
+                <div class="tag bgcolor3 font-size-content"><img src="<%=contextPath%>/resources/static/img/button/person_icon_light.png">12명</div>
                 <div class="study-intro font-size-footer">반드시 붙어야지</div>
-                <div class="mentor-valid accept"><img src="<%=contextPath%>/resources/static/img/button/valid_icon.png">모집중</div>
+                <div class="tag valid bgcolor3"><img src="<%=contextPath%>/resources/static/img/button/valid_icon.png">모집중</div>
             </div>
 
-            <div class="mentor-card" onclick="location.href='${pageContext.request.contextPath}/mentor/detail'">
+            <div class="mentor-card" onclick="location.href='${pageContext.request.contextPath}/study/detail'">
                 <div class="profile-img small">
                     <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
                 </div>
                 <div class="study-name">제 243921회 김첨지 할아버지와 함께하는 정보처리기사 스터디그룹</div>
-                <div class="member-number accept font-size-content"><img src="<%=contextPath%>/resources/static/img/button/person_icon_light.png">3명</div>
+                <div class="tag bgcolor3 font-size-content"><img src="<%=contextPath%>/resources/static/img/button/person_icon_light.png">3명</div>
                 <div class="study-intro font-size-footer">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
-                <div class="mentor-valid reject"><img src="<%=contextPath%>/resources/static/img/button/stop_icon.png">모집마감</div>
+                <div class="tag valid bgcolor4"><img src="<%=contextPath%>/resources/static/img/button/stop_icon.png">모집마감</div>
             </div>
 
-            <div class="mentor-card" onclick="location.href='${pageContext.request.contextPath}/mentor/detail'">
+            <div class="mentor-card" onclick="location.href='${pageContext.request.contextPath}/study/detail'">
                 <div class="profile-img small">
                     <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
                 </div>
                 <div class="study-name">제 243921회 김순자 할머니와 함께하는 정보처리기사 스터디그룹</div>
-                <div class="member-number accept font-size-content"><img src="<%=contextPath%>/resources/static/img/button/person_icon_light.png">12명</div>
+                <div class="tag bgcolor3 font-size-content"><img src="<%=contextPath%>/resources/static/img/button/person_icon_light.png">12명</div>
                 <div class="study-intro font-size-footer">반드시 붙어야지</div>
-                <div class="mentor-valid accept"><img src="<%=contextPath%>/resources/static/img/button/valid_icon.png">모집중</div>
+                <div class="tag valid bgcolor3"><img src="<%=contextPath%>/resources/static/img/button/valid_icon.png">모집중</div>
             </div>
 
-            <div class="mentor-card" onclick="location.href='${pageContext.request.contextPath}/mentor/detail'">
+            <div class="mentor-card" onclick="location.href='${pageContext.request.contextPath}/study/detail'">
                 <div class="profile-img small">
                     <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
                 </div>
                 <div class="study-name">제 243921회 김첨지 할아버지와 함께하는 정보처리기사 스터디그룹</div>
-                <div class="member-number accept font-size-content"><img src="<%=contextPath%>/resources/static/img/button/person_icon_light.png">3명</div>
+                <div class="tag bgcolor3 font-size-content"><img src="<%=contextPath%>/resources/static/img/button/person_icon_light.png">3명</div>
                 <div class="study-intro font-size-footer">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
-                <div class="mentor-valid reject"><img src="<%=contextPath%>/resources/static/img/button/stop_icon.png">모집마감</div>
+                <div class="tag valid bgcolor4"><img src="<%=contextPath%>/resources/static/img/button/stop_icon.png">모집마감</div>
             </div>
 
-            <div class="mentor-card" onclick="location.href='${pageContext.request.contextPath}/mentor/detail'">
+            <div class="mentor-card" onclick="location.href='${pageContext.request.contextPath}/study/detail'">
                 <div class="profile-img small">
                     <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
                 </div>
                 <div class="study-name">제 243921회 김순자 할머니와 함께하는 정보처리기사 스터디그룹</div>
-                <div class="member-number accept font-size-content"><img src="<%=contextPath%>/resources/static/img/button/person_icon_light.png">12명</div>
+                <div class="tag bgcolor3 font-size-content"><img src="<%=contextPath%>/resources/static/img/button/person_icon_light.png">12명</div>
                 <div class="study-intro font-size-footer">반드시 붙어야지</div>
-                <div class="mentor-valid accept"><img src="<%=contextPath%>/resources/static/img/button/valid_icon.png">모집중</div>
+                <div class="tag valid bgcolor3"><img src="<%=contextPath%>/resources/static/img/button/valid_icon.png">모집중</div>
             </div>
 
-            <div class="mentor-card" onclick="location.href='${pageContext.request.contextPath}/mentor/detail'">
+            <div class="mentor-card" onclick="location.href='${pageContext.request.contextPath}/study/detail'">
                 <div class="profile-img small">
                     <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
                 </div>
                 <div class="study-name">제 243921회 김첨지 할아버지와 함께하는 정보처리기사 스터디그룹</div>
-                <div class="member-number accept font-size-content"><img src="<%=contextPath%>/resources/static/img/button/person_icon_light.png">3명</div>
+                <div class="tag bgcolor3 font-size-content"><img src="<%=contextPath%>/resources/static/img/button/person_icon_light.png">3명</div>
                 <div class="study-intro font-size-footer">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
-                <div class="mentor-valid reject"><img src="<%=contextPath%>/resources/static/img/button/stop_icon.png">모집마감</div>
+                <div class="tag valid bgcolor4"><img src="<%=contextPath%>/resources/static/img/button/stop_icon.png">모집마감</div>
             </div>
 
-            <div class="mentor-card" onclick="location.href='${pageContext.request.contextPath}/mentor/detail'">
+            <div class="mentor-card" onclick="location.href='${pageContext.request.contextPath}/study/detail'">
                 <div class="profile-img small">
                     <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
                 </div>
                 <div class="study-name">제 243921회 김순자 할머니와 함께하는 정보처리기사 스터디그룹</div>
-                <div class="member-number accept font-size-content"><img src="<%=contextPath%>/resources/static/img/button/person_icon_light.png">12명</div>
+                <div class="tag bgcolor3 font-size-content"><img src="<%=contextPath%>/resources/static/img/button/person_icon_light.png">12명</div>
                 <div class="study-intro font-size-footer">반드시 붙어야지</div>
-                <div class="mentor-valid accept"><img src="<%=contextPath%>/resources/static/img/button/valid_icon.png">모집중</div>
+                <div class="tag valid bgcolor3"><img src="<%=contextPath%>/resources/static/img/button/valid_icon.png">모집중</div>
             </div>
 
-            <div class="mentor-card" onclick="location.href='${pageContext.request.contextPath}/mentor/detail'">
+            <div class="mentor-card" onclick="location.href='${pageContext.request.contextPath}/study/detail'">
                 <div class="profile-img small">
                     <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
                 </div>
                 <div class="study-name">제 243921회 김첨지 할아버지와 함께하는 정보처리기사 스터디그룹</div>
-                <div class="member-number accept font-size-content"><img src="<%=contextPath%>/resources/static/img/button/person_icon_light.png">3명</div>
+                <div class="tag bgcolor3 font-size-content"><img src="<%=contextPath%>/resources/static/img/button/person_icon_light.png">3명</div>
                 <div class="study-intro font-size-footer">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
-                <div class="mentor-valid reject"><img src="<%=contextPath%>/resources/static/img/button/stop_icon.png">모집마감</div>
+                <div class="tag valid bgcolor4"><img src="<%=contextPath%>/resources/static/img/button/stop_icon.png">모집마감</div>
             </div>
 
-            <div class="mentor-card" onclick="location.href='${pageContext.request.contextPath}/mentor/detail'">
+            <div class="mentor-card" onclick="location.href='${pageContext.request.contextPath}/study/detail'">
                 <div class="profile-img small">
                     <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
                 </div>
                 <div class="study-name">제 243921회 김순자 할머니와 함께하는 정보처리기사 스터디그룹</div>
-                <div class="member-number accept font-size-content"><img src="<%=contextPath%>/resources/static/img/button/person_icon_light.png">12명</div>
+                <div class="tag bgcolor3 font-size-content"><img src="<%=contextPath%>/resources/static/img/button/person_icon_light.png">12명</div>
                 <div class="study-intro font-size-footer">반드시 붙어야지</div>
-                <div class="mentor-valid accept"><img src="<%=contextPath%>/resources/static/img/button/valid_icon.png">모집중</div>
+                <div class="tag valid bgcolor3"><img src="<%=contextPath%>/resources/static/img/button/valid_icon.png">모집중</div>
             </div>
 
-            <div class="mentor-card" onclick="location.href='${pageContext.request.contextPath}/mentor/detail'">
+            <div class="mentor-card" onclick="location.href='${pageContext.request.contextPath}/study/detail'">
                 <div class="profile-img small">
                     <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
                 </div>
                 <div class="study-name">제 243921회 김첨지 할아버지와 함께하는 정보처리기사 스터디그룹</div>
-                <div class="member-number accept font-size-content"><img src="<%=contextPath%>/resources/static/img/button/person_icon_light.png">3명</div>
+                <div class="tag bgcolor3 font-size-content"><img src="<%=contextPath%>/resources/static/img/button/person_icon_light.png">3명</div>
                 <div class="study-intro font-size-footer">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
-                <div class="mentor-valid reject"><img src="<%=contextPath%>/resources/static/img/button/stop_icon.png">모집마감</div>
+                <div class="tag valid bgcolor4"><img src="<%=contextPath%>/resources/static/img/button/stop_icon.png">모집마감</div>
             </div>
            
         </div>

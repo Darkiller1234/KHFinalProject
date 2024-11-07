@@ -5,16 +5,7 @@
     -webkit-line-clamp: 2;        /* 최대 2줄로 제한 */
 }
 
-.member-number{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 15px;
-    padding-left:5px;
-    padding-right:5px;
-}
-
-.member-number img{
-    width: 20px;
-    height:20   px;
+.tag.valid{
+    position: absolute;
+    bottom:10px;
 }
