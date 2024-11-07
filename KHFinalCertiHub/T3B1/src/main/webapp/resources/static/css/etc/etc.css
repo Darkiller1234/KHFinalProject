@@ -1,0 +1,7 @@
+/* 셀렉트박스v2 css */
+.custom-select{
+    width:120px;
+    display: flex;
+    position: relative;
+    justify-content: center;
+}
