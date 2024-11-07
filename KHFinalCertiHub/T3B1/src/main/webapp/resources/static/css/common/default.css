@@ -818,3 +818,16 @@ div1과 div2의 구조가 다름
     border:1px solid #006D77;
 }
 
+/* 태그 요소 ( 이미지 + 글자 인포 like 탭 ) */
+.tag{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    padding-left:5px;
+    padding-right:5px;
+}
+.tag img{
+    width: 20px;
+    height: 20px;
+}
