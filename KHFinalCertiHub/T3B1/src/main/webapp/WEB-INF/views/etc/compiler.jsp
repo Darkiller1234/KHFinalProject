@@ -6,20 +6,37 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>컴파일러</title>
+        <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
+
     </head>
 
     <body>
-        <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/common/default.css">
-        <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/etc/etc.css">
         <%@ include file="../common/header.jsp" %>
-            <div>
-                <h3>컴파일러 </h3>
+            <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/common/default.css">
+            <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/etc/etc.css">
+            <div class="wrapper">
+                <div>
+                    <h3>컴파일러 </h3>
                     <div class="language-select"></div>
+                </div>
+                <div class="title">Main.java</div>
+                <div class="compile-text">
+                    <textarea name="compileMain" id="">
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello world!");
+    }
+}
+                    </textarea>
+                </div>
             </div>
 
 
             <script src="<%=contextPath%>/resources/static/js/etc/etc.js"></script>
-            <script src="<%=contextPath%>/resources/static/js/common/common.js"></script>
             <%@ include file="../common/footer.jsp" %>
     </body>
 

@@ -1,5 +1,4 @@
 // 셀렉트 박스
-/* init 부터  */
 function initcompilerPage(contextPath){
     languageSelectBox(contextPath)
 }
