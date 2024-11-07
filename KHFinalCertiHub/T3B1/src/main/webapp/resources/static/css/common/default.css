@@ -589,7 +589,6 @@ div1과 div2의 구조가 다름
 .button-select  div{
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 95px;
 }
 
 .button-select img{
@@ -709,7 +708,6 @@ div1과 div2의 구조가 다름
     flex-direction: column;
     align-items: center;
     padding: 10px;
-    gap:3px;
 }
 
 .mentor-card div{
@@ -733,6 +731,22 @@ div1과 div2의 구조가 다름
     display: -webkit-box;         /* 웹킷 레이아웃 */
     -webkit-box-orient: vertical; /* 텍스트 방향을 세로로 설정 */
     -webkit-line-clamp: 3;        /* 최대 3줄로 제한 */
+}
+
+.mentor-valid{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom:10px;
+    border-radius: 15px;
+    padding-left:5px;
+    padding-right:5px;
+}
+
+.mentor-valid img{
+    width: 16px;
+    height:16px;
 }
 
 .accept{
@@ -804,17 +818,3 @@ div1과 div2의 구조가 다름
     border:1px solid #006D77;
 }
 
-/* 태그 요소 ( 이미지 + 글자 인포 like 탭 ) */
-.tag{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 15px;
-    padding-left:5px;
-    padding-right:5px;
-}
-
-.tag img{
-    width: 20px;
-    height: 20px;
-}

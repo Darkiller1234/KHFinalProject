@@ -1,0 +1,157 @@
+.file{
+    display:none;
+}
+
+/* 중간 컨텐츠 창 */
+.middle-view{
+    display:flex;
+}
+
+/* 왼쪽 메뉴 */
+.left-view{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#profile{
+    padding-bottom: 20px;
+}
+
+.left-view button{
+    background-color: white;
+    color:black;
+    border: 1px solid #006D77;
+    width: 140px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 오른쪽 메뉴 */
+.right-view div{
+    margin:0 0 10px 0;
+}
+
+.right-view input{
+    background-color:#EDF6F9;
+}
+
+.right-view textarea{
+    background-color:#EDF6F9;
+    resize: none;
+    height: 200px;
+}
+
+/* 자격증 선택 메뉴 */
+.choose-menu{
+    display: flex;
+    justify-content: space-between;
+}
+
+.license-choose{
+    width: 60%;
+}
+
+.license-choose div {
+    width: 100%;
+    margin: 0;
+}
+
+.license-choose .button-select div{
+    width:100%;
+}
+
+.choose-menu .add-license{
+    width:30%;
+    height:40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 관심 자격증 목록 */
+.look-license-list{
+    width: 60%;
+}
+
+.look-license{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.look-license div{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.look-license button{
+    width:40px;
+    height: 40px;
+    background-color: #E29578;
+    border: 0;
+    border-radius: 5px;
+}
+
+.look-license button img{
+    width: 100%;
+    height: 100%;
+}
+
+/* 맨 밑 버튼 영역 */
+.bottom-view{
+    padding:100px;
+}
+
+@media (min-width: 721px) {
+    .top-view{
+        margin-bottom:100px;
+    }
+
+    #profile{
+        width: 300px;
+        height: 300px;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 720px) {
+    .middle-view{
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .look-license-list{
+        width: 100%;
+    }
+
+    /* 맨 밑 버튼 영역 */
+    .bottom-view{
+        padding:50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .middle-view{
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #profile{
+        width: 250px;
+        height: 250px;
+    }
+
+    .look-license-list{
+        width: 100%;
+    }
+
+    /* 맨 밑 버튼 영역 */
+    .bottom-view{
+        padding:20px;
+    }
+}
