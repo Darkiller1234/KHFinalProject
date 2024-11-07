@@ -1,7 +1,7 @@
 function persoCRInit(contextPath){
     let data1 = {
         name : 'array',
-        default : '',
+        default : '정보처리기사',
         imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
         items : [
             '정보처리기사',

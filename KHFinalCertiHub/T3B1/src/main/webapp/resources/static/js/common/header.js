@@ -56,6 +56,11 @@ function init(contextPath, pageName, optional){
             break;
         case "compilerPage":
             initcompilerPage(contextPath);
+        case "PersonalPmSc":
+            persoMSInit(contextPath);
+            break;
+        case "personalProfileEdit":
+            initPersonalProfileEdit(contextPath);
             break;
     }
 }

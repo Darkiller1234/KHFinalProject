@@ -589,7 +589,6 @@ div1과 div2의 구조가 다름
 .button-select  div{
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 95px;
 }
 
 .button-select img{
