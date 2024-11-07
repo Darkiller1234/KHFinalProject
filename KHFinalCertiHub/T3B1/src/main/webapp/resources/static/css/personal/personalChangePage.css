@@ -1,0 +1,240 @@
+/* 페이지 기본 스타일 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.wrapper {
+    padding: 20px;
+}
+
+/* 탭 스타일 */
+.tabs {
+    display: flex;
+    background-color: white;
+    position: relative;
+}
+
+.tabs .tab {
+    text-align: center;
+    color: #333;
+    font-weight: normal;
+    cursor: pointer;
+    margin-right: 5px;
+    padding: 15px 0;
+    display: inline-block;
+    width: auto;
+    border-bottom: 3px solid #006D77;
+    margin-bottom: 20px;
+}
+
+.tabs .tab.active {
+    background-color: #ffffff;
+    font-weight: bold;
+    border-bottom: 3px solid #006D77;
+}
+
+.tabs .tab:hover {
+    background-color: #006D77;
+    color: white;
+}
+
+/* 드롭다운 메뉴 기본 스타일 */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+/* 드롭다운 버튼 */
+.dropdown-btn {
+    margin-left: 10px;
+    color: white;
+    border: none;
+    padding: 10px;
+}
+
+/* 콘텐츠 영역 */
+.content {
+    padding: 20px;
+    margin-left: 10px;
+    position: relative;
+}
+
+/* 레이블 스타일 */
+label {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 5px; /* input과의 간격 */
+    display: block; /* 레이블을 블록으로 설정하여 input 위에 배치 */
+}
+
+input[type="text"],
+input[type="email"] {
+    max-width: 300px;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #83c5be;
+    border-radius: 5px;
+    background-color: #EDF6F9;
+    margin-top: 5px; /* 레이블과의 간격 */
+    margin-bottom: 30px;
+}
+
+input[type="text"]:focus {
+    box-shadow: 0px 0px 0px 3px #ccf0ec;
+}
+
+/* 버튼 아래쪽 간격 추가 */
+.btns {
+    margin-left: 37px;
+}
+
+footer {
+    width: 100%;
+    background-color: #EDF6F9;
+    text-align: center;
+    padding: 10px 0;
+    box-sizing: border-box;
+    margin-top: 13.8%;
+}
+
+img {
+    width: 35px;
+    height: 35px;
+    background-color: none;
+}
+
+/* 비밀번호 변경, 회원 탈퇴 관련 스타일 */
+.password-change-section,
+.delete-account-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.password-change-section label,
+.delete-account-section label {
+    font-size: 20px;
+    color: #333;
+}
+
+.password-change-section button,
+.delete-account-section button {
+    background-color: #006D77;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.password-change-section button:hover,
+.delete-account-section button:hover {
+    background-color: #004f4f;
+}
+
+/* 버튼을 오른쪽에 정렬 */
+.password-change-section button,
+.delete-account-section button {
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+/* 입력 필드와 버튼 사이 간격 */
+.password-change-section input,
+.delete-account-section input {
+    max-width: 300px;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #83c5be;
+    border-radius: 5px;
+    background-color: #EDF6F9;
+    margin-top: 5px; /* 레이블과의 간격 */
+    margin-bottom: 20px;
+}
+
+/* 미디어 쿼리 */
+@media (max-width: 720px) {
+    .tabs {
+        display: none; /* 모바일 화면에서 탭 숨기기 */
+    }
+
+    .page-title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .dropdown-btn {
+        display: inline-block; /* 모바일에서 드롭다운 버튼 보이게 */
+    }
+
+    .dropdown-content {
+        position: absolute;
+        background-color: #fff;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .dropdown-content a {
+        display: none;
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #ddd;
+    }
+
+    /* 모바일에서 비밀번호 변경, 회원 탈퇴 섹션 */
+    .password-change-section,
+    .delete-account-section {
+        display: block;
+        text-align: center;
+    }
+
+    .password-change-section button,
+    .delete-account-section button {
+        width: 100%;
+        margin: 10px 0;
+    }
+}
+
+/* 데스크탑 화면에서는 드롭다운 버튼 숨기기 */
+@media (min-width: 721px) {
+    .dropdown-btn {
+        display: none;
+    }
+}
+
+/* 드롭다운 메뉴 표시 */
+.dropdown-content.show {
+    display: block;
+    margin-right: 30%;
+}
