@@ -3,6 +3,11 @@
     bottom:70px;
 }
 
+/* 스터디 참여 멤버 검색창 */
+.search-member{
+    margin:10px 0;
+}
+
 /* 스터디 참여 멤버 목록 */
 .mentor-intro{
     display:grid;
@@ -25,7 +30,7 @@
 }
 
 .member:hover{
-    background-color: #EDF6F9;;
+    background-color: #EDF6F9;
 }
 
 .member .profile{
@@ -36,6 +41,39 @@
 .member .profile img{
     width: 100%;
     height: 100%;
+}
+
+/* 멤버 로딩 버튼 */
+.load-member{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    height:50px;
+    margin:10px 0;
+}
+
+.load-member button{
+    width:100%;
+    height:100%;
+    background-color: transparent;
+    border: none;
+}
+
+.load-member button:hover{
+    background-color: #EDF6F9;
+}
+
+/* 버튼 영역 */
+.button-section{
+    display:flex;
+    align-items: center;
+    gap:20px;
+}
+
+.button-section .bgcolor1{
+    background-color: #006D77;
+    color:white;
 }
 
 @media (min-width: 481px) and (max-width: 720px) {

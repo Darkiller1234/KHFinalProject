@@ -64,7 +64,10 @@ function testBoard(){
         items = [ '항목1', '항목2', '항목3'... ]
     }
 */
-function createSelectBox(selectBox, data){
+function createSelectBox(div, data){
+    const selectBox = document.createElement('div');
+    selectBox.className = 'custom-select';
+
     // 서버에 보낼 숨겨진 input 값
     const input = document.createElement('input')
     input.type = 'hidden'
@@ -123,6 +126,8 @@ function createSelectBox(selectBox, data){
     selectBox.appendChild(input);
     selectBox.appendChild(button);
     selectBox.appendChild(itemList);
+
+    div.appendChild(selectBox);
 }
 
 /*

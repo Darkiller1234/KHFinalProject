@@ -257,7 +257,7 @@
         
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <div class="mentor-valid accept font-size-content"><img src="<%=contextPath%>/resources/static/img/button/person_icon_light.png">12명</div>
+                    <div class="tag bgcolor3 font-size-content"><img src="<%=contextPath%>/resources/static/img/button/person_icon_light.png">12명</div>
                 </div>
         
                 <!-- Modal footer -->
