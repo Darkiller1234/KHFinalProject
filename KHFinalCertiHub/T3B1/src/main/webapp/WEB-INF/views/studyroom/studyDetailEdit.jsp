@@ -30,11 +30,12 @@
             </div>
 
             <div class="mentor-info">
-                <div class="font-size-title">스터디 그룹명</div>
-                <input type="text" class="form-control" name="studyName" value="제 243921회 김순자 할머니와 함께하는 정보처리기사 스터디" required>
+                <form id="studyForm" action="<%=contextPath%>/study/detail" method="post" enctype="multipart/form-data">
+                    <div class="font-size-title">스터디 그룹명</div>
+                    <input type="text" class="form-control" name="studyName" value="제 243921회 김순자 할머니와 함께하는 정보처리기사 스터디" required>
 
-                <div class="font-size-title">그룹 소개</div>
-                <textarea class="form-control" name="studyName">
+                    <div class="font-size-title">그룹 소개</div>
+                    <textarea class="form-control" name="studyName">
 난 너를 믿었던만큼 난 내 친구도 믿었기에
 난 아무런 부담없이 널 내 친구에게 소개시켜 줬고
 그런 만남이 있은 후부터 우리는 자주 함께 만나며
@@ -55,7 +56,17 @@
 내 사랑과 우정을 모두 버려야 했기에
 또 다른 내 친구는 내 어깰 두드리며
 잊어버리라 했지만 잊지 못할 것 같아
-                </textarea>
+                    </textarea>
+
+                    <div class="font-size-title">
+                        그룹 프로필
+                    </div>
+
+                    <div class="group-img">
+                        <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                        <input type="file" name="studyImg">
+                    </div>
+                </form>
 
                 <div class="font-size-title">참여회원 (7명)</div>
 
@@ -71,83 +82,97 @@
                 <div class="mentor-intro">
 
                     <div class="member">
-                        <div class="profile">
-                            <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                        <div class="member-info">
+                            <div class="profile">
+                                <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                            </div>
+                            <div class="name font-size-content">
+                                DARKKILLERDK
+                            </div>
                         </div>
-                        <div class="name font-size-content">
-                            DARKKILLERDK
+                        <div>
+                            <button class="close-button" data-bs-toggle="modal" data-bs-target="#banConfirm"><img src="<%=contextPath%>/resources/static/img/button/x_icon.png"></button>
                         </div>
-                        <button class="close-button" data-bs-toggle="modal" data-bs-target="#banConfirm"><img src="<%=contextPath%>/resources/static/img/button/x_icon.png"></button>
                     </div>
 
                     <div class="member">
-                        <div class="profile">
-                            <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                        <div class="member-info">
+                            <div class="profile">
+                                <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                            </div>
+                            <div class="name font-size-content">
+                                강남구불타는키보드워리어
+                            </div>
                         </div>
-                        <div class="name font-size-content">
-                            강남구불타는키보드워리어
+                        <div>
+                            <button class="close-button" data-bs-toggle="modal" data-bs-target="#banConfirm"><img src="<%=contextPath%>/resources/static/img/button/x_icon.png"></button>
                         </div>
-                        <button class="close-button" data-bs-toggle="modal" data-bs-target="#banConfirm"><img src="<%=contextPath%>/resources/static/img/button/x_icon.png"></button>
                     </div>
 
                     <div class="member">
-                        <div class="profile">
-                            <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                        <div class="member-info">
+                            <div class="profile">
+                                <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                            </div>
+                            <div class="name font-size-content">
+                                강남구불타는키보드워리어
+                            </div>
                         </div>
-                        <div class="name font-size-content">
-                            User03
+                        <div>
+                            <button class="close-button" data-bs-toggle="modal" data-bs-target="#banConfirm"><img src="<%=contextPath%>/resources/static/img/button/x_icon.png"></button>
                         </div>
-                        <button class="close-button" data-bs-toggle="modal" data-bs-target="#banConfirm"><img src="<%=contextPath%>/resources/static/img/button/x_icon.png"></button>
                     </div>
-
                     <div class="member">
-                        <div class="profile">
-                            <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                        <div class="member-info">
+                            <div class="profile">
+                                <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                            </div>
+                            <div class="name font-size-content">
+                                강남구불타는키보드워리어
+                            </div>
                         </div>
-                        <div class="name font-size-content">
-                            User04
+                        <div>
+                            <button class="close-button" data-bs-toggle="modal" data-bs-target="#banConfirm"><img src="<%=contextPath%>/resources/static/img/button/x_icon.png"></button>
                         </div>
-                        <button class="close-button" data-bs-toggle="modal" data-bs-target="#banConfirm"><img src="<%=contextPath%>/resources/static/img/button/x_icon.png"></button>
                     </div>
-
                     <div class="member">
-                        <div class="profile">
-                            <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                        <div class="member-info">
+                            <div class="profile">
+                                <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                            </div>
+                            <div class="name font-size-content">
+                                강남구불타는키보드워리어
+                            </div>
                         </div>
-                        <div class="name font-size-content">
-                            User05
+                        <div>
+                            <button class="close-button" data-bs-toggle="modal" data-bs-target="#banConfirm"><img src="<%=contextPath%>/resources/static/img/button/x_icon.png"></button>
                         </div>
-                        <button class="close-button" data-bs-toggle="modal" data-bs-target="#banConfirm"><img src="<%=contextPath%>/resources/static/img/button/x_icon.png"></button>
                     </div>
-
                     <div class="member">
-                        <div class="profile">
-                            <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                        <div class="member-info">
+                            <div class="profile">
+                                <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                            </div>
+                            <div class="name font-size-content">
+                                강남구불타는키보드워리어
+                            </div>
                         </div>
-                        <div class="name font-size-content">
-                            User06
+                        <div>
+                            <button class="close-button" data-bs-toggle="modal" data-bs-target="#banConfirm"><img src="<%=contextPath%>/resources/static/img/button/x_icon.png"></button>
                         </div>
-                        <button class="close-button" data-bs-toggle="modal" data-bs-target="#banConfirm"><img src="<%=contextPath%>/resources/static/img/button/x_icon.png"></button>
                     </div>
-
                     <div class="member">
-                        <div class="profile">
-                            <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                        <div class="member-info">
+                            <div class="profile">
+                                <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                            </div>
+                            <div class="name font-size-content">
+                                강남구불타는키보드워리어
+                            </div>
                         </div>
-                        <div class="name font-size-content">
-                            User07
+                        <div>
+                            <button class="close-button" data-bs-toggle="modal" data-bs-target="#banConfirm"><img src="<%=contextPath%>/resources/static/img/button/x_icon.png"></button>
                         </div>
-                        <button class="close-button" data-bs-toggle="modal" data-bs-target="#banConfirm"><img src="<%=contextPath%>/resources/static/img/button/x_icon.png"></button>
-                    </div>
-
-                    <div class="member">
-                        <div class="profile">
-                            <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
-                        </div>
-                        <div class="name font-size-content">
-                            User07
-                        </div>
-                        <button class="close-button" data-bs-toggle="modal" data-bs-target="#banConfirm"><img src="<%=contextPath%>/resources/static/img/button/x_icon.png"></button>
                     </div>
 
                 </div>
@@ -158,8 +183,9 @@
 
                 <div class="button-section">
                     <button class="btn-primary" onclick="location.href='${pageContext.request.contextPath}/study/detail'">취소하기</button>
-                    <button 
-                        class="btn-primary bgcolor1" 
+                    <button type="submit"
+                        form="studyForm"
+                        class="btn-primary bgcolor1"
                         data-bs-toggle="modal" data-bs-target="#apply-modal"
                     >수정하기</button>
                 </div>
@@ -169,39 +195,6 @@
 
         <div class="bottom-options">
             <button onclick="topScroll()" class="top-button rounded-circle"><img src="${pageContext.request.contextPath}/resources/static/img/button/arrow_up_icon.png"></button>
-        </div>
-    </div>
-
-            
-    <!-- 모달창 -->
-    <div class="modal" id="apply-modal">
-        <div class="modal-dialog">
-        <div class="modal-content">
-    
-            <!-- Modal Header -->
-            <div class="modal-header">
-            <h4 class="modal-title">                
-                <img 
-                src="<%=contextPath%>/resources/static/img/logo/logo_big.png"
-                ">
-            </h4>
-            </div>
-    
-            <!-- Modal body -->
-            <div class="modal-body">
-            수정되었습니다.
-            </div>
-    
-            <!-- Modal footer -->
-            <div class="modal-footer">
-            <button 
-                type="button" 
-                data-bs-dismiss="modal"
-                onclick="location.href='${pageContext.request.contextPath}/study/detail'"
-            >확인</button>
-            </div>
-    
-        </div>
         </div>
     </div>
 

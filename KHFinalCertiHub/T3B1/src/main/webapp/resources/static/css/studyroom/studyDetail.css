@@ -23,8 +23,8 @@
 /* 스터디 참여 멤버 카드 */
 .member{
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap:10px;
     padding:10px 0;
     border-radius: 5px;
 }
@@ -32,6 +32,13 @@
 .member:hover{
     background-color: #EDF6F9;
 }
+
+.member-info{
+    display:flex;
+    align-items: center;
+    gap:10px;
+}
+
 
 .member .profile{
     width: 50px;
