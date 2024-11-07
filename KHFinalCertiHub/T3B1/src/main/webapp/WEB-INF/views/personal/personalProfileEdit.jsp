@@ -82,7 +82,7 @@
                             <div class="choose-menu">
                                 <div class="license-choose">
                                 </div>
-                                <button onclick="addLookLicense()" class="btn btn-primary add-license">추가</button>
+                                <button onclick="addLookLicense(`${pageContext.request.contextPath}`)" class="btn btn-primary add-license">추가</button>
                             </div>
 
                             <div class="look-license-list">
