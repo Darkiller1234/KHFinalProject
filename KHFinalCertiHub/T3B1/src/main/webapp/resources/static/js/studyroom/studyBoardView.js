@@ -1,4 +1,4 @@
-function initStudyDetail(contextPath){
+function initStudyBoardView(contextPath){
     initSelectBox(contextPath);
 }
 

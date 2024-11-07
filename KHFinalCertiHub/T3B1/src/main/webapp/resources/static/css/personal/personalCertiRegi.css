@@ -1,0 +1,138 @@
+#middle-view {
+    width: 100%;
+    display: flex;
+    gap: 1.25rem;
+}
+
+.left-view > div, .right-view > div {
+    margin-top: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+#selectbox1 {
+    width: 100%;
+}
+
+.button-select > div {
+    max-width: 100%;
+    margin-left: 10px;
+}
+
+.button-select > img {
+    margin-right: 10px;
+}
+
+.button-select {
+    padding: 0px;
+    height: 40px;
+}
+
+
+
+
+
+
+.bottom-view {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (min-width: 721px){
+    .left-view{
+        width: 50%;
+    }
+    
+    .right-view{
+        width: 50%;
+    }
+
+    #certiSelect {
+        display: none;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 720px) {
+    .left-view{
+        width: 100%;
+    }
+    
+    .right-view{
+        width: 100%;
+    }
+
+    #category-btn{
+        display: none;
+    }
+
+    #middle-view-profileInfo {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .left-view{
+        width: 100%;
+    }
+    
+    .right-view{
+        width: 100%;
+    }
+
+    #category-btn{
+        display: none;
+    }
+
+    #middle-view-profileInfo {
+        flex-direction: column;
+    }
+}
+
+
+
+.bottom-view {
+    margin: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.bottom-view > div:nth-child(1) {
+    background-color: #EDF6F9;
+}
+
+.bottom-view > div:nth-child(1) {
+    background-color: #006D77;
+    color: white;
+}
+
+.bottom-view > div:nth-child(1) > button {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 5px;
+    background: none;
+    border: none;
+    color: white;
+    width: 150px;
+    height: 40px;
+    padding: 0px;
+    font-size: 24px !important;
+}
+
+.bottom-view > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}

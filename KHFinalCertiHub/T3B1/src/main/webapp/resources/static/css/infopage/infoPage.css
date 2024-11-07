@@ -55,14 +55,179 @@ ul.tabs li.current {
     width: 100%;
 }
 
-.selectBox{
+.selectBox {
     float: right;
+    padding-bottom: 20px;
 }
 
 /* 게시글 위 설정 (부제목, 게시물 표시 개수 설정)*/
-.board-title{
+.board-title {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width:100%;
+    width: 100%;
+}
+
+/* 정보게시판 홈 아코디언 메뉴*/
+.accordion {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.accordion-item {
+    border: 1px solid #e0e0e0;
+    margin-top: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.accordion-toggle {
+    width: 100%;
+    padding: 15px;
+    background-color: #e6f4f1;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.accordion-toggle:hover {
+    background-color: #d4e9e4;
+}
+
+.accordion-content {
+    display: none;
+    padding: 15px;
+    background-color: #ffffff;
+    border-top: 1px solid #e0e0e0;
+}
+
+.accordion-content p {
+    margin: 0;
+}
+
+/* 시험 정보 게시판 */
+
+table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+table th {
+    background-color: #83C5BE;
+}
+
+table th, table td {
+    height: 35px;
+    border: 2px solid #83C5BE;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+table th{
+    font-size: 14px;
+}
+
+table td{
+    font-size: 12px;
+}
+
+h4 {
+    color: blue;
+}
+
+.explan {
+    padding: 10px;
+    border: 1px solid #83C5BE;
+}
+
+p{
+    font-size: 14px;
+}
+
+span {
+    text-decoration: underline;
+}
+
+.test-color {
+    color: orange;
+}
+
+/* 테이블 너비 조정 */
+
+.first-table col:nth-child(1) {
+    width: 20%;
+}
+
+.first-table col:nth-child(2) {
+    width: 40%;
+}
+
+.first-table col:nth-child(3) {
+    width: 40%;
+}
+
+.second-table col:nth-child(1) {
+    width: 15%;
+}
+
+.second-table col:nth-child(2) {
+    width: 25%;
+}
+
+.second-table col:nth-child(3) {
+    width: 30%;
+}
+
+.second-table col:nth-child(4) {
+    width: 30%;
+}
+
+.second-table col:nth-child(5) {
+    width: 10%;
+}
+
+
+/* 장소 검색 */
+.region{
+    display: flex;
+    justify-content: start;
+    gap: 10px;
+}
+
+.search-btn{
+    width:85px;
+    height:30px;
+    border: none;
+    border-radius: 5px;
+    background-color: #006D77;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1%;
+}
+
+.map{
+    width: 100%;
+    max-width: 670px;
+}
+
+.weather{
+    width: 100%;
+    overflow-x: auto;
+}
+
+.weather table th{
+    background-color: #ffffff;
+    border-color: black;
+    border-width: 2px 1px 1px;
+    
+}
+
+.weather table td{
+    background-color: #ffffff;
+    border-color: black;
+    border-width: 2px 1px 1px;
 }

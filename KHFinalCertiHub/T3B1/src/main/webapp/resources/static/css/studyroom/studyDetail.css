@@ -1,105 +1,110 @@
-.subtitle{
-    display:flex;
+.tag.valid{
+    position: absolute;
+    bottom:70px;
+}
+
+/* 스터디 참여 멤버 검색창 */
+.search-member{
+    margin:10px 0;
+}
+
+/* 스터디 참여 멤버 목록 */
+.mentor-intro{
+    display:grid;
+    /*
+        auto-fill : 컬럼 개수를 사이즈에 맞춰서 자동
+        minmax(최소값, 1fr:자동으로 비율맞춰 넣기) 
+     */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 10px;
+    padding: 0 5px;
+}
+
+/* 스터디 참여 멤버 카드 */
+.member{
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 10px;
+    padding:10px 0;
+    border-radius: 5px;
 }
 
-.page-title.font-size-title{
-    border-bottom:2px solid #006D77;
-    margin-bottom:20px;
+.member:hover{
+    background-color: #EDF6F9;
 }
 
-/* 게시글 버튼 영역 */
-.option{
-    width:100%;
+.member-info{
     display:flex;
-    justify-content: center;
     align-items: center;
-    gap:20px;
-    margin: 50px 0;
+    gap:10px;
 }
 
-.option button{
-    width: 135px;
-    height: 40px;
+
+.member .profile{
+    width: 50px;
+    height: 50px;
+}
+
+.member .profile img{
+    width: 100%;
+    height: 100%;
+}
+
+/* 멤버 로딩 버튼 */
+.load-member{
     display: flex;
     justify-content: center;
     align-items: center;
-    gap:10px;
-    white-space: nowrap;
+    width:100%;
+    height:50px;
+    margin:10px 0;
 }
 
-.option button img{
-    width:30px;
-    height:30px;
+.load-member button{
+    width:100%;
+    height:100%;
+    background-color: transparent;
+    border: none;
 }
 
-.option button:hover{
-    opacity: 0.8;
+.load-member button:hover{
+    background-color: #EDF6F9;
 }
 
-.option .delete{
-    background-color: #E29578;
-    color: black;
-}
-.option .delete:hover{
-    background-color: #E29578;
-    color: white;
-}
-.option .delete:focus{
-    background-color: #E29578;
-    color: white;
+/* 버튼 영역 */
+.button-section{
+    display:flex;
+    align-items: center;
+    gap:20px;
 }
 
-.option .modify{
-    background-color: #FFDDD2;
-    color: black;
-}
-.option .modify:hover{
-    background-color: #FFDDD2;
-    color: white;
-}
-.option .modify:focus{
-    background-color: #FFDDD2;
-    color: white;
-}
-
-.option .back{
-    background-color: #83C5BE;
-    color: black;
-}
-.option .back:hover{
-    background-color: #83C5BE;
-    color: white;
-}
-.option .back:focus{
-    background-color: #83C5BE;
-    color: white;
-}
-
-.option .apply{
-    background-color: black;
-}
-
-@media (min-width: 721px) {
-
+.button-section .bgcolor1{
+    background-color: #006D77;
+    color:white;
 }
 
 @media (min-width: 481px) and (max-width: 720px) {
-    .option{
-        flex-direction: column;
-    }
-    .option button{
-        width:calc(100% - 1.25rem);
+    .mentor-page .mentor-card{
+        background-color: white;
+        position:relative;
+        width:100%;
+        max-width: 100%;
+        height:310px;
+        border: none;
+        border-radius: 0;
+        border-bottom: 1px solid #006D77;
     }
 }
 
 @media (max-width: 480px) {
-    .option{
-        flex-direction: column;
-    }
-    .option button{
-        width:calc(100% - 1.25rem);
+    .mentor-page .mentor-card{
+        background-color: white;
+        position:relative;
+        width:100%;
+        max-width: 100%;
+        height:310px;
+        border: none;
+        border-radius: 0;
+        border-bottom: 1px solid #006D77;
     }
 }
