@@ -31,9 +31,9 @@ function initSelectBox(contextPath){
             default : '10개씩',
             imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
             items : [
-                '10개씩',
-                '15개씩',
-                '20개씩',
+                ['10개씩'],
+                ['15개씩'],
+                ['20개씩'],
             ]
         }
 
@@ -49,19 +49,19 @@ function SiSelectBox(contextPath){
             default : '시',
             imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
             items : [
-                '서울',
-                '경기도',
-                '인천',
-                '부산',
-                '경북',
-                '경남',
-                '전북',
-                '전남',
-                '충북',
-                '충남',
-                '강원도',
-                '대전',
-                '제주',
+                ['서울'],
+                ['경기도'],
+                ['인천'],
+                ['부산'],
+                ['경북'],
+                ['경남'],
+                ['전북'],
+                ['전남'],
+                ['충북'],
+                ['충남'],
+                ['강원도'],
+                ['대전'],
+                ['제주'],
             ]
         }
 
@@ -77,10 +77,10 @@ function GunSelectBox(contextPath){
             default : '구',
             imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
             items : [
-                '강남',
-                '강서',
-                '도봉',
-                '서부'
+                ['강남'],
+                ['강서'],
+                ['도봉'],
+                ['서부']
             ]
         }
 
@@ -96,10 +96,10 @@ function DongSelectBox(contextPath){
             default : '동',
             imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
             items : [
-                '1동',
-                '2동',
-                '3동',
-                '4동',
+                ['1동'],
+                ['2동'],
+                ['3동'],
+                ['4동'],
 
             ]
         }
@@ -116,11 +116,11 @@ function TestSelectBox(contextPath){
             default : '시험장 안내',
             imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
             items : [
-                '1시험장',
-                '2시험장',
-                '3시험장',
-                '4시험장',
-                '5시험장',
+                ['1시험장'],
+                ['2시험장'],
+                ['3시험장'],
+                ['4시험장'],
+                ['5시험장'],
 
             ]
         }

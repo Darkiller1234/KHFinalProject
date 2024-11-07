@@ -12,12 +12,12 @@ function languageSelectBox(contextPath){
             default : '언어 선택',
             imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
             items : [
-                'Java',
-                'C',
-                'Python3',
-                'SQL',
-                'C++', 
-                'C#',
+                ['Java'],
+                ['C'],
+                ['Python3'],
+                ['SQL'],
+                ['C++'], 
+                ['C#'],
             ]
         }
 

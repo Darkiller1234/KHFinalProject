@@ -6,8 +6,8 @@ function initStudySearch(contextPath){
         default : '모집중',
         imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
         items : [
-            '모집중',
-            '모집마감',
+            ['모집중'],
+            ['모집마감'],
         ]
     } 
 
@@ -16,8 +16,8 @@ function initStudySearch(contextPath){
         default : '최신순',
         imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
         items : [
-            '최신순',
-            '인기순(좋아요)',
+            ['최신순'],
+            ['인기순(좋아요)'],
         ]
     } 
 
