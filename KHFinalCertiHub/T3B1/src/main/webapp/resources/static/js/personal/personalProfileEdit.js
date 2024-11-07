@@ -10,10 +10,10 @@ function initSelectBox(contextPath){
         default : '정보처리기사',
         imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
         items : [
-            '정보처리기사',
-            '네트워크관리사',
-            '정보보안기사',
-            '빅데이터분석기사'
+            ['정보처리기사'],
+            ['네트워크관리사'],
+            ['정보보안기사'],
+            ['빅데이터분석기사']
         ]
     } 
 
@@ -40,3 +40,27 @@ function loadImg(_input){
         }
     }
 }
+
+function removeLookLicense(_this){
+    _this.parentNode.remove();
+}
+
+function addLookLicense(){
+    const select = document.querySelector('.button-select div')
+
+    const wrapper = document.createElement('div')
+    wrapper.className = 'look-license'
+
+    const licenseName = document.createElement('div')
+    licenseName.className = 'font-size-subtitle'
+    licenseName.innerText = select.innerText
+
+    const deleteButton = document.createElement('button')
+    deleteButton.onclick = removeLookLicense;
+
+    wrapper.appendChild(licenseName)
+    wrapper.appendChild(deleteButton)
+
+
+}
+

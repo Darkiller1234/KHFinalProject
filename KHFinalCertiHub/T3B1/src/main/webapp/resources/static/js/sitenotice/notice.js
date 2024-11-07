@@ -42,10 +42,10 @@ function initSelectPage(contextPath) {
         default : '갯수',
         imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
         items : [
-            '5개',
-            '10개',
-            '15개',
-            '20개'
+            ['5개'],
+            ['10개'],
+            ['15개'],
+            ['20개']
         ]
     }
 

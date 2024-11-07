@@ -54,6 +54,8 @@ function init(contextPath, pageName, optional){
         case "personalCertiRegi":
             persoCRInit(contextPath);
             break;
+        case "compilerPage":
+            initcompilerPage(contextPath);
         case "PersonalPmSc":
             persoMSInit(contextPath);
             break;
