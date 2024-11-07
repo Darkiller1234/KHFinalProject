@@ -11,10 +11,10 @@ function persoMSInit(contextPath){
         default : '10분 전',
         imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
         items : [
-            '10분 전',
-            '1시간 전',
-            '1일 전',
-            '일정 시작시간에'
+            ['10분 전'],
+            ['1시간 전'],
+            ['1일 전'],
+            ['일정 시작시간에']
         ]
     }
 
@@ -25,10 +25,10 @@ function persoMSInit(contextPath){
         default : '반복 안 함',
         imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
         items : [
-            '1일 마다',
-            '1주 마다',
-            '1개월 마다',
-            '반복 안 함'
+            ['1일 마다'],
+            ['1주 마다'],
+            ['1개월 마다'],
+            ['반복 안 함']
         ]
     }
 
@@ -39,9 +39,9 @@ function persoMSInit(contextPath){
         default : '계속 반복',
         imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
         items : [
-            '일정 횟수 반복',
-            '계속 반복',
-            '시작/종료 날짜 지정'
+            ['일정 횟수 반복'],
+            ['계속 반복'],
+            ['시작/종료 날짜 지정']
         ]
     }
 
