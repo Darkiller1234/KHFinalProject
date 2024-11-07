@@ -11,11 +11,11 @@ function init(contextPath, pageName, optional){
         case "communitySearch":
             commuMInit(contextPath);
             break;
-        case "studySearch":
-            initStudySearch(contextPath);
+        case "studyBoard":
+            initStudyBoard(contextPath);
             break;
-        case "studyDetail":
-            initStudyDetail(contextPath);
+        case "studyBoardView":
+            initStudyBoardView(contextPath);
             break;
 
         case "managerPage":
@@ -47,6 +47,12 @@ function init(contextPath, pageName, optional){
             break;
         case "infoPage":
             initInfoPage(contextPath);
+            break;
+        case "studySearch":
+            initStudySearch(contextPath);
+            break;
+        case "personalCertiRegi":
+            persoCRInit(contextPath);
             break;
     }
 }

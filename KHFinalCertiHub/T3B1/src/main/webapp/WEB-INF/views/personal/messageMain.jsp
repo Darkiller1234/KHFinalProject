@@ -202,6 +202,26 @@
                     </div>
                 </div>
 
+                <div class="date">
+                    <div>2024년 11월 6일</div>
+                </div>
+
+                <div class="message">
+                    <div class="message-card">
+                        <div class="thumbnail" data-bs-toggle="modal" data-bs-target="#userModal">
+                            <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                        </div>
+                        <div class="info">
+                            <div class="user-name">
+                                User01
+                                <img src="<%=contextPath%>/resources/static/img/button/manager_icon.png">
+                            </div>
+                            <div class="content">
+                                과거 메시지1
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- 채팅방 선택전 표시 -->
                 <!-- <div class="not-found">
@@ -237,7 +257,7 @@
         
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <div class="mentor-valid accept font-size-content"><img src="<%=contextPath%>/resources/static/img/button/person_icon_light.png">12명</div>
+                    <div class="tag bgcolor3 font-size-content"><img src="<%=contextPath%>/resources/static/img/button/person_icon_light.png">12명</div>
                 </div>
         
                 <!-- Modal footer -->
@@ -269,11 +289,11 @@
                     <div class="member-intro font-size-content">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
                     <div class="font-size-subtitle">최근 관심 자격증</div>
                     <div class="look-license">
-                        <div class="mentor-valid accept font-size-content">정보처리기사</div>
-                        <div class="mentor-valid accept font-size-content">빅데이터분석기사</div>
-                        <div class="mentor-valid accept font-size-content">네트워크관리사</div>
-                        <div class="mentor-valid accept font-size-content">정보보안기사</div>
-                        <div class="mentor-valid accept font-size-content">빅데이터분석기사</div>
+                        <div class="tag bgcolor3 font-size-content">정보처리기사</div>
+                        <div class="tag bgcolor3 font-size-content">빅데이터분석기사</div>
+                        <div class="tag bgcolor3 font-size-content">네트워크관리사</div>
+                        <div class="tag bgcolor3 font-size-content">정보보안기사</div>
+                        <div class="tag bgcolor3 font-size-content">빅데이터분석기사</div>
                     </div>
                 </div>
         

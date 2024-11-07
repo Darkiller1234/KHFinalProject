@@ -19,28 +19,28 @@
       <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/community/communityMain.css">
       
       <div class="wrapper">
-        <nav class="navbar bg-body-tertiary page-title" id="certiSelect">
-          <div class="container-fluid">
-            <a class="navbar-brand" href="#">정보처리기사</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon">ㅁ</span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">정보보안기사</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">네트워크관리사</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">빅데이터 분석기사</a>
-                </li>
-              </ul>
+          <nav class="navbar bg-body-tertiary page-title" id="certiSelect">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">정보처리기사</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon">ㅁ</span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">정보보안기사</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">네트워크관리사</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">빅데이터 분석기사</a>
+                  </li>
+                </ul>
+              </div>
             </div>
-          </div>
-        </nav>
+          </nav>
         <div id="middle-area">
           <div id="listArea">
             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">

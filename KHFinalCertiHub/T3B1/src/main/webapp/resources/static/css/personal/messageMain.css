@@ -183,6 +183,18 @@
 }
 
 /* 메시지 창 */
+.message-window .date{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:20px;
+}
+
+.date div{
+    background-color: #EDF6F9;
+    border-radius: 5px;
+    padding:0 10px;
+}
 .message{
     width: 100%;
     display:flex;
