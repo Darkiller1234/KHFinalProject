@@ -70,7 +70,7 @@ ul.tabs li.current {
 
 /* 정보게시판 홈 아코디언 메뉴*/
 .accordion {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -194,6 +194,40 @@ span {
 /* 장소 검색 */
 .region{
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
+    gap: 10px;
 }
 
+.search-btn{
+    width:85px;
+    height:30px;
+    border: none;
+    border-radius: 5px;
+    background-color: #006D77;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1%;
+}
+
+.map{
+    width: 100%;
+    max-width: 670px;
+}
+
+.weather{
+    width: 100%;
+    overflow-x: auto;
+}
+
+.weather table th{
+    background-color: #ffffff;
+    border-color: black;
+    border-width: 2px 1px 1px;
+    
+}
+
+.weather table td{
+    background-color: #ffffff;
+    border-color: black;
+    border-width: 2px 1px 1px;
+}
