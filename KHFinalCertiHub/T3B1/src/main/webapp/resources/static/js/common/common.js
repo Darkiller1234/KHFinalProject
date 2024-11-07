@@ -61,7 +61,12 @@ function testBoard(){
         name = 서버로 보낼 input명
         default = selectBox의 default값
         imgUrl = selectBox 화살표 이미지 경로
-        items = [ '항목1', '항목2', '항목3'... ]
+        items = [
+            ['항목1'], 
+            ['항목2', 항목 선택시 발생함수 ],  // 항목에 이벤트를 추가하고 싶다면 리스트에 값 2개
+            ['항목3'],
+            ... 
+        ]
     }
 */
 function createSelectBox(div, data){
@@ -96,7 +101,7 @@ function createSelectBox(div, data){
     data.items.forEach(item => {
         let list = document.createElement('li');
         list.className = 'item';
-        list.innerText = item;
+        list.innerText = item[0];
 
         // onmousedown으로 blur 처리되기 전에 값 변경
         list.onmousedown = () => {
@@ -105,6 +110,10 @@ function createSelectBox(div, data){
             button.firstChild.textContent = list.innerText;
             input.value = list.innerText;
             itemList.style.visibility = itemList.style.visibility = 'hidden';
+        }
+
+        if(item.length === 2){
+            list.onmousedown = item[1] // item[1] : 직접 작성한 함수
         }
 
         itemList.appendChild(list);

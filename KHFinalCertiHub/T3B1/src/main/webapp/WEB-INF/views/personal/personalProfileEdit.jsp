@@ -79,7 +79,23 @@
                             <textarea class="form-control" name="member-intro">김용하청계천빠뜨리기</textarea>
                             <div class="font-size-title">관심 자격증</div>
 
-                            <div class="license-choose"></div>
+                            <div class="choose-menu">
+                                <div class="license-choose">
+                                </div>
+                                <button onclick="addLookLicense()" class="btn btn-primary add-license">추가</button>
+                            </div>
+
+                            <div class="look-license-list">
+                                <div class="look-license">
+                                    <div class="font-size-subtitle">정보처리기사</div>
+                                    <button onclick="removeLookLicense(this)"><img src="<%=contextPath%>/resources/static/img/button/x_icon_red.png"></button>
+                                </div>
+
+                                <div class="look-license">
+                                    <div class="font-size-subtitle">빅데이터분석기사</div>
+                                    <button onclick="removeLookLicense(this)"><img src="<%=contextPath%>/resources/static/img/button/x_icon_red.png"></button>
+                                </div>
+                            </div>
 
                         </div>
                     </div>

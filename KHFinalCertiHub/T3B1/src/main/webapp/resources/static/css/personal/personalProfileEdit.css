@@ -11,12 +11,11 @@
 .left-view{
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
 #profile{
-    margin-bottom: 20px;
+    padding-bottom: 20px;
 }
 
 .left-view button{
@@ -45,16 +44,61 @@
     height: 200px;
 }
 
-.license-choose div {
+/* 자격증 선택 메뉴 */
+.choose-menu{
+    display: flex;
+    justify-content: space-between;
+}
+
+.license-choose{
     width: 60%;
 }
 
-.license-choose .button-select{
+.license-choose div {
     width: 100%;
+    margin: 0;
 }
 
 .license-choose .button-select div{
     width:100%;
+}
+
+.choose-menu .add-license{
+    width:30%;
+    height:40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 관심 자격증 목록 */
+.look-license-list{
+    width: 60%;
+}
+
+.look-license{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.look-license div{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.look-license button{
+    width:40px;
+    height: 40px;
+    background-color: #E29578;
+    border: 0;
+    border-radius: 5px;
+}
+
+.look-license button img{
+    width: 100%;
+    height: 100%;
 }
 
 /* 맨 밑 버튼 영역 */
@@ -68,7 +112,8 @@
     }
 
     #profile{
-        width: 50%;
+        width: 300px;
+        height: 300px;
     }
 }
 
@@ -78,9 +123,9 @@
         flex-direction: column;
         align-items: center;
     }
-    
-    #profile{
-        width: 50%;
+
+    .look-license-list{
+        width: 100%;
     }
 
     /* 맨 밑 버튼 영역 */
@@ -97,7 +142,12 @@
     }
 
     #profile{
-        width: 50%;
+        width: 250px;
+        height: 250px;
+    }
+
+    .look-license-list{
+        width: 100%;
     }
 
     /* 맨 밑 버튼 영역 */
