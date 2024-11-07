@@ -4,7 +4,7 @@
 
     <head>
         <meta charset="UTF-8">
-        <title>서티허브</title>
+        <title>개인 일정</title>
 
     </head>
 

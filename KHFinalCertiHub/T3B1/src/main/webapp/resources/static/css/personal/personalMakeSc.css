@@ -8,7 +8,35 @@
     margin-top: 10px;
 }
 
+#calendar {
+    max-width: 100%;
+    border: 1px solid #83C5BE;
+    border-radius: 30px;
+}
 
+#calendar > img {
+    width: 100%;
+    border: 1px solid #83C5BE;
+    border-radius: 30px;
+}
+
+
+#today-job {
+
+}
+
+
+
+
+#job-list {
+    position: relative;
+}
+
+#job-list > button {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+}
 
 
 
@@ -42,16 +70,6 @@
 }
 
 
-
-
-
-
-.bottom-view {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-}
 
 @media (min-width: 721px){
     .left-view{
@@ -105,38 +123,18 @@
 
 
 
-.bottom-view {
-    margin: 10px;
+
+
+
+
+#date-set {
     display: flex;
-    gap: 10px;
-}
-
-.bottom-view > div:nth-child(1) {
-    background-color: #EDF6F9;
-}
-
-.bottom-view > div:nth-child(1) {
-    background-color: #006D77;
-    color: white;
-}
-
-.bottom-view > div:nth-child(1) > button {
-    display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    border-radius: 5px;
-    background: none;
-    border: none;
-    color: white;
-    width: 150px;
-    height: 40px;
-    padding: 0px;
-    font-size: 24px !important;
+
 }
 
-.bottom-view > div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 5px;
+#setting-grid-stuff {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
