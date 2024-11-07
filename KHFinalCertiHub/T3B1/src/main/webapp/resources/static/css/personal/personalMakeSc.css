@@ -119,6 +119,10 @@
     #middle-view {
         flex-direction: column;
     }
+
+    #date-set, #repeat-date-set{
+        flex-direction: column;
+    }
 }
 
 
@@ -136,5 +140,39 @@
 
 #setting-grid-stuff {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 20% 80%;
+    align-items: center;
+    justify-content: center;
+}
+
+#setting-grid-stuff * {
+    margin: auto;
+}
+
+#repeat-date-set {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+
+.button-select{
+    max-width: 190px;
+}
+
+
+.modal-body{
+    
+    flex-direction: column;
+    gap: 50px;
+    display: flex;
+
+}
+
+
+
+
+.display-none {
+    display: none !important;
 }
