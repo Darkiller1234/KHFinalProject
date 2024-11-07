@@ -1,77 +1,11 @@
-/* 검색창 */
-.search-section{
-    display:flex;
-    justify-content: center;
+.study-name, .study-intro{
+    width: 100%;
+    display: -webkit-box;         /* 웹킷 레이아웃 */
+    -webkit-box-orient: vertical; /* 텍스트 방향을 세로로 설정 */
+    -webkit-line-clamp: 2;        /* 최대 2줄로 제한 */
 }
 
-.search-section .search-form{
-    width:50%;
-}
-
-.search-option .custom-select{
-    font-size:16px;
-}
-
-/* 게시글 위 설정 (부제목, 게시물 표시 개수 설정)*/
-.board-title{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width:100%;
-}
-
-/* 게시글 밑 설정 ( 글쓰기 버튼, 페이징바 )*/
-.board-option{
-    padding:20px 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap:15px;
-}
-
-.board-option .btn{
-    background-color: #484848;
-    width:130px;
-    height:50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap:5px;
-}
-
-.board-option .btn img{
-    width:40px;
-    height:40px;
-}
-
-
-@media (min-width: 721px) {
-
-}
-
-@media (min-width: 481px) and (max-width: 720px) {
-    /* 검색 텍스트 부분 */
-    .search-section .search-form{
-        width:65%;
-    }
-
-    .board tr :nth-child(3){
-        display:none;
-    }
-}
-
-@media (max-width: 480px) {
-    /* 검색 텍스트 부분 */
-    .search-section .search-form{
-        width:100%;
-    }
-
-    .board tr :nth-child(3){
-        display:none;
-    }
-
-    .board tr :nth-child(4){
-        display:none;
-    }
+.tag.valid{
+    position: absolute;
+    bottom:10px;
 }

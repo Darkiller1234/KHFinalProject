@@ -68,7 +68,7 @@ crossorigin="anonymous"></script>
                     <ul>
                         <li class="submenu license">
                             <ul>
-                                <li><a href="">자격증 검색</a></li>
+                                <li><a href="<%=contextPath%>/search">자격증 검색</a></li>
                             </ul>
                         </li> 
 
@@ -84,7 +84,8 @@ crossorigin="anonymous"></script>
                         <li class="submenu study">
                             <ul>
                                 <li><a href="<%=contextPath%>/mentor/search">멘토 / 멘티</a></li>
-                                <li><a href="<%=contextPath%>/study/list">스터디 그룹</a></li>
+                                <li><a href="<%=contextPath%>/study/search">스터디 그룹</a></li>
+                                <li><a href="<%=contextPath%>/study/list">홍보 게시판</a></li>
                             </ul>
                         </li> 
 

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/study")
 public class StudyController {
 	
-	@RequestMapping("list")
+	@RequestMapping("search")
 	public String studySearchPage(Model m) {
 		m.addAttribute("pageName","studySearch");
 		return "studyroom/studySearch";
@@ -18,6 +18,18 @@ public class StudyController {
 	public String studyDetailPage(Model m) {
 		m.addAttribute("pageName","studyDetail");
 		return "studyroom/studyDetail";
+	}
+	
+	@RequestMapping("list")
+	public String studyBoardPage(Model m) {
+		m.addAttribute("pageName","studyBoard");
+		return "studyroom/studyBoard";
+	}
+	
+	@RequestMapping("board")
+	public String studyBoardViewPage(Model m) {
+		m.addAttribute("pageName","studyBoardView");
+		return "studyroom/studyBoardView";
 	}
 	
 	@RequestMapping("write")

@@ -57,7 +57,7 @@
     opacity: 1;
 }
 
-.mentor-card .mentor-valid{
+.tag.valid{
     position: absolute;
     bottom:70px;
 }
