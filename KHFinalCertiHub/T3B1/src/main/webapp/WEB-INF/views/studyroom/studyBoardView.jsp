@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>서티허브 - 스터디 그룹</title>
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/studyroom/studyDetail.css">
-    <script src="${pageContext.request.contextPath}/resources/static/js/studyroom/studyDetail.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/studyroom/studyBoardView.css">
+    <script src="${pageContext.request.contextPath}/resources/static/js/studyroom/studyBoardView.js"></script>
     <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
 </head>
 <body>
