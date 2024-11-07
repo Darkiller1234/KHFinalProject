@@ -9,7 +9,6 @@ public class EtcController {
 	
 	@RequestMapping("compiler")
 	public String compilerPage(Model m) {
-	
 		m.addAttribute("pageName", "compilerPage");
 		return "etc/compiler";
 	}

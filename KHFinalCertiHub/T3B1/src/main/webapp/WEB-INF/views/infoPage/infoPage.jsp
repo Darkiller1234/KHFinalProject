@@ -6,7 +6,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>InfoPage</title>
         <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
-        <script src="${pageContext.request.contextPath}/resources/static/js/infopage/selectBox.js"></script>
     </head>
     <body>
         <%@ include file="../common/header.jsp" %>
