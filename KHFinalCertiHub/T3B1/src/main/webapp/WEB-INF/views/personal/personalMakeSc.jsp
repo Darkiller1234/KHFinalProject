@@ -123,7 +123,7 @@
             </div>
 
             <!-- Modal -->
-            <div class="modal fade modal-dialog-scrollable" id="exampleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -146,15 +146,15 @@
                         </div>
 
                         <div id="setting-grid-stuff">
-                            <img src="" alt="">
+                            <img src="<%=contextPath%>/resources/static/img/personalPage/alarm.png" alt="">
                             <div id="alarm-select" class="custom-select">
 
                             </div>
-                            <div>
-                                
-                            </div>
-                            <img src="" alt="">
+                            <img src="<%=contextPath%>/resources/static/img/personalPage/Repeat.png" alt="">
                             <div id="repeat-select" class="custom-select">
+
+                            </div>
+                            <div>
 
                             </div>
                             <div id="repeat-count-select" class="custom-select">
@@ -162,8 +162,22 @@
                             </div>
                         </div>
 
-                        <div>
+                        <div id="repeat-count-input">
                             반복횟수 : <input type="text">
+                        </div>
+
+                        <div id="repeat-date-set">
+                            <div id="repeat-start-date">
+                                <input id="repeat-start-cal" type="date" required>
+                                <input type="time" value="08:00">
+                            </div>
+                            <div class="font-size-title">
+                                ~
+                            </div>
+                            <div id="repeat-end-date">
+                                <input id="repeat-end-cal" type="date" required>
+                                <input type="time" value="19:00">
+                            </div>
                         </div>
 
                         
