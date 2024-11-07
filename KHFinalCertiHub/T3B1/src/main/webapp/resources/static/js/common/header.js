@@ -57,6 +57,9 @@ function init(contextPath, pageName, optional){
         case "PersonalPmSc":
             persoMSInit(contextPath);
             break;
+        case "personalProfileEdit":
+            initPersonalProfileEdit(contextPath);
+            break;
     }
 }
 
