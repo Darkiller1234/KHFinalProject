@@ -54,6 +54,9 @@ function init(contextPath, pageName, optional){
         case "personalCertiRegi":
             persoCRInit(contextPath);
             break;
+        case "PersonalPmSc":
+            persoMSInit(contextPath);
+            break;
     }
 }
 

@@ -15,9 +15,15 @@ public class PersonalPageController {
 	}
 	
 	@RequestMapping("certiRegi")
-	public String PersonalPageCertiApplication(Model p) {
+	public String PersonalPageCertiRegistry(Model p) {
 		p.addAttribute("pageName", "personalCertiRegi");
 		return "personal/personalCertiRegi";
+	}
+	
+	@RequestMapping("makeSc")
+	public String PersonalPageMakeSchedule(Model p) {
+		p.addAttribute("pageName", "PersonalPmSc");
+		return "personal/personalMakeSc";
 	}
 
 }
