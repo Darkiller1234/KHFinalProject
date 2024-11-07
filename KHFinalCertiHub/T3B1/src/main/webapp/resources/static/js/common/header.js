@@ -51,6 +51,9 @@ function init(contextPath, pageName, optional){
         case "studySearch":
             initStudySearch(contextPath);
             break;
+        case "personalCertiRegi":
+            persoCRInit(contextPath);
+            break;
     }
 }
 
