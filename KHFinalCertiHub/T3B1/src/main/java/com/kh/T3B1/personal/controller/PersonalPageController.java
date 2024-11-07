@@ -18,5 +18,11 @@ public class PersonalPageController {
 		p.addAttribute("pageName", "personalCertiRegi");
 		return "personal/personalCertiRegi";
 	}
+	
+	@RequestMapping("profile.pp")
+	public String PersonalProfileEditPage(Model p) {
+		p.addAttribute("pageName","personalProfileEdit");
+		return "personal/personalProfileEdit";
+	}
 
 }
