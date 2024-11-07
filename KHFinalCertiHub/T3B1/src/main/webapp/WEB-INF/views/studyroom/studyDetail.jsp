@@ -52,7 +52,7 @@
                     또 다른 내 친구는 내 어깰 두드리며
                     잊어버리라 했지만 잊지 못할 것 같아
                 </div>
-                <div class="font-size-title">참여회원</div>
+                <div class="font-size-title">참여회원 (7명)</div>
 
                 <div class="search-member">
                     <div class="search-form">
@@ -66,76 +66,82 @@
                 <div class="mentor-intro">
 
                     <div class="member">
-                        <div class="profile">
-                            <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
-                        </div>
-                        <div class="name font-size-content">
-                            User01
-                        </div>
-                    </div>
-
-                    <div class="member">
-                        <div class="profile">
-                            <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
-                        </div>
-                        <div class="name font-size-content">
-                            User02
+                        <div class="member-info">
+                            <div class="profile">
+                                <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                            </div>
+                            <div class="name font-size-content">
+                                user01
+                            </div>
                         </div>
                     </div>
 
                     <div class="member">
-                        <div class="profile">
-                            <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
-                        </div>
-                        <div class="name font-size-content">
-                            User03
-                        </div>
-                    </div>
-
-                    <div class="member">
-                        <div class="profile">
-                            <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
-                        </div>
-                        <div class="name font-size-content">
-                            User04
+                        <div class="member-info">
+                            <div class="profile">
+                                <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                            </div>
+                            <div class="name font-size-content">
+                                user01
+                            </div>
                         </div>
                     </div>
 
                     <div class="member">
-                        <div class="profile">
-                            <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
-                        </div>
-                        <div class="name font-size-content">
-                            User05
-                        </div>
-                    </div>
-
-                    <div class="member">
-                        <div class="profile">
-                            <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
-                        </div>
-                        <div class="name font-size-content">
-                            User06
+                        <div class="member-info">
+                            <div class="profile">
+                                <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                            </div>
+                            <div class="name font-size-content">
+                                user01
+                            </div>
                         </div>
                     </div>
 
                     <div class="member">
-                        <div class="profile">
-                            <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
-                        </div>
-                        <div class="name font-size-content">
-                            User07
+                        <div class="member-info">
+                            <div class="profile">
+                                <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                            </div>
+                            <div class="name font-size-content">
+                                user01
+                            </div>
                         </div>
                     </div>
 
                     <div class="member">
-                        <div class="profile">
-                            <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
-                        </div>
-                        <div class="name font-size-content">
-                            User07
+                        <div class="member-info">
+                            <div class="profile">
+                                <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                            </div>
+                            <div class="name font-size-content">
+                                user01
+                            </div>
                         </div>
                     </div>
+
+                    <div class="member">
+                        <div class="member-info">
+                            <div class="profile">
+                                <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                            </div>
+                            <div class="name font-size-content">
+                                user01
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="member">
+                        <div class="member-info">
+                            <div class="profile">
+                                <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                            </div>
+                            <div class="name font-size-content">
+                                user01
+                            </div>
+                        </div>
+                    </div>
+
 
                 </div>
 
