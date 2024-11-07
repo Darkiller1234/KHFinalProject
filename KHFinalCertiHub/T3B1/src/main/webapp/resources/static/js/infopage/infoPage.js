@@ -18,6 +18,8 @@ function initInfoPage(contextPath){
     initList(contextPath)
     SiSelectBox(contextPath)
     GunSelectBox(contextPath)
+    DongSelectBox(contextPath)
+    TestSelectBox(contextPath)
 }
 
 function initSelectBox(contextPath){
@@ -41,13 +43,13 @@ function initSelectBox(contextPath){
 
 function SiSelectBox(contextPath){
     const selectBoxList = document.querySelectorAll('.si-select');
-    console.log(selectBoxList[0]);
     selectBoxList.forEach(selectBox => {
         let data = {
             name : 'si-list',
-            default : '서울',
+            default : '시',
             imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
             items : [
+                '서울',
                 '경기도',
                 '인천',
                 '부산',
@@ -69,16 +71,57 @@ function SiSelectBox(contextPath){
 
 function GunSelectBox(contextPath){
     const selectBoxList = document.querySelectorAll('.gun-select');
-    console.log(selectBoxList[0]);
     selectBoxList.forEach(selectBox => {
         let data = {
             name : 'gun-list',
-            default : '강남',
+            default : '구',
             imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
             items : [
+                '강남',
                 '강서',
                 '도봉',
                 '서부'
+            ]
+        }
+
+        createSelectBox(selectBox, data)
+    })
+}
+
+function DongSelectBox(contextPath){
+    const selectBoxList = document.querySelectorAll('.dong-select');
+    selectBoxList.forEach(selectBox => {
+        let data = {
+            name : 'dong-list',
+            default : '동',
+            imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
+            items : [
+                '1동',
+                '2동',
+                '3동',
+                '4동',
+
+            ]
+        }
+
+        createSelectBox(selectBox, data)
+    })
+}
+
+function TestSelectBox(contextPath){
+    const selectBoxList = document.querySelectorAll('.test-select');
+    selectBoxList.forEach(selectBox => {
+        let data = {
+            name : 'test-list',
+            default : '시험장 안내',
+            imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
+            items : [
+                '1시험장',
+                '2시험장',
+                '3시험장',
+                '4시험장',
+                '5시험장',
+
             ]
         }
 

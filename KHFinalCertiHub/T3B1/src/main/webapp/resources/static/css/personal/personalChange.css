@@ -1,0 +1,176 @@
+/* 페이지 기본 스타일 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.wrapper {
+    padding: 20px;
+}
+
+/* 탭 스타일 */
+.tabs {
+    display: flex;
+    background-color: white;
+    position: relative;
+}
+
+.tabs .tab {
+    text-align: center;
+    color: #333;
+    font-weight: normal;
+    cursor: pointer;
+    margin-right: 5px;
+    padding: 15px 0;
+    display: inline-block;
+    width: auto;
+    border-bottom: 3px solid #006D77;
+}
+
+.tabs .tab.active {
+    background-color: #ffffff;
+    font-weight: bold;
+    border-bottom: 3px solid #006D77;
+}
+
+.tabs .tab:hover {
+    background-color: #006D77;
+    color: white;
+}
+
+/* 드롭다운 메뉴 기본 스타일 */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+/* 드롭다운 버튼 */
+.dropdown-btn {
+    margin-left: 10px;
+    color: white;
+    border: none;
+    padding: 10px;
+}
+
+/* 콘텐츠 영역 */
+.content {
+    padding: 20px;
+    text-align: center;
+}
+
+.input-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+input[type="text"] {
+    max-width: 430px;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #83c5be;
+    border-radius: 5px;
+    background-color: #EDF6F9;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+input[type="text"]:focus {
+    box-shadow: 0px 0px 0px 3px #ccf0ec;
+}
+
+.btns {
+    display: flex;
+    justify-content: center;
+}
+
+footer {
+    width: 100%;
+    background-color: #EDF6F9;
+    text-align: center;
+    padding: 10px 0;
+    box-sizing: border-box;
+    margin-top: 13.8%;
+}
+
+img {
+    width: 35px;
+    height: 35px;
+    background-color: none;
+}
+
+
+
+/* 미디어 쿼리 */
+@media (max-width: 720px) {
+    .tabs {
+        display: none; /* 모바일 화면에서 탭 숨기기 */
+    }
+
+    .page-title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .dropdown-btn {
+        display: inline-block; /* 모바일에서 드롭다운 버튼 보이게 */
+    }
+
+    .dropdown-content {
+        position: absolute;
+        background-color: #fff;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        left: 50%;
+        transform: translateX(-50%);
+
+    }
+
+    .dropdown-content a {
+        display: none;
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #ddd;
+    }
+}
+
+/* 데스크탑 화면에서는 드롭다운 버튼 숨기기 */
+@media (min-width: 721px) {
+    .dropdown-btn {
+        display: none;
+    }
+}
+
+/* 드롭다운 메뉴 표시 */
+.dropdown-content.show {
+    display: block;
+    margin-right: 30%;
+}
+
