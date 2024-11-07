@@ -47,6 +47,7 @@ function removeLookLicense(_this){
 
 function addLookLicense(){
     const select = document.querySelector('.button-select div')
+    const licenseList = document.querySelector('.look-license-list')
 
     const wrapper = document.createElement('div')
     wrapper.className = 'look-license'
@@ -56,11 +57,18 @@ function addLookLicense(){
     licenseName.innerText = select.innerText
 
     const deleteButton = document.createElement('button')
-    deleteButton.onclick = removeLookLicense;
+    deleteButton.onclick = () =>{
+        wrapper.remove()
+    };
+
+    const buttonImage = document.createElement('img')
+    buttonImage.src = '../resources/static/img/button/x_icon_red.png';
+    
+    deleteButton.appendChild(buttonImage)
 
     wrapper.appendChild(licenseName)
     wrapper.appendChild(deleteButton)
 
-
+    licenseList.append(wrapper)
 }
 
