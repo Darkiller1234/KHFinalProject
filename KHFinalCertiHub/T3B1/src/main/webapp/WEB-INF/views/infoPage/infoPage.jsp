@@ -210,15 +210,136 @@
                             <div class="accordion-item">
                                 <button class="accordion-toggle">시험일정</button>
                                 <div class="accordion-content">
+                                    <h5>정보처리기사(2024년)</h5>
+                                    <table>
+                                        <tr>
+                                            <th>회별</th>
+                                            <th>필기시험 접수</th>
+                                            <th>필기시험</th>
+                                            <th>합격자발표</th>
+                                            <th>실기시험 접수</th>
+                                            <th>실기시험</th>
+                                            <th>합격자발표</th>
+                                        </tr>
+                                        <tr>
+                                            <td>제1회</td>
+                                            <td>01.23 ~ 01.26</td>
+                                            <td>02.15 ~ 02.17 <br>
+                                                02.19 ~ 02.23 <br>
+                                                03.03 ~ 03.07	</td>
+                                            <td>03.13(수)</td>
+                                            <td>03.26 ~ 03.29</td>
+                                            <td>04.27(토)</td>
+                                            <td>06.18(화)</td>
+                                        </tr>
+                                        <tr>
+                                            <td>제2회</td>
+                                            <td>04.16 ~ 04.19</td>
+                                            <td>05.09 ~ 05.10 <br>
+                                                05.12 ~ 05.14, 05.16 <br>
+                                                05.23 ~ 05.24 <br>
+                                                05.26 ~ 05.28</td>
+                                            <td>06.05(수)</td>
+                                            <td>06.25 ~ 06.28</td>
+                                            <td>07.28(일)</td>
+                                            <td>09.10(화)</td>
+                                        </tr>
+                                        <tr>
+                                            <td>제3회</td>
+                                            <td>06.18 ~ 06.21</td>
+                                            <td>07.05, <br>
+                                                07.07 ~ 07.12 <br>
+                                                07.14 ~ 07.16 <br>
+                                                07.24 ~ 07.27</td>
+                                            <td>08.07(수)</td>
+                                            <td>09.10 ~ 09.13</td>
+                                            <td>10.20(일)</td>
+                                            <td>12.11(수)</td>
+                                        </tr>
+                                    </table>
+                                    <br><br><br>
+                                    <div class="test-color">
+                                        <b>※ 4회 시험은 없습니다. <br>
+                                            ※ 정보처리기사 필기 시험 CBT 방식으로 시행됩니다. <br>
+                                            ※ 응시자격서류제출은 실기시험 원서접수전까지 제출해야 합니다. <br>
+                                            (실기시험 접수기간과 응시자격서류 제출기간이 다르므로 반드시 확인하시기 바랍니다.)</b>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <button class="accordion-toggle">시험장 탐색</button>
+                                <div class="accordion-content">
                                     <h5>장소검색</h5>
                                     <div class="region">
                                         <div class="si-select"></div>
                                         <div class="gun-select"></div>
                                         <div class="dong-select"></div>
                                         <div class="test-select"></div>
-                                        <button>검색</button>
+                                        <button class="search-btn">검색</button>
                                     </div>
+                                    <div class="map">
+                                        <img src="<%=contextPath%>/resources/static/img/temporary/map.png" alt="">
+                                        <br><br>
+                                    </div>
+                                    <div class="weather">
+                                        <pre><b>해당 지역 날씨 정보 (현재 날짜 기준 최대 10일)</b></pre> <br>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>지역</th>
+                                                    <th colspan="2">28일(월)</th>
+                                                    <th colspan="2">29일(화)</th>
+                                                    <th colspan="2">30일(수)</th>
+                                                    <th colspan="2">31일(목)</th>
+                                                    <th colspan="2">01일(금)</th>
+                                                    <th rowspan="2">02일(토)</th>
+                                                    <th rowspan="2">03일(일)</th>
+                                                    <th rowspan="2">04일(월)</th>
+                                                    <th rowspan="2">05일(화)</th>
+                                                    <th rowspan="2">06일(수)</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td rowspan="2">
+                                                        서울 <br>
+                                                        인천 <br>
+                                                        경기도</td>
+                                                    <td>오전</td>
+                                                    <td>오후</td>
+                                                    <td>오전</td>
+                                                    <td>오후</td>
+                                                    <td>오전</td>
+                                                    <td>오후</td>
+                                                    <td>오전</td>
+                                                    <td>오후</td>
+                                                    <td>오전</td>
+                                                    <td>오후</td>
+                                                    <td rowspan="2">맑음 <br>10%</td>
+                                                    <td rowspan="2">맑음 <br>10%</td>
+                                                    <td rowspan="2">맑음 <br>10%</td>
+                                                    <td rowspan="2">맑음 <br>10%</td>
+                                                    <td rowspan="2">맑음 <br>10%</td>
+                                                </tr>
+                                                <tr>
+                                                    
+                                                    <td>구름많음 <br>20% </td>
+                                                    <td>구름많음 <br>20% </td>
+                                                    <td>구름많음 <br>20% </td>
+                                                    <td>맑음 <br>10% </td>
+                                                    <td>맑음 <br>10%</td>
+                                                    <td>맑음 <br>10%</td>
+                                                    <td>맑음 <br>10%</td>
+                                                    <td>구름많음 <br>20% </td>
+                                                    <td>맑음 <br>10% </td>
+                                                    <td>맑음 <br>10%</td>
 
+                                                </tr>
+                                            </tbody>
+                                            
+                                        </table>
+                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
