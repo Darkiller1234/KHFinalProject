@@ -20,6 +20,12 @@ public class StudyController {
 		return "studyroom/studyDetail";
 	}
 	
+	@RequestMapping("detail/edit")
+	public String studyDetailEditPage(Model m) {
+		m.addAttribute("pageName","studyDetailEdit");
+		return "studyroom/studyDetailEdit";
+	}
+	
 	@RequestMapping("list")
 	public String studyBoardPage(Model m) {
 		m.addAttribute("pageName","studyBoard");

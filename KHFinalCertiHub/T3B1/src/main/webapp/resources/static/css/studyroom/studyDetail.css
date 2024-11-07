@@ -3,6 +3,11 @@
     bottom:70px;
 }
 
+/* 스터디 참여 멤버 검색창 */
+.search-member{
+    margin:10px 0;
+}
+
 /* 스터디 참여 멤버 목록 */
 .mentor-intro{
     display:grid;
@@ -10,7 +15,7 @@
         auto-fill : 컬럼 개수를 사이즈에 맞춰서 자동
         minmax(최소값, 1fr:자동으로 비율맞춰 넣기) 
      */
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 10px;
     padding: 0 5px;
 }
@@ -18,15 +23,22 @@
 /* 스터디 참여 멤버 카드 */
 .member{
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap:10px;
     padding:10px 0;
     border-radius: 5px;
 }
 
 .member:hover{
-    background-color: #EDF6F9;;
+    background-color: #EDF6F9;
 }
+
+.member-info{
+    display:flex;
+    align-items: center;
+    gap:10px;
+}
+
 
 .member .profile{
     width: 50px;
@@ -36,6 +48,39 @@
 .member .profile img{
     width: 100%;
     height: 100%;
+}
+
+/* 멤버 로딩 버튼 */
+.load-member{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    height:50px;
+    margin:10px 0;
+}
+
+.load-member button{
+    width:100%;
+    height:100%;
+    background-color: transparent;
+    border: none;
+}
+
+.load-member button:hover{
+    background-color: #EDF6F9;
+}
+
+/* 버튼 영역 */
+.button-section{
+    display:flex;
+    align-items: center;
+    gap:20px;
+}
+
+.button-section .bgcolor1{
+    background-color: #006D77;
+    color:white;
 }
 
 @media (min-width: 481px) and (max-width: 720px) {
