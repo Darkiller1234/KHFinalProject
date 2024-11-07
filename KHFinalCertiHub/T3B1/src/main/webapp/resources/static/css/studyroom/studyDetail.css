@@ -15,7 +15,7 @@
         auto-fill : 컬럼 개수를 사이즈에 맞춰서 자동
         minmax(최소값, 1fr:자동으로 비율맞춰 넣기) 
      */
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 10px;
     padding: 0 5px;
 }

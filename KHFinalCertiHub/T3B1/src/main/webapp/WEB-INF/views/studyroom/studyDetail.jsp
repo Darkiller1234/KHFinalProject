@@ -52,7 +52,7 @@
                     또 다른 내 친구는 내 어깰 두드리며
                     잊어버리라 했지만 잊지 못할 것 같아
                 </div>
-                <div class="font-size-title">참여회원</div>
+                <div class="font-size-title">참여회원 (7명)</div>
 
                 <div class="search-member">
                     <div class="search-form">

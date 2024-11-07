@@ -39,25 +39,25 @@
 난 아무런 부담없이 널 내 친구에게 소개시켜 줬고
 그런 만남이 있은 후부터 우리는 자주 함께 만나며
 즐거운 시간을 보내며 함께 어울렸던 것뿐인데
-<br><br>
+
 그런 만남이 어디부터 잘못됐는지
 난 알 수 없는 예감에 조금씩 빠져들고 있을때쯤
-<br>
+
 넌 나보다 내 친구에게 관심을 더 보이며
 날 조금씩 멀리하던
-<br>
+
 그 어느 날 너와 내가 심하게 다툰 그 날 이후로
 너와 내 친구는 연락도 없고 날 피하는 것 같아
 그제서야 난 느낀거야 모든 것이 잘못돼 있는걸
 너와 내 친구는 어느새 다정한 연인이 돼 있었지
-<br><br>
+
 있을 수 없는 일이라며 난 울었어
 내 사랑과 우정을 모두 버려야 했기에
 또 다른 내 친구는 내 어깰 두드리며
 잊어버리라 했지만 잊지 못할 것 같아
                 </textarea>
 
-                <div class="font-size-title">참여회원</div>
+                <div class="font-size-title">참여회원 (7명)</div>
 
                 <div class="search-member">
                     <div class="search-form">
@@ -75,8 +75,9 @@
                             <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
                         </div>
                         <div class="name font-size-content">
-                            User01
+                            DARKKILLERDK
                         </div>
+                        <button class="close-button" data-bs-toggle="modal" data-bs-target="#banConfirm"><img src="<%=contextPath%>/resources/static/img/button/x_icon.png"></button>
                     </div>
 
                     <div class="member">
@@ -84,8 +85,9 @@
                             <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
                         </div>
                         <div class="name font-size-content">
-                            User02
+                            강남구불타는키보드워리어
                         </div>
+                        <button class="close-button" data-bs-toggle="modal" data-bs-target="#banConfirm"><img src="<%=contextPath%>/resources/static/img/button/x_icon.png"></button>
                     </div>
 
                     <div class="member">
@@ -95,6 +97,7 @@
                         <div class="name font-size-content">
                             User03
                         </div>
+                        <button class="close-button" data-bs-toggle="modal" data-bs-target="#banConfirm"><img src="<%=contextPath%>/resources/static/img/button/x_icon.png"></button>
                     </div>
 
                     <div class="member">
@@ -104,6 +107,7 @@
                         <div class="name font-size-content">
                             User04
                         </div>
+                        <button class="close-button" data-bs-toggle="modal" data-bs-target="#banConfirm"><img src="<%=contextPath%>/resources/static/img/button/x_icon.png"></button>
                     </div>
 
                     <div class="member">
@@ -113,6 +117,7 @@
                         <div class="name font-size-content">
                             User05
                         </div>
+                        <button class="close-button" data-bs-toggle="modal" data-bs-target="#banConfirm"><img src="<%=contextPath%>/resources/static/img/button/x_icon.png"></button>
                     </div>
 
                     <div class="member">
@@ -122,6 +127,7 @@
                         <div class="name font-size-content">
                             User06
                         </div>
+                        <button class="close-button" data-bs-toggle="modal" data-bs-target="#banConfirm"><img src="<%=contextPath%>/resources/static/img/button/x_icon.png"></button>
                     </div>
 
                     <div class="member">
@@ -131,6 +137,7 @@
                         <div class="name font-size-content">
                             User07
                         </div>
+                        <button class="close-button" data-bs-toggle="modal" data-bs-target="#banConfirm"><img src="<%=contextPath%>/resources/static/img/button/x_icon.png"></button>
                     </div>
 
                     <div class="member">
@@ -140,6 +147,7 @@
                         <div class="name font-size-content">
                             User07
                         </div>
+                        <button class="close-button" data-bs-toggle="modal" data-bs-target="#banConfirm"><img src="<%=contextPath%>/resources/static/img/button/x_icon.png"></button>
                     </div>
 
                 </div>
@@ -150,7 +158,10 @@
 
                 <div class="button-section">
                     <button class="btn-primary" onclick="location.href='${pageContext.request.contextPath}/study/detail'">취소하기</button>
-                    <button class="btn-primary bgcolor1" onclick="location.href='${pageContext.request.contextPath}/study/detail'">수정하기</button>
+                    <button 
+                        class="btn-primary bgcolor1" 
+                        data-bs-toggle="modal" data-bs-target="#apply-modal"
+                    >수정하기</button>
                 </div>
             </div>
 
@@ -159,36 +170,68 @@
         <div class="bottom-options">
             <button onclick="topScroll()" class="top-button rounded-circle"><img src="${pageContext.request.contextPath}/resources/static/img/button/arrow_up_icon.png"></button>
         </div>
+    </div>
 
-        
-        <!-- 모달창 -->
-        <div class="modal" id="apply-modal">
-            <div class="modal-dialog">
-            <div class="modal-content">
-        
-                <!-- Modal Header -->
-                <div class="modal-header">
-                <h4 class="modal-title">                
-                    <img 
-                    src="<%=contextPath%>/resources/static/img/logo/logo_big.png"
-                    ">
-                </h4>
-                </div>
-        
-                <!-- Modal body -->
-                <div class="modal-body">
-                수정되었습니다.
-                </div>
-        
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                <button type="button" data-bs-dismiss="modal">닫기</button>
-                </div>
-        
+            
+    <!-- 모달창 -->
+    <div class="modal" id="apply-modal">
+        <div class="modal-dialog">
+        <div class="modal-content">
+    
+            <!-- Modal Header -->
+            <div class="modal-header">
+            <h4 class="modal-title">                
+                <img 
+                src="<%=contextPath%>/resources/static/img/logo/logo_big.png"
+                ">
+            </h4>
             </div>
+    
+            <!-- Modal body -->
+            <div class="modal-body">
+            수정되었습니다.
             </div>
+    
+            <!-- Modal footer -->
+            <div class="modal-footer">
+            <button 
+                type="button" 
+                data-bs-dismiss="modal"
+                onclick="location.href='${pageContext.request.contextPath}/study/detail'"
+            >확인</button>
+            </div>
+    
         </div>
+        </div>
+    </div>
 
+    <div class="modal" id="banConfirm">
+        <div class="modal-dialog">
+        <div class="modal-content">
+    
+            <!-- Modal Header -->
+            <div class="modal-header">
+            <h4 class="modal-title">                
+                <img 
+                src="<%=contextPath%>/resources/static/img/logo/logo_big.png"
+                ">
+            </h4>
+            </div>
+    
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div>강남구불타는키보드워리어</div>
+                정말 스터디그룹에서 제외시키겠습니까?
+            </div>
+    
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button class="confirm" type="button" data-bs-dismiss="modal">확인</button>
+                <button type="button" data-bs-dismiss="modal">취소</button>
+            </div>
+    
+        </div>
+        </div>
     </div>
 
     <%@ include file="../common/footer.jsp" %>
