@@ -57,7 +57,7 @@
                             </div>
                         </nav>
                     </div>
-                    <div id="middle-view-profileInfo">
+                    <div id="middle-view">
                         <div class="left-view">
                             <div id="certi-select">
                                 <div class="font-size-subtitle">
@@ -66,40 +66,55 @@
 
                                     </div>
                                 </div> 
+                                
 
                             </div>
                         </div>
                         <div class="right-view">
-                            <div id="history-view">
-                                <p class="font-size-subtitle">경력</p>
-                                <div id="history-list" class="font-size-content">
-                                    IT 전문 회사 5초 근무<br>
-                                        2000 ~ 2000 네이버 개발직<br>
-                                        2000 ~ 2000 네이트 임원<br>
-                                        2000 ~ 2000 넥슨 잠복근무<br>
+                            <div id="certi-file">
+                                <div class="font-size-subtitle">
+                                    자격증 파일
                                 </div>
-                            </div>
-                            <div id="intro-view">
-                                <p class="font-size-subtitle">자기소개</p>
-                                <div id="intro-detail" class="font-size-content">
-                                    <p>
-                                        김용하 청계천에 빠뜨리고 싶어
-                                    </p>
+                                <div id="certi-file-upload">
+
                                 </div>
+                                <input type="file" accept="image/*">
                             </div>
                         </div>
                     </div>
                     <div class="bottom-view">
-                        <div class="font-size-content">
-                            <img src="<%=contextPath%>/resources/static/img/personalPage/check.png" alt="체크">
-                            <p>질문가능</p>
-                        </div>
                         <div class="font-size-subtitle">
                             <button class="btn-primary"  data-bs-toggle="modal" data-bs-target="#apply-modal"><img src="<%=contextPath%>/resources/static/img/personalPage/Phonecall.png" alt="전화중아이콘">신청하기</button>
                         </div>
                     </div>
 
+                    <!-- 모달창 -->
+                    <div class="modal" id="apply-modal">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
 
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                            <h4 class="modal-title">                
+                                <img 
+                                src="<%=contextPath%>/resources/static/img/logo/logo_big.png"
+                                ">
+                            </h4>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                            신청되었습니다.
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                            <button type="button" data-bs-dismiss="modal">닫기</button>
+                            </div>
+
+                        </div>
+                        </div>
+</div>
 
                     
 

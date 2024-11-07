@@ -50,7 +50,7 @@
                 </div>
                 <div class="study-name">제 243921회 김첨지 할아버지와 함께하는 정보처리기사 스터디그룹</div>
                 <div class="tag bgcolor3 font-size-content"><img src="<%=contextPath%>/resources/static/img/button/person_icon_light.png">3명</div>
-                <div class="study-intro font-size-footer">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
+                <div class="study-intro font-size-footer">저희 그룹 폐업합니다</div>
                 <div class="tag valid bgcolor4"><img src="<%=contextPath%>/resources/static/img/button/stop_icon.png">모집마감</div>
             </div>
 
@@ -70,7 +70,7 @@
                 </div>
                 <div class="study-name">제 243921회 김첨지 할아버지와 함께하는 정보처리기사 스터디그룹</div>
                 <div class="tag bgcolor3 font-size-content"><img src="<%=contextPath%>/resources/static/img/button/person_icon_light.png">3명</div>
-                <div class="study-intro font-size-footer">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
+                <div class="study-intro font-size-footer">저희 그룹 폐업합니다</div>
                 <div class="tag valid bgcolor4"><img src="<%=contextPath%>/resources/static/img/button/stop_icon.png">모집마감</div>
             </div>
 
@@ -90,7 +90,7 @@
                 </div>
                 <div class="study-name">제 243921회 김첨지 할아버지와 함께하는 정보처리기사 스터디그룹</div>
                 <div class="tag bgcolor3 font-size-content"><img src="<%=contextPath%>/resources/static/img/button/person_icon_light.png">3명</div>
-                <div class="study-intro font-size-footer">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
+                <div class="study-intro font-size-footer">저희 그룹 폐업합니다</div>
                 <div class="tag valid bgcolor4"><img src="<%=contextPath%>/resources/static/img/button/stop_icon.png">모집마감</div>
             </div>
 
@@ -110,7 +110,7 @@
                 </div>
                 <div class="study-name">제 243921회 김첨지 할아버지와 함께하는 정보처리기사 스터디그룹</div>
                 <div class="tag bgcolor3 font-size-content"><img src="<%=contextPath%>/resources/static/img/button/person_icon_light.png">3명</div>
-                <div class="study-intro font-size-footer">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
+                <div class="study-intro font-size-footer">저희 그룹 폐업합니다</div>
                 <div class="tag valid bgcolor4"><img src="<%=contextPath%>/resources/static/img/button/stop_icon.png">모집마감</div>
             </div>
 
@@ -130,7 +130,7 @@
                 </div>
                 <div class="study-name">제 243921회 김첨지 할아버지와 함께하는 정보처리기사 스터디그룹</div>
                 <div class="tag bgcolor3 font-size-content"><img src="<%=contextPath%>/resources/static/img/button/person_icon_light.png">3명</div>
-                <div class="study-intro font-size-footer">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
+                <div class="study-intro font-size-footer">저희 그룹 폐업합니다</div>
                 <div class="tag valid bgcolor4"><img src="<%=contextPath%>/resources/static/img/button/stop_icon.png">모집마감</div>
             </div>
 
@@ -150,7 +150,7 @@
                 </div>
                 <div class="study-name">제 243921회 김첨지 할아버지와 함께하는 정보처리기사 스터디그룹</div>
                 <div class="tag bgcolor3 font-size-content"><img src="<%=contextPath%>/resources/static/img/button/person_icon_light.png">3명</div>
-                <div class="study-intro font-size-footer">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
+                <div class="study-intro font-size-footer">저희 그룹 폐업합니다</div>
                 <div class="tag valid bgcolor4"><img src="<%=contextPath%>/resources/static/img/button/stop_icon.png">모집마감</div>
             </div>
            
