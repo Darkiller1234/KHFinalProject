@@ -8,8 +8,8 @@ function commuMInit(contextPath){
         default : '최신순',
         imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
         items : [
-            '최신순',
-            '추천순'
+            ['최신순'],
+            ['추천순']
         ]
     }
 
@@ -18,10 +18,10 @@ function commuMInit(contextPath){
         default : '제목',
         imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
         items : [
-            '제목',
-            '내용',
-            '제목+내용',
-            '글쓴이'
+            ['제목'],
+            ['내용'],
+            ['제목+내용'],
+            ['글쓴이']
         ]
     }
 

@@ -11,17 +11,13 @@ function initSelectBox(contextPath){
         imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
         items : [
             ['정보처리기사'],
-            ['네트워크관리사',test],
+            ['네트워크관리사'],
             ['정보보안기사'],
             ['빅데이터분석기사']
         ]
     } 
 
     createSelectBox(selectBoxList[0], data1)
-}
-
-function test(){
-    alert('까꿍')
 }
 
 // 숨겨진 파일 입력창을 클릭

@@ -12,9 +12,9 @@ function initSelectBox(contextPath){
             default : '10개씩',
             imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
             items : [
-                '10개씩',
-                '15개씩',
-                '20개씩',
+                ['10개씩'],
+                ['15개씩'],
+                ['20개씩'],
             ]
         }
 
