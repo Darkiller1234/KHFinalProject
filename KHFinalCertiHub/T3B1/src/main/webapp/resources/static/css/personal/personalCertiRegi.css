@@ -12,11 +12,15 @@
 
 #profile{
     padding-bottom: 20px;
+    max-width: 200px;
+    max-height: 200px;
 }
 
 .file{
     display:none;
 }
+
+
 
 
 
@@ -48,6 +52,27 @@
 }
 
 
+#certi-select {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+#certi-select > div {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#upload-btn-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 
 
 
@@ -155,4 +180,14 @@
     justify-content: center;
     align-items: center;
     border-radius: 5px;
+}
+
+
+#upload-btn {
+    width: 100px;
+    height: 30px;
+    background-color: #006D77;
+    border: none;
+    border-radius: 5px;
+    color: white;
 }
