@@ -84,8 +84,8 @@ body {
 label {
     font-size: 24px;
     color: #333;
-    margin-bottom: 5px; /* input과의 간격 */
-    display: block; /* 레이블을 블록으로 설정하여 input 위에 배치 */
+    margin-bottom: 5px;
+    display: block;
 }
 
 input[type="text"],
@@ -96,12 +96,70 @@ input[type="email"] {
     border: 1px solid #83c5be;
     border-radius: 5px;
     background-color: #EDF6F9;
-    margin-top: 5px; /* 레이블과의 간격 */
+    margin-top: 5px;
     margin-bottom: 30px;
 }
 
 input[type="text"]:focus {
     box-shadow: 0px 0px 0px 3px #ccf0ec;
+}
+
+/* middle-view 설정 */
+#middle-view {
+    display: flex;
+    justify-content: space-between; /* 좌우로 정렬 */
+    padding: 20px;
+}
+
+/* left-view와 right-view 배치 */
+.left-view, .right-view {
+    width: 45%; /* 각 영역의 너비를 45%로 조정 */
+}
+
+/* right-view 안의 비밀번호 변경 및 회원 탈퇴 버튼 정렬 */
+.password-change, .account-delete {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* 왼쪽 정렬 */
+    margin-top: 20px;
+}
+
+/* right-view의 label 스타일과 위치 조정 */
+.password-change .label, .account-delete .label {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* 비밀번호 변경 및 회원 탈퇴 버튼 스타일 */
+.password-change .btn {
+    background-color: #006D77;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 5px;
+    width: 150px;
+    text-align: center;
+}
+
+/* 회원 탈퇴 버튼 스타일 변경 */
+.account-delete .btn {
+    background-color: #E29578; /* 변경된 배경색 */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 5px;
+    width: 150px;
+    text-align: center;
+}
+
+.password-change .btn:hover, .account-delete .btn:hover {
+    background-color: #004f4f;
 }
 
 /* 버튼 아래쪽 간격 추가 */
@@ -124,60 +182,10 @@ img {
     background-color: none;
 }
 
-/* 비밀번호 변경, 회원 탈퇴 관련 스타일 */
-.password-change-section,
-.delete-account-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 30px;
-}
-
-.password-change-section label,
-.delete-account-section label {
-    font-size: 20px;
-    color: #333;
-}
-
-.password-change-section button,
-.delete-account-section button {
-    background-color: #006D77;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.password-change-section button:hover,
-.delete-account-section button:hover {
-    background-color: #004f4f;
-}
-
-/* 버튼을 오른쪽에 정렬 */
-.password-change-section button,
-.delete-account-section button {
-    margin-left: auto;
-    margin-right: 10px;
-}
-
-/* 입력 필드와 버튼 사이 간격 */
-.password-change-section input,
-.delete-account-section input {
-    max-width: 300px;
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #83c5be;
-    border-radius: 5px;
-    background-color: #EDF6F9;
-    margin-top: 5px; /* 레이블과의 간격 */
-    margin-bottom: 20px;
-}
-
 /* 미디어 쿼리 */
 @media (max-width: 720px) {
     .tabs {
-        display: none; /* 모바일 화면에서 탭 숨기기 */
+        display: none;
     }
 
     .page-title {
@@ -187,7 +195,7 @@ img {
     }
 
     .dropdown-btn {
-        display: inline-block; /* 모바일에서 드롭다운 버튼 보이게 */
+        display: inline-block;
     }
 
     .dropdown-content {
@@ -200,29 +208,39 @@ img {
         transform: translateX(-50%);
     }
 
-    .dropdown-content a {
-        display: none;
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-    }
-
-    .dropdown-content a:hover {
-        background-color: #ddd;
-    }
-
-    /* 모바일에서 비밀번호 변경, 회원 탈퇴 섹션 */
-    .password-change-section,
-    .delete-account-section {
-        display: block;
+    /* 모바일에서 left-view와 right-view 세로 배치 */
+    #middle-view {
+        display: block; /* 세로로 배치 */
         text-align: center;
     }
 
-    .password-change-section button,
-    .delete-account-section button {
-        width: 100%;
-        margin: 10px 0;
+    .left-view, .right-view {
+        width: 100%; /* 전체 너비 차지 */
+        margin-bottom: 20px;
+    }
+
+    /* 모바일에서 input 필드 중앙 정렬 */
+    .left-view input[type="text"],
+    .left-view input[type="email"] {
+        margin: 0 auto; /* 중앙 정렬 */
+    }
+
+    /* 모바일에서 저장 버튼 왼쪽으로 이동 */
+    .btns button {
+        margin-top: 20px;
+        margin-left: 0; /* 왼쪽 여백 설정 */
+        transform: translateX(-25px); /* 왼쪽으로 살짝 이동 */
+    }
+
+    /* 모바일에서 비밀번호 변경 및 회원 탈퇴 섹션 중앙 정렬 */
+    .password-change, .account-delete {
+        align-items: center;
+        text-align: center;
+    }
+
+    .password-change .btn, .account-delete .btn {
+        width: 100%; /* 버튼 너비를 100%로 확장 */
+        margin-top: 10px;
     }
 }
 
