@@ -5,11 +5,12 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/personal/commonPersonal.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
         <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
+        
         <title>Document</title>
     </head>
 
@@ -78,7 +79,11 @@
                                 <div id="certi-file-upload">
 
                                 </div>
-                                <input type="file" accept="image/*">
+                                <img id="profile"src="${pageContext.request.contextPath}/resources/static/img/profile/profileTest.webp" alt="저장">
+                                <button class="btn btn-primary" onclick="chooseImg()">파일 업로드</button>
+                                <div class="file">
+                                    <input type="file" id="profileInput" name="memberImg" onchange="loadImg(this)">
+                                </div>
                             </div>
                         </div>
                     </div>
