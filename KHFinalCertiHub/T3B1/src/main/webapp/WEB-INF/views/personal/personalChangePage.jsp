@@ -104,42 +104,66 @@
                     <!-- 비밀번호 변경 텍스트와 버튼 -->
                     <div class="password-change">
                         <span class="label">비밀번호 변경</span>
-                        <button type="button" class="btn btn-secondary" id="change-password-btn">변경하기</button>
+                        <button class="btn-primary"  data-bs-toggle="modal" data-bs-target="#change-modal">변경하기</button>
                     </div>
 
                     <!-- 회원 탈퇴 텍스트와 버튼 -->
                     <div class="account-delete">
                         <span class="label">회원 탈퇴</span>
-                        <button type="button" class="btn btn-danger" id="delete-account-btn">회원 탈퇴</button>
+                        <button class="btn-primary"  data-bs-toggle="modal" data-bs-target="#delete-modal">회원 탈퇴</button>
                     </div>
                 </div>
             </div>
         </div>
 
-            <!-- 모달창 -->
-            <div class="modal" id="apply-modal">
+            <!-- 비밀번호 변경 모달창 -->
+            <div class="modal" id="change-modal">
                 <div class="modal-dialog">
                     <div class="modal-content">
-
                         <!-- Modal Header -->
                         <div class="modal-header">
-                        <h4 class="modal-title">                
-                            <img 
-                            src="<%=contextPath%>/resources/static/img/logo/logo_big.png"
-                            ">
-                        </h4>
+                            <h4 class="modal-title">
+                                <img src="<%=contextPath%>/resources/static/img/logo/logo_big.png">
+                            </h4>
                         </div>
-
                         <!-- Modal body -->
                         <div class="modal-body">
-                        신청되었습니다.
+                            <label for="userPwd">기존 비밀번호</label>
+                            <input type="password" class="form-control" id="userPwd" name="userPwd" required>
+                            <label for="newcheckPwd">새로운 비밀번호</label>
+                            <input type="password" class="form-control" id="newcheckPwd" name="newcheckPwd" required>
+                            <label for="checkPwd">새로운 비밀번호 확인</label>
+                            <input type="password" class="form-control" id="checkPwd" name="checkPwd" required>
                         </div>
-
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                        <button type="button" data-bs-dismiss="modal">닫기</button>
+                            <button type="button" data-bs-dismiss="modal">변경</button>
+                            <button type="button" data-bs-dismiss="modal">취소</button>
                         </div>
+                    </div>
+                </div>
+            </div>
 
+            <!-- 회원 탈퇴 모달창 -->
+            <div class="modal" id="delete-modal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">
+                                <img src="<%=contextPath%>/resources/static/img/logo/logo_big.png">
+                            </h4>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            비밀번호를 입력하세요.
+                            <input type="password" class="form-control" id="userPwddelete" name="userPwddelete" required>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" data-bs-dismiss="modal">탈퇴</button>
+                            <button type="button" data-bs-dismiss="modal">취소</button>
+                        </div>
                     </div>
                 </div>
             </div>
