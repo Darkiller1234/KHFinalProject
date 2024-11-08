@@ -11,17 +11,13 @@ function initSelectBox(contextPath){
         imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
         items : [
             ['정보처리기사'],
-            ['네트워크관리사',test],
+            ['네트워크관리사'],
             ['정보보안기사'],
             ['빅데이터분석기사']
         ]
     } 
 
     createSelectBox(selectBoxList[0], data1)
-}
-
-function test(){
-    alert('까꿍')
 }
 
 // 숨겨진 파일 입력창을 클릭
@@ -51,6 +47,7 @@ function removeLookLicense(_this){
 
 function addLookLicense(){
     const select = document.querySelector('.button-select div')
+    const licenseList = document.querySelector('.look-license-list')
 
     const wrapper = document.createElement('div')
     wrapper.className = 'look-license'
@@ -60,11 +57,18 @@ function addLookLicense(){
     licenseName.innerText = select.innerText
 
     const deleteButton = document.createElement('button')
-    deleteButton.onclick = removeLookLicense;
+    deleteButton.onclick = () =>{
+        wrapper.remove()
+    };
+
+    const buttonImage = document.createElement('img')
+    buttonImage.src = '../resources/static/img/button/x_icon_red.png';
+    
+    deleteButton.appendChild(buttonImage)
 
     wrapper.appendChild(licenseName)
     wrapper.appendChild(deleteButton)
 
-
+    licenseList.append(wrapper)
 }
 

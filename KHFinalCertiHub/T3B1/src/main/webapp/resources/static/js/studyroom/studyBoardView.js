@@ -11,8 +11,8 @@ function initSelectBox(contextPath){
             default : '마감',
             imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
             items : [
-                '모집중',
-                '마감'
+                ['모집중'],
+                ['마감']
             ]
         }
 
