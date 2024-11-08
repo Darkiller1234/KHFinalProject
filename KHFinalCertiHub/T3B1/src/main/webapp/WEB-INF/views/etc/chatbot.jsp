@@ -106,8 +106,8 @@
                     <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
                 </button> 
             </div>
-
         </div>
+
 	</div>
 
 </body>
