@@ -80,7 +80,7 @@ h4 {
 }
 
 /* 미디어 쿼리 */
-@media (max-width: 768px) {
+@media (max-width: 720px) {
     .wrapper {
         padding: 20px 30px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);

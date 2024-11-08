@@ -1,3 +1,4 @@
+/* PC 환경과 모바일 공통 */
 body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: #f3f3f3;
@@ -49,8 +50,6 @@ body {
     cursor: pointer;
 }
 
-
-
 .google-btn {
     background-color: #DB4437;
     color: white;
@@ -80,8 +79,8 @@ body {
     border: 1px solid #83c5be;
     border-radius: 5px;
     background-color: #EDF6F9;
-    margin-top: 10px; /* 위쪽 간격을 줄이기 */
-    margin-bottom: 15px; /* 아래쪽 간격도 조정 */
+    margin-top: 10px;
+    margin-bottom: 15px;
 }
 
 .btns {
@@ -100,10 +99,10 @@ body {
 }
 
 #checkIdBtn {
-    padding: 15px; /* 인풋과 동일한 패딩 설정 */
-    height: 52px; /* 인풋과 같은 높이로 설정 (패딩과 테두리 포함) */
-    border-radius: 5px; /* 동일한 모서리 둥글기 유지 */
-    cursor: pointer; /* 포인터 커서 */
+    padding: 15px;
+    height: 52px;
+    border-radius: 5px;
+    cursor: pointer;
     margin-top: 7.5px;
 }
 
@@ -136,81 +135,74 @@ p {
 .error-msg {
     color: #e74c3c;
     font-size: 12px;
-    display: none; /* 기본 상태로는 숨김 */
+    display: none;
     margin-top: 5px;
 }
 
-/* 미디어 쿼리 */
-@media (max-width: 768px) {
+/* 미디어 쿼리 (모바일 환경) */
+@media (max-width: 720px) {
     .content {
-        padding: 20px; /* 패딩을 줄여서 공간 활용 */
-        max-width: 90%; /* 최대 너비를 화면의 90%로 설정 */
+        padding: 20px;
+        max-width: 90%;
     }
 
     .content h2 {
-        font-size: 22px; /* 제목 글씨 크기 조정 */
+        font-size: 22px;
     }
 
     .form-group input[type="text"],
     .form-group input[type="email"],
     .form-group input[type="password"],
     .form-group input[type="tel"] {
-        padding: 10px; /* 패딩 조정 */
+        padding: 12px;
     }
 
     .social-login button {
-        padding: 10px; /* 소셜 로그인 버튼 패딩 조정 */
+        padding: 10px;
+        font-size: 14px; /* 글씨 크기 약간 줄이기 */
     }
 }
 
 @media (max-width: 480px) {
-    body {
-        margin: 0; /* 전체 여백 제거 */
-    }
-
+    /* 모바일 화면에 적합한 세로 정렬 및 중앙 정렬 추가 */
     .wrapper {
-        margin: 20px; /* 여백 줄이기 */
+        margin: 10px; /* 여백 줄이기 */
     }
 
     .content {
-        padding: 15px; /* 패딩 조정 */
-        max-width: 100%; /* 최대 너비를 100%로 설정 */
+        padding: 15px;
+        max-width: 100%;
     }
 
     .content h2 {
-        font-size: 20px; /* 제목 글씨 크기 조정 */
+        font-size: 20px;
     }
 
     .form-group input[type="text"],
     .form-group input[type="email"],
     .form-group input[type="password"],
     .form-group input[type="tel"] {
-        padding: 8px; /* 패딩 조정 */
+        padding: 10px;
     }
 
-    .social-login button {
-        padding: 8px; /* 소셜 로그인 버튼 패딩 조정 */
-    }
-
-    /* 버튼을 세로 방향으로 배치 */
-    .form-group {
-        display: flex; /* Flexbox 사용 */
-        flex-direction: column; /* 세로 방향으로 설정 */
+    .social-login,
+    .btns {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
         align-items: center; /* 중앙 정렬 */
     }
 
-    .social-login {
-        display: flex; /* Flexbox 사용 */
-        flex-direction: column; /* 세로 방향으로 설정 */
-        align-items: center; /* 중앙 정렬 */
-        gap: 10px; /* 버튼 간격 조정 */
+    .social-login button,
+    .btn {
+        width: 100%; /* 버튼을 화면에 꽉 차게 */
     }
 
-    /* 회원가입, 아이디 찾기, 비밀번호 찾기 링크 스타일 */
+    /* 버튼 여백과 중앙 정렬 */
     .form-group div {
-        display: flex; /* Flexbox 사용 */
-        flex-direction: column; /* 세로 방향으로 설정 */
-        align-items: center; /* 중앙 정렬 */
-        gap: 10px; /* 링크 간격 조정 */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
     }
 }
