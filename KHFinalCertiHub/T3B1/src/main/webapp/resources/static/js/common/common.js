@@ -216,6 +216,7 @@ function createList(div, data){
         startPage : 시작번호,
         endPage : 끝번호,
         currentPage : 현재 선택된 페이지 번호,
+        pageUrl : 클릭시 이동할 페이지 경로, ex) contextPath + '/study/list?',
         imgUrl : [
             "왼쪽 화살표 이미지 주소",
             "오른쪽 화살표 이미지 주소"
@@ -248,6 +249,10 @@ function createPageBar(div, data){
 
         if(i == data.currentPage){
             pageButton.className +=" active"
+        }
+
+        pageButton.onclick = () => {
+            location.href = data.pageUrl + '&p=' + i;
         }
 
         pageDiv.appendChild(pageButton)
