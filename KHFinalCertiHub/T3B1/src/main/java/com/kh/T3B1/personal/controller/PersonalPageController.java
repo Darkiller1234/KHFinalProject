@@ -35,7 +35,7 @@ public class PersonalPageController {
 	@RequestMapping("mentor")
 	public String PersonalMentorPage(Model p) {
 		// 멘토 가입했다면 personalMentor, 가입하지 않았다면 personalMentorEnroll 페이지로
-		p.addAttribute("pageName","personalMentorPage");
+		p.addAttribute("pageName","personalMentor");
 		return "personal/personalMentor";
 	}
 

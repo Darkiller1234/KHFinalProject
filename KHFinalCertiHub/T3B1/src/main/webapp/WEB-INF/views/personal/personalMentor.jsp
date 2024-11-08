@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/personal/personalMentorEnroll.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/personal/personalMentor.css">
 
-        <!-- <script src="${pageContext.request.contextPath}/resources/static/js/personal/personalMentorEnroll.js"></script> -->
+        <script src="${pageContext.request.contextPath}/resources/static/js/personal/personalMentor.js"></script>
 
         <title>Document</title>
     </head>
@@ -208,7 +208,7 @@
                             <div class="intro-input font-size-title">자기소개 입력</div>
                             <textarea class="form-control" name="member-intro">김용하청계천빠뜨리기</textarea>
                             <div class="intro-input font-size-title">질문 가능 여부</div>
-                            <div class="mentor-valid"></div>
+                            <div class="valid-choose"></div>
                         </div>
                     </div>
 
