@@ -98,8 +98,8 @@ crossorigin="anonymous"></script>
 
                         <li class="submenu last etc">
                             <ul>
-                                <li><a href="">컴파일러</a></li>
-                                <li><a href="">챗봇 도우미</a></li>
+                                <li><a href="<%=contextPath%>/etc/compiler">컴파일러</a></li>
+                                <li><a href="<%=contextPath%>/etc/chatbot">챗봇 도우미</a></li>
                             </ul>
                         </li> 
                     </ul>

@@ -13,7 +13,7 @@
     <body>
         <%@ include file="../common/header.jsp" %>
             <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/common/default.css">
-            <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/etc/etc.css">
+            <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/etc/compiler.css">
             <div class="wrapper">
                 <div>
                     <h3>컴파일러 </h3>
@@ -57,7 +57,7 @@ class Main {
             </div>
 
 
-            <script src="<%=contextPath%>/resources/static/js/etc/etc.js"></script>
+            <script src="<%=contextPath%>/resources/static/js/etc/compiler.js"></script>
             <%@ include file="../common/footer.jsp" %>
     </body>
 
