@@ -27,17 +27,20 @@
                         </div>
                         <div class="btn-group" role="group" aria-label="Basic radio toggle button group" id="category-btn">
                             <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="btnradio1">프로필 편집</label>
+                            <label class="btn btn-outline-primary" for="btnradio1" onclick="location.href='<%=contextPath%>/personal/profile'">프로필 편집</label>
 
                             <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="btnradio2">개인정보 변경</label>
+                            <label class="btn btn-outline-primary" for="btnradio2" onclick="location.href='<%=contextPath%>/personalChangePage'">개인정보 변경</label>
 
                             <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off"
                                 checked>
-                            <label class="btn btn-outline-primary" for="btnradio3">자격증 인증 신청</label>
+                            <label class="btn btn-outline-primary" for="btnradio3" onclick="location.href='<%=contextPath%>/personal/certiRegi'">자격증 인증 신청</label>
 
                             <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
                             <label class="btn btn-outline-primary" for="btnradio4" onclick="location.href='<%=contextPath%>/personal/mentor'">멘토 정보 수정</label>
+
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="btnradio5" onclick="location.href='<%=contextPath%>/personal/makeSc'">계획표 만들기</label>
                         </div>
 
                         <nav class="navbar bg-body-tertiary page-title font-size-subtitle" id="certiSelect">
@@ -60,16 +63,16 @@
                                             <a class="nav-link active" aria-current="page" href="<%=contextPath%>/personal/profile">프로필 편집</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" href="#">개인정보 변경</a>
+                                            <a class="nav-link active" aria-current="page" href="<%=contextPath%>/personalChangePage">개인정보 변경</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" href="#">자격증 인증 신청</a>
+                                            <a class="nav-link active" aria-current="page" href="<%=contextPath%>/personal/certiRegi">자격증 인증 신청</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" href="#">멘토 정보 수정</a>
+                                            <a class="nav-link active" aria-current="page" href="<%=contextPath%>/personal/mentor">멘토 정보 수정</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" href="#">계획표 만들기</a>
+                                            <a class="nav-link active" aria-current="page" href="<%=contextPath%>/personal/makeSc">계획표 만들기</a>
                                         </li>
                                     </ul>
                                 </div>

@@ -85,3 +85,30 @@
         display: none;
     }
 }
+
+@media (min-width: 481px) and (max-width: 720px) {
+
+    #category-btn{
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+
+    #category-btn{
+        display: none;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
