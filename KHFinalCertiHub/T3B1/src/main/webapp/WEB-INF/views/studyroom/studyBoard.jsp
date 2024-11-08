@@ -41,15 +41,8 @@
                 <img src="${pageContext.request.contextPath}/resources/static/img/button/pencil_icon.png">
                 글쓰기
             </button>
-            <div class="pagination">
-                <span class="page-arrow">&lt;</span>
-                <span class="page-num">1</span>
-                <span class="page-num active">2</span>
-                <span class="page-num">3</span>
-                <span class="page-num">4</span>
-                <span class="page-num">5</span>
-                <span class="page-arrow">&gt;</span>
-            </div>
+            
+            <div class="paging-bar"></div>
         </div>
 
     </div>
