@@ -210,6 +210,53 @@ function createList(div, data){
     div.appendChild(board)
 }
 
+/*
+    페이징바 생성함수
+    data = {
+        startPage : 시작번호,
+        endPage : 끝번호,
+        currentPage : 현재 선택된 페이지 번호,
+        imgUrl : [
+            "왼쪽 화살표 이미지 주소",
+            "오른쪽 화살표 이미지 주소"
+        ]
+    }
+*/
+function createPageBar(div, data){
+    const pageDiv = document.createElement('div')
+    pageDiv.className = "pagination"
+
+    const leftArrow = document.createElement('span')
+    const rightArrow = document.createElement('span')
+    leftArrow.className = "page-arrow"
+    rightArrow.className = "page-arrow"
+
+    const leftArrowImg = document.createElement('img')
+    const rightArrowImg = document.createElement('img')
+    leftArrowImg.src = data.imgUrl[0];
+    rightArrowImg.src = data.imgUrl[1];
+
+    leftArrow.appendChild(leftArrowImg)
+    rightArrow.appendChild(rightArrowImg)
+
+    // 페이지바 생성
+    pageDiv.appendChild(leftArrow)
+    for(let i = data.startPage; i <= data.endPage; i++){
+        let pageButton = document.createElement('span')
+        pageButton.className = "page-num"
+        pageButton.innerText = i
+
+        if(i == data.currentPage){
+            pageButton.className +=" active"
+        }
+
+        pageDiv.appendChild(pageButton)
+    }
+    pageDiv.appendChild(rightArrow)
+
+    div.appendChild(pageDiv)
+}
+
 function topScroll(){
     /*
         IE, FireFox
