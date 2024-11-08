@@ -3,7 +3,7 @@ function initPersonalProfileEdit(contextPath){
 }
 
 function initSelectBox(contextPath){
-    const selectBoxList = document.querySelectorAll('.license-choose');
+    const selectBoxList = document.querySelector('.license-choose');
 
     const data1 = {
         name : 'license',

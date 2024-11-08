@@ -1,0 +1,94 @@
+.middle-view{
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+/* 왼쪽 영역 */
+.example{
+    border: 1px solid #83C5BE;
+    border-radius: 5px;
+}
+
+.example .mentor-card{
+    border-bottom: 1px solid #83C5BE;
+    border-radius: 0;
+    padding: 20px;
+}
+
+.mentor-info{
+    padding:20px;
+    height:400px;
+    overflow-y: auto;
+    /* 스크롤 표시 제거 */
+    -ms-overflow-style: none; /* 인터넷 익스플로러 */
+    scrollbar-width: none; /* 파이어폭스 */
+}
+
+/* 스크롤 표시 제거 ( 크롬, 사파리, 오페라, 엣지 ) */
+.mentor-info::-webkit-scrollbar{
+    display: none;
+}
+
+.mentor-info div{
+    margin-bottom:10px;
+}
+
+/* 오른쪽 영역 */
+.right-view div{
+    margin-bottom:10px;
+}
+
+.look-license{
+    display: flex;
+    flex-wrap: wrap;
+    gap:10px;
+}
+
+.look-license .tag{
+    white-space: nowrap;
+}
+
+.right-view textarea{
+    resize: none;
+    background-color: #EDF6F9;
+}
+
+.career-input+textarea{
+    height: 200px;
+}
+
+.intro-input+textarea{
+    height: 306px;
+}
+
+.bottom-view{
+    margin:50px;
+}
+
+@media (min-width: 481px) and (max-width: 720px) {
+    .middle-view{
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .left-view{
+        display: none;
+    }
+
+}
+
+@media (max-width: 480px) {
+    .middle-view{
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    
+    .left-view{
+        display: none;
+    }
+
+}

@@ -62,6 +62,8 @@ function init(contextPath, pageName, optional){
         case "personalProfileEdit":
             initPersonalProfileEdit(contextPath);
             break;
+        case "personalMentor":
+            initPersonalMentor(contextPath);
     }
 }
 
