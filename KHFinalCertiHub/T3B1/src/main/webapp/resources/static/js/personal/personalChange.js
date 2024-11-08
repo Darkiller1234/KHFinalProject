@@ -22,7 +22,7 @@ function validateAndRedirect() {
         alert("비밀번호를 입력해주세요.");
     } else {
         // 값이 있으면 페이지로 이동
-        location.href = "personalChangePage";
+        location.href = "ChangePage";
     }
 }
 
