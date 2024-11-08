@@ -101,18 +101,6 @@ function initBoard(contextPath){
     createList(boardList, data)
 }
 
-/*
-    페이징바 생성함수
-    data = {
-        startPage : 시작번호,
-        endPage : 끝번호,
-        currentPage : 현재 선택된 페이지 번호,
-        imgUrl : [
-            "왼쪽 화살표 이미지 주소",
-            "오른쪽 화살표 이미지 주소"
-        ]
-    }
-*/
 function initPageBar(contextPath){
     const pagingBar = document.querySelector('.paging-bar');
 
@@ -120,6 +108,7 @@ function initPageBar(contextPath){
         startPage : 1,
         endPage : 5,
         currentPage : 1,
+        pageUrl : contextPath + '/study/list?',
         imgUrl : [
             contextPath + '/resources/static/img/button/arrow_left.png',
             contextPath + '/resources/static/img/button/arrow_right.png'

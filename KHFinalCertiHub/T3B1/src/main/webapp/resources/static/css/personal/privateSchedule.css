@@ -9,11 +9,24 @@ h1{
 .wrapper{
     display: flex;
     flex-direction: row;
-    margin: auto;
+    margin: 0 auto;
     padding-top: 30px;
     gap: 20px;
 }
 
+/* 달력 헤더 폰트 크기 변경 */
+.fc-toolbar-chunk{
+    font-size: 14px;
+}
+/* 달력 오늘 날짜로 가기 글자 쏠림 방지 */
+.fc .fc-button{
+    padding: 0;
+}
+
+.calendar{
+    width: 100%;
+    margin: auto;
+}
 
 .schedule{
     box-sizing: border-box;
@@ -67,12 +80,21 @@ footer{
 @media (min-width: 481px) and (max-width: 720px) {
     .wrapper{
         flex-direction: column;
+    }
+    .todolist, .createwrap{
+        max-width: 460px;
 
     }
 }
 
 @media (max-width: 480px) {
-    .schedule .bestBoard .notice{
-        width: 480px !important;
+    .wrapper{
+        flex-direction: column;
+        justify-content: center;
+
+    }
+    .todolist, .createwrap{
+        max-width: 340px;
+
     }
 }
