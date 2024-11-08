@@ -25,7 +25,7 @@
             <a class="navbar-brand" href="#">정보처리기사</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
               aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon">ㅁ</span>
+              <span class="navbar-toggler-icon"><img src="<%=contextPath%>/resources/static/img/button/triangle_down.png" alt=""></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav">
@@ -45,6 +45,7 @@
 
         <div id="middle-area">
           <div id="listArea">
+            
             <div id="detail-area">
               <div>
                 <div>
@@ -103,30 +104,45 @@
               </form>
               
             </div>
-            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-              <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-              <label class="btn btn-outline-primary" for="btnradio1">전체</label>
-
-              <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-              <label class="btn btn-outline-primary" for="btnradio2">공지</label>
-
-              <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+            <div class="scroll-container">
+              
+              <div class="scroll-content btn-group" role="group" aria-label="Basic radio toggle button group">
+                <!-- 여기에 스크롤 가능한 콘텐츠를 추가하세요 -->
+                <div class="item2">
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                  <label class="btn btn-outline-primary" for="btnradio1">전체</label>
+                </div>
+                <div class="item2">
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="btnradio2">공지</label>
+                </div>
+                <div class="item2">
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
               <label class="btn btn-outline-primary" for="btnradio3">자유</label>
-
-              <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
+                </div>
+                <div class="item2">
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
               <label class="btn btn-outline-primary" for="btnradio4">질문(자유)</label>
-
-              <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off">
+                </div>
+                <div class="item2">
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off">
               <label class="btn btn-outline-primary" for="btnradio5">질문(코딩)</label>
-
-              <input type="radio" class="btn-check" name="btnradio" id="btnradio6" autocomplete="off">
+                </div>
+                <div class="item2">
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio6" autocomplete="off">
               <label class="btn btn-outline-primary" for="btnradio6">후기</label>
-
-              <input type="radio" class="btn-check" name="btnradio" id="btnradio7" autocomplete="off">
+                </div>
+                <div class="item2">
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio7" autocomplete="off">
               <label class="btn btn-outline-primary" for="btnradio7">문제집/강의 추천</label>
-
-              <input type="radio" class="btn-check" name="btnradio" id="btnradio8" autocomplete="off">
+                </div>
+                <div class="item2">
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio8" autocomplete="off">
               <label class="btn btn-outline-primary" for="btnradio8">문제집 거래</label>
+                </div>
+                
+              </div>
+              
             </div>
             <div class="listArea-div1">
               <div class="listArea-div1-info">
@@ -885,7 +901,7 @@
               <div>
                 <div id="selectbox2" class="custom-select">
                 </div>
-                <input type="text">
+                <input type="text" id="search-input">
                   <button class="rounded-circle" onclick="alert('클릭됨')">
                       <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
                   </button> 
