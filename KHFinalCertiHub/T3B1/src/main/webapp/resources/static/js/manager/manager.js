@@ -40,7 +40,7 @@ function initManagerBoard(contextPath){
 }
 
 function initManagerPageBar(contextPath) {
-    const pagingBar = document.querySelector('.notice-bar');
+    const pagingBar = document.querySelector('.manager-bar');
 
     const data = {
         startPage : 1,

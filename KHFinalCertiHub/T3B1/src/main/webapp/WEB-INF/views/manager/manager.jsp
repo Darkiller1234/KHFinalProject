@@ -41,7 +41,7 @@
                 <div class="board-notice"></div>
 
                 <!-- 페이징바 -->
-                <div class="notice-bar"></div>
+                <div class="manager-bar"></div>
             </div>
         </div>
     </div>

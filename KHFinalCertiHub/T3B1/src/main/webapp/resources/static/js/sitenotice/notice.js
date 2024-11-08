@@ -1,6 +1,7 @@
 function initNoticePage(contextPath) {
     initBoardList(contextPath);
     initSelectPage(contextPath);
+    initNoticePageBar(contextPath);
 }
 
 function initBoardList(contextPath){
@@ -50,4 +51,20 @@ function initSelectPage(contextPath) {
     }
 
     createSelectBox(selectBoxList,data)
+}
+
+function initNoticePageBar(contextPath) {
+    const pagingBar = document.querySelector('.notice-bar');
+
+    const data = {
+        startPage : 1,
+        endPage : 5,
+        currentPage : 1,
+        pageUrl : 'notice?',
+        imgUrl : [
+            contextPath + '/resources/static/img/button/arrow_left.png',
+            contextPath + '/resources/static/img/button/arrow_right.png'
+        ]
+    }
+    createPageBar(pagingBar, data)
 }
