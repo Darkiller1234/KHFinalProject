@@ -5,12 +5,15 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>InfoPage</title>
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2a40239e8b746b411bf4057c27e822e9&libraries=services"></script>
         <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
+
     </head>
     <body>
         <%@ include file="../common/header.jsp" %>
             <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/common/default.css">
             <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/infopage/infoPage.css">
+            <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/infopage/map.css">
             <div class="wrapper">
                 <div class="container">
                     <div class="certi">
@@ -276,10 +279,26 @@
                                         <div class="test-select"></div>
                                         <button class="search-btn">검색</button>
                                     </div>
-                                    <div class="map">
-                                        <img src="<%=contextPath%>/resources/static/img/temporary/map.png" alt="">
+                                            <div class="map_wrap">
+                                                <div id="map"
+                                                    style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
+                                        
+                                                <div id="menu_wrap" class="bg_white">
+                                                    <div class="option">
+                                                        <div>
+                                                            <form onsubmit="searchPlaces(); return false;">
+                                                                <input type="text" id="keyword" size="30" placeholder="장소를 입력하세요">
+                                                                <button onclick="search()">검색</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    <ul id="placesList"></ul>
+                                                    <div id="pagination"></div>
+                                                </div>
+                                            </div>
+                                            <button onclick="relayout()">relayout 호출하기</button>
                                         <br><br>
-                                    </div>
                                     <div class="weather">
                                         <pre><b>해당 지역 날씨 정보 (현재 날짜 기준 최대 10일)</b></pre> <br>
                                         <table>
@@ -351,10 +370,8 @@
                     </div>
                 </div>
             </div>
-
             <script src="<%=contextPath%>/resources/static/js/infopage/infoPage.js"></script>
-
-
+            <script src="<%=contextPath%>/resources/static/js/infopage/map.js"></script>
             <%@ include file="../common/footer.jsp" %>
     </body>
 

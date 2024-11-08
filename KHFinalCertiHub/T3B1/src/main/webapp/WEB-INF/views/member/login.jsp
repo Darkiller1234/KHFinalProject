@@ -36,9 +36,9 @@
                     </div>
 
                     <div>
-                        <a href="<%=contextPath%>/membership">회원가입</a> |
-                        <a href="<%=contextPath%>/idfind">아이디 찾기</a> |
-                        <a href="<%=contextPath%>/pwdfind">비밀번호 찾기</a>
+                        <a href="<%=contextPath%>/member/membership">회원가입</a> |
+                        <a href="<%=contextPath%>/member/idfind">아이디 찾기</a> |
+                        <a href="<%=contextPath%>/member/pwdfind">비밀번호 찾기</a>
                     </div>
 
                     <p>또는</p>

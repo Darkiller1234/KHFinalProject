@@ -233,8 +233,8 @@
             </div>
 
             <div class="search-form">
-                <input type="text">
-                <button class="rounded-circle" onclick="alert('클릭됨')">
+                <input id="sendText" type="text" onkeypress="addMessage(event)">
+                <button class="rounded-circle" onclick="addMessage(event)">
                     <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
                 </button> 
             </div>

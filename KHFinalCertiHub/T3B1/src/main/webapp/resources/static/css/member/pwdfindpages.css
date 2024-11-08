@@ -67,7 +67,7 @@ h2 {
 }
 
 /* 미디어 쿼리 */
-@media (max-width: 768px) {
+@media (max-width: 720px) {
     .wrapper {
         padding: 20px 30px;
     }
