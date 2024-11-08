@@ -10,13 +10,14 @@
     <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
     <script src="${pageContext.request.contextPath}/resources/static/js/community/communityMain.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/community/communityMain.css">
 
     <title>Document</title>
   </head>
 
   <body>
     <%@ include file="../common/header.jsp" %>
-      <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/community/communityMain.css">
+      
       
       <div class="wrapper">
           <nav class="navbar bg-body-tertiary page-title" id="certiSelect">
@@ -98,7 +99,7 @@
               </div>
               <div class="listArea-noti">
                 <div>
-                  <div class="listArea-div1-tab">
+                  <div class="listArea-div1-tab cate-notice">
                     공지
                   </div>
                   <div class="listArea-div1-title">
@@ -123,7 +124,7 @@
                   </div>
                 </div>
               </div>
-              <div onclick="redirect('<%=contextPath%>/detail.cm')">
+              <div onclick="redirect('<%=contextPath%>/community/detail')">
                 <div>
                   <div class="listArea-div1-tab">
                     질문(자유)
@@ -830,7 +831,7 @@
                       <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
                   </button> 
               </div>
-              <button onclick="location.href='<%=contextPath%>/write.cm'">
+              <button onclick="location.href='<%=contextPath%>/community/write'">
                 <img src="<%=contextPath%>/resources/static/img/button/write.png" alt="">
                 글쓰기
               </button>

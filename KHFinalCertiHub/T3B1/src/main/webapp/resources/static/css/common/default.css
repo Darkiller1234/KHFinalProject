@@ -250,7 +250,7 @@ div1과 div2의 구조가 다름
 }
 
 .listArea-div1-tab {
-    min-width: 130px;
+    min-width: 140px;
     justify-content: center;
     text-align: center;
 }

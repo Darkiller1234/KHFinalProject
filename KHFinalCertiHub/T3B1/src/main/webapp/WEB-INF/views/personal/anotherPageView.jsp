@@ -9,13 +9,13 @@
 
         <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/personal/anotherPageView.css">
         <title>Document</title>
     </head>
 
     <body>
         <%@ include file="../common/header.jsp" %>
-            <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/personal/anotherPageView.css">
+            
 
             <div class="wrapper padding">
 

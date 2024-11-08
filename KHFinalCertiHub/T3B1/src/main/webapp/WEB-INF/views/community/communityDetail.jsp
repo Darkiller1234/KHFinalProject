@@ -11,12 +11,13 @@
     
     <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
     <script src="${pageContext.request.contextPath}/resources/static/js/community/communityDetail.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/community/communityDetail.css">
     <title>Document</title>
   </head>
 
   <body>
     <%@ include file="../common/header.jsp" %>
-      <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/community/communityDetail.css">
+      
         
       <div class="wrapper">
         <nav class="navbar bg-body-tertiary page-title" id="certiSelect">
@@ -182,7 +183,7 @@
                   </div>
                 </div>
               </div>
-              <div onclick="redirect('<%=contextPath%>/detail.cm')">
+              <div onclick="redirect('<%=contextPath%>/community/detail')">
                 <div>
                   <div class="listArea-div1-tab">
                     질문(자유)

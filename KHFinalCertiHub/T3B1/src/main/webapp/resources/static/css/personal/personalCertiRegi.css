@@ -10,7 +10,13 @@
 
 
 
+#profile{
+    padding-bottom: 20px;
+}
 
+.file{
+    display:none;
+}
 
 
 
@@ -65,6 +71,11 @@
     #certiSelect {
         display: none;
     }
+
+    #profile{
+        width: 300px;
+        height: 300px;
+    }
 }
 
 @media (min-width: 481px) and (max-width: 720px) {
@@ -100,6 +111,11 @@
 
     #middle-view {
         flex-direction: column;
+    }
+
+    #profile{
+        width: 250px;
+        height: 250px;
     }
 }
 
