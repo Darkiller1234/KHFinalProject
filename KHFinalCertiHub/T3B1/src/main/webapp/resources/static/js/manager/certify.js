@@ -1,4 +1,9 @@
 function initCertifyPage(contextPath) {
+    initCertifyBoard(contextPath);
+    initCertifyPageBar(contextPath);
+}
+
+function initCertifyBoard(contextPath) {
     const boardList = document.querySelector('.board-certify');
 
     let data = {
@@ -30,4 +35,20 @@ function initCertifyPage(contextPath) {
     }
 
     createList(boardList, data)
+}
+
+function initCertifyPageBar(contextPath) {
+    const pagingBar = document.querySelector('.certify-bar');
+
+    const data = {
+        startPage : 1,
+        endPage : 5,
+        currentPage : 1,
+        pageUrl : 'certify?',
+        imgUrl : [
+            contextPath + '/resources/static/img/button/arrow_left.png',
+            contextPath + '/resources/static/img/button/arrow_right.png'
+        ]
+    }
+    createPageBar(pagingBar, data)
 }

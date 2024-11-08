@@ -41,15 +41,7 @@
                 <div class="board-certify"></div>
 
                 <!-- 페이징바 -->
-                <div class="pagination">
-                    <span class="page-arrow">&lt;</span>
-                    <span class="page-num">1</span>
-                    <span class="page-num active">2</span>
-                    <span class="page-num">3</span>
-                    <span class="page-num">4</span>
-                    <span class="page-num">5</span>
-                    <span class="page-arrow">&gt;</span>
-                </div>
+                <div class="certify-bar"></div>
             </div>
         </div>
     </div>
