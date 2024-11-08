@@ -5,15 +5,27 @@
     <meta charset="UTF-8">
     <title>서티허브</title>
     
-</head>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
+    <script src="${pageContext.request.contextPath}/resources/static/js/main/mainPage.js"></script>
+
+</head>
 <body>
     <%@ include file="../common/header.jsp" %>
     <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/main/mainPage.css">
     <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/common/default.css"> 
         <div class="wrapper">
+
             <div class="banner">
-                <img src="<%=contextPath%>/resources/static/img/temporary/mainBanner.png" alt="">
+                <swiper-container class="mySwiper" pagination="true" pagination-clickable="true" navigation="true" space-between="30"
+                centered-slides="true" autoplay-delay="2500" autoplay-disable-on-interaction="false">
+                    <swiper-slide><img src="<%=contextPath%>/resources/static/img/banner/banner1.png" alt=""></swiper-slide>
+                    <swiper-slide><img src="<%=contextPath%>/resources/static/img/banner/banner2.png" alt=""></swiper-slide>
+                    <swiper-slide><img src="<%=contextPath%>/resources/static/img/banner/banner3.png" alt=""></swiper-slide>
+                </swiper-container>
             </div>
 
             <div class="layer1">

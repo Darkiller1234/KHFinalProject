@@ -21,6 +21,7 @@
                     <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
                 </div>
                 <div class="mentor-name font-size-subtitle">User01</div>
+                <div class="tag bgcolor3"><img src="<%=contextPath%>/resources/static/img/button/heart.png">1.2k</div>
                 <div class="symbol-license">빅데이터분석기사</div>
                 <div class="member-intro font-size-footer">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
                 <div class="tag valid bgcolor3"><img src="<%=contextPath%>/resources/static/img/button/valid_icon.png">질문가능</div>
