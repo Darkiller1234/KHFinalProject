@@ -14,6 +14,12 @@ public class PersonalPageController {
 		return "personal/anotherPageView";
 	}
 	
+	@RequestMapping("viewSc")
+	public String PersonalPageViewSchedule(Model p) {
+		p.addAttribute("pageName", "personalViewSchedule");
+		return "personal/anotherPageViewSchedule";
+	}
+	
 	@RequestMapping("certiRegi")
 	public String PersonalPageCertiRegistry(Model p) {
 		p.addAttribute("pageName", "personalCertiRegi");
@@ -30,6 +36,13 @@ public class PersonalPageController {
 	public String PersonalProfileEditPage(Model p) {
 		p.addAttribute("pageName","personalProfileEdit");
 		return "personal/personalProfileEdit";
+	}
+	
+	@RequestMapping("mentor")
+	public String PersonalMentorPage(Model p) {
+		// 멘토 가입했다면 personalMentor, 가입하지 않았다면 personalMentorEnroll 페이지로
+		p.addAttribute("pageName","personalMentor");
+		return "personal/personalMentor";
 	}
 
 }

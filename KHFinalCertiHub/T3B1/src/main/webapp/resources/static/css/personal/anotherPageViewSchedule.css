@@ -8,6 +8,19 @@
     margin-top: 10px;
 }
 
+#calendar {
+    max-width: 100%;
+    border: 1px solid #83C5BE;
+    border-radius: 30px;
+}
+
+#calendar > img {
+    width: 100%;
+    border: 1px solid #83C5BE;
+    border-radius: 30px;
+}
+
+
 #today-job {
     display: flex;
     gap: 5px;

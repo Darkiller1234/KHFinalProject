@@ -62,6 +62,13 @@ function init(contextPath, pageName, optional){
         case "personalProfileEdit":
             initPersonalProfileEdit(contextPath);
             break;
+
+        case "commuDInit":
+            commuDInit(contextPath);
+            break;
+        case "personalMentor":
+            initPersonalMentor(contextPath);
+            break;
     }
 }
 

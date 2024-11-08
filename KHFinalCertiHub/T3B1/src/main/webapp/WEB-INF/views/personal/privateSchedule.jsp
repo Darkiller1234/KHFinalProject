@@ -5,7 +5,10 @@
     <head>
         <meta charset="UTF-8">
         <title>개인 일정</title>
-
+        <!-- FullCalendar CSS (CDN) -->
+        <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css" rel="stylesheet" />
+        <!-- FullCalendar JS (CDN) -->
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
     </head>
 
     <body>
@@ -14,7 +17,7 @@
             <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/common/default.css">
             <div class="wrapper">
                 <div class="calendar">
-                    <img src="<%=contextPath%>/resources/static/img/temporary/calendar.png" alt="">
+                    <div id="calendar"></div>
                 </div>
                 <div class="schedule">
                     <div class="todolist">
@@ -28,15 +31,15 @@
                             </button>
                         </div>
                         <div class="list">
-                            <p>젠지 따운!</p>
-                            <p>LPL 따운!</p>
+
                         </div>
                     </div>
                 </div>
             </div>
-            
+            <script src="<%=contextPath%>/resources/static/js/calendar/calendar.js"></script>
+
             <%@ include file="../common/footer.jsp" %>
-            
+
     </body>
 
     </html>

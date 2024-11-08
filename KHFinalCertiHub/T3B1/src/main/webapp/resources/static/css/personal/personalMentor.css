@@ -1,0 +1,21 @@
+.career-input+textarea{
+    height:150px;
+}
+
+.intro-input+textarea{
+    height:250px;
+}
+
+.valid-choose{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.valid-choose div{
+    margin:0px;
+}
+
+.valid-choose .custom-select{
+    width:130px;
+}

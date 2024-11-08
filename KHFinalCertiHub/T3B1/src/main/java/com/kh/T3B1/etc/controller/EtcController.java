@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("etc/")
 public class EtcController {
 	
 	@RequestMapping("compiler")
@@ -12,5 +13,11 @@ public class EtcController {
 		m.addAttribute("pageName", "compilerPage");
 		return "etc/compiler";
 	}
-
+	
+	@RequestMapping("chatbot")
+	public String chatbotPage(Model m) {
+		m.addAttribute("pageName", "chatbot");
+		return "etc/chatbot";
+	}
+	
 }

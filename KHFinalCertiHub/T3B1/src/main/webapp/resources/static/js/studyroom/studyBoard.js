@@ -1,6 +1,7 @@
 function initStudyBoard(contextPath){
     initSelectBox(contextPath)
     initBoard(contextPath)
+    initPageBar(contextPath)
 }
 
 function initSelectBox(contextPath){
@@ -98,4 +99,21 @@ function initBoard(contextPath){
     }
 
     createList(boardList, data)
+}
+
+function initPageBar(contextPath){
+    const pagingBar = document.querySelector('.paging-bar');
+
+    const data = {
+        startPage : 1,
+        endPage : 5,
+        currentPage : 1,
+        pageUrl : contextPath + '/study/list?',
+        imgUrl : [
+            contextPath + '/resources/static/img/button/arrow_left.png',
+            contextPath + '/resources/static/img/button/arrow_right.png'
+        ]
+    }
+
+    createPageBar(pagingBar, data)
 }
