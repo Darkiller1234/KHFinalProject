@@ -1,0 +1,258 @@
+/* 페이지 기본 스타일 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.wrapper {
+    padding: 20px;
+}
+
+/* 탭 스타일 */
+.tabs {
+    display: flex;
+    background-color: white;
+    position: relative;
+}
+
+.tabs .tab {
+    text-align: center;
+    color: #333;
+    font-weight: normal;
+    cursor: pointer;
+    margin-right: 5px;
+    padding: 15px 0;
+    display: inline-block;
+    width: auto;
+    border-bottom: 3px solid #006D77;
+    margin-bottom: 20px;
+}
+
+.tabs .tab.active {
+    background-color: #ffffff;
+    font-weight: bold;
+    border-bottom: 3px solid #006D77;
+}
+
+.tabs .tab:hover {
+    background-color: #006D77;
+    color: white;
+}
+
+/* 드롭다운 메뉴 기본 스타일 */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+/* 드롭다운 버튼 */
+.dropdown-btn {
+    margin-left: 10px;
+    color: white;
+    border: none;
+    padding: 10px;
+}
+
+/* 콘텐츠 영역 */
+.content {
+    padding: 20px;
+    margin-left: 10px;
+    position: relative;
+}
+
+/* 레이블 스타일 */
+label {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 5px;
+    display: block;
+}
+
+input[type="text"],
+input[type="email"] {
+    max-width: 300px;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #83c5be;
+    border-radius: 5px;
+    background-color: #EDF6F9;
+    margin-top: 5px;
+    margin-bottom: 30px;
+}
+
+input[type="text"]:focus {
+    box-shadow: 0px 0px 0px 3px #ccf0ec;
+}
+
+/* middle-view 설정 */
+#middle-view {
+    display: flex;
+    justify-content: space-between; /* 좌우로 정렬 */
+    padding: 20px;
+}
+
+/* left-view와 right-view 배치 */
+.left-view, .right-view {
+    width: 45%; /* 각 영역의 너비를 45%로 조정 */
+}
+
+/* right-view 안의 비밀번호 변경 및 회원 탈퇴 버튼 정렬 */
+.password-change, .account-delete {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* 왼쪽 정렬 */
+    margin-top: 20px;
+}
+
+/* right-view의 label 스타일과 위치 조정 */
+.password-change .label, .account-delete .label {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* 비밀번호 변경 및 회원 탈퇴 버튼 스타일 */
+.password-change .btn {
+    background-color: #006D77;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 5px;
+    width: 150px;
+    text-align: center;
+}
+
+/* 회원 탈퇴 버튼 스타일 변경 */
+.account-delete .btn {
+    background-color: #E29578; /* 변경된 배경색 */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 5px;
+    width: 150px;
+    text-align: center;
+}
+
+.password-change .btn:hover, .account-delete .btn:hover {
+    background-color: #004f4f;
+}
+
+/* 버튼 아래쪽 간격 추가 */
+.btns {
+    margin-left: 37px;
+}
+
+footer {
+    width: 100%;
+    background-color: #EDF6F9;
+    text-align: center;
+    padding: 10px 0;
+    box-sizing: border-box;
+    margin-top: 13.8%;
+}
+
+img {
+    width: 35px;
+    height: 35px;
+    background-color: none;
+}
+
+/* 미디어 쿼리 */
+@media (max-width: 720px) {
+    .tabs {
+        display: none;
+    }
+
+    .page-title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .dropdown-btn {
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        position: absolute;
+        background-color: #fff;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    /* 모바일에서 left-view와 right-view 세로 배치 */
+    #middle-view {
+        display: block; /* 세로로 배치 */
+        text-align: center;
+    }
+
+    .left-view, .right-view {
+        width: 100%; /* 전체 너비 차지 */
+        margin-bottom: 20px;
+    }
+
+    /* 모바일에서 input 필드 중앙 정렬 */
+    .left-view input[type="text"],
+    .left-view input[type="email"] {
+        margin: 0 auto; /* 중앙 정렬 */
+    }
+
+    /* 모바일에서 저장 버튼 왼쪽으로 이동 */
+    .btns button {
+        margin-top: 20px;
+        margin-left: 0; /* 왼쪽 여백 설정 */
+        transform: translateX(-25px); /* 왼쪽으로 살짝 이동 */
+    }
+
+    /* 모바일에서 비밀번호 변경 및 회원 탈퇴 섹션 중앙 정렬 */
+    .password-change, .account-delete {
+        align-items: center;
+        text-align: center;
+    }
+
+    .password-change .btn, .account-delete .btn {
+        width: 100%; /* 버튼 너비를 100%로 확장 */
+        margin-top: 10px;
+    }
+}
+
+/* 데스크탑 화면에서는 드롭다운 버튼 숨기기 */
+@media (min-width: 721px) {
+    .dropdown-btn {
+        display: none;
+    }
+}
+
+/* 드롭다운 메뉴 표시 */
+.dropdown-content.show {
+    display: block;
+    margin-right: 30%;
+}
