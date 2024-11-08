@@ -44,5 +44,15 @@ public class PersonalPageController {
 		p.addAttribute("pageName","personalMentor");
 		return "personal/personalMentor";
 	}
+	
+	@RequestMapping("Change")
+	public String PersonalChange() {
+		return "personal/personalChange";
+	}
+	
+	@RequestMapping("ChangePage")
+	public String PersonalChangePage() {
+		return "personal/personalChangePage";
+	}
 
 }

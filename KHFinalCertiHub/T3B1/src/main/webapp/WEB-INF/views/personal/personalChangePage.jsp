@@ -25,7 +25,7 @@
 
                             <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off"
                             checked>
-                            <label class="btn btn-outline-primary" for="btnradio2" onclick="location.href='<%=contextPath%>/personalChangePage'">개인정보 변경</label>
+                            <label class="btn btn-outline-primary" for="btnradio2" onclick="location.href='<%=contextPath%>/personal/Change'">개인정보 변경</label>
 
                             <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off"
                                 >
@@ -44,7 +44,7 @@
                                 data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
                                 aria-label="Toggle navigation">
                                     <a class="navbar-brand font-size-title" href="#" data-bs-toggle="collapse"
-                                    data-bs-target="#navbarNav" aria-controls="navbarNav">자격증 인증 신청</a>
+                                    data-bs-target="#navbarNav" aria-controls="navbarNav">개인정보 변경</a>
                                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
                                         aria-label="Toggle navigation">
@@ -58,7 +58,7 @@
                                             <a class="nav-link active" aria-current="page" href="<%=contextPath%>/personal/profile">프로필 편집</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" href="<%=contextPath%>/personalChangePage">개인정보 변경</a>
+                                            <a class="nav-link active" aria-current="page" href="<%=contextPath%>/personal/Change">개인정보 변경</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link active" aria-current="page" href="<%=contextPath%>/personal/certiRegi">자격증 인증 신청</a>
