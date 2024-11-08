@@ -459,7 +459,7 @@ footer {
             "b b";
         grid-gap: 10px; /* 요소 간의 간격 */
         height: auto;
-        
+        grid-template-columns: minmax(100px, auto) minmax(100px, auto);
     }
 
     #search-area > :nth-child(1) {
@@ -487,4 +487,103 @@ footer {
         margin-left: auto;
     }
 
+}
+
+
+.rounded-circle img {
+    min-width: 34px;
+    max-width: 34px;
+}
+
+
+#search-input{
+    min-width: 0px;
+}
+
+#search-input-text {
+    min-width: 0px;
+}
+
+
+
+
+.navbar-toggler-icon > img {
+    width: 30px;
+}
+
+.navbar-toggler {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.nav-item:hover {
+    color: black !important;
+}
+
+.nav-link:hover {
+    color: black !important;
+}
+
+
+
+.scroll-container {
+    overflow: hidden;
+    cursor: grab; /* 손 모양의 커서 */
+    width: 100%; /* 스크롤 영역의 너비를 조정하세요 */
+  }
+  
+  .scroll-content {
+    display: flex;
+    width: max-content; /* 콘텐츠 길이에 맞게 폭을 자동 조정 */
+  }
+  
+  .item2 {
+    width: fit-content;
+    padding: 0px;
+    /* flex: 0 0 auto;
+    width: 100px;
+    margin: 0 10px;
+    background-color: #eee;
+    padding: 20px;
+    text-align: center;
+    box-sizing: border-box; */
+  }
+
+
+
+
+
+
+
+
+
+  .btn-outline-primary {
+    color: black !important;   
+    border-color: #006D77 !important;
+    border-top: 0px !important;
+    border-left: 0px !important;
+    border-right: 0px !important;
+    border-radius: 5px 5px 0px 0px !important;
+}
+
+
+
+.btn-check:active+.btn-outline-primary, .btn-check:checked+.btn-outline-primary, .btn-outline-primary.active, .btn-outline-primary.dropdown-toggle.show, .btn-outline-primary:active {
+    background-color: white !important;
+}
+
+.btn-check:checked+.btn-outline-primary {
+    color: white !important;
+    background-color: #006D77 !important;
+    border-color: #006D77 !important;
+    box-shadow: none !important;
+}
+
+.btn-outline-primary:hover {
+    background-color: white !important;
+
+}
+
+.nav-link{
+    color: black !important;
 }
