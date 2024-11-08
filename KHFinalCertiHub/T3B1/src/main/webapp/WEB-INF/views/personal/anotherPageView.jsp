@@ -6,6 +6,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/personal/commonPersonal.css">
 
         <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -20,32 +21,43 @@
             <div class="wrapper padding">
 
                 <div id="full-view">
+                    
                     <div class="top-view">
                         <div id="member-name" class="font-size-title">
-                            스타레일고수가될거야 님의 페이지
+                            스타레일고수가될거야님의 페이지
                         </div>
                         <div class="btn-group" role="group" aria-label="Basic radio toggle button group" id="category-btn">
                             <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off"
-                                checked>
-                            <label class="btn btn-outline-primary" for="btnradio1">프로필 정보</label>
+                            checked>
+                            <label class="btn btn-outline-primary" for="btnradio1" onclick="location.href='<%=contextPath%>/personal/view'">프로필 정보</label>
 
                             <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="btnradio2">스케쥴</label>
+                            <label class="btn btn-outline-primary" for="btnradio2" onclick="location.href='<%=contextPath%>/personal/viewSc'">스케줄</label>
                         </div>
 
                         <nav class="navbar bg-body-tertiary page-title font-size-subtitle" id="certiSelect">
                             <div class="container-fluid">
-                                <a class="navbar-brand font-size-subtitle" href="#">프로필 정보</a>
-                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                                    aria-label="Toggle navigation">
-                                    <span class="navbar-toggler-icon">ㅁ</span>
-                                </button>
+                                <div class="container-fluid" id="testdiv" data-bs-toggle="collapse"
+                                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                                aria-label="Toggle navigation">
+                                    <a class="navbar-brand font-size-title" href="#" data-bs-toggle="collapse"
+                                    data-bs-target="#navbarNav" aria-controls="navbarNav">프로필 정보</a>
+                                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                                        aria-label="Toggle navigation">
+                                        <span class="navbar-toggler-icon"><img src="<%=contextPath%>/resources/static/img/button/triangle_down.png" alt=""></span>
+                                    </button>
+                                </div>
+                                
                                 <div class="collapse navbar-collapse" id="navbarNav">
                                     <ul class="navbar-nav">
                                         <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" href="#">스케줄</a>
+                                            <a class="nav-link active" aria-current="page" href="<%=contextPath%>/personal/view">프로필 정보</a>
                                         </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link active" aria-current="page" href="<%=contextPath%>/personal/viewSc">스케줄</a>
+                                        </li>
+                                        
                                     </ul>
                                 </div>
                             </div>
