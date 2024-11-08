@@ -14,6 +14,12 @@ public class PersonalPageController {
 		return "personal/anotherPageView";
 	}
 	
+	@RequestMapping("viewSc")
+	public String PersonalPageViewSchedule(Model p) {
+		p.addAttribute("pageName", "personalViewSchedule");
+		return "personal/anotherPageViewSchedule";
+	}
+	
 	@RequestMapping("certiRegi")
 	public String PersonalPageCertiRegistry(Model p) {
 		p.addAttribute("pageName", "personalCertiRegi");

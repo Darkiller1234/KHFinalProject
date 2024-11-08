@@ -10,33 +10,29 @@
         <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
         <script src="${pageContext.request.contextPath}/resources/static/js/personal/personalMakeSc.js"></script>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/personal/anotherPageViewSchedule.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/personal/anotherPageView.css">
         <title>Document</title>
     </head>
 
     <body>
         <%@ include file="../common/header.jsp" %>
-            <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/personal/personalMakeSc.css">
+            
 
             <div class="wrapper padding">
 
                 <div id="full-view">
                     <div class="top-view">
                         <div id="member-name" class="font-size-title">
-                            개인 페이지
+                            스타레일고수가될거야 님의 페이지
                         </div>
                         <div class="btn-group" role="group" aria-label="Basic radio toggle button group" id="category-btn">
-                            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="btnradio1">프로필 편집</label>
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off"
+                                checked>
+                            <label class="btn btn-outline-primary" for="btnradio1">프로필 정보</label>
 
                             <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="btnradio2">개인정보 변경</label>
-
-                            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off"
-                                checked>
-                            <label class="btn btn-outline-primary" for="btnradio3">자격증 인증 신청</label>
-
-                            <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="btnradio4">멘토 신청</label>
+                            <label class="btn btn-outline-primary" for="btnradio2">스케쥴</label>
                         </div>
 
                         <nav class="navbar bg-body-tertiary page-title font-size-subtitle" id="certiSelect">
@@ -66,7 +62,7 @@
                         <div class="right-view">
                             <div id="today-job">
                                 <div class="font-size-subtitle">
-                                    오늘의 할일
+                                    오늘의 일정
                                 </div>
                                 <div>
                                     <div class="font-size-subtitle">
@@ -80,9 +76,9 @@
                             </div>
                             <div id="job-list">
                                 <div class="font-size-subtitle">
-                                    일정 생성하기
+                                    전체 일정
                                 </div>
-                                <button id="job-add-btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="<%=contextPath%>/resources/static/img/button/plus.png" alt=""></button>
+                                
                                 <div>
                                     <div class="font-size-subtitle">
                                         11월 8일 18:00 ~ 20:00
