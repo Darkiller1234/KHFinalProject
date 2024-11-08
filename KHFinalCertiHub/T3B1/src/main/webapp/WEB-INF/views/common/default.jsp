@@ -38,13 +38,18 @@
 
     <!-- 페이징바 -->
     <div class="pagination">
-        <span class="page-arrow">&lt;</span>
+        <span class="page-arrow">
+            <img src="<%=contextPath%>/resources/static/img/button/arrow_left.png" alt="">
+        </span>
         <span class="page-num">1</span>
         <span class="page-num active">2</span>
         <span class="page-num">3</span>
         <span class="page-num">4</span>
         <span class="page-num">5</span>
-        <span class="page-arrow">&gt;</span>
+        <span class="page-arrow">
+            <img src="<%=contextPath%>/resources/static/img/button/arrow_right.png"
+                alt="">
+        </span>
     </div>
 
     <!-- 팝업(모달)-->
