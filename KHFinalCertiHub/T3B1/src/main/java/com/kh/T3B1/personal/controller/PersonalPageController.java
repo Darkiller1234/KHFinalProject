@@ -31,5 +31,12 @@ public class PersonalPageController {
 		p.addAttribute("pageName","personalProfileEdit");
 		return "personal/personalProfileEdit";
 	}
+	
+	@RequestMapping("mentor")
+	public String PersonalMentorPage(Model p) {
+		// 멘토 가입했다면 personalMentor, 가입하지 않았다면 personalMentorEnroll 페이지로
+		p.addAttribute("pageName","personalMentorPage");
+		return "personal/personalMentor";
+	}
 
 }
