@@ -108,7 +108,7 @@ function initPageBar(contextPath){
         startPage : 1,
         endPage : 5,
         currentPage : 1,
-        pageUrl : contextPath + '/study/list?',
+        pageUrl : 'list?',
         imgUrl : [
             contextPath + '/resources/static/img/button/arrow_left.png',
             contextPath + '/resources/static/img/button/arrow_right.png'
