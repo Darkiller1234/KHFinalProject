@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class LoggingAOP {
 
-	@Pointcut("execution(* 메인패키지명..controller.*.*(..) )")
+	@Pointcut("execution(* com.kh.T3B1.*.controller.*.*(..))")
 	private void cut() {}
 	
 	@Before("cut()")
