@@ -280,24 +280,9 @@
                                         <button class="search-btn">검색</button>
                                     </div>
                                             <div class="map_wrap">
-                                                <div id="map"
-                                                    style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
-                                        
-                                                <div id="menu_wrap" class="bg_white">
-                                                    <div class="option">
-                                                        <div>
-                                                            <form onsubmit="searchPlaces(); return false;">
-                                                                <input type="text" id="keyword" size="30" placeholder="장소를 입력하세요">
-                                                                <button onclick="search()">검색</button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                    <hr>
-                                                    <ul id="placesList"></ul>
-                                                    <div id="pagination"></div>
-                                                </div>
+                                                <button class="map-btn" onclick="relayout()">지도 호출하기</button>
+                                                <div id="map"></div>
                                             </div>
-                                            <button onclick="relayout()">relayout 호출하기</button>
                                         <br><br>
                                     <div class="weather">
                                         <pre><b>해당 지역 날씨 정보 (현재 날짜 기준 최대 10일)</b></pre> <br>

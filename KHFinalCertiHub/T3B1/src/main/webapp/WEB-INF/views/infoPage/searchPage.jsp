@@ -96,7 +96,7 @@
                 <div class="result-item">
                     <h3>정보처리기사</h3>
                     <p>시험일 | 2024년 | 분야 | 공시 예정</p>
-                    <button class="view-details">국가기술자격</button>
+                    <button class="view-details" onclick="location.href='<%=contextPath%>/info'">국가기술자격</button>
                 </div>
 
                 <div class="result-item">
