@@ -22,27 +22,11 @@ function initInfoPage(contextPath){
     TestSelectBox(contextPath)
 }
 
-function initSelectBox(contextPath){
-    const selectBoxList = document.querySelectorAll('.custom-select');
 
-    selectBoxList.forEach(selectBox => {
-        let data = {
-            name : 'boardLimit',
-            default : '10개씩',
-            imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
-            items : [
-                ['10개씩'],
-                ['15개씩'],
-                ['20개씩'],
-            ]
-        }
-
-        createSelectBox(selectBox, data)
-    })
-}
 
 function SiSelectBox(contextPath){
     const selectBoxList = document.querySelectorAll('.si-select');
+
     selectBoxList.forEach(selectBox => {
         let data = {
             name : 'si-list',
@@ -130,7 +114,23 @@ function TestSelectBox(contextPath){
 }
 
 
+function initSelectBox(contextPath){
+    const selectBoxList = document.querySelectorAll('.custom-select');
+    selectBoxList.forEach(selectBox => {
+        let data = {
+            name : 'boardLimit',
+            default : '10개씩',
+            imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
+            items : [
+                ['10개씩'],
+                ['15개씩'],
+                ['20개씩'],
+            ]
+        }
 
+        createSelectBox(selectBox, data)
+    })
+}
 
 function initList(contextPath){
     const boardList = document.querySelector('.board-content'); 
