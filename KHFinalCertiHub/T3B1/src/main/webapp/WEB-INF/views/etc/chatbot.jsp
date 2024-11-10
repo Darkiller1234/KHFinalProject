@@ -12,6 +12,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/personal/messageMain.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/etc/chatbot.css">
 
+<script src="${pageContext.request.contextPath}/resources/static/js/etc/chatbot.js"></script>
+
 </head>
 
 <body>
@@ -101,14 +103,18 @@
             </div>
 
             <div class="search-form">
-                <input type="text">
-                <button class="rounded-circle" onclick="alert('클릭됨')">
+                <input id="sendText" type="text" onkeypress="addMessage(event)">
+                <button class="rounded-circle" onclick="addMessage(event)">
                     <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
                 </button> 
             </div>
         </div>
 
 	</div>
+
+    <div class="bottom-options">
+        <button onclick="chatScroll()" class="top-button rounded-circle"><img src="${pageContext.request.contextPath}/resources/static/img/button/arrow_down_icon.png"></button>
+    </div>
 
 </body>
 

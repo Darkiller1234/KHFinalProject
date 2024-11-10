@@ -306,6 +306,10 @@
         </div>
     </div>
 
+    <div class="bottom-options">
+        <button onclick="chatScroll()" class="top-button rounded-circle"><img src="${pageContext.request.contextPath}/resources/static/img/button/arrow_down_icon.png"></button>
+    </div>
+
 </body>
 
 </html>
