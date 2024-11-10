@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace: 해당 mapper파일의 고유한 별칭 -->
+<mapper namespace="memberMapper">
+  <resultMap type="Member" id="memberResultSet">
+  	<result column="MEMBER_NO" property="memberNo"/>
+  	<result column="MEMBER_ID" property="memberId"/>
+  	<result column="MEMBER_PWD" property="memberPwd"/>
+  	<result column="MEMBER_NAME" property="memberName"/>
+  	<result column="MEMBER_INTRO" property="memberIntro"/>
+  	<result column="MEMBER_NICKNAME" property="memberNickname"/>
+  	<result column="EMAIL" property="email"/>
+  	<result column="PHONE" property="phone"/>
+  	<result column="MEMBER_IMG" property="memberImg"/>
+  	<result column="ENROLL_DATE" property="enrollDate"/>
+  	<result column="STATUS" property="status"/>
+  	<result column="MANAGER_STATUS" property="managerStatus"/>
+  	<result column="MENTOR_STATUS" property="mentorStatus"/>
+  	<result column="MENTOR_VALID" property="mentorValid"/>
+  	<result column="MENTOR_INTRO" property="mentorIntro"/>
+  	<result column="CAREER" property="career"/>
+  </resultMap>
+
+  <select id="selectMentorList" resultMap="memberResultSet"> 
+    SELECT
+        MEMBER_NO ,
+        MEMBER_INTRO ,
+        MEMBER_NICKNAME ,
+        MEMBER_IMG ,
+        MENTOR_VALID ,
+        ROW_NUMBER() OVER(ORDER BY CONFIRM_DATE) AS RNUM
+        FROM MEMBER
+        LEFT JOIN ( SELECT 
+                        MEMBER_NO,
+                        MIN(CONFIRM_DATE) AS CONFIRM_DATE
+                    FROM MEMBER_LICENSE
+                    GROUP BY MEMBER_NO ) USING(MEMBER_NO)
+    WHERE MENTOR_VALID = 'Y'
+    AND STATUS = 'Y'
+  </select>
+
+</mapper>
+
