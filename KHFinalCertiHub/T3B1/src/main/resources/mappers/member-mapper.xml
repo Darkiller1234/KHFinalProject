@@ -25,6 +25,13 @@
   	<result column="LICENSE_NAME" property="symbolLicense"/>
   </resultMap>
 
+  <select id="countMentor" resultType="_int">
+  	SELECT COUNT(*)
+  	FROM MEMBER
+  	WHERE MENTOR_STATUS = 'Y'
+      AND STATUS = 'Y'
+  </select>
+
   <select id="selectMentorList" resultMap="memberResultSet"> 
     SELECT
         MEMBER_NO ,
@@ -43,8 +50,8 @@
                     FROM MEMBER_LICENSE
                     LEFT JOIN LICENSE USING(LICENSE_NO)
                     WHERE SYMBOL_LICENSE = 'Y' ) USING(MEMBER_NO)
-    WHERE STATUS = 'Y'
-      AND MENTOR_STATUS = 'Y'
+    WHERE MENTOR_STATUS = 'Y'
+      AND STATUS = 'Y'
   </select>
 
 </mapper>

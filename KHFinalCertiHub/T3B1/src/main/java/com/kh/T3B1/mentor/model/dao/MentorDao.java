@@ -11,6 +11,10 @@ import com.kh.T3B1.member.model.vo.Member;
 
 @Repository
 public class MentorDao {
+	
+	public int countMentor(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("memberMapper.countMentor");
+	}
 
 	public ArrayList<Member> selectMentorList(SqlSessionTemplate sqlSession, PageInfo pi) {
 		int offset = (pi.getCurrentPage() - 1) * pi.getPageLimit();
