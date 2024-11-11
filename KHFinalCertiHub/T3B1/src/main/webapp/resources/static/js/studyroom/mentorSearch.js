@@ -1,5 +1,7 @@
 function initMentorSearch(contextPath){
     initSelectBox(contextPath)
+
+    loadMentor()();
 }
 
 function initSelectBox(contextPath){
@@ -32,5 +34,24 @@ function initSelectBox(contextPath){
 }
 
 function loadMentor(){
-    
+    let currentPage = 1;
+    let pageLimit = 10;
+    let lastScroll = 0;
+
+    return function() {
+        $.ajax({
+            type:"post",
+            url:"list",
+            data: {
+                "currentPage" : currentPage,
+                "pageLimit" : pageLimit,
+            },
+            success: function(res) {
+                console.log(res)
+            },
+            error: function() {
+                console.log("ajax 요청 실패")
+            }
+        })
+    }
 }

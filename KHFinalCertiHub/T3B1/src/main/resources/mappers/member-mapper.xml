@@ -30,14 +30,16 @@
         MEMBER_INTRO ,
         MEMBER_NICKNAME ,
         MEMBER_IMG ,
-        MENTOR_VALID ,
-        ROW_NUMBER() OVER(ORDER BY CONFIRM_DATE) AS RNUM
+        LICENSE_NAME,
+        ROW_NUMBER() OVER(ORDER BY CONFIRM_DATE DESC) AS RNUM
         FROM MEMBER
-        LEFT JOIN ( SELECT 
+        LEFT JOIN ( SELECT
                         MEMBER_NO,
-                        MIN(CONFIRM_DATE) AS CONFIRM_DATE
+                        LICENSE_NAME,
+                        CONFIRM_DATE
                     FROM MEMBER_LICENSE
-                    GROUP BY MEMBER_NO ) USING(MEMBER_NO)
+                    LEFT JOIN LICENSE USING(LICENSE_NO)
+                    WHERE SYMBOL_LICENSE = 'Y' ) USING(MEMBER_NO)
     WHERE MENTOR_VALID = 'Y'
     AND STATUS = 'Y'
   </select>
