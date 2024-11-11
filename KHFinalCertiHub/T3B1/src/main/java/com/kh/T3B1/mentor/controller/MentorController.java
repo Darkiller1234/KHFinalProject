@@ -2,6 +2,8 @@ package com.kh.T3B1.mentor.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,7 +32,13 @@ public class MentorController {
 	}
 	
 	@RequestMapping("detail")
-	public String mentorDetailPage() {
+	public String mentorDetailPage(Model m, int no) {
+		int memberNo = no;
+		
+		Member mentor = mentorService.selectMentorDetail(memberNo);
+		
+		m.addAttribute("mentor", mentor);
+		m.addAttribute("pageName","mentorDetail");
 		return "studyroom/mentorDetail";
 	}
 	

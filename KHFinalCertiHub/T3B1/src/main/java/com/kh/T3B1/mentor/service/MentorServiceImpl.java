@@ -32,4 +32,9 @@ public class MentorServiceImpl implements MentorService {
 		return mentorDao.selectMentorList(sqlSession, pi);
 	}
 
+	@Override
+	public Member selectMentorDetail(int memberNo) {
+		return mentorDao.selectMentorDetail(sqlSession, memberNo);
+	}
+
 }

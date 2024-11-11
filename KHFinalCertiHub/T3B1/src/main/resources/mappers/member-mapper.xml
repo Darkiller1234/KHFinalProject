@@ -53,6 +53,25 @@
     WHERE MENTOR_STATUS = 'Y'
       AND STATUS = 'Y'
   </select>
+  
+  <select id="selectMentorDetail" resultMap="memberResultSet">
+  	SELECT  MEMBER_NO ,
+	        MEMBER_NAME ,
+	        MEMBER_INTRO ,
+	        MEMBER_NICKNAME ,
+	        MEMBER_IMG ,
+	        MENTOR_VALID ,
+	        MENTOR_INTRO ,
+	        CAREER,
+	        LICENSE_NAME
+	FROM MEMBER
+	LEFT JOIN MEMBER_LICENSE USING(MEMBER_NO)
+	LEFT JOIN LICENSE USING(LICENSE_NO)
+	WHERE MEMBER_NO = #{memberNo}
+	  AND MENTOR_STATUS = 'Y'
+	  AND STATUS = 'Y'
+	  AND SYMBOL_LICENSE = 'Y'
+  </select>
 
 </mapper>
 
