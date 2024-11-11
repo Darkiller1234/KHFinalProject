@@ -17,14 +17,14 @@
 		DB연결 설정, 트랜잭션처리, 내외부 모듈연동등등
 	 -->
 	 
-	  <!-- 커넥션풀을 쓸수있는 클래스 -->
-    <bean class="org.apache.commons.dbcp.BasicDataSource" id="dataSource" destroy-method="close">
-       <property name="driverClassName" value="${spring.datasource.driverClassName}"/>
-       <property name="url" value="${spring.datasource.url}"/>
-       <property name="username" value="${spring.datasource.username}"/>
-       <property name="password" value="${spring.datasource.password}"/>
-    </bean>
-	 
+	 <!-- 커넥션풀을 쓸수있는 클래스 -->
+	 <bean class="org.apache.commons.dbcp.BasicDataSource" id="dataSource" destroy-method="close">
+	 	<property name="driverClassName" value="${spring.datasource.driverClassName}"/>
+	 	<property name="url" value="${spring.datasource.url}"/>
+	 	<property name="username" value="${spring.datasource.username}"/>
+	 	<property name="password" value="${spring.datasource.password}"/>
+	 </bean>
+
 	 <!-- 
 	 	BasicDataSource dataSource = new BasicDataSource();
 	 	dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
