@@ -43,8 +43,8 @@
                     FROM MEMBER_LICENSE
                     LEFT JOIN LICENSE USING(LICENSE_NO)
                     WHERE SYMBOL_LICENSE = 'Y' ) USING(MEMBER_NO)
-    WHERE MENTOR_VALID = 'Y'
-    AND STATUS = 'Y'
+    WHERE STATUS = 'Y'
+      AND MENTOR_STATUS = 'Y'
   </select>
 
 </mapper>
