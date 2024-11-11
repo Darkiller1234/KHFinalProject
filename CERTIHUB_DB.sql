@@ -22,6 +22,7 @@ DROP TABLE TALKROOM;
 DROP TABLE MEMBER;
 DROP TABLE BOARD_TAB;
 DROP TABLE LICENSE;
+DROP TABLE CALENDAR;
 
 DROP SEQUENCE BOARD_TAB_SEQ;
 DROP SEQUENCE BOARD_SEQ;
@@ -429,29 +430,30 @@ COMMENT ON COLUMN REPORT.STUDY_BOARD_NO IS '스터디모집게시글번호';
 COMMENT ON COLUMN REPORT.REPORT_TYPE_NO IS '신고유형번호';
 COMMENT ON COLUMN REPORT.REPORT_DETAIL IS '신고세부내용';
 
-
-create table calendar(
-	id number primary key,
-	title varchar2(50) NOT NULL,
-	content varchar2(1000),
-	startD date NOT NULL,
-	endD date NOT NULL,
+CREATE TABLE CALENDAR(
+    id NUMBER PRIMARY KEY,
+    title VARCHAR2(50) NOT NULL,
+    content VARCHAR2(1000),
+    startD DATE NOT NULL,
+    endD DATE NOT NULL,
+    allDay number(1),
     LICENSE_NO NUMBER,
-	textColor varchar2(50) default 'black',
-	backgroundColor varchar2(50) default 'white',
-	borderColor varchar2(50) default 'white'
-    CONSTRAINT calendar FOREIGN KEY(LICENSE_NO) REFERENCES LICENSE(LICENSE_NO)
+    textColor VARCHAR2(50) DEFAULT 'black',
+    backgroundColor VARCHAR2(50) DEFAULT 'white',
+    borderColor VARCHAR2(50) DEFAULT 'white',
+    CONSTRAINT fk_license FOREIGN KEY (LICENSE_NO) REFERENCES LICENSE (LICENSE_NO)
 );
 
-COMMENT ON COLUMN calendar.id IS '일정번호';
-COMMENT ON COLUMN calendar.title IS '일정제목';
-COMMENT ON COLUMN calendar.content IS '일정내용';
-COMMENT ON COLUMN calendar.startD IS '일정 시작일';
-COMMENT ON COLUMN calendar.endD IS '일정 마지막일';
-COMMENT ON COLUMN calendar.LICENSE_NO IS '자격증 번호';
-COMMENT ON COLUMN calendar.textColor IS '해당일 캘린더 글자색';
-COMMENT ON COLUMN calendar.backgroundColor IS '해당일 캘린더 배경색';
-COMMENT ON COLUMN calendar.borderColor IS '해당일 캘린더 테두리색';
+COMMENT ON COLUMN CALENDAR.id IS '일정번호';
+COMMENT ON COLUMN CALENDAR.title IS '일정제목';
+COMMENT ON COLUMN CALENDAR.content IS '일정내용';
+COMMENT ON COLUMN CALENDAR.startD IS '일정 시작일';
+COMMENT ON COLUMN CALENDAR.endD IS '일정 마지막일';
+COMMENT ON COLUMN CALENDAR.allDay IS '하루종일';
+COMMENT ON COLUMN CALENDAR.LICENSE_NO IS '자격증 번호';
+COMMENT ON COLUMN CALENDAR.textColor IS '해당일 캘린더 글자색';
+COMMENT ON COLUMN CALENDAR.backgroundColor IS '해당일 캘린더 배경색';
+COMMENT ON COLUMN CALENDAR.borderColor IS '해당일 캘린더 테두리색';
 
 -- 시퀀스 생성
 CREATE SEQUENCE BOARD_TAB_SEQ;
@@ -471,11 +473,7 @@ CREATE SEQUENCE TALKROOM_SEQ;
 CREATE SEQUENCE MESSAGE_SEQ;
 CREATE SEQUENCE DATA_BOARD_ATT_SEQ;
 CREATE SEQUENCE DATA_BOARD_SEQ;
-create sequence cal_seq
-	start with 1
-	increment by 1
-	minvalue 1
-	maxvalue 99999;
+create sequence cal_seq;
 -- 기본값 세팅
 INSERT INTO BOARD_TAB VALUES(BOARD_TAB_SEQ.NEXTVAL, '공지');
 INSERT INTO BOARD_TAB VALUES(BOARD_TAB_SEQ.NEXTVAL, '자유');
@@ -541,3 +539,5 @@ INSERT INTO REPORT_TYPE VALUES(REPORT_TYPE_SEQ.NEXTVAL,'혐오발언');
 INSERT INTO REPORT_TYPE VALUES(REPORT_TYPE_SEQ.NEXTVAL,'사칭');
 INSERT INTO REPORT_TYPE VALUES(REPORT_TYPE_SEQ.NEXTVAL,'괴롭힘 및 따돌림');
 INSERT INTO REPORT_TYPE VALUES(REPORT_TYPE_SEQ.NEXTVAL,'기타');
+
+
