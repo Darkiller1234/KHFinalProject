@@ -22,6 +22,7 @@
   	<result column="MENTOR_VALID" property="mentorValid"/>
   	<result column="MENTOR_INTRO" property="mentorIntro"/>
   	<result column="CAREER" property="career"/>
+  	<result column="LICENSE_NAME" property="symbolLicense"/>
   </resultMap>
 
   <select id="selectMentorList" resultMap="memberResultSet"> 
@@ -31,6 +32,8 @@
         MEMBER_NICKNAME ,
         MEMBER_IMG ,
         LICENSE_NAME,
+        MENTOR_VALID,
+        MEMBER_IMG,
         ROW_NUMBER() OVER(ORDER BY CONFIRM_DATE DESC) AS RNUM
         FROM MEMBER
         LEFT JOIN ( SELECT
