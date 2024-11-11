@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace=CalendarDao>
+		<resultMap type="Calendar" id="calMap">
+				<result column= "ID" property="id"/>
+				<result column= "TITLE" property="title"
+				<result column= "CONTENT" property="content"/>
+				<result column= "START_DAY" property="startDay"/>
+				<result column= "END_DAY" property="endDay"/>
+				<result column= "ALL_DAY" property="allDay"/>
+				<result column= "LICENSE_NO" property="licenseNo"/>
+				<result column= "TEXT_COLOR" property="textColor"/>
+				<result column= "BACKGROUND_COLOR"property="backgroundColor"/>
+				<result column= "BORDER_COLOR" property="borderColor"/>
+		</resultMap>
+</mapper>
