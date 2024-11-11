@@ -3,11 +3,19 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	<!-- settings: mybatis구동시 선언할 설정들을 작성하는 영역 -->
-	<settings>
-		<!-- 만약 null로 데이터가 전달되었다면 빈칸이 아닌 null로 인식해라 -->
-		<setting name="jdbcTypeForNull" value="NULL" />
-	</settings>
+  <!-- settings: mybatis구동시 선언할 설정들을 작성하는 영역 -->
+  <settings>
+  	<!-- 만약 null로 데이터가 전달되었다면 빈칸이 아닌 null로 인식해라 -->
+  	<setting name="jdbcTypeForNull" value="NULL"/>
+  </settings>
+  
+  <!-- typeAliases : VO/DTO클래스들의 풀클래스명을 단순한 클래스명(별칭)으로 사용하기위한 별칭등록을 하는 영역 -->
+  <typeAliases>
+		<typeAlias type="com.kh.T3B1.member.model.vo.Member" 
+			alias ="Member"/>
+		<typeAlias type="com.kh.T3B1.community.model.vo.Board" 
+			alias ="Board"/>
+  </typeAliases>
 
 	<!-- typeAliases : VO/DTO클래스들의 풀클래스명을 단순한 클래스명(별칭)으로 사용하기위한 별칭등록을 하는 영역 -->
 	<typeAliases>
