@@ -1,4 +1,10 @@
 function initMentorSearch(contextPath){
+    initSelectBox(contextPath)
+
+    loadMentor()();
+}
+
+function initSelectBox(contextPath){
     const selectBoxList = document.querySelectorAll('.custom-select');
 
     const data1 = {
@@ -25,4 +31,27 @@ function initMentorSearch(contextPath){
 
     createSelectBox(selectBoxList[0], data1)
     createSelectBox(selectBoxList[1], data2)
+}
+
+function loadMentor(){
+    let currentPage = 1;
+    let pageLimit = 10;
+    let lastScroll = 0;
+
+    return function() {
+        $.ajax({
+            type:"post",
+            url:"list",
+            data: {
+                "currentPage" : currentPage,
+                "pageLimit" : pageLimit,
+            },
+            success: function(res) {
+                console.log(res)
+            },
+            error: function() {
+                console.log("ajax 요청 실패")
+            }
+        })
+    }
 }
