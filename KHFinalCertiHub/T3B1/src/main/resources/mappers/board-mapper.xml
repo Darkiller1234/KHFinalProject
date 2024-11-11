@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace: 해당 mapper파일의 고유한 별칭 -->
+
+<mapper namespace="boardMapper">
+	<resultMap type="Board" id="boardResult">
+		<result column="BOARD_NO" property="boardNo"/>
+		<result column="TAB_NAME" property="boardTab"/>
+		<result column="BOARD_TITLE" property="boardTitle"/>
+		<result column="BOARD_WRITER" property="writerNo"/>
+		<result column="MEMBER_NICKNAME" property="writerName"/>
+		<result column="BOARD_CONTENT" property="boardContent"/>
+		<result column="CREATE_DATE" property="createDate"/>
+		<result column="STATUS" property="status"/>
+	</resultMap>
+
+  <!-- 게시글 총 갯수 조회 -->
+  <select id="selectListCount" resultType="_int">
+   	SELECT COUNT(*)
+   	  FROM BOARD
+   	 WHERE STATUS = 'Y'
+  </select>
+  <!-- 게시글 조회 -->
+  <select id="selectList" resultType="Board">
+  	SELECT BOARD_NO boardNo,
+  			BOARD_WRITER writerNo,
+  			MEMBER_NICKNAME wirterName
+  			TAB_NAME boardTab,
+			BOARD_TITLE boardTitle,
+			BOARD_WRITER writerNo,
+			MEMBER_NICKNAME writerName,
+			TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS "boardCreateDate"
+  	  FROM BOARD
+  	 WHERE STATUS = 'Y'
+  	 ORDER BY BOARD_NO DESC
+  </select>
+  <!-- 게시글 조회수 증가 -->
+  <update id="increaseCount">
+  	UPDATE BOARD
+  	   SET COUNT = COUNT + 1
+  	 WHERE BOARD_NO = #{bno}
+  	   AND STATUS = 'Y'
+  </update>
+  
+  <!-- bno로 게시글 조회 -->
+  <select id="selectBoard" resultMap="boardResult">
+  	SELECT BOARD_NO,
+			BOARD_TITLE,
+			BOARD_WRITER,
+			BOARD_CONTENT,
+			ORIGIN_NAME,
+			CHANGE_NAME,
+			COUNT,
+			TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS "CREATE_DATE"
+  	  FROM BOARD
+  	 WHERE STATUS = 'Y'
+  	   AND BOARD_NO = #{bno}
+  </select>
+  <insert id="insertBoard">
+  	INSERT INTO
+  		   BOARD (
+  		   		BOARD_NO,
+				BOARD_TITLE,
+				BOARD_WRITER,
+				BOARD_CONTENT,
+				ORIGIN_NAME,
+				CHANGE_NAME
+  		   )
+  		   VALUES(
+  		   		SEQ_BNO.NEXTVAL,
+  		   		#{boardTitle},
+  		   		#{boardWriter},
+  		   		#{boardContent},
+  		   		#{originName},
+  		   		#{changeName}
+  		   )
+  </insert>
+  <!-- 게시글 수정 -->
+  <update id="updateBoard">
+  		UPDATE BOARD
+  		   SET BOARD_TITLE = #{boardTitle},
+				BOARD_CONTENT = #{boardContent},
+				ORIGIN_NAME = #{originName},
+				CHANGE_NAME = #{changeName}
+		WHERE BOARD_NO = #{boardNo}
+  </update>
+  <!-- 댓글목록 가져오기 -->
+  <select id="selectReply" resultType="Reply">
+  		SELECT REPLY_NO replyNo,
+				REPLY_CONTENT replyContent,
+				REPLY_WRITER replyWriter,
+				TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS createDate
+		 FROM REPLY
+		WHERE STATUS = 'Y'
+		  AND REF_BNO = #{bno}
+		ORDER BY REPLY_NO DESC
+  </select>
+  <!-- 댓글 추가 -->
+  <insert id="insertReply">
+  		INSERT
+  		INTO REPLY(
+  			REPLY_NO,
+  			REPLY_CONTENT,
+  			REPLY_WRITER,
+  			REF_BNO
+  		)
+  		VALUES(
+  			SEQ_RNO.NEXTVAL,
+  			#{replyContent},
+  			#{replyWriter},
+  			#{refBno}
+  		)
+  </insert>
+  <select id="selectTopBoardList" resultMap="boardResult">
+  	SELECT *
+  	  FROM (SELECT BOARD_NO,
+					BOARD_TITLE,
+					BOARD_WRITER,
+					ORIGIN_NAME,
+					COUNT,
+					TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS "CREATE_DATE"
+		  	  FROM BOARD
+		  	 WHERE STATUS = 'Y'
+		  	 ORDER BY COUNT DESC)
+	 WHERE ROWNUM BETWEEN 1 AND 5
+  </select>
+</mapper>
+
+
+
