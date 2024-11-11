@@ -89,7 +89,7 @@ function createMentorCard(contextPath, res){
         let mentorCard = document.createElement('div')
         mentorCard.className = "mentor-card"
         mentorCard.onclick = () => {
-            location.href='detail'
+            location.href='detail?no=' + data.memberNo
         }
     
         let profile = document.createElement('div')

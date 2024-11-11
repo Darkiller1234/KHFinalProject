@@ -23,4 +23,8 @@ public class MentorDao {
 		return (ArrayList)sqlSession.selectList("memberMapper.selectMentorList", null, rowBounds);
 	}
 
+	public Member selectMentorDetail(SqlSessionTemplate sqlSession, int memberNo) {
+		return sqlSession.selectOne("memberMapper.selectMentorDetail", memberNo);
+	}
+
 }

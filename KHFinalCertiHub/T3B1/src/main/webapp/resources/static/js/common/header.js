@@ -8,6 +8,9 @@ function init(contextPath, pageName, optional){
         case "mentorSearch":
             initMentorSearch(contextPath); // contextPath
             break;
+        case "mentorDetail":
+            initMentorDetail(contextPath);
+            break;
         case "communitySearch":
             commuMInit(contextPath);
             break;

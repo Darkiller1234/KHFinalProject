@@ -10,7 +10,10 @@ public interface MentorService {
 	// 전체 멘토수 조회
 	int countMentor();
 	
-	// 멘토인 멤버 조회
+	// 멘토인 멤버 페이징 조회
 	ArrayList<Member> selectMentorList(PageInfo pi);
+
+	// 멘토 상세정보 조회
+	Member selectMentorDetail(int memberNo);
 	
 }
