@@ -69,7 +69,6 @@ function initMentorList(contextPath){
 }
 
 function ajaxLoadMentor(contextPath, currentPage, pageLimit){
-
     return function() {
         $.ajax({
             type:"post",
@@ -117,7 +116,7 @@ function createMentorCard(contextPath, res){
     
         let memberIntro = document.createElement("div")
         memberIntro.className = "member-intro font-size-footer"
-        memberIntro.innerText = data.mentorIntro ?? "" // data.mentorIntro가 null이거나 undefined라면 공백
+        memberIntro.innerText = data.memberIntro ?? "" // data.mentorIntro가 null이거나 undefined라면 공백
     
         let tag = document.createElement("div")
         let tagImg = document.createElement("img")
