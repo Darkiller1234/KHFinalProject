@@ -157,195 +157,35 @@
                   </div>
                 </div>
               </div>
-              <div onclick="redirect('<%=contextPath%>/community/detail')">
-                <div>
-                  <div class="listArea-div1-tab">
-                    질문(자유)
+              <c:forEach var="b" items="${list}">
+                <div onclick="redirect('<%=contextPath%>/community/detail?certi=${b.certiNum}&cno=${b.boardNo}')">
+                  <div>
+                    <div class="listArea-div1-tab">
+                      ${b.boardTabNo}
+                    </div>
+                    <div class="listArea-div1-title">
+                      ${b.boardTitle}
+                    </div>
+                    <div class="listArea-div1-replyCount">
+                      [${b.boardReplyCount}]
+                    </div>
                   </div>
-                  <div class="listArea-div1-title">
-                    이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?
-                  </div>
-                  <div class="listArea-div1-replyCount">
-                    [9999]
-                  </div>
-                </div>
-                <div>
-                  <div class="listArea-div1-writter">
-                    윤대한
-                  </div>
-                  <div class="listArea-div1-date">
-                    2024.10.22
-                  </div>
-                  <div class="listArea-div1-viewCount">
-                    10000
-                  </div>
-                  <div class="listArea-div1-dogchu">
-                    -9999
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div>
-                  <div class="listArea-div1-tab">
-                    질문(자유)
-                  </div>
-                  <div class="listArea-div1-title">
-                    이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?
-                  </div>
-                  <div class="listArea-div1-replyCount">
-                    [9999]
+                  <div>
+                    <div class="listArea-div1-writter">
+                      ${b.boardWriter}
+                    </div>
+                    <div class="listArea-div1-date">
+                      ${b.boardCreateDate}
+                    </div>
+                    <div class="listArea-div1-viewCount">
+                      ${b.boardViewCount}
+                    </div>
+                    <div class="listArea-div1-dogchu">
+                      ${b.boardLike - b.boardHate}
+                    </div>
                   </div>
                 </div>
-                <div>
-                  <div class="listArea-div1-writter">
-                    윤대한
-                  </div>
-                  <div class="listArea-div1-date">
-                    2024.10.22
-                  </div>
-                  <div class="listArea-div1-viewCount">
-                    10000
-                  </div>
-                  <div class="listArea-div1-dogchu">
-                    -9999
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div>
-                  <div class="listArea-div1-tab">
-                    질문(자유)
-                  </div>
-                  <div class="listArea-div1-title">
-                    이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?
-                  </div>
-                  <div class="listArea-div1-replyCount">
-                    [9999]
-                  </div>
-                </div>
-                <div>
-                  <div class="listArea-div1-writter">
-                    윤대한
-                  </div>
-                  <div class="listArea-div1-date">
-                    2024.10.22
-                  </div>
-                  <div class="listArea-div1-viewCount">
-                    10000
-                  </div>
-                  <div class="listArea-div1-dogchu">
-                    -9999
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div>
-                  <div class="listArea-div1-tab">
-                    질문(자유)
-                  </div>
-                  <div class="listArea-div1-title">
-                    이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?
-                  </div>
-                  <div class="listArea-div1-replyCount">
-                    [9999]
-                  </div>
-                </div>
-                <div>
-                  <div class="listArea-div1-writter">
-                    윤대한
-                  </div>
-                  <div class="listArea-div1-date">
-                    2024.10.22
-                  </div>
-                  <div class="listArea-div1-viewCount">
-                    10000
-                  </div>
-                  <div class="listArea-div1-dogchu">
-                    -9999
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div>
-                  <div class="listArea-div1-tab">
-                    질문(자유)
-                  </div>
-                  <div class="listArea-div1-title">
-                    이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?
-                  </div>
-                  <div class="listArea-div1-replyCount">
-                    [9999]
-                  </div>
-                </div>
-                <div>
-                  <div class="listArea-div1-writter">
-                    윤대한
-                  </div>
-                  <div class="listArea-div1-date">
-                    2024.10.22
-                  </div>
-                  <div class="listArea-div1-viewCount">
-                    10000
-                  </div>
-                  <div class="listArea-div1-dogchu">
-                    -9999
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div>
-                  <div class="listArea-div1-tab">
-                    질문(자유)
-                  </div>
-                  <div class="listArea-div1-title">
-                    이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?
-                  </div>
-                  <div class="listArea-div1-replyCount">
-                    [9999]
-                  </div>
-                </div>
-                <div>
-                  <div class="listArea-div1-writter">
-                    윤대한
-                  </div>
-                  <div class="listArea-div1-date">
-                    2024.10.22
-                  </div>
-                  <div class="listArea-div1-viewCount">
-                    10000
-                  </div>
-                  <div class="listArea-div1-dogchu">
-                    -9999
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div>
-                  <div class="listArea-div1-tab">
-                    질문(자유)
-                  </div>
-                  <div class="listArea-div1-title">
-                    이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?
-                  </div>
-                  <div class="listArea-div1-replyCount">
-                    [9999]
-                  </div>
-                </div>
-                <div>
-                  <div class="listArea-div1-writter">
-                    윤대한
-                  </div>
-                  <div class="listArea-div1-date">
-                    2024.10.22
-                  </div>
-                  <div class="listArea-div1-viewCount">
-                    10000
-                  </div>
-                  <div class="listArea-div1-dogchu">
-                    -9999
-                  </div>
-                </div>
-              </div>
+              </c:forEach>
               <div>
                 <div>
                   <div class="listArea-div1-tab">
@@ -407,440 +247,39 @@
                   </div>
                 </div>
               </div>
-              <div onclick="location.href='<%=contextPath%>/community/detail'">
-                <div>
-                  <div class="listArea-div2-tab">
-                    질문(자유)
-                  </div>
-                  <div class="listArea-div2-title">
-                    이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 
-                  </div>
-                  <div class="listArea-div2-replyCount">
-                    [9999]
-                  </div>
-                </div>
-                <div>
-                  <div class="listArea-div2-writter">
-                    윤대한
-                  </div>
-                  <div class="listArea-div2-rightStuff">
-                    <div class="listArea-div2-date">
-                      2024.10.22
+              <c:forEach var="b" items="${list}">
+                <div onclick="redirect('<%=contextPath%>/community/detail?certi=${b.certiNum}&cno=${b.boardNo}')">
+                  <div>
+                    <div class="listArea-div2-tab">
+                      ${b.boardTab}
                     </div>
-                    |
-                    <div class="listArea-div2-viewCount">
-                      조회수 10000
+                    <div class="listArea-div2-title">
+                      ${b.boardTitle}
                     </div>
-                    |
-                    <div class="listArea-div2-dogchu">
-                      추천수 -9999
+                    <div class="listArea-div2-replyCount">
+                      [${b.boardReplyCount}]
                     </div>
                   </div>
-                </div>
-              </div>
-              <div>
-                <div>
-                  <div class="listArea-div2-tab">
-                    질문(자유)
-                  </div>
-                  <div class="listArea-div2-title">
-                    이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 
-                  </div>
-                  <div class="listArea-div2-replyCount">
-                    [9999]
-                  </div>
-                </div>
-                <div>
-                  <div class="listArea-div2-writter">
-                    윤대한
-                  </div>
-                  <div class="listArea-div2-rightStuff">
-                    <div class="listArea-div2-date">
-                      2024.10.22
+                  <div>
+                    <div class="listArea-div2-writter">
+                      ${b.boardWriter}
                     </div>
-                    |
-                    <div class="listArea-div2-viewCount">
-                      조회수 10000
-                    </div>
-                    |
-                    <div class="listArea-div2-dogchu">
-                      추천수 -9999
+                    <div class="listArea-div2-rightStuff">
+                      <div class="listArea-div2-date">
+                        ${b.boardCreateDate}
+                      </div>
+                      |
+                      <div class="listArea-div2-viewCount">
+                        조회수 ${b.boardViewCount}
+                      </div>
+                      |
+                      <div class="listArea-div2-dogchu">
+                        추천수 ${b.boardLike - b.boardHate}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div>
-                <div>
-                  <div class="listArea-div2-tab">
-                    질문(자유)
-                  </div>
-                  <div class="listArea-div2-title">
-                    이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 
-                  </div>
-                  <div class="listArea-div2-replyCount">
-                    [9999]
-                  </div>
-                </div>
-                <div>
-                  <div class="listArea-div2-writter">
-                    윤대한
-                  </div>
-                  <div class="listArea-div2-rightStuff">
-                    <div class="listArea-div2-date">
-                      2024.10.22
-                    </div>
-                    |
-                    <div class="listArea-div2-viewCount">
-                      조회수 10000
-                    </div>
-                    |
-                    <div class="listArea-div2-dogchu">
-                      추천수 -9999
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div>
-                  <div class="listArea-div2-tab">
-                    질문(자유)
-                  </div>
-                  <div class="listArea-div2-title">
-                    이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 
-                  </div>
-                  <div class="listArea-div2-replyCount">
-                    [9999]
-                  </div>
-                </div>
-                <div>
-                  <div class="listArea-div2-writter">
-                    윤대한
-                  </div>
-                  <div class="listArea-div2-rightStuff">
-                    <div class="listArea-div2-date">
-                      2024.10.22
-                    </div>
-                    |
-                    <div class="listArea-div2-viewCount">
-                      조회수 10000
-                    </div>
-                    |
-                    <div class="listArea-div2-dogchu">
-                      추천수 -9999
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div>
-                  <div class="listArea-div2-tab">
-                    질문(자유)
-                  </div>
-                  <div class="listArea-div2-title">
-                    이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 
-                  </div>
-                  <div class="listArea-div2-replyCount">
-                    [9999]
-                  </div>
-                </div>
-                <div>
-                  <div class="listArea-div2-writter">
-                    윤대한
-                  </div>
-                  <div class="listArea-div2-rightStuff">
-                    <div class="listArea-div2-date">
-                      2024.10.22
-                    </div>
-                    |
-                    <div class="listArea-div2-viewCount">
-                      조회수 10000
-                    </div>
-                    |
-                    <div class="listArea-div2-dogchu">
-                      추천수 -9999
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div>
-                  <div class="listArea-div2-tab">
-                    질문(자유)
-                  </div>
-                  <div class="listArea-div2-title">
-                    이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 
-                  </div>
-                  <div class="listArea-div2-replyCount">
-                    [9999]
-                  </div>
-                </div>
-                <div>
-                  <div class="listArea-div2-writter">
-                    윤대한
-                  </div>
-                  <div class="listArea-div2-rightStuff">
-                    <div class="listArea-div2-date">
-                      2024.10.22
-                    </div>
-                    |
-                    <div class="listArea-div2-viewCount">
-                      조회수 10000
-                    </div>
-                    |
-                    <div class="listArea-div2-dogchu">
-                      추천수 -9999
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div>
-                  <div class="listArea-div2-tab">
-                    질문(자유)
-                  </div>
-                  <div class="listArea-div2-title">
-                    이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 
-                  </div>
-                  <div class="listArea-div2-replyCount">
-                    [9999]
-                  </div>
-                </div>
-                <div>
-                  <div class="listArea-div2-writter">
-                    윤대한
-                  </div>
-                  <div class="listArea-div2-rightStuff">
-                    <div class="listArea-div2-date">
-                      2024.10.22
-                    </div>
-                    |
-                    <div class="listArea-div2-viewCount">
-                      조회수 10000
-                    </div>
-                    |
-                    <div class="listArea-div2-dogchu">
-                      추천수 -9999
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div>
-                  <div class="listArea-div2-tab">
-                    질문(자유)
-                  </div>
-                  <div class="listArea-div2-title">
-                    이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 
-                  </div>
-                  <div class="listArea-div2-replyCount">
-                    [9999]
-                  </div>
-                </div>
-                <div>
-                  <div class="listArea-div2-writter">
-                    윤대한
-                  </div>
-                  <div class="listArea-div2-rightStuff">
-                    <div class="listArea-div2-date">
-                      2024.10.22
-                    </div>
-                    |
-                    <div class="listArea-div2-viewCount">
-                      조회수 10000
-                    </div>
-                    |
-                    <div class="listArea-div2-dogchu">
-                      추천수 -9999
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div>
-                  <div class="listArea-div2-tab">
-                    질문(자유)
-                  </div>
-                  <div class="listArea-div2-title">
-                    이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 
-                  </div>
-                  <div class="listArea-div2-replyCount">
-                    [9999]
-                  </div>
-                </div>
-                <div>
-                  <div class="listArea-div2-writter">
-                    윤대한
-                  </div>
-                  <div class="listArea-div2-rightStuff">
-                    <div class="listArea-div2-date">
-                      2024.10.22
-                    </div>
-                    |
-                    <div class="listArea-div2-viewCount">
-                      조회수 10000
-                    </div>
-                    |
-                    <div class="listArea-div2-dogchu">
-                      추천수 -9999
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div>
-                  <div class="listArea-div2-tab">
-                    질문(자유)
-                  </div>
-                  <div class="listArea-div2-title">
-                    이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 
-                  </div>
-                  <div class="listArea-div2-replyCount">
-                    [9999]
-                  </div>
-                </div>
-                <div>
-                  <div class="listArea-div2-writter">
-                    윤대한
-                  </div>
-                  <div class="listArea-div2-rightStuff">
-                    <div class="listArea-div2-date">
-                      2024.10.22
-                    </div>
-                    |
-                    <div class="listArea-div2-viewCount">
-                      조회수 10000
-                    </div>
-                    |
-                    <div class="listArea-div2-dogchu">
-                      추천수 -9999
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div>
-                  <div class="listArea-div2-tab">
-                    질문(자유)
-                  </div>
-                  <div class="listArea-div2-title">
-                    이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 
-                  </div>
-                  <div class="listArea-div2-replyCount">
-                    [9999]
-                  </div>
-                </div>
-                <div>
-                  <div class="listArea-div2-writter">
-                    윤대한
-                  </div>
-                  <div class="listArea-div2-rightStuff">
-                    <div class="listArea-div2-date">
-                      2024.10.22
-                    </div>
-                    |
-                    <div class="listArea-div2-viewCount">
-                      조회수 10000
-                    </div>
-                    |
-                    <div class="listArea-div2-dogchu">
-                      추천수 -9999
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div>
-                  <div class="listArea-div2-tab">
-                    질문(자유)
-                  </div>
-                  <div class="listArea-div2-title">
-                    이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 
-                  </div>
-                  <div class="listArea-div2-replyCount">
-                    [9999]
-                  </div>
-                </div>
-                <div>
-                  <div class="listArea-div2-writter">
-                    윤대한
-                  </div>
-                  <div class="listArea-div2-rightStuff">
-                    <div class="listArea-div2-date">
-                      2024.10.22
-                    </div>
-                    |
-                    <div class="listArea-div2-viewCount">
-                      조회수 10000
-                    </div>
-                    |
-                    <div class="listArea-div2-dogchu">
-                      추천수 -9999
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div>
-                  <div class="listArea-div2-tab">
-                    질문(자유)
-                  </div>
-                  <div class="listArea-div2-title">
-                    이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 
-                  </div>
-                  <div class="listArea-div2-replyCount">
-                    [9999]
-                  </div>
-                </div>
-                <div>
-                  <div class="listArea-div2-writter">
-                    윤대한
-                  </div>
-                  <div class="listArea-div2-rightStuff">
-                    <div class="listArea-div2-date">
-                      2024.10.22
-                    </div>
-                    |
-                    <div class="listArea-div2-viewCount">
-                      조회수 10000
-                    </div>
-                    |
-                    <div class="listArea-div2-dogchu">
-                      추천수 -9999
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div>
-                  <div class="listArea-div2-tab">
-                    질문(자유)
-                  </div>
-                  <div class="listArea-div2-title">
-                    이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨? 
-                  </div>
-                  <div class="listArea-div2-replyCount">
-                    [9999]
-                  </div>
-                </div>
-                <div>
-                  <div class="listArea-div2-writter">
-                    윤대한
-                  </div>
-                  <div class="listArea-div2-rightStuff">
-                    <div class="listArea-div2-date">
-                      2024.10.22
-                    </div>
-                    |
-                    <div class="listArea-div2-viewCount">
-                      조회수 10000
-                    </div>
-                    |
-                    <div class="listArea-div2-dogchu">
-                      추천수 -9999
-                    </div>
-                  </div>
-                </div>
-              </div>
+              </c:forEach>
             </div>
 
             
