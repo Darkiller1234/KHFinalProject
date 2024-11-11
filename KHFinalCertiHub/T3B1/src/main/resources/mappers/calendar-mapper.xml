@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="CalendarDao">
+		<resultMap type="Calendar" id="calMap">
+				<result column= "ID" property="id"/>
+				<result column= "TITLE" property="title"/>
+				<result column= "CONTENT" property="content"/>
+				<result column= "START_DAY" property="startDay"/>
+				<result column= "END_DAY" property="endDay"/>
+				<result column= "ALL_DAY" property="allDay"/>
+				<result column= "LICENSE_NO" property="licenseNo"/>
+				<result column= "TEXT_COLOR" property="textColor"/>
+				<result column= "BACKGROUND_COLOR" property="backgroundColor"/>
+				<result column= "BORDER_COLOR" property="borderColor"/>
+		</resultMap>
+		<select id="calenList" resultMap="calMap">
+				SELECT id, title,
+				TO_char(startDay, 'YYYY-MM-DD"T"HH24:MI:SS') startDay,
+				TO_char(endDay, 'YYYY-MM-DD"T"HH24:MI:SS') endDay,
+				ALL_DAY,
+				TEXT_COLOR,
+				BACKGROUND_COLOR,
+				BORDER_COLOR 
+				FROM CALENDAR
+	</select>
+</mapper>

@@ -10,11 +10,5 @@ public class MainController {
 	public String mainPage() {
 		return "main/mainPage";
 	}
-	
-	// css 테스트용 경로, 배포시 제거할 것
-	@RequestMapping("cssTest")
-	public String cssTest() {
-		return "common/default";
-	}
 
 }

@@ -8,17 +8,14 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 	
 
-	<!-- config파일 자동 로드 location="classpath:database.properties"  /!-->	
-	<context:property-placeholder location="classpath:config/*.properties" /> 
+	 <!-- config파일 자동 로드 location="classpath:database.properties"  /!-->
+    <context:property-placeholder location="classpath:config/*.properties" />
 	<!-- 
 		root-context.xml
 		서버구동과 동시에 web.xml을 거처서 바로 로딩되는 문서
 		=> 서버구동과 동시에 바로 세팅(빈으로 등록)해야되는 내용들을 작성하면 된다.
 		DB연결 설정, 트랜잭션처리, 내외부 모듈연동등등
 	 -->
-	 
-	 <!-- config파일 자동 로드 location="classpath:database.properties"  /!-->
-    <context:property-placeholder location="classpath:config/*.properties" /> 
 	 
 	 <!-- 커넥션풀을 쓸수있는 클래스 -->
 	 <bean class="org.apache.commons.dbcp.BasicDataSource" id="dataSource" destroy-method="close">

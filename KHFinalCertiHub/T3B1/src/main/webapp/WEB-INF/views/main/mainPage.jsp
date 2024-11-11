@@ -52,6 +52,7 @@
             </div>
         </div>
         <script src="<%=contextPath%>/resources/static/js/calendar/calendar.js"></script>
+        <script src="<%=contextPath%>/resources/static/js/main/mainPage.js"></script>
         <%@ include file="../common/footer.jsp" %>
 </body>
 
