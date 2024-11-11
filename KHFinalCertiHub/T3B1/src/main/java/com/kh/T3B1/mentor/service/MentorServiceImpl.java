@@ -23,7 +23,13 @@ public class MentorServiceImpl implements MentorService {
 	public final MentorDao mentorDao;
 
 	@Override
+	public int countMentor() {
+		return mentorDao.countMentor(sqlSession);
+	}
+	
+	@Override
 	public ArrayList<Member> selectMentorList(PageInfo pi) {
 		return mentorDao.selectMentorList(sqlSession, pi);
 	}
+
 }

@@ -41,7 +41,7 @@
 
 /* 멘토 로딩창 */
 .loading-section{
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
 }

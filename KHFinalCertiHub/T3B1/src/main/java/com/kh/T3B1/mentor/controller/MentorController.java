@@ -40,6 +40,12 @@ public class MentorController {
 		// 요청 한번에 불러올 멘토의 수, 최대 20명 까지
 		pageLimit = pageLimit <= 20 ? pageLimit : 20;
 		
+		int mentorCount = mentorService.countMentor();
+		
+		if((currentPage - 1) * pageLimit > mentorCount) {
+			return null;
+		}
+		
 		PageInfo pi = new PageInfo();
 		pi.setCurrentPage(currentPage);
 		pi.setPageLimit(pageLimit);
