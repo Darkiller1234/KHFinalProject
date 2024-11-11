@@ -29,6 +29,7 @@ function talkroomClick(_this){
 function addMessage(e){
     const sendMessage = document.querySelector('#sendText')
 
+    // 엔터키 or 클릭이 아니거나 메시지가 비어있으면 실행하지 않음
     if(e.code !== 'Enter' && e.type !== 'click' && sendMessage.value == ""){
         return;
     }
