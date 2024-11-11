@@ -20,4 +20,7 @@ public class Member {
 	private String mentorValid;
 	private String mentorIntro;
 	private String career;
+	
+	// 멘토의 대표 자격증
+	private String symbolLicense;
 }

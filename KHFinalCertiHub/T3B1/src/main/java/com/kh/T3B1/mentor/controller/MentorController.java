@@ -37,7 +37,6 @@ public class MentorController {
 	@ResponseBody
 	@RequestMapping(value="list", produces="application/json; charset=UTF-8")
 	public String selectMentorList(int pageLimit, int currentPage) {
-		System.out.println("AJAX 요청 들어옴");
 		// 요청 한번에 불러올 멘토의 수, 최대 20명 까지
 		pageLimit = pageLimit <= 20 ? pageLimit : 20;
 		
@@ -46,7 +45,6 @@ public class MentorController {
 		pi.setPageLimit(pageLimit);
 		
 		ArrayList<Member> mentorList = mentorService.selectMentorList(pi);
-		System.out.println(mentorList);
 		
 		return new Gson().toJson(mentorList);
 	}
