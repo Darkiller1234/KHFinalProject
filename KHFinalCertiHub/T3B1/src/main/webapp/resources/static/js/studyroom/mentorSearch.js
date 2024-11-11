@@ -1,4 +1,8 @@
 function initMentorSearch(contextPath){
+    initSelectBox(contextPath)
+}
+
+function initSelectBox(contextPath){
     const selectBoxList = document.querySelectorAll('.custom-select');
 
     const data1 = {
@@ -25,4 +29,8 @@ function initMentorSearch(contextPath){
 
     createSelectBox(selectBoxList[0], data1)
     createSelectBox(selectBoxList[1], data2)
+}
+
+function loadMentor(){
+    
 }
