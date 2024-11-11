@@ -1,4 +1,9 @@
 function initReportPage(contextPath) {
+    initReportBoard(contextPath);
+    initReportPageBar(contextPath);
+}
+
+function initReportBoard(contextPath) {
     const boardList = document.querySelector('.board-report');
 
     let data = {
@@ -30,4 +35,20 @@ function initReportPage(contextPath) {
     }
 
     createList(boardList, data)
+}
+
+function initReportPageBar(contextPath) {
+    const pagingBar = document.querySelector('.report-bar');
+
+    const data = {
+        startPage : 1,
+        endPage : 5,
+        currentPage : 1,
+        pageUrl : 'report?',
+        imgUrl : [
+            contextPath + '/resources/static/img/button/arrow_left.png',
+            contextPath + '/resources/static/img/button/arrow_right.png'
+        ]
+    }
+    createPageBar(pagingBar, data)
 }

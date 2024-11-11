@@ -194,7 +194,7 @@ span {
 /* 장소 검색 */
 .region{
     display: flex;
-    justify-content: start;
+    justify-content: end;
     gap: 10px;
 }
 
@@ -209,10 +209,6 @@ span {
     margin-top: 1%;
 }
 
-.map{
-    width: 100%;
-    max-width: 670px;
-}
 
 .weather{
     width: 100%;

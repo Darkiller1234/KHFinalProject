@@ -141,7 +141,7 @@ p {
 }
 
 /* 미디어 쿼리 */
-@media (max-width: 768px) {
+@media (max-width: 720px) {
     .content {
         padding: 20px; /* 패딩을 줄여서 공간 활용 */
         max-width: 90%; /* 최대 너비를 화면의 90%로 설정 */
