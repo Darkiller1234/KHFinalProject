@@ -161,7 +161,7 @@
                 <div onclick="redirect('<%=contextPath%>/community/detail?certi=${b.certiNum}&cno=${b.boardNo}')">
                   <div>
                     <div class="listArea-div1-tab">
-                      ${b.boardTabNo}
+                      ${b.boardTab}
                     </div>
                     <div class="listArea-div1-title">
                       ${b.boardTitle}
