@@ -23,6 +23,7 @@
   	<result column="MENTOR_INTRO" property="mentorIntro"/>
   	<result column="CAREER" property="career"/>
   	<result column="LICENSE_NAME" property="symbolLicense"/>
+  	<result column="LICENSE_NO" property="symbolLicenseNo"/>
   </resultMap>
 
   <select id="countMentor" resultType="_int">
@@ -33,25 +34,50 @@
   </select>
 
   <select id="selectMentorList" resultMap="memberResultSet"> 
-    SELECT
-        MEMBER_NO ,
-        MEMBER_INTRO ,
-        MEMBER_NICKNAME ,
-        MEMBER_IMG ,
-        LICENSE_NAME,
-        MENTOR_VALID,
-        MEMBER_IMG,
-        ROW_NUMBER() OVER(ORDER BY CONFIRM_DATE DESC) AS RNUM
-        FROM MEMBER
-        LEFT JOIN ( SELECT
-                        MEMBER_NO,
-                        LICENSE_NAME,
-                        CONFIRM_DATE
-                    FROM MEMBER_LICENSE
-                    LEFT JOIN LICENSE USING(LICENSE_NO)
-                    WHERE SYMBOL_LICENSE = 'Y' ) USING(MEMBER_NO)
-    WHERE MENTOR_STATUS = 'Y'
-      AND STATUS = 'Y'
+   WITH LIKE_COUNT AS (
+	    SELECT COUNT(*) AS LIKE_COUNT,
+	           MENTOR_NO
+	      FROM MENTOR_LIKE_LOG
+	  GROUP BY MENTOR_NO
+	), MEMBER_INFO AS (
+	    SELECT
+		        M.MEMBER_NO ,
+		        M.MEMBER_INTRO ,
+		        M.MEMBER_NICKNAME ,
+		        M.MEMBER_IMG ,
+		        L.LICENSE_NO ,
+		        L.LICENSE_NAME,
+		        M.MENTOR_VALID,
+		        ML.CONFIRM_DATE
+	       FROM MEMBER M
+	  LEFT JOIN MEMBER_LICENSE ML ON(M.MEMBER_NO = ML.MEMBER_NO)
+	  LEFT JOIN LICENSE L ON(ML.LICENSE_NO = L.LICENSE_NO)
+	      WHERE ML.SYMBOL_LICENSE = 'Y'
+	)
+	SELECT
+		   M.MEMBER_NO ,
+		   M.MEMBER_INTRO ,
+		   M.MEMBER_NICKNAME ,
+		   M.MEMBER_IMG ,
+		   MF.LICENSE_NO ,
+		   MF.LICENSE_NAME,
+		   M.MENTOR_VALID,
+		   LC.LIKE_COUNT,
+		   ROW_NUMBER() OVER(ORDER BY CONFIRM_DATE DESC) AS RNUM
+	  FROM MEMBER M
+ LEFT JOIN MEMBER_INFO MF ON(M.MEMBER_NO = MF.MEMBER_NO)
+ LEFT JOIN LIKE_COUNT LC ON(M.MEMBER_NO = LC.MENTOR_NO)
+     WHERE MENTOR_STATUS = 'Y'
+	   AND STATUS = 'Y'
+      	<if test="keyword != null">
+      		AND M.MEMBER_NICKNAME LIKE '%' || #{keyword} || '%'
+      	</if>
+      	<if test="licenseNo != null">
+      		AND LICENSE_NO = #{licenseNo}
+      	</if>
+    	<if test="sortNo eq 2">
+      		ORDER BY LIKE_COUNT DESC NULLS LAST
+      	</if>
   </select>
   
   <select id="selectMentorDetail" resultMap="memberResultSet">
@@ -71,6 +97,12 @@
 	  AND MENTOR_STATUS = 'Y'
 	  AND STATUS = 'Y'
 	  AND SYMBOL_LICENSE = 'Y'
+  </select>
+  
+  <select id="countMentorLike" resultType="_int">
+	SELECT COUNT(*)
+	  FROM MENTOR_LIKE_LOG
+	 WHERE MENTOR_NO = #{memberNo}
   </select>
 
 </mapper>

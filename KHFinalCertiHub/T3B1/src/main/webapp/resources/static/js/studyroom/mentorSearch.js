@@ -5,28 +5,28 @@ function initMentorSearch(contextPath){
 
 function initSelectBox(contextPath){
     const selectBoxList = document.querySelectorAll('.custom-select');
-
-    const data1 = {
+    
+    let data1 = {
         name : 'license',
         default : '자격증',
         imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
-        items : [
-            ['정보처리기사'],
-            ['네트워크관리사'],
-            ['정보보안기사'],
-            ['빅데이터분석기사']
-        ]
-    } 
+    }
 
-    const data2 = {
+    // 자격증 목록 불러옴
+    const onLicenseLoad = (data) => {
+        data1.items = data.map(item => [item.licenseName, item.licenseNo])
+    }
+    ajaxLoadLicense(onLicenseLoad)
+
+    let data2 = {
         name : 'sort',
         default : '최신순',
         imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
         items : [
-            ['최신순'],
-            ['인기순(좋아요)'],
+            ['최신순',1],
+            ['인기순(좋아요)',2],
         ]
-    } 
+    }
 
     createSelectBox(selectBoxList[0], data1)
     createSelectBox(selectBoxList[1], data2)
@@ -35,15 +35,29 @@ function initSelectBox(contextPath){
 function initMentorList(contextPath){
     // 초기값 세팅
     const loadingBar = document.querySelector('.loading-section')
+
+    // 현재 페이지의 URL 주소
+    const url = new URL(window.location.href);
+    // URL의 파라미터값을 가진 객체
+    const urlParam = url.searchParams;
+    const keyword = urlParam.get('keyword')
+    const license = urlParam.get('license')
+    const sort = urlParam.get('sort')
+
+    // 스로틀링용 변수
+    let timer;
     
     let pageInfo = {
         currentPage : 1,
         pageLimit : 10,
+        keyword : keyword,
+        license : license,
+        sort : sort,
         isEnd : false,
         loadingBar : loadingBar,
         contextPath : contextPath,
     }
-
+    // 콜백 함수
     const onMentorLoad = (data) => {
         if(data){
             createMentorCard(pageInfo.contextPath, data)
@@ -60,7 +74,9 @@ function initMentorList(contextPath){
     const loadMentor = ajaxLoadMentor(pageInfo, onMentorLoad)
     loadMentor(); // 처음 한번 로딩
     // 이후 스크롤 할 때, 화면끝에 도달하면 다시 로딩
-    $(document).scroll( () => {
+    document.onscroll = () => {
+        // 우선 scroll 이벤트 함수에 걸린 setTimeout을 초기화 시킨다
+        clearTimeout(timer)
         // window.scrollTop : 브라우저의 스크롤영역 맨 윗부분 ~ 스크롤바 사이의 거리, 스크롤바가 맨 위에 있을 경우 값은 0 => 스크롤을 내리면 증가
         // window.height : 브라우저에세 보여지는 부분의 크기 (= 브라우저 창 크기)
         // document.height : 전체 창의 크기( 보여지는 부분의 크기 + 안보이는 부분 )
@@ -68,29 +84,45 @@ function initMentorList(contextPath){
             전체 화면(document.height)이 길게 있고, 그 중 우리는 window.height 부분만 본다.
             스크롤바의 크기 = 브라우저에세 보여지는 부분의 크기 = window.height
             즉, scrollTop + window.height가 document.height와 같다면 스크롤이 화면 끝에 도달했음을 의미
-        */ 
-        if($(window).scrollTop() + $(window).height() > ($(document).height() * 0.95) ){
-            if(pageInfo.isEnd !== true) {
-                loadingBar.style.display = "flex";
-                loadMentor();
-            } 
-        }
-    });
+        */
+        timer = setTimeout( () => {
+            if($(window).scrollTop() + $(window).height() > ($(document).height() * 0.95) ){
+                if(pageInfo.isEnd !== true) {
+                    loadingBar.style.display = "flex";
+                    loadMentor();
+                } 
+            }
+        }, 200)
+    };
 }
 
-function ajaxLoadMentor(pageInfo, onMentorLoad){
+function ajaxLoadLicense(callback){
+    $.ajax({
+        type:"post",
+        url:"licenseList",
+        async: false, // ajax를 동기로 사용
+        success: callback,
+        error: () => {
+            console.log("자격증 목록 조회 실패")
+        }
+    })
+}
+
+function ajaxLoadMentor(pageInfo, callback){
     return function() {
-        console.log("ajax 요청중")
         $.ajax({
             type:"post",
             url:"list",
             data: {
                 "currentPage" : pageInfo.currentPage,
                 "pageLimit" :  pageInfo.pageLimit,
+                "keyword" : pageInfo.keyword,
+                "license" : pageInfo.license,
+                "sort" : pageInfo.sort,
             },
-            success: onMentorLoad,
+            success: callback,
             error: () => {
-                console.log("ajax 요청 실패")
+                console.log("멘토 목록 불러오기 실패")
             }
         })
     }

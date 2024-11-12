@@ -19,10 +19,10 @@
         <div class="mentor-page">
             <div class="mentor-card">
                 <div class="profile-img small">
-                    <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                    <img src="<%=contextPath%>${mentor.memberImg}" class="rounded-circle" alt="Cinque Terre">
                 </div>
                 <div class="mentor-name font-size-subtitle">${mentor.memberNickname}</div>
-                <div class="tag bgcolor3"><img src="<%=contextPath%>/resources/static/img/button/heart.png">1.2k</div>
+                <div class="tag bgcolor3"><img src="<%=contextPath%>/resources/static/img/button/heart.png">${mentor.mentorLike}</div>
                 <div class="symbol-license">${mentor.symbolLicense}</div>
                 <div class="member-intro font-size-footer">${mentor.memberIntro}</div>
                 <c:choose>
@@ -36,14 +36,16 @@
                 <button class="btn-primary"  data-bs-toggle="modal" data-bs-target="#apply-modal">신청하기</button>
             </div>
 
-            <div class="mentor-info">
-                <div class="font-size-title">경력</div>
-                <div class="mentor-career">
-                    ${mentor.career}
-                </div>
-                <div class="font-size-title">소개</div>
-                <div class="mentor-intro">
-                    ${mentor.mentorIntro}
+            <div class="info-section">
+                <div class="info">
+                    <div class="font-size-title">경력</div>
+                    <div class="mentor-career">
+                        ${mentor.career}
+                    </div>
+                    <div class="font-size-title">소개</div>
+                    <div class="mentor-intro">
+                        ${mentor.mentorIntro}
+                    </div>
                 </div>
 
                 <div class="button-section">

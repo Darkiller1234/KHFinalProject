@@ -61,6 +61,11 @@
     color: #006D77;
 }
 
+/* 맨 위 스크롤 버튼 */
+.bottom-options{
+    right: 20px;
+}
+
 @media (min-width: 721px) {
     /* 검색 텍스트 부분 */
     .search-section .search-form{

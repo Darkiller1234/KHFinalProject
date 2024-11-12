@@ -21,6 +21,8 @@ public class Member {
 	private String mentorIntro;
 	private String career;
 	
-	// 멘토의 대표 자격증
+	// 멘토 추가 정보
 	private String symbolLicense;
+	private int symbolLicenseNo;
+	private int mentorLike;
 }
