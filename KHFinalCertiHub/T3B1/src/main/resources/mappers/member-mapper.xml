@@ -23,6 +23,7 @@
   	<result column="MENTOR_INTRO" property="mentorIntro"/>
   	<result column="CAREER" property="career"/>
   	<result column="LICENSE_NAME" property="symbolLicense"/>
+  	<result column="LICENSE_NO" property="symbolLicenseNo"/>
   </resultMap>
 
   <select id="countMentor" resultType="_int">
@@ -38,6 +39,7 @@
         MEMBER_INTRO ,
         MEMBER_NICKNAME ,
         MEMBER_IMG ,
+        LICENSE_NO ,
         LICENSE_NAME,
         MENTOR_VALID,
         MEMBER_IMG,
@@ -45,6 +47,7 @@
         FROM MEMBER
         LEFT JOIN ( SELECT
                         MEMBER_NO,
+                        LICENSE_NO,
                         LICENSE_NAME,
                         CONFIRM_DATE
                     FROM MEMBER_LICENSE
@@ -52,6 +55,12 @@
                     WHERE SYMBOL_LICENSE = 'Y' ) USING(MEMBER_NO)
     WHERE MENTOR_STATUS = 'Y'
       AND STATUS = 'Y'
+      	<if test="keyword != null">
+      		AND MEMBER_NICKNAME LIKE '%' || #{keyword} || '%'
+      	</if>
+      	<if test="licenseNo != null">
+      		AND LICENSE_NO = #{licenseNo}
+      	</if>
   </select>
   
   <select id="selectMentorDetail" resultMap="memberResultSet">
