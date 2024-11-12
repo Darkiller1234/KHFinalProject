@@ -72,6 +72,12 @@
 	  AND STATUS = 'Y'
 	  AND SYMBOL_LICENSE = 'Y'
   </select>
+  
+  <select id="countMentorLike" resultType="_int">
+	SELECT COUNT(*)
+	  FROM MENTOR_LIKE_LOG
+	 WHERE MENTOR_NO = #{memberNo}
+  </select>
 
 </mapper>
 

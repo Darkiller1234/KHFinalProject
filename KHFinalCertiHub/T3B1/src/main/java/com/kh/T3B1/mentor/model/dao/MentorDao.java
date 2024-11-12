@@ -27,4 +27,8 @@ public class MentorDao {
 		return sqlSession.selectOne("memberMapper.selectMentorDetail", memberNo);
 	}
 
+	public int countMentorLike(SqlSessionTemplate sqlSession, int memberNo) {
+		return sqlSession.selectOne("memberMapper.countMentorLike", memberNo);
+	}
+
 }

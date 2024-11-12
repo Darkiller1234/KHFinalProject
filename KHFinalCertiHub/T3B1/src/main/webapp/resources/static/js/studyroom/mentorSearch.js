@@ -80,7 +80,6 @@ function initMentorList(contextPath){
 
 function ajaxLoadMentor(pageInfo, onMentorLoad){
     return function() {
-        console.log("ajax 요청중")
         $.ajax({
             type:"post",
             url:"list",
