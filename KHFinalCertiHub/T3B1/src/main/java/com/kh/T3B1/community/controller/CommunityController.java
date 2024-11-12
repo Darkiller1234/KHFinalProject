@@ -27,7 +27,9 @@ public class CommunityController {
 	@RequestMapping("main")
 	public String CommunityMain(@RequestParam(value="cpage", defaultValue="1") int currentPage,
 			@RequestParam(value="certiNo", defaultValue="1") int certiNo,
-			@RequestParam(value="tabNo", defaultValue="0") int tabNo ,Model c) {
+			@RequestParam(value="tabNo", defaultValue="0") int tabNo ,
+			@RequestParam(value="orderBy", defaultValue="1") int orderBy,
+			@RequestParam(value="filterNo", defaultValue="0") int filterNo, Model c) {
 		
 		
 		

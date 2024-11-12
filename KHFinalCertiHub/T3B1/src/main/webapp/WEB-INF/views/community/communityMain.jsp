@@ -309,7 +309,7 @@
                 <div id="selectbox2" class="custom-select">
                 </div>
                 <input type="text" id="search-input-text">
-                  <button class="rounded-circle" onclick="alert('클릭됨')">
+                  <button class="rounded-circle" onclick="searchExcute()">
                       <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
                   </button> 
               </div>
@@ -347,7 +347,6 @@
 
 
       <!-- <%@ include file="../common/footer.jsp"%> -->
-      
   </body>
 
   </html>

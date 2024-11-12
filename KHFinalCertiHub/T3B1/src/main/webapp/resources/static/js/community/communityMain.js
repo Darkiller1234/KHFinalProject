@@ -1,17 +1,43 @@
-function redirect(params) {
-    location.href= params;
-}
-
 function certiChange(certiNumber) {
-    redirect("main?certiNo=" + certiNumber);
+    redirect(certiNumber);
 }
 
 function tabNoChange(certiNo, tabNo){
-    redirect(`main?certiNo=${certiNo}&tabNo=` + tabNo)
+    redirect(certiNo, tabNo)
 }
 
 function pageChange(currentPage, certiNo, tabNo){
-    redirect(`main?certiNo=${certiNo}&tabNo=${tabNo}&cpage=${currentPage}`)
+    redirect(certiNo, tabNo, currentPage)
+}
+
+function searchExcute(){
+    if($('.array').val()===undefined){
+        console.log("ASDF");
+    }
+    
+}
+
+function redirect(certiNo, tabNo, currentPage, orderNo, filterNo, filterText){
+    let path = "main?";
+    if(certiNo){
+        path += `certiNo=${certiNo}&`;
+    }
+    if(tabNo){
+        path += `tabNo=${tabNo}&`;
+    }
+    if(currentPage){
+        path += `cpage=${currentPage}&`;
+    }
+    if(orderNo){
+        path += `orderNo=${orderNo}&`;
+    }
+    if(filterNo){
+        path += `filterNo=${filterNo}&`;
+    }
+    if(filterText){
+        path += `filterText=${filterText}&`;
+    }
+    location.href=path;
 }
 
 function commuMInit(contextPath){
@@ -20,8 +46,8 @@ function commuMInit(contextPath){
         default : '최신순',
         imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
         items : [
-            ['최신순'],
-            ['추천순']
+            ['최신순', 1],
+            ['추천순', 2]
         ]
     }
 
@@ -30,10 +56,10 @@ function commuMInit(contextPath){
         default : '제목',
         imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
         items : [
-            ['제목'],
-            ['내용'],
-            ['제목+내용'],
-            ['글쓴이']
+            ['제목', 1],
+            ['내용', 2],
+            ['제목+내용', 3],
+            ['글쓴이', 4]
         ]
     }
 

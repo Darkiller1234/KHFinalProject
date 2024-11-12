@@ -70,8 +70,8 @@
   	 	<if test="licenseNo != 0">
             AND B.LICENSE_NO = #{licenseNo}
         </if>
-        <if test="licenseNo == 0">
-        	AND B.LICENSE_NO != 1
+        <if test="tabNo == 0">
+        	AND B.TAB_NO != 1
         </if>
         <if test="tabNo != 0">
             AND B.TAB_NO = #{tabNo}
