@@ -22,22 +22,20 @@
       <div class="wrapper">
           <nav class="navbar bg-body-tertiary page-title" id="certiSelect">
             <div class="container-fluid">
-              <a class="navbar-brand" href="#">정보처리기사</a>
+              <a class="navbar-brand" onclick="certiChange(${certiNo})">${certiList[certiNo-1]}</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"><img src="<%=contextPath%>/resources/static/img/button/triangle_down.png" alt=""></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">정보보안기사</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">네트워크관리사</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">빅데이터 분석기사</a>
-                  </li>
+                  <c:forEach var="d" items="${certiList}" varStatus="status">
+                    <c:if test="${certiList[certiNo-1] ne d}">
+                      <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" onclick="certiChange(${status.count})">${d}</a>
+                      </li>
+                    </c:if>
+                  </c:forEach>
                 </ul>
               </div>
             </div>
@@ -66,36 +64,36 @@
               <div class="scroll-content btn-group" role="group" aria-label="Basic radio toggle button group">
                 <!-- 여기에 스크롤 가능한 콘텐츠를 추가하세요 -->
                 <div class="item2">
-                  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                  <label class="btn btn-outline-primary" for="btnradio1">전체</label>
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" <c:if test="${tabNo eq 0}">checked</c:if>>
+                  <label class="btn btn-outline-primary" for="btnradio1" onclick="tabNoChange(${certiNo}, 0)">전체</label>
                 </div>
                 <div class="item2">
-                  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                  <label class="btn btn-outline-primary" for="btnradio2">공지</label>
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" <c:if test="${tabNo eq 1}">checked</c:if>>
+                  <label class="btn btn-outline-primary" for="btnradio2" onclick="tabNoChange(${certiNo}, 1)">공지</label>
                 </div>
                 <div class="item2">
-                  <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-              <label class="btn btn-outline-primary" for="btnradio3">자유</label>
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off"<c:if test="${tabNo eq 2}">checked</c:if>>
+              <label class="btn btn-outline-primary" for="btnradio3" onclick="tabNoChange(${certiNo}, 2)" >자유</label>
                 </div>
                 <div class="item2">
-                  <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
-              <label class="btn btn-outline-primary" for="btnradio4">질문(자유)</label>
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" <c:if test="${tabNo eq 3}">checked</c:if>>
+              <label class="btn btn-outline-primary" for="btnradio4" onclick="tabNoChange(${certiNo}, 3)" >질문(자유)</label>
                 </div>
                 <div class="item2">
-                  <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off">
-              <label class="btn btn-outline-primary" for="btnradio5">질문(코딩)</label>
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off" <c:if test="${tabNo eq 4}">checked</c:if>>
+              <label class="btn btn-outline-primary" for="btnradio5" onclick="tabNoChange(${certiNo}, 4)" >질문(코딩)</label>
                 </div>
                 <div class="item2">
-                  <input type="radio" class="btn-check" name="btnradio" id="btnradio6" autocomplete="off">
-              <label class="btn btn-outline-primary" for="btnradio6">후기</label>
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio6" autocomplete="off" <c:if test="${tabNo eq 5}">checked</c:if>>
+              <label class="btn btn-outline-primary" for="btnradio6" onclick="tabNoChange(${certiNo}, 5)" >후기</label>
                 </div>
                 <div class="item2">
-                  <input type="radio" class="btn-check" name="btnradio" id="btnradio7" autocomplete="off">
-              <label class="btn btn-outline-primary" for="btnradio7">문제집/강의 추천</label>
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio7" autocomplete="off" <c:if test="${tabNo eq 6}">checked</c:if>>
+              <label class="btn btn-outline-primary" for="btnradio7" onclick="tabNoChange(${certiNo}, 6)" >문제집/강의 추천</label>
                 </div>
                 <div class="item2">
-                  <input type="radio" class="btn-check" name="btnradio" id="btnradio8" autocomplete="off">
-              <label class="btn btn-outline-primary" for="btnradio8">문제집 거래</label>
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio8" autocomplete="off" <c:if test="${tabNo eq 7}">checked</c:if>>
+              <label class="btn btn-outline-primary" for="btnradio8" onclick="tabNoChange(${certiNo}, 7)" >문제집 거래</label>
                 </div>
                 
               </div>
@@ -130,151 +128,127 @@
                   </div>
                 </div>
               </div>
-              <div class="listArea-noti">
-                <div>
-                  <div class="listArea-div1-tab cate-notice">
-                    공지
-                  </div>
-                  <div class="listArea-div1-title">
-                    왜 안되는지는 저도 잘 모릅니다. 하하하.
-                  </div>
-                  <div class="listArea-div1-replyCount">
-                    [0]
-                  </div>
-                </div>
-                <div>
-                  <div class="listArea-div1-writter">
-                    윤대한
-                  </div>
-                  <div class="listArea-div1-date">
-                    18:10
-                  </div>
-                  <div class="listArea-div1-viewCount">
-                    5
-                  </div>
-                  <div class="listArea-div1-dogchu">
-                    0
-                  </div>
-                </div>
-              </div>
-              <c:forEach var="b" items="${list}">
-                <div onclick="redirect('<%=contextPath%>/community/detail?certi=${b.certiNum}&cno=${b.boardNo}')">
-                  <div>
+              <c:forEach var="b" items="${notiList}">
+                <div <c:if test="${b.tabNo == 1}">class="listArea-noti"</c:if> onclick="redirect('<%=contextPath%>/community/detail?certi=${certiNo}&cno=${b.boardNo}')">
+                  <div >
                     <div class="listArea-div1-tab">
-                      ${b.boardTab}
+                      ${b.tabName}
                     </div>
                     <div class="listArea-div1-title">
                       ${b.boardTitle}
                     </div>
                     <div class="listArea-div1-replyCount">
-                      [${b.boardReplyCount}]
+                      [${b.replyCount}]
                     </div>
                   </div>
                   <div>
                     <div class="listArea-div1-writter">
-                      ${b.boardWriter}
+                      ${b.memberNickname}
                     </div>
                     <div class="listArea-div1-date">
-                      ${b.boardCreateDate}
+                      ${b.boardDate}
                     </div>
                     <div class="listArea-div1-viewCount">
-                      ${b.boardViewCount}
+                      ${b.viewCount}
                     </div>
                     <div class="listArea-div1-dogchu">
-                      ${b.boardLike - b.boardHate}
+                      ${b.likeCount - b.hateCount}
                     </div>
                   </div>
                 </div>
               </c:forEach>
-              <div>
-                <div>
-                  <div class="listArea-div1-tab">
-                    문제집/강의 추천
-                  </div>
-                  <div class="listArea-div1-title">
-                    이거 왜 안됨? 이거 왜 안됨? 이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?이거 왜 안됨?
-                  </div>
-                  <div class="listArea-div1-replyCount">
-                    [9999]
-                  </div>
-                </div>
-                <div>
-                  <div class="listArea-div1-writter">
-                    윤대한
-                  </div>
-                  <div class="listArea-div1-date">
-                    2024.10.22
-                  </div>
-                  <div class="listArea-div1-viewCount">
-                    10000
-                  </div>
-                  <div class="listArea-div1-dogchu">
-                    -9999
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="listArea-div2">
-              <div class="listArea-noti">
-                <div>
-                  <div class="listArea-div2-tab">
-                    공지
-                  </div>
-                  <div class="listArea-div2-title">
-                    왜 안되는지는 저도 잘 모릅니다. 하하하.
-                  </div>
-                  <div class="listArea-div2-replyCount">
-                    [0]
-                  </div>
-                </div>
-                <div>
-                  <div class="listArea-div2-writter">
-                    윤대한
-                  </div>
-                  <div class="listArea-div2-rightStuff">
-                    <div class="listArea-div2-date">
-                      18:10
-                    </div>
-                    | 
-                    <div class="listArea-div2-viewCount">
-                      조회수 5
-                    </div>
-                    | 
-                    <div class="listArea-div2-dogchu">
-                      추천수 0
-                    </div>
-                  </div>
-                </div>
-              </div>
               <c:forEach var="b" items="${list}">
-                <div onclick="redirect('<%=contextPath%>/community/detail?certi=${b.certiNum}&cno=${b.boardNo}')">
+                <div <c:if test="${b.tabNo == 1}">class="listArea-noti"</c:if> onclick="redirect('<%=contextPath%>/community/detail?certi=${certiNo}&cno=${b.boardNo}')">
+                  <div >
+                    <div class="listArea-div1-tab">
+                      ${b.tabName}
+                    </div>
+                    <div class="listArea-div1-title">
+                      ${b.boardTitle}
+                    </div>
+                    <div class="listArea-div1-replyCount">
+                      [${b.replyCount}]
+                    </div>
+                  </div>
                   <div>
+                    <div class="listArea-div1-writter">
+                      ${b.memberNickname}
+                    </div>
+                    <div class="listArea-div1-date">
+                      ${b.boardDate}
+                    </div>
+                    <div class="listArea-div1-viewCount">
+                      ${b.viewCount}
+                    </div>
+                    <div class="listArea-div1-dogchu">
+                      ${b.likeCount - b.hateCount}
+                    </div>
+                  </div>
+                </div>
+              </c:forEach>
+            </div>
+            <div class="listArea-div2">
+              <c:forEach var="b" items="${notiList}">
+                <div <c:if test="${b.tabNo == 1}">class="listArea-noti"</c:if> onclick="redirect('<%=contextPath%>/community/detail?certi=${certiNo}&cno=${b.boardNo}')">
+                  <div >
                     <div class="listArea-div2-tab">
-                      ${b.boardTab}
+                      ${b.tabName}
                     </div>
                     <div class="listArea-div2-title">
                       ${b.boardTitle}
                     </div>
                     <div class="listArea-div2-replyCount">
-                      [${b.boardReplyCount}]
+                      [${b.replyCount}]
                     </div>
                   </div>
                   <div>
                     <div class="listArea-div2-writter">
-                      ${b.boardWriter}
+                      ${b.memberNickname}
                     </div>
                     <div class="listArea-div2-rightStuff">
                       <div class="listArea-div2-date">
-                        ${b.boardCreateDate}
+                        ${b.boardDate}
                       </div>
                       |
                       <div class="listArea-div2-viewCount">
-                        조회수 ${b.boardViewCount}
+                        조회수 ${b.viewCount}
                       </div>
                       |
                       <div class="listArea-div2-dogchu">
-                        추천수 ${b.boardLike - b.boardHate}
+                        추천수 ${b.likeCount - b.hateCount}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </c:forEach>
+              <c:forEach var="b" items="${list}">
+                <div <c:if test="${b.tabNo == 1}">class="listArea-noti"</c:if> onclick="redirect('<%=contextPath%>/community/detail?certi=${certiNo}&cno=${b.boardNo}')">
+                  <div >
+                    <div class="listArea-div2-tab">
+                      ${b.tabName}
+                    </div>
+                    <div class="listArea-div2-title">
+                      ${b.boardTitle}
+                    </div>
+                    <div class="listArea-div2-replyCount">
+                      [${b.replyCount}]
+                    </div>
+                  </div>
+                  <div>
+                    <div class="listArea-div2-writter">
+                      ${b.memberNickname}
+                    </div>
+                    <div class="listArea-div2-rightStuff">
+                      <div class="listArea-div2-date">
+                        ${b.boardDate}
+                      </div>
+                      |
+                      <div class="listArea-div2-viewCount">
+                        조회수 ${b.viewCount}
+                      </div>
+                      |
+                      <div class="listArea-div2-dogchu">
+                        추천수 ${b.likeCount - b.hateCount}
                       </div>
                     </div>
                   </div>
@@ -282,12 +256,48 @@
               </c:forEach>
             </div>
 
-            
-            
+            <script>
+              console.log("${pi}")
+            </script>
             <div class="pagination">
-              <span class="page-num">1</span>
-              <span class="page-num active">2</span>
-            </div>
+              <c:if test="${pi.currentPage != 1}">
+                <span class="page-arrow" onclick="pageChange(${pi.currentPage - 1}, ${certiNo}, ${tabNo})">
+                  <img src="<%=contextPath%>/resources/static/img/button/arrow_left.png" alt="">
+                </span>
+              </c:if>
+              <c:if test="${pi.currentPage == pi.maxPage && pi.maxPage >= 5}">
+                <span class="page-num" onclick="pageChange(${pi.currentPage - 4}, ${certiNo}, ${tabNo})">${pi.currentPage - 4}</span>
+              </c:if>
+              <c:if test="${pi.currentPage >= pi.maxPage - 1 && pi.maxPage >= 4}">
+                <span class="page-num" onclick="pageChange(${pi.currentPage - 3}, ${certiNo}, ${tabNo})">${pi.currentPage - 3}</span>
+              </c:if>
+              <c:if test="${pi.currentPage - 2 >= 1}">
+                <span class="page-num" onclick="pageChange(${pi.currentPage - 2}, ${certiNo}, ${tabNo})">${pi.currentPage - 2}</span>
+              </c:if>
+              <c:if test="${pi.currentPage - 1 >= 1}">
+                <span class="page-num" onclick="pageChange(${pi.currentPage - 1}, ${certiNo}, ${tabNo})">${pi.currentPage - 1}</span>
+              </c:if>
+              <span class="page-num active"  onclick="pageChange(${pi.currentPage}, ${certiNo}, ${tabNo})">${pi.currentPage}</span>
+              <c:if test="${pi.currentPage + 1 <= pi.maxPage}">
+                <span class="page-num" onclick="pageChange(${pi.currentPage + 1}, ${certiNo}, ${tabNo})">${pi.currentPage + 1}</span>
+              </c:if>
+              <c:if test="${pi.currentPage + 2 <= pi.maxPage}">
+                <span class="page-num" onclick="pageChange(${pi.currentPage + 2}, ${certiNo}, ${tabNo})">${pi.currentPage + 2}</span>
+              </c:if>
+              <c:if test="${pi.currentPage <= 2 && pi.maxPage >= 4}">
+                <span class="page-num" onclick="pageChange(${pi.currentPage + 3}, ${certiNo}, ${tabNo})">${pi.currentPage + 3}</span>
+              </c:if>
+              <c:if test="${pi.currentPage == 1 && pi.maxPage >= 5}">
+                <span class="page-num" onclick="pageChange(${pi.currentPage + 4}, ${certiNo}, ${tabNo})">${pi.currentPage + 4}</span>
+              </c:if>
+              <c:if test="${pi.currentPage < pi.maxPage}">
+                <span class="page-arrow" onclick="pageChange(${pi.currentPage + 1}, ${certiNo}, ${tabNo})">
+                  <img src="<%=contextPath%>/resources/static/img/button/arrow_right.png"
+                      alt="">
+                </span>
+              </c:if>
+              
+          </div>
             <div id="search-area">
               <div id="selectbox1" class="custom-select">
                 <!-- <select>
@@ -299,7 +309,7 @@
                 <div id="selectbox2" class="custom-select">
                 </div>
                 <input type="text" id="search-input-text">
-                  <button class="rounded-circle" onclick="alert('클릭됨')">
+                  <button class="rounded-circle" onclick="searchExcute()">
                       <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
                   </button> 
               </div>
@@ -337,7 +347,6 @@
 
 
       <!-- <%@ include file="../common/footer.jsp"%> -->
-      
   </body>
 
   </html>
