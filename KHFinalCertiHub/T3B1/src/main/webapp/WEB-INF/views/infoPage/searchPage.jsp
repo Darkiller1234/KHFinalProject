@@ -18,12 +18,14 @@
             </div>
 
             <!-- 검색 폼 -->
-            <form class="search-form" action="" method="get">
-                <input type="text" placeholder="검색어를 입력하세요">
+            <form class="search-form" action="<%=contextPath%>/searchResults" method="get">
+                <input type="text" name="keyword" placeholder="검색어를 입력하세요">
+                <input type="hidden" name="category" id="category" value="">
                 <button type="submit">
                     <img src="<%=contextPath%>/resources/static/img/button/search_icon.png" alt="검색">
                 </button>
             </form>
+            
             <br><br>
             <!-- 분류 탭 -->
             <div class="container">
@@ -79,7 +81,7 @@
                 </div>
             </div>
                 <div class="tab-preview">
-                    IT,정보 통신 ->
+                        &nbsp;&nbsp;&nbsp;
                     <div class="btn-container">
                         <button class="btn1">초기화</button>
                         <button class="btn2">검색</button>
@@ -93,22 +95,14 @@
 
                 <br><br>
 
-                <div class="result-item">
-                    <h3>정보처리기사</h3>
-                    <p>시험일 | 2024년 | 분야 | 공시 예정</p>
-                    <button class="view-details" onclick="location.href='<%=contextPath%>/info'">국가기술자격</button>
-                </div>
-
-                <div class="result-item">
-                    <h3>정보처리기능사</h3>
-                    <p>시험일 | 2024년 | 분야 | 공시 예정</p>
-                    <button class="view-details">국가기술자격</button>
-                </div>
-
-                <div class="result-item">
-                    <h3>정보보안기사</h3>
-                    <p>시험일 | 2024년 | 분야 | 공시 예정</p>
-                    <button class="view-details">국가기술자격</button>
+                <div class="results-container">
+                    <c:forEach var="result" items="${results}">
+                        <div class="result-item">
+                            <h3>${result.title}</h3>
+                            <p>시험일 | ${result.examDate} | 분야 | ${result.category}</p>
+                            <button class="view-details">${result.type}</button>
+                        </div>
+                    </c:forEach>
                 </div>
 
                 <br><br>

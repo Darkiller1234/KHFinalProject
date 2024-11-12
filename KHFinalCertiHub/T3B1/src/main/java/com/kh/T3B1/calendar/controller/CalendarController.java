@@ -11,8 +11,4 @@ public class CalendarController {
 	@Autowired(required = false)
 	private CalendarService service;
 	
-	@GetMapping(params="method=list")
-	public String list() {
-		return "mainPage.jsp";
-	}
 }
