@@ -13,8 +13,9 @@
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css" rel="stylesheet" />
     <!-- FullCalendar JS (CDN) -->
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
-    
-    <script src="${pageContext.request.contextPath}/resources/static/js/main/mainPage.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/static/js/calendar/calendar.js"></script>
+
+    <!-- <script src="${pageContext.request.contextPath}/resources/static/js/main/mainPage.js"></script> -->
 
 </head>
 <body>
@@ -51,8 +52,6 @@
                 </div>
             </div>
         </div>
-        <script src="<%=contextPath%>/resources/static/js/calendar/calendar.js"></script>
-        <script src="<%=contextPath%>/resources/static/js/main/mainPage.js"></script>
         <%@ include file="../common/footer.jsp" %>
 </body>
 
