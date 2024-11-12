@@ -7,4 +7,5 @@ public class SearchOption {
 	private String keyword;
 	private Integer licenseNo;
 	private Integer sortNo;
+	private String recruit;
 }
