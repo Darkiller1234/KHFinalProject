@@ -13,14 +13,14 @@
 		<result column="BOARD_WRITER" property="writerNo"/>
 		<result column="MEMBER_NICKNAME" property="writerName"/>
 		<result column="BOARD_CONTENT" property="boardContent"/>
-		<result column="CREATE_DATE" property="createDate"/>
+		<result column="BOARD_DATE" property="boardDate"/>
 	</resultMap>
 
   <!-- 게시글 총 갯수 조회 -->
   <select id="selectListCount" resultType="_int">
    	SELECT COUNT(*)
    	  FROM BOARD
-   	 WHERE STATUS = 'Y'
+   	 WHERE STATUS = 'Y' AND BOARD_NO = #{certiNo}
   </select>
   <!-- 게시글 조회 -->
   <select id="selectList" resultType="Board">
@@ -31,7 +31,7 @@
 			BOARD_TITLE boardTitle,
 			BOARD_WRITER writerNo,
 			MEMBER_NICKNAME writerName,
-			TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS "boardCreateDate"
+			TO_CHAR(BOARD_DATE, 'YYYY-MM-DD') AS "boardCreateDate"
   	  FROM BOARD
   	 WHERE STATUS = 'Y'
   	 ORDER BY BOARD_NO DESC

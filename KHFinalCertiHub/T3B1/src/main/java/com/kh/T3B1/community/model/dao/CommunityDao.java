@@ -10,9 +10,8 @@ import com.kh.T3B1.community.model.vo.Board;
 
 public class CommunityDao {
 
-	public int selectListCount(SqlSessionTemplate sqlSession) {
-//		return sqlSession.selectOne("board");
-		return 0;
+	public int selectListCount(int certiNo, SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("boardMapper.selectListCount", certiNo);
 	}
 
 	public ArrayList<Board> selectList(SqlSessionTemplate sqlSession, PageInfo pi) {

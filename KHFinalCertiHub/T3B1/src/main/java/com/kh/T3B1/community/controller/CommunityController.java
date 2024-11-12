@@ -17,26 +17,26 @@ import com.kh.T3B1.community.service.CommunityService;
 @RequestMapping("/community")
 public class CommunityController {
 	
-//	private final CommunityService communityService;
+	private final CommunityService communityService;
 	
-//	@Autowired
-//	public CommunityController(CommunityService communityService) {
-//		this.communityService = communityService;
-//	}
+	@Autowired
+	public CommunityController(CommunityService communityService) {
+		this.communityService = communityService;
+	}
 	
 	@RequestMapping("main")
-	public String CommunityMain(@RequestParam(value="cpage", defaultValue="1") int currentPage,Model c) {
+	public String CommunityMain(@RequestParam(value="cpage", defaultValue="1") int currentPage, int certiNo, Model c) {
 		
-//		int boardCount = communityService.selectListCount();
-//		
-//		PageInfo pi = Template.getPageInfo(boardCount, currentPage, 10, 5);
-//		ArrayList<Board> list = communityService.selectList(pi);
-//		
-//		
-//		c.addAttribute("list", list);
-//		c.addAttribute("pi", pi);
-//		
-//		c.addAttribute("pageName","communitySearch");
+		int boardCount = communityService.selectListCount(certiNo);
+		
+		PageInfo pi = Template.getPageInfo(boardCount, currentPage, 10, 5);
+		ArrayList<Board> list = communityService.selectList(pi);
+		
+		
+		c.addAttribute("list", list);
+		c.addAttribute("pi", pi);
+		
+		c.addAttribute("pageName","communitySearch");
 		return "community/communityMain";
 	}
 	@RequestMapping("detail")
