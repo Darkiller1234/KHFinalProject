@@ -1,5 +1,17 @@
 function redirect(params) {
-    window.location.href = params
+    location.href= params;
+}
+
+function certiChange(certiNumber) {
+    redirect("main?certiNo=" + certiNumber);
+}
+
+function tabNoChange(certiNo, tabNo){
+    redirect(`main?certiNo=${certiNo}&tabNo=` + tabNo)
+}
+
+function pageChange(currentPage, certiNo, tabNo){
+    redirect(`main?certiNo=${certiNo}&tabNo=${tabNo}&cpage=${currentPage}`)
 }
 
 function commuMInit(contextPath){
@@ -69,7 +81,7 @@ function tabChange(contextPath) {
     document.querySelectorAll('.listArea-div1-tab, .listArea-div2-tab').forEach(function(ev){
 
 
-        switch (ev.innerText) {
+        switch (ev.textContent.trim()) {
             case '공지':
                 ev.innerHTML = `<img src="${contextPath}/resources/static/img/community/cate_notice.png" alt="">`
                 break;

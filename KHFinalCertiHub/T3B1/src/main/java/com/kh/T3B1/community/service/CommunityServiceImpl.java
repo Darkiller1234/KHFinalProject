@@ -23,14 +23,22 @@ public class CommunityServiceImpl implements CommunityService{
 	@Autowired
 	private final CommunityDao communityDao;
 
-	@Override
-	public int selectListCount(int certiNo) {
-		return communityDao.selectListCount(certiNo, sqlSession);
+	public int selectListCount(Board dump) {
+		return communityDao.selectListCount(dump, sqlSession);
+	}
+	
+	public ArrayList<Board> selectList(PageInfo pi, Board dump) {
+		return communityDao.selectList(sqlSession, pi, dump);
 	}
 
 	@Override
-	public ArrayList<Board> selectList(PageInfo pi) {
-		return communityDao.selectList(sqlSession, pi);
+	public ArrayList<String> selectCertiList() {
+		return communityDao.selectCertiList(sqlSession);
+	}
+
+	@Override
+	public ArrayList<Board> selectNotiList(Board dump) {
+		return communityDao.selectNotiList(sqlSession, dump);
 	}
 	
 	

@@ -176,21 +176,22 @@ div1과 div2의 구조가 다름
                     [0]
                 </div>
             </div>
-        <div>
-            <div class="listArea-div2-writter">
-                윤대한
-            </div>
-            <div class="listArea-div2-rightStuff">
-                <div class="listArea-div2-date">
-                    18:10
+            <div>
+                <div class="listArea-div2-writter">
+                    윤대한
                 </div>
-                | 
-                <div class="listArea-div2-viewCount">
-                    조회수 5
-                </div>
-                | 
-                <div class="listArea-div2-dogchu">
-                    추천수 0
+                <div class="listArea-div2-rightStuff">
+                    <div class="listArea-div2-date">
+                        18:10
+                    </div>
+                    | 
+                    <div class="listArea-div2-viewCount">
+                        조회수 5
+                    </div>
+                    | 
+                    <div class="listArea-div2-dogchu">
+                        추천수 0
+                    </div>
                 </div>
             </div>
         </div>
@@ -206,6 +207,12 @@ div1과 div2의 구조가 다름
 
 #listArea table {
     width: 100%;
+}
+
+
+.listArea-div2 ,
+.listArea-div1{
+    border-top: 1px solid;
 }
 
 .listArea-div2 *,
@@ -225,6 +232,11 @@ div1과 div2의 구조가 다름
     padding: 0px 0px 5px 0px;
 }
 
+.listArea-div2>div:hover,
+.listArea-div1>div:hover {
+    background-color: #EDF6F9;
+}
+
 
 .listArea-div1>div {
     display: flex;
@@ -234,6 +246,11 @@ div1과 div2의 구조가 다름
 
 .listArea-div1-info {
     background-color: #83C5BE;
+    border-bottom: 3px solid #AEAEAE !important;
+}
+
+.listArea-div1-info:hover {
+    background-color: #83C5BE !important;
 }
 
 .listArea-div1>div>div:nth-of-type(1) {
@@ -257,7 +274,7 @@ div1과 div2의 구조가 다름
 
 .listArea-div1-title {
     margin-left: 10px;
-    max-width: calc(100%);
+    max-width: 100%;
     justify-content: left;
 }
 
@@ -274,7 +291,7 @@ div1과 div2의 구조가 다름
 }
 
 .listArea-div1-date {
-    min-width: 80px;
+    min-width: 90px;
     justify-content: center;
     text-align: center;
 }

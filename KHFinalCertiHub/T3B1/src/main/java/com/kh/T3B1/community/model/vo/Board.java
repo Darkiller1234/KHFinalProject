@@ -1,7 +1,5 @@
 package com.kh.T3B1.community.model.vo;
 
-import java.sql.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,5 +25,6 @@ public class Board {
 	private int viewCount;
 	private String memberNickname;
 	private String tabName;
-
+	private String licenseName;
+	private int replyCount;
 }
