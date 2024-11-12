@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace: 해당 mapper파일의 고유한 별칭 -->
+<mapper namespace="studyMapper">
+  <resultMap type="Study" id="StudyResultSet">
+  	<result column="STUDY_NO" property="studyNo"/>
+  	<result column="MANAGER_NO" property="managerNo"/>
+  	<result column="STUDY_NAME" property="studyName"/>
+ 	<result column="STUDY_INFO" property="studyInfo"/>
+  	<result column="STUDY_IMG" property="studyImg"/>
+  	<result column="STUDY_RECRUIT" property="studyRecruit"/>
+  	<result column="MEMBER_COUNT" property="memberNo"/>
+  </resultMap>
+  
+  <select id="countStudy" resultType="_int">
+	SELECT COUNT(*)
+	FROM STUDY
+  </select>
+
+  <select id="selectStudyList" resultMap="StudyResultSet">
+	 SELECT STUDY_NO ,
+		    STUDY_NAME ,
+		    STUDY_INFO ,
+		    STUDY_IMG ,
+		    STUDY_RECRUIT,
+		    MEMBER_COUNT
+       FROM STUDY
+  LEFT JOIN (
+		    SELECT STUDY_NO,COUNT(*) AS MEMBER_COUNT
+		    FROM STUDY_MEMBER 
+		    GROUP BY STUDY_NO
+  	) USING (STUDY_NO)
+	<where>
+		<if test="keyword != null">
+			WHERE STUDY_NAME LIKE '%' || ${keyword} || '%'
+		</if>
+		<if test="recruit eq 'Y'">
+			WHERE STUDY_RECRUIT = 'Y'
+		</if>
+			<if test="recruit eq 'N'">
+			WHERE STUDY_RECRUIT = 'N'
+		</if>
+		<if test="sortNo == 2">
+			ORDER BY MEMBER_COUNT DESC
+		</if>
+	</where>
+  </select>
+
+</mapper>
+

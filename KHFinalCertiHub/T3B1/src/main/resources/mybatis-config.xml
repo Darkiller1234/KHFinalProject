@@ -16,6 +16,7 @@
 		<typeAlias type="com.kh.T3B1.calendar.model.vo.Calendar" alias="Calendar" />
 		<typeAlias type="com.kh.T3B1.community.model.vo.Board" alias ="Board"/>
 		<typeAlias type="com.kh.T3B1.common.vo.License" alias ="License"/>
+		<typeAlias type="com.kh.T3B1.study.model.vo.Study" alias ="Study"/>
 	</typeAliases>
 
 
@@ -30,5 +31,6 @@
 		<mapper resource="mappers/calendar-mapper.xml"/>
 		<mapper resource="mappers/board-mapper.xml"/>
 		<mapper resource="mappers/common-mapper.xml"/>
+		<mapper resource="mappers/study-mapper.xml"/>
 	</mappers>
 </configuration>
