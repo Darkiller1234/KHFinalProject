@@ -36,14 +36,16 @@
                 <button class="btn-primary"  data-bs-toggle="modal" data-bs-target="#apply-modal">신청하기</button>
             </div>
 
-            <div class="mentor-info">
-                <div class="font-size-title">경력</div>
-                <div class="mentor-career">
-                    ${mentor.career}
-                </div>
-                <div class="font-size-title">소개</div>
-                <div class="mentor-intro">
-                    ${mentor.mentorIntro}
+            <div class="info-section">
+                <div class="info">
+                    <div class="font-size-title">경력</div>
+                    <div class="mentor-career">
+                        ${mentor.career}
+                    </div>
+                    <div class="font-size-title">소개</div>
+                    <div class="mentor-intro">
+                        ${mentor.mentorIntro}
+                    </div>
                 </div>
 
                 <div class="button-section">
