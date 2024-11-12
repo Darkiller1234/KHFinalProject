@@ -17,26 +17,53 @@ import com.kh.T3B1.community.service.CommunityService;
 @RequestMapping("/community")
 public class CommunityController {
 	
-//	private final CommunityService communityService;
+	private final CommunityService communityService;
 	
-//	@Autowired
-//	public CommunityController(CommunityService communityService) {
-//		this.communityService = communityService;
-//	}
+	@Autowired
+	public CommunityController(CommunityService communityService) {
+		this.communityService = communityService;
+	}
 	
 	@RequestMapping("main")
-	public String CommunityMain(@RequestParam(value="cpage", defaultValue="1") int currentPage,Model c) {
+	public String CommunityMain(@RequestParam(value="cpage", defaultValue="1") int currentPage,
+			@RequestParam(value="certiNo", defaultValue="1") int certiNo,
+			@RequestParam(value="tabNo", defaultValue="0") int tabNo ,
+			@RequestParam(value="orderBy", defaultValue="1") int orderBy,
+			@RequestParam(value="filterNo", defaultValue="0") int filterNo, Model c) {
 		
-//		int boardCount = communityService.selectListCount();
-//		
-//		PageInfo pi = Template.getPageInfo(boardCount, currentPage, 10, 5);
-//		ArrayList<Board> list = communityService.selectList(pi);
-//		
-//		
-//		c.addAttribute("list", list);
-//		c.addAttribute("pi", pi);
-//		
-//		c.addAttribute("pageName","communitySearch");
+		
+		
+		Board dump = new Board();
+		dump.setLicenseNo(certiNo);
+		dump.setTabNo(tabNo);
+		
+		int boardCount = communityService.selectListCount(dump);
+		
+		
+		PageInfo pi = Template.getPageInfo(boardCount, currentPage, 10, 5);
+		
+		if(pi.getCurrentPage() > pi.getMaxPage()) {
+			pi.setCurrentPage(pi.getMaxPage());
+		}
+		
+		ArrayList<Board> list = communityService.selectList(pi, dump);
+		
+		ArrayList<String> certiList = communityService.selectCertiList();
+		
+		
+		ArrayList<Board> notiList = null;
+		if(tabNo != 1 && currentPage == 1) {
+			notiList = communityService.selectNotiList(dump);
+		}
+		
+		c.addAttribute("notiList", notiList);
+		c.addAttribute("list", list);
+		c.addAttribute("pi", pi);
+		c.addAttribute("certiList", certiList);
+		
+		c.addAttribute("pageName","communitySearch");
+		c.addAttribute("certiNo", certiNo);
+		c.addAttribute("tabNo", tabNo);
 		return "community/communityMain";
 	}
 	@RequestMapping("detail")
