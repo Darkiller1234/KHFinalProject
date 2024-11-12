@@ -11,20 +11,19 @@
 
     <body>
         <%@ include file="../common/header.jsp" %>
-            <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/common/default.css">
-            <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/infopage/searchPage.css">
+        <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/common/default.css">
+        <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/infopage/searchPage.css">
             <div id="wrapper">
                 <h1 class="title">자격증 정보 검색</h1>
             </div>
 
             <!-- 검색 폼 -->
-            <form class="search-form" action="<%=contextPath%>/search" method="get">
-                <input type="text" name="keyword" placeholder="검색어를 입력하세요" value="${keyword}">
+            <form class="search-form" action="" method="get">
+                <input type="text" placeholder="검색어를 입력하세요">
                 <button type="submit">
                     <img src="<%=contextPath%>/resources/static/img/button/search_icon.png" alt="검색">
                 </button>
             </form>
-
             <br><br>
             <!-- 분류 탭 -->
             <div class="container">
@@ -67,7 +66,7 @@
                         <li>능력검정 <br></li>
                         <li>국가공인자격 <br></li>
                         <li>등록민간자격 <br></li>
-                        <li>국제자격 <br></li>
+                        <li>국제자격 <br></li>  
                     </ul>
 
                     <ul id="tab-3" class="tab-content">
@@ -75,56 +74,61 @@
                         <li>시험일 <br></li>
                         <li>접수중 <br></li>
                         <li>접수예정 <br></li>
-                        <li>오늘 접수 마감 <br></li>
+                        <li>오늘 접수 마감 <br></li> 
                     </ul>
                 </div>
             </div>
-            <div class="tab-preview">
-                &nbsp;&nbsp;&nbsp;
-                <div class="btn-container">
-                    <button class="btn1">초기화</button>
-                    <button class="btn2">검색</button>
+                <div class="tab-preview">
+                    IT,정보 통신 ->
+                    <div class="btn-container">
+                        <button class="btn1">초기화</button>
+                        <button class="btn2">검색</button>
+                    </div>
                 </div>
-            </div>
             <br><br>
 
 
-            <!-- 검색 결과 출력 -->
             <div class="results-container">
-                <c:if test="${licenses != null}">
-                    <p>검색 결과 ${licenses.size()}건</p>
-                    <c:forEach var="license" items="${licenses}">
-                        <div class="result-item">
-                            <h3>${license.licenseName}</h3>
-                            <p>자격증 설명: ${license.licenseDesc}</p>
-                            <button class="view-details" onclick="location.href='${contextPath}/info'">자격증 상세</button>
-                        </div>
-                    </c:forEach>
-                </c:if>
-            </div>
+                <p>검색 결과 10건</p>
 
-            <br><br>
+                <br><br>
 
-            <!-- 페이징바 -->
-            <div class="pagination">
-                <c:if test="${currentPage > 1}">
-                    <a href="?keyword=${keyword}&pageNumber=${currentPage - 1}&pageSize=10">◀ 이전</a>
-                </c:if>
+                <div class="result-item">
+                    <h3>정보처리기사</h3>
+                    <p>시험일 | 2024년 | 분야 | 공시 예정</p>
+                    <button class="view-details" onclick="location.href='<%=contextPath%>/info'">국가기술자격</button>
+                </div>
 
-                <c:forEach var="i" begin="1" end="${totalPages}" varStatus="status">
-                    <c:choose>
-                        <c:when test="${i == currentPage}">
-                            <span>${i}</span> <!-- 현재 페이지는 그냥 텍스트로 출력 -->
-                        </c:when>
-                        <c:otherwise>
-                            <a href="?keyword=${keyword}&pageNumber=${i}&pageSize=10">${i}</a>
-                        </c:otherwise>
-                    </c:choose>
-                </c:forEach>
+                <div class="result-item">
+                    <h3>정보처리기능사</h3>
+                    <p>시험일 | 2024년 | 분야 | 공시 예정</p>
+                    <button class="view-details">국가기술자격</button>
+                </div>
 
-                <c:if test="${currentPage < totalPages}">
-                    <a href="?keyword=${keyword}&pageNumber=${currentPage + 1}&pageSize=10">다음 ▶</a>
-                </c:if>
+                <div class="result-item">
+                    <h3>정보보안기사</h3>
+                    <p>시험일 | 2024년 | 분야 | 공시 예정</p>
+                    <button class="view-details">국가기술자격</button>
+                </div>
+
+                <br><br>
+
+                <!-- 페이징바 -->
+                <div class="pagination">
+                    <span class="page-arrow">
+                        <img src="<%=contextPath%>/resources/static/img/button/arrow_left.png" alt="">
+                    </span>
+                    <span class="page-num">1</span>
+                    <span class="page-num active">2</span>
+                    <span class="page-num">3</span>
+                    <span class="page-num">4</span>
+                    <span class="page-num">5</span>
+                    <span class="page-arrow">
+                        <img src="<%=contextPath%>/resources/static/img/button/arrow_right.png"
+                            alt="">
+                    </span>
+                </div>
+
             </div>
             <script src="<%=contextPath%>/resources/static/js/infopage/infoPage.js"></script>
 
