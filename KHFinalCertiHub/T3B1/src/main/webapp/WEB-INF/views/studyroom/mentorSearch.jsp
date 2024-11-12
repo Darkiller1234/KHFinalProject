@@ -16,10 +16,10 @@
     <div class="wrapper padding">
         <div class="page-title font-size-title">멘토 찾기</div>    
 
-        <form class="search-section" onsubmit="return false;">
+        <form class="search-section" action="search">
             <div class="search-form">
-                <input type="text">
-                <button class="rounded-circle" onclick="alert('클릭됨')">
+                <input type="text" name="keyword">
+                <button type="submit" class="rounded-circle">
                     <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
                 </button> 
             </div>

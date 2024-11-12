@@ -618,6 +618,16 @@ div1과 div2의 구조가 다름
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     z-index: 1;
     overflow: hidden;
+    max-height: 250px;
+    overflow-y: auto;
+    /* 스크롤 표시 제거 */
+    -ms-overflow-style: none; /* 인터넷 익스플로러 */
+    scrollbar-width: none; /* 파이어폭스 */
+}
+
+/* 스크롤 표시 제거 ( 크롬, 사파리, 오페라, 엣지 ) */
+.item-list::-webkit-scrollbar{
+    display: none;
 }
 
 .item{
@@ -761,7 +771,6 @@ div1과 div2의 구조가 다름
 .bottom-options{
     position: fixed;
     bottom:20px;
-    right: 20px;
 }
 
 .bottom-options .top-button{

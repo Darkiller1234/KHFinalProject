@@ -15,5 +15,8 @@ public interface MentorService {
 
 	// 멘토 상세정보 조회
 	Member selectMentorDetail(int memberNo);
+
+	// 멘토 좋아요 개수 조회
+	int countMentorLike(int memberNo);
 	
 }

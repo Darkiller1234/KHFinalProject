@@ -92,6 +92,11 @@
     display:none;
 }
 
+/* 맨 위 스크롤 버튼 */
+.bottom-options{
+    right: 20px;
+}
+
 @media (min-width: 481px) and (max-width: 720px) {
     .page-title{
         display: none;

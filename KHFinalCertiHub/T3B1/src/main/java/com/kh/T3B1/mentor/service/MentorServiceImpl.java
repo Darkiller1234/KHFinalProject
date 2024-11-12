@@ -37,4 +37,9 @@ public class MentorServiceImpl implements MentorService {
 		return mentorDao.selectMentorDetail(sqlSession, memberNo);
 	}
 
+	@Override
+	public int countMentorLike(int memberNo) {
+		return mentorDao.countMentorLike(sqlSession, memberNo);
+	}
+
 }
