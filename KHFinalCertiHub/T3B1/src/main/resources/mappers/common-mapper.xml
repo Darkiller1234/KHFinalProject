@@ -4,32 +4,18 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- namespace: 해당 mapper파일의 고유한 별칭 -->
-
-<mapper namespace="">
-  
-  <resultMap type="" id="">
-  	<result column="" property=""/>
+<mapper namespace="commonMapper">
+  <resultMap type="License" id="LicenseResultSet">
+  	<result column="LICENSE_NO" property="licenseNo"/>
+  	<result column="LICENSE_NAME" property="licenseName"/>
+  	<result column="LICENSE_DESC" property="licenseDesc"/>
   </resultMap>
 
-
-  <select id="" resultType="">
-
+  <select id="selectLicenseList" resultMap="LicenseResultSet">
+	SELECT LICENSE_NO,
+		   LICENSE_NAME
+	  FROM LICENSE
   </select>
-  
-  <select id="" resultMap="">
-  
-  </select>
-
-  <insert id="">
-
-  </insert>
-  
-
-  <update id="">
-
-  </update>
 
 </mapper>
-
-
 

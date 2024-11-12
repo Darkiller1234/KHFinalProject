@@ -6,7 +6,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.T3B1.common.vo.License;
 import com.kh.T3B1.common.vo.PageInfo;
+import com.kh.T3B1.common.vo.SearchOption;
 import com.kh.T3B1.member.model.vo.Member;
 import com.kh.T3B1.mentor.model.dao.MentorDao;
 
@@ -28,8 +30,8 @@ public class MentorServiceImpl implements MentorService {
 	}
 	
 	@Override
-	public ArrayList<Member> selectMentorList(PageInfo pi) {
-		return mentorDao.selectMentorList(sqlSession, pi);
+	public ArrayList<Member> selectMentorList(PageInfo pi, SearchOption so) {
+		return mentorDao.selectMentorList(sqlSession, pi, so);
 	}
 
 	@Override
@@ -40,6 +42,11 @@ public class MentorServiceImpl implements MentorService {
 	@Override
 	public int countMentorLike(int memberNo) {
 		return mentorDao.countMentorLike(sqlSession, memberNo);
+	}
+
+	@Override
+	public ArrayList<License> selectLicenseList() {
+		return mentorDao.selectLicenseList(sqlSession);
 	}
 
 }
