@@ -33,17 +33,32 @@ function initSelectBox(contextPath){
 }
 
 function initMentorList(contextPath){
-    // 초기값 세팅 ( 이 값은 변하지 않음 )
+    // 초기값 세팅
     const loadingBar = document.querySelector('.loading-section')
-    let currentPage = 1;
-    let pageLimit = 10;
+    
+    let pageInfo = {
+        currentPage : 1,
+        pageLimit : 10,
+        isEnd : false,
+        loadingBar : loadingBar,
+        contextPath : contextPath,
+    }
+
+    const onMentorLoad = (data) => {
+        if(data){
+            createMentorCard(pageInfo.contextPath, data)
+            pageInfo.currentPage++
+        } else {
+            pageInfo.isEnd = true;
+        }
+        loadingBar.style.display = "none";
+    }
 
     // 매개변수로 초기값 전달
     // loadMentor은 ajaxLoadMentor에서 반환하는 함수 + 매개변수에 있는 currentPage, pageLimit 값을 기억하고 있음
     // 이후 호출하면 loadMentor가 기억하고 있는 환경의 currentPage 값이 1씩 증가 ( 클로저 )
-    const loadMentor = ajaxLoadMentor(contextPath, currentPage, pageLimit, loadingBar)
+    const loadMentor = ajaxLoadMentor(pageInfo, onMentorLoad)
     loadMentor(); // 처음 한번 로딩
-
     // 이후 스크롤 할 때, 화면끝에 도달하면 다시 로딩
     $(document).scroll( () => {
         // window.scrollTop : 브라우저의 스크롤영역 맨 윗부분 ~ 스크롤바 사이의 거리, 스크롤바가 맨 위에 있을 경우 값은 0 => 스크롤을 내리면 증가
@@ -55,27 +70,26 @@ function initMentorList(contextPath){
             즉, scrollTop + window.height가 document.height와 같다면 스크롤이 화면 끝에 도달했음을 의미
         */ 
         if($(window).scrollTop() + $(window).height() > ($(document).height() * 0.95) ){
-            loadingBar.style.display = "flex";
-            loadMentor();
+            if(pageInfo.isEnd !== true) {
+                loadingBar.style.display = "flex";
+                loadMentor();
+            } 
         }
     });
 }
 
-function ajaxLoadMentor(contextPath, currentPage, pageLimit, loadingBar){
+function ajaxLoadMentor(pageInfo, onMentorLoad){
     return function() {
+        console.log("ajax 요청중")
         $.ajax({
             type:"post",
             url:"list",
             data: {
-                "currentPage" : currentPage,
-                "pageLimit" : pageLimit,
+                "currentPage" : pageInfo.currentPage,
+                "pageLimit" :  pageInfo.pageLimit,
             },
-            success: function(res) {
-                createMentorCard(contextPath, res)
-                currentPage++
-                loadingBar.style.display = "none";
-            },
-            error: function() {
+            success: onMentorLoad,
+            error: () => {
                 console.log("ajax 요청 실패")
             }
         })
