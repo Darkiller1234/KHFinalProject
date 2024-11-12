@@ -2,6 +2,8 @@ package com.kh.T3B1.mentor.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,7 +32,15 @@ public class MentorController {
 	}
 	
 	@RequestMapping("detail")
-	public String mentorDetailPage() {
+	public String mentorDetailPage(Model m, int no) {
+		int memberNo = no;
+		
+		Member mentor = mentorService.selectMentorDetail(memberNo);
+		int mentorLike = mentorService.countMentorLike(memberNo);
+		mentor.setMentorLike(mentorLike);
+		
+		m.addAttribute("mentor", mentor);
+		m.addAttribute("pageName","mentorDetail");
 		return "studyroom/mentorDetail";
 	}
 	
@@ -40,6 +50,15 @@ public class MentorController {
 		// 요청 한번에 불러올 멘토의 수, 최대 20명 까지
 		pageLimit = pageLimit <= 20 ? pageLimit : 20;
 		
+		// 이미 마지막 멘토 페이지라면 DB에서 조회하지 않도록 막아준다
+		int mentorCount = mentorService.countMentor();
+		if((currentPage - 1) * pageLimit > mentorCount) {
+			return null;
+		}
+		
+		// 자격증 목록 조회
+		
+		// 멘토 리스트 조회
 		PageInfo pi = new PageInfo();
 		pi.setCurrentPage(currentPage);
 		pi.setPageLimit(pageLimit);

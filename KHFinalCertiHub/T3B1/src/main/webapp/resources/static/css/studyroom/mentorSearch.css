@@ -41,7 +41,7 @@
 
 /* 멘토 로딩창 */
 .loading-section{
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
 }
@@ -59,6 +59,11 @@
     height:20px;
     margin-right: 5px;
     color: #006D77;
+}
+
+/* 맨 위 스크롤 버튼 */
+.bottom-options{
+    right: 20px;
 }
 
 @media (min-width: 721px) {

@@ -81,6 +81,7 @@ function createSelectBox(div, data){
     // 서버에 보낼 input값을 표시할 요소
     const button = document.createElement('button');
     button.className = 'button-select';
+    button.type = "button";
 
     const buttonText = document.createElement('div');
     buttonText.innerText = data.default;
