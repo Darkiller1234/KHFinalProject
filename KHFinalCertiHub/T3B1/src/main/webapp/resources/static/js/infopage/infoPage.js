@@ -15,6 +15,10 @@ $(document).ready(function () {
     });
 });
 
+
+// 검색기능 
+
+
 // 셀렉트박스
 function initInfoPage(contextPath){
     initSelectBox(contextPath)
