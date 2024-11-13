@@ -11,15 +11,15 @@
 
     <body>
         <%@ include file="../common/header.jsp" %>
-        <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/common/default.css">
-        <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/infopage/searchPage.css">
+            <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/common/default.css">
+            <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/infopage/searchPage.css">
             <div id="wrapper">
                 <h1 class="title">자격증 정보 검색</h1>
             </div>
 
             <!-- 검색 폼 -->
             <form class="search-form" action="" method="get">
-                <input type="text" placeholder="검색어를 입력하세요">
+                <input type="text" placeholder="검색어를 입력하세요" value="${keyword}">
                 <button type="submit">
                     <img src="<%=contextPath%>/resources/static/img/button/search_icon.png" alt="검색">
                 </button>
@@ -66,7 +66,7 @@
                         <li>능력검정 <br></li>
                         <li>국가공인자격 <br></li>
                         <li>등록민간자격 <br></li>
-                        <li>국제자격 <br></li>  
+                        <li>국제자격 <br></li>
                     </ul>
 
                     <ul id="tab-3" class="tab-content">
@@ -74,42 +74,30 @@
                         <li>시험일 <br></li>
                         <li>접수중 <br></li>
                         <li>접수예정 <br></li>
-                        <li>오늘 접수 마감 <br></li> 
+                        <li>오늘 접수 마감 <br></li>
                     </ul>
                 </div>
             </div>
-                <div class="tab-preview">
-                    IT,정보 통신 ->
-                    <div class="btn-container">
-                        <button class="btn1">초기화</button>
-                        <button class="btn2">검색</button>
-                    </div>
+            <div class="tab-preview">
+                IT,정보 통신 ->
+                <div class="btn-container">
+                    <button class="btn1">초기화</button>
+                    <button class="btn2">검색</button>
                 </div>
+            </div>
             <br><br>
 
 
             <div class="results-container">
-                <p>검색 결과 10건</p>
-
-                <br><br>
-
-                <div class="result-item">
-                    <h3>정보처리기사</h3>
-                    <p>시험일 | 2024년 | 분야 | 공시 예정</p>
-                    <button class="view-details" onclick="location.href='<%=contextPath%>/info'">국가기술자격</button>
-                </div>
-
-                <div class="result-item">
-                    <h3>정보처리기능사</h3>
-                    <p>시험일 | 2024년 | 분야 | 공시 예정</p>
-                    <button class="view-details">국가기술자격</button>
-                </div>
-
-                <div class="result-item">
-                    <h3>정보보안기사</h3>
-                    <p>시험일 | 2024년 | 분야 | 공시 예정</p>
-                    <button class="view-details">국가기술자격</button>
-                </div>
+                <p>검색 결과 ${pi.listCount}건</p>
+                <c:forEach var="item" items="${list}">
+                    <div class="result-item">
+                        <h3>${item.licenseName}</h3>
+                        <p>시험일 | ${item.year}년 | 분야 | ${item.status}</p>
+                        <button class="view-details"
+                            onclick="location.href='<%=contextPath%>/info'">${item.qualificationType}</button>
+                    </div>
+                </c:forEach>
 
                 <br><br>
 
@@ -124,8 +112,7 @@
                     <span class="page-num">4</span>
                     <span class="page-num">5</span>
                     <span class="page-arrow">
-                        <img src="<%=contextPath%>/resources/static/img/button/arrow_right.png"
-                            alt="">
+                        <img src="<%=contextPath%>/resources/static/img/button/arrow_right.png" alt="">
                     </span>
                 </div>
 

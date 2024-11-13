@@ -30,5 +30,6 @@
 		<mapper resource="mappers/calendar-mapper.xml"/>
 		<mapper resource="mappers/board-mapper.xml"/>
 		<mapper resource="mappers/common-mapper.xml"/>
+		<mapper resource="mappers/search-mapper.xml"/>
 	</mappers>
 </configuration>
