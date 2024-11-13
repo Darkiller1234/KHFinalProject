@@ -3,7 +3,13 @@ function certiChange(certiNumber) {
 }
 
 function tabNoChange(certiNo, tabNo){
-    redirect(certiNo, tabNo, 1, $('input[name="array"]').val())
+    // 현재 페이지의 URL 주소
+    const url = new URL(window.location.href);
+    // URL의 파라미터값을 가진 객체
+    const urlParam = url.searchParams;
+    const preFilterNo = urlParam.get('filterNo');
+    const preFilterText = urlParam.get('filterText');
+    redirect(certiNo, tabNo, 1, $('input[name="array"]').val(), preFilterNo, preFilterText)
     
 }
 
@@ -18,7 +24,19 @@ function pageChange(currentPage, certiNo, tabNo){
 }
 
 function searchExcute(certiNo, tabNo){
-    redirect(certiNo, tabNo, 1, $('input[name="array"]').val(), )
+    redirect(certiNo, tabNo, 1, $('input[name="array"]').val(), $('input[name="filter"]').val(), document.querySelector('#search-input-text').value)
+}
+
+
+function keypress(event, certiNo, tabNo){
+    console.log("asdf")
+    if (event.key === 'Enter') {
+        searchExcute(certiNo, tabNo);
+    }
+}
+
+function DirectAttack(path){
+    location.href=path;
 }
 
 function redirect(certiNo, tabNo, currentPage, orderBy, filterNo, filterText){

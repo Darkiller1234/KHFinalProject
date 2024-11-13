@@ -28,4 +28,6 @@ public class Board {
 	private String licenseName;
 	private int replyCount;
 	private int orderBy;
+	private int filterNo;
+	private String filterText;
 }

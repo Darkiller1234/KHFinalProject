@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.kh.T3B1.common.template.Template;
 import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.community.model.vo.Board;
-import com.kh.T3B1.community.model.vo.Opt;
 import com.kh.T3B1.community.service.CommunityService;
 
 @Controller
@@ -44,6 +43,14 @@ public class CommunityController {
 			dump.setOrderBy(orderBy);
 		}
 		
+		if(!filterText.equals("")) {
+			if(filterNo == 0) {
+				filterNo = 2;
+			}
+			dump.setFilterNo(filterNo);
+			dump.setFilterText(filterText);
+		}
+		
 		
 		int boardCount = communityService.selectListCount(dump);
 		
@@ -68,6 +75,11 @@ public class CommunityController {
 			c.addAttribute("orderBy", orderBy);
 		}
 		
+		if(filterNo != 0) {
+			c.addAttribute("filterNo", filterNo);
+			c.addAttribute("filterText", filterText);
+		}
+		
 		
 		
 		c.addAttribute("notiList", notiList);
@@ -81,8 +93,16 @@ public class CommunityController {
 		return "community/communityMain";
 	}
 	@RequestMapping("detail")
-	public String CommunityDetail(Model c) {
+	public String CommunityDetail(@RequestParam(value="certiNo", defaultValue="1") int certiNo,
+			int cno,Model c) {
+		
+		ArrayList<String> certiList = communityService.selectCertiList();
+		
+		
+		c.addAttribute("certiList", certiList);
 		c.addAttribute("pageName","commuDInit");
+		c.addAttribute("certiNo", certiNo);
+		c.addAttribute("cno", cno);
 		return "community/communityDetail";
 	}
 	@RequestMapping("write")

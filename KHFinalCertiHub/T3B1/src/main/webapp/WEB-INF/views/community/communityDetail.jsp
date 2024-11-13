@@ -22,22 +22,20 @@
       <div class="wrapper">
         <nav class="navbar bg-body-tertiary page-title" id="certiSelect">
           <div class="container-fluid">
-            <a class="navbar-brand" href="#">정보처리기사</a>
+            <a class="navbar-brand" onclick="certiChange(${certiNo})">${certiList[certiNo-1]}</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
               aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"><img src="<%=contextPath%>/resources/static/img/button/triangle_down.png" alt=""></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">정보보안기사</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">네트워크관리사</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">빅데이터 분석기사</a>
-                </li>
+                <c:forEach var="d" items="${certiList}" varStatus="status">
+                  <c:if test="${certiList[certiNo-1] ne d}">
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" onclick="certiChange(${status.count})">${d}</a>
+                    </li>
+                  </c:if>
+                </c:forEach>
               </ul>
             </div>
           </div>
