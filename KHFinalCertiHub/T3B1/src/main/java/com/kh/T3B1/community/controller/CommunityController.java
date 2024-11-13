@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.kh.T3B1.common.template.Template;
 import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.community.model.vo.Board;
+import com.kh.T3B1.community.model.vo.Opt;
 import com.kh.T3B1.community.service.CommunityService;
 
 @Controller
@@ -28,15 +29,21 @@ public class CommunityController {
 	public String CommunityMain(@RequestParam(value="cpage", defaultValue="1") int currentPage,
 			@RequestParam(value="certiNo", defaultValue="1") int certiNo,
 			@RequestParam(value="tabNo", defaultValue="0") int tabNo ,
-			@RequestParam(value="orderBy", defaultValue="1") int orderBy,
-			@RequestParam(value="filterNo", defaultValue="0") int filterNo, Model c) {
+			@RequestParam(value="orderBy", defaultValue="0") int orderBy,
+			@RequestParam(value="filterNo", defaultValue="0") int filterNo,
+			@RequestParam(value="filterText", defaultValue="") String filterText, Model c) {
 		
 		
 		
 		Board dump = new Board();
 		dump.setLicenseNo(certiNo);
 		dump.setTabNo(tabNo);
-		dump.setOrderBy(orderBy);
+		if(orderBy == 0) {
+			dump.setOrderBy(1);
+		} else {
+			dump.setOrderBy(orderBy);
+		}
+		
 		
 		int boardCount = communityService.selectListCount(dump);
 		
@@ -57,9 +64,11 @@ public class CommunityController {
 			notiList = communityService.selectNotiList(dump);
 		}
 		
-		if(orderBy != 1) {
+		if(orderBy != 0) {
 			c.addAttribute("orderBy", orderBy);
 		}
+		
+		
 		
 		c.addAttribute("notiList", notiList);
 		c.addAttribute("list", list);
