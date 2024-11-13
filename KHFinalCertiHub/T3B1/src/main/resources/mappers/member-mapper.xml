@@ -134,5 +134,26 @@
 		)
 	</insert>
 	
+	<select id="loginMember" parameterType="Member" resultMap="memberResultSet">
+		SELECT 
+		MEMBER_NO,
+		MEMBER_ID,
+		MEMBER_PWD,
+		MEMBER_NAME,
+		MEMBER_INTRO,
+		MEMBER_NICKNAME,
+		EMAIL,
+		PHONE,
+		MEMBER_IMG,
+		ENROLL_DATE,
+		STATUS,
+		MANAGER_STATUS,
+		MENTOR_STATUS
+		FROM MEMBER
+		WHERE MEMBER_ID = #{memberId}
+		AND STATUS = 'Y'
+
+	</select>
+	
 </mapper>
 
