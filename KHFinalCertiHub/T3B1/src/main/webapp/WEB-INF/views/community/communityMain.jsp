@@ -129,7 +129,7 @@
                 </div>
               </div>
               <c:forEach var="b" items="${notiList}">
-                <div <c:if test="${b.tabNo == 1}">class="listArea-noti"</c:if> onclick="redirect('<%=contextPath%>/community/detail?certi=${certiNo}&cno=${b.boardNo}')">
+                <div <c:if test="${b.tabNo == 1}">class="listArea-noti"</c:if> onclick="DirectAttack('<%=contextPath%>/community/detail?certiNo=${certiNo}&cno=${b.boardNo}')">
                   <div >
                     <div class="listArea-div1-tab">
                       ${b.tabName}
@@ -158,7 +158,7 @@
                 </div>
               </c:forEach>
               <c:forEach var="b" items="${list}">
-                <div <c:if test="${b.tabNo == 1}">class="listArea-noti"</c:if> onclick="redirect('<%=contextPath%>/community/detail?certi=${certiNo}&cno=${b.boardNo}')">
+                <div <c:if test="${b.tabNo == 1}">class="listArea-noti"</c:if> onclick="DirectAttack('<%=contextPath%>/community/detail?certiNo=${certiNo}&cno=${b.boardNo}')">
                   <div >
                     <div class="listArea-div1-tab">
                       ${b.tabName}
@@ -189,7 +189,7 @@
             </div>
             <div class="listArea-div2">
               <c:forEach var="b" items="${notiList}">
-                <div <c:if test="${b.tabNo == 1}">class="listArea-noti"</c:if> onclick="redirect('<%=contextPath%>/community/detail?certi=${certiNo}&cno=${b.boardNo}')">
+                <div <c:if test="${b.tabNo == 1}">class="listArea-noti"</c:if> onclick="DirectAttack('<%=contextPath%>/community/detail?certiNo=${certiNo}&cno=${b.boardNo}')">
                   <div >
                     <div class="listArea-div2-tab">
                       ${b.tabName}
@@ -222,7 +222,7 @@
                 </div>
               </c:forEach>
               <c:forEach var="b" items="${list}">
-                <div <c:if test="${b.tabNo == 1}">class="listArea-noti"</c:if> onclick="redirect('<%=contextPath%>/community/detail?certi=${certiNo}&cno=${b.boardNo}')">
+                <div <c:if test="${b.tabNo == 1}">class="listArea-noti"</c:if> onclick="DirectAttack('<%=contextPath%>/community/detail?certiNo=${certiNo}&cno=${b.boardNo}')">
                   <div >
                     <div class="listArea-div2-tab">
                       ${b.tabName}
@@ -255,10 +255,7 @@
                 </div>
               </c:forEach>
             </div>
-
-            <script>
-              console.log("${pi}")
-            </script>
+            
             <div class="pagination">
               <c:if test="${pi.currentPage != 1}">
                 <span class="page-arrow" onclick="pageChange(${pi.currentPage - 1}, ${certiNo}, ${tabNo})">
@@ -308,8 +305,8 @@
               <div>
                 <div id="selectbox2" class="custom-select">
                 </div>
-                <input type="text" id="search-input-text">
-                  <button class="rounded-circle" onclick="searchExcute()">
+                <input type="text" id="search-input-text" value="${filterText}" onkeypress="keypress(event, ${certiNo}, ${tabNo})">
+                  <button class="rounded-circle" onclick="searchExcute(${certiNo}, ${tabNo})" >
                       <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
                   </button> 
               </div>

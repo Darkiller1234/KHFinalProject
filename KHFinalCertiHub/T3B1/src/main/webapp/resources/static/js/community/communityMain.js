@@ -3,21 +3,43 @@ function certiChange(certiNumber) {
 }
 
 function tabNoChange(certiNo, tabNo){
-    redirect(certiNo, tabNo)
-}
-
-function pageChange(currentPage, certiNo, tabNo){
-    redirect(certiNo, tabNo, currentPage)
-}
-
-function searchExcute(){
-    if($('.array').val()===undefined){
-        console.log("ASDF");
-    }
+    // 현재 페이지의 URL 주소
+    const url = new URL(window.location.href);
+    // URL의 파라미터값을 가진 객체
+    const urlParam = url.searchParams;
+    const preFilterNo = urlParam.get('filterNo');
+    const preFilterText = urlParam.get('filterText');
+    redirect(certiNo, tabNo, 1, $('input[name="array"]').val(), preFilterNo, preFilterText)
     
 }
 
-function redirect(certiNo, tabNo, currentPage, orderNo, filterNo, filterText){
+function pageChange(currentPage, certiNo, tabNo){
+    // 현재 페이지의 URL 주소
+    const url = new URL(window.location.href);
+    // URL의 파라미터값을 가진 객체
+    const urlParam = url.searchParams;
+    const preFilterNo = urlParam.get('filterNo');
+    const preFilterText = urlParam.get('filterText');
+    redirect(certiNo, tabNo, currentPage, $('input[name="array"]').val(), preFilterNo, preFilterText)
+}
+
+function searchExcute(certiNo, tabNo){
+    redirect(certiNo, tabNo, 1, $('input[name="array"]').val(), $('input[name="filter"]').val(), document.querySelector('#search-input-text').value)
+}
+
+
+function keypress(event, certiNo, tabNo){
+    console.log("asdf")
+    if (event.key === 'Enter') {
+        searchExcute(certiNo, tabNo);
+    }
+}
+
+function DirectAttack(path){
+    location.href=path;
+}
+
+function redirect(certiNo, tabNo, currentPage, orderBy, filterNo, filterText){
     let path = "main?";
     if(certiNo){
         path += `certiNo=${certiNo}&`;
@@ -28,8 +50,8 @@ function redirect(certiNo, tabNo, currentPage, orderNo, filterNo, filterText){
     if(currentPage){
         path += `cpage=${currentPage}&`;
     }
-    if(orderNo){
-        path += `orderNo=${orderNo}&`;
+    if(orderBy){
+        path += `orderBy=${orderBy}&`;
     }
     if(filterNo){
         path += `filterNo=${filterNo}&`;
@@ -47,7 +69,8 @@ function commuMInit(contextPath){
         imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
         items : [
             ['최신순', 1],
-            ['추천순', 2]
+            ['추천순', 2],
+            ['조회순', 3]
         ]
     }
 
@@ -56,10 +79,11 @@ function commuMInit(contextPath){
         default : '제목',
         imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
         items : [
-            ['제목', 1],
-            ['내용', 2],
-            ['제목+내용', 3],
-            ['글쓴이', 4]
+            ['전체', 1],
+            ['제목', 2],
+            ['내용', 3],
+            // ['제목+내용', 4],
+            ['글쓴이', 5]
         ]
     }
 
@@ -69,6 +93,58 @@ function commuMInit(contextPath){
     tabChange(contextPath);
 
 
+    // 현재 페이지의 URL 주소
+    const url = new URL(window.location.href);
+    // URL의 파라미터값을 가진 객체
+    const urlParam = url.searchParams;
+    const preOrderBy = urlParam.get('orderBy');
+    const preFilterNo = urlParam.get('filterNo');
+
+    if(preOrderBy !== undefined){
+        document.querySelector('input[name="array"]').value = preOrderBy;
+        switch (preOrderBy) {
+            case "1":
+                document.querySelector('#selectbox1 > .custom-select > .button-select > div').innerText = '최신순';
+                break;
+            case "2":
+                document.querySelector('#selectbox1 > .custom-select > .button-select > div').innerText = '추천순';
+                break;
+            case "3":
+                document.querySelector('#selectbox1 > .custom-select > .button-select > div').innerText = '조회순';
+                break;
+            default:
+                break;
+        }
+    }
+
+    if(preFilterNo !== undefined){
+        document.querySelector('input[name="filter"]').value = preFilterNo;
+        switch (preFilterNo) {
+            case "1":
+                document.querySelector('#selectbox2 > .custom-select > .button-select > div').innerText = '전체';
+                break;
+            case "2":
+                document.querySelector('#selectbox2 > .custom-select > .button-select > div').innerText = '제목';
+                break;
+            case "3":
+                document.querySelector('#selectbox2 > .custom-select > .button-select > div').innerText = '내용';
+                break;
+            case "4":
+                document.querySelector('#selectbox2 > .custom-select > .button-select > div').innerText = '제목+내용';
+                break;
+            case "5":
+                document.querySelector('#selectbox2 > .custom-select > .button-select > div').innerText = '글쓴이';
+                break;
+            default:
+                break;
+        }
+    }
+
+
+
+
+    // if()
+    // document.querySelector('input[name="array"]').value = "원하는 값";
 
 
     const scrollContainer = document.querySelector('.scroll-container');
