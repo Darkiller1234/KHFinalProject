@@ -17,9 +17,8 @@
 		<typeAlias type="com.kh.T3B1.community.model.vo.Board" alias ="Board"/>
 		<typeAlias type="com.kh.T3B1.common.vo.License" alias ="License"/>
 		<typeAlias type="com.kh.T3B1.study.model.vo.Study" alias ="Study"/>
+		<typeAlias type="com.kh.T3B1.study.model.vo.StudyBoard" alias ="StudyBoard"/>
 	</typeAliases>
-
-
 
 	<!-- environments : mybatis에서 연동할 db정보들을 등록하는 영역 environments에 기술했던 db연결관련 
 		정보들은 root-context.xml에 작성할 것이다. 왜? db등록은 서버연동과 동시에 같이 이루어져야하기 떄문에 서버시작과 동시에 
