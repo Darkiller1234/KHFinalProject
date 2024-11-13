@@ -3,58 +3,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',  // 기본 뷰 설정 (월별 뷰)
-        events: function (start, end, timezone, callback) {
-            $.ajax({
-                url: 'scheduleAPI',
-                dataType: 'json',
-                success: function (data) {
-                    var events = data.response.body.items.item.map(function (item) {
-                        // 2024년 이후의 일정만 필터링
-                        var year = parseInt(item.examregstartdt.substring(0, 4), 10);
-                        if (year < 2024) return [];  // 2024년도 이전은 제외
-
-                        // 특정 자격증 필터링
-                        var validCertifications = ["정보처리기사", "네트워크 관리사", "정보보안기사", "빅데이터 분석기사"];
-                        if (!validCertifications.includes(item.STAT_JIPYO_NM)) return [];  // 원하는 자격증만 선택
-
-                        var eventsArray = [];
-
-                        // 원서 접수 일정
-                        eventsArray.push({
-                            title: "원서 접수",
-                            start: formatDate(item.examregstartdt),
-                            end: formatDate(item.examregenddt),
-                            description: "원서 접수 기간",
-                            allDay: true
-                        });
-
-                        // 시험 일정
-                        eventsArray.push({
-                            title: "시험 시작",
-                            start: formatDate(item.examstartdt),
-                            end: formatDate(item.examenddt),
-                            description: "시험 기간",
-                            allDay: true
-                        });
-
-                        // 합격자 발표 일정
-                        eventsArray.push({
-                            title: "합격자 발표",
-                            start: formatDate(item.passstartdt),
-                            end: formatDate(item.passenddt),
-                            description: "합격자 발표 기간",
-                            allDay: true
-                        });
-
-                        return eventsArray;
-                    }).flat();  // 배열을 평탄화하여 반환
-                    callback(events);  // FullCalendar에 이벤트 전달
-                },
-                error: function (xhr, status, error) {
-                    console.error("API 호출 실패:", error);
-                }
-            });
-        },
+        // events: function (start, end, timezone, callback) {
+        //     $.ajax({
+        //         url: 'https://apis.data.go.kr/B490007/qualExamSchd/getQualExamSchdList',
+        //         data: {
+        //             serviceKey: 'AiATDYDO2nw7aWzpDtDvC8aswTEabFvLtwjy0RwuM2KnGpfE%2BD4ffB3SmCH4VqDihRDB%2FNR8RmbluUBQL%2Bo10w%3D%3D',  // 공공데이터 인증키
+        //             numOfRows: 50,  // 한 페이지 결과 수
+        //             pageNo: 1,  // 페이지 번호
+        //             dataFormat: 'xml',  // 응답 데이터 포맷 (xml)
+        //             implYy: 2024,  // 시행년도 (2024년)
+        //             qualgbCd: 'T',  // 자격구분코드 - T: 국가기술자격
+        //             jmCd: 1320  // 종목코드 (예: 1320: 정보처리기사)
+        //         },
+        //     });
+        // },
         locale: 'ko',  // 한국어 설정
         initialView: 'dayGridMonth',  // 달력의 초기 뷰 설정
         headerToolbar: {
@@ -63,11 +25,14 @@ document.addEventListener('DOMContentLoaded', function () {
             right: 'dayGridMonth,dayGridWeek,dayGridDay'
         }
     });
-
+    
     calendar.render();
-
+    
     // 날짜 형식 변환 함수
     function formatDate(dateStr) {
         return dateStr.substring(0, 4) + '-' + dateStr.substring(4, 6) + '-' + dateStr.substring(6, 8);
     }
+    
+    
 });
+
