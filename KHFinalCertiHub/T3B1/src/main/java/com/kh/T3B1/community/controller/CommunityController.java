@@ -34,48 +34,48 @@ public class CommunityController {
 		
 		
 		
-		Board dump = new Board();
-		dump.setLicenseNo(certiNo);
-		dump.setTabNo(tabNo);
+		Board boardForSelect = new Board();		// 리스트 불러오기용 보드객체
+		boardForSelect.setLicenseNo(certiNo);
+		boardForSelect.setTabNo(tabNo);
 		if(orderBy == 0) {
-			dump.setOrderBy(1);
+			boardForSelect.setOrderBy(1);
 		} else {
-			dump.setOrderBy(orderBy);
+			boardForSelect.setOrderBy(orderBy);
 		}
 		
 		if(!filterText.equals("")) {
 			if(filterNo == 0) {
 				filterNo = 2;
 			}
-			dump.setFilterNo(filterNo);
-			dump.setFilterText(filterText);
+			boardForSelect.setFilterNo(filterNo);
+			boardForSelect.setFilterText(filterText);
 		}
 		
 		
-		int boardCount = communityService.selectListCount(dump);
+		int boardCount = communityService.selectListCount(boardForSelect);		// 전체 개시글 수
 		
 		
-		PageInfo pi = Template.getPageInfo(boardCount, currentPage, 10, 5);
+		PageInfo pi = Template.getPageInfo(boardCount, currentPage, 10, 5);		//페이징
 		
-		if(pi.getCurrentPage() > pi.getMaxPage()) {
+		if(pi.getCurrentPage() > pi.getMaxPage()) {								//헛소리
 			pi.setCurrentPage(pi.getMaxPage());
 		}
 		
-		ArrayList<Board> list = communityService.selectList(pi, dump);
+		ArrayList<Board> list = communityService.selectList(pi, boardForSelect);	//게시글 리스트
 		
-		ArrayList<String> certiList = communityService.selectCertiList();
+		ArrayList<String> certiList = communityService.selectCertiList();			//자격증 게시판 목록 불러오기
 		
 		
-		ArrayList<Board> notiList = null;
-		if(tabNo != 1 && currentPage == 1) {
-			notiList = communityService.selectNotiList(dump);
+		ArrayList<Board> notiList = null;					//1페이지에서 보이는 공지사항 리스트
+		if(tabNo != 1 && currentPage == 1) {					//공지사항 탭이 아니면서 1페이지일 때
+			notiList = communityService.selectNotiList(boardForSelect);	//리스트 불러옴
 		}
 		
 		if(orderBy != 0) {
-			c.addAttribute("orderBy", orderBy);
+			c.addAttribute("orderBy", orderBy);					//정렬 조건 부여한 상태면 지속성을 부여함
 		}
 		
-		if(filterNo != 0) {
+		if(filterNo != 0) {										//마찬가지
 			c.addAttribute("filterNo", filterNo);
 			c.addAttribute("filterText", filterText);
 		}
