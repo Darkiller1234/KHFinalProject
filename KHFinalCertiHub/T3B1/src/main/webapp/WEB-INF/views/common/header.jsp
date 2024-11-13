@@ -109,8 +109,8 @@ crossorigin="anonymous"></script>
             </div>
 
             <div class="section font-size-footer">
-                <a href="<%=contextPath%>/login">로그인</a>
-                <a href="<%=contextPath%>/membership">회원가입</a>
+                <a href="<%=contextPath%>/member/login">로그인</a>
+                <a href="<%=contextPath%>/member/membership">회원가입</a>
                 <img src="<%=contextPath%>/resources/static/img/button/menu_button.png">
             </div>
         </div>

@@ -1,72 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
-		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
-	
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:aop="http://www.springframework.org/schema/aop"
+   xmlns:context="http://www.springframework.org/schema/context"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+   
 
-	 <!-- config파일 자동 로드 location="classpath:database.properties"  /!-->
+    <!-- config파일 자동 로드 location="classpath:database.properties"  /!-->
     <context:property-placeholder location="classpath:config/*.properties" />
-	<!-- 
-		root-context.xml
-		서버구동과 동시에 web.xml을 거처서 바로 로딩되는 문서
-		=> 서버구동과 동시에 바로 세팅(빈으로 등록)해야되는 내용들을 작성하면 된다.
-		DB연결 설정, 트랜잭션처리, 내외부 모듈연동등등
-	 -->
-	 
-	 <!-- 커넥션풀을 쓸수있는 클래스 -->
-	 <bean class="org.apache.commons.dbcp.BasicDataSource" id="dataSource" destroy-method="close">
-	 	<property name="driverClassName" value="${spring.datasource.driverClassName}"/>
-	 	<property name="url" value="${spring.datasource.url}"/>
-	 	<property name="username" value="${spring.datasource.username}"/>
-	 	<property name="password" value="${spring.datasource.password}"/>
-	 </bean>
+   <!-- 
+      root-context.xml
+      서버구동과 동시에 web.xml을 거처서 바로 로딩되는 문서
+      => 서버구동과 동시에 바로 세팅(빈으로 등록)해야되는 내용들을 작성하면 된다.
+      DB연결 설정, 트랜잭션처리, 내외부 모듈연동등등
+    -->
+    
+    <!-- 커넥션풀을 쓸수있는 클래스 -->
+    <bean class="org.apache.commons.dbcp.BasicDataSource" id="dataSource" destroy-method="close">
+       <property name="driverClassName" value="${spring.datasource.driverClassName}"/>
+       <property name="url" value="${spring.datasource.url}"/>
+       <property name="username" value="${spring.datasource.username}"/>
+       <property name="password" value="${spring.datasource.password}"/>
+    </bean>
 
-	 <!-- 
-	 	BasicDataSource dataSource = new BasicDataSource();
-	 	dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
-	 	dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:xe");
-	 	...
-	  -->
-	  
-	  <bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
-	  	<property name="configLocation" value="classpath:mybatis-config.xml"/>
-	  	<property name="dataSource" ref="dataSource"/>
-	  </bean>
-	  
-	  <!-- 
-	  	SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
-	  	sqlSessionFactory.setConfigLocation("classpath:mybatis-config.xml");
-	  	sqlSessionFactory.setDataSource(dataSource);
-	   -->
-	   
-	   <bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSession">
-	   		<constructor-arg ref="sqlSessionFactory"/>
-	   </bean>
-	
-		<!-- 
-			SqlSessionTemplate sqlSession = new SqlSessionTemplate(sqlSessionFactory);
-		 -->
-	<!-- 
-		property : setter를 통한 주입
-		constructor-arg : 생성자를 통한 주입
-	 -->
-		 
-	<!-- 파일업로드 관련 빈등록 -->
-	<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
-		<property name="maxUploadSize" value="100000000"/>
-		<property name="maxInMemorySize" value="100000000" />
-	</bean>
-	
-	<!-- @Aspect 및 하위 어노테이션 활성화 -->
-	<aop:aspectj-autoproxy/>
+    <!-- 
+       BasicDataSource dataSource = new BasicDataSource();
+       dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
+       dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:xe");
+       ...
+     -->
+     
+     <bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <property name="dataSource" ref="dataSource"/>
+     </bean>
+     
+     <!-- 
+        SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
+        sqlSessionFactory.setConfigLocation("classpath:mybatis-config.xml");
+        sqlSessionFactory.setDataSource(dataSource);
+      -->
+      
+      <bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSession">
+            <constructor-arg ref="sqlSessionFactory"/>
+      </bean>
+   
+      <!-- 
+         SqlSessionTemplate sqlSession = new SqlSessionTemplate(sqlSessionFactory);
+       -->
+   <!-- 
+      property : setter를 통한 주입
+      constructor-arg : 생성자를 통한 주입
+    -->
+       
+   <!-- 파일업로드 관련 빈등록 -->
+   <bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+      <property name="maxUploadSize" value="100000000"/>
+      <property name="maxInMemorySize" value="100000000" />
+   </bean>
+   
+   <!-- @Aspect 및 하위 어노테이션 활성화 -->
+   <aop:aspectj-autoproxy/>
 
-	<!-- @Aspect 어노테이션도 scan 하기 위함 -->
-	<context:component-scan base-package="com.kh.T3B1" use-default-filters="false">
-		<context:include-filter type="annotation" expression="org.aspectj.lang.annotation.Aspect"/>
-	</context:component-scan>
-	
+   <!-- @Aspect 어노테이션도 scan 하기 위함 -->
+   <context:component-scan base-package="com.kh.T3B1" use-default-filters="false">
+      <context:include-filter type="annotation" expression="org.aspectj.lang.annotation.Aspect"/>
+   </context:component-scan>
+   
 </beans>
