@@ -111,7 +111,7 @@ function ajaxLoadStudy(pageInfo, callback){
             },
             success: callback,
             error: () => {
-                console.log("멘토 목록 불러오기 실패")
+                console.log("스터디 목록 불러오기 실패")
             }
         })
     }

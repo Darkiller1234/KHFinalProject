@@ -1,7 +1,6 @@
 function initStudyBoard(contextPath){
     initSelectBox(contextPath)
     initBoard(contextPath)
-    initPageBar(contextPath)
 }
 
 function initSelectBox(contextPath){
@@ -13,9 +12,9 @@ function initSelectBox(contextPath){
             default : '10개씩',
             imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
             items : [
-                ['10개씩'],
-                ['15개씩'],
-                ['20개씩'],
+                ['10개씩',1],
+                ['15개씩',2],
+                ['20개씩',3],
             ]
         }
 
@@ -23,91 +22,98 @@ function initSelectBox(contextPath){
     })
 }
 
+
 function initBoard(contextPath){
+    // 현재 페이지의 URL 주소
+    const url = new URL(window.location.href);
+    // URL의 파라미터값을 가진 객체
+    const urlParam = url.searchParams;
+    const keyword = urlParam.get('keyword')
+    const currentPage = urlParam.get('p') ?? 1
+    const boardLimit = urlParam.get("display") ?? 10
+    const pageLimit = 5
+
+    // 초기값 세팅
+    const boardList = document.querySelector('.board-content');
+    const pagingBar = document.querySelector('.paging-bar');
+    
+    // pageInfo = 객체 리터럴
+    let pageInfo = {
+        currentPage : currentPage,
+        boardLimit : boardLimit,
+        pageLimit : pageLimit,
+        keyword : keyword,
+        isEnd : false,
+        contextPath : contextPath,
+    }
+
+    // 콜백 함수
+    const onBoardLoad = (data) => {
+        if(data){
+            initList(contextPath, JSON.parse(data.board))
+            initPageBar(contextPath, JSON.parse(data.pageInfo))
+        }
+    }
+
+    const loadStudy = ajaxLoadBoard(pageInfo, onBoardLoad)
+    loadStudy(); 
+}
+
+function ajaxLoadBoard(pageInfo, callback){
+    return function() {
+        $.ajax({
+            type:"post",
+            url:"boardList",
+            data: {
+                "currentPage" : pageInfo.currentPage,
+                "boardLimit" : pageInfo.boardLimit,
+                "pageLimit" :  pageInfo.pageLimit,
+                "keyword" : pageInfo.keyword,
+            },
+            success: callback,
+            error: () => {
+                console.log("게시글 목록 불러오기 실패")
+            }
+        })
+    }
+}
+
+
+
+
+
+function initList(contextPath, data){
     const boardList = document.querySelector('.board-content');
     
-    let data = {
-        url: contextPath + "/study/board",
+    let boardInfo = {
+        url: contextPath + "/study/board?no=",
         header : [
             "제목",
             "작성자",
             "작성일",
             "조회",
         ],
-        boardList : [
-            [
-                "제목입니다1",
-                "user01",
-                "2024.11.05",
-                "111",
-            ],
-            [
-                "제목입니다2",
-                "user01",
-                "2024.11.05",
-                "222",
-            ],
-            [
-                "제목입니다3",
-                "user01",
-                "2024.11.05",
-                "222",
-            ],
-            [
-                "제목입니다4",
-                "user01",
-                "2024.11.05",
-                "222",
-            ],
-            [
-                "제목입니다5",
-                "user01",
-                "2024.11.05",
-                "222",
-            ],
-            [
-                "제목입니다6",
-                "user01",
-                "2024.11.05",
-                "222",
-            ],
-            [
-                "제목입니다7",
-                "user01",
-                "2024.11.05",
-                "222",
-            ],
-            [
-                "제목입니다8",
-                "user01",
-                "2024.11.05",
-                "222",
-            ],
-            [
-                "제목입니다9",
-                "user01",
-                "2024.11.05",
-                "222",
-            ],
-            [
-                "제목입니다10",
-                "user01",
-                "2024.11.05",
-                "222",
-            ],
-        ]
     }
 
-    createList(boardList, data)
+    boardInfo.boardList = data.map( board => [
+        board.boardNo,
+        board.boardTitle,
+        board.managerName,
+        board.boardDate,
+        board.viewCount,
+    ])
+    
+    createList(boardList, boardInfo)
 }
 
-function initPageBar(contextPath){
+function initPageBar(contextPath, data){
     const pagingBar = document.querySelector('.paging-bar');
 
-    const data = {
-        startPage : 1,
-        endPage : 5,
-        currentPage : 1,
+    const pageInfo = {
+        startPage : data.startPage,
+        endPage :  data.endPage,
+        currentPage : data.currentPage,
+        maxPage : data.maxPage,
         pageUrl : 'list?',
         imgUrl : [
             contextPath + '/resources/static/img/button/arrow_left.png',
@@ -115,5 +121,5 @@ function initPageBar(contextPath){
         ]
     }
 
-    createPageBar(pagingBar, data)
+    createPageBar(pagingBar, pageInfo)
 }

@@ -17,7 +17,7 @@
   	<result column="MANAGER_INTRO" property="managerIntro"/>
   </resultMap>
   
-  <resultMap type="Member" id="memberResultSet">
+  <resultMap type="Member" id="MemberResultSet">
   	<result column="MEMBER_NO" property="memberNo"/>
   	<result column="MEMBER_ID" property="memberId"/>
   	<result column="MEMBER_PWD" property="memberPwd"/>
@@ -36,6 +36,16 @@
   	<result column="CAREER" property="career"/>
   	<result column="LICENSE_NAME" property="symbolLicense"/>
   	<result column="LICENSE_NO" property="symbolLicenseNo"/>
+  </resultMap>
+  
+   <resultMap type="StudyBoard" id="BoardResultSet">
+  	<result column="STUDY_BOARD_NO" property="boardNo"/>
+  	<result column="STUDY_NO" property="studyNo"/>
+  	<result column="STUDY_BOARD_TITLE" property="boardTitle"/>
+  	<result column="STUDY_BOARD_CONTENT" property="boardContent"/>
+  	<result column="VIEW_COUNT" property="viewCount"/>
+  	<result column="STUDY_BOARD_DATE" property="boardDate"/>
+  	<result column="MANAGER_NICKNAME" property="managerName"/>
   </resultMap>
   
   <select id="countStudy" resultType="_int">
@@ -97,7 +107,7 @@
 	     WHERE STUDY_NO = #{no}
   </select>
   
-  <select id="selectStudyMemberList" resultMap="memberResultSet">
+  <select id="selectStudyMemberList" resultMap="MemberResultSet">
 	SELECT M.MEMBER_NO, 
 		   MEMBER_NICKNAME,
 		   MEMBER_IMG
@@ -106,6 +116,22 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{no}
 	<if test="keyword != null">
 		AND MEMBER_NICKNAME LIKE '%' || #{keyword} || '%'
 	</if>
+  </select>
+  
+  <select id="countBoard" resultType="_int">
+	SELECT COUNT(*)
+	FROM STUDY_BOARD
+  </select>
+  
+  <select id="selectBoardList" resultMap="BoardResultSet">
+	SELECT STUDY_BOARD_NO ,
+		MEMBER_NICKNAME AS MANAGER_NICKNAME ,
+		STUDY_BOARD_TITLE ,
+		VIEW_COUNT ,
+		TO_CHAR(STUDY_BOARD_DATE,'YYYY-MM-DD') AS STUDY_BOARD_DATE
+	FROM STUDY_BOARD
+	INNER JOIN STUDY S USING(STUDY_NO)
+	INNER JOIN MEMBER M ON(S.MANAGER_NO = M.MEMBER_NO)
   </select>
 
 </mapper>

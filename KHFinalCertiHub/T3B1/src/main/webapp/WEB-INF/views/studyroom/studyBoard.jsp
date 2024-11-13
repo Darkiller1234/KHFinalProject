@@ -14,7 +14,7 @@
     <%@ include file="../common/header.jsp" %>
 
     <div class="wrapper padding">
-        <div class="page-title font-size-title">스터디 그룹</div>
+        <div class="page-title font-size-title">홍보 게시판</div>
         <form class="search-section" onsubmit="return false;">
             <div class="search-form">
                 <input type="text">
@@ -26,7 +26,7 @@
 
         <div class="board-title">
             <div class="page-title font-size-subtitle">
-                스터디 그룹 모집&현황
+                모집&현황
             </div>
             <div class="search-option">
                 <div class="custom-select"></div>

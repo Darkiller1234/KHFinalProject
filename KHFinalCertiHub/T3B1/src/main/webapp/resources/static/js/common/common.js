@@ -182,7 +182,7 @@ function createSelectBox(div, data){
 
     div : 안에 테이블을 생성할 영역
     data = {
-        url: contextPath + "이동할 경로 ex)/study/detail",
+        url: contextPath + "이동할 경로?no=" ex) contextPath + "/study/board?no=",
         titleIndex: n( n번째 요소를 타이틀로 설정 )
         header : [
             "제목",
@@ -192,12 +192,14 @@ function createSelectBox(div, data){
         ],
         boardList : [
             [
+                "해당 보드 기본키값",
                 "제목입니다1",
                 "user01",
                 "<button>삭제</button>",
                 ...
             ],
             [
+                "해당 보드 기본키값",
                 "제목입니다2",
                 "user01",
                 "<button>삭제</button>",
@@ -227,19 +229,18 @@ function createList(div, data){
 
     header.children[titleIndex].className = "title"
     board.appendChild(header)
-    
+
     data.boardList.forEach(post => {
         let tr = document.createElement('tr')
-
-        post.forEach(data => {
+        post.slice(1,post.length).forEach(data => {
             let td = document.createElement('td')
             td.innerHTML = data;
-            
+
             tr.appendChild(td)
         })
         tr.children[titleIndex].className = "title"
         tr.children[titleIndex].onclick = () => {
-            location.href= data.url
+            location.href= data.url + post[0]
         }
         board.appendChild(tr)
     })
@@ -276,6 +277,18 @@ function createPageBar(div, data){
 
     leftArrow.appendChild(leftArrowImg)
     rightArrow.appendChild(rightArrowImg)
+
+    console.log(data)
+    if(data.currentPage !== 1) {
+        leftArrow.onclick = () => {
+            location.href = data.pageUrl + '&p=' + (data.currentPage - 1)
+        }
+    }
+    if(data.currentPage !== data.maxPage){
+        rightArrow.onclick = () => {
+            location.href = data.pageUrl + '&p=' + (data.currentPage + 1)
+        }
+    }
 
     // 페이지바 생성
     pageDiv.appendChild(leftArrow)
