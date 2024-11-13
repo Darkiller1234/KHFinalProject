@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.common.vo.SearchOption;
+import com.kh.T3B1.member.model.vo.Member;
 import com.kh.T3B1.study.model.vo.Study;
 
 @Repository
@@ -26,6 +27,17 @@ public class StudyDao {
 
 	public Study selectStudy(SqlSessionTemplate sqlSession, int no) {
 		return sqlSession.selectOne("studyMapper.selectStudy",no);
+	}
+
+	public int countStudyMember(SqlSessionTemplate sqlSession, int no) {
+		return sqlSession.selectOne("studyMapper.countStudyMember",no);
+	}
+
+	public ArrayList<Member> selectStudyMemberList(SqlSessionTemplate sqlSession, PageInfo pi, SearchOption so) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getPageLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getPageLimit());
+		
+		return (ArrayList)sqlSession.selectList("studyMapper.selectStudyMemberList", so, rowBounds);
 	}
 	
 }

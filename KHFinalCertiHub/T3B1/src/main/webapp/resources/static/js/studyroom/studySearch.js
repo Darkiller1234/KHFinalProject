@@ -47,6 +47,7 @@ function initStudyList(contextPath){
     // 초기값 세팅
     const loadingBar = document.querySelector('.loading-section')
     
+    // pageInfo = 객체 리터럴
     let pageInfo = {
         currentPage : 1,
         pageLimit : 10,
@@ -70,8 +71,7 @@ function initStudyList(contextPath){
     }
 
     // 매개변수로 초기값 전달
-    // loadMentor은 ajaxLoadMentor에서 반환하는 함수 + 매개변수에 있는 currentPage, pageLimit 값을 기억하고 있음
-    // 이후 호출하면 loadMentor가 기억하고 있는 환경의 currentPage 값이 1씩 증가 ( 클로저 )
+    // pageInfo는 객체이므로 매개변수로 참조값이 전달된다. ( 클로저 )
     const loadStudy = ajaxLoadStudy(pageInfo, onStudyLoad)
     loadStudy(); // 처음 한번 로딩
     // 이후 스크롤 할 때, 화면끝에 도달하면 다시 로딩

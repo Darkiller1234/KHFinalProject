@@ -40,15 +40,13 @@ public class StudyServiceImpl implements StudyService{
 	}
 
 	@Override
-	public int countStudyMember() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int countStudyMember(int no) {
+		return studyDao.countStudyMember(sqlSession, no);
 	}
 
 	@Override
-	public ArrayList<Member> selectStudyMemberList(int no) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Member> selectStudyMemberList(PageInfo pi, SearchOption so) {
+		return studyDao.selectStudyMemberList(sqlSession, pi, so);
 	}
 	
 }

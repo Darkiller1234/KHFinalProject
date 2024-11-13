@@ -19,9 +19,9 @@ public interface StudyService {
 	Study selectStudy(int no);
 
 	// 스터디 그룹에 가입해있는 회원 수
-	int countStudyMember();
+	int countStudyMember(int no);
 	
 	// 스터디 그룹에 가입해있는 회원 정보 조회
-	ArrayList<Member> selectStudyMemberList(int no);
+	ArrayList<Member> selectStudyMemberList(PageInfo pi, SearchOption so);
 
 }

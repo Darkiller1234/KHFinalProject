@@ -94,19 +94,18 @@ public class StudyController {
 		if(sort != null) so.setSortNo(sort);
 		
 		ArrayList<Study> studyList = studyService.selectStudyList(pi, so);
-		System.out.println(studyList);
 		
 		return new Gson().toJson(studyList);
 	}
 	
 	@ResponseBody
 	@RequestMapping(value="memberList", produces="application/json; charset=UTF-8")
-	public String selectStudyMemberList(int pageLimit, int currentPage,  String keyword) {
+	public String selectStudyMemberList(int pageLimit, int currentPage,  String keyword, int no) {
 		// 요청 한번에 불러올 스터디 그룹의 수, 최대 20명 까지
 		pageLimit = pageLimit <= 20 ? pageLimit : 20;
 		
 		// 이미 마지막 회원 페이지라면 DB에서 조회하지 않도록 막아준다
-		int memberCount = studyService.countStudyMember();
+		int memberCount = studyService.countStudyMember(no);
 		if((currentPage - 1) * pageLimit > memberCount) {
 			return null;
 		}
@@ -119,10 +118,10 @@ public class StudyController {
 		// 검색 옵션 저장
 		SearchOption so = new SearchOption();
 		if(keyword != null && !keyword.equals("")) so.setKeyword(keyword);
+		so.setNo(no);
 		
-		ArrayList<Study> studyList = studyService.selectStudyList(pi, so);
-		System.out.println(studyList);
+		ArrayList<Member> memberList = studyService.selectStudyMemberList(pi, so);
 		
-		return new Gson().toJson(studyList);
+		return new Gson().toJson(memberList);
 	}
 }
