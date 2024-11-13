@@ -23,5 +23,6 @@ public class Member {
 	
 	// 멘토 추가 정보
 	private String symbolLicense;
+	private int symbolLicenseNo;
 	private int mentorLike;
 }

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace: 해당 mapper파일의 고유한 별칭 -->
+<mapper namespace="studyMapper">
+  <resultMap type="Study" id="StudyResultSet">
+  	<result column="STUDY_NO" property="studyNo"/>
+  	<result column="MANAGER_NO" property="managerNo"/>
+  	<result column="STUDY_NAME" property="studyName"/>
+ 	<result column="STUDY_INFO" property="studyInfo"/>
+  	<result column="STUDY_IMG" property="studyImg"/>
+  	<result column="STUDY_RECRUIT" property="studyRecruit"/>
+  	<result column="MEMBER_COUNT" property="memberCount"/>
+  	<result column="MANAGER_NAME" property="managerName"/>
+  	<result column="MANAGER_INTRO" property="managerIntro"/>
+  </resultMap>
+  
+  <resultMap type="Member" id="memberResultSet">
+  	<result column="MEMBER_NO" property="memberNo"/>
+  	<result column="MEMBER_ID" property="memberId"/>
+  	<result column="MEMBER_PWD" property="memberPwd"/>
+  	<result column="MEMBER_NAME" property="memberName"/>
+  	<result column="MEMBER_INTRO" property="memberIntro"/>
+  	<result column="MEMBER_NICKNAME" property="memberNickname"/>
+  	<result column="EMAIL" property="email"/>
+  	<result column="PHONE" property="phone"/>
+  	<result column="MEMBER_IMG" property="memberImg"/>
+  	<result column="ENROLL_DATE" property="enrollDate"/>
+  	<result column="STATUS" property="status"/>
+  	<result column="MANAGER_STATUS" property="managerStatus"/>
+  	<result column="MENTOR_STATUS" property="mentorStatus"/>
+  	<result column="MENTOR_VALID" property="mentorValid"/>
+  	<result column="MENTOR_INTRO" property="mentorIntro"/>
+  	<result column="CAREER" property="career"/>
+  	<result column="LICENSE_NAME" property="symbolLicense"/>
+  	<result column="LICENSE_NO" property="symbolLicenseNo"/>
+  </resultMap>
+  
+  <select id="countStudy" resultType="_int">
+	SELECT COUNT(*)
+	FROM STUDY
+  </select>
+
+  <select id="selectStudyList" resultMap="StudyResultSet">
+ 	 SELECT S.STUDY_NO ,
+            M.MEMBER_NICKNAME AS MANAGER_NAME,
+		    S.STUDY_NAME ,
+		    S.STUDY_IMG ,
+		    S.STUDY_RECRUIT,
+            COUNT(*) AS MEMBER_COUNT
+       FROM STUDY S
+    INNER JOIN STUDY_MEMBER SM ON (S.STUDY_NO = SM.STUDY_NO)
+    LEFT JOIN MEMBER M ON(M.MEMBER_NO = S.MANAGER_NO)
+    <where>
+   		<if test="keyword != null">
+			AND STUDY_NAME LIKE '%' || #{keyword} || '%'
+		</if>
+    	<if test="recruit eq 2">
+			AND STUDY_RECRUIT = 'Y'
+		</if>
+			<if test="recruit eq 3">
+			AND STUDY_RECRUIT = 'N'
+		</if>
+    </where>
+    GROUP BY S.STUDY_NO, M.MEMBER_NICKNAME, S.STUDY_NAME, S.STUDY_IMG, S.STUDY_RECRUIT
+	<choose>
+		<when test="sortNo == 2">
+			ORDER BY MEMBER_COUNT DESC
+	    </when>
+	    <otherwise>
+	    	ORDER BY STUDY_NO
+	    </otherwise>
+	</choose>
+  </select>
+  
+  <select id="selectStudy" resultMap="StudyResultSet">
+	  	SELECT S.STUDY_NO ,
+	            M.MEMBER_NICKNAME AS MANAGER_NAME,
+			    S.STUDY_NAME ,
+			    S.STUDY_IMG ,
+				S.STUDY_INFO,
+			    S.STUDY_RECRUIT,
+	            M.MEMBER_INTRO AS MANAGER_INTRO,
+	            COUNT(*) AS MEMBER_COUNT
+	       FROM STUDY S
+	    INNER JOIN STUDY_MEMBER SM ON (S.STUDY_NO = SM.STUDY_NO) AND S.STUDY_NO = #{no}
+	    LEFT JOIN MEMBER M ON(M.MEMBER_NO = S.MANAGER_NO)
+	    GROUP BY S.STUDY_NO, M.MEMBER_NICKNAME, S.STUDY_NAME, S.STUDY_INFO, S.STUDY_IMG, S.STUDY_RECRUIT, 
+	        M.MEMBER_INTRO
+  </select>
+  
+  <select id="countStudyMember" resultType="_int">
+		SELECT COUNT(*)
+		  FROM STUDY_MEMBER
+	     WHERE STUDY_NO = #{no}
+  </select>
+  
+  <select id="selectStudyMemberList" resultMap="memberResultSet">
+	SELECT M.MEMBER_NO, 
+		   MEMBER_NICKNAME,
+		   MEMBER_IMG
+	  FROM MEMBER M
+INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{no}
+	<if test="keyword != null">
+		AND MEMBER_NICKNAME LIKE '%' || #{keyword} || '%'
+	</if>
+  </select>
+
+</mapper>
+

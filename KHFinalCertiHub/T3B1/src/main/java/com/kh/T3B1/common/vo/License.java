@@ -1,4 +1,4 @@
-package com.kh.T3B1.info.model.vo;
+package com.kh.T3B1.common.vo;
 
 import lombok.Data;
 
@@ -8,14 +8,5 @@ public class License {
 	private String licenseName;
 	private String licenseDesc;
 }
-
-
-
-
-
-
-
-
-
 
 

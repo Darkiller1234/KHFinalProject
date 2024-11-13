@@ -2,8 +2,6 @@ package com.kh.T3B1.mentor.controller;
 
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.kh.T3B1.common.vo.License;
 import com.kh.T3B1.common.vo.PageInfo;
+import com.kh.T3B1.common.vo.SearchOption;
 import com.kh.T3B1.member.model.vo.Member;
 import com.kh.T3B1.mentor.service.MentorService;
 
@@ -46,7 +46,7 @@ public class MentorController {
 	
 	@ResponseBody
 	@RequestMapping(value="list", produces="application/json; charset=UTF-8")
-	public String selectMentorList(int pageLimit, int currentPage) {
+	public String selectMentorList(int pageLimit, int currentPage,  String keyword, Integer license, Integer sort) {
 		// 요청 한번에 불러올 멘토의 수, 최대 20명 까지
 		pageLimit = pageLimit <= 20 ? pageLimit : 20;
 		
@@ -56,15 +56,28 @@ public class MentorController {
 			return null;
 		}
 		
-		// 자격증 목록 조회
-		
 		// 멘토 리스트 조회
 		PageInfo pi = new PageInfo();
 		pi.setCurrentPage(currentPage);
 		pi.setPageLimit(pageLimit);
 		
-		ArrayList<Member> mentorList = mentorService.selectMentorList(pi);
+		// 검색 옵션 저장
+		SearchOption so = new SearchOption();
+		if(keyword != null && !keyword.equals("")) so.setKeyword(keyword);
+		if(license != null) so.setLicenseNo(license);
+		if(sort != null) so.setSortNo(sort);
+		
+		ArrayList<Member> mentorList = mentorService.selectMentorList(pi, so);
 		
 		return new Gson().toJson(mentorList);
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="licenseList", produces="application/json; charset=UTF-8")
+	public String selectLicenseList() {
+		// 자격증 목록 조회
+		ArrayList<License> licenseList = mentorService.selectLicenseList();
+		return new Gson().toJson(licenseList);
+	}
+
 }

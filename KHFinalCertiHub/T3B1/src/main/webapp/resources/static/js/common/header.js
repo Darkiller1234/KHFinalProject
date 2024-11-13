@@ -6,10 +6,10 @@ function init(contextPath, pageName, optional){
 
     switch(pageName){
         case "mentorSearch":
-            initMentorSearch(contextPath); // contextPath
+            initMentorSearch(contextPath); // optional : 자격증 목록
             break;
-        case "mentorDetail":
-            initMentorDetail(contextPath);
+        case "studyDetail":
+            initStudyDetail(contextPath);
             break;
         case "communitySearch":
             commuMInit(contextPath);

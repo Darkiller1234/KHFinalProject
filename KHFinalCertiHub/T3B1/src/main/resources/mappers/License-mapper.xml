@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="SearchMapper">
+    <resultMap type="License" id="searchLicenseList">
+        <result column="LICENSE_NO" property="licenseNo"/>
+        <result column="LICENSE_NAME" property="licenseName"/>
+        <result column="LICENSE_DESC" property="licenseDesc"/>
+    </resultMap>
+
+    <!-- 자격증 이름으로 검색하는 페이징 처리된 쿼리 -->
+    <select id="searchLicenseList" resultType="License">
+        SELECT
+            license_no AS licenseNo,
+            license_name AS licenseName,
+            license_desc AS licenseDesc
+        FROM
+            LICENSE
+        WHERE
+            license_name LIKE CONCAT('%', #{keyword}, '%')
+        LIMIT #{pageSize} OFFSET #{offset}
+    </select>
+
+    <!-- 전체 검색 결과 개수 -->
+    <select id="searchLicenseCount" resultType="int">
+        SELECT COUNT(*) 
+        FROM LICENSE
+        WHERE license_name LIKE CONCAT('%', #{keyword}, '%')
+    </select>
+</mapper>

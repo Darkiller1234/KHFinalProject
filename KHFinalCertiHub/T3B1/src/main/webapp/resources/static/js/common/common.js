@@ -13,10 +13,10 @@ function testSelectBox(contextPath){
             default : '기본값',
             imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
             items : [
-                '내용1',
-                '내용2',
-                '내용3',
-                '내용4'
+                ['내용1'],
+                ['내용2'],
+                ['내용3'],
+                ['내용4']
             ]
         }
 
@@ -63,7 +63,7 @@ function testBoard(){
         imgUrl = selectBox 화살표 이미지 경로
         items = [
             ['항목1'], 
-            ['항목2', 항목 선택시 발생함수 ],  // 항목에 이벤트를 추가하고 싶다면 리스트에 값 2개
+            ['항목2', 항목에 부여할 값 ],  // dataset.value에 저장
             ['항목3'],
             ... 
         ]
@@ -104,17 +104,17 @@ function createSelectBox(div, data){
         list.className = 'item';
         list.innerText = item[0];
 
+        if(item[1]){
+            list.dataset.value = item[1]
+        }
+
         // onmousedown으로 blur 처리되기 전에 값 변경
         list.onmousedown = () => {
             // firstChild = 자식요소중 첫번쨰, 텍스트
             // firstChild는 노드이므로 textContent로 읽어와야함
             button.firstChild.textContent = list.innerText;
-            input.value = list.innerText;
+            input.value = list.dataset.value;
             itemList.style.visibility = itemList.style.visibility = 'hidden';
-        }
-
-        if(item.length === 2){
-            list.onmousedown = item[1] // item[1] : 직접 작성한 함수
         }
 
         itemList.appendChild(list);
@@ -139,6 +139,42 @@ function createSelectBox(div, data){
 
     div.appendChild(selectBox);
 }
+
+/*
+    이벤트 부여된 셀렉트 박스 생성함수
+    selectBox : selectBox를 생성할 div
+    data : {
+        name = 서버로 보낼 input명
+        default = selectBox의 default값
+        imgUrl = selectBox 화살표 이미지 경로
+        items = [
+            ['항목1'], 
+            ['항목2', 항목 선택시 발생함수 ],  // 항목에 이벤트를 추가하고 싶다면 리스트에 값 2개
+            ['항목3'],
+            ... 
+        ]
+    }
+*/
+//     data.items.forEach(item => {
+//         let list = document.createElement('li');
+//         list.className = 'item';
+//         list.innerText = item[0];
+
+//         // onmousedown으로 blur 처리되기 전에 값 변경
+//         list.onmousedown = () => {
+//             // firstChild = 자식요소중 첫번쨰, 텍스트
+//             // firstChild는 노드이므로 textContent로 읽어와야함
+//             button.firstChild.textContent = list.innerText;
+//             input.value = list.innerText;
+//             itemList.style.visibility = itemList.style.visibility = 'hidden';
+//         }
+
+//         if(item.length === 2){
+//             list.onmousedown = item[1] // item[1] : 직접 작성한 함수
+//         }
+
+//         itemList.appendChild(list);
+//     })
 
 /*
     테이블 생성 함수
