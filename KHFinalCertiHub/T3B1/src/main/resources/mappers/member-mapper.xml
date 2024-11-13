@@ -78,6 +78,35 @@
 	  FROM MENTOR_LIKE_LOG
 	 WHERE MENTOR_NO = #{memberNo}
   </select>
-
+	
+	<!-- 아이디 중복체크 -->
+	<select id="idCheck" resultType="_int">
+		SELECT COUNT(*)
+			FROM MEMBER
+		WHERE MEMBER_ID = #{checkId}
+	</select>
+	
+	<!-- 회원가입 -->
+	<insert id="membershipPage" parameterType="Member">
+		INSERT INTO MEMBER(
+			MEMBER_NO,
+			MEMBER_ID,
+			MEMBER_PWD,
+			MEMBER_NICKNAME,
+			MEMBER_NAME,
+			EMAIL,
+			PHONE
+		) 
+		VALUES (
+			MEMBER_SEQ.NEXTVAL,
+			#{memberId},
+			#{memberPwd},
+			#{memberNickname},
+			#{memberName},
+			#{email},
+			#{phone}
+		)
+	</insert>
+	
 </mapper>
 
