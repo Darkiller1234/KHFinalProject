@@ -12,7 +12,7 @@ function initSelectBox(contextPath){
         imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
     }
 
-    // 자격증 목록 불러옴
+    // 자격증 목록 동기로 불러옴
     const onLicenseLoad = (data) => {
         data1.items = data.map(item => [item.licenseName, item.licenseNo])
     }

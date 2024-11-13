@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>서티허브 - 스터디그룹</title>
+    <title>서티허브 - 스터디 그룹</title>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/studyroom/mentorSearch.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/studyroom/studySearch.css">
@@ -15,7 +15,10 @@
     <%@ include file="../common/header.jsp" %>
 
     <div class="wrapper padding">
-        <div class="page-title font-size-title">스터디 그룹 찾기</div>    
+        <div class="title">
+            <div class="page-title font-size-title">스터디 그룹 찾기</div>
+            <button class="btn btn-primary" onclick="location.href='create'">그룹 만들기</button> 
+        </div>
 
         <form class="search-section" action="search">
             <div class="search-form">
