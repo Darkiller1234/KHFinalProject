@@ -36,6 +36,7 @@ public class CommunityController {
 		Board dump = new Board();
 		dump.setLicenseNo(certiNo);
 		dump.setTabNo(tabNo);
+		dump.setOrderBy(orderBy);
 		
 		int boardCount = communityService.selectListCount(dump);
 		
@@ -54,6 +55,10 @@ public class CommunityController {
 		ArrayList<Board> notiList = null;
 		if(tabNo != 1 && currentPage == 1) {
 			notiList = communityService.selectNotiList(dump);
+		}
+		
+		if(orderBy != 1) {
+			c.addAttribute("orderBy", orderBy);
 		}
 		
 		c.addAttribute("notiList", notiList);

@@ -309,7 +309,7 @@
                 <div id="selectbox2" class="custom-select">
                 </div>
                 <input type="text" id="search-input-text">
-                  <button class="rounded-circle" onclick="searchExcute()">
+                  <button class="rounded-circle" onclick="searchExcute(${certiNo}, ${tabNo})">
                       <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
                   </button> 
               </div>

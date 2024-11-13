@@ -482,7 +482,7 @@ footer {
     }
 
     #search-area > :nth-child(2) input {
-        width: auto;
+        width: 100%;
     }
 
     #search-area > :nth-child(3) {

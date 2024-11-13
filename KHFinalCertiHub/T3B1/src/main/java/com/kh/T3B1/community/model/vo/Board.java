@@ -27,4 +27,5 @@ public class Board {
 	private String tabName;
 	private String licenseName;
 	private int replyCount;
+	private int orderBy;
 }

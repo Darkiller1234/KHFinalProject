@@ -10,14 +10,17 @@ function pageChange(currentPage, certiNo, tabNo){
     redirect(certiNo, tabNo, currentPage)
 }
 
-function searchExcute(){
-    if($('.array').val()===undefined){
+function searchExcute(certiNo, tabNo){
+    if($('input[name="array"]').val()===""){
         console.log("ASDF");
     }
-    
+    else {
+        console.log($('input[name="array"]').val())
+        redirect(certiNo, tabNo, undefined, $('input[name="array"]').val())
+    }
 }
 
-function redirect(certiNo, tabNo, currentPage, orderNo, filterNo, filterText){
+function redirect(certiNo, tabNo, currentPage, orderBy, filterNo, filterText){
     let path = "main?";
     if(certiNo){
         path += `certiNo=${certiNo}&`;
@@ -28,8 +31,8 @@ function redirect(certiNo, tabNo, currentPage, orderNo, filterNo, filterText){
     if(currentPage){
         path += `cpage=${currentPage}&`;
     }
-    if(orderNo){
-        path += `orderNo=${orderNo}&`;
+    if(orderBy){
+        path += `orderBy=${orderBy}&`;
     }
     if(filterNo){
         path += `filterNo=${filterNo}&`;
@@ -47,7 +50,8 @@ function commuMInit(contextPath){
         imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
         items : [
             ['최신순', 1],
-            ['추천순', 2]
+            ['추천순', 2],
+            ['조회순', 3]
         ]
     }
 
