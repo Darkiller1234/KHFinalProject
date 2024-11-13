@@ -23,13 +23,13 @@
 
             <h3>로그인이 필요한 서비스입니다.</h3>
 
-            <form action="insert.me" method="post" id="login">
+            <form action="main" method="post" id="login">
                 <div class="form-group">
-                    <label for="userId">아이디</label> 
-                    <input type="text" class="form-control" id="userId" placeholder="여기에 PlaceHolder 입력" name="userId" required>
+                    <label for="memberId">아이디</label> 
+                    <input type="text" class="form-control" id="memberId" placeholder="여기에 PlaceHolder 입력" name="memberId" required>
 
-                    <label for="userPwd">비밀번호</label>
-                    <input type="password" class="form-control" id="userPwd" placeholder="비밀번호 입력" name="userPwd" required>
+                    <label for="memberPwd">비밀번호</label>
+                    <input type="password" class="form-control" id="memberPwd" placeholder="비밀번호 입력" name="memberPwd" required>
 
                     <div class="btns">
                         <button type="submit" class="btn btn-primary">로그인</button>

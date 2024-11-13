@@ -15,6 +15,7 @@
 
     <div class="wrapper padding">
         <div class="page-title font-size-title">멘토 찾기</div>    
+        
         <form class="search-section" action="search">
             <div class="search-form">
                 <input type="text" name="keyword">

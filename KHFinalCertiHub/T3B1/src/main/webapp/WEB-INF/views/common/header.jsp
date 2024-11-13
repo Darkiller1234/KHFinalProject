@@ -75,10 +75,10 @@ crossorigin="anonymous"></script>
 
                         <li class="submenu community">
                             <ul>
-                                <li><a href="<%=contextPath%>/community/main">정보처리기사</a></li>
-                                <li><a href="<%=contextPath%>/community/main">네트워크 관리사</a></li>
-                                <li><a href="<%=contextPath%>/community/main">정보보안기사</a></li>
-                                <li><a href="<%=contextPath%>/community/main">빅데이터 분석기사</a></li>
+                                <li><a href="<%=contextPath%>/community/main?certiNo=1">정보처리기사</a></li>
+                                <li><a href="<%=contextPath%>/community/main?certiNo=2">네트워크 관리사</a></li>
+                                <li><a href="<%=contextPath%>/community/main?certiNo=3">정보보안기사</a></li>
+                                <li><a href="<%=contextPath%>/community/main?certiNo=4">빅데이터 분석기사</a></li>
                             </ul>
                         </li> 
 
@@ -109,8 +109,8 @@ crossorigin="anonymous"></script>
             </div>
 
             <div class="section font-size-footer">
-                <a href="<%=contextPath%>/login">로그인</a>
-                <a href="<%=contextPath%>/membership">회원가입</a>
+                <a href="<%=contextPath%>/member/login">로그인</a>
+                <a href="<%=contextPath%>/member/membership">회원가입</a>
                 <img src="<%=contextPath%>/resources/static/img/button/menu_button.png">
             </div>
         </div>

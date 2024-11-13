@@ -12,11 +12,17 @@ footer {
 
 .navbar-brand, .nav-link{ /* 네비바 현재게시판 */
     margin-left: 10px;
-    color: black;
+    color: black !important;
 }
 
-.navbar-brand:hover, .nav-link:hover{ /* 네비바 현재게시판 */
-    color: #006D77;
+.navbar-brand:hover{
+    color: #006D77 !important;
+    cursor: pointer;
+}
+
+.nav-link:hover {
+    color: #006D77 !important;
+    cursor: pointer;
 }
 
 #certiSelect{           /* 상단 게시판 이름 표시 및 게시판 변경 */
@@ -476,7 +482,7 @@ footer {
     }
 
     #search-area > :nth-child(2) input {
-        width: auto;
+        width: 100%;
     }
 
     #search-area > :nth-child(3) {
@@ -495,6 +501,8 @@ footer {
 
 #search-input-text {
     min-width: 0px;
+    padding: 0px 10px;
+    text-align: left;
 }
 
 
@@ -529,6 +537,7 @@ footer {
   }
   
   .scroll-content {
+    border-bottom: none;
     display: flex;
     width: max-content; /* 콘텐츠 길이에 맞게 폭을 자동 조정 */
   }
@@ -555,10 +564,7 @@ footer {
 
   .btn-outline-primary {
     color: black !important;   
-    border-color: #006D77 !important;
-    border-top: 0px !important;
-    border-left: 0px !important;
-    border-right: 0px !important;
+    border: none !important;
     border-radius: 5px 5px 0px 0px !important;
 }
 

@@ -4,10 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>서티허브 - 스터디 정보</title>
+    <title>서티허브 - 스터디 그룹</title>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/studyroom/mentorDetail.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/studyroom/studyDetail.css">
+    <script src="${pageContext.request.contextPath}/resources/static/js/studyroom/studyDetail.js"></script>
     <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
 </head>
 <body>
@@ -19,139 +20,63 @@
         <div class="mentor-page">
             <div class="mentor-card">
                 <div class="profile-img small">
-                    <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                    <img src="<%=contextPath%>${study.studyImg}" class="rounded-circle" alt="Cinque Terre">
                 </div>
-                <div class="mentor-name font-size-subtitle">User01</div>
+                <div class="mentor-name font-size-subtitle">${study.managerName}</div>
                 <div class="tag bgcolor4 font-size-content"><img src="<%=contextPath%>/resources/static/img/button/manager_icon.png">관리자</div>
-                <div class="member-intro font-size-footer">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
-                <div class="tag valid bgcolor3"><img src="<%=contextPath%>/resources/static/img/button/valid_icon.png">모집중</div>
-                <button class="btn-primary"  data-bs-toggle="modal" data-bs-target="#apply-modal">신청하기</button>
+                <div class="member-intro font-size-footer">${study.managerIntro}</div>
+                <c:choose>
+                    <c:when test="${study.studyRecruit eq 'Y'}">
+                        <div class="tag valid bgcolor3"><img src="<%=contextPath%>/resources/static/img/button/valid_icon.png">모집중</div>
+                        <button class="btn-primary"  data-bs-toggle="modal" data-bs-target="#apply-modal">신청하기</button>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="tag valid bgcolor4"><img src="<%=contextPath%>/resources/static/img/button/stop_icon.png">모집마감</div>
+                        <button class="btn-primary"  data-bs-toggle="modal" data-bs-target="#apply-modal" disabled>신청불가</button>
+                    </c:otherwise>
+                </c:choose>
             </div>
 
-            <div class="mentor-info">
-                <div class="font-size-title">제 243921회 김순자 할머니와 함께하는 정보처리기사 스터디</div>
-                <div class="mentor-career">
-                    난 너를 믿었던만큼 난 내 친구도 믿었기에
-                    난 아무런 부담없이 널 내 친구에게 소개시켜 줬고
-                    그런 만남이 있은 후부터 우리는 자주 함께 만나며
-                    즐거운 시간을 보내며 함께 어울렸던 것뿐인데
-                    <br><br>
-                    그런 만남이 어디부터 잘못됐는지
-                    난 알 수 없는 예감에 조금씩 빠져들고 있을때쯤
-                    <br>
-                    넌 나보다 내 친구에게 관심을 더 보이며
-                    날 조금씩 멀리하던
-                    <br>
-                    그 어느 날 너와 내가 심하게 다툰 그 날 이후로
-                    너와 내 친구는 연락도 없고 날 피하는 것 같아
-                    그제서야 난 느낀거야 모든 것이 잘못돼 있는걸
-                    너와 내 친구는 어느새 다정한 연인이 돼 있었지
-                    <br><br>
-                    있을 수 없는 일이라며 난 울었어
-                    내 사랑과 우정을 모두 버려야 했기에
-                    또 다른 내 친구는 내 어깰 두드리며
-                    잊어버리라 했지만 잊지 못할 것 같아
-                </div>
-                <div class="font-size-title">참여회원 (7명)</div>
-
-                <div class="search-member">
-                    <div class="search-form">
-                        <input type="text">
-                        <button class="rounded-circle" onclick="alert('클릭됨')">
-                            <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
-                        </button> 
+            <div class="info-section">
+                <div class="mentor-info">
+                    <div class="font-size-title">${study.studyName}</div>
+                    <div class="mentor-career">
+                        ${study.studyInfo}
                     </div>
-                </div>
+                    <div class="font-size-title">참여회원 (${study.memberCount}명)</div>
 
-                <div class="mentor-intro">
-
-                    <div class="member">
-                        <div class="member-info">
-                            <div class="profile">
-                                <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
-                            </div>
-                            <div class="name font-size-content">
-                                user01
-                            </div>
+                    <div class="search-member">
+                        <div class="search-form">
+                            <input id="keyword" type="text">
+                            <button class="rounded-circle" onclick="alert('클릭됨')">
+                                <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
+                            </button> 
                         </div>
                     </div>
 
-                    <div class="member">
-                        <div class="member-info">
-                            <div class="profile">
-                                <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                    <div class="mentor-intro">
+
+                        <!-- <div class="member">
+                            <div class="member-info">
+                                <div class="profile">
+                                    <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                                </div>
+                                <div class="name font-size-content">
+                                    user01
+                                </div>
                             </div>
-                            <div class="name font-size-content">
-                                user01
-                            </div>
-                        </div>
+                        </div> -->
+
                     </div>
 
-                    <div class="member">
-                        <div class="member-info">
-                            <div class="profile">
-                                <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
-                            </div>
-                            <div class="name font-size-content">
-                                user01
-                            </div>
-                        </div>
+                    <div class="load-member">
+                        <button>더보기...</button>
                     </div>
 
-                    <div class="member">
-                        <div class="member-info">
-                            <div class="profile">
-                                <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
-                            </div>
-                            <div class="name font-size-content">
-                                user01
-                            </div>
-                        </div>
+                    <div class="button-section">
+                        <button class="btn-primary" onclick="location.href='${pageContext.request.contextPath}/study/detail/edit'">수정하기</button>
+                        <button class="btn-primary bgcolor1" onclick="location.href='${pageContext.request.contextPath}/study/search'">목록으로</button>
                     </div>
-
-                    <div class="member">
-                        <div class="member-info">
-                            <div class="profile">
-                                <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
-                            </div>
-                            <div class="name font-size-content">
-                                user01
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="member">
-                        <div class="member-info">
-                            <div class="profile">
-                                <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
-                            </div>
-                            <div class="name font-size-content">
-                                user01
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="member">
-                        <div class="member-info">
-                            <div class="profile">
-                                <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
-                            </div>
-                            <div class="name font-size-content">
-                                user01
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-
-                <div class="load-member">
-                    <button>더보기...</button>
-                </div>
-
-                <div class="button-section">
-                    <button class="btn-primary" onclick="location.href='${pageContext.request.contextPath}/study/detail/edit'">수정하기</button>
-                    <button class="btn-primary bgcolor1" onclick="location.href='${pageContext.request.contextPath}/study/search'">목록으로</button>
                 </div>
             </div>
 

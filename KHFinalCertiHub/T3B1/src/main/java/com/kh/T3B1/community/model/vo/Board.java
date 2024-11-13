@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import oracle.sql.DATE;
 
 @Getter
 @Setter
@@ -14,15 +13,21 @@ import oracle.sql.DATE;
 @ToString
 public class Board {
 	private int boardNo;
-	private String boardTab;
+	private int tabNo;
+	private int licenseNo;
+	private int memberNo;
 	private String boardTitle;
-	private int writerNo;
-	private DATE boardCreateDate;
-	private String writerName;
 	private String boardContent;
-	private int boardReplyCount;
-	private int boardLike;
-	private int boardHate;
-	
-
+	private String boardDate;
+	private int likeCount;
+	private int hateCount;
+	private String status;
+	private int viewCount;
+	private String memberNickname;
+	private String tabName;
+	private String licenseName;
+	private int replyCount;
+	private int orderBy;
+	private int filterNo;
+	private String filterText;
 }
