@@ -3,10 +3,24 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/common/default.css">
 <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/member/membership.css">
-<script src="<%=contextPath%>/resources/static/js/member/membership.js" defer></script>
+<script src="<%=contextPath%>/resources/static/js/member/membership.js"></script>
+
+<!-- jQuery -->
+<script 
+src="https://code.jquery.com/jquery-3.7.1.min.js"
+integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+crossorigin="anonymous">
+</script>
+<script
+src="https://code.jquery.com/ui/1.14.0/jquery-ui.min.js"
+integrity="sha256-Fb0zP4jE3JHqu+IBB9YktLcSjI1Zc6J2b6gTjB0LpoM="
+crossorigin="anonymous">
+</script>
+
 <title>회원가입</title>
 </head>
 <body>
@@ -23,37 +37,37 @@
 
             <p>또는</p>
 
-            <form action="insert.me" method="post" id="membershipForm">
+            <form action="join" method="post" id="membershipForm">
                 <div class="form-group">
-                    <label for="userId">* 아이디</label>
+                    <label for="memberId">* 아이디</label>
                     <div style="display: flex; gap: 10px;">
-                        <input type="text" class="form-control" id="userId" placeholder="아이디 입력" name="userId" required>
-                        <button type="button" class="btn btn-secondary" id="checkIdBtn">중복 확인</button>
+                        <input type="text" class="form-control" id="memberId" placeholder="아이디 입력" name="memberId" required>
+                        <button type="submit" class="btn btn-secondary" id="checkId">중복 확인</button>
                     </div>
-                    <span class="error-msg" id="userIdError"></span>
+                    <span class="error-msg" id="memberIdError"></span>
 
-                    <label for="userPwd">* 비밀번호</label>
-                    <input type="password" class="form-control" id="userPwd" placeholder="비밀번호 입력" name="userPwd" required minlength="4">
+                    <label for="memberPwd">* 비밀번호</label>
+                    <input type="password" class="form-control" id="memberPwd" placeholder="비밀번호 입력" name="memberPwd" required minlength="4">
 
                     <label for="checkPwd">* 비밀번호 확인</label>
                     <input type="password" class="form-control" id="checkPwd" placeholder="비밀번호 확인" name="checkPwd" required>
                     <span class="error-msg" id="checkPwdError"></span>
 
-                    <label for="name">* 이름</label>
-                    <input type="text" class="form-control" id="name" placeholder="이름 입력" name="name" required>
-                    <span class="error-msg" id="nameError"></span>
+                    <label for="memberName">* 이름</label>
+                    <input type="text" class="form-control" id="memberName" placeholder="이름 입력" name="memberName" required>
+                    <span class="error-msg" id="NameError"></span>
 
-                    <label for="nickName">* 닉네임</label>
-                    <input type="text" class="form-control" id="nickName" placeholder="닉네임 입력" name="nickName" required>
+                    <label for="memberNickname">* 닉네임</label>
+                    <input type="text" class="form-control" id="memberNickname" placeholder="닉네임 입력" name="memberNickname" required>
                     <span class="error-msg" id="nickNameError"></span>
 
-                    <label for="Email">* 이메일</label>
-                    <input type="email" class="form-control" id="Email" placeholder="이메일 입력" name="Email" required>
+                    <label for="email">* 이메일</label>
+                    <input type="email" class="form-control" id="email" placeholder="이메일 입력" name="email" required>
                     <span class="error-msg" id="emailError"></span>
 
-                    <label for="phoneNumber">* 전화번호</label>
-                    <input type="text" class="form-control" id="phoneNumber" placeholder="전화번호 입력(-없이)" name="phoneNumber" required>
-                    <span class="error-msg" id="phoneNumberError"></span>
+                    <label for="phone">* 전화번호</label>
+                    <input type="text" class="form-control" id="phone" placeholder="전화번호 입력(-없이)" name="phone" required>
+                    <span class="error-msg" id="phoneError"></span>
                 </div>
                 <div class="btns">
                     <button type="reset" class="btn btn-danger">취소</button>
