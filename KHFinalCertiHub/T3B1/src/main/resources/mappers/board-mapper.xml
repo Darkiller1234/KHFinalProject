@@ -180,6 +180,38 @@
   	 	ORDER BY B.BOARD_NO DESC
   
   </select>
+  
+  
+  <!-- 게시글 내용 조회 -->
+  <select id="selectBoardOne" resultType="Board"  resultMap="boardResult">
+  	SELECT B.BOARD_NO,
+  			B.TAB_NO,
+  			BT.TAB_NAME,
+  			B.LICENSE_NO,
+  			B.MEMBER_NO,
+  			M.MEMBER_NICKNAME,
+  			B.BOARD_TITLE,
+  			B.BOARD_CONTENT,
+  			CASE
+  				WHEN SYSDATE - B.BOARD_DATE >= 1 THEN TO_CHAR(B.BOARD_DATE, 'YYYY-MM-DD')
+  				ELSE TO_CHAR(B.BOARD_DATE, 'HH : mm')
+  			END AS BOARD_DATE,
+  			B.LIKE_COUNT,
+  			B.HATE_COUNT,
+  			B.VIEW_COUNT,
+  			BR.REPLY_COUNT
+  	  FROM BOARD B
+  	  JOIN BOARD_TAB BT ON (B.TAB_NO = BT.TAB_NO)
+  	  JOIN MEMBER M ON (B.MEMBER_NO = M.MEMBER_NO)
+  	  LEFT JOIN (SELECT BOARD_NO, COUNT(*) AS REPLY_COUNT
+  	  		FROM REPLY
+  	  		GROUP BY BOARD_NO
+  	  		) BR ON (B.BOARD_NO = BR.BOARD_NO)
+  	  <where>
+  	 	B.STATUS = 'Y'
+        AND B.BOARD_NO = #{cno}
+  	 </where> 
+  </select>
 </mapper>
 
 

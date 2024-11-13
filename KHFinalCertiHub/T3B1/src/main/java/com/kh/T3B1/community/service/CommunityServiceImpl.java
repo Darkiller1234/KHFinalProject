@@ -40,6 +40,11 @@ public class CommunityServiceImpl implements CommunityService{
 	public ArrayList<Board> selectNotiList(Board dump) {
 		return communityDao.selectNotiList(sqlSession, dump);
 	}
+
+	@Override
+	public Board selectBoardOne(int cno) {
+		return communityDao.selectBoardOne(sqlSession, cno);
+	}
 	
 	
 

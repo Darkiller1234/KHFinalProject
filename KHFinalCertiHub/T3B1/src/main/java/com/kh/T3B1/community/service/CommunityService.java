@@ -16,4 +16,6 @@ public interface CommunityService {
 	ArrayList<String> selectCertiList();
 
 	ArrayList<Board> selectNotiList(Board dump);
+
+	Board selectBoardOne(int cno);
 }

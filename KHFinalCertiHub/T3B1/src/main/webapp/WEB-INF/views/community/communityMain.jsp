@@ -255,10 +255,7 @@
                 </div>
               </c:forEach>
             </div>
-
-            <script>
-              console.log("${pi}")
-            </script>
+            
             <div class="pagination">
               <c:if test="${pi.currentPage != 1}">
                 <span class="page-arrow" onclick="pageChange(${pi.currentPage - 1}, ${certiNo}, ${tabNo})">

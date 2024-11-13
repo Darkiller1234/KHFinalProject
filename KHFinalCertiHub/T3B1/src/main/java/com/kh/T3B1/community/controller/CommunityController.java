@@ -97,8 +97,27 @@ public class CommunityController {
 			int cno,Model c) {
 		
 		ArrayList<String> certiList = communityService.selectCertiList();
+		Board temp = communityService.selectBoardOne(cno);
+		
+		Board dump = new Board();
+		dump.setLicenseNo(certiNo);
+		dump.setTabNo(0);
+		dump.setOrderBy(1);
+		dump.setFilterNo(0);
+		
+		int boardCount = communityService.selectListCount(dump);
 		
 		
+		PageInfo pi = Template.getPageInfo(boardCount, 1, 10, 5);
+		
+		ArrayList<Board> list = communityService.selectList(pi, dump);
+		
+		
+		
+		c.addAttribute("notiList", communityService.selectNotiList(dump));
+		c.addAttribute("list", list);
+		c.addAttribute("Bo", temp);
+		c.addAttribute("pi", pi);
 		c.addAttribute("certiList", certiList);
 		c.addAttribute("pageName","commuDInit");
 		c.addAttribute("certiNo", certiNo);
