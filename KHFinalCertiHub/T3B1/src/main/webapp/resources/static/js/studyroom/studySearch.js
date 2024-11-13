@@ -8,11 +8,12 @@ function initSelectBox(contextPath){
 
     const data1 = {
         name : 'recruit',
-        default : '모집중',
+        default : '전체',
         imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
         items : [
-            ['모집중'],
-            ['모집마감'],
+            ['전체',1],
+            ['모집중',2],
+            ['모집마감',3],
         ]
     } 
 
@@ -21,8 +22,8 @@ function initSelectBox(contextPath){
         default : '최신순',
         imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
         items : [
-            ['최신순'],
-            ['인기순(인원수)'],
+            ['최신순',1],
+            ['인기순(인원수)',2],
         ]
     } 
 
@@ -117,12 +118,12 @@ function ajaxLoadStudy(pageInfo, callback){
 }
 
 function createStudyCard(contextPath, res){
-    const mentorList = document.querySelector('.mentor-list')
+    const studyList = document.querySelector('.mentor-list')
 
     res.forEach(data => {
-        let mentorCard = document.createElement('div')
-        mentorCard.className = "mentor-card"
-        mentorCard.onclick = () => {
+        let studyCard = document.createElement('div')
+        studyCard.className = "mentor-card"
+        studyCard.onclick = () => {
             location.href='detail?no=' + data.studyNo
         }
     
@@ -133,13 +134,22 @@ function createStudyCard(contextPath, res){
         img.src = contextPath + data.studyImg
         img.className = "rounded-circle"
         
-        let mentorName = document.createElement("div")
-        mentorName.className = "mentor-name font-size-subtitle"
-        mentorName.innerText = data.studyName
-    
-        let memberIntro = document.createElement("div")
-        memberIntro.className = "member-intro font-size-footer"
-        memberIntro.innerText = data.studyInfo ?? "" // data.mentorIntro가 null이거나 undefined라면 공백
+        let studyName = document.createElement("div")
+        studyName.className = "mentor-name font-size-subtitle"
+        studyName.innerText = data.studyName
+
+        let studyIntro = document.createElement("div")
+        studyIntro.className = "member-intro font-size-content"
+        studyIntro.innerText = data.managerName
+
+        let studyPop = document.createElement('div')
+        studyPop.className = "tag bgcolor3 font-size-content"
+        
+        let studyPopImg = document.createElement('img')
+        studyPopImg.src = contextPath + "/resources/static/img/button/person_icon_light.png"
+
+        studyPop.appendChild(studyPopImg)
+        studyPop.innerHTML += data.memberCount + "명"
     
         let tag = document.createElement("div")
         let tagImg = document.createElement("img")
@@ -158,11 +168,12 @@ function createStudyCard(contextPath, res){
     
         profile.appendChild(img)
     
-        mentorCard.appendChild(profile)
-        mentorCard.appendChild(mentorName)
-        mentorCard.appendChild(memberIntro)
-        mentorCard.appendChild(tag)
+        studyCard.appendChild(profile)
+        studyCard.appendChild(studyName)
+        studyCard.appendChild(studyIntro)
+        studyCard.appendChild(studyPop)
+        studyCard.appendChild(tag)
     
-        mentorList.appendChild(mentorCard)
+        studyList.appendChild(studyCard)
     });
 }

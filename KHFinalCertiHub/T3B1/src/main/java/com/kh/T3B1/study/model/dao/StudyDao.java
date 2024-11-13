@@ -23,5 +23,9 @@ public class StudyDao {
 		
 		return (ArrayList)sqlSession.selectList("studyMapper.selectStudyList", so, rowBounds);
 	}
+
+	public Study selectStudy(SqlSessionTemplate sqlSession, int no) {
+		return sqlSession.selectOne("studyMapper.selectStudy",no);
+	}
 	
 }

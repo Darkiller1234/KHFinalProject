@@ -1065,7 +1065,38 @@ INSERT INTO STUDY (STUDY_NO, MANAGER_NO, STUDY_NAME, STUDY_IMG, STUDY_INFO, STUD
 VALUES (1, 2,'스터디그룹1','/resources/static/img/studyProfile/profileTest.webp', '여긴 기사 스터디그룹1', 'Y');
 
 INSERT INTO STUDY (STUDY_NO, MANAGER_NO, STUDY_NAME, STUDY_INFO, STUDY_RECRUIT) 
-VALUES (2, 3,'스터디그룹2', '여긴 기사 스터디그룹2', 'Y');
+VALUES (2, 3,'스터디그룹2', '난 너를 믿었던만큼 난 내 친구도 믿었기에
+난 아무런 부담없이 널 내 친구에게 소개시켜 줬고
+그런 만남이 있은 후부터 우리는 자주 함께 만나며
+즐거운 시간을 보내며 함께 어울렸던 것뿐인데
+그런 만남이 어디부터 잘못됐는지
+난 알 수 없는 예감에 조금씩 빠져들고 있을때쯤
+넌 나보다 내 친구에게 관심을 더 보이며
+날 조금씩 멀리하던
+그 어느 날 너와 내가 심하게 다툰 그 날 이후로
+너와 내 친구는 연락도 없고 날 피하는 것 같아
+그제서야 난 느낀거야 모든 것이 잘못돼 있는걸
+너와 내 친구는 어느새 다정한 연인이 돼 있었지
+있을 수 없는 일이라며 난 울었어
+내 사랑과 우정을 모두 버려야 했기에
+또 다른 내 친구는 내 어깰 두드리며
+잊어버리라 했지만 잊지 못할 것 같아
+너를 사랑했던 것만큼 난 내 친구도 믿었기에
+난 자연스럽게 너와 함께 어울렸던 것뿐인데
+어디서부터 우리의 믿음이 깨지기 시작했는지
+난 알지도 못한 채 어색함을 느끼면서
+그렇게 함께 만나온 시간이 길어지면 질수록
+넌 내게서 더 조금씩 멀어지는 것을 느끼며
+난 예감을 했었지 넌 나보다 내 친구에게
+관심이 더 있었다는 걸
+그 어느 날 너와 내가 심하게 다툰 그 날 이후로
+너와 내 친구는 연락도 없고 날 피하는 것같아
+그제서야 난 느낀거야 모든 것이 잘못돼 있는걸
+너와 내 친구는 어느새 다정한 연인이 돼 있었지
+있을 수 없는 일이라며 난 울었어
+내 사랑과 우정을 모두 버려야 했기에
+또 다른 내 친구는 내 어깰 두드리며
+잊어버리라 했지만 잊지 못할 것 같아', 'Y');
 
 INSERT INTO STUDY (STUDY_NO, MANAGER_NO, STUDY_NAME, STUDY_INFO, STUDY_RECRUIT) 
 VALUES (3, 4,'스터디그룹3', '여긴 기사 스터디그룹3', 'Y');
@@ -1134,6 +1165,12 @@ INSERT INTO STUDY_MEMBER (MEMBER_NO, STUDY_NO, CONFIRM_DATE)
 VALUES (7, 6, to_date('10/31/2024', 'MM/DD/RRRR'));
 
 INSERT INTO STUDY_MEMBER (MEMBER_NO, STUDY_NO, CONFIRM_DATE) 
+VALUES (15, 6, to_date('10/31/2024', 'MM/DD/RRRR'));
+
+INSERT INTO STUDY_MEMBER (MEMBER_NO, STUDY_NO, CONFIRM_DATE) 
+VALUES (16, 6, to_date('10/31/2024', 'MM/DD/RRRR'));
+
+INSERT INTO STUDY_MEMBER (MEMBER_NO, STUDY_NO, CONFIRM_DATE) 
 VALUES (8, 7, to_date('10/30/2024', 'MM/DD/RRRR'));
 
 INSERT INTO STUDY_MEMBER (MEMBER_NO, STUDY_NO, CONFIRM_DATE) 
@@ -1150,6 +1187,9 @@ VALUES (12, 11, to_date('10/26/2024', 'MM/DD/RRRR'));
 
 INSERT INTO STUDY_MEMBER (MEMBER_NO, STUDY_NO, CONFIRM_DATE) 
 VALUES (13, 12, to_date('10/25/2024', 'MM/DD/RRRR'));
+
+INSERT INTO STUDY_MEMBER (MEMBER_NO, STUDY_NO, CONFIRM_DATE) 
+VALUES (14, 12, to_date('10/25/2024', 'MM/DD/RRRR'));
 
 INSERT INTO STUDY_BOARD (STUDY_BOARD_NO, STUDY_NO, STUDY_BOARD_TITLE, STUDY_BOARD_CONTENT, VIEW_COUNT, STUDY_BOARD_DATE) 
 VALUES (1, 1, '스터디그룹 1에서 사람 모집중!!!', '열심히 공부해봐요~~ 1', 0, to_date('11/05/2024', 'MM/DD/RRRR'));
