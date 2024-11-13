@@ -28,14 +28,42 @@
   <!-- 게시글 총 갯수 조회 -->
   <select id="selectListCount" resultType="int">
    	SELECT COUNT(*)
-   	  FROM BOARD
+   	  FROM BOARD B
+  	  JOIN BOARD_TAB BT ON (B.TAB_NO = BT.TAB_NO)
+  	  JOIN MEMBER M ON (B.MEMBER_NO = M.MEMBER_NO)
+  	  LEFT JOIN (SELECT BOARD_NO, COUNT(*) AS REPLY_COUNT
+  	  		FROM REPLY
+  	  		GROUP BY BOARD_NO
+  	  		) BR ON (B.BOARD_NO = BR.BOARD_NO)
    	<where>
-  	 	STATUS = 'Y'
+  	 	B.STATUS = 'Y'
   	 	<if test="licenseNo != 0">
-            AND LICENSE_NO = #{licenseNo}
+            AND B.LICENSE_NO = #{licenseNo}
+        </if>
+        <if test="tabNo == 0">
+        	AND B.TAB_NO != 1
         </if>
         <if test="tabNo != 0">
-            AND TAB_NO = #{tabNo}
+            AND B.TAB_NO = #{tabNo}
+        </if>
+        <if test="filterNo != 0">
+        	<choose>
+        		<when test="filterNo == 1">
+        			AND ()
+        		</when>
+        		<when test="filterNo == 2">
+        			AND LOWER(B.BOARD_TITLE) LIKE CONCAT(CONCAT('%', #{filterText}), '%')
+        		</when>
+        		<when test="filterNo == 3">
+        			AND LOWER(B.BOARD_CONTENT) LIKE CONCAT(CONCAT('%', #{filterText}), '%')
+        		</when>
+        		<when test="filterNo == 4">
+        			AND (LOWER(B.BOARD_TITLE) LIKE CONCAT(CONCAT('%', #{filterText}), '%') OR LOWER(B.BOARD_CONTENT) LIKE CONCAT(CONCAT('%', #{filterText}), '%'))
+        		</when>
+        		<when test="filterNo == 5">
+        			AND LOWER(M.MEMBER_NICKNAME) LIKE CONCAT(CONCAT('%', #{filterText}), '%')
+        		</when>
+        	</choose>
         </if>
   	 </where> 
   </select>
@@ -76,8 +104,37 @@
         <if test="tabNo != 0">
             AND B.TAB_NO = #{tabNo}
         </if>
+        <if test="filterNo != 0">
+        	<choose>
+        		<when test="filterNo == 1">
+        			AND ()
+        		</when>
+        		<when test="filterNo == 2">
+        			AND LOWER(B.BOARD_TITLE) LIKE CONCAT(CONCAT('%', #{filterText}), '%')
+        		</when>
+        		<when test="filterNo == 3">
+        			AND LOWER(B.BOARD_CONTENT) LIKE CONCAT(CONCAT('%', #{filterText}), '%')
+        		</when>
+        		<when test="filterNo == 4">
+        			AND (LOWER(B.BOARD_TITLE) LIKE CONCAT(CONCAT('%', #{filterText}), '%') OR LOWER(B.BOARD_CONTENT) LIKE CONCAT(CONCAT('%', #{filterText}), '%'))
+        		</when>
+        		<when test="filterNo == 5">
+        			AND LOWER(M.MEMBER_NICKNAME) LIKE CONCAT(CONCAT('%', #{filterText}), '%')
+        		</when>
+        	</choose>
+        </if>
   	 </where> 
-  	 	ORDER BY B.BOARD_NO DESC
+  	 <choose>			<!-- 정렬 기준   최신,조회,추천 -->
+  	 	<when test="orderBy == 1">
+  	 		ORDER BY B.BOARD_NO DESC
+  	 	</when>
+  	 	<when test="orderBy == 2">
+  	 		ORDER BY (B.LIKE_COUNT - B.HATE_COUNT) DESC
+  	 	</when>
+  	 	<when test="orderBy == 3">
+  	 		ORDER BY B.VIEW_COUNT DESC
+  	 	</when>
+  	 </choose>
   </select>
   
   
@@ -122,6 +179,38 @@
   	 </where> 
   	 	ORDER BY B.BOARD_NO DESC
   
+  </select>
+  
+  
+  <!-- 게시글 내용 조회 -->
+  <select id="selectBoardOne" resultType="Board"  resultMap="boardResult">
+  	SELECT B.BOARD_NO,
+  			B.TAB_NO,
+  			BT.TAB_NAME,
+  			B.LICENSE_NO,
+  			B.MEMBER_NO,
+  			M.MEMBER_NICKNAME,
+  			B.BOARD_TITLE,
+  			B.BOARD_CONTENT,
+  			CASE
+  				WHEN SYSDATE - B.BOARD_DATE >= 1 THEN TO_CHAR(B.BOARD_DATE, 'YYYY-MM-DD')
+  				ELSE TO_CHAR(B.BOARD_DATE, 'HH : mm')
+  			END AS BOARD_DATE,
+  			B.LIKE_COUNT,
+  			B.HATE_COUNT,
+  			B.VIEW_COUNT,
+  			BR.REPLY_COUNT
+  	  FROM BOARD B
+  	  JOIN BOARD_TAB BT ON (B.TAB_NO = BT.TAB_NO)
+  	  JOIN MEMBER M ON (B.MEMBER_NO = M.MEMBER_NO)
+  	  LEFT JOIN (SELECT BOARD_NO, COUNT(*) AS REPLY_COUNT
+  	  		FROM REPLY
+  	  		GROUP BY BOARD_NO
+  	  		) BR ON (B.BOARD_NO = BR.BOARD_NO)
+  	  <where>
+  	 	B.STATUS = 'Y'
+        AND B.BOARD_NO = #{cno}
+  	 </where> 
   </select>
 </mapper>
 

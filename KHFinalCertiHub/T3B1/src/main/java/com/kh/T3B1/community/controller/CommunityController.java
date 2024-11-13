@@ -28,14 +28,29 @@ public class CommunityController {
 	public String CommunityMain(@RequestParam(value="cpage", defaultValue="1") int currentPage,
 			@RequestParam(value="certiNo", defaultValue="1") int certiNo,
 			@RequestParam(value="tabNo", defaultValue="0") int tabNo ,
-			@RequestParam(value="orderBy", defaultValue="1") int orderBy,
-			@RequestParam(value="filterNo", defaultValue="0") int filterNo, Model c) {
+			@RequestParam(value="orderBy", defaultValue="0") int orderBy,
+			@RequestParam(value="filterNo", defaultValue="0") int filterNo,
+			@RequestParam(value="filterText", defaultValue="") String filterText, Model c) {
 		
 		
 		
 		Board dump = new Board();
 		dump.setLicenseNo(certiNo);
 		dump.setTabNo(tabNo);
+		if(orderBy == 0) {
+			dump.setOrderBy(1);
+		} else {
+			dump.setOrderBy(orderBy);
+		}
+		
+		if(!filterText.equals("")) {
+			if(filterNo == 0) {
+				filterNo = 2;
+			}
+			dump.setFilterNo(filterNo);
+			dump.setFilterText(filterText);
+		}
+		
 		
 		int boardCount = communityService.selectListCount(dump);
 		
@@ -56,6 +71,17 @@ public class CommunityController {
 			notiList = communityService.selectNotiList(dump);
 		}
 		
+		if(orderBy != 0) {
+			c.addAttribute("orderBy", orderBy);
+		}
+		
+		if(filterNo != 0) {
+			c.addAttribute("filterNo", filterNo);
+			c.addAttribute("filterText", filterText);
+		}
+		
+		
+		
 		c.addAttribute("notiList", notiList);
 		c.addAttribute("list", list);
 		c.addAttribute("pi", pi);
@@ -67,8 +93,35 @@ public class CommunityController {
 		return "community/communityMain";
 	}
 	@RequestMapping("detail")
-	public String CommunityDetail(Model c) {
+	public String CommunityDetail(@RequestParam(value="certiNo", defaultValue="1") int certiNo,
+			int cno,Model c) {
+		
+		ArrayList<String> certiList = communityService.selectCertiList();
+		Board temp = communityService.selectBoardOne(cno);
+		
+		Board dump = new Board();
+		dump.setLicenseNo(certiNo);
+		dump.setTabNo(0);
+		dump.setOrderBy(1);
+		dump.setFilterNo(0);
+		
+		int boardCount = communityService.selectListCount(dump);
+		
+		
+		PageInfo pi = Template.getPageInfo(boardCount, 1, 10, 5);
+		
+		ArrayList<Board> list = communityService.selectList(pi, dump);
+		
+		
+		
+		c.addAttribute("notiList", communityService.selectNotiList(dump));
+		c.addAttribute("list", list);
+		c.addAttribute("Bo", temp);
+		c.addAttribute("pi", pi);
+		c.addAttribute("certiList", certiList);
 		c.addAttribute("pageName","commuDInit");
+		c.addAttribute("certiNo", certiNo);
+		c.addAttribute("cno", cno);
 		return "community/communityDetail";
 	}
 	@RequestMapping("write")

@@ -482,7 +482,7 @@ footer {
     }
 
     #search-area > :nth-child(2) input {
-        width: auto;
+        width: 100%;
     }
 
     #search-area > :nth-child(3) {
@@ -501,6 +501,8 @@ footer {
 
 #search-input-text {
     min-width: 0px;
+    padding: 0px 10px;
+    text-align: left;
 }
 
 

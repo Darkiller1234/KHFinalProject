@@ -33,4 +33,8 @@ public class CommunityDao {
 		return (ArrayList)sqlSession.selectList("boardMapper.selectNotiList", dump, rowBounds);
 	}
 
+	public Board selectBoardOne(SqlSessionTemplate sqlSession, int cno) {
+		return (Board)sqlSession.selectOne("boardMapper.selectBoardOne", cno);
+	}
+
 }
