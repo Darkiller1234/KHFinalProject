@@ -12,5 +12,9 @@ public class Study {
 	private String studyRecruit;
 	
 	// 스터디 그룹 멤버수
-	private int memberNo;
+	private int memberCount;
+	// 스터디 그룹장 이름
+	private String managerName;
+	// 스터디 그룹장 자기소개
+	private String managerIntro;
 }

@@ -28,12 +28,13 @@
                 <c:choose>
                     <c:when test="${mentor.mentorValid eq 'Y'}">
                         <div class="tag valid bgcolor3"><img src="<%=contextPath%>/resources/static/img/button/valid_icon.png">질문가능</div>
+                        <button class="btn-primary"  data-bs-toggle="modal" data-bs-target="#apply-modal">신청하기</button>
                     </c:when>
                     <c:otherwise>
                         <div class="tag valid bgcolor4"><img src="<%=contextPath%>/resources/static/img/button/stop_icon.png">질문불가</div>
+                        <button class="btn-primary"  data-bs-toggle="modal" data-bs-target="#apply-modal" disabled>신청불가</button>
                     </c:otherwise>
                 </c:choose>
-                <button class="btn-primary"  data-bs-toggle="modal" data-bs-target="#apply-modal">신청하기</button>
             </div>
 
             <div class="info-section">
