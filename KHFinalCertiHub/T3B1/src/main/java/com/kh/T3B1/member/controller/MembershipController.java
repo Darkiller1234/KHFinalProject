@@ -1,14 +1,16 @@
 package com.kh.T3B1.member.controller;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.T3B1.member.model.service.MemberService;
 import com.kh.T3B1.member.model.vo.Member;
@@ -18,10 +20,12 @@ import com.kh.T3B1.member.model.vo.Member;
 public class MembershipController {
 	
 	private final MemberService memberService;
+	private final BCryptPasswordEncoder bcryptPasswordEncoder;
 	
 	@Autowired
-	public MembershipController(MemberService memberService) {
+	public MembershipController(MemberService memberService, BCryptPasswordEncoder bcryptPasswordEncoder) {
 		this.memberService = memberService;
+		this.bcryptPasswordEncoder = bcryptPasswordEncoder;
 		
 	}
 	
@@ -60,6 +64,33 @@ public class MembershipController {
 	@RequestMapping("login")
 	public String loginPage() {
 		return "member/login";
+	}
+	
+	@RequestMapping("login.me")
+	public ModelAndView loginMember(Member m, HttpSession session, ModelAndView mv, String saveId, HttpServletResponse response) {
+		
+		Member loginMember = memberService.loginMember(m);
+		
+		if(loginMember == null) {
+			mv.addObject("errorMsg","아이디가 틀렸습니다.");
+			mv.setViewName("member/login");
+		}else if(!bcryptPasswordEncoder.matches(m.getMemberPwd(),loginMember.getMemberPwd())) {
+			mv.addObject("errorMsg","비밀번호가 틀렸습니다.");
+			mv.setViewName("member/login");
+		}else {
+//			Cookie ck = new Cookie("saveId", loginMember.getMemberId());
+			if(saveId == null) {
+//				ck.setMaxAge(0);
+			}
+//			response.addCookie(ck);
+			
+			session.setAttribute("loginUser", loginMember);
+			
+			mv.setViewName("redirect:/main");
+			
+		}
+		
+		return mv;
 	}
 	
 	@RequestMapping("idfind")
