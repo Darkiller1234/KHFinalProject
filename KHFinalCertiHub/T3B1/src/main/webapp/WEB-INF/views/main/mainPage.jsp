@@ -14,7 +14,7 @@
     <!-- FullCalendar JS (CDN) -->
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/static/js/calendar/calendar.js"></script>
-
+    
     <!-- <script src="${pageContext.request.contextPath}/resources/static/js/main/mainPage.js"></script> -->
 
 </head>
@@ -37,9 +37,11 @@
                 <div class="calendar">
                     <div id="calendar"></div>
                 </div>
-                <div class="schedule">
+                <div id="october" class="schedule">
                     <h1>10월 일정</h1>
+                    <ul id="october-schedule"></ul>  <!-- 이곳에 시험 일정이 추가됩니다 -->
                 </div>
+                
 
             </div>
 
@@ -52,6 +54,8 @@
                 </div>
             </div>
         </div>
+    <script src="<%=contextPath%>/resources/static/js/main/mainPage.js"></script>
+
         <%@ include file="../common/footer.jsp" %>
 </body>
 
