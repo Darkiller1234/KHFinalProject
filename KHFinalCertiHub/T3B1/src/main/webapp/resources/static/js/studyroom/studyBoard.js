@@ -86,7 +86,7 @@ function initList(contextPath, data){
     const boardList = document.querySelector('.board-content');
     
     let boardInfo = {
-        url: contextPath + "/study/board",
+        url: contextPath + "/study/board?no=",
         header : [
             "제목",
             "작성자",
@@ -96,6 +96,7 @@ function initList(contextPath, data){
     }
 
     boardInfo.boardList = data.map( board => [
+        board.boardNo,
         board.boardTitle,
         board.managerName,
         board.boardDate,
@@ -112,6 +113,7 @@ function initPageBar(contextPath, data){
         startPage : data.startPage,
         endPage :  data.endPage,
         currentPage : data.currentPage,
+        maxPage : data.maxPage,
         pageUrl : 'list?',
         imgUrl : [
             contextPath + '/resources/static/img/button/arrow_left.png',
