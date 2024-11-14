@@ -1,6 +1,8 @@
 package com.kh.T3B1.community.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +47,26 @@ public class CommunityServiceImpl implements CommunityService{
 	public Board selectBoardOne(int cno) {
 		return communityDao.selectBoardOne(sqlSession, cno);
 	}
+
+	@Override
+	public boolean increaseViewCount(int cno) {
+		return communityDao.increaseViewCount(sqlSession, cno);
+	}
+
+	@Override
+	public String ajaxCommunityWriterProfileImg(int cno) {
+		return communityDao.ajaxCommunityWriterProfileImg(sqlSession, cno);
+	}
+
+	@Override
+	public int ajaxCommunityLikeStatusJson(int cno, int memberNo) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("cno", cno);
+		params.put("memberNo", memberNo);
+		return communityDao.ajaxCommunityLikeStatusJson(sqlSession, params);
+	}
+
+	
 	
 	
 
