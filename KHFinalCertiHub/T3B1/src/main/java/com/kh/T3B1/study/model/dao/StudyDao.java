@@ -41,8 +41,8 @@ public class StudyDao {
 		return (ArrayList)sqlSession.selectList("studyMapper.selectStudyMemberList", so, rowBounds);
 	}
 
-	public int countBoard(SqlSessionTemplate sqlSession) {
-		return sqlSession.selectOne("studyMapper.countBoard");
+	public int countBoard(SqlSessionTemplate sqlSession, String keyword) {
+		return sqlSession.selectOne("studyMapper.countBoard", keyword);
 	}
 
 	public ArrayList<StudyBoard> selectBoardList(SqlSessionTemplate sqlSession, PageInfo pi, SearchOption so) {
@@ -50,6 +50,10 @@ public class StudyDao {
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
 		return (ArrayList)sqlSession.selectList("studyMapper.selectBoardList", so, rowBounds);
+	}
+
+	public StudyBoard selectBoard(SqlSessionTemplate sqlSession, int no) {
+		return sqlSession.selectOne("studyMapper.selectBoard", no);
 	}
 	
 }

@@ -63,7 +63,7 @@ function testBoard(){
         imgUrl = selectBox 화살표 이미지 경로
         items = [
             ['항목1'], 
-            ['항목2', 항목에 부여할 값 ],  // dataset.value에 저장
+            ['항목2', 항목에 부여할 값(dataset.value에 부여), 항목에 부여할 onmousedonw 함수 ],
             ['항목3'],
             ... 
         ]
@@ -104,7 +104,7 @@ function createSelectBox(div, data){
         list.className = 'item';
         list.innerText = item[0];
 
-        if(item[1]){
+        if(item.length === 2){
             list.dataset.value = item[1]
         }
 
@@ -115,6 +115,11 @@ function createSelectBox(div, data){
             button.firstChild.textContent = list.innerText;
             input.value = list.dataset.value;
             itemList.style.visibility = itemList.style.visibility = 'hidden';
+        }
+
+        
+        if(item.length === 3){
+            list.onmousedown = item[2] // item[1] : 직접 작성한 함수
         }
 
         itemList.appendChild(list);
@@ -155,26 +160,6 @@ function createSelectBox(div, data){
         ]
     }
 */
-//     data.items.forEach(item => {
-//         let list = document.createElement('li');
-//         list.className = 'item';
-//         list.innerText = item[0];
-
-//         // onmousedown으로 blur 처리되기 전에 값 변경
-//         list.onmousedown = () => {
-//             // firstChild = 자식요소중 첫번쨰, 텍스트
-//             // firstChild는 노드이므로 textContent로 읽어와야함
-//             button.firstChild.textContent = list.innerText;
-//             input.value = list.innerText;
-//             itemList.style.visibility = itemList.style.visibility = 'hidden';
-//         }
-
-//         if(item.length === 2){
-//             list.onmousedown = item[1] // item[1] : 직접 작성한 함수
-//         }
-
-//         itemList.appendChild(list);
-//     })
 
 /*
     테이블 생성 함수
@@ -182,7 +167,7 @@ function createSelectBox(div, data){
 
     div : 안에 테이블을 생성할 영역
     data = {
-        url: contextPath + "이동할 경로 ex)/study/detail",
+        url: contextPath + "이동할 경로?no=" ex) contextPath + "/study/board?no=",
         titleIndex: n( n번째 요소를 타이틀로 설정 )
         header : [
             "제목",
@@ -192,12 +177,14 @@ function createSelectBox(div, data){
         ],
         boardList : [
             [
+                "해당 보드 기본키값",
                 "제목입니다1",
                 "user01",
                 "<button>삭제</button>",
                 ...
             ],
             [
+                "해당 보드 기본키값",
                 "제목입니다2",
                 "user01",
                 "<button>삭제</button>",
@@ -227,19 +214,18 @@ function createList(div, data){
 
     header.children[titleIndex].className = "title"
     board.appendChild(header)
-    
+
     data.boardList.forEach(post => {
         let tr = document.createElement('tr')
-
-        post.forEach(data => {
+        post.slice(1,post.length).forEach(data => {
             let td = document.createElement('td')
             td.innerHTML = data;
-            
+
             tr.appendChild(td)
         })
         tr.children[titleIndex].className = "title"
         tr.children[titleIndex].onclick = () => {
-            location.href= data.url
+            location.href= data.url + post[0]
         }
         board.appendChild(tr)
     })
@@ -277,6 +263,17 @@ function createPageBar(div, data){
     leftArrow.appendChild(leftArrowImg)
     rightArrow.appendChild(rightArrowImg)
 
+    if(data.currentPage !== 1) {
+        leftArrow.onclick = () => {
+            location.href = data.pageUrl + '&p=' + (data.currentPage - 1)
+        }
+    }
+    if(data.currentPage !== data.maxPage){
+        rightArrow.onclick = () => {
+            location.href = data.pageUrl + '&p=' + (data.currentPage + 1)
+        }
+    }
+
     // 페이지바 생성
     pageDiv.appendChild(leftArrow)
     for(let i = data.startPage; i <= data.endPage; i++){
@@ -297,6 +294,19 @@ function createPageBar(div, data){
     pageDiv.appendChild(rightArrow)
 
     div.appendChild(pageDiv)
+}
+
+// 자리수 변환 함수 ( K, M )
+function converseDigit(num){
+    const isKilo = new RegExp('^[0-9]{4,6}$')
+    const isMillion = new RegExp('^[0-9]{7,}$')
+
+    if(isKilo.test(num)){
+        num = (num / 1000).toFixed(1) +'K'
+    } else if(isMillion.test(num)){
+        num = (num / 1000000).toFixed(1) + 'M'
+    }
+    return num
 }
 
 function topScroll(){

@@ -149,7 +149,7 @@ function createStudyCard(contextPath, res){
         studyPopImg.src = contextPath + "/resources/static/img/button/person_icon_light.png"
 
         studyPop.appendChild(studyPopImg)
-        studyPop.innerHTML += data.memberCount + "명"
+        studyPop.innerHTML += converseDigit(data.memberCount)
     
         let tag = document.createElement("div")
         let tagImg = document.createElement("img")

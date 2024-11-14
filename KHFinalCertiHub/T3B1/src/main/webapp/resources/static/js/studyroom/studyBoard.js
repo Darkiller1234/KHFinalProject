@@ -1,10 +1,13 @@
 function initStudyBoard(contextPath){
-    initSelectBox(contextPath)
     initBoard(contextPath)
 }
 
 function initSelectBox(contextPath){
-    const selectBoxList = document.querySelectorAll('.custom-select');
+    const selectBoxList = document.querySelectorAll('.search-option');
+
+    const url = new URL(window.location.href);
+    const urlParam = url.searchParams;
+    const keyword = urlParam.get('keyword')
 
     selectBoxList.forEach(selectBox => {
         let data = {
@@ -12,16 +15,24 @@ function initSelectBox(contextPath){
             default : '10개씩',
             imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
             items : [
-                ['10개씩',1],
-                ['15개씩',2],
-                ['20개씩',3],
+                ['10개씩',1, () => {
+                    location.href='list?display=10&p=1' +
+                        (keyword ? '&keyword=' + keyword : "")
+                }],
+                ['15개씩',2, () => {
+                    location.href='list?display=15&p=1' +
+                        (keyword ? '&keyword=' + keyword : "")
+                }],
+                ['20개씩',3, () => {
+                    location.href='list?display=20&p=1' +
+                        (keyword ? '&keyword=' + keyword : "")
+                }],
             ]
         }
 
         createSelectBox(selectBox, data)
     })
 }
-
 
 function initBoard(contextPath){
     // 현재 페이지의 URL 주소
@@ -52,6 +63,7 @@ function initBoard(contextPath){
         if(data){
             initList(contextPath, JSON.parse(data.board))
             initPageBar(contextPath, JSON.parse(data.pageInfo))
+            initSelectBox(contextPath, JSON.parse(data.pageInfo))
         }
     }
 
@@ -78,15 +90,11 @@ function ajaxLoadBoard(pageInfo, callback){
     }
 }
 
-
-
-
-
 function initList(contextPath, data){
     const boardList = document.querySelector('.board-content');
     
     let boardInfo = {
-        url: contextPath + "/study/board",
+        url: contextPath + "/study/board?no=",
         header : [
             "제목",
             "작성자",
@@ -96,6 +104,7 @@ function initList(contextPath, data){
     }
 
     boardInfo.boardList = data.map( board => [
+        board.boardNo,
         board.boardTitle,
         board.managerName,
         board.boardDate,
@@ -107,12 +116,16 @@ function initList(contextPath, data){
 
 function initPageBar(contextPath, data){
     const pagingBar = document.querySelector('.paging-bar');
+    const url = new URL(window.location.href);
+    const urlParam = url.searchParams;
+    const keyword = urlParam.get('keyword')
 
     const pageInfo = {
         startPage : data.startPage,
         endPage :  data.endPage,
         currentPage : data.currentPage,
-        pageUrl : 'list?',
+        maxPage : data.maxPage,
+        pageUrl : 'list?display=' + data.boardLimit + (keyword ? "&keyword=" + keyword : ""),
         imgUrl : [
             contextPath + '/resources/static/img/button/arrow_left.png',
             contextPath + '/resources/static/img/button/arrow_right.png'
