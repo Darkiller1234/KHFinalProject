@@ -51,7 +51,6 @@ public class MembershipController {
 
 	@RequestMapping("join")
 	public String membershipPage(Member m, HttpSession session, Model model) {
-		
 		String encodePwd = bcryptPasswordEncoder.encode(m.getMemberPwd());
 		m.setMemberPwd(encodePwd);
 		
@@ -91,13 +90,20 @@ public class MembershipController {
 			}
 //			response.addCookie(ck);
 			
-			session.setAttribute("loginUser", loginMember);
+			session.setAttribute("loginMember", loginMember);
 			
 			mv.setViewName("redirect:/main");
 			
 		}
 		
 		return mv;
+	}
+	
+	@RequestMapping("logout.me")
+	public String logoutMember(HttpSession session) {
+		session.removeAttribute("loginMember");
+		
+		return "redirect:/main";
 	}
 	
 	@RequestMapping("idfind")

@@ -109,8 +109,15 @@ crossorigin="anonymous"></script>
             </div>
 
             <div class="section font-size-footer">
-                <a href="<%=contextPath%>/member/login">로그인</a>
-                <a href="<%=contextPath%>/member/membership">회원가입</a>
+                <c:choose>
+                    <c:when test="${loginMember eq null}">
+                        <a href="<%=contextPath%>/member/login">로그인</a>
+                        <a href="<%=contextPath%>/member/membership">회원가입</a>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="<%=contextPath%>/member/logout.me">로그아웃</a>
+                    </c:otherwise>
+                </c:choose>
                 <img src="<%=contextPath%>/resources/static/img/button/menu_button.png">
             </div>
         </div>
