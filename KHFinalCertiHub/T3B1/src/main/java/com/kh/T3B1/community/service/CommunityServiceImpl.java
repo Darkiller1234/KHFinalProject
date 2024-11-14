@@ -66,6 +66,36 @@ public class CommunityServiceImpl implements CommunityService{
 		return communityDao.ajaxCommunityLikeStatusJson(sqlSession, params);
 	}
 
+	@Override
+	public int ajaxCommunityLikeBtnClickJson(int cno, int memberNo) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("cno", cno);
+		params.put("memberNo", memberNo);
+		if(communityDao.ajaxCommunityLikeStatusJson(sqlSession, params) > 0) {
+			return 0;
+		}
+		int result = communityDao.ajaxCommunityLikeBtnClickJson(sqlSession, params);
+		if(result > 0) {
+			communityDao.addLikeCount(sqlSession, params);
+		}
+		return result;
+	}
+
+	@Override
+	public int ajaxCommunityHateBtnClickJson(int cno, int memberNo) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("cno", cno);
+		params.put("memberNo", memberNo);
+		if(communityDao.ajaxCommunityLikeStatusJson(sqlSession, params) > 0) {
+			return 0;
+		}
+		int result = communityDao.ajaxCommunityHateBtnClickJson(sqlSession, params);
+		if(result > 0) {
+			communityDao.addHateCount(sqlSession, params);
+		}
+		return result;
+	}
+
 	
 	
 	
