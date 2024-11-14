@@ -15,7 +15,6 @@
 
     <div class="wrapper padding">
         <div class="page-title font-size-title">멘토 정보</div>
-
         <div class="mentor-page">
             <div class="mentor-card">
                 <div class="profile-img small">
