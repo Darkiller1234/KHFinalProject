@@ -26,7 +26,7 @@ public interface StudyService {
 	ArrayList<Member> selectStudyMemberList(PageInfo pi, SearchOption so);
 
 	// 게시글의 총 개수 조회
-	int countBoard();
+	int countBoard(String keyword);
 
 	// 게시글 페이징 조회
 	ArrayList<StudyBoard> selectBoardList(PageInfo pi, SearchOption so);

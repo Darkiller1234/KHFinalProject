@@ -9,7 +9,7 @@
    
 
     <!-- config파일 자동 로드 location="classpath:database.properties"  /!-->
-    <context:property-placeholder location="classpath:config/*.properties" />
+    <context:property-placeholder location="classpath:config/*.properties" file-encoding="UTF-8"/>
    <!-- 
       root-context.xml
       서버구동과 동시에 web.xml을 거처서 바로 로딩되는 문서

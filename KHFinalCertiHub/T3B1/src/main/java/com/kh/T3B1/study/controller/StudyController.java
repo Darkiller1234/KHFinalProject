@@ -136,7 +136,7 @@ public class StudyController {
 		pageLimit = pageLimit <= 20 ? pageLimit : 20;
 		
 		// 이미 마지막 게시판 페이지라면 DB에서 조회하지 않도록 막아준다
-		int listCount = studyService.countBoard();
+		int listCount = studyService.countBoard(keyword);
 		if((currentPage - 1) * pageLimit > listCount) {
 			return null;
 		}

@@ -63,7 +63,7 @@ function testBoard(){
         imgUrl = selectBox 화살표 이미지 경로
         items = [
             ['항목1'], 
-            ['항목2', 항목에 부여할 값 ],  // dataset.value에 저장
+            ['항목2', 항목에 부여할 값(dataset.value에 부여), 항목에 부여할 onmousedonw 함수 ],
             ['항목3'],
             ... 
         ]
@@ -104,7 +104,7 @@ function createSelectBox(div, data){
         list.className = 'item';
         list.innerText = item[0];
 
-        if(item[1]){
+        if(item.length === 2){
             list.dataset.value = item[1]
         }
 
@@ -115,6 +115,11 @@ function createSelectBox(div, data){
             button.firstChild.textContent = list.innerText;
             input.value = list.dataset.value;
             itemList.style.visibility = itemList.style.visibility = 'hidden';
+        }
+
+        
+        if(item.length === 3){
+            list.onmousedown = item[2] // item[1] : 직접 작성한 함수
         }
 
         itemList.appendChild(list);
@@ -155,26 +160,6 @@ function createSelectBox(div, data){
         ]
     }
 */
-//     data.items.forEach(item => {
-//         let list = document.createElement('li');
-//         list.className = 'item';
-//         list.innerText = item[0];
-
-//         // onmousedown으로 blur 처리되기 전에 값 변경
-//         list.onmousedown = () => {
-//             // firstChild = 자식요소중 첫번쨰, 텍스트
-//             // firstChild는 노드이므로 textContent로 읽어와야함
-//             button.firstChild.textContent = list.innerText;
-//             input.value = list.innerText;
-//             itemList.style.visibility = itemList.style.visibility = 'hidden';
-//         }
-
-//         if(item.length === 2){
-//             list.onmousedown = item[1] // item[1] : 직접 작성한 함수
-//         }
-
-//         itemList.appendChild(list);
-//     })
 
 /*
     테이블 생성 함수
@@ -278,7 +263,6 @@ function createPageBar(div, data){
     leftArrow.appendChild(leftArrowImg)
     rightArrow.appendChild(rightArrowImg)
 
-    console.log(data)
     if(data.currentPage !== 1) {
         leftArrow.onclick = () => {
             location.href = data.pageUrl + '&p=' + (data.currentPage - 1)
