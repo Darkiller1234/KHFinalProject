@@ -105,7 +105,9 @@ img {
 
 .cert-select{
     outline: none;
-    padding-left: 20px;
+    margin: 20px;
+    border-radius: 5px;
+    border: 2px solid #83C5BE;
 }
 
 @media (min-width: 1250px) {

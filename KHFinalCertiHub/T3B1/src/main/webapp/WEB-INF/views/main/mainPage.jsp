@@ -43,15 +43,6 @@
                     <div class="calendar">
                         <div id="calendar"></div>
                     </div>
-                    <!-- <div id="certie" class="schedule">
-                    <h1>이번 달 일정</h1>
-                    <select> 
-                        <option value="EIP"><ul id="EIP-schedule">정보처리기사</ul></option>
-                        <option value="EIPP"><ul id="EIP-schedule">정보보안기사</ul></option>
-                        <option value="ENP"><ul id="EIP-schedule">네트워크 기사</ul></option>
-                    </select>
-                </div> -->
-
                     <div id="certies" class="schedule">
                         <h1>이번 달 일정</h1>
                         <select id="cert-select" class="cert-select">
@@ -61,7 +52,7 @@
                         </select>
 
                         <ul id="schedule-list">
-                            <!-- 선택된 자격증에 맞는 일정이 여기에 동적으로 표시됩니다. -->
+                            <!-- 선택된 자격증에 맞는 일정이 <li>로 표시됨 -->
                         </ul>
                     </div>
                 </div>
@@ -70,10 +61,13 @@
             <div class="layer2">
                 <div class="bestBoard">
                     <h1>베스트 게시물</h1>
+                    <div></div>
                 </div>
                 <div class="notice">
                     <h1>공지사항</h1>
+                    <div></div>
                 </div>
+                
             </div>
             </div>
             <script src="<%=contextPath%>/resources/static/js/main/mainPage.js"></script>
