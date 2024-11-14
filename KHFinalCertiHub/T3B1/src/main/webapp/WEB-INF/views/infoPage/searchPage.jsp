@@ -95,11 +95,11 @@
                         <h3>${item.licenseName}</h3>
                         <p>시험일 | ${item.year}년 | 분야 | ${item.status}</p>
                         <button class="view-details"
-                            onclick="location.href='<%=contextPath%>/info'">${item.qualificationType}</button>
+                            onclick="location.href='<%=contextPath%>/info/lib'">${item.qualificationType}</button>
                     </div>
                 </c:forEach>
 
-                <br><br>
+                <br><br> 
 
                 <!-- 페이징바 -->
                 <div class="pagination">
