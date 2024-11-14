@@ -91,7 +91,7 @@ public class MembershipController {
 			}
 //			response.addCookie(ck);
 			
-			session.setAttribute("loginUser", loginMember);
+			session.setAttribute("loginMember", loginMember);
 			
 			mv.setViewName("redirect:/main");
 			
