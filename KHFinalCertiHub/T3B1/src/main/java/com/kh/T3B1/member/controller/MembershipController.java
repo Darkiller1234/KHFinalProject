@@ -100,6 +100,14 @@ public class MembershipController {
 		return mv;
 	}
 	
+	@RequestMapping("logout.me")
+	public String logoutMember(HttpSession session) {
+		
+		session.removeAttribute("loginMember");
+		
+		return "redirect:/main";
+	}
+	
 	@RequestMapping("idfind")
 	public String idfindPage() {
 		return "member/idfind";
