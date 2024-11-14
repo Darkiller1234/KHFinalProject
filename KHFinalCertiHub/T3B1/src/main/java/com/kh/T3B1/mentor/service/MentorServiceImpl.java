@@ -1,6 +1,7 @@
 package com.kh.T3B1.mentor.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,18 @@ public class MentorServiceImpl implements MentorService {
 	@Override
 	public ArrayList<License> selectLicenseList() {
 		return mentorDao.selectLicenseList(sqlSession);
+	}
+
+	@Override
+	public int likeMentor(HashMap<String, Integer> likeInfo) {
+		int likeCount = 0;
+		int result = mentorDao.likeMentor(sqlSession, likeInfo);
+		
+		if(result > 0) { // 좋아요에 성공했다면
+			likeCount = mentorDao.countMentorLike(sqlSession, likeInfo.get("mentorNo")); // 좋아요 수 조회
+		}
+		
+		return likeCount;
 	}
 
 }

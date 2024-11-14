@@ -1,6 +1,7 @@
 package com.kh.T3B1.mentor.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -35,6 +36,10 @@ public class MentorDao {
 
 	public ArrayList<License> selectLicenseList(SqlSessionTemplate sqlSession) {
 		return (ArrayList)sqlSession.selectList("commonMapper.selectLicenseList");
+	}
+
+	public int likeMentor(SqlSessionTemplate sqlSession, HashMap<String, Integer> likeInfo) {
+		return sqlSession.insert("memberMapper.likeMentor", likeInfo);
 	}
 
 }

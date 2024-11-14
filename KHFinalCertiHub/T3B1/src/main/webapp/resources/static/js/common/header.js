@@ -8,6 +8,9 @@ function init(contextPath, pageName, optional){
         case "mentorSearch":
             initMentorSearch(contextPath); // optional : 자격증 목록
             break;
+        case "mentorDetail":
+            initMentorDetail(contextPath);
+            break;
         case "studyDetail":
             initStudyDetail(contextPath);
             break;

@@ -1,6 +1,9 @@
 package com.kh.T3B1.mentor.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -78,6 +81,21 @@ public class MentorController {
 		// 자격증 목록 조회
 		ArrayList<License> licenseList = mentorService.selectLicenseList();
 		return new Gson().toJson(licenseList);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="likeMentor")
+	public int likeMentor(HttpSession session, int mentorNo) {
+		int memberNo = ((Member) session.getAttribute("loginMember")).getMemberNo();
+		
+		HashMap<String, Integer> likeInfo = new HashMap<>();
+		likeInfo.put("memberNo",memberNo);
+		likeInfo.put("mentorNo",mentorNo);
+		
+		// 좋아요 증가에 성공했다면 result > 0
+		int result = mentorService.likeMentor(likeInfo);
+		
+		return result;
 	}
 
 }
