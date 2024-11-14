@@ -102,7 +102,6 @@ public class MembershipController {
 	
 	@RequestMapping("logout.me")
 	public String logoutMember(HttpSession session) {
-		
 		session.removeAttribute("loginMember");
 		
 		return "redirect:/main";
