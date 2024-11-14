@@ -51,7 +51,7 @@
         		<when test="filterNo == 1">
         			AND ()
         		</when>
-        		<when test="filterNo == 2">
+        		<when test="filterNo == 2"> <!-- concat보다 ||이 가독성이 좋을것 같아요 - 동영 -->
         			AND LOWER(B.BOARD_TITLE) LIKE CONCAT(CONCAT('%', #{filterText}), '%')
         		</when>
         		<when test="filterNo == 3">

@@ -91,7 +91,7 @@ public class StudyController {
 		pi.setPageLimit(pageLimit);
 		
 		// 검색 옵션 저장
-		SearchOption so = new SearchOption();
+		SearchOption so = new SearchOption(); // defaultValue로 변경 예정 
 		if(keyword != null && !keyword.equals("")) so.setKeyword(keyword);
 		if(recruit != null && !recruit.equals("")) so.setRecruit(recruit);
 		if(sort != null) so.setSortNo(sort);

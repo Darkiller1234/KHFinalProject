@@ -35,7 +35,7 @@ function keypress(event, certiNo, tabNo){
     }
 }
 
-function DirectAttack(path){
+function DirectAttack(path){ // 함수명 직관적으로 지어주세요 = 일동
     location.href=path;
 }
 
