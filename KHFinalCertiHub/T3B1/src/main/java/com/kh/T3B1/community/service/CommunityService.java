@@ -18,4 +18,10 @@ public interface CommunityService {
 	ArrayList<Board> selectNotiList(Board dump);
 
 	Board selectBoardOne(int cno);
+
+	boolean increaseViewCount(int cno);
+
+	String ajaxCommunityWriterProfileImg(int cno);
+
+	int ajaxCommunityLikeStatusJson(int cno, int memberNo);
 }

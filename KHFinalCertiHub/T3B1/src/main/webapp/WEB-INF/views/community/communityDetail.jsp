@@ -10,6 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     
     <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/static/js/community/communityDetailAjax.js"></script>
     <script src="${pageContext.request.contextPath}/resources/static/js/community/communityDetail.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/community/communityDetail.css">
     <title>Document</title>
@@ -47,7 +48,7 @@
             <div id="detail-area">
               <div>
                 <div>
-                  <p>${Bo.tabName}</p>
+                  <p id="tabNameP">${Bo.tabName}</p>
                   <p>${Bo.boardTitle}</p>
                 </div>
                 <div>
@@ -57,16 +58,16 @@
                 
               </div>
               <div>
-                <p>${Bo.memberNickname}</p>
-                <p>추천 ${Bo.likeCount} | 비추천 ${Bo.hateCount} | 댓글 ${Bo.replyCount} | 조회수 ${Bo.viewCount} | ${boardDate}</p>
+                <p id="nickNameP">${Bo.memberNickname}</p>
+                <p>좋아요 ${Bo.likeCount} | 싫어요 ${Bo.hateCount} | 댓글 ${Bo.replyCount} | 조회수 ${Bo.viewCount} | ${boardDate}</p>
               </div>
               <div>
                 <p>${Bo.boardContent}</p>
               </div>
               <div>
                 <div>
-                  <button><img src="<%=contextPath%>/resources/static/img/button/good.png" alt="">좋아요</button>
-                  <button><img src="<%=contextPath%>/resources/static/img/button/bad.png" alt="">싫어요</button>
+                  <button id="like-btn"><img src="<%=contextPath%>/resources/static/img/button/good.png" alt="">좋아요</button>
+                  <button id="hate-btn"><img src="<%=contextPath%>/resources/static/img/button/bad.png" alt="">싫어요</button>
                 </div>
                 <button>신고</button>
               </div>
@@ -93,7 +94,9 @@
                 <span class="page-num active">2</span>
                 <span class="page-arrow">></span>
               </div>
-                
+                <script>
+                  console.log('${loginMember.memberNo}')
+                </script>
               <form action="">
                 <div class="reply-write">
                   <textarea id="reply-write-area" placeholder="댓은 거울"></textarea>
@@ -386,6 +389,36 @@
 
       </div>
 
+
+
+  
+      <!-- 모달창 -->
+      <div class="modal" id="myModal">
+          <div class="modal-dialog">
+          <div class="modal-content">
+      
+              <!-- Modal Header -->
+              <div class="modal-header">
+              <h4 class="modal-title">                
+                  <img 
+                  src="<%=contextPath%>/resources/static/img/logo/logo_big.png"
+                  ">
+              </h4>
+              </div>
+      
+              <!-- Modal body -->
+              <div class="modal-body" id="modal-body">
+              모달 내용 작성
+              </div>
+      
+              <!-- Modal footer -->
+              <div class="modal-footer">
+              <button type="button" data-bs-dismiss="modal">닫기</button>
+              </div>
+      
+          </div>
+          </div>
+      </div>
 
       <%@ include file="../common/footer.jsp"%>
   </body>
