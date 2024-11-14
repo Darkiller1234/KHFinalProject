@@ -390,6 +390,36 @@
       </div>
 
 
+
+  
+      <!-- 모달창 -->
+      <div class="modal" id="myModal">
+          <div class="modal-dialog">
+          <div class="modal-content">
+      
+              <!-- Modal Header -->
+              <div class="modal-header">
+              <h4 class="modal-title">                
+                  <img 
+                  src="<%=contextPath%>/resources/static/img/logo/logo_big.png"
+                  ">
+              </h4>
+              </div>
+      
+              <!-- Modal body -->
+              <div class="modal-body" id="modal-body">
+              모달 내용 작성
+              </div>
+      
+              <!-- Modal footer -->
+              <div class="modal-footer">
+              <button type="button" data-bs-dismiss="modal">닫기</button>
+              </div>
+      
+          </div>
+          </div>
+      </div>
+
       <%@ include file="../common/footer.jsp"%>
   </body>
 

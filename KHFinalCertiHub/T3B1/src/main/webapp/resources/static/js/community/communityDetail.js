@@ -185,10 +185,56 @@ function commuDInit(contextPath){
 
     getLikeStatus({cno: urlParam.get('cno')}, function(result){
         if(result === 1){
-            document.querySelector('#like-btn').classList.add('selected')
+            document.querySelector('#like-btn').classList.add('selected');
+
+            // data-bs-toggle 속성 추가
+            document.querySelector('#like-btn').setAttribute("data-bs-toggle", "modal");
+
+            // data-bs-target 속성 추가
+            document.querySelector('#like-btn').setAttribute("data-bs-target", "#myModal");
+
+            // data-bs-toggle 속성 추가
+            document.querySelector('#hate-btn').setAttribute("data-bs-toggle", "modal");
+
+            // data-bs-target 속성 추가
+            document.querySelector('#hate-btn').setAttribute("data-bs-target", "#myModal");
+
+            document.querySelector('#modal-body').innerText = "이미 좋아하신 게시글입니다.";
         }
         else if(result === 2){
-            document.querySelector('#hate-btn').classList.add('selected')
+            document.querySelector('#hate-btn').classList.add('selected');
+
+            // data-bs-toggle 속성 추가
+            document.querySelector('#like-btn').setAttribute("data-bs-toggle", "modal");
+
+            // data-bs-target 속성 추가
+            document.querySelector('#like-btn').setAttribute("data-bs-target", "#myModal");
+
+            // data-bs-toggle 속성 추가
+            document.querySelector('#hate-btn').setAttribute("data-bs-toggle", "modal");
+
+            // data-bs-target 속성 추가
+            document.querySelector('#hate-btn').setAttribute("data-bs-target", "#myModal");
+
+            document.querySelector('#modal-body').innerText = "이미 싫어하신 게시글입니다.";
+        }
+        else if(result === 0){
+
+        }
+        else {
+            // data-bs-toggle 속성 추가
+            document.querySelector('#like-btn').setAttribute("data-bs-toggle", "modal");
+
+            // data-bs-target 속성 추가
+            document.querySelector('#like-btn').setAttribute("data-bs-target", "#myModal");
+
+            // data-bs-toggle 속성 추가
+            document.querySelector('#hate-btn').setAttribute("data-bs-toggle", "modal");
+
+            // data-bs-target 속성 추가
+            document.querySelector('#hate-btn').setAttribute("data-bs-target", "#myModal");
+
+            document.querySelector('#modal-body').innerText = "로그인을 하세요";
         }
     })
 }

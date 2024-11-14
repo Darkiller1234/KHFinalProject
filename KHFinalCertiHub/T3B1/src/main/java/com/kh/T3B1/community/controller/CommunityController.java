@@ -61,7 +61,7 @@ public class CommunityController {
 		int boardCount = communityService.selectListCount(boardForSelect);		// 전체 개시글 수
 		
 		
-		PageInfo pi = Template.getPageInfo(boardCount, currentPage, 10, 5);		//페이징
+		PageInfo pi = Template.getPageInfo(boardCount, currentPage, 10, 30);		//페이징
 		
 		if(pi.getCurrentPage() > pi.getMaxPage()) {								//헛소리
 			pi.setCurrentPage(pi.getMaxPage());
