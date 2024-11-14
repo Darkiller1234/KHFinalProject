@@ -110,7 +110,7 @@ crossorigin="anonymous"></script>
 
             <div class="section font-size-footer">
                 <c:choose>
-                    <c:when test="${loginMember ne null}">
+                    <c:when test="${loginMember eq null}">
                         <a href="<%=contextPath%>/member/login">로그인</a>
                         <a href="<%=contextPath%>/member/membership">회원가입</a>
                     </c:when>
