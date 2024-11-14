@@ -51,7 +51,6 @@ public class MembershipController {
 
 	@RequestMapping("join")
 	public String membershipPage(Member m, HttpSession session, Model model) {
-		
 		String encodePwd = bcryptPasswordEncoder.encode(m.getMemberPwd());
 		m.setMemberPwd(encodePwd);
 		
