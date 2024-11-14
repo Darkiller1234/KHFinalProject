@@ -152,6 +152,15 @@ function createMentorCard(contextPath, res){
         let symbolLicense = document.createElement("div")
         symbolLicense.className = "symbol-license"
         symbolLicense.innerText = data.symbolLicense
+
+        let mentorPop = document.createElement('div')
+        mentorPop.className = "tag bgcolor3 font-size-content"
+        
+        let mentorPopImg = document.createElement('img')
+        mentorPopImg.src = contextPath + "/resources/static/img/button/person_icon_light.png"
+
+        mentorPop.appendChild(mentorPopImg) // 자리수 변환 함수 ( K, M )
+        mentorPop.innerHTML += converseDigit(data.mentorLike) 
     
         let memberIntro = document.createElement("div")
         memberIntro.className = "member-intro font-size-footer"
@@ -177,6 +186,7 @@ function createMentorCard(contextPath, res){
         mentorCard.appendChild(profile)
         mentorCard.appendChild(mentorName)
         mentorCard.appendChild(symbolLicense)
+        mentorCard.appendChild(mentorPop)
         mentorCard.appendChild(memberIntro)
         mentorCard.appendChild(tag)
     

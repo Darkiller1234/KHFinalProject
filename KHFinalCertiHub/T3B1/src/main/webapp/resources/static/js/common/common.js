@@ -296,6 +296,19 @@ function createPageBar(div, data){
     div.appendChild(pageDiv)
 }
 
+// 자리수 변환 함수 ( K, M )
+function converseDigit(num){
+    const isKilo = new RegExp('^[0-9]{4,6}$')
+    const isMillion = new RegExp('^[0-9]{7,}$')
+
+    if(isKilo.test(num)){
+        num = (num / 1000).toFixed(1) +'K'
+    } else if(isMillion.test(num)){
+        num = (num / 1000000).toFixed(1) + 'M'
+    }
+    return num
+}
+
 function topScroll(){
     /*
         IE, FireFox
