@@ -149,34 +149,39 @@ function commuDInit(contextPath){
 
     const scrollContainer = document.querySelector('.scroll-container');
 
-let isDown = false;
-let startX;
-let scrollLeft;
+    let isDown = false;
+    let startX;
+    let scrollLeft;
 
-scrollContainer.addEventListener('mousedown', (e) => {
-  isDown = true;
-  scrollContainer.classList.add('active');
-  startX = e.pageX - scrollContainer.offsetLeft;
-  scrollLeft = scrollContainer.scrollLeft;
-});
+    scrollContainer.addEventListener('mousedown', (e) => {
+    isDown = true;
+    scrollContainer.classList.add('active');
+    startX = e.pageX - scrollContainer.offsetLeft;
+    scrollLeft = scrollContainer.scrollLeft;
+    });
 
-scrollContainer.addEventListener('mouseleave', () => {
-  isDown = false;
-  scrollContainer.classList.remove('active');
-});
+    scrollContainer.addEventListener('mouseleave', () => {
+    isDown = false;
+    scrollContainer.classList.remove('active');
+    });
 
-scrollContainer.addEventListener('mouseup', () => {
-  isDown = false;
-  scrollContainer.classList.remove('active');
-});
+    scrollContainer.addEventListener('mouseup', () => {
+    isDown = false;
+    scrollContainer.classList.remove('active');
+    });
 
-scrollContainer.addEventListener('mousemove', (e) => {
-  if (!isDown) return; // 드래그 상태가 아닐 때 종료
-  e.preventDefault();
-  const x = e.pageX - scrollContainer.offsetLeft;
-  const walk = (x - startX) * 3; // 스크롤 속도를 조절하세요
-  scrollContainer.scrollLeft = scrollLeft - walk;
-});
+    scrollContainer.addEventListener('mousemove', (e) => {
+    if (!isDown) return; // 드래그 상태가 아닐 때 종료
+    e.preventDefault();
+    const x = e.pageX - scrollContainer.offsetLeft;
+    const walk = (x - startX) * 3; // 스크롤 속도를 조절하세요
+    scrollContainer.scrollLeft = scrollLeft - walk;
+    });
+
+    getWriterProfileImg({cno: urlParam.get('cno')}, function(result){
+        pathImg = `${contextPath}` + result; 
+        document.querySelector('#nickNameP').innerHTML += `<img src="` + pathImg + `" alt=""></img>`;
+    })
 }
 
 function tabChange(contextPath) {
@@ -211,6 +216,32 @@ function tabChange(contextPath) {
         
         
     });
+
+    switch(document.querySelector('#tabNameP').textContent.trim()){
+        case '공지':
+            document.querySelector('#tabNameP').innerHTML = `<img src="${contextPath}/resources/static/img/community/cate_notice.png" alt="">`
+                break;
+        case '자유':
+            document.querySelector('#tabNameP').innerHTML = `<img src="${contextPath}/resources/static/img/community/cate_free.png" alt="">`
+            break;
+        case '질문(자유)':
+            document.querySelector('#tabNameP').innerHTML = `<img src="${contextPath}/resources/static/img/community/cate_ask_free.png" alt="">`
+            break;
+        case '질문(코딩)':
+            document.querySelector('#tabNameP').innerHTML = `<img src="${contextPath}/resources/static/img/community/cate_ask_coding.png" alt="">`
+            break;
+        case '후기':
+            document.querySelector('#tabNameP').innerHTML = `<img src="${contextPath}/resources/static/img/community/cate_feedback.png" alt="">`
+            break;
+        case '문제집/강의 추천':
+            document.querySelector('#tabNameP').innerHTML = `<img src="${contextPath}/resources/static/img/community/cate_reco.png" alt="">`
+            break;
+        case '문제집 거래':
+            document.querySelector('#tabNameP').innerHTML = `<img src="${contextPath}/resources/static/img/community/cate_trade.png" alt="">`
+            break;
+        default:
+            break;
+    }
 
 
 

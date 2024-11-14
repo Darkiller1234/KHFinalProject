@@ -45,6 +45,18 @@ public class CommunityServiceImpl implements CommunityService{
 	public Board selectBoardOne(int cno) {
 		return communityDao.selectBoardOne(sqlSession, cno);
 	}
+
+	@Override
+	public boolean increaseViewCount(int cno) {
+		return communityDao.increaseViewCount(sqlSession, cno);
+	}
+
+	@Override
+	public String ajaxCommunityWriterProfileImg(int cno) {
+		return communityDao.ajaxCommunityWriterProfileImg(sqlSession, cno);
+	}
+
+	
 	
 	
 

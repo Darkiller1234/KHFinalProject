@@ -7,11 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.kh.T3B1.common.template.Template;
 import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.community.model.vo.Board;
 import com.kh.T3B1.community.service.CommunityService;
+
 
 @Controller
 @RequestMapping("/community")
@@ -96,6 +99,11 @@ public class CommunityController {
 	public String CommunityDetail(@RequestParam(value="certiNo", defaultValue="1") int certiNo,
 			int cno,Model c) {
 		
+		boolean tmp = communityService.increaseViewCount(cno);
+		if(!tmp) {
+			
+		}
+		
 		ArrayList<String> certiList = communityService.selectCertiList();
 		Board temp = communityService.selectBoardOne(cno);
 		
@@ -128,5 +136,12 @@ public class CommunityController {
 	public String CommunityWrite(Model c) {
 		c.addAttribute("pageName","commuWInit");
 		return "community/communityWrite";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="detail/writerProfileImgJson", produces="application/json; charset-UTF-8")
+	public String ajaxCommunityWriterProfileImg(int cno) {
+		String imgPath = communityService.ajaxCommunityWriterProfileImg(cno);
+		return new Gson().toJson(imgPath);
 	}
 }

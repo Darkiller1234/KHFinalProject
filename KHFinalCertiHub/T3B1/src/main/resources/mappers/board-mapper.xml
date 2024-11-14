@@ -212,6 +212,26 @@
         AND B.BOARD_NO = #{cno}
   	 </where> 
   </select>
+  
+  
+  <!-- 게시글 조회수 증가 -->
+  <update id="increaseViewCount">
+  	UPDATE BOARD
+  	SET
+  	VIEW_COUNT = VIEW_COUNT + 1
+  	WHERE
+  	BOARD_NO = #{cno}
+  </update>
+  
+  
+  <!-- 글 쓴 사람 프로필 이미지 조회 -->
+  <select id="ajaxCommunityWriterProfileImg" resultType="String">
+  	SELECT M.MEMBER_IMG
+  	FROM MEMBER M
+  	JOIN BOARD B ON (M.MEMBER_NO = B.MEMBER_NO)
+  	WHERE
+  		B.BOARD_NO = #{cno}
+  </select>
 </mapper>
 
 

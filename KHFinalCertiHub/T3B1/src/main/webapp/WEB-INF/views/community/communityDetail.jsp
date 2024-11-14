@@ -10,6 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     
     <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/static/js/community/communityDetailAjax.js"></script>
     <script src="${pageContext.request.contextPath}/resources/static/js/community/communityDetail.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/community/communityDetail.css">
     <title>Document</title>
@@ -47,7 +48,7 @@
             <div id="detail-area">
               <div>
                 <div>
-                  <p>${Bo.tabName}</p>
+                  <p id="tabNameP">${Bo.tabName}</p>
                   <p>${Bo.boardTitle}</p>
                 </div>
                 <div>
@@ -57,8 +58,8 @@
                 
               </div>
               <div>
-                <p>${Bo.memberNickname}</p>
-                <p>추천 ${Bo.likeCount} | 비추천 ${Bo.hateCount} | 댓글 ${Bo.replyCount} | 조회수 ${Bo.viewCount} | ${boardDate}</p>
+                <p id="nickNameP">${Bo.memberNickname}</p>
+                <p>좋아요 ${Bo.likeCount} | 싫어요 ${Bo.hateCount} | 댓글 ${Bo.replyCount} | 조회수 ${Bo.viewCount} | ${boardDate}</p>
               </div>
               <div>
                 <p>${Bo.boardContent}</p>

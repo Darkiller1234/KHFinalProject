@@ -37,4 +37,12 @@ public class CommunityDao {
 		return (Board)sqlSession.selectOne("boardMapper.selectBoardOne", cno);
 	}
 
+	public boolean increaseViewCount(SqlSessionTemplate sqlSession, int cno) {
+		return (sqlSession.update("boardMapper.increaseViewCount", cno) > 0)? true : false;
+	}
+
+	public String ajaxCommunityWriterProfileImg(SqlSessionTemplate sqlSession, int cno) {
+		return sqlSession.selectOne("boardMapper.ajaxCommunityWriterProfileImg", cno);
+	}
+
 }

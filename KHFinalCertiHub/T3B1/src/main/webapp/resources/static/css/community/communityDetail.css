@@ -589,3 +589,16 @@ footer {
 .nav-link{
     color: black !important;
 }
+
+
+
+#nickNameP{
+    display: flex;
+    align-items: center;
+}
+
+#nickNameP > img{
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
