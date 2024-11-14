@@ -1,6 +1,5 @@
 package com.kh.T3B1.member.controller;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.T3B1.member.model.service.MemberService;
 import com.kh.T3B1.member.model.vo.Member;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 @RequestMapping("/member")
 public class MembershipController {
@@ -50,6 +52,9 @@ public class MembershipController {
 	@RequestMapping("join")
 	public String membershipPage(Member m, HttpSession session, Model model) {
 		
+		String encodePwd = bcryptPasswordEncoder.encode(m.getMemberPwd());
+		m.setMemberPwd(encodePwd);
+		
 		int result = memberService.membershipPage(m);
 		
 		if(result > 0) {
@@ -72,9 +77,11 @@ public class MembershipController {
 		Member loginMember = memberService.loginMember(m);
 		
 		if(loginMember == null) {
+			
 			mv.addObject("errorMsg","아이디가 틀렸습니다.");
 			mv.setViewName("member/login");
 		}else if(!bcryptPasswordEncoder.matches(m.getMemberPwd(),loginMember.getMemberPwd())) {
+			
 			mv.addObject("errorMsg","비밀번호가 틀렸습니다.");
 			mv.setViewName("member/login");
 		}else {
