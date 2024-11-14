@@ -24,6 +24,7 @@
   	<result column="CAREER" property="career"/>
   	<result column="LICENSE_NAME" property="symbolLicense"/>
   	<result column="LICENSE_NO" property="symbolLicenseNo"/>
+  	<result column="LIKE_COUNT" property="mentorLike"/>
   </resultMap>
 
   <select id="countMentor" resultType="_int">

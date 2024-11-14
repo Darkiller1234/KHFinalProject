@@ -51,13 +51,18 @@ public class StudyServiceImpl implements StudyService{
 	}
 
 	@Override
-	public int countBoard() {
-		return studyDao.countBoard(sqlSession);
+	public int countBoard(String keyword) {
+		return studyDao.countBoard(sqlSession, keyword);
 	}
 
 	@Override
 	public ArrayList<StudyBoard> selectBoardList(PageInfo pi, SearchOption so) {
 		return studyDao.selectBoardList(sqlSession, pi, so);
+	}
+
+	@Override
+	public StudyBoard selectBoard(int no) {
+		return studyDao.selectBoard(sqlSession, no);
 	}
 	
 }
