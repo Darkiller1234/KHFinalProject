@@ -66,8 +66,8 @@
               </div>
               <div>
                 <div>
-                  <button><img src="<%=contextPath%>/resources/static/img/button/good.png" alt="">좋아요</button>
-                  <button><img src="<%=contextPath%>/resources/static/img/button/bad.png" alt="">싫어요</button>
+                  <button id="like-btn"><img src="<%=contextPath%>/resources/static/img/button/good.png" alt="">좋아요</button>
+                  <button id="hate-btn"><img src="<%=contextPath%>/resources/static/img/button/bad.png" alt="">싫어요</button>
                 </div>
                 <button>신고</button>
               </div>
@@ -94,7 +94,9 @@
                 <span class="page-num active">2</span>
                 <span class="page-arrow">></span>
               </div>
-                
+                <script>
+                  console.log('${loginMember.memberNo}')
+                </script>
               <form action="">
                 <div class="reply-write">
                   <textarea id="reply-write-area" placeholder="댓은 거울"></textarea>

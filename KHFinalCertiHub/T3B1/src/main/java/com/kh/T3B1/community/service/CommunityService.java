@@ -22,4 +22,6 @@ public interface CommunityService {
 	boolean increaseViewCount(int cno);
 
 	String ajaxCommunityWriterProfileImg(int cno);
+
+	int ajaxCommunityLikeStatusJson(int cno, int memberNo);
 }

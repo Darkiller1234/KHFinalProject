@@ -23,3 +23,16 @@ function getReplyList(data, callback) {
         }
     })
 }
+
+function getLikeStatus(data, callback) {
+    $.ajax({
+        url: "detail/likeStatusJson",
+        data: data,
+        success: function(res){
+            callback(res);
+        },
+        error: function(res){
+            console.log("좋아요 여부 가져오는 ajax 오류");
+        }
+    })
+}

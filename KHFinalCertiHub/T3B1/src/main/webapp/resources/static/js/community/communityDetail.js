@@ -182,6 +182,15 @@ function commuDInit(contextPath){
         pathImg = `${contextPath}` + result; 
         document.querySelector('#nickNameP').innerHTML += `<img src="` + pathImg + `" alt=""></img>`;
     })
+
+    getLikeStatus({cno: urlParam.get('cno')}, function(result){
+        if(result === 1){
+            document.querySelector('#like-btn').classList.add('selected')
+        }
+        else if(result === 2){
+            document.querySelector('#hate-btn').classList.add('selected')
+        }
+    })
 }
 
 function tabChange(contextPath) {

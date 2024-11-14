@@ -232,6 +232,25 @@
   	WHERE
   		B.BOARD_NO = #{cno}
   </select>
+  
+  <!-- 좋아요 여부 확인 -->
+  	<select id="ajaxCommunityLikeStatusJson1" resultType="int">
+  		SELECT BOARD_NO
+  		FROM BOARD_LIKE_LOG
+  		WHERE
+  			BOARD_NO = #{cno}
+  			AND MEMBER_NO = #{memberNo}
+  	</select>
+  	
+  	
+  <!-- 싫어요 여부 확인 -->
+  	<select id="ajaxCommunityLikeStatusJson2" resultType="int">
+  		SELECT BOARD_NO
+  		FROM BOARD_HATE_LOG
+  		WHERE
+  			BOARD_NO = #{cno}
+  			AND MEMBER_NO = #{memberNo}
+  	</select>
 </mapper>
 
 

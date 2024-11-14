@@ -1,6 +1,8 @@
 package com.kh.T3B1.community.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -43,6 +45,15 @@ public class CommunityDao {
 
 	public String ajaxCommunityWriterProfileImg(SqlSessionTemplate sqlSession, int cno) {
 		return sqlSession.selectOne("boardMapper.ajaxCommunityWriterProfileImg", cno);
+	}
+
+	public int ajaxCommunityLikeStatusJson(SqlSessionTemplate sqlSession, Map<String, Object> params) {
+		if(sqlSession.selectOne("boardMapper.ajaxCommunityLikeStatusJson1", params) != null) {
+			return 1;
+		} else if(sqlSession.selectOne("boardMapper.ajaxCommunityLikeStatusJson2", params) != null) {
+			return 2;
+		}
+		return 0;
 	}
 
 }

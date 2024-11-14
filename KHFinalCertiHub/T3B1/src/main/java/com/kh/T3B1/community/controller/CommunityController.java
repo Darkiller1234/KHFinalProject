@@ -2,6 +2,8 @@ package com.kh.T3B1.community.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,7 @@ import com.kh.T3B1.common.template.Template;
 import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.community.model.vo.Board;
 import com.kh.T3B1.community.service.CommunityService;
+import com.kh.T3B1.member.model.vo.Member;
 
 
 @Controller
@@ -143,5 +146,16 @@ public class CommunityController {
 	public String ajaxCommunityWriterProfileImg(int cno) {
 		String imgPath = communityService.ajaxCommunityWriterProfileImg(cno);
 		return new Gson().toJson(imgPath);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="detail/likeStatusJson", produces="application/json; charset-UTF-8")
+	public String ajaxCommunityLikeStatusJson(int cno, HttpSession session) {
+		if(session.getAttribute("loginMember") == null) {
+			return null;
+		}
+		Member User = (Member)session.getAttribute("loginMember");
+		int likeStatus = communityService.ajaxCommunityLikeStatusJson(cno, User.getMemberNo());
+		return new Gson().toJson(likeStatus);
 	}
 }
