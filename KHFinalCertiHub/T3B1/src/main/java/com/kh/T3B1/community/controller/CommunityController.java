@@ -51,7 +51,7 @@ public class CommunityController {
 		
 		if(!filterText.equals("")) {
 			if(filterNo == 0) {
-				filterNo = 2;
+				filterNo = 2;  // 주석으로 숫자 의미 추가하면 좋을듯요 - 동영
 			}
 			boardForSelect.setFilterNo(filterNo);
 			boardForSelect.setFilterText(filterText);
@@ -86,7 +86,7 @@ public class CommunityController {
 			c.addAttribute("filterText", filterText);
 		}
 		
-		
+		// 게시글 탭 목록도 DB랑 연동하면 좋을거 같아용 - 동영
 		
 		c.addAttribute("notiList", notiList);
 		c.addAttribute("list", list);

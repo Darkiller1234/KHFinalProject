@@ -14,6 +14,7 @@ import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.info.model.service.SearchService;
 
 @Controller
+@RequestMapping("info/") // 프론트쪽도 페이지 주소 수정해야뎀 - 김동영
 public class InfoPageController {
 	
 	private final SearchService searchService;
@@ -28,7 +29,7 @@ public class InfoPageController {
 	public String searchPage(
 	    @RequestParam(value="keyword", defaultValue="") String keyword,
 	    @RequestParam(value="cpage", defaultValue="1") int currentPage,
-	    Model model
+	    Model model // 모델명 통일해주시면 좋을듯 - 윤대한
 	) {
 	    int SearchCount = searchService.selectResultCount(keyword);
 	    PageInfo pi = Template.getPageInfo(SearchCount, currentPage, 10, 5);
@@ -39,9 +40,8 @@ public class InfoPageController {
 	    return "infoPage/searchPage";
 	}
 
-
 	// 정보창으로 이동
-	@RequestMapping("info")
+	@RequestMapping("lib")
 	public String infoPage(Model m) {
 		m.addAttribute("pageName", "infoPage");
 		return "infoPage/infoPage";
