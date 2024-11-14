@@ -15,10 +15,10 @@
 
     <div class="wrapper padding">
         <div class="page-title font-size-title">홍보 게시판</div>
-        <form class="search-section" onsubmit="return false;">
+        <form class="search-section" action="list">
             <div class="search-form">
-                <input type="text">
-                <button class="rounded-circle" onclick="alert('클릭됨')">
+                <input type="text" name="keyword">
+                <button type="submit" class="rounded-circle">
                     <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
                 </button> 
             </div>
@@ -29,7 +29,6 @@
                 모집&현황
             </div>
             <div class="search-option">
-                <div class="custom-select"></div>
             </div>
         </div>
 

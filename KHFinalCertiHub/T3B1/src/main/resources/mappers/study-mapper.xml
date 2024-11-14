@@ -121,6 +121,9 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{no}
   <select id="countBoard" resultType="_int">
 	SELECT COUNT(*)
 	FROM STUDY_BOARD
+	<if test="keyword != null">
+		WHERE STUDY_BOARD_TITLE LIKE '%' || #{keyword} || '%'
+	</if>
   </select>
   
   <select id="selectBoardList" resultMap="BoardResultSet">
@@ -129,9 +132,23 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{no}
 		STUDY_BOARD_TITLE ,
 		VIEW_COUNT ,
 		TO_CHAR(STUDY_BOARD_DATE,'YYYY-MM-DD') AS STUDY_BOARD_DATE
-	FROM STUDY_BOARD
-	INNER JOIN STUDY S USING(STUDY_NO)
+	FROM STUDY_BOARD SB
+	INNER JOIN STUDY S ON(SB.STUDY_NO = S.STUDY_NO)
+	<if test="keyword != null">
+		AND STUDY_BOARD_TITLE LIKE '%' || #{keyword} || '%'
+	</if>
 	INNER JOIN MEMBER M ON(S.MANAGER_NO = M.MEMBER_NO)
+  </select>
+  
+  <select id="selectBoard" resultMap="BoardResultSet">
+  	SELECT STUDY_BOARD_NO ,
+			STUDY_NO ,
+			STUDY_BOARD_TITLE ,
+			STUDY_BOARD_CONTENT ,
+			STUDY_RECRUIT
+	  FROM STUDY_BOARD
+ LEFT JOIN STUDY USING (STUDY_NO)
+     WHERE STUDY_BOARD_NO = #{no}
   </select>
 
 </mapper>
