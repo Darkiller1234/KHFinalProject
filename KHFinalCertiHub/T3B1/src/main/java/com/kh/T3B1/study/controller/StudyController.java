@@ -62,7 +62,10 @@ public class StudyController {
 	}
 	
 	@RequestMapping("board")
-	public String studyBoardViewPage(Model m) {
+	public String studyBoardViewPage(Model m, int no) {
+		StudyBoard studyBoard = studyService.selectBoard(no);
+		
+		m.addAttribute("board",studyBoard);
 		m.addAttribute("pageName","studyBoardView");
 		return "studyroom/studyBoardView";
 	}

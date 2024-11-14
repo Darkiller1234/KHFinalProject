@@ -139,6 +139,17 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{no}
 	</if>
 	INNER JOIN MEMBER M ON(S.MANAGER_NO = M.MEMBER_NO)
   </select>
+  
+  <select id="selectBoard" resultMap="BoardResultSet">
+  	SELECT STUDY_BOARD_NO ,
+			STUDY_NO ,
+			STUDY_BOARD_TITLE ,
+			STUDY_BOARD_CONTENT ,
+			STUDY_RECRUIT
+	  FROM STUDY_BOARD
+ LEFT JOIN STUDY USING (STUDY_NO)
+     WHERE STUDY_BOARD_NO = #{no}
+  </select>
 
 </mapper>
 

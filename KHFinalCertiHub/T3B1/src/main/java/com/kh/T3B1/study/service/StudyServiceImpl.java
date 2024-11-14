@@ -59,5 +59,10 @@ public class StudyServiceImpl implements StudyService{
 	public ArrayList<StudyBoard> selectBoardList(PageInfo pi, SearchOption so) {
 		return studyDao.selectBoardList(sqlSession, pi, so);
 	}
+
+	@Override
+	public StudyBoard selectBoard(int no) {
+		return studyDao.selectBoard(sqlSession, no);
+	}
 	
 }
