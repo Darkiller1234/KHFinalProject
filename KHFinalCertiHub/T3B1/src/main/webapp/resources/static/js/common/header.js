@@ -72,6 +72,10 @@ function init(contextPath, pageName, optional){
         case "personalMentor":
             initPersonalMentor(contextPath);
             break;
+
+        case "commuWInit":
+            commuWInit(contextPath);
+            break;
     }
 }
 
