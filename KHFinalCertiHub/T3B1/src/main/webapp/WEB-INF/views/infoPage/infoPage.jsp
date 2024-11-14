@@ -13,7 +13,7 @@
         <%@ include file="../common/header.jsp" %>
             <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/common/default.css">
             <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/infopage/infoPage.css">
-            <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/infopage/map.css">
+            <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/infopage/map.css">   
             <div class="wrapper">
                 <div class="container">
                     <div class="certi">
