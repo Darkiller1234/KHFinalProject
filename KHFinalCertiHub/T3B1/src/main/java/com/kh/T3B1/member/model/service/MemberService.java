@@ -10,4 +10,6 @@ public interface MemberService {
 
 	int idCheck(String checkId);
 
+	Member loginMember(Member m);
+
 }

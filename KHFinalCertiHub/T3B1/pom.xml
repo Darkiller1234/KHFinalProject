@@ -183,6 +183,13 @@
 		    <version>5.5.3</version>
 		</dependency>
 		
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-crypto</artifactId>
+		    <version>5.5.3</version> <!-- 다른 시큐리티 모듈과 같은 버전으로 설정 -->
+		</dependency>
+		
+		
 		<!-- 파일 업로드를위한 라이브러리 commons-fileupload -->
 		<dependency>
 		    <groupId>commons-fileupload</groupId>
@@ -223,6 +230,13 @@
 		    <groupId>org.aspectj</groupId>
 		    <artifactId>aspectjweaver</artifactId>
 		    <version>${org.aspectj-version}</version>
+		</dependency>
+		
+		<!-- 스프링 웹 -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-web</artifactId>
+		    <version>${org.springframework-version}</version> <!-- 프로젝트의 스프링 버전에 맞추어 설정 -->
 		</dependency>
 		
 	</dependencies>
