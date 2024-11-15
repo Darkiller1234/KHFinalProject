@@ -24,4 +24,8 @@ public interface CommunityService {
 	String ajaxCommunityWriterProfileImg(int cno);
 
 	int ajaxCommunityLikeStatusJson(int cno, int memberNo);
+
+	int ajaxCommunityLikeBtnClickJson(int cno, int memberNo);
+
+	int ajaxCommunityHateBtnClickJson(int cno, int memberNo);
 }

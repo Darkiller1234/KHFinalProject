@@ -251,6 +251,51 @@
   			BOARD_NO = #{cno}
   			AND MEMBER_NO = #{memberNo}
   	</select>
+  	
+ 	
+  <!-- 좋아요 넣기 -->
+	<insert id="ajaxCommunityLikeBtnClickJson">
+		INSERT 
+			INTO BOARD_LIKE_LOG
+		VALUES
+		(
+			#{cno},
+			#{memberNo}
+		)
+		
+	</insert>
+	
+	<!-- 싫어요 넣기 -->
+	<insert id="ajaxCommunityHateBtnClickJson">
+		INSERT 
+			INTO BOARD_HATE_LOG
+		VALUES
+		(
+			#{cno},
+			#{memberNo}
+		)
+		
+	</insert>
+  
+  
+  	<!-- 좋아요 카운트 증가 -->
+	  <update id="addLikeCount">
+	  	UPDATE BOARD
+	  	SET
+	  	LIKE_COUNT = LIKE_COUNT + 1
+	  	WHERE
+	  	BOARD_NO = #{cno}
+	  </update>
+	  
+	  
+	  <!-- 싫어요 카운트 증가 -->
+	  <update id="addHateCount">
+	  	UPDATE BOARD
+	  	SET
+	  	HATE_COUNT = HATE_COUNT + 1
+	  	WHERE
+	  	BOARD_NO = #{cno}
+	  </update>
 </mapper>
 
 
