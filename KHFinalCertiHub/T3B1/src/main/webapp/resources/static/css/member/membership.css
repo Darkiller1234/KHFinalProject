@@ -15,12 +15,13 @@ body {
 
 .content {
     width: 100%;
-    max-width: 450px;
+    max-width: 100%;
     background-color: #ffffff;
-    padding: 40px;
+    padding: 140px;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     margin: 10px;
+    margin-top: 20%;
 }
 
 .content h2 {
@@ -61,6 +62,8 @@ body {
 }
 
 .form-group {
+    max-width: 800px;
+    padding: 60px;
     margin-bottom: 20px; /* 각 입력 그룹 간격 */
 }
 
@@ -70,18 +73,27 @@ body {
     margin-bottom: 5px;
 }
 
-.form-group input[type="text"],
+/* .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #83c5be;
+    border-radius: 5px;
+    background-color: #EDF6F9;
+    margin-top: 30px;
+    margin-bottom: 15px;
+} */
+/* .form-group input[type="text"],
 .form-group input[type="password"],
 .form-group input[type="email"],
 .form-group input[type="tel"] {
     width: 100%;
-    padding: 15px;
+    padding: 10px;
     border: 1px solid #83c5be;
     border-radius: 5px;
     background-color: #EDF6F9;
     margin-top: 10px;
     margin-bottom: 15px;
-}
+} */
 
 .btns {
     display: flex;

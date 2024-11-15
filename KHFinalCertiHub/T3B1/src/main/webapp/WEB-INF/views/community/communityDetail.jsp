@@ -48,8 +48,8 @@
             <div id="detail-area">
               <div>
                 <div>
-                  <p id="tabNameP">${Bo.tabName}</p>
-                  <p>${Bo.boardTitle}</p>
+                  <p id="tabNameP"></p>
+                  <p id="boardTitleP"></p>
                 </div>
                 <div>
                   <button><img src="<%=contextPath%>/resources/static/img/button/delete.png" alt="">삭제</button>
@@ -58,11 +58,11 @@
                 
               </div>
               <div>
-                <p id="nickNameP">${Bo.memberNickname}</p>
-                <p>좋아요 ${Bo.likeCount} | 싫어요 ${Bo.hateCount} | 댓글 ${Bo.replyCount} | 조회수 ${Bo.viewCount} | ${boardDate}</p>
+                <p id="nickNameP"></p>
+                <p id="likehatereplyviewdateCountP"></p>
               </div>
               <div>
-                <p>${Bo.boardContent}</p>
+                <p id="boardContentP"></p>
               </div>
               <div>
                 <div>
