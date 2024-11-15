@@ -1,6 +1,7 @@
 package com.kh.T3B1.mentor.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -25,16 +26,28 @@ public class MentorDao {
 		return (ArrayList)sqlSession.selectList("memberMapper.selectMentorList", so, rowBounds);
 	}
 
-	public Member selectMentorDetail(SqlSessionTemplate sqlSession, int memberNo) {
-		return sqlSession.selectOne("memberMapper.selectMentorDetail", memberNo);
+	public Member selectMentorDetail(SqlSessionTemplate sqlSession, int mentorNo) {
+		return sqlSession.selectOne("memberMapper.selectMentorDetail", mentorNo);
 	}
 
-	public int countMentorLike(SqlSessionTemplate sqlSession, int memberNo) {
-		return sqlSession.selectOne("memberMapper.countMentorLike", memberNo);
+	public int countMentorLike(SqlSessionTemplate sqlSession, int mentorNo) {
+		return sqlSession.selectOne("memberMapper.countMentorLike", mentorNo);
 	}
 
 	public ArrayList<License> selectLicenseList(SqlSessionTemplate sqlSession) {
 		return (ArrayList)sqlSession.selectList("commonMapper.selectLicenseList");
+	}
+
+	public Integer checkLike(SqlSessionTemplate sqlSession, HashMap<String, Integer> likeInfo) {
+		return sqlSession.selectOne("memberMapper.checkLike", likeInfo);
+	}
+
+	public int likeMentor(SqlSessionTemplate sqlSession, HashMap<String, Integer> likeInfo) {
+		return sqlSession.insert("memberMapper.likeMentor", likeInfo);
+	}
+	
+	public int deleteLikeMentor(SqlSessionTemplate sqlSession, HashMap<String, Integer> likeInfo) {
+		return sqlSession.delete("memberMapper.deleteLikeMentor",likeInfo);
 	}
 
 }
