@@ -17,15 +17,22 @@ public interface MentorService {
 	ArrayList<Member> selectMentorList(PageInfo pi, SearchOption so);
 
 	// 멘토 상세정보 조회
-	Member selectMentorDetail(int memberNo);
+	Member selectMentorDetail(int mentorNo);
 
 	// 멘토 좋아요 개수 조회
-	int countMentorLike(int memberNo);
+	int countMentorLike(int mentorNo);
 
 	// 자격증 목록 조회
 	ArrayList<License> selectLicenseList();
+	
+	// 로그인한 유저가 해당 멘토 좋아요를 눌렀는지 확인
+	String checkLike(HashMap<String, Integer> likeInfo);
 
 	// 멘토 좋아요
 	int likeMentor(HashMap<String, Integer> likeInfo);
+	
+	// 멘토 좋아요 취소
+	int deleteLikeMentor(HashMap<String, Integer> likeInfo);
+
 	
 }

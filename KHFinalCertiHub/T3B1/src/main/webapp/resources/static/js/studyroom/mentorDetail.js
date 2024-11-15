@@ -11,6 +11,9 @@ function initLikeButton(contextPath){
 
     const likeTag = document.querySelector('#likeTag')
 
+    // 쓰로틀링용 변수
+    let timer = 0;
+
     // 초기값 설정
     let likeInfo = {
         mentorNo : mentorNo,
@@ -19,19 +22,37 @@ function initLikeButton(contextPath){
     }
 
     const onLikeMentor = (res) => {
-        if(res > 0){
-            likeTag.innerHTML = ""
-            likeTag.className = "tag bgcolor4"
+        likeTag.innerHTML = ""
+        let likeTagImg = document.createElement("img")
 
-            let likeTagImg = document.createElement("img")
+        // res.type = 좋아요를 이미 눌렀는지 여부
+        if(res.type == 'N'){ // 누른적이 없다면 => 누른 모양으로 변경
+            likeTag.className = "tag bgcolor4"
             likeTagImg.src = contextPath + "/resources/static/img/profile/full_heart.png"
-            
-            likeTag.appendChild(likeTagImg)
-            likeTag.innerHTML += res
+        } else { // 이미 눌렀었다면 => 누르지 않은 모양으로 변경
+            likeTag.className = "tag bgcolor3"
+            likeTagImg.src = contextPath + "/resources/static/img/profile/heart.png"
         }
+        
+        likeTag.appendChild(likeTagImg)
+        likeTag.innerHTML += res.likeCount
     }
 
-    likeTag.onclick = ajaxLikeMentor(likeInfo, onLikeMentor)
+    let likeMentor = ajaxLikeMentor(likeInfo, onLikeMentor)
+
+    likeTag.onclick = () => {
+        if(timer){ // 아직 수행되지 않았다면 return
+            return;
+        }
+
+        likeMentor() // ajax 수행후 이벤트 제거
+        likeMentor = null;
+
+        timer = setTimeout(()=>{ // 1초뒤 이벤트 다시 부여
+            likeMentor = ajaxLikeMentor(likeInfo, onLikeMentor)
+            timer = 0
+        },1000)
+    }
 }
 
 function ajaxLikeMentor(likeInfo, callback){

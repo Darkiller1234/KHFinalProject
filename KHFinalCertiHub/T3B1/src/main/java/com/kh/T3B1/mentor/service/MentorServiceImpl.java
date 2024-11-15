@@ -19,7 +19,6 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class MentorServiceImpl implements MentorService {
 	
-	@Autowired
 	public final SqlSessionTemplate sqlSession;
 	
 	@Autowired
@@ -36,18 +35,29 @@ public class MentorServiceImpl implements MentorService {
 	}
 
 	@Override
-	public Member selectMentorDetail(int memberNo) {
-		return mentorDao.selectMentorDetail(sqlSession, memberNo);
+	public Member selectMentorDetail(int mentorNo) {
+		return mentorDao.selectMentorDetail(sqlSession, mentorNo);
 	}
 
 	@Override
-	public int countMentorLike(int memberNo) {
-		return mentorDao.countMentorLike(sqlSession, memberNo);
+	public int countMentorLike(int mentorNo) {
+		return mentorDao.countMentorLike(sqlSession, mentorNo);
 	}
 
 	@Override
 	public ArrayList<License> selectLicenseList() {
 		return mentorDao.selectLicenseList(sqlSession);
+	}
+
+	@Override
+	public String checkLike(HashMap<String, Integer> likeInfo) {
+		Integer result = mentorDao.checkLike(sqlSession, likeInfo);
+		
+		if(result != null) {
+			return "Y";
+		} else {
+			return "N";
+		}
 	}
 
 	@Override
@@ -61,5 +71,17 @@ public class MentorServiceImpl implements MentorService {
 		
 		return likeCount;
 	}
+
+	@Override
+	public int deleteLikeMentor(HashMap<String, Integer> likeInfo) {
+		int likeCount = 0;
+		int result = mentorDao.deleteLikeMentor(sqlSession, likeInfo);
+		
+		if(result > 0) { // 삭제에 성공했다면
+			likeCount = mentorDao.countMentorLike(sqlSession, likeInfo.get("mentorNo")); // 좋아요 수 조회
+		}
+		return likeCount;
+	}
+
 
 }
