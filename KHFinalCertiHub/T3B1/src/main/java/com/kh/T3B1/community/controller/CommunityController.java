@@ -158,4 +158,31 @@ public class CommunityController {
 		int likeStatus = communityService.ajaxCommunityLikeStatusJson(cno, User.getMemberNo());
 		return new Gson().toJson(likeStatus);
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="detail/likeBtnClickJson", produces="application/json; charset-UTF-8")
+	public String ajaxCommunityLikeBtnClickJson(int cno, HttpSession session) {
+		if(session.getAttribute("loginMember") == null) {
+			return null;
+		}
+		int success = communityService.ajaxCommunityLikeBtnClickJson(cno, ((Member)session.getAttribute("loginMember")).getMemberNo());
+		return new Gson().toJson(success);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="detail/hateBtnClickJson", produces="application/json; charset-UTF-8")
+	public String ajaxCommunityHateBtnClickJson(int cno, HttpSession session) {
+		if(session.getAttribute("loginMember") == null) {
+			return null;
+		}
+		int success = communityService.ajaxCommunityHateBtnClickJson(cno, ((Member)session.getAttribute("loginMember")).getMemberNo());
+		return new Gson().toJson(success);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="detail/boardLoadingJson", produces="application/json; charset-UTF-8")
+	public String ajaxCommunityBoardLoadingJson(int cno) {
+		Board temp = communityService.selectBoardOne(cno);
+		return new Gson().toJson(temp);
+	}
 }

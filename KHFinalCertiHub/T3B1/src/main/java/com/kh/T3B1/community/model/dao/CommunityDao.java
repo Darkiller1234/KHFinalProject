@@ -56,4 +56,22 @@ public class CommunityDao {
 		return 0;
 	}
 
+	public int ajaxCommunityLikeBtnClickJson(SqlSessionTemplate sqlSession, Map<String, Object> params) {
+		return sqlSession.insert("boardMapper.ajaxCommunityLikeBtnClickJson", params);
+	}
+
+	public int ajaxCommunityHateBtnClickJson(SqlSessionTemplate sqlSession, Map<String, Object> params) {
+		return sqlSession.insert("boardMapper.ajaxCommunityHateBtnClickJson", params);
+	}
+
+	public void addLikeCount(SqlSessionTemplate sqlSession, Map<String, Object> params) {
+		sqlSession.update("boardMapper.addLikeCount", params);
+		
+	}
+
+	public void addHateCount(SqlSessionTemplate sqlSession, Map<String, Object> params) {
+		sqlSession.update("boardMapper.addHateCount", params);
+		
+	}
+
 }

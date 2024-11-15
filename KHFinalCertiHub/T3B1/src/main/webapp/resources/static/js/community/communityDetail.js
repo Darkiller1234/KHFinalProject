@@ -86,19 +86,27 @@ function commuDInit(contextPath){
             ['글쓴이', 5]
         ]
     }
-
-    createSelectBox(document.getElementById('selectbox1'), data1);
-    createSelectBox(document.getElementById('selectbox2'), data2);
-
-    tabChange(contextPath);
-
-
     // 현재 페이지의 URL 주소
     const url = new URL(window.location.href);
     // URL의 파라미터값을 가진 객체
     const urlParam = url.searchParams;
     const preOrderBy = urlParam.get('orderBy');
     const preFilterNo = urlParam.get('filterNo');
+
+
+    createSelectBox(document.getElementById('selectbox1'), data1);
+    createSelectBox(document.getElementById('selectbox2'), data2);
+
+    boardLoading({cno: urlParam.get('cno')}, boardLoadingExecute)
+
+
+
+    tabChange(contextPath);
+
+
+    
+    
+    
 
     if(preOrderBy !== undefined){
         document.querySelector('input[name="array"]').value = preOrderBy;
@@ -187,54 +195,44 @@ function commuDInit(contextPath){
         if(result === 1){
             document.querySelector('#like-btn').classList.add('selected');
 
-            // data-bs-toggle 속성 추가
-            document.querySelector('#like-btn').setAttribute("data-bs-toggle", "modal");
-
-            // data-bs-target 속성 추가
-            document.querySelector('#like-btn').setAttribute("data-bs-target", "#myModal");
-
-            // data-bs-toggle 속성 추가
-            document.querySelector('#hate-btn').setAttribute("data-bs-toggle", "modal");
-
-            // data-bs-target 속성 추가
-            document.querySelector('#hate-btn').setAttribute("data-bs-target", "#myModal");
-
-            document.querySelector('#modal-body').innerText = "이미 좋아하신 게시글입니다.";
+            addModal("이미 좋아하신 게시글입니다.")
         }
         else if(result === 2){
             document.querySelector('#hate-btn').classList.add('selected');
 
-            // data-bs-toggle 속성 추가
-            document.querySelector('#like-btn').setAttribute("data-bs-toggle", "modal");
-
-            // data-bs-target 속성 추가
-            document.querySelector('#like-btn').setAttribute("data-bs-target", "#myModal");
-
-            // data-bs-toggle 속성 추가
-            document.querySelector('#hate-btn').setAttribute("data-bs-toggle", "modal");
-
-            // data-bs-target 속성 추가
-            document.querySelector('#hate-btn').setAttribute("data-bs-target", "#myModal");
-
-            document.querySelector('#modal-body').innerText = "이미 싫어하신 게시글입니다.";
+            addModal("이미 싫어하신 게시글입니다.")
         }
         else if(result === 0){
-
+            $("#like-btn").on("click", function() {
+                $("#like-btn").off("click");
+                $("#hate-btn").off("click");
+                clickLikeButton(1, {cno: urlParam.get('cno')}, function(result){
+                    if(result === 1){
+                        document.querySelector('#like-btn').classList.add('selected');
+                        addModal("이미 좋아하신 게시글입니다.")
+                    }
+                    boardLoading({cno: urlParam.get('cno')}, boardLoadingExecute)
+                })
+                
+                tabChange(contextPath)
+            });
+            $("#hate-btn").on("click", function() {
+                $("#like-btn").off("click");
+                $("#hate-btn").off("click");
+                clickLikeButton(2, {cno: urlParam.get('cno')}, function(result){
+                    if(result === 1){
+                        document.querySelector('#hate-btn').classList.add('selected');
+                        addModal("이미 싫어하신 게시글입니다.")
+                    }
+                    boardLoading({cno: urlParam.get('cno')}, boardLoadingExecute)
+                    
+                })
+                
+                tabChange(contextPath)
+            });
         }
         else {
-            // data-bs-toggle 속성 추가
-            document.querySelector('#like-btn').setAttribute("data-bs-toggle", "modal");
-
-            // data-bs-target 속성 추가
-            document.querySelector('#like-btn').setAttribute("data-bs-target", "#myModal");
-
-            // data-bs-toggle 속성 추가
-            document.querySelector('#hate-btn').setAttribute("data-bs-toggle", "modal");
-
-            // data-bs-target 속성 추가
-            document.querySelector('#hate-btn').setAttribute("data-bs-target", "#myModal");
-
-            document.querySelector('#modal-body').innerText = "로그인을 하세요";
+            addModal("로그인을 하세요.")
         }
     })
 }
@@ -304,4 +302,26 @@ function tabChange(contextPath) {
 }
 
 
+function addModal(string){
+    // data-bs-toggle 속성 추가
+    document.querySelector('#like-btn').setAttribute("data-bs-toggle", "modal");
 
+    // data-bs-target 속성 추가
+    document.querySelector('#like-btn').setAttribute("data-bs-target", "#myModal");
+
+    // data-bs-toggle 속성 추가
+    document.querySelector('#hate-btn').setAttribute("data-bs-toggle", "modal");
+
+    // data-bs-target 속성 추가
+    document.querySelector('#hate-btn').setAttribute("data-bs-target", "#myModal");
+
+    document.querySelector('#modal-body').innerText = string;
+}
+
+function boardLoadingExecute(board){
+    document.querySelector("#tabNameP").innerText = board.tabName;
+    document.querySelector("#boardTitleP").innerText = board.boardTitle;
+    document.querySelector("#nickNameP").innerText = board.memberNickname;
+    document.querySelector("#likehatereplyviewdateCountP").innerText = `좋아요 ` + board.likeCount + ` | 싫어요 ` + board.hateCount + ` | 댓글 ` + board.viewCount + ` | 조회수 ` + board.viewCount + ` | ` + board.boardDate;
+    document.querySelector("#boardContentP").innerText = board.boardContent;
+}
