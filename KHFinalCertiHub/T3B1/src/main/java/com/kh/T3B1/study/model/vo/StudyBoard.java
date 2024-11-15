@@ -12,5 +12,6 @@ public class StudyBoard {
 	private String boardDate;
 	
 	// 스터디그룹 매니저 닉네임
+	private int managerNo;
 	private String managerName;
 }

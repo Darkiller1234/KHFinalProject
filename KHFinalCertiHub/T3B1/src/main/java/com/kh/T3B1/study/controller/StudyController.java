@@ -25,7 +25,6 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/study")
 public class StudyController {
 	
-	@Autowired
 	public final StudyService studyService;
 	
 	@RequestMapping("search")
