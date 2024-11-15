@@ -1,33 +1,24 @@
 /* PC 환경과 모바일 공통 */
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #f3f3f3;
     margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-}
-
-.wrapper {
-    margin: 50px; /* 전체 페이지 여백 */
+    padding: 0;
+    border: 0 none;
 }
 
 .content {
     width: 100%;
     max-width: 100%;
     background-color: #ffffff;
-    padding: 140px;
+    padding-bottom: 5%;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    margin: 10px;
-    margin-top: 20%;
+    margin-top: 5%;
 }
 
 .content h2 {
     text-align: center;
-    font-size: 26px;
-    margin: 20px 0;
+    font-size: 32px;
+    margin-top: 20px;
 }
 
 .hr {
@@ -39,13 +30,14 @@ body {
 .social-login {
     display: flex;
     justify-content: space-between;
-    margin: 10px 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .social-login button {
     width: 48%;
-    padding: 12px;
-    font-size: 16px;
+    padding: 3%;
+    font-size: 24px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -62,49 +54,36 @@ body {
 }
 
 .form-group {
-    max-width: 800px;
-    padding: 60px;
+    max-width: 100%;
+    padding: 5%;
     margin-bottom: 20px; /* 각 입력 그룹 간격 */
 }
 
 .form-group label {
     display: block;
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: 1%;
 }
 
-/* .form-group input {
+ .form-group input {
     width: 100%;
-    padding: 10px;
+    padding: 3%;
     border: 1px solid #83c5be;
     border-radius: 5px;
+    box-sizing: border-box;
     background-color: #EDF6F9;
-    margin-top: 30px;
-    margin-bottom: 15px;
-} */
-/* .form-group input[type="text"],
-.form-group input[type="password"],
-.form-group input[type="email"],
-.form-group input[type="tel"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #83c5be;
-    border-radius: 5px;
-    background-color: #EDF6F9;
-    margin-top: 10px;
-    margin-bottom: 15px;
-} */
+    margin-bottom: 5%;
+}
 
 .btns {
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
+    margin-top: 5%;
 }
 
 .btn {
     width: 48%;
-    padding: 10px;
-    font-size: 16px;
+    font-size: 32px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -141,7 +120,7 @@ body {
 
 p {
     text-align: center;
-    margin: 10px 0;
+    margin-top: 5%;
 }
 
 .error-msg {
@@ -152,7 +131,13 @@ p {
 }
 
 /* 미디어 쿼리 (모바일 환경) */
-@media (max-width: 720px) {
+
+@media (min-width: 1250px) {
+
+}
+
+
+@media (min-width: 481px) and (max-width: 768px) {
     .content {
         padding: 20px;
         max-width: 90%;
