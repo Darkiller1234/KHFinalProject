@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/common/default.css">
 <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/member/login.css">
 <script src="<%=contextPath%>/resources/static/js/member/login.js"></script>

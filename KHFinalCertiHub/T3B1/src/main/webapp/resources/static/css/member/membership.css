@@ -1,5 +1,5 @@
 /* PC 환경과 모바일 공통 */
-body {
+.wrapper {
     margin: 5%;
     padding: 5%;
     border: 0 none;
@@ -38,7 +38,7 @@ body {
 
 .social-login button {
     width: 48%;
-    padding: 20px;
+    padding: 10px;
     font-size: 24px;
     border: none;
     border-radius: 5px;
@@ -139,7 +139,7 @@ p {
 }
 
 
-@media (min-width: 481px) and (max-width: 768px) {
+@media (min-width: 481px) and (max-width: 720px) {
     .content {
         padding: 20px;
         max-width: 90%;
@@ -149,10 +149,7 @@ p {
         font-size: 22px;
     }
 
-    .form-group input[type="text"],
-    .form-group input[type="email"],
-    .form-group input[type="password"],
-    .form-group input[type="tel"] {
+    .form-group input{
         padding: 12px;
     }
 
@@ -164,24 +161,18 @@ p {
 
 @media (max-width: 480px) {
     /* 모바일 화면에 적합한 세로 정렬 및 중앙 정렬 추가 */
-    .wrapper {
-        margin: 10px; /* 여백 줄이기 */
-    }
-
-    .content {
-        padding: 15px;
-        max-width: 100%;
-    }
 
     .content h2 {
         font-size: 20px;
     }
 
-    .form-group input[type="text"],
-    .form-group input[type="email"],
-    .form-group input[type="password"],
-    .form-group input[type="tel"] {
-        padding: 10px;
+    .form-group {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .form-group input {
+        padding: 15px;
     }
 
     .social-login,
@@ -195,6 +186,10 @@ p {
     .social-login button,
     .btn {
         width: 100%; /* 버튼을 화면에 꽉 차게 */
+    }
+
+    .btn-danger {
+        padding: 10px;
     }
 
     /* 버튼 여백과 중앙 정렬 */
