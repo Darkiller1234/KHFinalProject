@@ -27,4 +27,16 @@
 
 	 <!-- @Aspect 및 하위 어노테이션 활성화 -->
      <aop:aspectj-autoproxy/>
+     
+     <!-- 인터셉터 등록 -->
+     <interceptors>
+	 	<interceptor>
+	 		<mapping path="/mentor/likeMentor"/>
+	 		<beans:bean class="com.kh.T3B1.common.interceptor.LoginInterceptor" id="loginIntercepter" />
+	 	</interceptor>
+	 	<interceptor>
+	 		<mapping path="/study/write"/>
+	 		<beans:bean class="com.kh.T3B1.common.interceptor.MentorInterceptor" id="mentorIntercepter" />
+	 	</interceptor>
+	 </interceptors>
 </beans:beans>

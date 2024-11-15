@@ -7,22 +7,22 @@
 
 <mapper namespace="boardMapper">
 	<resultMap type="Board" id="boardResult">
-		<result column="BOARD_NO" property="boardNo"/>
-		<result column="TAB_NO" property="tabNo"/>
-		<result column="LICENSE_NO" property="licenseNo"/>
-		<result column="MEMBER_NO" property="memberNo"/>
-		<result column="BOARD_TITLE" property="boardTitle"/>
-		<result column="BOARD_CONTENT" property="boardContent"/>
-		<result column="BOARD_DATE" property="boardDate"/>
-		<result column="LIKE_COUNT" property="likeCount"/>
-		<result column="HATE_COUNT" property="hateCount"/>
-		<result column="STATUS" property="status"/>
-		<result column="VIEW_COUNT" property="viewCount"/>
-		<result column="MEMBER_NICKNAME" property="memberNickname"/>
-		<result column="TAB_NAME" property="tabName"/>
-		<result column="LICENSE_NAME" property="licenseName"/>
-		<result column="REPLY_COUNT" property="replyCount"/>
-		
+		<result column="BOARD_NO" property="boardNo" />
+		<result column="TAB_NO" property="tabNo" />
+		<result column="LICENSE_NO" property="licenseNo" />
+		<result column="MEMBER_NO" property="memberNo" />
+		<result column="BOARD_TITLE" property="boardTitle" />
+		<result column="BOARD_CONTENT" property="boardContent" />
+		<result column="BOARD_DATE" property="boardDate" />
+		<result column="LIKE_COUNT" property="likeCount" />
+		<result column="HATE_COUNT" property="hateCount" />
+		<result column="STATUS" property="status" />
+		<result column="VIEW_COUNT" property="viewCount" />
+		<result column="MEMBER_NICKNAME" property="memberNickname" />
+		<result column="TAB_NAME" property="tabName" />
+		<result column="LICENSE_NAME" property="licenseName" />
+		<result column="REPLY_COUNT" property="replyCount" />
+
 	</resultMap>
 
   <!-- 게시글 총 갯수 조회 -->
@@ -255,49 +255,70 @@
  	
   <!-- 좋아요 넣기 -->
 	<insert id="ajaxCommunityLikeBtnClickJson">
-		INSERT 
-			INTO BOARD_LIKE_LOG
+		INSERT
+		INTO BOARD_LIKE_LOG
 		VALUES
 		(
-			#{cno},
-			#{memberNo}
+		#{cno},
+		#{memberNo}
 		)
-		
+
 	</insert>
-	
+
 	<!-- 싫어요 넣기 -->
 	<insert id="ajaxCommunityHateBtnClickJson">
-		INSERT 
-			INTO BOARD_HATE_LOG
+		INSERT
+		INTO BOARD_HATE_LOG
 		VALUES
 		(
-			#{cno},
-			#{memberNo}
+		#{cno},
+		#{memberNo}
 		)
-		
+
 	</insert>
-  
-  
-  	<!-- 좋아요 카운트 증가 -->
-	  <update id="addLikeCount">
-	  	UPDATE BOARD
-	  	SET
-	  	LIKE_COUNT = LIKE_COUNT + 1
-	  	WHERE
-	  	BOARD_NO = #{cno}
-	  </update>
-	  
-	  
-	  <!-- 싫어요 카운트 증가 -->
-	  <update id="addHateCount">
-	  	UPDATE BOARD
-	  	SET
-	  	HATE_COUNT = HATE_COUNT + 1
-	  	WHERE
-	  	BOARD_NO = #{cno}
-	  </update>
-	  
-	  <!-- 글쓰기 -->
+
+	<!-- 좋아요 카운트 증가 -->
+	<update id="addLikeCount">
+		UPDATE BOARD
+		SET
+		LIKE_COUNT = LIKE_COUNT + 1
+		WHERE
+		BOARD_NO = #{cno}
+	</update>
+
+
+	<!-- 싫어요 카운트 증가 -->
+	<update id="addHateCount">
+		UPDATE BOARD
+		SET
+		HATE_COUNT = HATE_COUNT + 1
+		WHERE
+		BOARD_NO = #{cno}
+	</update>
+	<!-- 조회수 상위 5개의 게시물 조회 -->
+	<select id="selectTopPostsByViews" resultType="Board">
+    <![CDATA[
+   		SELECT * 
+    	FROM (
+        SELECT * 
+        FROM BOARD
+        ORDER BY VIEW_COUNT DESC
+    ) WHERE ROWNUM <= #{limit}
+    ]]>
+	</select>
+	<!-- 최신 공지사항 상위 5개 조회 -->
+	<select id="selectLatestNotices" resultType="Board">
+       <![CDATA[
+        SELECT * 
+        FROM (
+        SELECT * 
+        FROM BOARD
+        ORDER BY BOARD_DATE DESC
+    ) WHERE ROWNUM <= #{limit}
+     ]]>
+	</select>
+
+	 <!-- 글쓰기 -->
 	  <insert id="insertBoard" parameterType="Board">
 	  	INSERT
 	  		INTO BOARD

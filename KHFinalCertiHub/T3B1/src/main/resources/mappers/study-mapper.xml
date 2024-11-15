@@ -45,6 +45,7 @@
   	<result column="STUDY_BOARD_CONTENT" property="boardContent"/>
   	<result column="VIEW_COUNT" property="viewCount"/>
   	<result column="STUDY_BOARD_DATE" property="boardDate"/>
+	<result column="MANAGER_NO" property="managerNo"/>
   	<result column="MANAGER_NICKNAME" property="managerName"/>
   </resultMap>
   
@@ -143,6 +144,7 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{no}
   <select id="selectBoard" resultMap="BoardResultSet">
   	SELECT STUDY_BOARD_NO ,
 			STUDY_NO ,
+			MANAGER_NO,
 			STUDY_BOARD_TITLE ,
 			STUDY_BOARD_CONTENT ,
 			STUDY_RECRUIT

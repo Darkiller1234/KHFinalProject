@@ -19,10 +19,8 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class StudyServiceImpl implements StudyService{
 	
-	@Autowired
 	public final SqlSessionTemplate sqlSession;
 	
-	@Autowired
 	public final StudyDao studyDao;
 
 	@Override

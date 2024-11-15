@@ -30,22 +30,30 @@
     </div>
 
     <div class="option">
-        <button class="delete btn-primary">
-            <img src="${pageContext.request.contextPath}/resources/static/img/button/trash_icon.png">
-            삭제
-        </button>
-        <button class="modify btn-primary">
-            <img src="${pageContext.request.contextPath}/resources/static/img/button/scissors_icon.png">
-            수정
-        </button>
+        <c:choose>
+            <c:when test="${loginMember.memberNo eq board.managerNo}">
+                <button class="delete btn-primary">
+                    <img src="${pageContext.request.contextPath}/resources/static/img/button/trash_icon.png">
+                    삭제
+                </button>
+                <button class="modify btn-primary">
+                    <img src="${pageContext.request.contextPath}/resources/static/img/button/scissors_icon.png">
+                    수정
+                </button>
+            </c:when>
+        </c:choose>
         <button class="back btn-primary" onclick="location.href='${pageContext.request.contextPath}/study/list'">
             <img src="${pageContext.request.contextPath}/resources/static/img/button/menu_icon.png">
             목록
         </button>
-        <button class="apply btn-primary" data-bs-toggle="modal" data-bs-target="#apply-alert">
-            <img src="${pageContext.request.contextPath}/resources/static/img/button/pencil_icon.png">
-            신청하기
-        </button>
+        <c:choose>
+            <c:when test="${loginMember ne null}">
+                <button class="apply btn-primary" data-bs-toggle="modal" data-bs-target="#apply-alert">
+                    <img src="${pageContext.request.contextPath}/resources/static/img/button/pencil_icon.png">
+                    신청하기
+                </button>
+            </c:when>
+        </c:choose>
     </div>
 
 
