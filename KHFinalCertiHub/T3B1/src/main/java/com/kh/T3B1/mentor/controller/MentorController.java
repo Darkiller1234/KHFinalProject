@@ -1,6 +1,9 @@
 package com.kh.T3B1.mentor.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +25,6 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/mentor")
 public class MentorController {
 	
-	@Autowired
 	public final MentorService mentorService;
 	
 	@RequestMapping("search")
@@ -32,12 +34,24 @@ public class MentorController {
 	}
 	
 	@RequestMapping("detail")
-	public String mentorDetailPage(Model m, int no) {
-		int memberNo = no;
+	public String mentorDetailPage(HttpSession session, Model m, int no) {
+		int mentorNo = no;
 		
-		Member mentor = mentorService.selectMentorDetail(memberNo);
-		int mentorLike = mentorService.countMentorLike(memberNo);
+		Member mentor = mentorService.selectMentorDetail(mentorNo);
+		int mentorLike = mentorService.countMentorLike(mentorNo);
 		mentor.setMentorLike(mentorLike);
+		
+		// 로그인한 유저라면 좋아요를 이미 눌렀는지 정보를 불러온다
+		if(session.getAttribute("loginMember") != null) {
+			int memberNo = ((Member)session.getAttribute("loginMember")).getMemberNo();
+			HashMap<String, Integer> likeInfo = new HashMap<>();
+			likeInfo.put("mentorNo",mentorNo);
+			likeInfo.put("memberNo",memberNo);
+
+			// 존재하면 Y, 없다면 N 리턴
+			String isLiked = mentorService.checkLike(likeInfo);
+			m.addAttribute("isLiked",isLiked);
+		}
 		
 		m.addAttribute("mentor", mentor);
 		m.addAttribute("pageName","mentorDetail");
@@ -78,6 +92,31 @@ public class MentorController {
 		// 자격증 목록 조회
 		ArrayList<License> licenseList = mentorService.selectLicenseList();
 		return new Gson().toJson(licenseList);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="likeMentor", produces="application/json; charset=UTF-8")
+	public String likeMentor(HttpSession session, int mentorNo) {
+		int memberNo = ((Member) session.getAttribute("loginMember")).getMemberNo();
+		
+		HashMap<String, Integer> likeInfo = new HashMap<>();
+		likeInfo.put("memberNo",memberNo);
+		likeInfo.put("mentorNo",mentorNo);
+		
+		String isLiked = mentorService.checkLike(likeInfo);
+		int likeCount = 0;
+		
+		if(isLiked.equals("Y")) {
+			likeCount = mentorService.deleteLikeMentor(likeInfo);
+		} else {
+			likeCount = mentorService.likeMentor(likeInfo);
+		}
+		
+		HashMap<String, Object> result = new HashMap<>();
+		result.put("type",isLiked);
+		result.put("likeCount",likeCount);
+		
+		return new Gson().toJson(result);
 	}
 
 }

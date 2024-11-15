@@ -42,18 +42,12 @@
 	  GROUP BY MENTOR_NO
 	), MEMBER_INFO AS (
 	    SELECT
-		        M.MEMBER_NO ,
-		        M.MEMBER_INTRO ,
-		        M.MEMBER_NICKNAME ,
-		        M.MEMBER_IMG ,
-		        L.LICENSE_NO ,
+		        ML.MEMBER_NO,
+		        ML.LICENSE_NO ,
 		        L.LICENSE_NAME,
-		        M.MENTOR_VALID,
 		        ML.CONFIRM_DATE
-	       FROM MEMBER M
-	  LEFT JOIN MEMBER_LICENSE ML ON(M.MEMBER_NO = ML.MEMBER_NO)
-	  LEFT JOIN LICENSE L ON(ML.LICENSE_NO = L.LICENSE_NO)
-	      WHERE ML.SYMBOL_LICENSE = 'Y'
+           FROM MEMBER_LICENSE ML
+	  INNER JOIN LICENSE L ON(ML.LICENSE_NO = L.LICENSE_NO) AND ML.SYMBOL_LICENSE = 'Y'
 	)
 	SELECT
 		   M.MEMBER_NO ,
@@ -66,10 +60,10 @@
 		   LC.LIKE_COUNT,
 		   ROW_NUMBER() OVER(ORDER BY CONFIRM_DATE DESC) AS RNUM
 	  FROM MEMBER M
- LEFT JOIN MEMBER_INFO MF ON(M.MEMBER_NO = MF.MEMBER_NO)
+ INNER JOIN MEMBER_INFO MF ON(M.MEMBER_NO = MF.MEMBER_NO) 
+    AND MENTOR_STATUS = 'Y' 
+    AND STATUS = 'Y'
  LEFT JOIN LIKE_COUNT LC ON(M.MEMBER_NO = LC.MENTOR_NO)
-     WHERE MENTOR_STATUS = 'Y'
-	   AND STATUS = 'Y'
       	<if test="keyword != null">
       		AND M.MEMBER_NICKNAME LIKE '%' || #{keyword} || '%'
       	</if>
@@ -94,7 +88,7 @@
 	FROM MEMBER
 	LEFT JOIN MEMBER_LICENSE USING(MEMBER_NO)
 	LEFT JOIN LICENSE USING(LICENSE_NO)
-	WHERE MEMBER_NO = #{memberNo}
+	WHERE MEMBER_NO = #{mentorNo}
 	  AND MENTOR_STATUS = 'Y'
 	  AND STATUS = 'Y'
 	  AND SYMBOL_LICENSE = 'Y'
@@ -103,7 +97,7 @@
   <select id="countMentorLike" resultType="_int">
 	SELECT COUNT(*)
 	  FROM MENTOR_LIKE_LOG
-	 WHERE MENTOR_NO = #{memberNo}
+	 WHERE MENTOR_NO = #{mentorNo}
   </select>
 	
 	<!-- 아이디 중복체크 -->
@@ -136,25 +130,45 @@
 	</insert>
 	
 	<select id="loginMember" parameterType="Member" resultMap="memberResultSet">
-		SELECT 
-		MEMBER_NO,
-		MEMBER_ID,
-		MEMBER_PWD,
-		MEMBER_NAME,
-		MEMBER_INTRO,
-		MEMBER_NICKNAME,
-		EMAIL,
-		PHONE,
-		MEMBER_IMG,
-		ENROLL_DATE,
-		STATUS,
-		MANAGER_STATUS,
-		MENTOR_STATUS
+		SELECT MEMBER_NO,
+				MEMBER_ID,
+				MEMBER_PWD,
+				MEMBER_NAME,
+				MEMBER_INTRO,
+				MEMBER_NICKNAME,
+				EMAIL,
+				PHONE,
+				MEMBER_IMG,
+				ENROLL_DATE,
+				STATUS,
+				MANAGER_STATUS,
+				MENTOR_STATUS
 		FROM MEMBER
 		WHERE MEMBER_ID = #{memberId}
 		AND STATUS = 'Y'
-
 	</select>
+	
+	<insert id="likeMentor" parameterType="HashMap">
+		INSERT INTO MENTOR_LIKE_LOG
+			VALUES(#{memberNo},#{mentorNo})
+	</insert>
+	
+	<select id="checkLike" parameterType="HashMap" resultType="_int">
+		SELECT 1
+		  FROM DUAL
+		 WHERE EXISTS(
+		    SELECT 1
+		    FROM MENTOR_LIKE_LOG
+		    WHERE MEMBER_NO = #{memberNo}
+		      AND MENTOR_NO = #{mentorNo}
+		)
+	</select>
+	
+	<delete id="deleteLikeMentor" parameterType="HashMap">
+		DELETE FROM MENTOR_LIKE_LOG
+		 WHERE MEMBER_NO = #{memberNo}
+	       AND MENTOR_NO = #{mentorNo}
+	</delete>
 	
 </mapper>
 
