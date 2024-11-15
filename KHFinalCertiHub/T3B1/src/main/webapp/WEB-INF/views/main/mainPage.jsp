@@ -46,9 +46,15 @@
                     <div id="certies" class="schedule">
                         <h1>이번 달 일정</h1>
                         <select id="cert-select" class="cert-select">
-                            <option value="EIP">정보처리기사</option> <!--EIP = 정보처리기사 :Engineer Information Processing 의 약자-->
-                            <option value="EIS">정보보안기사</option> <!--EIS = 정보보안기사(Engineer information security)-->
-                            <option value="Cisco">네트워크기사</option> <!--Cisco = 네트워크관리사 Cisco Certified Network Associate의 약자 -->
+                            <option value="EIP">정보처리기사</option> 
+                            <!--EIP = 정보처리기사 :Engineer Information Processing 의 약자-->
+                            <option value="EIS">정보보안기사</option> 
+                            <!--EIS = 정보보안기사(Engineer information security)-->
+                            <option value="Cisco">네트워크기사</option> 
+                            <!--Cisco = 네트워크관리사 Cisco Certified Network Associate의 약자 -->
+                            <option value="PEIM">정보관리기술사</option> 
+                            <!-- PEIM 정보관리기술사(Professional Engineer Information Management) -->
+                            <option value="3DPC">3D프린터개발산업기사</option>
                         </select>
 
                         <ul id="schedule-list">
@@ -59,34 +65,37 @@
             </div>
 
             <div class="layer2">
+
                 <div class="bestBoard">
                     <h1>베스트 게시물</h1>
                     <div class="BB">
                         <ul>
                             <c:forEach var="board" items="${topPosts}">
                                 <li>
-                                    <a href="${contextPath}/community/detail?certiNo=${board.tabNo}&cno=${board.boardNo}">
-                                        ${board.boardTitle}${board.viewCount} 
-                                    </a> 
-                                </li>
-                            </c:forEach>
-                        </ul>
-                    </div>
-                </div>
-                <div class="notice">
-                    <h1>공지사항</h1>
-                    <div class="NB">
-                        <ul>
-                            <c:forEach var="board" items="${latestNotices}">
-                                <li>
-                                    <a href="${contextPath}/community/detail?certiNo=${board.tabNo}&cno=${board.boardNo}">
-                                        ${board.boardDate}
+                                    <a href="${pageContext.request.contextPath}/community/detail?certiNo=${board.tabNo}&cno=${board.boardNo}">
+                                        ${board.boardTitle} (${board.viewCount} 조회)
                                     </a>
                                 </li>
                             </c:forEach>
                         </ul>
                     </div>
                 </div>
+                
+                <div class="notice">
+                    <h1>공지사항</h1>
+                    <div class="NB">
+                        <ul>
+                            <c:forEach var="board" items="${latestNotices}">
+                                <li>
+                                    <a href="${pageContext.request.contextPath}/community/detail?certiNo=${board.tabNo}&cno=${board.boardNo}">
+                                        ${board.boardTitle} (${board.viewCount} 조회)
+                                    </a>
+                                </li>
+                            </c:forEach>
+                        </ul>
+                    </div>
+                </div>
+                
                 
             </div>
             </div>

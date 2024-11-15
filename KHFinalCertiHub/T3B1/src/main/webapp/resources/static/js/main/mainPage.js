@@ -8,7 +8,7 @@ $(document).ready(function () {
             url: 'https://apis.data.go.kr/B490007/qualExamSchd/getQualExamSchdList',
             data: {
                 serviceKey: 'AiATDYDO2nw7aWzpDtDvC8aswTEabFvLtwjy0RwuM2KnGpfE+D4ffB3SmCH4VqDihRDB/NR8RmbluUBQL+o10w==',
-                numOfRows: 10, // 한 페이지 결과 수
+                numOfRows: 20, // 한 페이지 결과 수
                 pageNo: 1, // 페이지 번호
                 dataFormat: 'json', // 응답 데이터 포맷 (json)
                 implYy: 2024, // 시행년도 (2024년)
@@ -36,6 +36,10 @@ $(document).ready(function () {
                 return '1321'; // 정보보안기사
             case 'Cisco':
                 return '1322'; // 네트워크기사
+            case 'PEIM' :
+                return '0601'; //정보관리 기술사
+            case '3DPC' :
+                return '2177'; //3D프린터개발산업기사
             default:
                 return '1320'; // 기본값
         }

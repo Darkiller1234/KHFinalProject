@@ -296,7 +296,7 @@
 		BOARD_NO = #{cno}
 	</update>
 	<!-- 조회수 상위 5개의 게시물 조회 -->
-	<select id="selectTopPostsByViews" resultType="Board">
+	<select id="selectTopPostsByViews" resultType="Board" resultMap="boardResult">
     <![CDATA[
    		SELECT * 
     	FROM (
@@ -307,12 +307,13 @@
     ]]>
 	</select>
 	<!-- 최신 공지사항 상위 5개 조회 -->
-	<select id="selectLatestNotices" resultType="Board">
+	<select id="selectLatestNotices" resultType="Board" resultMap="boardResult">
        <![CDATA[
         SELECT * 
         FROM (
         SELECT * 
         FROM BOARD
+        WHERE TAB_NO =1
         ORDER BY BOARD_DATE DESC
     ) WHERE ROWNUM <= #{limit}
      ]]>
