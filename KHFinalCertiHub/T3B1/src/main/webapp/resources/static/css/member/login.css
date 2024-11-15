@@ -1,17 +1,13 @@
 /* 페이지 전체 설정 */
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #f3f3f3;
     margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 0;
+    border: none;
 }
 
 .content {
     width: 100%;
-    max-width: 400px;
+    max-width: 100%;
     background-color: #ffffff;
     padding: 20px 20px;
     border-radius: 8px;
@@ -40,14 +36,19 @@ body {
 }
 
 /* 입력 필드 스타일 */
+.form-group {
+    max-width: 100%;
+    padding: 5%;
+    margin-bottom: 20px; /* 각 입력 그룹 간격 */
+}
+
 .form-group label {
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
-.form-group input[type="text"],
-.form-group input[type="password"] {
+.form-group input {
     width: 100%;
     padding: 12px;
     border: 1px solid #83c5be;

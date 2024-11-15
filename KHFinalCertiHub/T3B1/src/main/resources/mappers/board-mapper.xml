@@ -25,245 +25,235 @@
 
 	</resultMap>
 
-	<!-- 게시글 총 갯수 조회 -->
-	<select id="selectListCount" resultType="int">
-		SELECT COUNT(*)
-		FROM BOARD B
-		JOIN BOARD_TAB BT ON (B.TAB_NO = BT.TAB_NO)
-		JOIN MEMBER M ON (B.MEMBER_NO = M.MEMBER_NO)
-		LEFT JOIN (SELECT BOARD_NO, COUNT(*) AS REPLY_COUNT
-		FROM REPLY
-		GROUP BY BOARD_NO
-		) BR ON (B.BOARD_NO = BR.BOARD_NO)
-		<where>
-			B.STATUS = 'Y'
-			<if test="licenseNo != 0">
-				AND B.LICENSE_NO = #{licenseNo}
-			</if>
-			<if test="tabNo == 0">
-				AND B.TAB_NO != 1
-			</if>
-			<if test="tabNo != 0">
-				AND B.TAB_NO = #{tabNo}
-			</if>
-			<if test="filterNo != 0">
-				<choose>
-					<when test="filterNo == 1">
-						AND ()
-					</when>
-					<when test="filterNo == 2"> <!-- concat보다 ||이 가독성이 좋을것 같아요 - 동영 -->
-						AND LOWER(B.BOARD_TITLE) LIKE CONCAT(CONCAT('%', #{filterText}),
-						'%')
-					</when>
-					<when test="filterNo == 3">
-						AND LOWER(B.BOARD_CONTENT) LIKE CONCAT(CONCAT('%', #{filterText}),
-						'%')
-					</when>
-					<when test="filterNo == 4">
-						AND (LOWER(B.BOARD_TITLE) LIKE CONCAT(CONCAT('%', #{filterText}),
-						'%') OR LOWER(B.BOARD_CONTENT) LIKE CONCAT(CONCAT('%',
-						#{filterText}), '%'))
-					</when>
-					<when test="filterNo == 5">
-						AND LOWER(M.MEMBER_NICKNAME) LIKE CONCAT(CONCAT('%', #{filterText}),
-						'%')
-					</when>
-				</choose>
-			</if>
-		</where>
-	</select>
-
-
-	<!-- 게시글 조회 -->
-	<select id="selectList" parameterType="Board"
-		resultMap="boardResult">
-		SELECT B.BOARD_NO,
-		B.TAB_NO,
-		BT.TAB_NAME,
-		B.LICENSE_NO,
-		B.MEMBER_NO,
-		M.MEMBER_NICKNAME,
-		B.BOARD_TITLE,
-		CASE
-		WHEN SYSDATE - B.BOARD_DATE >= 1 THEN TO_CHAR(B.BOARD_DATE, 'YYYY-MM-DD')
-		ELSE TO_CHAR(B.BOARD_DATE, 'HH : mm')
-		END AS BOARD_DATE,
-		B.LIKE_COUNT,
-		B.HATE_COUNT,
-		B.VIEW_COUNT,
-		BR.REPLY_COUNT
-		FROM BOARD B
-		JOIN BOARD_TAB BT ON (B.TAB_NO = BT.TAB_NO)
-		JOIN MEMBER M ON (B.MEMBER_NO = M.MEMBER_NO)
-		LEFT JOIN (SELECT BOARD_NO, COUNT(*) AS REPLY_COUNT
-		FROM REPLY
-		GROUP BY BOARD_NO
-		) BR ON (B.BOARD_NO = BR.BOARD_NO)
-		<where>
-			B.STATUS = 'Y'
-			<if test="licenseNo != 0">
-				AND B.LICENSE_NO = #{licenseNo}
-			</if>
-			<if test="tabNo == 0">
-				AND B.TAB_NO != 1
-			</if>
-			<if test="tabNo != 0">
-				AND B.TAB_NO = #{tabNo}
-			</if>
-			<if test="filterNo != 0">
-				<choose>
-					<when test="filterNo == 1">
-						AND ()
-					</when>
-					<when test="filterNo == 2">
-						AND LOWER(B.BOARD_TITLE) LIKE CONCAT(CONCAT('%', #{filterText}), '%')
-					</when>
-					<when test="filterNo == 3">
-						AND LOWER(B.BOARD_CONTENT) LIKE CONCAT(CONCAT('%', #{filterText}),
-						'%')
-					</when>
-					<when test="filterNo == 4">
-						AND (LOWER(B.BOARD_TITLE) LIKE CONCAT(CONCAT('%', #{filterText}),
-						'%') OR LOWER(B.BOARD_CONTENT) LIKE CONCAT(CONCAT('%',
-						#{filterText}), '%'))
-					</when>
-					<when test="filterNo == 5">
-						AND LOWER(M.MEMBER_NICKNAME) LIKE CONCAT(CONCAT('%', #{filterText}),
-						'%')
-					</when>
-				</choose>
-			</if>
-		</where>
-		<choose>			<!-- 정렬 기준 최신,조회,추천 -->
-			<when test="orderBy == 1">
-				ORDER BY B.BOARD_NO DESC
-			</when>
-			<when test="orderBy == 2">
-				ORDER BY (B.LIKE_COUNT - B.HATE_COUNT) DESC
-			</when>
-			<when test="orderBy == 3">
-				ORDER BY B.VIEW_COUNT DESC
-			</when>
-		</choose>
-	</select>
-
-
-	<!-- 자격증 목록 조회 -->
-	<select id="selectCertiList" resultType="String">
-		SELECT LICENSE_NAME
-		FROM LICENSE
-		ORDER BY LICENSE_NO
-	</select>
-
-
-	<!-- 최근 공지 (5개) 조회 -->
-	<select id="selectNotiList" resultType="Board"
-		resultMap="boardResult">
-		SELECT B.BOARD_NO,
-		B.TAB_NO,
-		BT.TAB_NAME,
-		B.LICENSE_NO,
-		B.MEMBER_NO,
-		M.MEMBER_NICKNAME,
-		B.BOARD_TITLE,
-		CASE
-		WHEN SYSDATE - B.BOARD_DATE >= 1 THEN TO_CHAR(B.BOARD_DATE, 'YYYY-MM-DD')
-		ELSE TO_CHAR(B.BOARD_DATE, 'HH : mm')
-		END AS BOARD_DATE,
-		B.LIKE_COUNT,
-		B.HATE_COUNT,
-		B.VIEW_COUNT,
-		BR.REPLY_COUNT
-		FROM BOARD B
-		JOIN BOARD_TAB BT ON (B.TAB_NO = BT.TAB_NO)
-		JOIN MEMBER M ON (B.MEMBER_NO = M.MEMBER_NO)
-		LEFT JOIN (SELECT BOARD_NO, COUNT(*) AS REPLY_COUNT
-		FROM REPLY
-		GROUP BY BOARD_NO
-		) BR ON (B.BOARD_NO = BR.BOARD_NO)
-		<where>
-			B.STATUS = 'Y'
-			<if test="licenseNo != 0">
-				AND B.LICENSE_NO = #{licenseNo}
-			</if>
-			AND B.TAB_NO = 1
-		</where>
-		ORDER BY B.BOARD_NO DESC
-
-	</select>
-
-
-	<!-- 게시글 내용 조회 -->
-	<select id="selectBoardOne" resultType="Board"
-		resultMap="boardResult">
-		SELECT B.BOARD_NO,
-		B.TAB_NO,
-		BT.TAB_NAME,
-		B.LICENSE_NO,
-		B.MEMBER_NO,
-		M.MEMBER_NICKNAME,
-		B.BOARD_TITLE,
-		B.BOARD_CONTENT,
-		CASE
-		WHEN SYSDATE - B.BOARD_DATE >= 1 THEN TO_CHAR(B.BOARD_DATE, 'YYYY-MM-DD')
-		ELSE TO_CHAR(B.BOARD_DATE, 'HH : mm')
-		END AS BOARD_DATE,
-		B.LIKE_COUNT,
-		B.HATE_COUNT,
-		B.VIEW_COUNT,
-		BR.REPLY_COUNT
-		FROM BOARD B
-		JOIN BOARD_TAB BT ON (B.TAB_NO = BT.TAB_NO)
-		JOIN MEMBER M ON (B.MEMBER_NO = M.MEMBER_NO)
-		LEFT JOIN (SELECT BOARD_NO, COUNT(*) AS REPLY_COUNT
-		FROM REPLY
-		GROUP BY BOARD_NO
-		) BR ON (B.BOARD_NO = BR.BOARD_NO)
-		<where>
-			B.STATUS = 'Y'
-			AND B.BOARD_NO = #{cno}
-		</where>
-	</select>
-
-
-	<!-- 게시글 조회수 증가 -->
-	<update id="increaseViewCount">
-		UPDATE BOARD
-		SET
-		VIEW_COUNT = VIEW_COUNT + 1
-		WHERE
-		BOARD_NO = #{cno}
-	</update>
-
-
-	<!-- 글 쓴 사람 프로필 이미지 조회 -->
-	<select id="ajaxCommunityWriterProfileImg" resultType="String">
-		SELECT M.MEMBER_IMG
-		FROM MEMBER M
-		JOIN BOARD B ON (M.MEMBER_NO = B.MEMBER_NO)
-		WHERE
-		B.BOARD_NO = #{cno}
-	</select>
-
-	<!-- 좋아요 여부 확인 -->
-	<select id="ajaxCommunityLikeStatusJson1" resultType="int">
-		SELECT BOARD_NO
-		FROM BOARD_LIKE_LOG
-		WHERE
-		BOARD_NO = #{cno}
-		AND MEMBER_NO = #{memberNo}
-	</select>
-
-
-	<!-- 싫어요 여부 확인 -->
-	<select id="ajaxCommunityLikeStatusJson2" resultType="int">
-		SELECT BOARD_NO
-		FROM BOARD_HATE_LOG
-		WHERE
-		BOARD_NO = #{cno}
-		AND MEMBER_NO = #{memberNo}
-	</select>
-	<!-- 좋아요 넣기 -->
+  <!-- 게시글 총 갯수 조회 -->
+  <select id="selectListCount" resultType="int">
+   	SELECT COUNT(*)
+   	  FROM BOARD B
+  	  JOIN BOARD_TAB BT ON (B.TAB_NO = BT.TAB_NO)
+  	  JOIN MEMBER M ON (B.MEMBER_NO = M.MEMBER_NO)
+  	  LEFT JOIN (SELECT BOARD_NO, COUNT(*) AS REPLY_COUNT
+  	  		FROM REPLY
+  	  		GROUP BY BOARD_NO
+  	  		) BR ON (B.BOARD_NO = BR.BOARD_NO)
+   	<where>
+  	 	B.STATUS = 'Y'
+  	 	<if test="licenseNo != 0">
+            AND B.LICENSE_NO = #{licenseNo}
+        </if>
+        <if test="tabNo == 0">
+        	AND B.TAB_NO != 1
+        </if>
+        <if test="tabNo != 0">
+            AND B.TAB_NO = #{tabNo}
+        </if>
+        <if test="filterNo != 0">
+        	<choose>
+        		<when test="filterNo == 1">
+        			AND ()
+        		</when>
+        		<when test="filterNo == 2"> <!-- concat보다 ||이 가독성이 좋을것 같아요 - 동영 -->
+        			AND LOWER(B.BOARD_TITLE) LIKE CONCAT(CONCAT('%', #{filterText}), '%')
+        		</when>
+        		<when test="filterNo == 3">
+        			AND LOWER(B.BOARD_CONTENT) LIKE CONCAT(CONCAT('%', #{filterText}), '%')
+        		</when>
+        		<when test="filterNo == 4">
+        			AND (LOWER(B.BOARD_TITLE) LIKE CONCAT(CONCAT('%', #{filterText}), '%') OR LOWER(B.BOARD_CONTENT) LIKE CONCAT(CONCAT('%', #{filterText}), '%'))
+        		</when>
+        		<when test="filterNo == 5">
+        			AND LOWER(M.MEMBER_NICKNAME) LIKE CONCAT(CONCAT('%', #{filterText}), '%')
+        		</when>
+        	</choose>
+        </if>
+  	 </where> 
+  </select>
+  
+  
+  <!-- 게시글 조회 -->
+  <select id="selectList" parameterType="Board"  resultMap="boardResult">
+  	SELECT B.BOARD_NO,
+  			B.TAB_NO,
+  			BT.TAB_NAME,
+  			B.LICENSE_NO,
+  			B.MEMBER_NO,
+  			M.MEMBER_NICKNAME,
+  			B.BOARD_TITLE,
+  			CASE
+  				WHEN SYSDATE - B.BOARD_DATE >= 1 THEN TO_CHAR(B.BOARD_DATE, 'YYYY-MM-DD')
+  				ELSE TO_CHAR(B.BOARD_DATE, 'HH24 : mi')
+  			END AS BOARD_DATE,
+  			B.LIKE_COUNT,
+  			B.HATE_COUNT,
+  			B.VIEW_COUNT,
+  			BR.REPLY_COUNT
+  	  FROM BOARD B
+  	  JOIN BOARD_TAB BT ON (B.TAB_NO = BT.TAB_NO)
+  	  JOIN MEMBER M ON (B.MEMBER_NO = M.MEMBER_NO)
+  	  LEFT JOIN (SELECT BOARD_NO, COUNT(*) AS REPLY_COUNT
+  	  		FROM REPLY
+  	  		GROUP BY BOARD_NO
+  	  		) BR ON (B.BOARD_NO = BR.BOARD_NO)
+  	 <where>
+  	 	B.STATUS = 'Y'
+  	 	<if test="licenseNo != 0">
+            AND B.LICENSE_NO = #{licenseNo}
+        </if>
+        <if test="tabNo == 0">
+        	AND B.TAB_NO != 1
+        </if>
+        <if test="tabNo != 0">
+            AND B.TAB_NO = #{tabNo}
+        </if>
+        <if test="filterNo != 0">
+        	<choose>
+        		<when test="filterNo == 1">
+        			AND ()
+        		</when>
+        		<when test="filterNo == 2">
+        			AND LOWER(B.BOARD_TITLE) LIKE CONCAT(CONCAT('%', #{filterText}), '%')
+        		</when>
+        		<when test="filterNo == 3">
+        			AND LOWER(B.BOARD_CONTENT) LIKE CONCAT(CONCAT('%', #{filterText}), '%')
+        		</when>
+        		<when test="filterNo == 4">
+        			AND (LOWER(B.BOARD_TITLE) LIKE CONCAT(CONCAT('%', #{filterText}), '%') OR LOWER(B.BOARD_CONTENT) LIKE CONCAT(CONCAT('%', #{filterText}), '%'))
+        		</when>
+        		<when test="filterNo == 5">
+        			AND LOWER(M.MEMBER_NICKNAME) LIKE CONCAT(CONCAT('%', #{filterText}), '%')
+        		</when>
+        	</choose>
+        </if>
+  	 </where> 
+  	 <choose>			<!-- 정렬 기준   최신,조회,추천 -->
+  	 	<when test="orderBy == 1">
+  	 		ORDER BY B.BOARD_NO DESC
+  	 	</when>
+  	 	<when test="orderBy == 2">
+  	 		ORDER BY (B.LIKE_COUNT - B.HATE_COUNT) DESC
+  	 	</when>
+  	 	<when test="orderBy == 3">
+  	 		ORDER BY B.VIEW_COUNT DESC
+  	 	</when>
+  	 </choose>
+  </select>
+  
+  
+  <!-- 자격증 목록 조회 -->
+  <select id="selectCertiList" resultType="String">
+  	SELECT LICENSE_NAME
+  	FROM LICENSE
+  	ORDER BY LICENSE_NO
+  </select>
+  
+  
+  <!-- 최근 공지 (5개) 조회  -->
+  <select id="selectNotiList" resultType="Board"  resultMap="boardResult">
+  	SELECT B.BOARD_NO,
+  			B.TAB_NO,
+  			BT.TAB_NAME,
+  			B.LICENSE_NO,
+  			B.MEMBER_NO,
+  			M.MEMBER_NICKNAME,
+  			B.BOARD_TITLE,
+  			CASE
+  				WHEN SYSDATE - B.BOARD_DATE >= 1 THEN TO_CHAR(B.BOARD_DATE, 'YYYY-MM-DD')
+  				ELSE TO_CHAR(B.BOARD_DATE, 'HH24 : mi')
+  			END AS BOARD_DATE,
+  			B.LIKE_COUNT,
+  			B.HATE_COUNT,
+  			B.VIEW_COUNT,
+  			BR.REPLY_COUNT
+  	  FROM BOARD B
+  	  JOIN BOARD_TAB BT ON (B.TAB_NO = BT.TAB_NO)
+  	  JOIN MEMBER M ON (B.MEMBER_NO = M.MEMBER_NO)
+  	  LEFT JOIN (SELECT BOARD_NO, COUNT(*) AS REPLY_COUNT
+  	  		FROM REPLY
+  	  		GROUP BY BOARD_NO
+  	  		) BR ON (B.BOARD_NO = BR.BOARD_NO)
+  	 <where>
+  	 	B.STATUS = 'Y'
+  	 	<if test="licenseNo != 0">
+            AND B.LICENSE_NO = #{licenseNo}
+        </if>
+            AND B.TAB_NO = 1
+  	 </where> 
+  	 	ORDER BY B.BOARD_NO DESC
+  
+  </select>
+  
+  
+  <!-- 게시글 내용 조회 -->
+  <select id="selectBoardOne" resultType="Board"  resultMap="boardResult">
+  	SELECT B.BOARD_NO,
+  			B.TAB_NO,
+  			BT.TAB_NAME,
+  			B.LICENSE_NO,
+  			B.MEMBER_NO,
+  			M.MEMBER_NICKNAME,
+  			B.BOARD_TITLE,
+  			B.BOARD_CONTENT,
+  			CASE
+  				WHEN SYSDATE - B.BOARD_DATE >= 1 THEN TO_CHAR(B.BOARD_DATE, 'YYYY-MM-DD')
+  				ELSE TO_CHAR(B.BOARD_DATE, 'HH24 : mi')
+  			END AS BOARD_DATE,
+  			B.LIKE_COUNT,
+  			B.HATE_COUNT,
+  			B.VIEW_COUNT,
+  			BR.REPLY_COUNT
+  	  FROM BOARD B
+  	  JOIN BOARD_TAB BT ON (B.TAB_NO = BT.TAB_NO)
+  	  JOIN MEMBER M ON (B.MEMBER_NO = M.MEMBER_NO)
+  	  LEFT JOIN (SELECT BOARD_NO, COUNT(*) AS REPLY_COUNT
+  	  		FROM REPLY
+  	  		GROUP BY BOARD_NO
+  	  		) BR ON (B.BOARD_NO = BR.BOARD_NO)
+  	  <where>
+  	 	B.STATUS = 'Y'
+        AND B.BOARD_NO = #{cno}
+  	 </where> 
+  </select>
+  
+  
+  <!-- 게시글 조회수 증가 -->
+  <update id="increaseViewCount">
+  	UPDATE BOARD
+  	SET
+  	VIEW_COUNT = VIEW_COUNT + 1
+  	WHERE
+  	BOARD_NO = #{cno}
+  </update>
+  
+  
+  <!-- 글 쓴 사람 프로필 이미지 조회 -->
+  <select id="ajaxCommunityWriterProfileImg" resultType="String">
+  	SELECT M.MEMBER_IMG
+  	FROM MEMBER M
+  	JOIN BOARD B ON (M.MEMBER_NO = B.MEMBER_NO)
+  	WHERE
+  		B.BOARD_NO = #{cno}
+  </select>
+  
+  <!-- 좋아요 여부 확인 -->
+  	<select id="ajaxCommunityLikeStatusJson1" resultType="int">
+  		SELECT BOARD_NO
+  		FROM BOARD_LIKE_LOG
+  		WHERE
+  			BOARD_NO = #{cno}
+  			AND MEMBER_NO = #{memberNo}
+  	</select>
+  	
+  	
+  <!-- 싫어요 여부 확인 -->
+  	<select id="ajaxCommunityLikeStatusJson2" resultType="int">
+  		SELECT BOARD_NO
+  		FROM BOARD_HATE_LOG
+  		WHERE
+  			BOARD_NO = #{cno}
+  			AND MEMBER_NO = #{memberNo}
+  	</select>
+  	
+ 	
+  <!-- 좋아요 넣기 -->
 	<insert id="ajaxCommunityLikeBtnClickJson">
 		INSERT
 		INTO BOARD_LIKE_LOG
@@ -287,7 +277,6 @@
 
 	</insert>
 
-
 	<!-- 좋아요 카운트 증가 -->
 	<update id="addLikeCount">
 		UPDATE BOARD
@@ -307,7 +296,7 @@
 		BOARD_NO = #{cno}
 	</update>
 	<!-- 조회수 상위 5개의 게시물 조회 -->
-	<select id="selectTopPostsByViews" resultType="Board">
+	<select id="selectTopPostsByViews" resultType="Board" resultMap="boardResult">
     <![CDATA[
    		SELECT * 
     	FROM (
@@ -318,7 +307,7 @@
     ]]>
 	</select>
 	<!-- 최신 공지사항 상위 5개 조회 -->
-	<select id="selectLatestNotices" resultType="Board">
+	<select id="selectLatestNotices" resultType="Board" resultMap="boardResult">
        <![CDATA[
         SELECT * 
         FROM (
@@ -328,6 +317,38 @@
     ) WHERE ROWNUM <= #{limit}
      ]]>
 	</select>
+
+	 <!-- 글쓰기 -->
+	  <insert id="insertBoard" parameterType="Board">
+	  	INSERT
+	  		INTO BOARD
+	  		(
+	  			BOARD_NO,
+	  			TAB_NO,
+	  			LICENSE_NO,
+	  			MEMBER_NO,
+	  			BOARD_TITLE,
+	  			BOARD_CONTENT
+	  		)
+	  		VALUES
+	  		(
+	  			BOARD_SEQ.NEXTVAL,
+	  			#{tabNo},
+	  			#{licenseNo},
+	  			#{memberNo},
+	  			#{boardTitle},
+	  			#{boardContent}
+	  		)
+	  		
+	  
+	  </insert>
+	  
+	  
+	  <!-- 해당 글번호 가져오기 -->
+	  <select id="selectSequence" resultType="int">
+	  	SELECT BOARD_SEQ.CURRVAL
+	  	FROM DUAL
+	  </select>
 </mapper>
 
 
