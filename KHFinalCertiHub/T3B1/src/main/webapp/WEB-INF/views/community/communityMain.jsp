@@ -310,7 +310,7 @@
                       <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
                   </button> 
               </div>
-              <button onclick="location.href='<%=contextPath%>/community/write'">
+              <button onclick="location.href='<%=contextPath%>/community/write?certiNo=${certiNo}'">
                 <img src="<%=contextPath%>/resources/static/img/button/write.png" alt="">
                 글쓰기
               </button>

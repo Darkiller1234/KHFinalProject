@@ -9,6 +9,7 @@
 
     <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
     <script src="${pageContext.request.contextPath}/resources/static/js/community/communityWrite.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/static/js/community/communityMain.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <title>Document</title>
@@ -22,55 +23,64 @@
       <div class="wrapper">
         <nav class="navbar bg-body-tertiary page-title" id="certiSelect">
           <div class="container-fluid">
-            <a class="navbar-brand" href="#">정보처리기사</a>
+            <a class="navbar-brand" onclick="certiChange(${certiNo})">${certiList[certiNo-1]}</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
               aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon">ㅁ</span>
+              <span class="navbar-toggler-icon"><img src="<%=contextPath%>/resources/static/img/button/triangle_down.png" alt=""></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">정보보안기사</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">네트워크관리사</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">빅데이터 분석기사</a>
-                </li>
+                <c:forEach var="d" items="${certiList}" varStatus="status">
+                  <c:if test="${certiList[certiNo-1] ne d}">
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" onclick="certiChange(${status.count})">${d}</a>
+                    </li>
+                  </c:if>
+                </c:forEach>
               </ul>
             </div>
           </div>
         </nav>
         <div id="middle-area">
-          <div>
-            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-              <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-              <label class="btn btn-outline-primary" for="btnradio1">전체</label>
-
-              <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-              <label class="btn btn-outline-primary" for="btnradio2">공지</label>
-
-              <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+          <div id="listArea">
+            <div class="scroll-container">
+              
+              <div class="scroll-content btn-group" role="group" aria-label="Basic radio toggle button group">
+                <!-- 여기에 스크롤 가능한 콘텐츠를 추가하세요 -->
+                <!-- <div class="item2">
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" checked>
+                  <label class="btn btn-outline-primary" for="btnradio2" onclick="tabNoChange(${certiNo}, 1)">공지</label>
+                </div> -->
+                <div class="item2">
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" checked value="2">
               <label class="btn btn-outline-primary" for="btnradio3">자유</label>
-
-              <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
+                </div>
+                <div class="item2">
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" value="3">
               <label class="btn btn-outline-primary" for="btnradio4">질문(자유)</label>
-
-              <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off">
+                </div>
+                <div class="item2">
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off" value="4">
               <label class="btn btn-outline-primary" for="btnradio5">질문(코딩)</label>
-
-              <input type="radio" class="btn-check" name="btnradio" id="btnradio6" autocomplete="off">
+                </div>
+                <div class="item2">
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio6" autocomplete="off" value="5">
               <label class="btn btn-outline-primary" for="btnradio6">후기</label>
-
-              <input type="radio" class="btn-check" name="btnradio" id="btnradio7" autocomplete="off">
+                </div>
+                <div class="item2">
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio7" autocomplete="off" value="6">
               <label class="btn btn-outline-primary" for="btnradio7">문제집/강의 추천</label>
-
-              <input type="radio" class="btn-check" name="btnradio" id="btnradio8" autocomplete="off">
+                </div>
+                <div class="item2">
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio8" autocomplete="off" value="7">
               <label class="btn btn-outline-primary" for="btnradio8">문제집 거래</label>
+                </div>
+                
+              </div>
+              
             </div>
 
-            <form class="write-section" onsubmit="return false;">
+            <!-- <form class="write-section" onsubmit="return false;">
                 <input type="text" class="title" name="title" placeholder="이곳에 제목을 입력해주세요.(300Bytes 까지 가능)">
                 <div class="board-content">
                     <div id="summernote"></div>
@@ -79,6 +89,13 @@
                 <div class="board-option">
                     <button type="submit" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/list.cm'">작성완료</button>
                 </div>
+            </form> -->
+            <form class="write-section" method="post" action="write/board">
+              <input type="text" class="title" name="boardTitle" placeholder="이곳에 제목을 입력해주세요.(300Bytes 까지 가능)">
+              <textarea id="summernote" name="boardContent"></textarea>
+              <input type="hidden" name="tabNo" value="2">
+              <input type="hidden" name="licenseNo" value="${certiNo}">
+              <br> <input id="submitWrite" type="submit" class="btn btn-primary" value="작성완료">
             </form>
           </div>
 

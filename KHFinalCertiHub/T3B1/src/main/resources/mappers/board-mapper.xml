@@ -80,7 +80,7 @@
   			B.BOARD_TITLE,
   			CASE
   				WHEN SYSDATE - B.BOARD_DATE >= 1 THEN TO_CHAR(B.BOARD_DATE, 'YYYY-MM-DD')
-  				ELSE TO_CHAR(B.BOARD_DATE, 'HH : mm')
+  				ELSE TO_CHAR(B.BOARD_DATE, 'HH24 : mi')
   			END AS BOARD_DATE,
   			B.LIKE_COUNT,
   			B.HATE_COUNT,
@@ -157,7 +157,7 @@
   			B.BOARD_TITLE,
   			CASE
   				WHEN SYSDATE - B.BOARD_DATE >= 1 THEN TO_CHAR(B.BOARD_DATE, 'YYYY-MM-DD')
-  				ELSE TO_CHAR(B.BOARD_DATE, 'HH : mm')
+  				ELSE TO_CHAR(B.BOARD_DATE, 'HH24 : mi')
   			END AS BOARD_DATE,
   			B.LIKE_COUNT,
   			B.HATE_COUNT,
@@ -194,7 +194,7 @@
   			B.BOARD_CONTENT,
   			CASE
   				WHEN SYSDATE - B.BOARD_DATE >= 1 THEN TO_CHAR(B.BOARD_DATE, 'YYYY-MM-DD')
-  				ELSE TO_CHAR(B.BOARD_DATE, 'HH : mm')
+  				ELSE TO_CHAR(B.BOARD_DATE, 'HH24 : mi')
   			END AS BOARD_DATE,
   			B.LIKE_COUNT,
   			B.HATE_COUNT,
@@ -296,6 +296,38 @@
 	  	WHERE
 	  	BOARD_NO = #{cno}
 	  </update>
+	  
+	  <!-- 글쓰기 -->
+	  <insert id="insertBoard" parameterType="Board">
+	  	INSERT
+	  		INTO BOARD
+	  		(
+	  			BOARD_NO,
+	  			TAB_NO,
+	  			LICENSE_NO,
+	  			MEMBER_NO,
+	  			BOARD_TITLE,
+	  			BOARD_CONTENT
+	  		)
+	  		VALUES
+	  		(
+	  			BOARD_SEQ.NEXTVAL,
+	  			#{tabNo},
+	  			#{licenseNo},
+	  			#{memberNo},
+	  			#{boardTitle},
+	  			#{boardContent}
+	  		)
+	  		
+	  
+	  </insert>
+	  
+	  
+	  <!-- 해당 글번호 가져오기 -->
+	  <select id="selectSequence" resultType="int">
+	  	SELECT BOARD_SEQ.CURRVAL
+	  	FROM DUAL
+	  </select>
 </mapper>
 
 
