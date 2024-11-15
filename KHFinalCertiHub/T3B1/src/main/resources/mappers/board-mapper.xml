@@ -251,6 +251,29 @@
   			BOARD_NO = #{cno}
   			AND MEMBER_NO = #{memberNo}
   	</select>
+  	
+  	<!-- 조회수 상위 5개의 게시물 조회 -->
+    <select id="selectTopPostsByViews" resultType="Board">
+    <![CDATA[
+   		SELECT * 
+    	FROM (
+        SELECT * 
+        FROM BOARD
+        ORDER BY VIEW_COUNT DESC
+    ) WHERE ROWNUM <= #{limit}
+    ]]>
+</select>
+     <!-- 최신 공지사항 상위 5개 조회 -->
+    <select id="selectLatestNotices" resultType="Board">
+       <![CDATA[
+        SELECT * 
+        FROM (
+        SELECT * 
+        FROM BOARD
+        ORDER BY BOARD_DATE DESC
+    ) WHERE ROWNUM <= #{limit}
+     ]]>
+    </select>
 </mapper>
 
 
