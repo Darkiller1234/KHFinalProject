@@ -15,17 +15,26 @@ public interface CommunityService {
 	//자격증 목록 가져오기
 	ArrayList<String> selectCertiList();
 
+	//1페이지용 공지목록(최대 최근 5개) 가져오기
 	ArrayList<Board> selectNotiList(Board dump);
 
+	//글 내용 가져오기
 	Board selectBoardOne(int cno);
 
+	//글 조회수 올리기
 	boolean increaseViewCount(int cno);
 
+	//글쓴사람 프로필사진 가져오기
 	String ajaxCommunityWriterProfileImg(int cno);
 
+	//좋아요 눌렀었는지 확인하기
 	int ajaxCommunityLikeStatusJson(int cno, int memberNo);
 
+	//좋아요 누르기
 	int ajaxCommunityLikeBtnClickJson(int cno, int memberNo);
 
+	//싫어요 누르기
 	int ajaxCommunityHateBtnClickJson(int cno, int memberNo);
+
+	int insertBoard(Board b);
 }

@@ -96,6 +96,17 @@ public class CommunityServiceImpl implements CommunityService{
 		return result;
 	}
 
+	@Override
+	public int insertBoard(Board b) {
+		int result = communityDao.insertBoard(sqlSession, b);
+		if(result > 0) {
+			int bNum = communityDao.selectSequence(sqlSession);
+			return bNum;
+		} else {
+			return 0;
+		}
+	}
+
 	
 	
 	

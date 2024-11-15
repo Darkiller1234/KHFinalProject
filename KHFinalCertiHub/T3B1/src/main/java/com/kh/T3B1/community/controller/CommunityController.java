@@ -1,15 +1,22 @@
 package com.kh.T3B1.community.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 import com.kh.T3B1.common.template.Template;
@@ -136,8 +143,18 @@ public class CommunityController {
 		return "community/communityDetail";
 	}
 	@RequestMapping("write")
-	public String CommunityWrite(Model c) {
+	public String CommunityWrite(int certiNo, Model c, HttpSession session) {
+		ArrayList<String> certiList = communityService.selectCertiList();
+		
+		
+		
+		session.setAttribute("licenseNo", certiNo);
+		
+		
+		
 		c.addAttribute("pageName","commuWInit");
+		c.addAttribute("certiList", certiList);
+		c.addAttribute("certiNo", certiNo);
 		return "community/communityWrite";
 	}
 	
@@ -184,5 +201,68 @@ public class CommunityController {
 	public String ajaxCommunityBoardLoadingJson(int cno) {
 		Board temp = communityService.selectBoardOne(cno);
 		return new Gson().toJson(temp);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@PostMapping("write/board")
+	public String insertBoard(Board b, Model m, HttpSession session) {
+		b.setLicenseNo((int)session.getAttribute("licenseNo"));
+		b.setMemberNo(((Member)session.getAttribute("loginMember")).getMemberNo());
+		System.out.println(b);
+		int result = communityService.insertBoard(b);
+		m.addAttribute("cno", result);
+		
+		return "redirect:/community/detail?cno=" + result + "&certiNo=" + b.getLicenseNo();
+	}
+	
+	@ResponseBody
+	@PostMapping("write/upload")
+	public String upload(List<MultipartFile> fileList, HttpSession session) {
+		System.out.println(fileList);
+		
+		List<String> changeNameList = new ArrayList<>();
+		for(MultipartFile f : fileList) {
+			changeNameList.add(saveFile(f, session, "/resources/static/img/board/"));
+		}
+		
+		return new Gson().toJson(changeNameList);
+	}
+	
+	
+	
+	
+	
+	public String saveFile(MultipartFile upfile, HttpSession session, String path) {
+		//파일원본명
+		String originName = upfile.getOriginalFilename(); 
+		
+		//확장자
+		String ext = originName.substring(originName.lastIndexOf("."));
+		 
+		//년월일시분초
+		String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+		
+		//5자리 랜덤값
+		int randNum = (int)(Math.random() * 90000) + 10000;
+		
+		String changeName = currentTime + "_" + randNum + ext;
+		
+		//첨부파일 저장할 폴더의 물리적 경로
+		String savePath = session.getServletContext().getRealPath(path);
+		System.out.println(savePath);
+		try {
+			upfile.transferTo(new File(savePath + changeName));
+		} catch (IllegalStateException | IOException e) {
+			e.printStackTrace();
+		}
+		
+		return changeName;
 	}
 }

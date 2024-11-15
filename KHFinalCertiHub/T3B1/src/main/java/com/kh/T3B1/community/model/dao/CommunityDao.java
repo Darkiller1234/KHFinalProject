@@ -74,4 +74,12 @@ public class CommunityDao {
 		
 	}
 
+	public int insertBoard(SqlSessionTemplate sqlSession, Board b) {
+		return sqlSession.insert("boardMapper.insertBoard", b);
+	}
+
+	public int selectSequence(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("boardMapper.selectSequence");
+	}
+
 }
