@@ -36,10 +36,14 @@
         </div>
 
         <div class="board-option">
-            <button class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/study/write'">
-                <img src="${pageContext.request.contextPath}/resources/static/img/button/pencil_icon.png">
-                글쓰기
-            </button>
+            <c:choose>
+                <c:when test="${loginMember ne null}">
+                    <button class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/study/write'">
+                        <img src="${pageContext.request.contextPath}/resources/static/img/button/pencil_icon.png">
+                        글쓰기
+                    </button>
+                </c:when>
+            </c:choose>
             
             <div class="paging-bar"></div>
         </div>
