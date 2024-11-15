@@ -313,6 +313,7 @@
         FROM (
         SELECT * 
         FROM BOARD
+        WHERE TAB_NO =1
         ORDER BY BOARD_DATE DESC
     ) WHERE ROWNUM <= #{limit}
      ]]>

@@ -79,6 +79,13 @@ img {
 .bestBoard>h1 {
     font-size: 32px;
     text-align: start;
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+.BB>ul {
+    padding: 20px;
+    font-size: 16px;
 }
 
 .notice {
@@ -97,6 +104,13 @@ img {
 .notice>h1 {
     font-size: 32px;
     text-align: start;
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+.NB>ul {
+    padding: 20px;
+    font-size: 16px;
 }
 
 .fc-toolbar-chunk{
