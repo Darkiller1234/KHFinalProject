@@ -37,8 +37,8 @@
                     </div>
 
                     <div>
-                        <a href="<%=contextPath%>/member/membership">회원가입</a> |
-                        <a href="<%=contextPath%>/member/idfind">아이디 찾기</a> |
+                        <a href="<%=contextPath%>/member/membership">회원가입</a> 
+                        <a href="<%=contextPath%>/member/idfind">아이디 찾기</a> 
                         <a href="<%=contextPath%>/member/pwdfind">비밀번호 찾기</a>
                     </div>
 
@@ -46,10 +46,12 @@
 
                     <div class="social-login">
                         <button class="google-btn">Sign up with Google</button>
-                        <input type ="button" onclick="naverLogin()" value="네이버 로그인"></input>
+                        <button class="kakao-btn">네이버 로그인</button>
                     </div>
                 </div>
             </form>
+
+            <!--<input type ="button" onclick="naverLogin()" value="네이버 로그인"></input>-->
             <!-- 
                 function naverLogin() {
                     const clientId = "4LJAnwIdn34_pwVH8xJ8";
