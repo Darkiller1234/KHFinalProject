@@ -34,5 +34,9 @@
 	 		<mapping path="/mentor/likeMentor"/>
 	 		<beans:bean class="com.kh.T3B1.common.interceptor.LoginInterceptor" id="loginIntercepter" />
 	 	</interceptor>
+	 	<interceptor>
+	 		<mapping path="/study/write"/>
+	 		<beans:bean class="com.kh.T3B1.common.interceptor.MentorInterceptor" id="mentorIntercepter" />
+	 	</interceptor>
 	 </interceptors>
 </beans:beans>
