@@ -37,7 +37,7 @@
 
         <div class="board-option">
             <c:choose>
-                <c:when test="${loginMember ne null}">
+                <c:when test="${loginMember.mentorStatus eq 'Y'}">
                     <button class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/study/write'">
                         <img src="${pageContext.request.contextPath}/resources/static/img/button/pencil_icon.png">
                         글쓰기
