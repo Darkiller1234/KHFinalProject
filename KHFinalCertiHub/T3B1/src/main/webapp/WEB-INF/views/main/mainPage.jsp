@@ -59,27 +59,29 @@
             </div>
 
             <div class="layer2">
+
                 <div class="bestBoard">
                     <h1>베스트 게시물</h1>
                     <div class="BB">
                         <ul>
                             <c:forEach var="board" items="${topPosts}">
                                 <li>
-                                    <a href="${contextPath}/community/detail?certiNo=${board.tabNo}&cno=${board.boardNo}">
-                                        ${board.boardTitle}${board.viewCount} 
-                                    </a> 
+                                    <a href="${pageContext.request.contextPath}/community/detail?certiNo=${board.tabNo}&cno=${board.boardNo}">
+                                        ${board.boardTitle} (${board.viewCount} 조회)
+                                    </a>
                                 </li>
                             </c:forEach>
                         </ul>
                     </div>
                 </div>
+                
                 <div class="notice">
                     <h1>공지사항</h1>
                     <div class="NB">
                         <ul>
                             <c:forEach var="board" items="${latestNotices}">
                                 <li>
-                                    <a href="${contextPath}/community/detail?certiNo=${board.tabNo}&cno=${board.boardNo}">
+                                    <a href="${pageContext.request.contextPath}/community/detail?certiNo=${board.tabNo}&cno=${board.boardNo}">
                                         ${board.boardDate}
                                     </a>
                                 </li>
@@ -87,6 +89,7 @@
                         </ul>
                     </div>
                 </div>
+                
                 
             </div>
             </div>
