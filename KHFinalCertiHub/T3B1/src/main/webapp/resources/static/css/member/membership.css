@@ -1,8 +1,9 @@
 /* PC 환경과 모바일 공통 */
 body {
-    margin: 0;
-    padding: 0;
+    margin: 5%;
+    padding: 5%;
     border: 0 none;
+    background: #EDF6F9;
 }
 
 .content {
@@ -13,6 +14,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     margin-top: 5%;
+    padding: 5%;
 }
 
 .content h2 {
@@ -36,7 +38,7 @@ body {
 
 .social-login button {
     width: 48%;
-    padding: 3%;
+    padding: 20px;
     font-size: 24px;
     border: none;
     border-radius: 5px;
@@ -83,7 +85,7 @@ body {
 
 .btn {
     width: 48%;
-    font-size: 32px;
+    font-size: 24px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
