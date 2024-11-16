@@ -15,7 +15,7 @@
 
     <div class="wrapper padding">
         <div class="subtitle">
-            <div class="page-title font-size-content">모집 & 현황</div>
+            <div class="page-title font-size-content">스터디 모집 & 현황</div>
 
             <div class="title-option">
                 <div class="custom-select"></div>

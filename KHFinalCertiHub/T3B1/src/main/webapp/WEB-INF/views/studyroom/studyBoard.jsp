@@ -14,7 +14,7 @@
     <%@ include file="../common/header.jsp" %>
 
     <div class="wrapper padding">
-        <div class="page-title font-size-title">홍보 게시판</div>
+        <div class="page-title font-size-title">스터디 홍보 게시판</div>
         <form class="search-section" action="list">
             <div class="search-form">
                 <input type="text" name="keyword">
@@ -26,7 +26,7 @@
 
         <div class="board-title">
             <div class="page-title font-size-subtitle">
-                모집&현황
+                스터디 모집 & 현황
             </div>
             <div class="search-option">
             </div>
@@ -37,7 +37,7 @@
 
         <div class="board-option">
             <c:choose>
-                <c:when test="${loginMember.mentorStatus eq 'Y'}">
+                <c:when test="${loginMember ne null}">
                     <button class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/study/write'">
                         <img src="${pageContext.request.contextPath}/resources/static/img/button/pencil_icon.png">
                         글쓰기
