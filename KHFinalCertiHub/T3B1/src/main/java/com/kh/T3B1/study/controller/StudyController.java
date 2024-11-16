@@ -1,13 +1,21 @@
 package com.kh.T3B1.study.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 import com.kh.T3B1.common.template.Template;
@@ -73,6 +81,12 @@ public class StudyController {
 	public String studyWritePage(Model m) {
 		m.addAttribute("pageName","studyWrite");
 		return "studyroom/studyWrite";
+	}
+	
+	@PostMapping("insertBoard")
+	public String insertBoard(StudyBoard board, HttpSession session) {
+		
+		return "redirect:main";
 	}
 	
 	@ResponseBody
@@ -155,5 +169,20 @@ public class StudyController {
 		jsonData.put("pageInfo", new Gson().toJson(pi));
 		
 		return new Gson().toJson(jsonData);
+	}
+	
+	//ajax로 파일 업로드
+	//파일목록을 저장하고 저장된 파일명목록 반환
+	@ResponseBody
+	@PostMapping("uploadImg")
+	public String upload(List<MultipartFile> fileList, HttpSession session) {
+		System.out.println(fileList);
+		
+		List<String> changeNameList = new ArrayList<>();
+		for(MultipartFile f : fileList) {
+			changeNameList.add(Template.saveFile(f, session, "/resources/static/img/studyBoard/"));
+		}
+		
+		return new Gson().toJson(changeNameList);
 	}
 }
