@@ -22,7 +22,7 @@ public class MainController {
 	
 	@RequestMapping("main")
 	public String mainPage(Model m) {
-		List<Board> topPosts = MainService.getTopPostsByViews(5);
+		List<Board> topPosts = MainService.getTopPostsByViews(10);
 		List<Board> latestNotices = MainService.getLatestNotices(5);
 		
 		m.addAttribute("topPosts", topPosts);
