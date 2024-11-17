@@ -24,6 +24,7 @@ public class MainController {
 	public String mainPage(Model m) {
 		List<Board> topPosts = MainService.getTopPostsByViews(10);
 		List<Board> latestNotices = MainService.getLatestNotices(5);
+		
 		m.addAttribute("topPosts", topPosts);
 		m.addAttribute("latestNotices", latestNotices);
 		return "main/mainPage";
