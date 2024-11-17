@@ -1,6 +1,7 @@
 package com.kh.T3B1.study.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.common.vo.SearchOption;
@@ -33,5 +34,17 @@ public interface StudyService {
 
 	// 게시글 내용 조회
 	StudyBoard selectBoard(int no);
+
+	// 스터디 그룹 가입여부 조회
+	int checkStudyManager(int memberNo);
+
+	// 멤버가 가입한 스터디 그룹 목록 조회
+	ArrayList<Study> selectManagerStudy(int memberNo);
+
+	// 멤버가 스터디그룹 매니저인지 검사
+	boolean isStudyMananger(HashMap<String, Integer> searchInfo);
+
+	// 스터디 그룹 홍보 게시글 삽입
+	int insertBoard(StudyBoard board);
 
 }

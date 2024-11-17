@@ -12,7 +12,6 @@
 </head>
 <body>
     <%@ include file="../common/header.jsp" %>
-
     <div class="wrapper padding">
         <div class="page-title font-size-title">스터디 홍보 게시판</div>
         <form class="search-section" action="list">
@@ -36,14 +35,22 @@
         </div>
 
         <div class="board-option">
-            <c:choose>
-                <c:when test="${loginMember ne null}">
-                    <button class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/study/write'">
-                        <img src="${pageContext.request.contextPath}/resources/static/img/button/pencil_icon.png">
-                        글쓰기
-                    </button>
-                </c:when>
-            </c:choose>
+            <c:if test="${loginMember ne null}">
+                <c:choose>
+                    <c:when test="${isManager eq 'Y'}">
+                        <button class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/study/write'">
+                            <img src="${pageContext.request.contextPath}/resources/static/img/button/pencil_icon.png">
+                            글쓰기
+                        </button>
+                    </c:when>
+                    <c:otherwise>
+                        <button class="btn btn-primary" onclick="alert('스터디 그룹 매니저만 글 작성이 가능합니다.')">
+                            <img src="${pageContext.request.contextPath}/resources/static/img/button/pencil_icon.png">
+                            글쓰기
+                        </button>
+                    </c:otherwise>
+                </c:choose>
+            </c:if>
             
             <div class="paging-bar"></div>
         </div>

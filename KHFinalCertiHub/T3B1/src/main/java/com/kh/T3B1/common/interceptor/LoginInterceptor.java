@@ -17,6 +17,8 @@ public class LoginInterceptor implements HandlerInterceptor{
 		if(session.getAttribute("loginMember") != null) {
 			return true;
 		} else {
+			session.setAttribute("errorMsg", "로그인 후 사용가능한 서비스입니다.");
+			response.sendRedirect(request.getContextPath() + "/error");
 			return false;
 		}
 	}

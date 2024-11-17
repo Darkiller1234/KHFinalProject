@@ -81,7 +81,7 @@
 			ORDER BY MEMBER_COUNT DESC
 	    </when>
 	    <otherwise>
-	    	ORDER BY STUDY_NO
+	    	ORDER BY STUDY_NO DESC
 	    </otherwise>
 	</choose>
   </select>
@@ -139,6 +139,7 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{no}
 		AND STUDY_BOARD_TITLE LIKE '%' || #{keyword} || '%'
 	</if>
 	INNER JOIN MEMBER M ON(S.MANAGER_NO = M.MEMBER_NO)
+	ORDER BY STUDY_BOARD_DATE DESC
   </select>
   
   <select id="selectBoard" resultMap="BoardResultSet">
@@ -152,6 +153,48 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{no}
  LEFT JOIN STUDY USING (STUDY_NO)
      WHERE STUDY_BOARD_NO = #{no}
   </select>
+  
+  <select id="checkStudyManager" resultType="int">
+		SELECT 1 
+		FROM DUAL 
+		WHERE EXISTS(
+		    SELECT 1
+		    FROM STUDY
+		    WHERE MANAGER_NO = #{memberNo}
+		)
+  </select>
+  
+  <select id="selectManagerStudy" resultMap="StudyResultSet">
+		SELECT STUDY_NO ,
+		    STUDY_NAME
+		FROM STUDY
+		WHERE MANAGER_NO = #{memberNo}
+  </select>
+  
+  <select id="isStudyManager" resultType="int">
+		SELECT 1 
+		FROM DUAL 
+		WHERE EXISTS(
+		   SELECT 1
+		     FROM STUDY
+		    WHERE MANAGER_NO = #{memberNo}
+		      AND STUDY_NO = #{studyNo}
+		)
+  </select>
+  
+  <insert id="insertBoard" parameterType="StudyBoard">
+	  	INSERT INTO STUDY_BOARD(
+		    STUDY_BOARD_NO,
+		    STUDY_NO,
+		    STUDY_BOARD_TITLE,
+		    STUDY_BOARD_CONTENT
+		)VALUES(
+		    STUDY_BOARD_SEQ.NEXTVAL,
+		    #{studyNo},
+		    #{boardTitle},
+		    #{boardContent}
+		)
+  </insert>
 
 </mapper>
 

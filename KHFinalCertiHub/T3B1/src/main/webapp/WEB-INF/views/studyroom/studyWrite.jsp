@@ -18,13 +18,14 @@
         <div class="page-title font-size-title">스터디 홍보 게시판</div>
 
         <div class="board-title">
-            <div class="page-title font-size-subtitle">스터디 모집 & 현황</div>
+            <div class="page-title font-size-subtitle">홍보할 스터디 그룹</div>
         </div>
 
-        <form class="write-section" action="insertBoard">
+        <form class="write-section" method="post" action="insertBoard">
+            <div id="study-list"></div>
             <input type="text" class="title" name="boardTitle" placeholder="이곳에 제목을 입력해주세요.(300Bytes 까지 가능)">
             <div class="board-content">
-                <textarea id="summernote"></textarea>
+                <textarea id="summernote" name="boardContent"></textarea>
             </div>
     
             <div class="board-option">

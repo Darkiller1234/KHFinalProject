@@ -1,10 +1,6 @@
 package com.kh.T3B1.study.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -27,7 +23,9 @@ import com.kh.T3B1.study.model.vo.StudyBoard;
 import com.kh.T3B1.study.service.StudyService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RequiredArgsConstructor
 @Controller
 @RequestMapping("/study")
@@ -63,7 +61,23 @@ public class StudyController {
 	}
 	
 	@RequestMapping("list")
-	public String studyBoardPage(Model m) {
+	public String studyBoardPage(Model m, HttpSession session) {
+		Member member = ((Member)session.getAttribute("loginMember"));
+		int isManager = 0; // 프론트에서 글 작성 권한 확인용 변수
+		
+		// 로그인 한 유저면, 프론트에서 글 작성 권한 확인
+		if(member != null) {
+			// 멤버가 매니저인 스터디 그룹이 있는지 조회
+			isManager = studyService.checkStudyManager(member.getMemberNo());
+		}
+		
+		// 스터디 그룹에 1개라도 매니저로 존재한다면( 글 작성 권한이 있다면 )
+		if(isManager > 0) {
+			m.addAttribute("isManager","Y");
+		} else {
+			m.addAttribute("isManager","N");
+		}
+		
 		m.addAttribute("pageName","studyBoard");
 		return "studyroom/studyBoard";
 	}
@@ -78,15 +92,49 @@ public class StudyController {
 	}
 	
 	@RequestMapping("write")
-	public String studyWritePage(Model m) {
+	public String studyWritePage(Model m, HttpSession session) {
+		int memberNo = ((Member)session.getAttribute("loginMember")).getMemberNo();
+		
+		// 멤버가 매니저인 스터디 그룹이 있는지 조회
+		int isManager = studyService.checkStudyManager(memberNo);
+		
+		// 없다면 돌려보낸다
+		if(isManager < 1) {
+			m.addAttribute("errorMsg","현재 매니저로 등록된 스터디그룹이 없습니다.");
+			return "common/errorPage";
+		}
+		
+		m.addAttribute("optional",memberNo);
 		m.addAttribute("pageName","studyWrite");
 		return "studyroom/studyWrite";
 	}
 	
 	@PostMapping("insertBoard")
 	public String insertBoard(StudyBoard board, HttpSession session) {
+		int memberNo = ((Member)session.getAttribute("loginMember")).getMemberNo();
+		boolean isManager = false; // 해당 스터디 그룹의 매니저가 맞는지 검증하는 변수
+		int result = 0; // 삽입이 정상적으로 됬는지 확인하는 변수 0 : 실패 / 1 : 성공
 		
-		return "redirect:main";
+		log.info("memberNo : {}",memberNo);
+		log.info("board : {}",board);
+		
+		if(board.getStudyNo() != null) {
+			HashMap<String, Integer> searchInfo = new HashMap<>();
+			searchInfo.put("memberNo", memberNo);
+			searchInfo.put("studyNo", board.getStudyNo());
+			isManager = studyService.isStudyMananger(searchInfo);
+		}
+		
+		if(isManager) {
+			result = studyService.insertBoard(board);	
+		}
+		
+		if(result < 1) {
+			session.setAttribute("errorMsg", "게시글 삽입에 실패했습니다.");
+			return "redirect:/error";
+		}
+		
+		return "redirect:list";
 	}
 	
 	@ResponseBody
@@ -169,6 +217,16 @@ public class StudyController {
 		jsonData.put("pageInfo", new Gson().toJson(pi));
 		
 		return new Gson().toJson(jsonData);
+	}
+	
+	@ResponseBody
+	@PostMapping(value="manageStudy", produces="application/json; charset=UTF-8")
+	public String selectManageStudy(HttpSession session) {
+		int memberNo = ((Member)session.getAttribute("loginMember")).getMemberNo();
+		// 매니저인 스터디 그룹 목록
+		ArrayList<Study> studyList = studyService.selectManagerStudy(memberNo);
+
+		return new Gson().toJson(studyList);
 	}
 	
 	//ajax로 파일 업로드

@@ -1,6 +1,7 @@
 package com.kh.T3B1.study.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +62,40 @@ public class StudyServiceImpl implements StudyService{
 	@Override
 	public StudyBoard selectBoard(int no) {
 		return studyDao.selectBoard(sqlSession, no);
+	}
+
+	@Override
+	public int checkStudyManager(int memberNo) {
+		Integer result = studyDao.checkStudyManager(sqlSession, memberNo);
+		
+		if(result == null) {
+			return 0;
+		}
+		
+		return result;
+	}
+
+	@Override
+	public ArrayList<Study> selectManagerStudy(int memberNo) {
+		return studyDao.selectManagerStudy(sqlSession, memberNo);
+	}
+
+	@Override
+	public boolean isStudyMananger(HashMap<String, Integer> searchInfo) {
+		boolean isManager = false;
+		
+		// EXISTS 결과가 조회된다면 매니저가 맞음
+		Integer result = studyDao.isStudyManager(sqlSession, searchInfo);
+		if(result != null) {
+			isManager = true;
+		}
+		
+		return isManager;
+	}
+
+	@Override
+	public int insertBoard(StudyBoard board) {
+		return studyDao.insertBoard(sqlSession, board);
 	}
 	
 }

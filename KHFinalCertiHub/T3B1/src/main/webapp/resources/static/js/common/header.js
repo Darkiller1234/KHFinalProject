@@ -45,7 +45,7 @@ function init(contextPath, pageName, optional){
             break;
 
         case "studyWrite":
-            initStudyWrite(contextPath);
+            initStudyWrite(contextPath); // 멤버 번호
             break;
 
         case "noticePage":
