@@ -17,6 +17,11 @@
     outline: none;
 }
 
+/* 게시글 내용 영역 */
+.board-content img{
+    max-width:95%;
+}
+
 /* 제출 버튼 영역 */
 .board-option{
     display: flex;
