@@ -30,55 +30,36 @@ $(document).ready(function () {
     // 자격증에 따라 종목코드를 설정하는 함수
     function getJmCd(certType) {
         switch (certType) {
-            case 'EIP':
-                return '1320'; // 정보처리기사
-            case 'EIS':
-                return '1321'; // 정보보안기사
-            case 'Cisco':
-                return '1322'; // 네트워크기사
-            case 'PEIM' :
-                return '0601'; //정보관리 기술사
-            case '3DPC' :
-                return '2177'; //3D프린터개발산업기사
-            default:
-                return '1320'; // 기본값
+            case 'EIP': return '1320'; // 정보처리기사
+            case 'EIS': return '1321'; // 정보보안기사
+            case 'Cisco': return '1322'; // 네트워크기사
+            case 'PEIM': return '0601'; // 정보관리 기술사
+            case '3DPC': return '2177'; // 3D프린터개발산업기사
+            default: return '1320'; // 기본값
         }
     }
 
     // 응답 데이터 파싱 및 일정 출력 함수
     function parseAndDisplayData(data) {
         var schedules = [];
-        var uniqueSchedules = new Set();  // 중복을 피하기 위한 Set
+        var uniqueSchedules = new Set(); // 중복을 피하기 위한 Set
 
         // 응답 데이터 구조 확인 후, 일정 항목 추출
         if (data && data.body && data.body.items) {
             var items = data.body.items;
 
             items.forEach(function (item) {
-                var docRegStartDate = item.docRegStartDt; // 필기시험 원서접수 시작일
-                var docRegEndDate = item.docRegEndDt; // 필기시험 원서접수 종료일
-                var docExamStartDate = item.docExamStartDt; // 필기시험 시작일
-                var docExamEndDate = item.docExamEndDt; // 필기시험 종료일
-                var docPassDate = item.docPassDt; // 필기 합격 발표일
-
-                var pracRegStartDate = item.pracRegStartDt; // 실기시험 원서접수 시작일
-                var pracRegEndDate = item.pracRegEndDt; // 실기시험 원서접수 종료일
-                var pracExamStartDate = item.pracExamStartDt; // 실기시험 시작일
-                var pracExamEndDate = item.pracExamEndDt; // 실기시험 종료일
-                var pracPassDate = item.pracPassDt; // 실기 합격 발표일
-
-                // 일정 데이터 배열에 추가
                 schedules.push({
-                    docRegStartDate: formatDate(docRegStartDate),
-                    docRegEndDate: formatDate(docRegEndDate),
-                    docExamStartDate: formatDate(docExamStartDate),
-                    docExamEndDate: formatDate(docExamEndDate),
-                    docPassDate: formatDate(docPassDate),
-                    pracRegStartDate: formatDate(pracRegStartDate),
-                    pracRegEndDate: formatDate(pracRegEndDate),
-                    pracExamStartDate: formatDate(pracExamStartDate),
-                    pracExamEndDate: formatDate(pracExamEndDate),
-                    pracPassDate: formatDate(pracPassDate)
+                    docRegStartDate: formatDate(item.docRegStartDt),
+                    docRegEndDate: formatDate(item.docRegEndDt),
+                    docExamStartDate: formatDate(item.docExamStartDt),
+                    docExamEndDate: formatDate(item.docExamEndDt),
+                    docPassDate: formatDate(item.docPassDt),
+                    pracRegStartDate: formatDate(item.pracRegStartDt),
+                    pracRegEndDate: formatDate(item.pracRegEndDt),
+                    pracExamStartDate: formatDate(item.pracExamStartDt),
+                    pracExamEndDate: formatDate(item.pracExamEndDt),
+                    pracPassDate: formatDate(item.pracPassDt)
                 });
             });
 
@@ -108,54 +89,74 @@ $(document).ready(function () {
 
         // 각 일정 항목을 중복 없이 출력
         schedules.forEach(function (schedule) {
-            // 필기시험 일정 체크 (접수일, 시작일, 종료일, 합격일)
-            if (isInCurrentMonth(schedule.docRegStartDate) && !uniqueSchedules.has(schedule.docRegStartDate)) {
-                var listItem1 = $('<li>').text('필기시험 원서접수 시작: ' + schedule.docRegStartDate + ' ~ 필기시험 원서접수 종료: ' + schedule.docRegEndDate);
+            // 필기시험 원서접수 기간
+            if (isInCurrentMonthRange(schedule.docRegStartDate, schedule.docRegEndDate) && !uniqueSchedules.has(schedule.docRegStartDate)) {
+                var listItem1 = $('<li>').text('필기시험 원서접수: ' + schedule.docRegStartDate + ' ~ ' + schedule.docRegEndDate);
                 scheduleList.append(listItem1);
-                uniqueSchedules.add(schedule.docRegStartDate);  // 출력된 항목 추가
-            }
-            if (isInCurrentMonth(schedule.docExamStartDate) && !uniqueSchedules.has(schedule.docExamStartDate)) {
-                var listItem2 = $('<li>').text('필기시험 시작: ' + schedule.docExamStartDate + ' ~ 필기시험 종료: ' + schedule.docExamEndDate);
-                scheduleList.append(listItem2);
-                uniqueSchedules.add(schedule.docExamStartDate);  // 출력된 항목 추가
-            }
-            if (isInCurrentMonth(schedule.docPassDate) && !uniqueSchedules.has(schedule.docPassDate)) {
-                var listItem3 = $('<li>').text('필기 합격 발표: ' + schedule.docPassDate);
-                scheduleList.append(listItem3);
-                uniqueSchedules.add(schedule.docPassDate);  // 출력된 항목 추가
+                uniqueSchedules.add(schedule.docRegStartDate);
             }
 
-            // 실기시험 일정 체크 (접수일, 시작일, 종료일, 합격일)
-            if (isInCurrentMonth(schedule.pracRegStartDate) && !uniqueSchedules.has(schedule.pracRegStartDate)) {
-                var listItem4 = $('<li>').text('실기시험 원서접수 시작: ' + schedule.pracRegStartDate + ' ~ 실기시험 원서접수 종료: ' + schedule.pracRegEndDate);
-                scheduleList.append(listItem4);
-                uniqueSchedules.add(schedule.pracRegStartDate);  // 출력된 항목 추가
+            // 필기시험 기간
+            if (isInCurrentMonthRange(schedule.docExamStartDate, schedule.docExamEndDate) && !uniqueSchedules.has(schedule.docExamStartDate)) {
+                var listItem2 = $('<li>').text('필기시험: ' + schedule.docExamStartDate + ' ~ ' + schedule.docExamEndDate);
+                scheduleList.append(listItem2);
+                uniqueSchedules.add(schedule.docExamStartDate);
             }
-            if (isInCurrentMonth(schedule.pracExamStartDate) && !uniqueSchedules.has(schedule.pracExamStartDate)) {
-                var listItem5 = $('<li>').text('실기시험 시작: ' + schedule.pracExamStartDate + ' ~ 실기시험 종료: ' + schedule.pracExamEndDate);
+
+            // 실기시험 원서접수 기간
+            if (isInCurrentMonthRange(schedule.pracRegStartDate, schedule.pracRegEndDate) && !uniqueSchedules.has(schedule.pracRegStartDate)) {
+                var listItem3 = $('<li>').text('실기시험 원서접수: ' + schedule.pracRegStartDate + ' ~ ' + schedule.pracRegEndDate);
+                scheduleList.append(listItem3);
+                uniqueSchedules.add(schedule.pracRegStartDate);
+            }
+
+            // 실기시험 기간
+            if (isInCurrentMonthRange(schedule.pracExamStartDate, schedule.pracExamEndDate) && !uniqueSchedules.has(schedule.pracExamStartDate)) {
+                var listItem4 = $('<li>').text('실기시험: ' + schedule.pracExamStartDate + ' ~ ' + schedule.pracExamEndDate);
+                scheduleList.append(listItem4);
+                uniqueSchedules.add(schedule.pracExamStartDate);
+            }
+
+            // 합격 발표일 (단일 날짜)
+            if (isInCurrentMonth(schedule.docPassDate) && !uniqueSchedules.has(schedule.docPassDate)) {
+                var listItem5 = $('<li>').text('필기 합격 발표: ' + schedule.docPassDate);
                 scheduleList.append(listItem5);
-                uniqueSchedules.add(schedule.pracExamStartDate);  // 출력된 항목 추가
+                uniqueSchedules.add(schedule.docPassDate);
             }
             if (isInCurrentMonth(schedule.pracPassDate) && !uniqueSchedules.has(schedule.pracPassDate)) {
                 var listItem6 = $('<li>').text('실기 합격 발표: ' + schedule.pracPassDate);
                 scheduleList.append(listItem6);
-                uniqueSchedules.add(schedule.pracPassDate);  // 출력된 항목 추가
+                uniqueSchedules.add(schedule.pracPassDate);
             }
         });
     }
 
-    // 날짜가 이번 달에 포함되는지 확인하는 함수
+    // 날짜가 이번 달에 포함되는지 확인하는 함수 (단일 날짜)
     function isInCurrentMonth(dateStr) {
         var date = new Date(dateStr);
         var currentMonth = new Date();
         return date.getMonth() === currentMonth.getMonth() && date.getFullYear() === currentMonth.getFullYear();
     }
 
+    // 날짜 범위가 이번 달에 포함되는지 확인하는 함수
+    function isInCurrentMonthRange(startDateStr, endDateStr) {
+        const startDate = new Date(startDateStr);
+        const endDate = new Date(endDateStr);
+        const current = new Date();
+
+        // 이번 달의 시작과 종료 날짜를 구함
+        const monthStart = new Date(current.getFullYear(), current.getMonth(), 1);
+        const monthEnd = new Date(current.getFullYear(), current.getMonth() + 1, 0);
+
+        // 시작일 또는 종료일이 이번 달과 겹치는지 확인
+        return (startDate <= monthEnd && endDate >= monthStart);
+    }
+
     // 처음 로드 시, 기본으로 정보처리기사 일정을 가져오기
-    fetchExamSchedules('EIP'); 
+    fetchExamSchedules('EIP');
 
     // 드롭다운 변경 시, 해당 자격증의 일정을 다시 불러오기
-    $('#cert-select').change(function() {
+    $('#cert-select').change(function () {
         var selectedCert = $(this).val();
         fetchExamSchedules(selectedCert);
     });
