@@ -33,6 +33,7 @@
 	 	<interceptor>
 	 		<mapping path="/mentor/likeMentor"/>
 	 		<mapping path="/study/write"/>
+	 		<mapping path="/study/manageStudy"/>
 	 		<beans:bean class="com.kh.T3B1.common.interceptor.LoginInterceptor" id="loginIntercepter" />
 	 	</interceptor>
 	 </interceptors>

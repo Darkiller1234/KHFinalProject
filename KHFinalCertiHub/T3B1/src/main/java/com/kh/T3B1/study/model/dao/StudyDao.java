@@ -1,6 +1,7 @@
 package com.kh.T3B1.study.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -54,6 +55,22 @@ public class StudyDao {
 
 	public StudyBoard selectBoard(SqlSessionTemplate sqlSession, int no) {
 		return sqlSession.selectOne("studyMapper.selectBoard", no);
+	}
+
+	public Integer checkStudyManager(SqlSessionTemplate sqlSession,int memberNo) {
+		return sqlSession.selectOne("studyMapper.checkStudyManager", memberNo);
+	}
+
+	public ArrayList<Study> selectManagerStudy(SqlSessionTemplate sqlSession, int memberNo) {
+		return (ArrayList)sqlSession.selectList("studyMapper.selectManagerStudy", memberNo);
+	}
+
+	public Integer isStudyManager(SqlSessionTemplate sqlSession, HashMap<String, Integer> searchInfo) {
+		return sqlSession.selectOne("studyMapper.isStudyManager", searchInfo);
+	}
+
+	public int insertBoard(SqlSessionTemplate sqlSession, StudyBoard board) {
+		return sqlSession.insert("studyMapper.insertBoard", board);
 	}
 	
 }

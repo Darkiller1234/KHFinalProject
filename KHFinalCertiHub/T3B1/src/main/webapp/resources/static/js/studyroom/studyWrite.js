@@ -1,4 +1,9 @@
 function initStudyWrite(contextPath){
+    initSummernote(contextPath);
+    initSelectBox(contextPath);
+}
+
+function initSummernote(contextPath){
     const summernote = $('#summernote')
 
     const fileUpload = (files) => {
@@ -47,6 +52,36 @@ function insertFile(data, callback){
         success: callback,
         error: ()=>{
             console.log("파일 업로드 api 요청 실패")
+        }
+    })
+}
+
+function initSelectBox(contextPath){
+    const selectBox = document.querySelector('#study-list');
+
+    let data = {
+        name : 'studyNo',
+        default : '스터디 그룹 선택',
+        imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
+    }
+
+    // 매니저인 스터디 그룹 목록을 동기로 불러옴
+    const onStudyLoad = (res) => {
+        data.items = res.map(item => [item.studyName, item.studyNo])
+    }
+    ajaxLoadManagerStudy(onStudyLoad)
+
+    createSelectBox(selectBox, data)
+}
+
+function ajaxLoadManagerStudy(callback){
+    $.ajax({
+        type:"post",
+        url:"manageStudy",
+        async: false, // ajax를 동기로 사용
+        success: callback,
+        error: () => {
+            console.log("스터디 목록 조회 실패")
         }
     })
 }

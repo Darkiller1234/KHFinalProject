@@ -1,3 +1,8 @@
+/* 스터디 목록 선택 부분 */
+#study-list{
+    margin-bottom:20px;
+}
+
 /* 게시글 제목 input */
 .write-section .title{
     width:100%;
@@ -20,10 +25,15 @@
 }
 
 @media (min-width: 721px) {
-
+    #study-list .custom-select{
+        width:35%;
+    }    
 }
 
 @media (min-width: 481px) and (max-width: 720px) {
+    #study-list .custom-select{
+        width:50%;
+    }    
     .board-option{
         justify-content: center;
     }
@@ -33,6 +43,9 @@
 }
 
 @media (max-width: 480px) {
+    #study-list .custom-select{
+        width:100%;
+    }    
     .board-option{
         justify-content: center;
     }
