@@ -229,6 +229,25 @@ function commuDInit(contextPath){
             addModal("로그인을 하세요.")
         }
     })
+
+
+    $("#delete-btn").on("click", function() {
+        clickDeleteBtn({cno: urlParam.get('cno')}, function(result){
+            if(result === 1){
+                location.href = "main?" + "certiNo=" + urlParam.get('certiNo');
+            }
+        })
+    });
+
+
+    $("#edit-btn").on("click", function() {
+        clickEditBtn({cno: urlParam.get('cno')}, function(result){
+            if(result === 1){
+                location.href = "edit" + "certiNo=" + urlParam.get('certiNo');
+            }
+        })
+    });
+
 }
 
 function tabChange(contextPath) {

@@ -82,4 +82,11 @@ public class CommunityDao {
 		return sqlSession.selectOne("boardMapper.selectSequence");
 	}
 
+	public int deleteBoardOne(SqlSessionTemplate sqlSession, int cno) {
+		return sqlSession.delete("boardMapper.deleteBoardOne", cno);
+	}
+
+	public int updateBoard(SqlSessionTemplate sqlSession, Board b) {
+		return sqlSession.update("boardMapper.updateBoard", b);
+	}
 }

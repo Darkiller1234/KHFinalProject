@@ -52,8 +52,8 @@
                   <p id="boardTitleP"></p>
                 </div>
                 <div>
-                  <button><img src="<%=contextPath%>/resources/static/img/button/delete.png" alt="">삭제</button>
-                  <button><img src="<%=contextPath%>/resources/static/img/button/pencil_icon.png" alt="">수정</button>
+                  <button id="delete-btn"><img src="<%=contextPath%>/resources/static/img/button/delete.png" alt="">삭제</button>
+                  <button id="edit-btn"><img src="<%=contextPath%>/resources/static/img/button/pencil_icon.png" alt="">수정</button>
                 </div>
                 
               </div>
@@ -66,8 +66,10 @@
               </div>
               <div>
                 <div>
-                  <button id="like-btn"><img src="<%=contextPath%>/resources/static/img/button/good.png" alt="">좋아요</button>
-                  <button id="hate-btn"><img src="<%=contextPath%>/resources/static/img/button/bad.png" alt="">싫어요</button>
+                  <c:if test="${loginMember.memberNo eq Bo.memberNo}">
+                    <button id="like-btn"><img src="<%=contextPath%>/resources/static/img/button/good.png" alt="">좋아요</button>
+                    <button id="hate-btn"><img src="<%=contextPath%>/resources/static/img/button/bad.png" alt="">싫어요</button>
+                  </c:if>
                 </div>
                 <button>신고</button>
               </div>

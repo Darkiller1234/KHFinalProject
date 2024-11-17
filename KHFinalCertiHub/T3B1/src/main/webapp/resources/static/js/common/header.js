@@ -79,6 +79,10 @@ function init(contextPath, pageName, optional){
         case "commuWInit":
             commuWInit(contextPath);
             break;
+
+        case "commuEInit":
+            commuEInit(contextPath);
+            break;
     }
 }
 

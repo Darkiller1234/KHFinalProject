@@ -265,4 +265,64 @@ public class CommunityController {
 		
 		return changeName;
 	}
+
+
+
+
+
+
+
+	@ResponseBody
+	@RequestMapping(value="detail/clickDeleteBtn", produces="application/json; charset-UTF-8")
+	public String ajaxClickDeleteBtn(int cno, HttpSession session) {
+		int temp = communityService.ajaxClickDeleteBtn(cno, ((Member)session.getAttribute("loginMember")).getMemberNo());
+		return new Gson().toJson(temp);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="detail/clickEditBtn", produces="application/json; charset-UTF-8")
+	public String ajaxClickEditBtn(int cno, HttpSession session) {
+		int temp = communityService.ajaxClickEditBtn(cno, ((Member)session.getAttribute("loginMember")).getMemberNo());
+		if(temp == 1){
+			session.setAttribute("cno", cno);
+		}
+		return new Gson().toJson(temp);
+	}	
+
+	@RequestMapping("edit")
+	public String CommunityEdit(int certiNo, Model c, HttpSession session) {
+		ArrayList<String> certiList = communityService.selectCertiList();
+		
+		
+		
+		session.setAttribute("licenseNo", certiNo);
+		
+		int cno = (int) session.getAttribute("cno");
+		Board temp = communityService.selectBoardOne(cno);
+
+		c.addAttribute("Bo", temp);
+		
+		c.addAttribute("pageName","commuEInit");
+		c.addAttribute("certiList", certiList);
+		c.addAttribute("certiNo", certiNo);
+		return "community/communityWrite";
+	}
+
+
+	@PostMapping("edit/board")
+	public String editBoard(Board b, Model m, HttpSession session) {
+		b.setLicenseNo((int)session.getAttribute("licenseNo"));
+		b.setMemberNo(((Member)session.getAttribute("loginMember")).getMemberNo());
+		b.setBoardNo((int)session.getAttribute("boardNo"));
+		System.out.println(b);
+		System.out.println(session.getAttribute("Bo"));
+		int result = communityService.updateBoard(b);
+		m.addAttribute("cno", result);
+		if(result == 0){
+			return "redirect:/community/main";
+		} else {
+			return "redirect:/community/detail?cno=" + result + "&certiNo=" + b.getLicenseNo();
+		}
+
+	}
 }
