@@ -14,7 +14,7 @@ window.onload = function(){
                     url:"idCheck.me",
                     data: {checkId: str},
                     success : function(result){
-                        const checkResult = document.querySelector("#checkId");
+                        const checkResult = document.querySelector("#checkResult");
                         checkResult.style.display = "block";
 
                         if(result === "NNNNN"){
@@ -35,7 +35,7 @@ window.onload = function(){
             }, 1000)
         }else {
             document.querySelector("#membershipForm button[type=submit]").disabled = true;
-            document.querySelector("#checkId").style.display = "none";
+            document.querySelector("#checkResult").style.display = "none";
         }
     }
 
