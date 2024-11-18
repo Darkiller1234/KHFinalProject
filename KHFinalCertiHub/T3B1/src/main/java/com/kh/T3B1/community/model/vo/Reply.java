@@ -8,6 +8,7 @@ public class Reply {
 	private int boardNo;
 	private int replyPNo;
 	private int memberNo;
+	private String replyContent;
 	private String status;
 	private int replyGroup;
 	private int replyDepth;

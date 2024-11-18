@@ -15,6 +15,7 @@
 		<typeAlias type="com.kh.T3B1.member.model.vo.Member" alias="Member" />
 		<typeAlias type="com.kh.T3B1.calendar.model.vo.Calendar" alias="Calendar" />
 		<typeAlias type="com.kh.T3B1.community.model.vo.Board" alias ="Board"/>
+		<typeAlias type="com.kh.T3B1.community.model.vo.Reply" alias ="Reply"/>
 		<typeAlias type="com.kh.T3B1.common.vo.License" alias ="License"/>
 		<typeAlias type="com.kh.T3B1.study.model.vo.Study" alias ="Study"/>
 		<typeAlias type="com.kh.T3B1.study.model.vo.StudyBoard" alias ="StudyBoard"/>

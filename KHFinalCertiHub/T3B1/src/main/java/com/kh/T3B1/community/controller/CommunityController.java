@@ -288,6 +288,23 @@ public class CommunityController {
 		}
 		return new Gson().toJson(temp);
 	}	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	@RequestMapping("edit")
 	public String CommunityEdit(int certiNo, Model c, HttpSession session) {
@@ -325,4 +342,10 @@ public class CommunityController {
 		}
 
 	}
+	
+	
+	
+	
+	
+	
 }
