@@ -285,9 +285,6 @@ public class StudyController {
 		int memberNo = ((Member)session.getAttribute("loginMember")).getMemberNo();
 		// 매니저인 스터디 그룹 목록
 		ArrayList<Study> studyList = studyService.selectManagerStudy(memberNo);
-
-		log.info("memberNo : {}", memberNo);
-		log.info("studyList : {}", studyList);
 		
 		return new Gson().toJson(studyList);
 	}

@@ -32,6 +32,7 @@
      <interceptors>
 	 	<interceptor>
 	 		<mapping path="/mentor/likeMentor"/>
+	 		<mapping path="/mentor/applyMentee"/>
 	 		<mapping path="/study/write"/>
 	 		<mapping path="/study/board/edit"/>
 	 		<mapping path="/study/insertBoard"/>
@@ -46,6 +47,7 @@
 	 		<mapping path="/community/detail/hateBtnClickJson"/>
 	 		<mapping path="/community/detail/likeBtnClickJson"/>
 	 		<mapping path="/community/write"/>
+	 		<mapping path="/community/detail/replyWrite"/>
 	 		<beans:bean class="com.kh.T3B1.common.interceptor.LoginInterceptor" id="loginIntercepter" />
 	 	</interceptor>
 	 </interceptors>

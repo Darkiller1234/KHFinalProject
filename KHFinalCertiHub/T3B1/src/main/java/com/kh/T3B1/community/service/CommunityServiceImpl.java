@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.community.model.dao.CommunityDao;
 import com.kh.T3B1.community.model.vo.Board;
+import com.kh.T3B1.community.model.vo.Reply;
 
 import lombok.RequiredArgsConstructor;
 
@@ -137,5 +138,20 @@ public class CommunityServiceImpl implements CommunityService{
 		} else {
 			return 0;
 		}
+	}
+
+	@Override
+	public int replySelectListCount(int cno) {
+		return communityDao.replySelectListCount(sqlSession, cno);
+	}
+
+	@Override
+	public ArrayList<Reply> selectReplyList(PageInfo pi, int cno) {
+		return communityDao.selectReplyList(sqlSession, pi, cno);
+	}
+
+	@Override
+	public int replyWrite(Reply r) {
+		return communityDao.replyWrite(sqlSession, r);
 	}
 }
