@@ -158,6 +158,42 @@ public class StudyController {
 		return "redirect:list";
 	}
 	
+	@RequestMapping("board/edit")
+	public String updateBoard(HttpSession session, Model m, int no) {
+		int memberNo = ((Member)session.getAttribute("loginMember")).getMemberNo();
+		HashMap<String, Integer> searchInfo =  new HashMap<>();
+		searchInfo.put("managerNo", memberNo);
+		searchInfo.put("boardNo", no);
+		
+		boolean isWriter = studyService.isBoardWriter(searchInfo);
+
+		if(!isWriter) {
+			session.setAttribute("errorMsg", "게시글 수정 권한이 없습니다.");
+			return "redirect:/error";
+		}
+		
+		StudyBoard studyBoard = studyService.selectBoard(no);
+		m.addAttribute("board",studyBoard);
+		m.addAttribute("pageName","studyBoardEdit");
+		return "studyroom/studyBoardEdit";
+	}
+	
+	@RequestMapping("updateBoard")
+	public String updateBoard(HttpSession session, StudyBoard board) {
+		int memberNo = ((Member)session.getAttribute("loginMember")).getMemberNo();
+		board.setManagerNo(memberNo);
+		
+		int result = studyService.updateBoard(board);
+
+		if(result < 1) {
+			session.setAttribute("errorMsg", "게시글 수정에 실패했습니다.");
+			return "redirect:/error";
+		}
+		
+		return "redirect:list";
+	}
+	
+	
 	// =========================  AJAX 요청 핸들러  ==========================
 	
 	@ResponseBody
@@ -245,10 +281,14 @@ public class StudyController {
 	@ResponseBody
 	@PostMapping(value="manageStudy", produces="application/json; charset=UTF-8")
 	public String selectManageStudy(HttpSession session) {
+		log.info("ajax 요청 도착");
 		int memberNo = ((Member)session.getAttribute("loginMember")).getMemberNo();
 		// 매니저인 스터디 그룹 목록
 		ArrayList<Study> studyList = studyService.selectManagerStudy(memberNo);
 
+		log.info("memberNo : {}", memberNo);
+		log.info("studyList : {}", studyList);
+		
 		return new Gson().toJson(studyList);
 	}
 	

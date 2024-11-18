@@ -85,5 +85,9 @@ public class StudyDao {
 	public int deleteBoard(SqlSessionTemplate sqlSession, HashMap<String, Integer> searchInfo) {
 		return sqlSession.update("studyMapper.deleteBoard", searchInfo);
 	}
+
+	public int updateBoard(SqlSessionTemplate sqlSession, StudyBoard board) {
+		return sqlSession.update("studyMapper.updateBoard", board);
+	}
 	
 }

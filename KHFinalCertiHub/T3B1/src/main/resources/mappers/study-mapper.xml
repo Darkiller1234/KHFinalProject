@@ -219,6 +219,14 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{no}
   	     SET STATUS = 'N'
   	   WHERE STUDY_BOARD_NO = #{boardNo}
   </update>
+  
+   <update id="updateBoard">
+  	  UPDATE STUDY_BOARD
+  	     SET STUDY_BOARD_TITLE = #{boardTitle},
+  	         STUDY_BOARD_CONTENT = #{boardContent}
+  	   WHERE STUDY_BOARD_NO = #{boardNo}
+  </update>
+  
 
 </mapper>
 

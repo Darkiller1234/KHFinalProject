@@ -14,6 +14,11 @@ function initButtonEvent(){
     deleteButton.onclick = () => {
         location.href = 'deleteBoard?no=' + boardNo;
     }
+
+    const editButton = document.querySelector('#editButton')
+    editButton.onclick = () => {
+        location.href = 'board/edit?no=' + boardNo;
+    }
 }
 
 function initSelectBox(contextPath){

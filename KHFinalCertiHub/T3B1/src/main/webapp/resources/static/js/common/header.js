@@ -23,7 +23,9 @@ function init(contextPath, pageName, optional){
         case "studyBoardView":
             initStudyBoardView(contextPath);
             break;
-
+        case "studyBoardEdit":
+            initStudyBoardEdit(contextPath);
+            break;
         case "managerPage":
             initManagerPage(contextPath);
             break;

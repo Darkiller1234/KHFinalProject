@@ -99,6 +99,18 @@ public class StudyServiceImpl implements StudyService{
 		
 		return isManager;
 	}
+	
+	@Override
+	public boolean isBoardWriter(HashMap<String, Integer> searchInfo) {
+		boolean result = false;
+		Integer isWriter = studyDao.isWriter(sqlSession,searchInfo);
+
+		if(isWriter != null) {
+			result = true;
+		}
+		
+		return result;
+	}
 
 	@Override
 	public int insertBoard(StudyBoard board) {
@@ -112,6 +124,22 @@ public class StudyServiceImpl implements StudyService{
 
 		if(isWriter != null) {
 			result = studyDao.deleteBoard(sqlSession, searchInfo);
+		}
+		
+		return result;
+	}
+
+	@Override
+	public int updateBoard(StudyBoard board) {
+		int result = 0;
+		HashMap<String, Integer> searchInfo = new HashMap<>();
+		searchInfo.put("managerNo", board.getManagerNo());
+		searchInfo.put("boardNo", board.getBoardNo());
+		
+		Integer isWriter = studyDao.isWriter(sqlSession,searchInfo);
+
+		if(isWriter != null) {
+			result = studyDao.updateBoard(sqlSession, board);
 		}
 		
 		return result;
