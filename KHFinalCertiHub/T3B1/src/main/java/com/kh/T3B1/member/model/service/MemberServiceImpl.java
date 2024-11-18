@@ -34,6 +34,12 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 
+	@Override
+	public int nicknameCheck(String checknickName) {
+		return memberDao.nicknameCheck(sqlSession, checknickName);
+	}
+
+
 
 
 	
