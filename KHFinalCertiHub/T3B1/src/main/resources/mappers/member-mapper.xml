@@ -177,5 +177,36 @@
 	       AND MENTOR_NO = #{mentorNo}
 	</delete>
 	
+	<select id="checkMentorValid" resultType="String">
+		SELECT MENTOR_VALID
+		  FROM MEMBER
+		 WHERE MEMBER_NO = #{mentorNo}
+	</select>
+	
+	<select id="isApplyExist" resultType="int">
+		SELECT 1
+		FROM DUAL
+		WHERE EXISTS(
+		   SELECT 1
+			 FROM APPLY_LOG
+			WHERE APPLICANT_NO = #{memberNo}
+			  AND RECIPIENT_NO = #{mentorNo}
+		)
+	</select>
+	
+	<insert id="insertApply" parameterType="HashMap">
+		INSERT INTO APPLY_LOG(
+			APPLY_NO,
+			APPLICANT_NO,
+			RECIPIENT_NO,
+			APPLY_KIND
+		) VALUES (
+			APPLY_LOG_SEQ.NEXTVAL,
+			#{memberNo},
+			#{mentorNo},
+			1
+		)
+	</insert>
+	
 </mapper>
 
