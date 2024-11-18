@@ -21,14 +21,10 @@
                     <img src="<%=contextPath%>${mentor.memberImg}" class="rounded-circle" alt="Cinque Terre">
                 </div>
                 <div class="mentor-name font-size-subtitle">${mentor.memberNickname}</div>
-                <c:choose>
-                    <c:when test="${isLiked eq 'Y'}">
-                        <div id="likeTag" class="tag bgcolor4" onclick="likeMentor()"><img src="<%=contextPath%>/resources/static/img/profile/full_heart.png">${mentor.mentorLike}</div>
-                    </c:when>
-                    <c:otherwise>
-                        <div id="likeTag" class="tag bgcolor3" onclick="likeMentor()"><img src="<%=contextPath%>/resources/static/img/profile/heart.png">${mentor.mentorLike}</div>
-                    </c:otherwise>
-                </c:choose>
+                    <div id="likeTag" class="tag"></div>
+                    <!-- <div id="likeTag" class="tag" onclick="likeMentor()"><img src="<%=contextPath%>/resources/static/img/profile/full_heart.png">${mentor.mentorLike}</div> -->
+                    <!--  <div id="likeTag" class="tag bgcolor3" onclick="likeMentor()"><img src="<%=contextPath%>/resources/static/img/profile/heart.png">${mentor.mentorLike}</div> -->
+
                 <div class="symbol-license">${mentor.symbolLicense}</div>
                 <div class="member-intro font-size-footer">${mentor.memberIntro}</div>
                 <c:choose>
