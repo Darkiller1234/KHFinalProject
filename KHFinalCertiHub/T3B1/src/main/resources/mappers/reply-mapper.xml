@@ -17,6 +17,9 @@
 		<result column="REPLY_DEPTH" property="replyDepth" />
 		<result column="REPLY_ORDER" property="replyOrder" />
 		<result column="CHILD_COUNT" property="childCount" />
+		<result column="MEMBER_NICKNAME" property="memberNickname" />
+		<result column="MEMBER_IMG" property="memberImg" />
+		
 	</resultMap>
 
   <!-- 댓글 총 갯수 조회 -->
@@ -31,14 +34,26 @@
   
   
   <!-- 댓글 목록 조회 -->
-  <select id="selectList" parameterType="Reply"  resultMap="replyResult">
-  	SELECT *
+  <select id="selectList"  resultMap="replyResult">
+  	SELECT R.REPLY_NO,
+			R.BOARD_NO,
+			R.REPLY_PNO,
+			R.MEMBER_NO,
+			R.REPLY_CONTENT,
+			R.STATUS,
+			R.REPLY_GROUP,
+			R.REPLY_DEPTH,
+			R.REPLY_ORDER,
+			R.CHILD_COUNT,
+			M.MEMBER_NICKNAME,
+			M.MEMBER_IMG
   	  FROM REPLY R
+  	  JOIN MEMBER M ON (R.MEMBER_NO = M.MEMBER_NO)
   	 <where>
-  	 	STATUS = 'Y'
-  	 	AND BOARD_NO = #{boardNo}
+  	 	R.STATUS = 'Y'
+  	 	AND R.BOARD_NO = #{boardNo}
   	 </where> 
-  	 ORDER BY REPLY_NO DESC
+  	 ORDER BY REPLY_NO ASC
   </select>
   
 
@@ -46,11 +61,21 @@
 	  <insert id="insertReply" parameterType="Reply">
 	  	INSERT
 	  		INTO REPLY
+	  		(
+	  		REPLY_NO,
+			BOARD_NO,
+			MEMBER_NO,
+			REPLY_CONTENT,
+			STATUS,
+			REPLY_GROUP,
+			REPLY_DEPTH,
+			REPLY_ORDER,
+			CHILD_COUNT
+	  		)
 	  		VALUES
 	  		(
 	  			REPLY_SEQ.NEXTVAL,
 	  			#{boardNo},
-	  			#{replyPNo},
 	  			#{memberNo},
 	  			#{replyContent},
 	  			'Y',

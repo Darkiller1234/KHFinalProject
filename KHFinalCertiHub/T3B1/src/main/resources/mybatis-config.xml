@@ -30,6 +30,7 @@
 		<mapper resource="mappers/member-mapper.xml" />
 		<mapper resource="mappers/calendar-mapper.xml"/>
 		<mapper resource="mappers/board-mapper.xml"/>
+		<mapper resource="mappers/reply-mapper.xml"/>
 		<mapper resource="mappers/common-mapper.xml"/>
 		<mapper resource="mappers/search-mapper.xml"/>
 		<mapper resource="mappers/study-mapper.xml"/>

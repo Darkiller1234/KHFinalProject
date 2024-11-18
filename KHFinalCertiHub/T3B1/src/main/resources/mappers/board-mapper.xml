@@ -330,6 +330,7 @@
 	  			MEMBER_NO,
 	  			BOARD_TITLE,
 	  			BOARD_CONTENT,
+	  			BOARD_DATE,
 	  			STATUS
 	  		)
 	  		VALUES
@@ -340,6 +341,7 @@
 	  			#{memberNo},
 	  			#{boardTitle},
 	  			#{boardContent},
+	  			SYSDATE,
 	  			'Y'
 	  		)
 	  		

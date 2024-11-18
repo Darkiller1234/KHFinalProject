@@ -14,4 +14,6 @@ public class Reply {
 	private int replyDepth;
 	private int replyOrder;
 	private int childCount;
+	private String memberNickname;
+	private String memberImg;
 }

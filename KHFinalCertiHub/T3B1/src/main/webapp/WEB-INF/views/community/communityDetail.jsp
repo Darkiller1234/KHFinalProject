@@ -91,7 +91,7 @@
                   </div>
                 </div>
               </div>
-              <div class="pagination">
+              <div class="pagination" id="reply-pagination">
                 <span class="page-num">1</span>
                 <span class="page-num active">2</span>
                 <span class="page-arrow">></span>
@@ -99,10 +99,14 @@
                 <script>
                   console.log('${loginMember.memberNo}')
                 </script>
-              <form action="">
+              <form class="reply-section" method="post" action="detail/replyWrite">
                 <div class="reply-write">
-                  <textarea id="reply-write-area" placeholder="댓은 거울"></textarea>
-                  <button id="reply-write-btn"><img src="<%=contextPath%>/resources/static/img/button/Vector.png" alt=""><span class="font-size-subtitle">작성</span></button>
+                  <textarea id="reply-write-area" <c:if test="${loginMember != null}">placeholder="댓은 거울"</c:if> name="replyContent" <c:if test="${loginMember == null}">disabled placeholder="로그인 후 이용가능"</c:if>></textarea>
+                  <c:if test="${loginMember != null}">
+                    <input type="hidden" name="cno" value="${cno}">
+                    <input type="hidden" name="certiNo" value="${certiNo}">
+                    <button id="reply-write-btn"><img src="<%=contextPath%>/resources/static/img/button/Vector.png" alt=""><span class="font-size-subtitle">작성</span></button>
+                  </c:if>
                 </div>
               </form>
               
