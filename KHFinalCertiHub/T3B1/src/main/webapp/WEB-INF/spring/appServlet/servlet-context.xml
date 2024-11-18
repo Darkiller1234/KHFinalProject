@@ -46,6 +46,7 @@
 	 		<mapping path="/community/detail/hateBtnClickJson"/>
 	 		<mapping path="/community/detail/likeBtnClickJson"/>
 	 		<mapping path="/community/write"/>
+	 		<mapping path="/community/detail/replyWrite"/>
 	 		<beans:bean class="com.kh.T3B1.common.interceptor.LoginInterceptor" id="loginIntercepter" />
 	 	</interceptor>
 	 </interceptors>

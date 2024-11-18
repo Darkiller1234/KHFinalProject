@@ -103,3 +103,25 @@ function clickEditBtn(data, callback){
         }
     })
 }
+
+function replyList(data, callback){
+    $.ajax({
+        url:"detail/replyList",
+        data: data,
+        success: callback,
+        error: function(res){
+            console.log("댓글 불러오기 ajax 오류");
+        }
+    })
+}
+
+function replyPaging(data, callback){
+    $.ajax({
+        url:"detail/replyPaging",
+        data: data,
+        success: callback,
+        error: function(res){
+            console.log("페이징 정보 불러오기 ajax 오류");
+        }
+    })  
+}

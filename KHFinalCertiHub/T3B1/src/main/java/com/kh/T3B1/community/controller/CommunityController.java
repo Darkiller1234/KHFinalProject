@@ -22,6 +22,7 @@ import com.google.gson.Gson;
 import com.kh.T3B1.common.template.Template;
 import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.community.model.vo.Board;
+import com.kh.T3B1.community.model.vo.Reply;
 import com.kh.T3B1.community.service.CommunityService;
 import com.kh.T3B1.member.model.vo.Member;
 
@@ -288,6 +289,69 @@ public class CommunityController {
 		}
 		return new Gson().toJson(temp);
 	}	
+	
+	
+	
+	@ResponseBody
+	@RequestMapping(value="detail/replyList", produces="application/json; charset-UTF-8")
+	public String ajaxReplyList(int cno, int cpage, HttpSession session) {
+		int count = communityService.replySelectListCount(cno);
+		if(cpage <= 0) {
+			cpage = Template.getPageInfo(count, 1, 10, 5).getMaxPage();
+		}
+		PageInfo pi = Template.getPageInfo(count, cpage, 10, 5);
+		
+		ArrayList<Reply> list = communityService.selectReplyList(pi, cno);
+		System.out.println(list);
+		return new Gson().toJson(list);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="detail/replyPaging", produces="application/json; charset-UTF-8")
+	public String ajaxReplyPaging(int cno, int cpage, HttpSession session) {
+		int count = communityService.replySelectListCount(cno);
+		if(cpage <= 0) {
+			cpage = Template.getPageInfo(count, 1, 10, 5).getMaxPage();
+		}
+		PageInfo pi = Template.getPageInfo(count, cpage, 10, 5);
+		
+		return new Gson().toJson(pi);
+	}
+	
+	
+	
+	@PostMapping("detail/replyWrite")
+	public String replyWrite(String replyContent, int certiNo, int cno, Model m, HttpSession session) {
+		Member member = (Member) session.getAttribute("loginMember");
+		
+		Reply r = new Reply();
+		r.setBoardNo(cno);
+		r.setReplyPNo(0);
+		r.setMemberNo(member.getMemberNo());
+		r.setReplyContent(replyContent);
+		r.setReplyGroup(0);
+		r.setReplyOrder(0);
+		r.setChildCount(0);
+		
+		int result = communityService.replyWrite(r);
+		
+		
+		
+		return "redirect:/community/detail?cno=" + cno + "&certiNo=" + certiNo;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	@RequestMapping("edit")
 	public String CommunityEdit(int certiNo, Model c, HttpSession session) {
@@ -325,4 +389,10 @@ public class CommunityController {
 		}
 
 	}
+	
+	
+	
+	
+	
+	
 }
