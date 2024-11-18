@@ -83,8 +83,13 @@ public class StudyController {
 	}
 	
 	@RequestMapping("board")
-	public String studyBoardViewPage(Model m, int no) {
+	public String studyBoardViewPage(HttpSession session, Model m, int no) {
 		StudyBoard studyBoard = studyService.selectBoard(no);
+		
+		if(studyBoard == null) {
+			session.setAttribute("errorMsg", "게시글 조회에 실패했습니다.");
+			return "redirect:/error";
+		}
 		
 		m.addAttribute("board",studyBoard);
 		m.addAttribute("pageName","studyBoardView");
@@ -100,11 +105,10 @@ public class StudyController {
 		
 		// 없다면 돌려보낸다
 		if(isManager < 1) {
-			m.addAttribute("errorMsg","현재 매니저로 등록된 스터디그룹이 없습니다.");
-			return "common/errorPage";
+			session.setAttribute("errorMsg","현재 매니저로 등록된 스터디그룹이 없습니다.");
+			return "redirect:/errorPage";
 		}
-		
-		m.addAttribute("optional",memberNo);
+
 		m.addAttribute("pageName","studyWrite");
 		return "studyroom/studyWrite";
 	}
@@ -136,6 +140,25 @@ public class StudyController {
 		
 		return "redirect:list";
 	}
+	
+	@RequestMapping("deleteBoard")
+	public String deleteBoard(HttpSession session, int no) {
+		int memberNo = ((Member)session.getAttribute("loginMember")).getMemberNo();
+		HashMap<String, Integer> searchInfo =  new HashMap<>();
+		searchInfo.put("managerNo", memberNo);
+		searchInfo.put("boardNo", no);
+		
+		int result = studyService.deleteBoard(searchInfo);
+
+		if(result < 1) {
+			session.setAttribute("errorMsg", "게시글 삭제에 실패했습니다.");
+			return "redirect:/error";
+		}
+		
+		return "redirect:list";
+	}
+	
+	// =========================  AJAX 요청 핸들러  ==========================
 	
 	@ResponseBody
 	@RequestMapping(value="studyList", produces="application/json; charset=UTF-8")

@@ -47,4 +47,7 @@ public interface StudyService {
 	// 스터디 그룹 홍보 게시글 삽입
 	int insertBoard(StudyBoard board);
 
+	// 게시글 삭제(소프트 삭제)
+	int deleteBoard(HashMap<String, Integer> searchInfo);
+
 }

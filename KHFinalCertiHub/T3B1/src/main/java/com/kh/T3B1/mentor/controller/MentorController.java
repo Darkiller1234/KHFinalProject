@@ -40,11 +40,8 @@ public class MentorController {
 		int mentorNo = no;
 		
 		Member mentor = mentorService.selectMentorDetail(mentorNo);
-		int mentorLike = mentorService.countMentorLike(mentorNo);
-		mentor.setMentorLike(mentorLike);
 		
 		Member member = (Member)session.getAttribute("loginMember");
-		
 		if(member != null) {
 			m.addAttribute("optional","Y");
 		} else {

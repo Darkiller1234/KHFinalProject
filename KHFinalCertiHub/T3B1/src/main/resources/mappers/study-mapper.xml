@@ -134,13 +134,19 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{no}
 		VIEW_COUNT ,
 		TO_CHAR(STUDY_BOARD_DATE,'YYYY-MM-DD') AS STUDY_BOARD_DATE
 	FROM STUDY_BOARD SB
-	INNER JOIN STUDY S ON(SB.STUDY_NO = S.STUDY_NO)
+	INNER JOIN STUDY S ON(SB.STUDY_NO = S.STUDY_NO) AND STATUS ='Y'
 	<if test="keyword != null">
 		AND STUDY_BOARD_TITLE LIKE '%' || #{keyword} || '%'
 	</if>
 	INNER JOIN MEMBER M ON(S.MANAGER_NO = M.MEMBER_NO)
-	ORDER BY STUDY_BOARD_DATE DESC
+	ORDER BY SB.STUDY_BOARD_DATE DESC
   </select>
+  
+  <update id="increaseView">
+	UPDATE STUDY_BOARD
+	SET VIEW_COUNT = VIEW_COUNT + 1
+	WHERE STUDY_BOARD_NO = #{no}
+  </update>
   
   <select id="selectBoard" resultMap="BoardResultSet">
   	SELECT STUDY_BOARD_NO ,
@@ -195,6 +201,24 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{no}
 		    #{boardContent}
 		)
   </insert>
+  
+   <select id="isWriter" resultType="int">
+		SELECT 1 
+		  FROM DUAL 
+		 WHERE EXISTS(
+		   SELECT 1
+		     FROM STUDY_BOARD SB
+       INNER JOIN STUDY S ON (SB.STUDY_NO = S.STUDY_NO) 
+              AND SB.STUDY_BOARD_NO = #{boardNo}
+              AND S.MANAGER_NO = #{managerNo}
+		)
+  </select>
+  
+  <update id="deleteBoard">
+  	  UPDATE STUDY_BOARD
+  	     SET STATUS = 'N'
+  	   WHERE STUDY_BOARD_NO = #{boardNo}
+  </update>
 
 </mapper>
 
