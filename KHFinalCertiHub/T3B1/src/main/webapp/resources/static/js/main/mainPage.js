@@ -21,7 +21,7 @@ $(document).ready(function () {
                 console.log(data);  // 응답 데이터 확인
                 parseAndDisplayData(data);  // 데이터를 파싱하고 출력하는 함수 호출
             },
-            error: function (xhr, status, error) {
+            error: function (error) {
                 console.error("API 호출 실패:", error);
             }
         });
