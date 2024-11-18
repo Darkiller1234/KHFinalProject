@@ -1,6 +1,6 @@
 /* PC 환경과 모바일 공통 */
 .wrapper {
-    margin: 5%;
+    margin: 0 auto;
     padding: 5%;
     border: 0 none;
     background: #EDF6F9;
