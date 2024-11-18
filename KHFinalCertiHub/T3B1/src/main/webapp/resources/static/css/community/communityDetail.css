@@ -617,3 +617,7 @@ footer {
 .reply-write-active {
     display: block !important;
 }
+
+#boardContentP img{
+    max-width: 100%;
+}
