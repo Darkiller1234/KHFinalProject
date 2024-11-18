@@ -305,7 +305,7 @@ public class CommunityController {
 		c.addAttribute("pageName","commuEInit");
 		c.addAttribute("certiList", certiList);
 		c.addAttribute("certiNo", certiNo);
-		return "community/communityWrite";
+		return "community/communityEdit";
 	}
 
 
@@ -313,7 +313,7 @@ public class CommunityController {
 	public String editBoard(Board b, Model m, HttpSession session) {
 		b.setLicenseNo((int)session.getAttribute("licenseNo"));
 		b.setMemberNo(((Member)session.getAttribute("loginMember")).getMemberNo());
-		b.setBoardNo((int)session.getAttribute("boardNo"));
+		b.setBoardNo((int)session.getAttribute("cno"));
 		System.out.println(b);
 		System.out.println(session.getAttribute("Bo"));
 		int result = communityService.updateBoard(b);
