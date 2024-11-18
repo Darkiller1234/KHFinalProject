@@ -1,7 +1,6 @@
 package com.kh.T3B1.community.model.dao;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
@@ -10,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.community.model.vo.Board;
+import com.kh.T3B1.community.model.vo.Reply;
 
 @Repository
 public class CommunityDao {
@@ -83,10 +83,26 @@ public class CommunityDao {
 	}
 
 	public int deleteBoardOne(SqlSessionTemplate sqlSession, int cno) {
-		return sqlSession.delete("boardMapper.deleteBoardOne", cno);
+		return sqlSession.update("boardMapper.deleteBoard", cno);
 	}
 
 	public int updateBoard(SqlSessionTemplate sqlSession, Board b) {
 		return sqlSession.update("boardMapper.updateBoard", b);
+	}
+
+	public int replySelectListCount(SqlSessionTemplate sqlSession, int cno) {
+		return sqlSession.selectOne("replyMapper.selectListCount", cno);
+	}
+
+	public ArrayList<Reply> selectReplyList(SqlSessionTemplate sqlSession, PageInfo pi, int cno) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("replyMapper.selectList", cno, rowBounds);
+	}
+
+	public int replyWrite(SqlSessionTemplate sqlSession, Reply r) {
+		
+		return sqlSession.insert("replyMapper.insertReply", r);
 	}
 }

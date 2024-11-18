@@ -329,7 +329,9 @@
 	  			LICENSE_NO,
 	  			MEMBER_NO,
 	  			BOARD_TITLE,
-	  			BOARD_CONTENT
+	  			BOARD_CONTENT,
+	  			BOARD_DATE,
+	  			STATUS
 	  		)
 	  		VALUES
 	  		(
@@ -338,7 +340,9 @@
 	  			#{licenseNo},
 	  			#{memberNo},
 	  			#{boardTitle},
-	  			#{boardContent}
+	  			#{boardContent},
+	  			SYSDATE,
+	  			'Y'
 	  		)
 	  		
 	  
@@ -351,10 +355,12 @@
 	  	FROM DUAL
 	  </select>
 
-	  <delete id="deleteBoardOne">
-	  	DELETE FROM BOARD
+	  <update id="deleteBoard">
+	  	UPDATE BOARD
+	  	SET
+	  	STATUS = 'N'
 		 WHERE BOARD_NO = #{cno}
-	  </delete>
+	  </update>
 
 	<!-- 글 수정 -->
 	<update id="updateBoard" parameterType="Board">
