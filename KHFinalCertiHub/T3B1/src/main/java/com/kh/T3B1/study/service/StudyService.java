@@ -43,8 +43,17 @@ public interface StudyService {
 
 	// 멤버가 스터디그룹 매니저인지 검사
 	boolean isStudyMananger(HashMap<String, Integer> searchInfo);
+	
+	// 홍보 게시판 게시글 작성자 본인인지 확인
+	boolean isBoardWriter(HashMap<String, Integer> searchInfo);
 
 	// 스터디 그룹 홍보 게시글 삽입
 	int insertBoard(StudyBoard board);
+
+	// 게시글 삭제(소프트 삭제)
+	int deleteBoard(HashMap<String, Integer> searchInfo);
+
+	// 게시글 수정
+	int updateBoard(StudyBoard board);
 
 }
