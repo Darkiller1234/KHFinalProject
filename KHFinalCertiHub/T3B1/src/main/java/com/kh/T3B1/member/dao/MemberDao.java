@@ -20,6 +20,10 @@ public class MemberDao {
 	public Member loginMember(SqlSessionTemplate sqlSession, Member m) {
 		return sqlSession.selectOne("memberMapper.loginMember", m);
 	}
+
+	public int nicknameCheck(SqlSessionTemplate sqlSession, String checknickName) {
+		return sqlSession.selectOne("memberMapper.nicknameCheck", checknickName);
+	}
 	
 	
 

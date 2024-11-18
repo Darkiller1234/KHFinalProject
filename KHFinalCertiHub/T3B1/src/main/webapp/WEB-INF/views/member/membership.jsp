@@ -44,7 +44,7 @@ crossorigin="anonymous">
                     <div style="display: flex; gap: 10px;">
                         <input type="text" class="form-control" id="memberId" placeholder="아이디 입력" name="memberId" required>
                     </div>
-                    <div id="checkResult" style="font-size:0.7em; display:none;"></div>
+                    <div id="checkResultId" style="font-size:0.7em; display:none;"></div>
                     <span class="error-msg" id="memberIdError"></span>
 
                     <label for="memberPwd">* 비밀번호</label>
@@ -60,6 +60,7 @@ crossorigin="anonymous">
 
                     <label for="memberNickname">* 닉네임</label>
                     <input type="text" class="form-control" id="memberNickname" placeholder="닉네임 입력" name="memberNickname" required>
+                    <div id="checkResultnickName" style="font-size:0.7em; display:none;"></div>
                     <span class="error-msg" id="nickNameError"></span>
 
                     <label for="email">* 이메일</label>
