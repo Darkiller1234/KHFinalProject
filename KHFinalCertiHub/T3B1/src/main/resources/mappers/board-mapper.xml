@@ -329,7 +329,8 @@
 	  			LICENSE_NO,
 	  			MEMBER_NO,
 	  			BOARD_TITLE,
-	  			BOARD_CONTENT
+	  			BOARD_CONTENT,
+	  			STATUS
 	  		)
 	  		VALUES
 	  		(
@@ -338,7 +339,8 @@
 	  			#{licenseNo},
 	  			#{memberNo},
 	  			#{boardTitle},
-	  			#{boardContent}
+	  			#{boardContent},
+	  			'Y'
 	  		)
 	  		
 	  

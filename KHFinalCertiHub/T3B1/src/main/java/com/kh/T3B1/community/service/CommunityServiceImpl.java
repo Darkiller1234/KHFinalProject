@@ -138,4 +138,14 @@ public class CommunityServiceImpl implements CommunityService{
 			return 0;
 		}
 	}
+
+	@Override
+	public int replySelectListCount(int cno) {
+		return communityDao.replySelectListCount(sqlSession, cno);
+	}
+
+	@Override
+	public ArrayList<Board> selectReplyList(PageInfo pi, int cno) {
+		return communityDao.selectReplyList(sqlSession, pi, cno);
+	}
 }

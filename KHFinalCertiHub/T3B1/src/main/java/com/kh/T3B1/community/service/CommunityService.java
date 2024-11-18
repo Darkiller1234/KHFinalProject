@@ -43,4 +43,8 @@ public interface CommunityService {
 	int ajaxClickEditBtn(int cno, int memberNo);
 
 	int updateBoard(Board b);
+
+	int replySelectListCount(int cno);
+
+	ArrayList<Board> selectReplyList(PageInfo pi, int cno);
 }

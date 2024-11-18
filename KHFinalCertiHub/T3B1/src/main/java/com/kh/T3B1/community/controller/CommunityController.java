@@ -291,7 +291,14 @@ public class CommunityController {
 	
 	
 	
-	
+	@ResponseBody
+	@RequestMapping(value="detail/replyList", produces="application/json; charset-UTF-8")
+	public String ajaxReplyList(int cno, int cpage, HttpSession session) {
+		int count = communityService.replySelectListCount(cno);
+		PageInfo pi = Template.getPageInfo(count, cpage, 10, 5);
+		
+		ArrayList<Board> list = communityService.selectReplyList(pi, cno);
+	}
 	
 	
 	

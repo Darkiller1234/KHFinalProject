@@ -89,4 +89,14 @@ public class CommunityDao {
 	public int updateBoard(SqlSessionTemplate sqlSession, Board b) {
 		return sqlSession.update("boardMapper.updateBoard", b);
 	}
+
+	public int replySelectListCount(SqlSessionTemplate sqlSession, int cno) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("replyMapper.selectListCount", cno);
+	}
+
+	public ArrayList<Board> selectReplyList(SqlSessionTemplate sqlSession, PageInfo pi, int cno) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
