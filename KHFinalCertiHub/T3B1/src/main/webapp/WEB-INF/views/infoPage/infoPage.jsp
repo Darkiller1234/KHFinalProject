@@ -6,6 +6,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>InfoPage</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script type="text/javascript"
             src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2a40239e8b746b411bf4057c27e822e9&libraries=services"></script>
         <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
@@ -284,9 +285,39 @@
                                 <div class="accordion-content">
                                     <h5>장소검색</h5>
                                     <div class="region">
-                                        <div class="si-select"></div>
-                                        <div class="AreaList"></div>
-                                    </div> <br><br>
+                                        <select id="areaSelect" class="si-select">
+                                            <option value="">지역 선택</option>
+                                            <option value="본부">본부</option>
+                                            <option value="서울">서울</option>
+                                            <option value="서부">서부</option>
+                                            <option value="부산">부산</option>
+                                            <option value="남부">남부</option>
+                                            <option value="대구">대구</option>
+                                            <option value="인천">인천</option>
+                                            <option value="광주">광주</option>
+                                            <option value="충남">충남</option>
+                                            <option value="울산">울산</option>
+                                            <option value="경기">경기</option>
+                                            <option value="강원">강원</option>
+                                            <option value="충북">충북</option>
+                                            <option value="대전">대전</option>
+                                            <option value="전북">전북</option>
+                                            <option value="전남">전남</option>
+                                            <option value="경북">경북</option>
+                                            <option value="경남">경남</option>
+                                            <option value="제주">제주</option>
+                                            <option value="강원동부">강원동부</option>
+                                            <option value="전남서부">전남서부</option>
+                                            <option value="부산남부">부산남부</option>
+                                            <option value="경북동부">경북동부</option>
+                                            <option value="경기북부">경기북부</option>
+                                            <option value="경기동부">경기동부</option>
+                                        </select>
+                                        <ul id="areaList"></ul>
+                                            <!-- API로 불러온 데이터가 여기에 추가될 예정 -->
+                                        </ul>
+                                    </div>
+                                     <br><br>
                                     <div class="map_wrap">
                                         <button class="map-btn" onclick="relayout()">지도 호출하기</button>
                                         <div id="map"></div>
@@ -336,7 +367,6 @@
                                                     <td rowspan="2">맑음 <br>10%</td>
                                                 </tr>
                                                 <tr>
-
                                                     <td>구름많음 <br>20% </td>
                                                     <td>구름많음 <br>20% </td>
                                                     <td>구름많음 <br>20% </td>
@@ -353,7 +383,6 @@
 
                                         </table>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -368,6 +397,7 @@
             </div>
             <script src="<%=contextPath%>/resources/static/js/infopage/infoPage.js"></script>
             <script src="<%=contextPath%>/resources/static/js/infopage/map.js"></script>
+            <script src="<%=contextPath%>/resources/static/js/infopage/area.js"></script>
             <%@ include file="../common/footer.jsp" %>
     </body>
 
