@@ -9,7 +9,7 @@ function init(contextPath, pageName, optional){
             initMentorSearch(contextPath); // optional : 자격증 목록
             break;
         case "mentorDetail":
-            initMentorDetail(contextPath);
+            initMentorDetail(contextPath, optional); // optional : 로그인 여부
             break;
         case "studyDetail":
             initStudyDetail(contextPath);
@@ -23,7 +23,9 @@ function init(contextPath, pageName, optional){
         case "studyBoardView":
             initStudyBoardView(contextPath);
             break;
-
+        case "studyBoardEdit":
+            initStudyBoardEdit(contextPath);
+            break;
         case "managerPage":
             initManagerPage(contextPath);
             break;
@@ -78,6 +80,10 @@ function init(contextPath, pageName, optional){
 
         case "commuWInit":
             commuWInit(contextPath);
+            break;
+
+        case "commuEInit":
+            commuEInit(contextPath);
             break;
     }
 }

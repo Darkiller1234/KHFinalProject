@@ -32,11 +32,11 @@
     <div class="option">
         <c:choose>
             <c:when test="${loginMember.memberNo eq board.managerNo}">
-                <button class="delete btn-primary">
+                <button id="deleteButton" type="button" class="delete btn-primary">
                     <img src="${pageContext.request.contextPath}/resources/static/img/button/trash_icon.png">
                     삭제
                 </button>
-                <button class="modify btn-primary">
+                <button id="editButton" class="modify btn-primary">
                     <img src="${pageContext.request.contextPath}/resources/static/img/button/scissors_icon.png">
                     수정
                 </button>

@@ -27,13 +27,25 @@
 
 	 <!-- @Aspect 및 하위 어노테이션 활성화 -->
      <aop:aspectj-autoproxy/>
-     
+
      <!-- 인터셉터 등록 -->
      <interceptors>
 	 	<interceptor>
 	 		<mapping path="/mentor/likeMentor"/>
 	 		<mapping path="/study/write"/>
+	 		<mapping path="/study/board/edit"/>
+	 		<mapping path="/study/insertBoard"/>
+	 		<mapping path="/study/deleteBoard"/>
 	 		<mapping path="/study/manageStudy"/>
+	 		<mapping path="/community/edit/board"/>
+	 		<mapping path="/community/edit"/>
+	 		<mapping path="/community/detail/clickEditBtn"/>
+	 		<mapping path="/community/detail/clickDeleteBtn"/>
+	 		<mapping path="/community/write/upload"/>
+	 		<mapping path="/community/write/board"/>
+	 		<mapping path="/community/detail/hateBtnClickJson"/>
+	 		<mapping path="/community/detail/likeBtnClickJson"/>
+	 		<mapping path="/community/write"/>
 	 		<beans:bean class="com.kh.T3B1.common.interceptor.LoginInterceptor" id="loginIntercepter" />
 	 	</interceptor>
 	 </interceptors>

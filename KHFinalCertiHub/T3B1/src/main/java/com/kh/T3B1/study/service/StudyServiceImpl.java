@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.T3B1.common.vo.PageInfo;
@@ -15,7 +14,9 @@ import com.kh.T3B1.study.model.vo.Study;
 import com.kh.T3B1.study.model.vo.StudyBoard;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class StudyServiceImpl implements StudyService{
@@ -61,6 +62,12 @@ public class StudyServiceImpl implements StudyService{
 
 	@Override
 	public StudyBoard selectBoard(int no) {
+		int result = studyDao.increaseView(sqlSession, no);
+		
+		if(result < 0) {
+			return null;
+		}
+		
 		return studyDao.selectBoard(sqlSession, no);
 	}
 
@@ -92,10 +99,50 @@ public class StudyServiceImpl implements StudyService{
 		
 		return isManager;
 	}
+	
+	@Override
+	public boolean isBoardWriter(HashMap<String, Integer> searchInfo) {
+		boolean result = false;
+		Integer isWriter = studyDao.isWriter(sqlSession,searchInfo);
+
+		if(isWriter != null) {
+			result = true;
+		}
+		
+		return result;
+	}
 
 	@Override
 	public int insertBoard(StudyBoard board) {
 		return studyDao.insertBoard(sqlSession, board);
+	}
+
+	@Override
+	public int deleteBoard(HashMap<String, Integer> searchInfo) {
+		int result = 0;
+		Integer isWriter = studyDao.isWriter(sqlSession,searchInfo);
+
+		if(isWriter != null) {
+			result = studyDao.deleteBoard(sqlSession, searchInfo);
+		}
+		
+		return result;
+	}
+
+	@Override
+	public int updateBoard(StudyBoard board) {
+		int result = 0;
+		HashMap<String, Integer> searchInfo = new HashMap<>();
+		searchInfo.put("managerNo", board.getManagerNo());
+		searchInfo.put("boardNo", board.getBoardNo());
+		
+		Integer isWriter = studyDao.isWriter(sqlSession,searchInfo);
+
+		if(isWriter != null) {
+			result = studyDao.updateBoard(sqlSession, board);
+		}
+		
+		return result;
 	}
 	
 }

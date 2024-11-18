@@ -48,6 +48,19 @@ public class MembershipController {
 		}
 	}
 	
+	@ResponseBody
+	@RequestMapping("nicknameCheck.me")
+	public String nicknameCheck(String checknickName) {
+		int result = memberService.nicknameCheck(checknickName);
+		
+		if(result > 0) {
+			return "NN";
+		}else {
+			return "NY";
+		}
+	}
+	
+	
 
 	@RequestMapping("join")
 	public String membershipPage(Member m, HttpSession session, Model model) {

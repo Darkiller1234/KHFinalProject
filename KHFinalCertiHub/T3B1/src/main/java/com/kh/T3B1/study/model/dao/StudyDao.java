@@ -52,6 +52,11 @@ public class StudyDao {
 		
 		return (ArrayList)sqlSession.selectList("studyMapper.selectBoardList", so, rowBounds);
 	}
+	
+
+	public Integer increaseView(SqlSessionTemplate sqlSession, int no) {
+		return sqlSession.update("studyMapper.increaseView",no);
+	}
 
 	public StudyBoard selectBoard(SqlSessionTemplate sqlSession, int no) {
 		return sqlSession.selectOne("studyMapper.selectBoard", no);
@@ -71,6 +76,18 @@ public class StudyDao {
 
 	public int insertBoard(SqlSessionTemplate sqlSession, StudyBoard board) {
 		return sqlSession.insert("studyMapper.insertBoard", board);
+	}
+
+	public Integer isWriter(SqlSessionTemplate sqlSession, HashMap<String, Integer> searchInfo) {
+		return sqlSession.selectOne("studyMapper.isWriter", searchInfo);
+	}
+
+	public int deleteBoard(SqlSessionTemplate sqlSession, HashMap<String, Integer> searchInfo) {
+		return sqlSession.update("studyMapper.deleteBoard", searchInfo);
+	}
+
+	public int updateBoard(SqlSessionTemplate sqlSession, StudyBoard board) {
+		return sqlSession.update("studyMapper.updateBoard", board);
 	}
 	
 }

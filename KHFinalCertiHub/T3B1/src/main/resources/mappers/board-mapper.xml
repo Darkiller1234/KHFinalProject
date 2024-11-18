@@ -350,6 +350,21 @@
 	  	SELECT BOARD_SEQ.CURRVAL
 	  	FROM DUAL
 	  </select>
+
+	  <delete id="deleteBoardOne">
+	  	DELETE FROM BOARD
+		 WHERE BOARD_NO = #{cno}
+	  </delete>
+
+	<!-- 글 수정 -->
+	<update id="updateBoard" parameterType="Board">
+		UPDATE BOARD
+		SET
+		BOARD_TITLE = #{boardTitle},
+		BOARD_CONTENT = #{boardContent}
+		WHERE
+		BOARD_NO = #{boardNo}
+	</update>
 </mapper>
 
 

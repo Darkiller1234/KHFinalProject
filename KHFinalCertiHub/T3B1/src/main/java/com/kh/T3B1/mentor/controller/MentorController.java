@@ -5,9 +5,9 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -19,7 +19,9 @@ import com.kh.T3B1.member.model.vo.Member;
 import com.kh.T3B1.mentor.service.MentorService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RequiredArgsConstructor
 @Controller
 @RequestMapping("/mentor")
@@ -38,19 +40,12 @@ public class MentorController {
 		int mentorNo = no;
 		
 		Member mentor = mentorService.selectMentorDetail(mentorNo);
-		int mentorLike = mentorService.countMentorLike(mentorNo);
-		mentor.setMentorLike(mentorLike);
 		
-		// 로그인한 유저라면 좋아요를 이미 눌렀는지 정보를 불러온다
-		if(session.getAttribute("loginMember") != null) {
-			int memberNo = ((Member)session.getAttribute("loginMember")).getMemberNo();
-			HashMap<String, Integer> likeInfo = new HashMap<>();
-			likeInfo.put("mentorNo",mentorNo);
-			likeInfo.put("memberNo",memberNo);
-
-			// 존재하면 Y, 없다면 N 리턴
-			String isLiked = mentorService.checkLike(likeInfo);
-			m.addAttribute("isLiked",isLiked);
+		Member member = (Member)session.getAttribute("loginMember");
+		if(member != null) {
+			m.addAttribute("optional","Y");
+		} else {
+			m.addAttribute("optional","N");
 		}
 		
 		m.addAttribute("mentor", mentor);
@@ -108,10 +103,39 @@ public class MentorController {
 		
 		if(isLiked.equals("Y")) {
 			likeCount = mentorService.deleteLikeMentor(likeInfo);
+			isLiked = "N";
 		} else {
 			likeCount = mentorService.likeMentor(likeInfo);
+			isLiked = "Y";
 		}
 		
+		HashMap<String, Object> result = new HashMap<>();
+		result.put("type",isLiked);
+		result.put("likeCount",likeCount);
+		
+		return new Gson().toJson(result);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="checkLike", produces="application/json; charset=UTF-8")
+	public String checkLike(HttpSession session, int mentorNo) {
+		// 좋아요를 이미 눌렀는지 정보를 불러온다
+		Member member = (Member)session.getAttribute("loginMember");
+		String isLiked = "N";
+		
+		if(member != null) {
+			int memberNo = member.getMemberNo();
+			HashMap<String, Integer> likeInfo = new HashMap<>();
+			likeInfo.put("mentorNo",mentorNo);
+			likeInfo.put("memberNo",memberNo);
+
+			// 존재하면 Y, 없다면 N 리턴
+			isLiked = mentorService.checkLike(likeInfo);
+		}
+		
+		int likeCount = 0;
+		likeCount = mentorService.countMentorLike(mentorNo);
+
 		HashMap<String, Object> result = new HashMap<>();
 		result.put("type",isLiked);
 		result.put("likeCount",likeCount);

@@ -108,7 +108,34 @@ public class CommunityServiceImpl implements CommunityService{
 	}
 
 	
+	@Override
+	public int ajaxClickDeleteBtn(int cno, int memberNo) {
+		if(communityDao.selectBoardOne(sqlSession, cno).getMemberNo() == memberNo){
+			return communityDao.deleteBoardOne(sqlSession, cno);
+			
+		} else {
+			return 0;
+		}
+	}
 	
-	
+	@Override
+	public int ajaxClickEditBtn(int cno, int memberNo) {
+		if(communityDao.selectBoardOne(sqlSession, cno).getMemberNo() == memberNo){
+			return 1;
+			
+		} else {
+			return 0;
+		}
+	}
 
+	@Override
+	public int updateBoard(Board b){
+		int result = communityDao.updateBoard(sqlSession, b);
+		if(result > 0) {
+			int bNum = b.getBoardNo();
+			return bNum;
+		} else {
+			return 0;
+		}
+	}
 }
