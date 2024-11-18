@@ -37,4 +37,10 @@ public interface CommunityService {
 	int ajaxCommunityHateBtnClickJson(int cno, int memberNo);
 
 	int insertBoard(Board b);
+
+	int ajaxClickDeleteBtn(int cno, int memberNo);
+
+	int ajaxClickEditBtn(int cno, int memberNo);
+
+	int updateBoard(Board b);
 }

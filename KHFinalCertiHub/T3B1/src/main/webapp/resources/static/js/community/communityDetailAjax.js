@@ -77,3 +77,29 @@ function boardLoading(data, callback){
         }
     })
 }
+
+function clickDeleteBtn(data, callback){
+    $.ajax({
+        url: "detail/clickDeleteBtn",
+        data: data,
+        success: function(res){
+            callback(res);
+        },
+        error: function(res){
+            console.log("글 삭제버튼 ajax 오류");
+        }
+    })
+}
+
+function clickEditBtn(data, callback){
+    $.ajax({
+        url: "detail/clickEditBtn",
+        data: data,
+        success: function(res){
+            callback(res);
+        },
+        error: function(res){
+            console.log("글 수정버튼 ajax 오류");
+        }
+    })
+}
