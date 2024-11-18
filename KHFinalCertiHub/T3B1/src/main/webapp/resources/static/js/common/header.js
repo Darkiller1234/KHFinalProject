@@ -3,13 +3,13 @@ function init(contextPath, pageName, optional){
         onResizeHandler();
     };
     onResizeHandler();
-    console.log(pageName);
+
     switch(pageName){
         case "mentorSearch":
             initMentorSearch(contextPath); // optional : 자격증 목록
             break;
         case "mentorDetail":
-            initMentorDetail(contextPath);
+            initMentorDetail(contextPath, optional); // optional : 로그인 여부
             break;
         case "studyDetail":
             initStudyDetail(contextPath);
