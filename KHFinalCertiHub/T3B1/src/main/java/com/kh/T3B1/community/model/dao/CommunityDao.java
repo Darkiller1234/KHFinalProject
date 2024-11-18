@@ -83,7 +83,7 @@ public class CommunityDao {
 	}
 
 	public int deleteBoardOne(SqlSessionTemplate sqlSession, int cno) {
-		return sqlSession.delete("boardMapper.deleteBoardOne", cno);
+		return sqlSession.update("boardMapper.deleteBoard", cno);
 	}
 
 	public int updateBoard(SqlSessionTemplate sqlSession, Board b) {

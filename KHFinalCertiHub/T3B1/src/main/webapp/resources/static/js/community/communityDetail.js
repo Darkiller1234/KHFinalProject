@@ -305,7 +305,7 @@ function boardLoadingExecute(board){
     document.querySelector("#tabNameP").innerText = board.tabName;
     document.querySelector("#boardTitleP").innerText = board.boardTitle;
     document.querySelector("#nickNameP").innerText = board.memberNickname;
-    document.querySelector("#likehatereplyviewdateCountP").innerText = `좋아요 ` + board.likeCount + ` | 싫어요 ` + board.hateCount + ` | 댓글 (몰)` + board.viewCount + ` | 조회수 ` + board.viewCount + ` | ` + board.boardDate;
+    document.querySelector("#likehatereplyviewdateCountP").innerText = `좋아요 ` + board.likeCount + ` | 싫어요 ` + board.hateCount + ` | 댓글 ` + board.replyCount + ` | 조회수 ` + board.viewCount + ` | ` + board.boardDate;
     document.querySelector("#boardContentP").innerHTML = board.boardContent;
     switch(document.querySelector('#tabNameP').textContent.trim()){
         case '공지':

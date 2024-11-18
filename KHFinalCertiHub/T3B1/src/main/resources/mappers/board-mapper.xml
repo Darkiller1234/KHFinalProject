@@ -351,10 +351,12 @@
 	  	FROM DUAL
 	  </select>
 
-	  <delete id="deleteBoardOne">
-	  	DELETE FROM BOARD
+	  <update id="deleteBoard">
+	  	UPDATE BOARD
+	  	SET
+	  	STATUS = 'N'
 		 WHERE BOARD_NO = #{cno}
-	  </delete>
+	  </update>
 
 	<!-- 글 수정 -->
 	<update id="updateBoard" parameterType="Board">
