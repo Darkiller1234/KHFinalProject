@@ -32,6 +32,7 @@
      <interceptors>
 	 	<interceptor>
 	 		<mapping path="/mentor/likeMentor"/>
+	 		<mapping path="/mentor/applyMentee"/>
 	 		<mapping path="/study/write"/>
 	 		<mapping path="/study/board/edit"/>
 	 		<mapping path="/study/insertBoard"/>

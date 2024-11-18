@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -52,6 +51,8 @@ public class MentorController {
 		m.addAttribute("pageName","mentorDetail");
 		return "studyroom/mentorDetail";
 	}
+	
+	// ==================== AJAX 핸들러 =====================
 	
 	@ResponseBody
 	@RequestMapping(value="list", produces="application/json; charset=UTF-8")
@@ -141,6 +142,31 @@ public class MentorController {
 		result.put("likeCount",likeCount);
 		
 		return new Gson().toJson(result);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="applyMentee", produces="application/json; charset=UTF-8")
+	public String applyMentee(HttpSession session, int mentorNo) {
+		String result = "N"; // 실패 N 성공 Y
+		Member member = (Member)session.getAttribute("loginMember");
+		
+		String mentorValid = mentorService.checkMentorValid(mentorNo);
+		log.info("\n mentorValid : {} \n",mentorValid);
+		
+		// 멘토가 현재 멘티 신청을 받는 중인지 확인한다
+		if(mentorValid.equals("Y")) {
+			HashMap<String, Integer> insertInfo = new HashMap<>();
+			insertInfo.put("memberNo",member.getMemberNo());
+			insertInfo.put("mentorNo",mentorNo);
+
+			result = mentorService.insertApply(insertInfo);
+			log.info("\n result : {} \n",result);
+		}
+		
+		HashMap<String, String> resultObj = new HashMap<>();
+		resultObj.put("success",result);
+
+		return new Gson().toJson(resultObj);
 	}
 
 }
