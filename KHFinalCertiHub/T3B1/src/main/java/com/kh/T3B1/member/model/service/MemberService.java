@@ -12,4 +12,6 @@ public interface MemberService {
 
 	Member loginMember(Member m);
 
+	int nicknameCheck(String checknickName);
+
 }
