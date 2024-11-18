@@ -1,6 +1,6 @@
 /* 페이지 전체 설정 */
 .wrapper {
-    margin: 5%;
+    margin: 0 auto;
     padding: 5%;
     border: 0 none;
     background: #EDF6F9;
