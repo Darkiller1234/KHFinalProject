@@ -151,7 +151,6 @@ public class MentorController {
 		Member member = (Member)session.getAttribute("loginMember");
 		
 		String mentorValid = mentorService.checkMentorValid(mentorNo);
-		log.info("\n mentorValid : {} \n",mentorValid);
 		
 		// 멘토가 현재 멘티 신청을 받는 중인지 확인한다
 		if(mentorValid.equals("Y")) {
@@ -160,7 +159,6 @@ public class MentorController {
 			insertInfo.put("mentorNo",mentorNo);
 
 			result = mentorService.insertApply(insertInfo);
-			log.info("\n result : {} \n",result);
 		}
 		
 		HashMap<String, String> resultObj = new HashMap<>();

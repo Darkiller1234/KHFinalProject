@@ -69,10 +69,13 @@ function initApplyButton(contextPath){
     const urlParam = url.searchParams;
     const mentorNo = urlParam.get('no')
 
+    // 모달 요소를 가져오기
+    const modal = new bootstrap.Modal(document.getElementById('apply-modal'));
+
     const onApplyMentee = (res) => {
         console.log(res)
         if(res.success == 'Y'){
-            alert('멘티 신청에 성공하였습니다!')
+            modal.show();
         } else {
             alert('멘티 신청에 실패하였습니다...')
         }
