@@ -64,12 +64,14 @@
     AND MENTOR_STATUS = 'Y' 
     AND STATUS = 'Y'
  LEFT JOIN LIKE_COUNT LC ON(M.MEMBER_NO = LC.MENTOR_NO)
+ 	<where>
       	<if test="keyword != null">
       		AND M.MEMBER_NICKNAME LIKE '%' || #{keyword} || '%'
       	</if>
       	<if test="licenseNo != null">
       		AND LICENSE_NO = #{licenseNo}
       	</if>
+    </where>
     	<if test="sortNo eq 2">
       		ORDER BY LIKE_COUNT DESC NULLS LAST
       	</if>
