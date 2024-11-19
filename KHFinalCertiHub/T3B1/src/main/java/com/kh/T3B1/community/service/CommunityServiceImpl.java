@@ -154,4 +154,14 @@ public class CommunityServiceImpl implements CommunityService{
 	public int replyWrite(Reply r) {
 		return communityDao.replyWrite(sqlSession, r);
 	}
+
+	@Override
+	public int deleteReply(int replyNo) {
+		return communityDao.deleteReply(sqlSession, replyNo);
+	}
+
+	@Override
+	public int editReply(Reply temp) {
+		return communityDao.editReply(sqlSession, temp);
+	}
 }

@@ -50,8 +50,7 @@
   	  FROM REPLY R
   	  JOIN MEMBER M ON (R.MEMBER_NO = M.MEMBER_NO)
   	 <where>
-  	 	R.STATUS = 'Y'
-  	 	AND R.BOARD_NO = #{boardNo}
+  	 	R.BOARD_NO = #{boardNo}
   	 </where> 
   	 ORDER BY REPLY_NO ASC
   </select>
@@ -95,8 +94,8 @@
 	  </update>
 
 	<!-- 댓글 수정 -->
-	<update id="updateReply" parameterType="Reply">
-		UPDATE Reply
+	<update id="editReply" parameterType="Reply">
+		UPDATE REPLY
 		SET
 		REPLY_CONTENT = #{replyContent}
 		WHERE

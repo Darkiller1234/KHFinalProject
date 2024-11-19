@@ -100,6 +100,37 @@ function commuEInit(contextPath) {
         const checkedRadio = document.querySelector('input[name="btnradio"]:checked');
         document.querySelector('input[name="tabNo"]').value = checkedRadio.value;
     });
+
+
+
+
+    poppularAll(null, function(result){
+        result.forEach((boardT) => {
+            document.querySelector('#popular-list-area-all').innerHTML += `
+                <div id="popularAll${boardT.boardNo}">
+                    <span>${boardT.boardTitle}</span><span>[${boardT.replyCount}]</span><span>${boardT.likeCount - boardT.hateCount}</span>
+                </div>
+            `
+            $(`#popularAll${boardT.boardNo}`).on("click", function(){
+                location.href= `detail?cno=${boardT.boardNo}&certiNo=${boardT.licenseNo}`
+            });
+        });
+        
+    })
+
+    poppularThis({licenseNo: urlParam.get('certiNo')}, function(result){
+        result.forEach((boardT) => {
+            document.querySelector('#popular-list-area-this').innerHTML += `
+                <div id="popularThis${boardT.boardNo}">
+                    <span>${boardT.boardTitle}</span><span>[${boardT.replyCount}]</span><span>${boardT.likeCount - boardT.hateCount}</span>
+                </div>
+            `
+            $(`#popularThis${boardT.boardNo}`).on("click", function(){
+                location.href= `detail?cno=${boardT.boardNo}&certiNo=${boardT.licenseNo}`
+            });
+        });
+        
+    })
 }
 
 
@@ -109,4 +140,32 @@ function commuEInit(contextPath) {
 function getCheckedRadioValue() {
     const checkedRadio = document.querySelector('input[name="btnradio"]:checked');
     document.querySelector('input[name="tabNo"]').value = checkedRadio.value;
+}
+
+
+
+function poppularAll(data, callback){
+    $.ajax({
+        url: "detail/poppularAll",
+        data: data,
+        success: function(res){
+            callback(res);
+        },
+        error: function(res){
+            console.log("전체개시판 인기글 ajax 오류");
+        }
+    })
+}
+
+function poppularThis(data, callback){
+    $.ajax({
+        url: "detail/poppularThis",
+        data: data,
+        success: function(res){
+            callback(res);
+        },
+        error: function(res){
+            console.log("현재개시판 인기글 ajax 오류");
+        }
+    })
 }
