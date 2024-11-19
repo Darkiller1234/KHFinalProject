@@ -1,5 +1,6 @@
 package com.kh.T3B1.member.controller;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -28,7 +29,6 @@ public class MembershipController {
 	public MembershipController(MemberService memberService, BCryptPasswordEncoder bcryptPasswordEncoder) {
 		this.memberService = memberService;
 		this.bcryptPasswordEncoder = bcryptPasswordEncoder;
-		
 	}
 	
 	@RequestMapping("membership")
@@ -97,11 +97,11 @@ public class MembershipController {
 			mv.addObject("errorMsg","비밀번호가 틀렸습니다.");
 			mv.setViewName("member/login");
 		}else {
-//			Cookie ck = new Cookie("saveId", loginMember.getMemberId());
+			Cookie ck = new Cookie("saveId", loginMember.getMemberId());
 			if(saveId == null) {
-//				ck.setMaxAge(0);
+				ck.setMaxAge(0);
 			}
-//			response.addCookie(ck);
+			response.addCookie(ck);
 			
 			session.setAttribute("loginMember", loginMember);
 			

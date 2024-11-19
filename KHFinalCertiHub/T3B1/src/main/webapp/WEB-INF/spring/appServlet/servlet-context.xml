@@ -34,6 +34,9 @@
 	 		<mapping path="/mentor/likeMentor"/>
 	 		<mapping path="/mentor/applyMentee"/>
 	 		<mapping path="/study/write"/>
+	 		<mapping path="/study/create"/>
+	 	    <mapping path="/study/createStudy"/>
+	 		<mapping path="/study/applyStudy"/>
 	 		<mapping path="/study/board/edit"/>
 	 		<mapping path="/study/insertBoard"/>
 	 		<mapping path="/study/deleteBoard"/>

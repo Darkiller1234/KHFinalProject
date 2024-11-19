@@ -1,6 +1,6 @@
 function initMentorDetail(contextPath, isLogin){
     initLikeButton(contextPath, isLogin)
-    initApplyButton(contextPath)
+    initApplyButton(isLogin)
 }
 
 function initLikeButton(contextPath, isLogin){
@@ -62,7 +62,7 @@ function initLikeButton(contextPath, isLogin){
     }
 }
 
-function initApplyButton(contextPath){
+function initApplyButton(isLogin){
     // 현재 페이지의 URL 주소
     const url = new URL(window.location.href);
     // URL의 파라미터값을 가진 객체
@@ -71,19 +71,29 @@ function initApplyButton(contextPath){
 
     // 모달 요소를 가져오기
     const modal = new bootstrap.Modal(document.getElementById('apply-modal'));
+    const applyButton = document.querySelector('#applyButton')
 
     const onApplyMentee = (res) => {
-        console.log(res)
         if(res.success == 'Y'){
             modal.show();
+            applyButton.className += ' applied'
+            applyButton.disabled = true
+            applyButton.innerText = '신청완료'
+        } else if(res.success == 'E') {
+            alert('이미 신청하셨습니다.');
         } else {
             alert('멘티 신청에 실패하였습니다...')
         }
     }
 
-    const applyButton = document.querySelector('#applyButton')
-    applyButton.onclick = () => {
-        ajaxApplyMentee(mentorNo, onApplyMentee)
+    if(isLogin == 'Y'){
+        applyButton.onclick = () => {
+            ajaxApplyMentee(mentorNo, onApplyMentee)
+        }
+    } else {
+        applyButton.onclick = () => {
+            alert('로그인한 유저만 신청할 수 있습니다.')
+        }
     }
 }
 

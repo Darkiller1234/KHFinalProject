@@ -1,6 +1,8 @@
 window.onload = function(){ 
-    const idInput = document.querySelector("#membershipForm input[name=memberId]");
-    const nicknameInput = document.querySelector("#membershipForm input[name=memberNickname");
+    const idInput = document.querySelector("#membershipForm input[name = memberId]");
+    const nicknameInput = document.querySelector("#membershipForm input[name = memberNickname]");
+    const memberpwdInput = document.querySelector("#membershipForm input[name = memberPwd]");
+    const checkpwdInput = document.querySelector("#membershipForm input[name = checkPwd]");
     let eventFlag;
 
     idInput.onkeyup = function(ev) { // 키가 입력 될때마다 호출
@@ -66,6 +68,28 @@ window.onload = function(){
             }, 1000)
         }else {
             document.querySelector("#checkResultnickName").style.display = "none";
+        }
+    }  
+    
+    checkpwdInput.onkeyup = function() {
+        console.log(onkeyup);
+        const memberPwd = memberpwdInput.value;
+        const checkPwd = checkpwdInput.value;
+
+        const checkResultPwd = document.querySelector("#checkResultPwd");
+
+        if(memberPwd && checkPwd) {
+            if(memberPwd === checkPwd) {
+                checkResultPwd.style.display = "block";
+                checkResultPwd.style.color = "#006d77";
+                checkResultPwd.innerText = "비밀번호가 일치합니다.";
+            }else {
+                checkResultPwd.style.display = "block";
+                checkResultPwd.style.color = "#83c5be";
+                checkResultPwd.innerText = "비밀번호가 일치하지 않습니다.";
+            }
+        } else {
+            checkResultPwd.style.display = "none";
         }
     }
 }
