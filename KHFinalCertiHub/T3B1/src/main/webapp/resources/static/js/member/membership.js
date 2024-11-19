@@ -1,6 +1,6 @@
 window.onload = function(){ 
     const idInput = document.querySelector("#membershipForm input[name=memberId]");
-    const nicknameInput = document.querySelector("#membershipForm input[name=memberNickname");
+    const nicknameInput = document.querySelector("#membershipForm input[name=memberNickname]");
     let eventFlag;
 
     idInput.onkeyup = function(ev) { // 키가 입력 될때마다 호출
