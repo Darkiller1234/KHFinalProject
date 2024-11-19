@@ -285,33 +285,38 @@
                                 <div class="accordion-content">
                                     <h5>장소검색</h5>
                                     <div class="region">
-                                        <select id="areaSelect" class="si-select">
+                                        <select id="areaSelect" class="examArea">
                                             <option value="">지역 선택</option>
-                                            <option value="본부">본부</option>
-                                            <option value="서울">서울</option>
-                                            <option value="서부">서부</option>
-                                            <option value="부산">부산</option>
+                                            <option value="강원">강원</option>
+                                            <option value="강원동부">강원</option>
+                                            <option value="경기남부">경기남부</option>
+                                            <option value="경기동부">경기동부</option>
+                                            <option value="경기북부">경기북부</option>
+                                            <option value="경기서부">경기서부</option>
+                                            <option value="경남">경남서부</option>
+                                            <option value="경남서부">경남서부</option>
+                                            <option value="경북">경북</option>
+                                            <option value="경북동부">경북동부</option>
+                                            <option value="경북서부">경북서부</option>
+                                            <option value="경인">경인</option>
+                                            <option value="광주">광주</option>
                                             <option value="남부">남부</option>
                                             <option value="대구">대구</option>
-                                            <option value="인천">인천</option>
-                                            <option value="광주">광주</option>
-                                            <option value="충남">충남</option>
-                                            <option value="울산">울산</option>
-                                            <option value="경기">경기</option>
-                                            <option value="강원">강원</option>
-                                            <option value="충북">충북</option>
                                             <option value="대전">대전</option>
-                                            <option value="전북">전북</option>
-                                            <option value="전남">전남</option>
-                                            <option value="경북">경북</option>
-                                            <option value="경남">경남</option>
-                                            <option value="제주">제주</option>
-                                            <option value="강원동부">강원동부</option>
-                                            <option value="전남서부">전남서부</option>
+                                            <option value="부산">부산</option>
                                             <option value="부산남부">부산남부</option>
-                                            <option value="경북동부">경북동부</option>
-                                            <option value="경기북부">경기북부</option>
-                                            <option value="경기동부">경기동부</option>
+                                            <option value="서부">서부</option>
+                                            <option value="서울">서울</option>
+                                            <option value="서울강남">서울강남</option>
+                                            <option value="세종">세종</option>
+                                            <option value="울산">울산</option>
+                                            <option value="인천">인천</option>
+                                            <option value="전남">전남</option>
+                                            <option value="전남서부">전남서부</option>
+                                            <option value="제주">제주</option>
+                                            <option value="충남">충남</option>
+                                            <option value="충북">충북</option>
+                                            <option value="충북북부">충북북부</option>
                                         </select>
                                         <ul id="areaList"></ul>
                                             <!-- API로 불러온 데이터가 여기에 추가될 예정 -->
