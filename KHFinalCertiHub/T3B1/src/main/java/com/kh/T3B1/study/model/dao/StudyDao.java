@@ -105,5 +105,9 @@ public class StudyDao {
 	public int insertStudy(SqlSessionTemplate sqlSession, Study study) {
 		return sqlSession.insert("studyMapper.insertStudy", study);
 	}
+
+	public int insertStudyMember(SqlSessionTemplate sqlSession, Study study) {
+		return sqlSession.insert("studyMapper.insertStudyMember", study);
+	}
 	
 }

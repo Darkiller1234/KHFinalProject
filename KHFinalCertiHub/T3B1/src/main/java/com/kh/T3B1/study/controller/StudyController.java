@@ -46,16 +46,16 @@ public class StudyController {
 	}
 	
 	@RequestMapping("createStudy")
-	public String studyCreatePage(HttpSession session, MultipartFile studyImg, Study study, Model m) {
+	public String createStudy(HttpSession session, MultipartFile profileImg, Study study, Model m) {
 		int memberNo = ((Member)session.getAttribute("loginMember")).getMemberNo();
 		study.setManagerNo(memberNo);
-
+		
 		// 스터디 그룹 프로필 사진을 설정했을 경우 서버에 저장
-		if(!studyImg.getOriginalFilename().equals("")) {
-			String filePath = "/resources/static/img/studyProfile";
-			String changeName = Template.saveFile(studyImg, session, filePath);
+		if(!profileImg.getOriginalFilename().equals("")) {
+			String filePath = "/resources/static/img/studyProfile/";
+			String changeName = Template.saveFile(profileImg, session, filePath);
 			
-			study.setStudyImg(filePath + "/" +changeName);
+			study.setStudyImg(filePath + changeName);
 		}
 		int result = studyService.insertStudy(study);
 		

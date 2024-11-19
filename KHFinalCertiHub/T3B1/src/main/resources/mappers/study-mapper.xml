@@ -273,6 +273,18 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{no}
 			#{studyImg}
 		)
 	</insert>
+	
+	<insert id="insertStudyMember" parameterType="Study">
+		INSERT INTO STUDY_MEMBER(
+			MEMBER_NO,
+			STUDY_NO,
+			CONFIRM_DATE
+		) VALUES (
+			#{managerNo},
+			STUDY_SEQ.CURRVAL,
+			SYSDATE
+		)
+	</insert>
 
 </mapper>
 

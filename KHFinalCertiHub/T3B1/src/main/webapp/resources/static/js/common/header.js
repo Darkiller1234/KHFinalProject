@@ -82,10 +82,6 @@ function init(contextPath, pageName, optional){
             initPersonalMentor(contextPath);
             break;
 
-        case "certifyPage":
-            initCertifyPage(contextPath);
-            break;
-
         // 메시지 페이지
 
         // 관리자 페이지
@@ -107,6 +103,10 @@ function init(contextPath, pageName, optional){
 
         case "noticePage":
             initNoticePage(contextPath);
+            break;
+
+        case "certifyPage":
+            initCertifyPage(contextPath);
             break;
 
         // 기타(컴파일러)

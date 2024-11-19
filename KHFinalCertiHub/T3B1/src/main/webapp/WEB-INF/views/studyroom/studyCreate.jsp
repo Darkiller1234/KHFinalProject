@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/studyroom/mentorDetail.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/studyroom/studyDetail.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/studyroom/studyDetailEdit.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/studyroom/studyCreate.css">
+    <script src="${pageContext.request.contextPath}/resources/static/js/studyroom/studyCreate.js"></script>
     <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
 </head>
 <body>
@@ -48,8 +50,8 @@
                         </div>
 
                         <div class="group-img">
-                            <img src="<%=contextPath%>/resources/static/img/profile/default_profile.png" class="rounded-circle" alt="Cinque Terre">
-                            <input type="file" name="studyImg">
+                            <img id="profile" src="<%=contextPath%>/resources/static/img/profile/default_profile.png" class="rounded-circle" alt="Cinque Terre">
+                            <input type="file" name="profileImg" onchange="loadImg(this)">
                         </div>
                     </form>
 
