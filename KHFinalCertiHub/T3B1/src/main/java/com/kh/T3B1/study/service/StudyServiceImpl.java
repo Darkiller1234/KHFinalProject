@@ -183,7 +183,23 @@ public class StudyServiceImpl implements StudyService{
 
 	@Override
 	public int insertStudy(Study study) {
-		return studyDao.insertStudy(sqlSession, study);
+		int memberResult = 0;
+		int studyResult = studyDao.insertStudy(sqlSession, study);
+		
+		// 스터디 그룹 생성에 성공했다면
+		if(studyResult > 0) {
+			memberResult = studyDao.insertStudyMember(sqlSession, study);
+		}
+		
+		if(memberResult * studyResult == 0) {
+			sqlSession.rollback();
+		}
+		
+		return memberResult * studyResult;
 	}
 	
+	@Override
+	public int updateStudy(Study study) {
+		return studyDao.updateStudy(sqlSession, study);
+	}
 }

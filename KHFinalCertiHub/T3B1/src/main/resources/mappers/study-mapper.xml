@@ -88,6 +88,7 @@
   
   <select id="selectStudy" resultMap="StudyResultSet">
 	  	SELECT S.STUDY_NO ,
+	  			S.MANAGER_NO,
 	            M.MEMBER_NICKNAME AS MANAGER_NAME,
 			    S.STUDY_NAME ,
 			    S.STUDY_IMG ,
@@ -98,7 +99,7 @@
 	       FROM STUDY S
 	    INNER JOIN STUDY_MEMBER SM ON (S.STUDY_NO = SM.STUDY_NO) AND S.STUDY_NO = #{no}
 	    LEFT JOIN MEMBER M ON(M.MEMBER_NO = S.MANAGER_NO)
-	    GROUP BY S.STUDY_NO, M.MEMBER_NICKNAME, S.STUDY_NAME, S.STUDY_INFO, S.STUDY_IMG, S.STUDY_RECRUIT, 
+	    GROUP BY S.STUDY_NO, S.MANAGER_NO, M.MEMBER_NICKNAME, S.STUDY_NAME, S.STUDY_INFO, S.STUDY_IMG, S.STUDY_RECRUIT, 
 	        M.MEMBER_INTRO
   </select>
   
@@ -273,6 +274,27 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{no}
 			#{studyImg}
 		)
 	</insert>
+	
+	<insert id="insertStudyMember" parameterType="Study">
+		INSERT INTO STUDY_MEMBER(
+			MEMBER_NO,
+			STUDY_NO,
+			CONFIRM_DATE
+		) VALUES (
+			#{managerNo},
+			STUDY_SEQ.CURRVAL,
+			SYSDATE
+		)
+	</insert>
+	
+  <update id="updateStudy" parameterType="Study">
+  	  UPDATE STUDY
+  	     SET STUDY_NAME = #{studyName},
+  	         STUDY_INFO = #{studyInfo},
+  	         STUDY_IMG = #{studyImg},
+  	         STUDY_RECRUIT = #{studyRecruit}
+  	   WHERE STUDY_NO = #{studyNo}
+  </update>
 
 </mapper>
 

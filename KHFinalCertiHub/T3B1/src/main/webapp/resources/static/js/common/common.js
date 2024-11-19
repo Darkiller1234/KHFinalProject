@@ -59,7 +59,8 @@ function testBoard(){
     selectBox : selectBox를 생성할 div
     data : {
         name = 서버로 보낼 input명
-        default = selectBox의 default값
+        default = selectBox의 표시되는 default값
+        defaultValue = selectBox의 default value 값 ( 실제 전송되는 값 )
         imgUrl = selectBox 화살표 이미지 경로
         items = [
             ['항목1'], 
@@ -77,6 +78,9 @@ function createSelectBox(div, data){
     const input = document.createElement('input')
     input.type = 'hidden'
     input.name = data.name
+    if(data.defaultValue){
+        input.value = data.defaultValue
+    }
 
     // 서버에 보낼 input값을 표시할 요소
     const button = document.createElement('button');

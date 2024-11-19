@@ -81,7 +81,7 @@
                     </div>
 
                     <div class="button-section">
-                        <button class="btn-primary" onclick="location.href='${pageContext.request.contextPath}/study/detail/edit'">수정하기</button>
+                        <c:if test="${loginMember.memberNo eq study.managerNo}"><button class="btn-primary" onclick="location.href='${pageContext.request.contextPath}/study/detail/edit?no=${study.studyNo}'">수정하기</button></c:if>
                         <button class="btn-primary bgcolor1" onclick="location.href='${pageContext.request.contextPath}/study/search'">목록으로</button>
                     </div>
                 </div>
