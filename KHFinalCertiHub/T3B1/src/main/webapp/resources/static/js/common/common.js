@@ -78,7 +78,9 @@ function createSelectBox(div, data){
     const input = document.createElement('input')
     input.type = 'hidden'
     input.name = data.name
-    input.value = data?.defaultValue
+    if(data.defaultValue){
+        input.value = data.defaultValue
+    }
 
     // 서버에 보낼 input값을 표시할 요소
     const button = document.createElement('button');
