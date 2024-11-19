@@ -375,6 +375,7 @@ footer {
     border: #006D77 1px solid;
     background-color: #EDF6F9;
     border-radius: 5px;
+    width: 100%;
 }
 
 .focused {
