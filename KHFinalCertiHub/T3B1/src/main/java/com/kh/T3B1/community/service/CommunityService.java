@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.community.model.vo.Board;
+import com.kh.T3B1.community.model.vo.Reply;
 
 public interface CommunityService {
 	//게시글 총 갯수 가져오기
@@ -43,4 +44,10 @@ public interface CommunityService {
 	int ajaxClickEditBtn(int cno, int memberNo);
 
 	int updateBoard(Board b);
+
+	int replySelectListCount(int cno);
+
+	ArrayList<Reply> selectReplyList(PageInfo pi, int cno);
+
+	int replyWrite(Reply r);
 }

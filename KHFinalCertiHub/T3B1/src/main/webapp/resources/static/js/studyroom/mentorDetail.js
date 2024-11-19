@@ -1,5 +1,6 @@
 function initMentorDetail(contextPath, isLogin){
     initLikeButton(contextPath, isLogin)
+    initApplyButton(contextPath)
 }
 
 function initLikeButton(contextPath, isLogin){
@@ -61,6 +62,31 @@ function initLikeButton(contextPath, isLogin){
     }
 }
 
+function initApplyButton(contextPath){
+    // 현재 페이지의 URL 주소
+    const url = new URL(window.location.href);
+    // URL의 파라미터값을 가진 객체
+    const urlParam = url.searchParams;
+    const mentorNo = urlParam.get('no')
+
+    // 모달 요소를 가져오기
+    const modal = new bootstrap.Modal(document.getElementById('apply-modal'));
+
+    const onApplyMentee = (res) => {
+        console.log(res)
+        if(res.success == 'Y'){
+            modal.show();
+        } else {
+            alert('멘티 신청에 실패하였습니다...')
+        }
+    }
+
+    const applyButton = document.querySelector('#applyButton')
+    applyButton.onclick = () => {
+        ajaxApplyMentee(mentorNo, onApplyMentee)
+    }
+}
+
 function ajaxLikeMentor(likeInfo, callback){
     return () => {
         $.ajax({
@@ -85,6 +111,19 @@ function ajaxInitLike(likeInfo, callback){
         success: callback,
         error: () => {
             console.log('좋아요 초기화 실패')
+        }
+    })
+}
+
+function ajaxApplyMentee(mentorNo, callback){
+    $.ajax({
+        url:'applyMentee',
+        data:{
+            mentorNo: mentorNo,
+        },
+        success: callback,
+        error: () => {
+            console.log('멘티 신청 요청 실패')
         }
     })
 }
