@@ -49,6 +49,7 @@
 
                         <div class="font-size-title">그룹 소개</div>
                         <textarea class="form-control" name="studyInfo">${study.studyInfo}</textarea>
+                        <div class="study-info form-control">${study.studyInfo}</div>
 
                         <div class="font-size-title">
                             그룹 프로필
@@ -66,114 +67,18 @@
                         <div class="recruit-option"></div>
                     </form>
 
-                    <div class="font-size-title">참여회원 (7명)</div>
+                    <div class="font-size-title">참여회원 (${study.memberCount}명)</div>
 
                     <div class="search-member">
                         <div class="search-form">
-                            <input type="text">
+                            <input id="keyword" type="text">
                             <button class="rounded-circle" onclick="alert('클릭됨')">
                                 <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
                             </button> 
                         </div>
                     </div>
 
-                    <div class="mentor-intro">
-
-                        <div class="member">
-                            <div class="member-info">
-                                <div class="profile">
-                                    <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
-                                </div>
-                                <div class="name font-size-content">
-                                    DARKKILLERDK
-                                </div>
-                            </div>
-                            <div>
-                                <button class="close-button" data-bs-toggle="modal" data-bs-target="#banConfirm"><img src="<%=contextPath%>/resources/static/img/button/x_icon.png"></button>
-                            </div>
-                        </div>
-
-                        <div class="member">
-                            <div class="member-info">
-                                <div class="profile">
-                                    <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
-                                </div>
-                                <div class="name font-size-content">
-                                    강남구불타는키보드워리어
-                                </div>
-                            </div>
-                            <div>
-                                <button class="close-button" data-bs-toggle="modal" data-bs-target="#banConfirm"><img src="<%=contextPath%>/resources/static/img/button/x_icon.png"></button>
-                            </div>
-                        </div>
-
-                        <div class="member">
-                            <div class="member-info">
-                                <div class="profile">
-                                    <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
-                                </div>
-                                <div class="name font-size-content">
-                                    강남구불타는키보드워리어
-                                </div>
-                            </div>
-                            <div>
-                                <button class="close-button" data-bs-toggle="modal" data-bs-target="#banConfirm"><img src="<%=contextPath%>/resources/static/img/button/x_icon.png"></button>
-                            </div>
-                        </div>
-                        <div class="member">
-                            <div class="member-info">
-                                <div class="profile">
-                                    <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
-                                </div>
-                                <div class="name font-size-content">
-                                    강남구불타는키보드워리어
-                                </div>
-                            </div>
-                            <div>
-                                <button class="close-button" data-bs-toggle="modal" data-bs-target="#banConfirm"><img src="<%=contextPath%>/resources/static/img/button/x_icon.png"></button>
-                            </div>
-                        </div>
-                        <div class="member">
-                            <div class="member-info">
-                                <div class="profile">
-                                    <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
-                                </div>
-                                <div class="name font-size-content">
-                                    강남구불타는키보드워리어
-                                </div>
-                            </div>
-                            <div>
-                                <button class="close-button" data-bs-toggle="modal" data-bs-target="#banConfirm"><img src="<%=contextPath%>/resources/static/img/button/x_icon.png"></button>
-                            </div>
-                        </div>
-                        <div class="member">
-                            <div class="member-info">
-                                <div class="profile">
-                                    <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
-                                </div>
-                                <div class="name font-size-content">
-                                    강남구불타는키보드워리어
-                                </div>
-                            </div>
-                            <div>
-                                <button class="close-button" data-bs-toggle="modal" data-bs-target="#banConfirm"><img src="<%=contextPath%>/resources/static/img/button/x_icon.png"></button>
-                            </div>
-                        </div>
-                        <div class="member">
-                            <div class="member-info">
-                                <div class="profile">
-                                    <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
-                                </div>
-                                <div class="name font-size-content">
-                                    강남구불타는키보드워리어
-                                </div>
-                            </div>
-                            <div>
-                                <button class="close-button" data-bs-toggle="modal" data-bs-target="#banConfirm"><img src="<%=contextPath%>/resources/static/img/button/x_icon.png"></button>
-                            </div>
-                        </div>
-
-                    </div>
+                    <div class="mentor-intro"></div>
 
                     <div class="load-member">
                         <button>더보기...</button>
@@ -212,13 +117,13 @@
     
             <!-- Modal body -->
             <div class="modal-body">
-                <div>강남구불타는키보드워리어</div>
+                <div id="ban-user-name"></div>
                 정말 스터디그룹에서 제외시키겠습니까?
             </div>
     
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button class="confirm" type="button" data-bs-dismiss="modal">확인</button>
+                <button id="banButton" class="confirm" type="button" data-bs-dismiss="modal">확인</button>
                 <button type="button" data-bs-dismiss="modal">취소</button>
             </div>
     

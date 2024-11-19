@@ -5,8 +5,21 @@
 }
 
 .mentor-info textarea{
+    display:none;
+}
+
+.mentor-info .study-info{
     resize: none;
     height:500px;
+    overflow-y: scroll;
+    /* 스크롤 표시 제거 */
+    -ms-overflow-style: none; /* 인터넷 익스플로러 */
+    scrollbar-width: none; /* 파이어폭스 */
+}
+
+/* 스크롤 표시 제거 ( 크롬, 사파리, 오페라, 엣지 ) */
+.mentor-info .study-info::-webkit-scrollbar{
+    display: none;
 }
 
 .recruit-option .custom-select{
