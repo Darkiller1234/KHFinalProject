@@ -285,6 +285,15 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{no}
 			SYSDATE
 		)
 	</insert>
+	
+  <update id="updateStudy" parameterType="Study">
+  	  UPDATE STUDY
+  	     SET STUDY_NAME = #{studyName},
+  	         STUDY_INFO = #{studyInfo},
+  	         STUDY_IMG = #{studyImg},
+  	         STUDY_RECRUIT = #{studyRecruit}
+  	   WHERE STUDY_NO = #{studyNo}
+  </update>
 
 </mapper>
 

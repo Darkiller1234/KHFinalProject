@@ -1,5 +1,5 @@
 function initStudyCreate(contextPath){
-    initProfile(contextPath)
+
 }
 
 function loadImg(_input){

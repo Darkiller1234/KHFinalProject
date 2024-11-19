@@ -198,4 +198,8 @@ public class StudyServiceImpl implements StudyService{
 		return memberResult * studyResult;
 	}
 	
+	@Override
+	public int updateStudy(Study study) {
+		return studyDao.updateStudy(sqlSession, study);
+	}
 }

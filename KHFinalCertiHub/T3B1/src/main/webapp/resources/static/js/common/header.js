@@ -45,6 +45,10 @@ function init(contextPath, pageName, optional){
             initStudyDetail(contextPath, optional); // optional : 로그인 여부
             break;
 
+        case "studyDetailEdit":
+            initStudyDetailEdit(contextPath, optional); // optional : 모집중 여부
+            break;
+
         case "studyCreate":
             initStudyCreate(contextPath)
             break;

@@ -68,4 +68,7 @@ public interface StudyService {
 	// 스터디 그룹 생성
 	int insertStudy(Study study);
 
+	// 스터디 그룹 정보 수정
+	int updateStudy(Study study);
+
 }

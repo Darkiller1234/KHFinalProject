@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -46,16 +47,19 @@ public class StudyController {
 	}
 	
 	@RequestMapping("createStudy")
-	public String createStudy(HttpSession session, MultipartFile profileImg, Study study, Model m) {
+	public String createStudy(HttpSession session, 
+			@RequestParam(required = false) MultipartFile profileImg, Study study, Model m) {
 		int memberNo = ((Member)session.getAttribute("loginMember")).getMemberNo();
 		study.setManagerNo(memberNo);
 		
 		// 스터디 그룹 프로필 사진을 설정했을 경우 서버에 저장
-		if(!profileImg.getOriginalFilename().equals("")) {
+		if(profileImg != null && !profileImg.getOriginalFilename().equals("")) {
 			String filePath = "/resources/static/img/studyProfile/";
 			String changeName = Template.saveFile(profileImg, session, filePath);
 			
 			study.setStudyImg(filePath + changeName);
+		} else { // 설정하지 않았다면 기본값으로 설정
+			study.setStudyImg("/resources/static/img/profile/default_profile.png");
 		}
 		int result = studyService.insertStudy(study);
 		
@@ -89,9 +93,58 @@ public class StudyController {
 	}
 	
 	@RequestMapping("detail/edit")
-	public String studyDetailEditPage(Model m) {
+	public String studyDetailEditPage(HttpSession session, Model m, int no) {
+		int memberNo =((Member)session.getAttribute("loginMember")).getMemberNo();
+		
+		HashMap<String, Integer> searchInfo = new HashMap<>();
+		searchInfo.put("memberNo", memberNo);
+		searchInfo.put("studyNo", no);
+		
+		boolean isManager = studyService.isStudyMananger(searchInfo);
+		if(!isManager) {
+			session.setAttribute("errorMsg", "스터디 그룹 수정 권한이 없습니다.");
+			return "redirect:/error";
+		}
+		
+		Study study = studyService.selectStudy(no);
+		
+		m.addAttribute("study",study);
+		m.addAttribute("optional", study.getStudyRecruit());
 		m.addAttribute("pageName","studyDetailEdit");
 		return "studyroom/studyDetailEdit";
+	}
+	
+	@RequestMapping("editStudy")
+	public String editStudy(HttpSession session, 
+			@RequestParam(required = false) MultipartFile profileImg, Study study, Model m) {
+		int memberNo = ((Member)session.getAttribute("loginMember")).getMemberNo();
+		
+		HashMap<String, Integer> searchInfo = new HashMap<>();
+		searchInfo.put("memberNo", memberNo);
+		searchInfo.put("studyNo", study.getStudyNo());
+
+		boolean isManager = studyService.isStudyMananger(searchInfo);
+		if(!isManager) {
+			session.setAttribute("errorMsg", "스터디 그룹 수정 권한이 없습니다.");
+			return "redirect:/error";
+		}
+		
+		// 스터디 그룹 프로필 사진을 설정했을 경우 서버에 저장
+		if(profileImg != null && !profileImg.getOriginalFilename().equals("")) {
+			String filePath = "/resources/static/img/studyProfile/";
+			String changeName = Template.saveFile(profileImg, session, filePath);
+			
+			study.setStudyImg(filePath + changeName);
+		}
+		
+		int result = studyService.updateStudy(study);
+		
+		if(result < 1) {
+			session.setAttribute("errorMsg", "스터디 그룹 수정에 실패했습니다.");
+			return "redirect:/error";
+		}
+		
+		return "redirect:search";
 	}
 	
 	@RequestMapping("list")
