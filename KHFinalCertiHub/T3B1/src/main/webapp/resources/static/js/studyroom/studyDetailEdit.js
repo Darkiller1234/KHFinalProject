@@ -1,7 +1,73 @@
-function initStudyDetail(contextPath, isLogin){
-    initMemberList(contextPath);
-    initApplyButton(isLogin)
+function initStudyDetailEdit(contextPath, isRecruit){
+    initForm()
+    initBanButton()
+    initSelectBox(contextPath, isRecruit)
+    initMemberList(contextPath)
 }
+
+function loadImg(_input){
+    // 파일이 선택됬다면 files에 파일이 들어있을 것
+    if(_input.files.length == 1){
+        const reader = new FileReader();
+
+        // 해당 파일을 읽어들여 해당 파일만의 고유한 URL 부여
+        reader.readAsDataURL(_input.files[0])
+
+        // 파일을 읽어들였다면 실행
+        reader.onload = (ev)=>{
+            document.querySelector('#profile').src = ev.target.result;
+        }
+    }
+}
+
+function initForm(){
+    const studyForm = document.getElementById('studyForm')
+    const input = studyForm.querySelector('.study-info')
+    input.contentEditable = true;
+    
+    studyForm.onsubmit = () => {
+        const text =  studyForm.querySelector("textarea[name=studyInfo]");
+
+        text.value = input.innerHTML.replace(/(?:\r\n|\r|\n)/g, '<br>');
+    }
+}
+
+function initBanButton(){
+    const banButton = document.getElementById('banButton')
+
+    const onBanMember = () => {
+        
+    }
+
+    banButton.onclick = () => {
+
+    }
+}
+
+function ajaxBanMember(){
+    return () => {
+
+    }
+}
+
+
+function initSelectBox(contextPath, isRecruit){
+    const selectBoxList = document.querySelectorAll('.recruit-option');
+
+    const data = {
+        name : 'studyRecruit',
+        default : isRecruit == 'Y' ? '모집중' : '모집마감',
+        defaultValue : isRecruit ,
+        imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
+        items : [
+            ['모집중','Y'],
+            ['모집마감','N'],
+        ]
+    }
+
+    createSelectBox(selectBoxList[0], data)
+}
+
 
 function initMemberList(contextPath){
     // 콜백 함수
@@ -80,7 +146,7 @@ function ajaxLoadMember(pageInfo, callback){
     return function() {
         $.ajax({
             type:"post",
-            url:"memberList",
+            url: pageInfo.contextPath + "/study/memberList",
             data: {
                 "currentPage" : pageInfo.currentPage,
                 "pageLimit" :  pageInfo.pageLimit,
@@ -102,6 +168,18 @@ function createMemberCard(contextPath, res){
     res.forEach(data => {
         let member = document.createElement('div')
         member.className = "member"
+        member.dataset.value = data.memberNo
+
+        member.onclick = (ev) => {
+            const modal = new bootstrap.Modal(document.getElementById('banConfirm'))
+            const banUserName = document.getElementById('ban-user-name')
+            banUserName.innerText = data.memberNickname
+            // ev.target : 이벤트를 발생시킨 요소( 클릭이면 내가 누른 요소 )
+            // ev.currentTarget : 이벤트가 부착된 요소의 최상위 부모 반환
+            banUserName.dataset.value = ev.currentTarget.dataset.value
+
+            modal.show()
+        }
 
         let memberInfo = document.createElement('div')
         memberInfo.className = "member-info"
@@ -122,57 +200,21 @@ function createMemberCard(contextPath, res){
         memberInfo.appendChild(profile)
         memberInfo.appendChild(memberName)
 
+        let buttonDiv = document.createElement('div')
+
+        let deleteButton = document.createElement('button')
+        deleteButton.className = "close-button"
+
+
+        let buttonImg = document.createElement('img')
+        buttonImg.src = contextPath + '/resources/static/img/button/x_icon.png'
+
+        deleteButton.appendChild(buttonImg)
+        buttonDiv.appendChild(deleteButton)
+
         member.appendChild(memberInfo)
+        member.appendChild(buttonDiv)
 
         studyList.appendChild(member)
     });
-}
-
-
-function initApplyButton(isLogin){
-    // 현재 페이지의 URL 주소
-    const url = new URL(window.location.href);
-    // URL의 파라미터값을 가진 객체
-    const urlParam = url.searchParams;
-    const studyNo = urlParam.get('no')
-
-    // 모달 요소를 가져오기
-    const modal = new bootstrap.Modal(document.getElementById('apply-modal'));
-    const applyButton = document.querySelector('#applyButton')
-
-    const onApplyStudy = (res) => {
-        if(res.success == 'Y'){
-            modal.show();
-            applyButton.className += ' applied'
-            applyButton.disabled = true
-            applyButton.innerText = '신청완료'
-        } else if(res.success == 'E') {
-            alert('이미 신청하셨습니다.');
-        } else {
-            alert('스터디 신청에 실패하였습니다...')
-        }
-    }
-
-    if(isLogin == 'Y'){
-        applyButton.onclick = () => {
-            ajaxApplyStudy(studyNo, onApplyStudy)
-        }
-    } else {
-        applyButton.onclick = () => {
-            alert('로그인한 유저만 신청할 수 있습니다.')
-        }
-    }
-}
-
-function ajaxApplyStudy(studyNo, callback){
-    $.ajax({
-        url:'applyStudy',
-        data:{
-            studyNo: studyNo,
-        },
-        success: callback,
-        error: () => {
-            console.log('스터디 신청 요청 실패')
-        }
-    })
 }

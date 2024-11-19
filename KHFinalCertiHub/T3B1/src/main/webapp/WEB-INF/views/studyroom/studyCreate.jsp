@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/studyroom/mentorDetail.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/studyroom/studyDetail.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/studyroom/studyDetailEdit.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/studyroom/studyCreate.css">
+    <script src="${pageContext.request.contextPath}/resources/static/js/studyroom/studyCreate.js"></script>
     <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
 </head>
 <body>
@@ -20,29 +22,36 @@
         <div class="mentor-page">
             <div class="mentor-card">
                 <div class="profile-img small">
-                    <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                    <img src="<%=contextPath%>${loginMember.memberImg}" class="rounded-circle" alt="Cinque Terre">
                 </div>
-                <div class="mentor-name font-size-subtitle">User01</div>
+                <div class="mentor-name font-size-subtitle">${loginMember.memberNickname}</div>
                 <div class="tag bgcolor4 font-size-content"><img src="<%=contextPath%>/resources/static/img/button/manager_icon.png">관리자</div>
-                <div class="member-intro font-size-footer">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
+                <c:choose>
+                    <c:when test="${loginMember.memberIntro ne null}">
+                        <div class="member-intro font-size-footer">${loginMember.memberIntro}</div>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="member-intro font-size-footer">아직 등록한 자기소개가 없습니다.</div>
+                    </c:otherwise>
+                </c:choose>
             </div>
 
             <div class="info-section">
                 <div class="mentor-info">
-                    <form id="studyForm" action="<%=contextPath%>/study/detail" method="post" enctype="multipart/form-data">
+                    <form id="studyForm" action="<%=contextPath%>/study/createStudy" method="post" enctype="multipart/form-data">
                         <div class="font-size-title">스터디 그룹명</div>
                         <input type="text" class="form-control" name="studyName" placeholder="그룹명을 입력해주세요.(90Bytes까지 가능)" required>
 
                         <div class="font-size-title">그룹 소개</div>
-                        <textarea placeholder="그룹을 소개할 문구를 작성해주세요.(3000Bytes까지 가능)" class="form-control" name="studyName"></textarea>
+                        <textarea placeholder="그룹을 소개할 문구를 작성해주세요.(3000Bytes까지 가능)" class="form-control" name="studyInfo"></textarea>
 
                         <div class="font-size-title">
                             그룹 프로필
                         </div>
 
                         <div class="group-img">
-                            <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
-                            <input type="file" name="studyImg">
+                            <img id="profile" src="<%=contextPath%>/resources/static/img/profile/default_profile.png" class="rounded-circle" alt="Cinque Terre">
+                            <input type="file" name="profileImg" onchange="loadImg(this)">
                         </div>
                     </form>
 

@@ -89,5 +89,29 @@ public class StudyDao {
 	public int updateBoard(SqlSessionTemplate sqlSession, StudyBoard board) {
 		return sqlSession.update("studyMapper.updateBoard", board);
 	}
+
+	public String checkStudyRecruit(SqlSessionTemplate sqlSession, int studyNo) {
+		return sqlSession.selectOne("studyMapper.checkStudyRecruit", studyNo);
+	}
+
+	public Integer isApplyExist(SqlSessionTemplate sqlSession, HashMap<String, Integer> insertInfo) {
+		return sqlSession.selectOne("studyMapper.isApplyExist", insertInfo);
+	}
+
+	public int insertApply(SqlSessionTemplate sqlSession, HashMap<String, Integer> insertInfo) {
+		return sqlSession.insert("studyMapper.insertApply", insertInfo);
+	}
+
+	public int insertStudy(SqlSessionTemplate sqlSession, Study study) {
+		return sqlSession.insert("studyMapper.insertStudy", study);
+	}
+
+	public int insertStudyMember(SqlSessionTemplate sqlSession, Study study) {
+		return sqlSession.insert("studyMapper.insertStudyMember", study);
+	}
+
+	public int updateStudy(SqlSessionTemplate sqlSession, Study study) {
+		return sqlSession.update("studyMapper.updateStudy", study);
+	}
 	
 }

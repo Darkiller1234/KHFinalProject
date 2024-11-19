@@ -5,33 +5,92 @@ function init(contextPath, pageName, optional){
     onResizeHandler();
 
     switch(pageName){
-        case "mentorSearch":
-            initMentorSearch(contextPath); // optional : 자격증 목록
+        // 자격증 검색
+        case "infoPage":
+            initInfoPage(contextPath);
             break;
-        case "mentorDetail":
-            initMentorDetail(contextPath, optional); // optional : 로그인 여부
-            break;
-        case "studyDetail":
-            initStudyDetail(contextPath);
-            break;
+
+        // 커뮤니티
         case "communitySearch":
             commuMInit(contextPath);
             break;
+
+        case "commuWInit":
+            commuWInit(contextPath);
+            break;
+
+        case "commuEInit":
+            commuEInit(contextPath);
+            break;
+
+        case "commuDInit":
+            commuDInit(contextPath);
+            break;
+
+        // 멘토
+        case "mentorSearch":
+            initMentorSearch(contextPath); // optional : 자격증 목록
+            break;
+
+        case "mentorDetail":
+            initMentorDetail(contextPath, optional); // optional : 로그인 여부
+            break;
+
+        // 스터디
+        case "studySearch":
+            initStudySearch(contextPath);
+            break;
+
+        case "studyDetail":
+            initStudyDetail(contextPath, optional); // optional : 로그인 여부
+            break;
+
+        case "studyDetailEdit":
+            initStudyDetailEdit(contextPath, optional); // optional : 모집중 여부
+            break;
+
+        case "studyCreate":
+            initStudyCreate(contextPath)
+            break;
+
         case "studyBoard":
             initStudyBoard(contextPath);
             break;
+
         case "studyBoardView":
             initStudyBoardView(contextPath);
             break;
+
         case "studyBoardEdit":
             initStudyBoardEdit(contextPath);
             break;
-        case "managerPage":
-            initManagerPage(contextPath);
+
+        case "studyWrite":
+            initStudyWrite(contextPath); // 멤버 번호
             break;
 
-        case "certifyPage":
-            initCertifyPage(contextPath);
+        // 개인 페이지
+        case "personalCertiRegi":
+            persoCRInit(contextPath);
+            break;
+            
+        case "PersonalPmSc":
+            persoMSInit(contextPath);
+            break;
+
+        case "personalProfileEdit":
+            initPersonalProfileEdit(contextPath);
+            break;
+
+        case "personalMentor":
+            initPersonalMentor(contextPath);
+            break;
+
+        // 메시지 페이지
+
+        // 관리자 페이지
+        case "managerPage":
+            initManagerPage(contextPath);
             break;
 
         case "listPage":
@@ -46,45 +105,20 @@ function init(contextPath, pageName, optional){
             initUserPage(contextPath);
             break;
 
-        case "studyWrite":
-            initStudyWrite(contextPath); // 멤버 번호
-            break;
-
         case "noticePage":
             initNoticePage(contextPath);
             break;
-        case "infoPage":
-            initInfoPage(contextPath);
+
+        case "certifyPage":
+            initCertifyPage(contextPath);
             break;
-        case "studySearch":
-            initStudySearch(contextPath);
-            break;
-        case "personalCertiRegi":
-            persoCRInit(contextPath);
-            break;
+
+        // 기타(컴파일러)
         case "compilerPage":
             initcompilerPage(contextPath);
-        case "PersonalPmSc":
-            persoMSInit(contextPath);
-            break;
-        case "personalProfileEdit":
-            initPersonalProfileEdit(contextPath);
             break;
 
-        case "commuDInit":
-            commuDInit(contextPath);
-            break;
-        case "personalMentor":
-            initPersonalMentor(contextPath);
-            break;
-
-        case "commuWInit":
-            commuWInit(contextPath);
-            break;
-
-        case "commuEInit":
-            commuEInit(contextPath);
-            break;
+        // 기타(챗봇 도우미)
     }
 }
 

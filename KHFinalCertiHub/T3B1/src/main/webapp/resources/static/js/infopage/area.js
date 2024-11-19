@@ -1,113 +1,92 @@
-$(document).ready(function () {
-    var currentPage = 1; // 현재 페이지 추적
+// 지역 선택 시 데이터 가져오기
+document.getElementById("areaSelect").addEventListener("change", fetchExamData);
 
-    function TestArea(areaList) {
-        var brchCd = getBrchCd(areaList); // 지역 코드 가져오기
+// OpenAPI를 통해 시험 데이터 가져오기 (모든 페이지 가져오기)
+async function fetchExamData() {
+    const selectedRegion = document.getElementById("areaSelect").value;
+    const apiUrl = "https://api.odcloud.kr/api/15059980/v1/uddi:de1aa92f-2507-4fc4-aa21-d0e019e4b504";
+    const apiKey = "AiATDYDO2nw7aWzpDtDvC8aswTEabFvLtwjy0RwuM2KnGpfE%2BD4ffB3SmCH4VqDihRDB%2FNR8RmbluUBQL%2Bo10w%3D%3D";
 
-        if (!brchCd) {
-            alert('올바른 지역을 선택하세요.');
-            return;
-        }
+    // 지역 선택 확인
+    if (!selectedRegion) {
+        document.getElementById("areaList").innerHTML = "<li>지역을 선택하세요.</li>";
+        return;
+    }
 
-        const proxyUrl = 'https://cors-anywhere.herokuapp.com/';  // 프록시 서버 주소
-        const targetUrl = 'http://openapi.q-net.or.kr/api/service/rest/InquiryExamAreaSVC/getList';
+    try {
+        // 모든 페이지 데이터를 가져오기
+        const allData = await fetchAllData(apiUrl, apiKey);
 
-        $.ajax({
-            url: proxyUrl + targetUrl,  // 프록시 서버를 통해 요청을 보냄
-            data: {
-                serviceKey: 'AiATDYDO2nw7aWzpDtDvC8aswTEabFvLtwjy0RwuM2KnGpfE%2BD4ffB3SmCH4VqDihRDB%2FNR8RmbluUBQL%2Bo10w%3D%3D',
-                numOfRows: '5',
-                pageNo: currentPage,  // 현재 페이지
-                brchCd: brchCd // 지역 코드로 데이터 요청
-            },
-            dataType: 'JSON',
-            success: function (data) {
-                console.log("API 호출 성공");
-                parseAndDisplayData(data);
-            },
-            error: function (xhr, status, error) {
-                console.error("API 호출 실패:", error);
+        // 선택된 지역에 따른 데이터 필터링
+        const filteredData = allData.filter(item => item.지사명.includes(selectedRegion));
+
+        displayExamData(filteredData);
+    } catch (error) {
+        console.error("데이터 가져오기 실패:", error);
+        document.getElementById("areaList").innerHTML = `<li>오류 발생: ${error.message}</li>`;
+    }
+}
+
+// 모든 페이지 데이터를 가져오기
+async function fetchAllData(apiUrl, apiKey) {
+    let allData = [];
+    let currentPage = 1;
+    let perPage = 5000; // 한 번 요청에 가져올 데이터 수
+    let totalPages = 1; // 초기값 (총 페이지 수)
+
+    try {
+        while (currentPage <= totalPages) {
+            // API 요청
+            const response = await fetch(`${apiUrl}?page=${currentPage}&perPage=${perPage}&serviceKey=${apiKey}`, {
+                headers: {
+                    "accept": "*/*",
+                },
+            });
+
+            const json = await response.json();
+            console.log(`페이지 ${currentPage} 응답:`, json);
+
+            // 총 페이지 수 업데이트 (첫 요청 시 결정)
+            if (currentPage === 1 && json.totalCount) {
+                totalPages = Math.ceil(json.totalCount / perPage);
             }
-        });
-    }
 
-    // 지역에 따라 지역 코드를 설정하는 함수
-    function getBrchCd(areaList) {
-        switch (areaList) {
-            case '본부': return '00';
-            case '서울': return '01';
-            case '서부': return '02';
-            case '부산': return '03';
-            case '남부': return '04';
-            case '대구': return '05';
-            case '인천': return '06';
-            case '광주': return '07';
-            case '충남': return '08';
-            case '울산': return '09';
-            case '경기': return '10';
-            case '강원': return '11';
-            case '충북': return '12';
-            case '대전': return '13';
-            case '전북': return '14';
-            case '전남': return '15';
-            case '경북': return '16';
-            case '경남': return '17';
-            case '제주': return '18';
-            case '강원동부': return '19';
-            case '전남서부': return '20';
-            case '부산남부': return '21';
-            case '경북동부': return '22';
-            case '경기북부': return '23';
-            case '경기동부': return '24';
-            default: return '';  // 해당 지역이 없으면 빈 문자열 반환
-        }
-    }
-
-    // 데이터를 파싱하고 출력하는 함수
-    function parseAndDisplayData(data) {
-        var areaList = $('#areaList'); // 출력 영역
-        areaList.empty(); // 기존 데이터 초기화
-
-        // 응답 데이터 구조 확인 후 item 데이터가 있는지 확인
-        if (data && data.response && data.response.body && data.response.body.items && Array.isArray(data.response.body.items.item)) {
-            var items = data.response.body.items.item;
-
-            // items 배열에 데이터가 있을 때만 처리
-            if (items.length > 0) {
-                items.forEach(function (item) {
-                    var examAreaNm = item.examAreaNm || '정보 없음';
-                    var address = item.address || '주소 없음';
-                    var telNo = item.telNo || '전화번호 없음';
-
-                    var listItem = `
-                        <li>
-                            <strong>${examAreaNm}</strong><br>
-                            주소: ${address}<br>
-                            전화번호: ${telNo}
-                        </li>
-                    `;
-                    areaList.append(listItem);  // 데이터 출력
-                });
-                currentPage++; // 페이지 번호 증가
-            } else {
-                areaList.append('<li>해당 지역의 시험 장소 정보가 없습니다.</li>');
+            // 데이터 병합
+            if (json.data && Array.isArray(json.data)) {
+                allData = allData.concat(json.data);
             }
-        } else {
-            areaList.append('<li>응답 데이터에 오류가 있습니다. 다시 시도해주세요.</li>');
+
+            currentPage++; // 다음 페이지로 이동
         }
+
+        console.log("전체 데이터:", allData);
+        return allData;
+    } catch (error) {
+        console.error("데이터 가져오기 실패:", error);
+        return [];
+    }
+}
+
+// 필터링된 데이터 화면에 출력
+function displayExamData(data) {
+    const resultList = document.getElementById("areaList");
+
+    if (data.length === 0) {
+        resultList.innerHTML = "<li>해당 지역의 시험장 데이터가 없습니다.</li>";
+        return;
     }
 
-    // 페이지 스크롤을 구현하기 위해 출력 영역에 스타일 추가
-    $('#areaList').css({
-        'max-height': '300px',
-        'overflow-y': 'auto',
-        'border': '1px solid #ccc',
-        'padding': '10px'
-    });
+    // 데이터 출력 시 최대 5줄 넘으면 스크롤 추가
+    resultList.style.maxHeight = "200px"; // 예: 5줄 기준
+    resultList.style.overflowY = "auto"; // 스크롤 활성화
 
-    // 테스트 실행: 지역 코드 입력으로 테스트 가능
-    $('#areaSelect').change(function () {
-        var selectedArea = $(this).val();
-        TestArea(selectedArea); // 지역 선택에 따른 데이터 요청
-    });
-});
+    // 데이터를 줄바꿈 포함하여 출력
+    resultList.innerHTML = data.map(item => `
+        <li style="margin-bottom: 10px;">
+            <strong>지사명:</strong> ${item.지사명}<br>
+            <strong>시험장소:</strong> ${item.시험장소.replace(/\n/g, "<br>")}<br>
+            <strong>시험일:</strong> ${item.시험일}
+            <strong>부실:</strong> ${item.부}
+        </li>
+    `).join("");
+}

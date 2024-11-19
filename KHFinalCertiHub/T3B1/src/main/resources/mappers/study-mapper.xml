@@ -88,6 +88,7 @@
   
   <select id="selectStudy" resultMap="StudyResultSet">
 	  	SELECT S.STUDY_NO ,
+	  			S.MANAGER_NO,
 	            M.MEMBER_NICKNAME AS MANAGER_NAME,
 			    S.STUDY_NAME ,
 			    S.STUDY_IMG ,
@@ -98,7 +99,7 @@
 	       FROM STUDY S
 	    INNER JOIN STUDY_MEMBER SM ON (S.STUDY_NO = SM.STUDY_NO) AND S.STUDY_NO = #{no}
 	    LEFT JOIN MEMBER M ON(M.MEMBER_NO = S.MANAGER_NO)
-	    GROUP BY S.STUDY_NO, M.MEMBER_NICKNAME, S.STUDY_NAME, S.STUDY_INFO, S.STUDY_IMG, S.STUDY_RECRUIT, 
+	    GROUP BY S.STUDY_NO, S.MANAGER_NO, M.MEMBER_NICKNAME, S.STUDY_NAME, S.STUDY_INFO, S.STUDY_IMG, S.STUDY_RECRUIT, 
 	        M.MEMBER_INTRO
   </select>
   
@@ -227,6 +228,73 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{no}
   	   WHERE STUDY_BOARD_NO = #{boardNo}
   </update>
   
+  <select id="checkStudyRecruit" resultType="String">
+  	 SELECT STUDY_RECRUIT
+  	   FROM STUDY
+  	  WHERE STUDY_NO = #{studyNo}
+  </select>
+  
+  	<select id="isApplyExist" resultType="int">
+		SELECT 1
+		FROM DUAL
+		WHERE EXISTS(
+		   SELECT 1
+			 FROM APPLY_LOG
+			WHERE APPLICANT_NO = #{memberNo}
+			  AND STUDY_NO = #{studyNo}
+		)
+	</select>
+	
+	<insert id="insertApply" parameterType="HashMap">
+		INSERT INTO APPLY_LOG(
+			APPLY_NO,
+			APPLICANT_NO,
+			STUDY_NO,
+			APPLY_KIND
+		) VALUES (
+			APPLY_LOG_SEQ.NEXTVAL,
+			#{memberNo},
+			#{studyNo},
+			2
+		)
+	</insert>
+	
+	<insert id="insertStudy" parameterType="Study">
+		INSERT INTO STUDY(
+			STUDY_NO,
+			MANAGER_NO,
+			STUDY_NAME,
+			STUDY_INFO,
+			STUDY_IMG
+		) VALUES (
+			STUDY_SEQ.NEXTVAL,
+			#{managerNo},
+			#{studyName},
+			#{studyInfo},
+			#{studyImg}
+		)
+	</insert>
+	
+	<insert id="insertStudyMember" parameterType="Study">
+		INSERT INTO STUDY_MEMBER(
+			MEMBER_NO,
+			STUDY_NO,
+			CONFIRM_DATE
+		) VALUES (
+			#{managerNo},
+			STUDY_SEQ.CURRVAL,
+			SYSDATE
+		)
+	</insert>
+	
+  <update id="updateStudy" parameterType="Study">
+  	  UPDATE STUDY
+  	     SET STUDY_NAME = #{studyName},
+  	         STUDY_INFO = #{studyInfo},
+  	         STUDY_IMG = #{studyImg},
+  	         STUDY_RECRUIT = #{studyRecruit}
+  	   WHERE STUDY_NO = #{studyNo}
+  </update>
 
 </mapper>
 

@@ -144,5 +144,62 @@ public class StudyServiceImpl implements StudyService{
 		
 		return result;
 	}
+
+	@Override
+	public String checkStudyRecruit(int studyNo) {
+		String result = studyDao.checkStudyRecruit(sqlSession, studyNo);
+		
+		if(result == null) result = "N";
+		
+		return result;
+	}
 	
+	@Override
+	public String isApplyExist(HashMap<String, Integer> searchInfo) {
+		Integer isExist = studyDao.isApplyExist(sqlSession, searchInfo);
+		// 이미 신청했다면 isExist 값이 존재, 중복 E 리턴
+		if(isExist != null) {
+			return "E";
+		}
+		
+		return "N";
+	}
+
+	@Override
+	public String insertApply(HashMap<String, Integer> insertInfo) {
+		Integer isExist = studyDao.isApplyExist(sqlSession, insertInfo);
+		// 이미 신청했다면 isExist 값이 존재, 중복 E 리턴
+		if(isExist != null) {
+			return "E";
+		}
+		
+		int insertResult = studyDao.insertApply(sqlSession, insertInfo);
+		if(insertResult > 0) {
+			return "Y";
+		} else {
+			return "N";
+		}
+	}
+
+	@Override
+	public int insertStudy(Study study) {
+		int memberResult = 0;
+		int studyResult = studyDao.insertStudy(sqlSession, study);
+		
+		// 스터디 그룹 생성에 성공했다면
+		if(studyResult > 0) {
+			memberResult = studyDao.insertStudyMember(sqlSession, study);
+		}
+		
+		if(memberResult * studyResult == 0) {
+			sqlSession.rollback();
+		}
+		
+		return memberResult * studyResult;
+	}
+	
+	@Override
+	public int updateStudy(Study study) {
+		return studyDao.updateStudy(sqlSession, study);
+	}
 }
