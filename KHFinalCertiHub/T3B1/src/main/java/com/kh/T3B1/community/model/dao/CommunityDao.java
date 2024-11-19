@@ -105,4 +105,13 @@ public class CommunityDao {
 		
 		return sqlSession.insert("replyMapper.insertReply", r);
 	}
+
+	public int deleteReply(SqlSessionTemplate sqlSession, int replyNo) {
+
+		return sqlSession.update("replyMapper.deleteReply", replyNo);
+	}
+
+	public int editReply(SqlSessionTemplate sqlSession, Reply temp) {
+		return sqlSession.update("replyMapper.editReply", temp);
+	}
 }

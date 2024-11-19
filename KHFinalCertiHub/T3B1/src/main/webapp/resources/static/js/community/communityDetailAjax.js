@@ -125,3 +125,68 @@ function replyPaging(data, callback){
         }
     })  
 }
+
+function getLoginInfo(data, callback){
+    $.ajax({
+        url:"detail/getLoginInfo",
+        data: data,
+        success: function(res){
+            callback(res);
+        },
+        error: function(res){
+            console.log("로그인 정보 가져오기 ajax 오류");
+        }
+    })
+}
+
+function deleteReply(data, callback){
+    $.ajax({
+        url: "detail/deleteReply",
+        data: data,
+        success: function(res){
+            callback(res);
+        },
+        error: function(res){
+            console.log("댓글 삭제 ajax 오류");
+        }
+    })
+}
+
+function editReply(data, callback){
+    $.ajax({
+        url: "detail/editReply",
+        data: data,
+        success: function(res){
+            callback(res);
+        },
+        error: function(res){
+            console.log("댓글 수정 ajax 오류");
+        }
+    })
+}
+
+function poppularAll(data, callback){
+    $.ajax({
+        url: "detail/poppularAll",
+        data: data,
+        success: function(res){
+            callback(res);
+        },
+        error: function(res){
+            console.log("전체개시판 인기글 ajax 오류");
+        }
+    })
+}
+
+function poppularThis(data, callback){
+    $.ajax({
+        url: "detail/poppularThis",
+        data: data,
+        success: function(res){
+            callback(res);
+        },
+        error: function(res){
+            console.log("현재개시판 인기글 ajax 오류");
+        }
+    })
+}
