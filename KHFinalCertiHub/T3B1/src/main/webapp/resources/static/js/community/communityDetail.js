@@ -361,7 +361,7 @@ function replyPagingReload(pi, contextPath) {
     paging.innerHTML = '';
     console.log(pi)
     // 조건 1: 현재 페이지가 1이 아닌 경우, 왼쪽 화살표 추가
-    if (pi.currentPage != 1) {
+    if (pi.currentPage != 1 && pi.currentPage > 0) {
         paging.innerHTML += `
         <span class="page-arrow" id="reply-leftArrow">
             <img src="${contextPath}/resources/static/img/button/arrow_left.png" alt="">
@@ -460,6 +460,13 @@ function replyPagingReload(pi, contextPath) {
     });
 
     
+
+    $("#reply-leftArrow").on("click", function () {
+
+        replyPaging({ cno: urlParam.get('cno'), cpage: (pi.currentPage - 1) }, function(pi){
+            replyPagingReload(pi, contextPath);
+        });
+    });
 
     $("#reply-cpageMf").on("click", function () {
         replyPaging({ cno: urlParam.get('cno'), cpage: (pi.currentPage - 4) }, function(pi){
