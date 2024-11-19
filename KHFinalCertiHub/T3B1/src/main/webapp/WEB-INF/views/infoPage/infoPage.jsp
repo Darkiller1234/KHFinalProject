@@ -324,7 +324,7 @@
                                     </div>
                                      <br><br>
                                     <div class="map_wrap">
-                                        <button class="map-btn" onclick="relayout()">지도 호출하기</button>
+                                        <button class="map-btn" onclick="relayout()">지도 호출하기</button> <br>
                                         <div id="map"></div>
                                     </div>
                                     <br><br>
