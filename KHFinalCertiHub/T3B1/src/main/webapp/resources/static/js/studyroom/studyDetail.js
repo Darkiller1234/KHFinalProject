@@ -1,5 +1,6 @@
-function initStudyDetail(contextPath){
+function initStudyDetail(contextPath, isLogin){
     initMemberList(contextPath);
+    initApplyButton(isLogin)
 }
 
 function initMemberList(contextPath){
@@ -125,4 +126,53 @@ function createMemberCard(contextPath, res){
 
         studyList.appendChild(member)
     });
+}
+
+
+function initApplyButton(isLogin){
+    // 현재 페이지의 URL 주소
+    const url = new URL(window.location.href);
+    // URL의 파라미터값을 가진 객체
+    const urlParam = url.searchParams;
+    const studyNo = urlParam.get('no')
+
+    // 모달 요소를 가져오기
+    const modal = new bootstrap.Modal(document.getElementById('apply-modal'));
+    const applyButton = document.querySelector('#applyButton')
+
+    const onApplyStudy = (res) => {
+        if(res.success == 'Y'){
+            modal.show();
+            applyButton.className += ' applied'
+            applyButton.disabled = true
+            applyButton.innerText = '신청완료'
+        } else if(res.success == 'E') {
+            alert('이미 신청하셨습니다.');
+        } else {
+            alert('스터디 신청에 실패하였습니다...')
+        }
+    }
+
+    if(isLogin == 'Y'){
+        applyButton.onclick = () => {
+            ajaxApplyStudy(studyNo, onApplyStudy)
+        }
+    } else {
+        applyButton.onclick = () => {
+            alert('로그인한 유저만 신청할 수 있습니다.')
+        }
+    }
+}
+
+function ajaxApplyStudy(studyNo, callback){
+    $.ajax({
+        url:'applyStudy',
+        data:{
+            studyNo: studyNo,
+        },
+        success: callback,
+        error: () => {
+            console.log('스터디 신청 요청 실패')
+        }
+    })
 }

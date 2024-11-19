@@ -28,11 +28,18 @@
                 <c:choose>
                     <c:when test="${study.studyRecruit eq 'Y'}">
                         <div class="tag valid bgcolor3"><img src="<%=contextPath%>/resources/static/img/button/valid_icon.png">모집중</div>
-                        <button class="btn-primary"  data-bs-toggle="modal" data-bs-target="#apply-modal">신청하기</button>
+                        <c:choose>
+                            <c:when test="${isApplied eq 'E'}">
+                                <button id="applyButton" class="btn-primary applied" disabled>신청완료</button>
+                            </c:when>
+                            <c:otherwise>
+                                <button id="applyButton" class="btn-primary">신청하기</button>
+                            </c:otherwise>
+                        </c:choose>
                     </c:when>
                     <c:otherwise>
                         <div class="tag valid bgcolor4"><img src="<%=contextPath%>/resources/static/img/button/stop_icon.png">모집마감</div>
-                        <button class="btn-primary"  data-bs-toggle="modal" data-bs-target="#apply-modal" disabled>신청불가</button>
+                        <button id="applyButton" class="btn-primary"  data-bs-toggle="modal" data-bs-target="#apply-modal" disabled>신청불가</button>
                     </c:otherwise>
                 </c:choose>
             </div>

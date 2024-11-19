@@ -56,4 +56,13 @@ public interface StudyService {
 	// 게시글 수정
 	int updateBoard(StudyBoard board);
 
+	// 스터디 그룹이 모집중인지 조회
+	String checkStudyRecruit(int studyNo);
+
+	// 스터디 그룹에 이미 신청했는지 확인
+	String isApplyExist(HashMap<String, Integer> searchInfo);
+	
+	// 스터디 그룹 참가 신청
+	String insertApply(HashMap<String, Integer> insertInfo);
+
 }

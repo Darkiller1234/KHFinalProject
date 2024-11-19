@@ -12,7 +12,7 @@ function init(contextPath, pageName, optional){
             initMentorDetail(contextPath, optional); // optional : 로그인 여부
             break;
         case "studyDetail":
-            initStudyDetail(contextPath);
+            initStudyDetail(contextPath, optional); // optional : 로그인 여부
             break;
         case "communitySearch":
             commuMInit(contextPath);

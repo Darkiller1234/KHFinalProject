@@ -46,8 +46,20 @@ public class StudyController {
 	}
 	
 	@RequestMapping("detail")
-	public String studyDetailPage(Model m, int no) {
+	public String studyDetailPage(HttpSession session, Model m, int no) {
 		Study study = studyService.selectStudy(no);
+		
+		Member member = (Member)session.getAttribute("loginMember");
+		if(member != null) {
+			HashMap<String, Integer> searchInfo = new HashMap<>();
+			searchInfo.put("memberNo", member.getMemberNo());
+			searchInfo.put("studyNo", no);
+			
+			m.addAttribute("isApplied", studyService.isApplyExist(searchInfo));
+			m.addAttribute("optional","Y"); // 로그인 여부 전달
+		} else {
+			m.addAttribute("optional","N"); // 로그인 여부 전달
+		}
 		
 		m.addAttribute("study",study);
 		m.addAttribute("pageName","studyDetail");
@@ -300,5 +312,28 @@ public class StudyController {
 		}
 		
 		return new Gson().toJson(changeNameList);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="applyStudy", produces="application/json; charset=UTF-8")
+	public String applyMentee(HttpSession session, int studyNo) {
+		String result = "N"; // 실패 N 성공 Y
+		Member member = (Member)session.getAttribute("loginMember");
+		 
+		String studyValid = studyService.checkStudyRecruit(studyNo);
+		
+		// 멘토가 현재 멘티 신청을 받는 중인지 확인한다
+		if(studyValid.equals("Y")) {
+			HashMap<String, Integer> insertInfo = new HashMap<>();
+			insertInfo.put("memberNo",member.getMemberNo());
+			insertInfo.put("studyNo",studyNo);
+
+			result = studyService.insertApply(insertInfo);
+		}
+		
+		HashMap<String, String> resultObj = new HashMap<>();
+		resultObj.put("success",result);
+
+		return new Gson().toJson(resultObj);
 	}
 }
