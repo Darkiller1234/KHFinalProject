@@ -212,7 +212,9 @@ function commuDInit(contextPath) {
                         document.querySelector('#like-btn').classList.add('selected');
                         addModal("이미 좋아하신 게시글입니다.")
                     }
-                    boardLoading({ cno: urlParam.get('cno') }, boardLoadingExecute)
+                    boardLoading({ cno: urlParam.get('cno') }, function(ev) {
+                        boardLoadingExecute(ev, contextPath)
+                    })
                 })
             });
             $("#hate-btn").on("click", function () {
@@ -223,7 +225,9 @@ function commuDInit(contextPath) {
                         document.querySelector('#hate-btn').classList.add('selected');
                         addModal("이미 싫어하신 게시글입니다.")
                     }
-                    boardLoading({ cno: urlParam.get('cno') }, boardLoadingExecute)
+                    boardLoading({ cno: urlParam.get('cno') }, function(ev) {
+                        boardLoadingExecute(ev, contextPath)
+                    })
                 })
             });
         }
