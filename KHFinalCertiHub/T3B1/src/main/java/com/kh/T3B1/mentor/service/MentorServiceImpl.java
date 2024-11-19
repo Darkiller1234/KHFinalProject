@@ -91,11 +91,22 @@ public class MentorServiceImpl implements MentorService {
 	}
 	
 	@Override
+	public String isApplyExist(HashMap<String, Integer> searchInfo) {
+		Integer isExist = mentorDao.isApplyExist(sqlSession, searchInfo);
+		// 이미 신청했다면 isExist 값이 존재, 중복 E 리턴
+		if(isExist != null) {
+			return "E";
+		}
+		
+		return "N";
+	}
+	
+	@Override
 	public String insertApply(HashMap<String, Integer> insertInfo) {
 		Integer isExist = mentorDao.isApplyExist(sqlSession, insertInfo);
-		// 이미 신청했다면 isExist 값이 존재, 실패 N 리턴
+		// 이미 신청했다면 isExist 값이 존재, 중복 E 리턴
 		if(isExist != null) {
-			return "N";
+			return "E";
 		}
 		
 		int insertResult = mentorDao.insertApply(sqlSession, insertInfo);
@@ -105,6 +116,5 @@ public class MentorServiceImpl implements MentorService {
 			return "N";
 		}
 	}
-
 
 }

@@ -45,6 +45,11 @@
     background-color: #E29578;
 }
 
+.mentor-card .btn-primary.applied{
+    background-color: #83C5BE;
+}
+
+
 .mentor-card .btn-primary:disabled:hover{
     opacity: 1;
 }
