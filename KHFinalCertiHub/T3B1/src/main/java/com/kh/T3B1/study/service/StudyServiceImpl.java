@@ -180,5 +180,10 @@ public class StudyServiceImpl implements StudyService{
 			return "N";
 		}
 	}
+
+	@Override
+	public int insertStudy(Study study) {
+		return studyDao.insertStudy(sqlSession, study);
+	}
 	
 }

@@ -40,9 +40,31 @@ public class StudyController {
 	}
 	
 	@RequestMapping("create")
-	public String studyCreatePage(Model m) {
+	public String studyCreatePage(HttpSession session, Model m) {
 		m.addAttribute("pageName","studyCreatePage");
 		return "studyroom/studyCreate";
+	}
+	
+	@RequestMapping("createStudy")
+	public String studyCreatePage(HttpSession session, MultipartFile studyImg, Study study, Model m) {
+		int memberNo = ((Member)session.getAttribute("loginMember")).getMemberNo();
+		study.setManagerNo(memberNo);
+
+		// 스터디 그룹 프로필 사진을 설정했을 경우 서버에 저장
+		if(!studyImg.getOriginalFilename().equals("")) {
+			String filePath = "/resources/static/img/studyProfile";
+			String changeName = Template.saveFile(studyImg, session, filePath);
+			
+			study.setStudyImg(filePath + "/" +changeName);
+		}
+		int result = studyService.insertStudy(study);
+		
+		if(result < 1) {
+			session.setAttribute("errorMsg", "스터디 그룹 생성에 실패했습니다.");
+			return "redirect:/error";
+		}
+		
+		return "redirect:search";
 	}
 	
 	@RequestMapping("detail")
@@ -130,10 +152,7 @@ public class StudyController {
 		int memberNo = ((Member)session.getAttribute("loginMember")).getMemberNo();
 		boolean isManager = false; // 해당 스터디 그룹의 매니저가 맞는지 검증하는 변수
 		int result = 0; // 삽입이 정상적으로 됬는지 확인하는 변수 0 : 실패 / 1 : 성공
-		
-		log.info("memberNo : {}",memberNo);
-		log.info("board : {}",board);
-		
+
 		if(board.getStudyNo() != null) {
 			HashMap<String, Integer> searchInfo = new HashMap<>();
 			searchInfo.put("memberNo", memberNo);

@@ -257,6 +257,22 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{no}
 			2
 		)
 	</insert>
+	
+	<insert id="insertStudy" parameterType="Study">
+		INSERT INTO STUDY(
+			STUDY_NO,
+			MANAGER_NO,
+			STUDY_NAME,
+			STUDY_INFO,
+			STUDY_IMG
+		) VALUES (
+			STUDY_SEQ.NEXTVAL,
+			#{managerNo},
+			#{studyName},
+			#{studyInfo},
+			#{studyImg}
+		)
+	</insert>
 
 </mapper>
 

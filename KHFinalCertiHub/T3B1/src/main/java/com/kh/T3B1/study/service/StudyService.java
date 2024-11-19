@@ -65,4 +65,7 @@ public interface StudyService {
 	// 스터디 그룹 참가 신청
 	String insertApply(HashMap<String, Integer> insertInfo);
 
+	// 스터디 그룹 생성
+	int insertStudy(Study study);
+
 }
