@@ -227,6 +227,52 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{no}
   	   WHERE STUDY_BOARD_NO = #{boardNo}
   </update>
   
+  <select id="checkStudyRecruit" resultType="String">
+  	 SELECT STUDY_RECRUIT
+  	   FROM STUDY
+  	  WHERE STUDY_NO = #{studyNo}
+  </select>
+  
+  	<select id="isApplyExist" resultType="int">
+		SELECT 1
+		FROM DUAL
+		WHERE EXISTS(
+		   SELECT 1
+			 FROM APPLY_LOG
+			WHERE APPLICANT_NO = #{memberNo}
+			  AND STUDY_NO = #{studyNo}
+		)
+	</select>
+	
+	<insert id="insertApply" parameterType="HashMap">
+		INSERT INTO APPLY_LOG(
+			APPLY_NO,
+			APPLICANT_NO,
+			STUDY_NO,
+			APPLY_KIND
+		) VALUES (
+			APPLY_LOG_SEQ.NEXTVAL,
+			#{memberNo},
+			#{studyNo},
+			2
+		)
+	</insert>
+	
+	<insert id="insertStudy" parameterType="Study">
+		INSERT INTO STUDY(
+			STUDY_NO,
+			MANAGER_NO,
+			STUDY_NAME,
+			STUDY_INFO,
+			STUDY_IMG
+		) VALUES (
+			STUDY_SEQ.NEXTVAL,
+			#{managerNo},
+			#{studyName},
+			#{studyInfo},
+			#{studyImg}
+		)
+	</insert>
 
 </mapper>
 

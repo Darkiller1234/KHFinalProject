@@ -144,5 +144,46 @@ public class StudyServiceImpl implements StudyService{
 		
 		return result;
 	}
+
+	@Override
+	public String checkStudyRecruit(int studyNo) {
+		String result = studyDao.checkStudyRecruit(sqlSession, studyNo);
+		
+		if(result == null) result = "N";
+		
+		return result;
+	}
+	
+	@Override
+	public String isApplyExist(HashMap<String, Integer> searchInfo) {
+		Integer isExist = studyDao.isApplyExist(sqlSession, searchInfo);
+		// 이미 신청했다면 isExist 값이 존재, 중복 E 리턴
+		if(isExist != null) {
+			return "E";
+		}
+		
+		return "N";
+	}
+
+	@Override
+	public String insertApply(HashMap<String, Integer> insertInfo) {
+		Integer isExist = studyDao.isApplyExist(sqlSession, insertInfo);
+		// 이미 신청했다면 isExist 값이 존재, 중복 E 리턴
+		if(isExist != null) {
+			return "E";
+		}
+		
+		int insertResult = studyDao.insertApply(sqlSession, insertInfo);
+		if(insertResult > 0) {
+			return "Y";
+		} else {
+			return "N";
+		}
+	}
+
+	@Override
+	public int insertStudy(Study study) {
+		return studyDao.insertStudy(sqlSession, study);
+	}
 	
 }
