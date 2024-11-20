@@ -74,7 +74,7 @@
                 <button>신고</button>
               </div>
               <div id="replys">
-                <div class="reply">
+                <!-- <div class="reply">
                   <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" alt="">
                   <div>
                     <p class="font-size-subtitle">윤대한</p>
@@ -89,7 +89,7 @@
                       <button>수정</button>
                     </div>
                   </div>
-                </div>
+                </div> -->
               </div>
               <div class="pagination" id="reply-pagination">
                 <span class="page-num">1</span>

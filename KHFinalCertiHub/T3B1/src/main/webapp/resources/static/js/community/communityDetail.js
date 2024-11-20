@@ -570,7 +570,12 @@ function replyListReload(result, contextPath, a, b) {
     let loginInfo;
     getLoginInfo(0, function (re) {
         console.log(re);
-        loginInfo = re.memberNo;
+        if(re !== null){
+            loginInfo = re.memberNo;
+        }
+        else {
+            loginInfo = null;
+        }
         console.log(loginInfo);
         console.log(result)
         result.forEach((reply) => {
