@@ -283,7 +283,7 @@
                             <div class="accordion-item">
                                 <button class="accordion-toggle">시험장 탐색</button>
                                 <div class="accordion-content">
-                                    <h5>장소검색</h5>
+                                    <h5>장소검색</h5> <br>
                                     <div class="region">
                                         <select id="areaSelect" class="examArea">
                                             <option value="">지역 선택</option>
@@ -319,29 +319,123 @@
                                             <option value="충북북부">충북북부</option>
                                         </select>
                                         <ul id="areaList"></ul>
-                                            <!-- API로 불러온 데이터가 여기에 추가될 예정 -->
+                                        <!-- API로 불러온 데이터가 여기에 추가될 예정 -->
                                         </ul>
                                     </div>
-                                     <br><br>
+                                    <br><br>
                                     <div class="map_wrap">
                                         <button class="map-btn" onclick="relayout()">지도 호출하기</button> <br>
                                         <div id="map"></div>
                                     </div>
                                     <br><br>
-                                    <div class="region">
-                                        <div class="selectArea"></div>
-                                    </div> <br><br>
-                                    <div class="weather">
+                                    <div class="shortTermWheather">
                                         <pre><b>해당 지역 날씨 정보 (현재 날짜 기준 최대 10일)</b></pre> <br>
+                                        <button>오늘</button>
+                                        <button>내일</button>
+                                        <button>모레</button> <br>
+                                        <select id="selectArea1" class="examArea">
+                                            <option value="1">강원도</option>
+                                            <option value="2">경기도</option>
+                                            <option value="3">경상남도 </option>
+                                            <option value="4">경상북도 </option>
+                                            <option value="5">광주 </option>
+                                            <option value="6">대구 </option>
+                                            <option value="7 ">대전 </option>
+                                            <option value="8 ">부산 </option>
+                                            <option value="9">서울</option>
+                                            <option value="10 ">세종 </option>
+                                            <option value="11 ">울산 </option>
+                                            <option value="12 ">인천 </option>
+                                            <option value="13 ">전라남도 </option>
+                                            <option value="14 ">전라북도 </option>
+                                            <option value="15 ">제주 </option>
+                                            <option value="16 ">충청남도 </option>
+                                            <option value="17 ">충청북도 </option>
+                                        </select>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="25">28일(월)</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><b>시간</b></td>
+                                                    <td>01시</td>
+                                                    <td>02시</td>
+                                                    <td>03시</td>
+                                                    <td>04시</td>
+                                                    <td>05시</td>
+                                                    <td>06시</td>
+                                                    <td>07시</td>
+                                                    <td>08시</td>
+                                                    <td>09시</td>
+                                                    <td>10시</td>
+                                                    <td>11시</td>
+                                                    <td>12시</td>
+                                                    <td>13시</td>
+                                                    <td>14시</td>
+                                                    <td>15시</td>
+                                                    <td>16시</td>
+                                                    <td>17시</td>
+                                                    <td>18시</td>
+                                                    <td>19시</td>
+                                                    <td>20시</td>
+                                                    <td>21시</td>
+                                                    <td>22시</td>
+                                                    <td>23시</td>
+                                                    <td>00시</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>날씨</b></td>
+                                                    <td>구름많음 <br></td>
+                                                    <td>구름많음 <br></td>
+                                                    <td>구름많음 <br></td>
+                                                    <td>맑음</td>
+                                                    <td>맑음</td>
+                                                    <td>맑음</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>습도</b></td>
+                                                    <td>20% </td>
+                                                    <td>20% </td>
+                                                    <td>20% </td>
+                                                    <td>10% </td>
+                                                    <td>10%</td>
+                                                    <td>10%</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>기온</b></td>
+                                                    <td>7</td>
+                                                    <td>8</td>
+                                                    <td>8</td>
+                                                    <td>9</td>
+                                                    <td>9</td>
+                                                    <td>10</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div> <br><br>
+                                    <pre><b>글피~최대 10일</b></pre> <br>
+                                    <div class="midTermWheather">
+                                        <select id="selectArea2" class="examArea">
+                                            <option value="11B00000">서울, 인천, 경기도</option>
+                                            <option value="11D10000">강원도영서</option>
+                                            <option value="11D20000">강원도영동</option>
+                                            <option value="11C20000">대전, 세종, 충청남도</option>
+                                            <option value="11C10000">충청북도</option>
+                                            <option value="11F20000">광주, 전라남도</option>
+                                            <option value="11F10000">전북자치도</option>
+                                            <option value="11H10000">대구, 경상북도</option>
+                                            <option value="11H20000">부산, 울산, 경상남도</option>
+                                            <option value="11G00000">제주도</option>
+                                        </select>
                                         <table>
                                             <thead>
                                                 <tr>
                                                     <th>지역</th>
-                                                    <th colspan="2">28일(월)</th>
-                                                    <th colspan="2">29일(화)</th>
-                                                    <th colspan="2">30일(수)</th>
-                                                    <th colspan="2">31일(목)</th>
-                                                    <th colspan="2">01일(금)</th>
+                                                    <th rowspan="2">31일(목)</th>
+                                                    <th rowspan="2">01일(금)</th>
                                                     <th rowspan="2">02일(토)</th>
                                                     <th rowspan="2">03일(일)</th>
                                                     <th rowspan="2">04일(월)</th>
@@ -355,38 +449,19 @@
                                                         서울 <br>
                                                         인천 <br>
                                                         경기도</td>
-                                                    <td>오전</td>
-                                                    <td>오후</td>
-                                                    <td>오전</td>
-                                                    <td>오후</td>
-                                                    <td>오전</td>
-                                                    <td>오후</td>
-                                                    <td>오전</td>
-                                                    <td>오후</td>
-                                                    <td>오전</td>
-                                                    <td>오후</td>
                                                     <td rowspan="2">맑음 <br>10%</td>
                                                     <td rowspan="2">맑음 <br>10%</td>
                                                     <td rowspan="2">맑음 <br>10%</td>
                                                     <td rowspan="2">맑음 <br>10%</td>
                                                     <td rowspan="2">맑음 <br>10%</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>구름많음 <br>20% </td>
-                                                    <td>구름많음 <br>20% </td>
-                                                    <td>구름많음 <br>20% </td>
-                                                    <td>맑음 <br>10% </td>
-                                                    <td>맑음 <br>10%</td>
-                                                    <td>맑음 <br>10%</td>
-                                                    <td>맑음 <br>10%</td>
-                                                    <td>구름많음 <br>20% </td>
-                                                    <td>맑음 <br>10% </td>
-                                                    <td>맑음 <br>10%</td>
-
+                                                    <td rowspan="2">맑음 <br>10%</td>
+                                                    <td rowspan="2">맑음 <br>10%</td>
                                                 </tr>
                                             </tbody>
-
                                         </table>
+                                    </div> <br><br>
+                                    <div class="weather">
+
                                     </div>
                                 </div>
                             </div>
@@ -403,6 +478,8 @@
             <script src="<%=contextPath%>/resources/static/js/infopage/infoPage.js"></script>
             <script src="<%=contextPath%>/resources/static/js/infopage/map.js"></script>
             <script src="<%=contextPath%>/resources/static/js/infopage/area.js"></script>
+            <script src="<%=contextPath%>/resources/static/js/infopage/midWeather.js"></script>
+            <script src="<%=contextPath%>/resources/static/js/infopage/shortWeather.js"></script>
             <%@ include file="../common/footer.jsp" %>
     </body>
 
