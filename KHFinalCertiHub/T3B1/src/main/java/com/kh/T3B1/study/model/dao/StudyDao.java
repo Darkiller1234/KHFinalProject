@@ -113,5 +113,9 @@ public class StudyDao {
 	public int updateStudy(SqlSessionTemplate sqlSession, Study study) {
 		return sqlSession.update("studyMapper.updateStudy", study);
 	}
+
+	public int deleteStudyMember(SqlSessionTemplate sqlSession, HashMap<String, Integer> searchInfo) {
+		return sqlSession.delete("studyMapper.deleteStudyMember", searchInfo);
+	}
 	
 }

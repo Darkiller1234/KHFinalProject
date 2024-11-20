@@ -1,8 +1,22 @@
 function initStudyDetailEdit(contextPath, isRecruit){
+    // 현재 페이지의 URL 주소
+    const url = new URL(window.location.href);
+    // URL의 파라미터값을 가진 객체
+    const urlParam = url.searchParams;
+    const no = urlParam.get('no')
+
+    // 페이지 내에서 공유되는 현재 페이지 정보
+    let state = {
+        contextPath : contextPath,
+        isRecruit : isRecruit,
+        currentMember : null,
+        studyNo : no
+    }
+
     initForm()
-    initBanButton()
-    initSelectBox(contextPath, isRecruit)
-    initMemberList(contextPath)
+    initBanButton(state)
+    initSelectBox(state)
+    initMemberList(state)
 }
 
 function loadImg(_input){
@@ -22,43 +36,56 @@ function loadImg(_input){
 
 function initForm(){
     const studyForm = document.getElementById('studyForm')
+    studyForm.onsubmit = () => {
+        const textarea = document.createElement('textarea')
+        textarea.name = "studyInfo"
+        textarea.value = input.innerHTML.replace(/(?:\r\n|\r|\n)/g, '<br>')
+        studyForm.appendChild(textarea)
+    }
+
     const input = studyForm.querySelector('.study-info')
     input.contentEditable = true;
-    
-    studyForm.onsubmit = () => {
-        const text =  studyForm.querySelector("textarea[name=studyInfo]");
-
-        text.value = input.innerHTML.replace(/(?:\r\n|\r|\n)/g, '<br>');
-    }
 }
 
-function initBanButton(){
+function initBanButton(state){
     const banButton = document.getElementById('banButton')
 
-    const onBanMember = () => {
-        
+    const onBanMember = (res) => {
+        if(res.success == 'Y') {
+            state.currentMember.remove()
+        } else {
+            alert('멤버 추방에 실패했습니다.')
+        }
     }
 
-    banButton.onclick = () => {
-
-    }
+    banButton.onclick = ajaxBanMember(state, onBanMember)
 }
 
-function ajaxBanMember(){
+function ajaxBanMember(state, callback){
     return () => {
-
+        $.ajax({
+            url: state.contextPath + '/study/banMember',
+            data:{
+                memberNo: state.currentMember.dataset.value,
+                studyNo: state.studyNo,
+            },
+            success: callback,
+            error: () =>{
+                console.log('멤버 삭제 요청 실패')
+            }
+        })
     }
 }
 
 
-function initSelectBox(contextPath, isRecruit){
+function initSelectBox(state){
     const selectBoxList = document.querySelectorAll('.recruit-option');
 
     const data = {
         name : 'studyRecruit',
-        default : isRecruit == 'Y' ? '모집중' : '모집마감',
-        defaultValue : isRecruit ,
-        imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
+        default : state.isRecruit == 'Y' ? '모집중' : '모집마감',
+        defaultValue : state.isRecruit ,
+        imgUrl : `${state.contextPath}/resources/static/img/button/triangle_down.png`,
         items : [
             ['모집중','Y'],
             ['모집마감','N'],
@@ -69,11 +96,11 @@ function initSelectBox(contextPath, isRecruit){
 }
 
 
-function initMemberList(contextPath){
+function initMemberList(state){
     // 콜백 함수
     const onMemberLoad = (data) => {
         if(data){
-            createMemberCard(pageInfo.contextPath, data)
+            createMemberCard(pageInfo.contextPath, state, data)
             pageInfo.currentPage++
             // 들어온 데이터 개수가 pageLimit보다 적다면 마지막 페이지
             if(data.length != pageInfo.pageLimit){
@@ -85,12 +112,6 @@ function initMemberList(contextPath){
             loadingButton.style.display = "none"
         }
     }
-    
-    // 현재 페이지의 URL 주소
-    const url = new URL(window.location.href);
-    // URL의 파라미터값을 가진 객체
-    const urlParam = url.searchParams;
-    const no = urlParam.get('no')
 
     // 스로틀링용 변수
     let timer;
@@ -99,9 +120,9 @@ function initMemberList(contextPath){
     let pageInfo = {
         currentPage : 1,
         pageLimit : 10,
-        no: no,
+        no: state.studyNo,
         isEnd : false,
-        contextPath : contextPath,
+        contextPath : state.contextPath,
     }
 
     // 매개변수로 초기값 전달
@@ -161,7 +182,7 @@ function ajaxLoadMember(pageInfo, callback){
     }
 }
 
-function createMemberCard(contextPath, res){
+function createMemberCard(contextPath, state, res){
     const studyList = document.querySelector('.mentor-intro')
 
     // 멤버 번호 데이터 필요하면 data.memberNo에서 꺼내쓸것
@@ -176,7 +197,7 @@ function createMemberCard(contextPath, res){
             banUserName.innerText = data.memberNickname
             // ev.target : 이벤트를 발생시킨 요소( 클릭이면 내가 누른 요소 )
             // ev.currentTarget : 이벤트가 부착된 요소의 최상위 부모 반환
-            banUserName.dataset.value = ev.currentTarget.dataset.value
+            state.currentMember = ev.currentTarget
 
             modal.show()
         }

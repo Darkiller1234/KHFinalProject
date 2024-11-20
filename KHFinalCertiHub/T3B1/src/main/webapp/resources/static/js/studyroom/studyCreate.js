@@ -1,5 +1,5 @@
 function initStudyCreate(contextPath){
-
+    initForm()
 }
 
 function loadImg(_input){
@@ -15,4 +15,17 @@ function loadImg(_input){
             document.querySelector('#profile').src = ev.target.result;
         }
     }
+}
+
+function initForm(){
+    const studyForm = document.getElementById('studyForm')
+    studyForm.onsubmit = () => {
+        const textarea = document.createElement('textarea')
+        textarea.name = "studyInfo"
+        textarea.value = input.innerHTML.replace(/(?:\r\n|\r|\n)/g, '<br>')
+        studyForm.appendChild(textarea)
+    }
+
+    const input = studyForm.querySelector('.study-info')
+    input.contentEditable = true;
 }

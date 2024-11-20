@@ -42,7 +42,7 @@ public class StudyController {
 	
 	@RequestMapping("create")
 	public String studyCreatePage(HttpSession session, Model m) {
-		m.addAttribute("pageName","studyCreatePage");
+		m.addAttribute("pageName","studyCreate");
 		return "studyroom/studyCreate";
 	}
 	
@@ -58,9 +58,8 @@ public class StudyController {
 			String changeName = Template.saveFile(profileImg, session, filePath);
 			
 			study.setStudyImg(filePath + changeName);
-		} else { // 설정하지 않았다면 기본값으로 설정
-			study.setStudyImg("/resources/static/img/profile/default_profile.png");
 		}
+		
 		int result = studyService.insertStudy(study);
 		
 		if(result < 1) {
@@ -100,7 +99,8 @@ public class StudyController {
 		searchInfo.put("memberNo", memberNo);
 		searchInfo.put("studyNo", no);
 		
-		boolean isManager = studyService.isStudyMananger(searchInfo);
+		// 해당 스터디그룹 매니저인지 확인
+		boolean isManager = studyService.isStudyManager(searchInfo);
 		if(!isManager) {
 			session.setAttribute("errorMsg", "스터디 그룹 수정 권한이 없습니다.");
 			return "redirect:/error";
@@ -123,7 +123,7 @@ public class StudyController {
 		searchInfo.put("memberNo", memberNo);
 		searchInfo.put("studyNo", study.getStudyNo());
 
-		boolean isManager = studyService.isStudyMananger(searchInfo);
+		boolean isManager = studyService.isStudyManager(searchInfo);
 		if(!isManager) {
 			session.setAttribute("errorMsg", "스터디 그룹 수정 권한이 없습니다.");
 			return "redirect:/error";
@@ -210,7 +210,7 @@ public class StudyController {
 			HashMap<String, Integer> searchInfo = new HashMap<>();
 			searchInfo.put("memberNo", memberNo);
 			searchInfo.put("studyNo", board.getStudyNo());
-			isManager = studyService.isStudyMananger(searchInfo);
+			isManager = studyService.isStudyManager(searchInfo);
 		}
 		
 		if(isManager) {
@@ -388,19 +388,44 @@ public class StudyController {
 	
 	@ResponseBody
 	@RequestMapping(value="applyStudy", produces="application/json; charset=UTF-8")
-	public String applyMentee(HttpSession session, int studyNo) {
+	public String applyStudy(HttpSession session, int studyNo) {
 		String result = "N"; // 실패 N 성공 Y
 		Member member = (Member)session.getAttribute("loginMember");
 		 
 		String studyValid = studyService.checkStudyRecruit(studyNo);
 		
-		// 멘토가 현재 멘티 신청을 받는 중인지 확인한다
+		// 현재 스터디그룹 멤버 모집 중인지 확인한다
 		if(studyValid.equals("Y")) {
 			HashMap<String, Integer> insertInfo = new HashMap<>();
 			insertInfo.put("memberNo",member.getMemberNo());
 			insertInfo.put("studyNo",studyNo);
 
 			result = studyService.insertApply(insertInfo);
+		}
+		
+		HashMap<String, String> resultObj = new HashMap<>();
+		resultObj.put("success",result);
+
+		return new Gson().toJson(resultObj);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="banMember", produces="application/json; charset=UTF-8")
+	public String banMember(HttpSession session, int memberNo, int studyNo) {
+		String result = "N"; // 실패 N 성공 Y
+		Member manager = (Member)session.getAttribute("loginMember");
+		
+		// 요창한 사용자가 해당 스터디그룹 매니저인지 권한 검사후 삭제 수행
+		HashMap<String, Integer> searchInfo = new HashMap<>();
+		searchInfo.put("memberNo",manager.getMemberNo()); // 요청을 보낸 멤버의 번호
+		searchInfo.put("studyNo",studyNo);
+		boolean isManager = studyService.isStudyManager(searchInfo);
+		
+		if(isManager) {
+			searchInfo = new HashMap<>();
+			searchInfo.put("memberNo", memberNo); // 추방당할 유저의 번호
+			searchInfo.put("studyNo", studyNo);
+			result = studyService.deleteStudyMember(searchInfo);
 		}
 		
 		HashMap<String, String> resultObj = new HashMap<>();

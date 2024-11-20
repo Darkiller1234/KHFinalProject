@@ -43,13 +43,11 @@
                 <div class="mentor-info">
                     <form id="studyForm" action="<%=contextPath%>/study/editStudy" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="studyNo" value="${study.studyNo}">
-                        <input type="hidden" name="studyImg" value="${study.studyImg}">
                         <div class="font-size-title">스터디 그룹명</div>
                         <input type="text" class="form-control" name="studyName" value="${study.studyName}" required>
 
                         <div class="font-size-title">그룹 소개</div>
-                        <textarea class="form-control" name="studyInfo">${study.studyInfo}</textarea>
-                        <div class="study-info form-control">${study.studyInfo}</div>
+                        <div class="study-info form-control" placeholder="그룹을 소개할 문구를 작성해주세요.(3000Bytes까지 가능)">${study.studyInfo}</div>
 
                         <div class="font-size-title">
                             그룹 프로필

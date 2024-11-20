@@ -264,14 +264,18 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{no}
 			STUDY_NO,
 			MANAGER_NO,
 			STUDY_NAME,
-			STUDY_INFO,
-			STUDY_IMG
+			STUDY_INFO
+ 	        <if test="studyImg != null">
+			, STUDY_IMG
+			</if>
 		) VALUES (
 			STUDY_SEQ.NEXTVAL,
 			#{managerNo},
 			#{studyName},
-			#{studyInfo},
-			#{studyImg}
+			#{studyInfo}
+  	        <if test="studyImg != null">
+  	        ,#{studyImg}
+  	        </if>
 		)
 	</insert>
 	
@@ -291,10 +295,18 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{no}
   	  UPDATE STUDY
   	     SET STUDY_NAME = #{studyName},
   	         STUDY_INFO = #{studyInfo},
-  	         STUDY_IMG = #{studyImg},
+  	         <if test="studyImg != null">
+  	           	STUDY_IMG = #{studyImg},
+  	         </if>
   	         STUDY_RECRUIT = #{studyRecruit}
   	   WHERE STUDY_NO = #{studyNo}
   </update>
+  
+  <delete id="deleteStudyMember">
+  	 DELETE FROM STUDY_MEMBER
+  	  WHERE MEMBER_NO = #{memberNo}
+  	    AND STUDY_NO = #{studyNo}
+  </delete>
 
 </mapper>
 

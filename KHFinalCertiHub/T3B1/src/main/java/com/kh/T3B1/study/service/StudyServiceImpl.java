@@ -88,7 +88,7 @@ public class StudyServiceImpl implements StudyService{
 	}
 
 	@Override
-	public boolean isStudyMananger(HashMap<String, Integer> searchInfo) {
+	public boolean isStudyManager(HashMap<String, Integer> searchInfo) {
 		boolean isManager = false;
 		
 		// EXISTS 결과가 조회된다면 매니저가 맞음
@@ -201,5 +201,16 @@ public class StudyServiceImpl implements StudyService{
 	@Override
 	public int updateStudy(Study study) {
 		return studyDao.updateStudy(sqlSession, study);
+	}
+
+	@Override
+	public String deleteStudyMember(HashMap<String, Integer> searchInfo) {
+		int result = studyDao.deleteStudyMember(sqlSession, searchInfo);
+		
+		if(result > 0) {
+			return "Y";
+		}
+		
+		return "N";
 	}
 }

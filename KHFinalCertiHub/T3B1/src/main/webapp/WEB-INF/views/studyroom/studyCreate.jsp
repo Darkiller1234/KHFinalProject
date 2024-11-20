@@ -43,7 +43,8 @@
                         <input type="text" class="form-control" name="studyName" placeholder="그룹명을 입력해주세요.(90Bytes까지 가능)" required>
 
                         <div class="font-size-title">그룹 소개</div>
-                        <textarea placeholder="그룹을 소개할 문구를 작성해주세요.(3000Bytes까지 가능)" class="form-control" name="studyInfo"></textarea>
+                        <div class="study-info form-control" placeholder="그룹을 소개할 문구를 작성해주세요.(3000Bytes까지 가능)"></div>
+                        <!-- placeholder="그룹을 소개할 문구를 작성해주세요.(3000Bytes까지 가능)" -->
 
                         <div class="font-size-title">
                             그룹 프로필

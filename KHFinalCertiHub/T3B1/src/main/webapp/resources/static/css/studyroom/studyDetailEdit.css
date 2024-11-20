@@ -22,6 +22,11 @@
     display: none;
 }
 
+[contenteditable="true"]:empty:before {
+    content: attr(placeholder);
+    color:#6c757d
+ }
+
 .recruit-option .custom-select{
     width:200px;
 }
