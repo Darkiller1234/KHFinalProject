@@ -43,13 +43,11 @@
                 <div class="mentor-info">
                     <form id="studyForm" action="<%=contextPath%>/study/editStudy" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="studyNo" value="${study.studyNo}">
-                        <input type="hidden" name="studyImg" value="${study.studyImg}">
                         <div class="font-size-title">스터디 그룹명</div>
                         <input type="text" class="form-control" name="studyName" value="${study.studyName}" required>
 
                         <div class="font-size-title">그룹 소개</div>
-                        <textarea class="form-control" name="studyInfo">${study.studyInfo}</textarea>
-                        <div class="study-info form-control">${study.studyInfo}</div>
+                        <div class="study-info form-control" placeholder="그룹을 소개할 문구를 작성해주세요.(3000Bytes까지 가능)">${study.studyInfo}</div>
 
                         <div class="font-size-title">
                             그룹 프로필
@@ -66,6 +64,14 @@
 
                         <div class="recruit-option"></div>
                     </form>
+                    
+                    <div class="font-size-title">그룹 삭제</div>
+                    <div class="delete-section">
+                        <button
+                        class="btn-primary bgcolor1"
+                        data-bs-toggle="modal" data-bs-target="#deleteConfrim"
+                        >삭제하기</button>
+                    </div>
 
                     <div class="font-size-title">참여회원 (${study.memberCount}명)</div>
 
@@ -89,7 +95,6 @@
                         <button type="submit"
                             form="studyForm"
                             class="btn-primary bgcolor1"
-                            data-bs-toggle="modal" data-bs-target="#apply-modal"
                         >수정하기</button>
                     </div>
                 </div>
@@ -118,12 +123,44 @@
             <!-- Modal body -->
             <div class="modal-body">
                 <div id="ban-user-name"></div>
-                정말 스터디그룹에서 제외시키겠습니까?
+                <div id="modal-text">정말 스터디그룹에서 제외시키겠습니까?</div>
             </div>
     
             <!-- Modal footer -->
             <div class="modal-footer">
                 <button id="banButton" class="confirm" type="button" data-bs-dismiss="modal">확인</button>
+                <button type="button" data-bs-dismiss="modal">취소</button>
+            </div>
+    
+        </div>
+        </div>
+    </div>
+
+    <div class="modal" id="deleteConfrim">
+        <div class="modal-dialog">
+        <div class="modal-content">
+    
+            <!-- Modal Header -->
+            <div class="modal-header">
+            <h4 class="modal-title">                
+                <img 
+                src="<%=contextPath%>/resources/static/img/logo/logo_big.png"
+                ">
+            </h4>
+            </div>
+    
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div id="ban-user-name"></div>
+                <div id="modal-text">
+                    스터디그룹을 삭제하시겠습니까?
+                    다시 돌이킬 수 없습니다!!!
+                </div>
+            </div>
+    
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button id="deleteButton" class="confirm" type="button" data-bs-dismiss="modal">확인</button>
                 <button type="button" data-bs-dismiss="modal">취소</button>
             </div>
     
