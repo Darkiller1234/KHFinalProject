@@ -27,7 +27,7 @@
    	SELECT COUNT(*)
    	  FROM REPLY
    	<where>
-  	 	STATUS = 'Y'
+  	 	<!-- STATUS = 'Y' -->
   	 	AND BOARD_NO = #{cno}
   	 </where> 
   </select>
