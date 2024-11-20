@@ -58,7 +58,7 @@ function init(contextPath, pageName, optional){
             break;
 
         case "studyBoardView":
-            initStudyBoardView(contextPath);
+            initStudyBoardView(contextPath, optional); // optional : 모집중 여부
             break;
 
         case "studyBoardEdit":

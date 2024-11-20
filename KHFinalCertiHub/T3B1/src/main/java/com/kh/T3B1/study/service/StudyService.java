@@ -171,4 +171,11 @@ public interface StudyService {
 	 */
 	int deleteStudy(int studyNo);
 
+	/**
+	 * 스터디 그룹 모집 여부 변경
+	 * @param HashMap key=studyNo(바꿀 스터디 그룹 번호), recruit(모집여부 Y/N)
+	 * @return 성공=Y, 실패=N
+	 */
+	String updateRecruit(HashMap<String, Object> updateInfo);
+
 }
