@@ -622,3 +622,15 @@ footer {
 #boardContentP img{
     max-width: 100%;
 }
+
+
+.btn-outline-primary:hover {
+    background-color: white !important;
+
+}
+
+.popular-div:hover {
+    background-color: #006D77;
+    color: white;
+    cursor: pointer;
+}
