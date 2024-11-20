@@ -76,9 +76,7 @@ function displayExamData(data) {
         return;
     }
 
-    // 데이터 출력 시 최대 5줄 넘으면 스크롤 추가
-    resultList.style.maxHeight = "200px"; // 예: 5줄 기준
-    resultList.style.overflowY = "auto"; // 스크롤 활성화
+
 
     // 데이터를 줄바꿈 포함하여 출력
     resultList.innerHTML = data.map(item => `
