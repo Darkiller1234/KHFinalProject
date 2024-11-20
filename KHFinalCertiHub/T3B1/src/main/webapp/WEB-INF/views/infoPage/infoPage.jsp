@@ -433,36 +433,55 @@
                                         <table>
                                             <thead>
                                                 <tr>
-                                                    <th>지역</th>
-                                                    <th rowspan="2">31일(목)</th>
-                                                    <th rowspan="2">01일(금)</th>
-                                                    <th rowspan="2">02일(토)</th>
-                                                    <th rowspan="2">03일(일)</th>
-                                                    <th rowspan="2">04일(월)</th>
-                                                    <th rowspan="2">05일(화)</th>
-                                                    <th rowspan="2">06일(수)</th>
+                                                    <th>날짜</th>
+                                                    <th>3일 후</th>
+                                                    <th>4일 후</th>
+                                                    <th>5일 후</th>
+                                                    <th>6일 후</th>
+                                                    <th>7일 후</th>
+                                                    <th>8일 후</th>
+                                                    <th>9일 후</th>
+                                                    <th>10일 후</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td rowspan="2">
-                                                        서울 <br>
-                                                        인천 <br>
-                                                        경기도</td>
-                                                    <td rowspan="2">맑음 <br>10%</td>
-                                                    <td rowspan="2">맑음 <br>10%</td>
-                                                    <td rowspan="2">맑음 <br>10%</td>
-                                                    <td rowspan="2">맑음 <br>10%</td>
-                                                    <td rowspan="2">맑음 <br>10%</td>
-                                                    <td rowspan="2">맑음 <br>10%</td>
-                                                    <td rowspan="2">맑음 <br>10%</td>
+                                                    <td>날씨</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>기온</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>강수확률</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div> <br><br>
-                                    <div class="weather">
-
-                                    </div>
+                                   
                                 </div>
                             </div>
                         </div>
