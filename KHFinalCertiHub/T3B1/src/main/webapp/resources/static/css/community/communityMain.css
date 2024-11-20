@@ -585,3 +585,9 @@ footer {
     background-color: white !important;
 
 }
+
+.popular-div:hover {
+    background-color: #006D77;
+    color: white;
+    cursor: pointer;
+}
