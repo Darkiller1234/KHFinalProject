@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.kh.T3B1.common.vo.PageInfo;
@@ -13,6 +14,9 @@ import com.kh.T3B1.member.model.vo.Member;
 import com.kh.T3B1.study.model.vo.Study;
 import com.kh.T3B1.study.model.vo.StudyBoard;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Repository
 public class StudyDao {
 
@@ -120,6 +124,10 @@ public class StudyDao {
 
 	public int deleteStudy(SqlSessionTemplate sqlSession, int studyNo) {
 		return sqlSession.delete("studyMapper.deleteStudy", studyNo);
+	}
+
+	public int updateRecruit(SqlSessionTemplate sqlSession, HashMap<String, Object> updateInfo) {
+		return sqlSession.update("studyMapper.updateRecruit", updateInfo);
 	}
 	
 }

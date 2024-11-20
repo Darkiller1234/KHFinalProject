@@ -76,6 +76,7 @@ function ajaxBanMember(state, callback){
     return () => {
         $.ajax({
             url: state.contextPath + '/study/banMember',
+            type: 'post',
             data:{
                 memberNo: state.currentMember.dataset.value,
                 studyNo: state.studyNo,

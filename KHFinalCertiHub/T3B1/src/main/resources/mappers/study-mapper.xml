@@ -47,6 +47,7 @@
   	<result column="STUDY_BOARD_DATE" property="boardDate"/>
 	<result column="MANAGER_NO" property="managerNo"/>
   	<result column="MANAGER_NICKNAME" property="managerName"/>
+  	<result column="STUDY_RECRUIT" property="studyRecruit"/>
   </resultMap>
   
   <select id="countStudy" resultType="_int">
@@ -312,6 +313,12 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{study
   	 DELETE FROM STUDY
   	  WHERE STUDY_NO = #{studyNo}
   </delete>
+  
+  <update id="updateRecruit">
+  	UPDATE STUDY
+  	   SET STUDY_RECRUIT = #{recruit}
+  	 WHERE STUDY_NO = #{studyNo}
+  </update>
 
 </mapper>
 

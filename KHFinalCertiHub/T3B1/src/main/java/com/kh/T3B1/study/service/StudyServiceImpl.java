@@ -218,4 +218,15 @@ public class StudyServiceImpl implements StudyService{
 	public int deleteStudy(int studyNo) {
 		return studyDao.deleteStudy(sqlSession, studyNo);
 	}
+
+	@Override
+	public String updateRecruit(HashMap<String, Object> updateInfo) {
+		int result = studyDao.updateRecruit(sqlSession, updateInfo);
+		
+		if(result > 0) {
+			return "Y";
+		}
+		
+		return "N";
+	}
 }

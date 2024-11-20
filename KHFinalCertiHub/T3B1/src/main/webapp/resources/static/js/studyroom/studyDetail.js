@@ -167,6 +167,7 @@ function initApplyButton(isLogin){
 function ajaxApplyStudy(studyNo, callback){
     $.ajax({
         url:'applyStudy',
+        type:"post",
         data:{
             studyNo: studyNo,
         },
