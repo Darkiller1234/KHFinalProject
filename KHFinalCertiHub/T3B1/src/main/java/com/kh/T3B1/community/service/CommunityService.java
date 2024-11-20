@@ -50,4 +50,8 @@ public interface CommunityService {
 	ArrayList<Reply> selectReplyList(PageInfo pi, int cno);
 
 	int replyWrite(Reply r);
+
+	int deleteReply(int replyNo);
+
+	int editReply(Reply temp);
 }

@@ -74,7 +74,7 @@
                 <button>신고</button>
               </div>
               <div id="replys">
-                <div class="reply">
+                <!-- <div class="reply">
                   <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" alt="">
                   <div>
                     <p class="font-size-subtitle">윤대한</p>
@@ -89,7 +89,7 @@
                       <button>수정</button>
                     </div>
                   </div>
-                </div>
+                </div> -->
               </div>
               <div class="pagination" id="reply-pagination">
                 <span class="page-num">1</span>
@@ -382,9 +382,6 @@
               <h2 class="font-size-subtitle">이 게시판의 인기글</h2>
               <div class="popular-list-info">
                 <span>제목</span><span>댓글수</span><span>추천수</span>
-              </div>
-              <div>
-                <span>이거 왜 안됨?모녀듀어펴ㅠ어뎌륭더</span><span>[99999]</span><span>-999999</span>
               </div>
             </div>
           </div>

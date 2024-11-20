@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -302,6 +303,7 @@ public class CommunityController {
 		PageInfo pi = Template.getPageInfo(count, cpage, 10, 5);
 		
 		ArrayList<Reply> list = communityService.selectReplyList(pi, cno);
+		
 		System.out.println(list);
 		return new Gson().toJson(list);
 	}
@@ -328,7 +330,7 @@ public class CommunityController {
 		r.setBoardNo(cno);
 		r.setReplyPNo(0);
 		r.setMemberNo(member.getMemberNo());
-		r.setReplyContent(replyContent);
+		r.setReplyContent(replyContent.replaceAll("\r\n|\r|\n", "<br>"));
 		r.setReplyGroup(0);
 		r.setReplyOrder(0);
 		r.setChildCount(0);
@@ -341,10 +343,49 @@ public class CommunityController {
 	}
 	
 	
+	@ResponseBody
+	@RequestMapping(value="detail/deleteReply", produces="application/json; charset-UTF-8")
+	public String deleteReply(@RequestParam(value="replyNo", defaultValue="0") int replyNo, Model m, HttpSession session) {
+		int result = communityService.deleteReply(replyNo);
+		return new Gson().toJson(result);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="detail/getLoginInfo", produces="application/json; charset-UTF-8")
+	public String getLoginInfo(HttpSession session) {
+		return new Gson().toJson((Member)session.getAttribute("loginMember"));
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="detail/editReply", produces="application/json; charset-UTF-8")
+	public String editReply(int replyNo, String replyContent) {
+		Reply temp = new Reply();
+		temp.setReplyNo(replyNo);
+		temp.setReplyContent(replyContent.replaceAll("\r\n|\r|\n", "<br>"));
+		int result = communityService.editReply(temp);
+		return new Gson().toJson(result);
+	}
 	
 	
+	@ResponseBody
+	@RequestMapping(value="detail/poppularAll", produces="application/json; charset-UTF-8")
+	public String poppularAll() {
+		Board temp = new Board();
+		temp.setOrderBy(2);
+		
+		PageInfo pi = Template.getPageInfo(5, 1, 1, 5);
+		return new Gson().toJson(communityService.selectList(pi, temp));
+	}
 	
-	
+	@ResponseBody
+	@RequestMapping(value="detail/poppularThis", produces="application/json; charset-UTF-8")
+	public String poppularThis(int licenseNo) {
+		Board temp = new Board();
+		temp.setOrderBy(2);
+		temp.setLicenseNo(licenseNo);
+		PageInfo pi = Template.getPageInfo(5, 1, 1, 5);
+		return new Gson().toJson(communityService.selectList(pi, temp));
+	}
 	
 	
 	

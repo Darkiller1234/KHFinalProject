@@ -101,7 +101,7 @@ function commuDInit(contextPath) {
     createSelectBox(document.getElementById('selectbox1'), data1);
     createSelectBox(document.getElementById('selectbox2'), data2);
 
-    boardLoading({ cno: urlParam.get('cno') }, function(ev) {
+    boardLoading({ cno: urlParam.get('cno') }, function (ev) {
         boardLoadingExecute(ev, contextPath)
     })
 
@@ -212,7 +212,7 @@ function commuDInit(contextPath) {
                         document.querySelector('#like-btn').classList.add('selected');
                         addModal("이미 좋아하신 게시글입니다.")
                     }
-                    boardLoading({ cno: urlParam.get('cno') }, function(ev) {
+                    boardLoading({ cno: urlParam.get('cno') }, function (ev) {
                         boardLoadingExecute(ev, contextPath)
                     })
                 })
@@ -225,7 +225,7 @@ function commuDInit(contextPath) {
                         document.querySelector('#hate-btn').classList.add('selected');
                         addModal("이미 싫어하신 게시글입니다.")
                     }
-                    boardLoading({ cno: urlParam.get('cno') }, function(ev) {
+                    boardLoading({ cno: urlParam.get('cno') }, function (ev) {
                         boardLoadingExecute(ev, contextPath)
                     })
                 })
@@ -254,11 +254,11 @@ function commuDInit(contextPath) {
         })
     });
 
-    replyList({ cno: urlParam.get('cno'), cpage: -1 }, function(result){
-        replyListReload(result, contextPath);
-    });
+    // replyList({ cno: urlParam.get('cno'), cpage: -1 }, function (result) {
+    //     replyListReload(result, contextPath);
+    // });
 
-    replyPaging({ cno: urlParam.get('cno'), cpage: -1 }, function(pi){
+    replyPaging({ cno: urlParam.get('cno'), cpage: -1 }, function (pi) {
         replyPagingReload(pi, contextPath);
     });
 
@@ -268,6 +268,45 @@ function commuDInit(contextPath) {
     $("#reply-write-area").on("focus", function () {
         document.querySelector('#reply-write-btn').classList.add('reply-write-active');
     });
+
+
+
+    poppularAll(null, function(result){
+        result.forEach((boardT) => {
+            document.querySelector('#popular-list-area-all').innerHTML += `
+                <div class="popular-div" id="popularAll${boardT.boardNo}">
+                    <span>${boardT.boardTitle}</span><span>[${boardT.replyCount}]</span><span>${boardT.likeCount - boardT.hateCount}</span>
+                </div>
+            `
+        });
+        result.forEach((boardT) => {
+            $(`#popularAll${boardT.boardNo}`).on("click", function(){
+                location.href= `detail?cno=${boardT.boardNo}&certiNo=${boardT.licenseNo}`
+            });
+        })
+    })
+    
+    poppularThis({licenseNo: urlParam.get('certiNo')}, function(result){
+        result.forEach((boardT) => {
+            document.querySelector('#popular-list-area-this').innerHTML += `
+                <div class="popular-div" id="popularThis${boardT.boardNo}">
+                    <span>${boardT.boardTitle}</span><span>[${boardT.replyCount}]</span><span>${boardT.likeCount - boardT.hateCount}</span>
+                </div>
+            `
+    
+        });
+        result.forEach((boardT) => {
+            $(`#popularThis${boardT.boardNo}`).on("click", function(){
+                location.href= `detail?cno=${boardT.boardNo}&certiNo=${boardT.licenseNo}`
+            });
+        })
+    })
+
+    
+
+    
+
+
 }
 
 function tabChange(contextPath) {
@@ -371,7 +410,7 @@ function replyPagingReload(pi, contextPath) {
             <img src="${contextPath}/resources/static/img/button/arrow_left.png" alt="">
         </span>
     `;
-        
+
     }
 
     // 조건 2: 현재 페이지가 최대 페이지이고, 최대 페이지가 5 이상인 경우
@@ -387,7 +426,7 @@ function replyPagingReload(pi, contextPath) {
         paging.innerHTML += `
         <span class="page-num" id="reply-cpageMthr">${pi.currentPage - 3}</span>
     `;
-        
+
     }
 
     // 조건 4: 현재 페이지 - 2가 유효한 경우
@@ -402,7 +441,7 @@ function replyPagingReload(pi, contextPath) {
         paging.innerHTML += `
         <span class="page-num" id="reply-cpageMo">${pi.currentPage - 1}</span>
     `;
-        
+
     }
 
     // 현재 페이지 표시 (활성 상태)
@@ -415,7 +454,7 @@ function replyPagingReload(pi, contextPath) {
         paging.innerHTML += `
         <span class="page-num" id="reply-cpagePo">${pi.currentPage + 1}</span>
     `;
-        
+
     }
 
     // 조건 7: 현재 페이지 + 2가 최대 페이지 이하인 경우
@@ -423,7 +462,7 @@ function replyPagingReload(pi, contextPath) {
         paging.innerHTML += `
         <span class="page-num" id="reply-cpagePtw">${pi.currentPage + 2}</span>
     `;
-        
+
     }
 
     // 조건 8: 현재 페이지가 2 이하이고 최대 페이지가 4 이상인 경우
@@ -431,7 +470,7 @@ function replyPagingReload(pi, contextPath) {
         paging.innerHTML += `
         <span class="page-num" id="reply-cpagePthr">${pi.currentPage + 3}</span>
     `;
-        
+
     }
 
     // 조건 9: 현재 페이지가 1이고 최대 페이지가 5 이상인 경우
@@ -439,7 +478,7 @@ function replyPagingReload(pi, contextPath) {
         paging.innerHTML += `
         <span class="page-num" id="reply-cpagePf">${pi.currentPage + 4}</span>
     `;
-        
+
     }
 
     // 조건 10: 현재 페이지가 최대 페이지보다 작은 경우, 오른쪽 화살표 추가
@@ -451,102 +490,178 @@ function replyPagingReload(pi, contextPath) {
     `;
         $("#reply-rightArrow").on("click", function () {
 
-            replyPaging({ cno: urlParam.get('cno'), cpage: (pi.currentPage + 1) }, function(pi){
+            replyPaging({ cno: urlParam.get('cno'), cpage: (pi.currentPage + 1) }, function (pi) {
                 replyPagingReload(pi, contextPath);
             });
         });
 
-        
+
     }
 
-    replyList({ cno: urlParam.get('cno'), cpage: pi.currentPage }, function(result){
-        replyListReload(result, contextPath)
+    replyList({ cno: urlParam.get('cno'), cpage: pi.currentPage }, function (result) {
+        replyListReload(result, contextPath, urlParam.get('cno'), pi.currentPage)
     });
 
-    
+
 
     $("#reply-leftArrow").on("click", function () {
 
-        replyPaging({ cno: urlParam.get('cno'), cpage: (pi.currentPage - 1) }, function(pi){
+        replyPaging({ cno: urlParam.get('cno'), cpage: (pi.currentPage - 1) }, function (pi) {
             replyPagingReload(pi, contextPath);
         });
     });
 
     $("#reply-cpageMf").on("click", function () {
-        replyPaging({ cno: urlParam.get('cno'), cpage: (pi.currentPage - 4) }, function(pi){
+        replyPaging({ cno: urlParam.get('cno'), cpage: (pi.currentPage - 4) }, function (pi) {
             replyPagingReload(pi, contextPath);
         });
     });
 
 
     $("#reply-cpageMthr").on("click", function () {
-        replyPaging({ cno: urlParam.get('cno'), cpage: (pi.currentPage - 3) }, function(pi){
+        replyPaging({ cno: urlParam.get('cno'), cpage: (pi.currentPage - 3) }, function (pi) {
             replyPagingReload(pi, contextPath);
         });
     });
 
-    
+
     $("#reply-cpageMtw").on("click", function () {
-        replyPaging({ cno: urlParam.get('cno'), cpage: (pi.currentPage - 2) }, function(pi){
+        replyPaging({ cno: urlParam.get('cno'), cpage: (pi.currentPage - 2) }, function (pi) {
             replyPagingReload(pi, contextPath);
         });
     });
 
     $("#reply-cpageMo").on("click", function () {
-        replyPaging({ cno: urlParam.get('cno'), cpage: (pi.currentPage - 1) }, function(pi){
+        replyPaging({ cno: urlParam.get('cno'), cpage: (pi.currentPage - 1) }, function (pi) {
             replyPagingReload(pi, contextPath);
         });
     });
 
     $("#reply-cpagePo").on("click", function () {
-        replyPaging({ cno: urlParam.get('cno'), cpage: (pi.currentPage + 1) }, function(pi){
+        replyPaging({ cno: urlParam.get('cno'), cpage: (pi.currentPage + 1) }, function (pi) {
             replyPagingReload(pi, contextPath);
         });
     });
 
     $("#reply-cpagePtw").on("click", function () {
-        replyPaging({ cno: urlParam.get('cno'), cpage: (pi.currentPage + 2) }, function(pi){
+        replyPaging({ cno: urlParam.get('cno'), cpage: (pi.currentPage + 2) }, function (pi) {
             replyPagingReload(pi, contextPath);
         });
     });
 
     $("#reply-cpagePthr").on("click", function () {
-        replyPaging({ cno: urlParam.get('cno'), cpage: (pi.currentPage + 3) }, function(pi){
+        replyPaging({ cno: urlParam.get('cno'), cpage: (pi.currentPage + 3) }, function (pi) {
             replyPagingReload(pi, contextPath);
         });
     });
 
     $("#reply-cpagePf").on("click", function () {
-            
-        replyPaging({ cno: urlParam.get('cno'), cpage: (pi.currentPage + 4) }, function(pi){
+
+        replyPaging({ cno: urlParam.get('cno'), cpage: (pi.currentPage + 4) }, function (pi) {
             replyPagingReload(pi, contextPath);
         });
     });
 
-    
+
 }
 
-function replyListReload(result, contextPath){
-    document.querySelector('#replys').innerHTML = ``;
-    result.forEach((reply) => {
+function replyListReload(result, contextPath, a, b) {
+    document.querySelector('#replys').innerHTML = '';
+    let loginInfo;
+    getLoginInfo(0, function (re) {
+        console.log(re);
+        if(re !== null){
+            loginInfo = re.memberNo;
+        }
+        else {
+            loginInfo = null;
+        }
+        console.log(loginInfo);
+        console.log(result)
+        result.forEach((reply) => {
+            let temp = '';
+            if(reply.status === 'N'){
+                temp += `
+                    <div class="reply" id="reply${reply.replyNo}">
+                     삭제된 댓글입니다.
+                    
+                    </div>
+
+                `
+
+            } else {
+                temp += `
+                    <div class="reply" id="reply${reply.replyNo}">
+                        <input type="hidden" value="${reply.replyNo}" name="replyNo">
+                    <img src="` + contextPath + `${reply.memberImg}" alt="">
+                    <div>
+                        <p class="font-size-subtitle">${reply.memberNickname}</p>
+                        <p class="font-size-content">${reply.replyContent}</p>
+                        <div class="font-size-footer">
+                        <button>답글</button>
+                        |
+                        <button>신고</button>
+                `
         
-        document.querySelector('#replys').innerHTML += `
-            <div class="reply">
-              <img src="` + contextPath + `${reply.memberImg}" alt="">
-              <div>
-                <p class="font-size-subtitle">${reply.memberNickname}</p>
-                <p class="font-size-content">${reply.replyContent}</p>
-                <div class="font-size-footer">
-                  <button>답글</button>
-                  |
-                  <button>신고</button>
-                  |
-                  <button>삭제</button>
-                  |
-                  <button>수정</button>
+                if (loginInfo != null && loginInfo === reply.memberNo) {
+                    temp += `
+                        |
+                        <button id="delete-reply${reply.replyNo}">삭제</button>
+                        |
+                        <button id="edit-reply${reply.replyNo}">수정</button>
+                    `
+                }
+                temp += `
+                        </div>
+                    </div>
+                    </div>
+                
+                `
+            }
+            
+    
+            document.querySelector('#replys').innerHTML += temp;
+    
+            // jQuery로 삭제 버튼 이벤트 등록
+            $(`#delete-reply${reply.replyNo}`).on('click', function () {
+                console.log(reply.replyNo)
+                deleteReply({replyNo: reply.replyNo}, function (res) {
+                    console.log(res)
+                    if (res > 0) {
+                        document.querySelector(`#reply${reply.replyNo}`).innerHTML = `
+                        삭제된 댓글입니다.
+                        `
+                    }
+                });
+    
+    
+    
+    
+            });
+    
+            // jQuery로 수정 버튼 이벤트 등록
+            $(`#edit-reply${reply.replyNo}`).on('click', function () {
+                document.querySelector(`#reply${reply.replyNo}`).innerHTML = `
+                <div class="reply-write">
+                    <textarea id="reply-write-area2" name="replyContent">`+ reply.replyContent.replace(/<br\s*\/?>/gi, '\n') + `</textarea>
+                    <button id="reply-write-btn2" class="reply-write-active"><img src="${contextPath}/resources/static/img/button/Vector.png" alt=""><span class="font-size-subtitle">작성</span></button>
                 </div>
-              </div>
-            </div>
-        `
-    })
+                
+                `
+                $(`#reply-write-btn2`).on('click', function(){
+                    console.log("asdf")
+                    editReply({ replyNo: reply.replyNo, replyContent: document.querySelector('#reply-write-area2').value }, function (pi) {
+                        if(pi>0){
+                            replyList({ cno: a, cpage: b }, function (result) {
+                                replyListReload(result, contextPath, a, b)
+                            });
+                        }
+                    });
+                })
+    
+            });
+    
+        })
+    });
+    
 }
