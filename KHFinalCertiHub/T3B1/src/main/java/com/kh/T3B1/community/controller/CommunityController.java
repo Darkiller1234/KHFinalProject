@@ -364,7 +364,7 @@ public class CommunityController {
 	
 	//커뮤니티 글 페이지 [댓글 작성하기]
 	@PostMapping("detail/replyWrite")
-	public String replyWrite(String replyContent, int certiNo, int cno, int replyGroup, int replyPNo, int cpage, Model m, HttpSession session) {
+	public String replyWrite(String replyContent, int certiNo, int cno, int replyGroup, int replyPNo, @RequestParam(value="cpage", defaultValue="-1") int cpage, Model m, HttpSession session) {
 		Member member = (Member) session.getAttribute("loginMember");
 		
 		System.out.println(replyGroup + " sss " + replyPNo);
