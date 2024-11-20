@@ -37,7 +37,9 @@
 	 		<mapping path="/study/create"/>
 	 	    <mapping path="/study/createStudy"/>
 	 	    <mapping path="/study/editStudy"/>
+	 	    <mapping path="/study/deleteStudy"/>
 	 		<mapping path="/study/applyStudy"/>
+	 		<mapping path="/study/banMember"/>
 	 		<mapping path="/study/board/edit"/>
 	 		<mapping path="/study/detail/edit"/>
 	 		<mapping path="/study/insertBoard"/>

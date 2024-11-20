@@ -107,29 +107,32 @@ function commuEInit(contextPath) {
     poppularAll(null, function(result){
         result.forEach((boardT) => {
             document.querySelector('#popular-list-area-all').innerHTML += `
-                <div id="popularAll${boardT.boardNo}">
+                <div class="popular-div" id="popularAll${boardT.boardNo}">
                     <span>${boardT.boardTitle}</span><span>[${boardT.replyCount}]</span><span>${boardT.likeCount - boardT.hateCount}</span>
                 </div>
             `
+        });
+        result.forEach((boardT) => {
             $(`#popularAll${boardT.boardNo}`).on("click", function(){
                 location.href= `detail?cno=${boardT.boardNo}&certiNo=${boardT.licenseNo}`
             });
-        });
-        
+        })
     })
-
+    
     poppularThis({licenseNo: urlParam.get('certiNo')}, function(result){
         result.forEach((boardT) => {
             document.querySelector('#popular-list-area-this').innerHTML += `
-                <div id="popularThis${boardT.boardNo}">
+                <div class="popular-div" id="popularThis${boardT.boardNo}">
                     <span>${boardT.boardTitle}</span><span>[${boardT.replyCount}]</span><span>${boardT.likeCount - boardT.hateCount}</span>
                 </div>
             `
+    
+        });
+        result.forEach((boardT) => {
             $(`#popularThis${boardT.boardNo}`).on("click", function(){
                 location.href= `detail?cno=${boardT.boardNo}&certiNo=${boardT.licenseNo}`
             });
-        });
-        
+        })
     })
 }
 
