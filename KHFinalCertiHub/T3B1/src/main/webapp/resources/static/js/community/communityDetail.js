@@ -3,46 +3,57 @@ const url = new URL(window.location.href);
 // URL의 파라미터값을 가진 객체
 const urlParam = url.searchParams;
 
-function certiChange(certiNumber) {
+//전역변수 없는게 좋기는 한데 어쩔 수 없는거같기는한데 몰루겠다
+let cPage = -1;
+if(urlParam.get('cpage') != null){
+    cPage = urlParam.get('cpage');
+}
+
+
+//~~~게시판 검색쪽 js~~~
+//게시판 바꾸기(자격증 바꾸기)
+function certiChange(certiNumber) {     
     redirect(certiNumber);
 }
 
+//탭 바꾸기(자유, 질문 등)
 function tabNoChange(certiNo, tabNo) {
-    // 현재 페이지의 URL 주소
-    const url = new URL(window.location.href);
-    // URL의 파라미터값을 가진 객체
-    const urlParam = url.searchParams;
     const preFilterNo = urlParam.get('filterNo');
     const preFilterText = urlParam.get('filterText');
     redirect(certiNo, tabNo, 1, $('input[name="array"]').val(), preFilterNo, preFilterText)
 
 }
 
+//하단 페이징 바꾸기 (< 1 2 3 4 5 >)
 function pageChange(currentPage, certiNo, tabNo) {
-    // 현재 페이지의 URL 주소
-    const url = new URL(window.location.href);
-    // URL의 파라미터값을 가진 객체
-    const urlParam = url.searchParams;
     const preFilterNo = urlParam.get('filterNo');
     const preFilterText = urlParam.get('filterText');
     redirect(certiNo, tabNo, currentPage, $('input[name="array"]').val(), preFilterNo, preFilterText)
 }
 
+//텍스트기반 검색 (돋보기모양 누르면 실행, 정렬기준 등 포함)
 function searchExcute(certiNo, tabNo) {
     redirect(certiNo, tabNo, 1, $('input[name="array"]').val(), $('input[name="filter"]').val(), document.querySelector('#search-input-text').value)
 }
 
 
+//엔터 누르면
 function keypress(event, certiNo, tabNo) {
     if (event.key === 'Enter') {
         searchExcute(certiNo, tabNo);
     }
 }
 
+
+//글 리스트 onclick 이벤트 그냥이거쓸래
+//detail로 이동
 function DirectAttack(path) {
     location.href = path;
 }
 
+
+//글 리스트 전환시 링크
+//main 그대로
 function redirect(certiNo, tabNo, currentPage, orderBy, filterNo, filterText) {
     let path = "main?";
     if (certiNo) {
@@ -66,8 +77,9 @@ function redirect(certiNo, tabNo, currentPage, orderBy, filterNo, filterText) {
     location.href = path;
 }
 
+//페이지 로드 완료시 실행
 function commuDInit(contextPath) {
-    let data1 = {
+    let data1 = {       //selectbox 만들기용 데이터
         name: 'array',
         default: '최신순',
         imgUrl: `${contextPath}/resources/static/img/button/triangle_down.png`,
@@ -86,34 +98,34 @@ function commuDInit(contextPath) {
             ['전체', 1],
             ['제목', 2],
             ['내용', 3],
-            // ['제목+내용', 4],
+            ['제목+내용', 4],
             ['글쓴이', 5]
         ]
     }
-    // // 현재 페이지의 URL 주소
-    // const url = new URL(window.location.href);
-    // // URL의 파라미터값을 가진 객체
-    // const urlParam = url.searchParams;
+    
+
     const preOrderBy = urlParam.get('orderBy');
     const preFilterNo = urlParam.get('filterNo');
 
-
+    //selectbox 만들기
     createSelectBox(document.getElementById('selectbox1'), data1);
     createSelectBox(document.getElementById('selectbox2'), data2);
 
+    //글 내용 불러오기 ajax
     boardLoading({ cno: urlParam.get('cno') }, function (ev) {
-        boardLoadingExecute(ev, contextPath)
+        boardLoadingExecute(ev, contextPath)    //DOM에 내용 집어넣기 function
     })
 
 
 
+    //탭 글씨에서 이미지(아이콘)으로 전환 (글 리스트) (글 리스트는 jsp쪽에서 만들어줌)
     tabChange(contextPath);
 
 
 
 
 
-
+    //원래 선택했던 selectbox 적용 (근데 사실 Detail에서는 어차피 초기화시켜서 의미없음)
     if (preOrderBy !== undefined) {
         document.querySelector('input[name="array"]').value = preOrderBy;
         switch (preOrderBy) {
@@ -155,12 +167,7 @@ function commuDInit(contextPath) {
     }
 
 
-
-
-    // if()
-    // document.querySelector('input[name="array"]').value = "원하는 값";
-
-
+    //탭 좌우스크롤용 js코드
     const scrollContainer = document.querySelector('.scroll-container');
 
     let isDown = false;
@@ -191,7 +198,10 @@ function commuDInit(contextPath) {
         const walk = (x - startX) * 3; // 스크롤 속도를 조절하세요
         scrollContainer.scrollLeft = scrollLeft - walk;
     });
+    //여기까지 탭 좌우스크롤
 
+
+    //좋아요 눌렀는지 확인하는 ajax
     getLikeStatus({ cno: urlParam.get('cno') }, function (result) {
         if (result === 1) {
             document.querySelector('#like-btn').classList.add('selected');
@@ -203,21 +213,21 @@ function commuDInit(contextPath) {
 
             addModal("이미 싫어하신 게시글입니다.")
         }
-        else if (result === 0) {
-            $("#like-btn").on("click", function () {
-                $("#like-btn").off("click");
+        else if (result === 0) {    //좋아요 싫어요 누른 적 없으면
+            $("#like-btn").on("click", function () {    //좋아요 누르면
+                $("#like-btn").off("click");        //버튼들 이벤트 삭제
                 $("#hate-btn").off("click");
                 clickLikeButton(1, { cno: urlParam.get('cno') }, function (result) {
-                    if (result === 1) {
+                    if (result === 1) {         //모달 활성화 후 문구 수정
                         document.querySelector('#like-btn').classList.add('selected');
-                        addModal("이미 좋아하신 게시글입니다.")
+                        addModal("이미 좋아하신 게시글입니다.") 
                     }
-                    boardLoading({ cno: urlParam.get('cno') }, function (ev) {
+                    boardLoading({ cno: urlParam.get('cno') }, function (ev) {  //글 재로드(좋아요/싫어요 숫자 반영용)
                         boardLoadingExecute(ev, contextPath)
                     })
                 })
             });
-            $("#hate-btn").on("click", function () {
+            $("#hate-btn").on("click", function () {    //싫어요 누르면 (이하 동일)
                 $("#like-btn").off("click");
                 $("#hate-btn").off("click");
                 clickLikeButton(2, { cno: urlParam.get('cno') }, function (result) {
@@ -231,12 +241,13 @@ function commuDInit(contextPath) {
                 })
             });
         }
-        else {
+        else {      //result가 값이 없으면 로그인 안되어있는거임
             addModal("로그인을 하세요.")
         }
     })
 
 
+    //글 삭제버튼에 이벤트 삽입
     $("#delete-btn").on("click", function () {
         clickDeleteBtn({ cno: urlParam.get('cno') }, function (result) {
             if (result === 1) {
@@ -246,6 +257,7 @@ function commuDInit(contextPath) {
     });
 
 
+    //글 수정버튼에 이벤트 삽입
     $("#edit-btn").on("click", function () {
         clickEditBtn({ cno: urlParam.get('cno') }, function (result) {
             if (result === 1) {
@@ -254,23 +266,21 @@ function commuDInit(contextPath) {
         })
     });
 
-    // replyList({ cno: urlParam.get('cno'), cpage: -1 }, function (result) {
-    //     replyListReload(result, contextPath);
-    // });
-
-    replyPaging({ cno: urlParam.get('cno'), cpage: -1 }, function (pi) {
+    //댓글 페이징 ( 이 함수 안쪽에 댓글 불러오는것도 포함 )
+    replyPaging({ cno: urlParam.get('cno'), cpage: cPage }, function (pi) {
         replyPagingReload(pi, contextPath);
     });
 
 
 
-
+    //댓글 작성 textarea누르면 댓글 작성 버튼 활성화
     $("#reply-write-area").on("focus", function () {
         document.querySelector('#reply-write-btn').classList.add('reply-write-active');
     });
 
 
 
+    //전체 개시판에서 select하는 인기글
     poppularAll(null, function(result){
         result.forEach((boardT) => {
             document.querySelector('#popular-list-area-all').innerHTML += `
@@ -286,6 +296,7 @@ function commuDInit(contextPath) {
         })
     })
     
+    //현재 게시판에서 select하는 인기글
     poppularThis({licenseNo: urlParam.get('certiNo')}, function(result){
         result.forEach((boardT) => {
             document.querySelector('#popular-list-area-this').innerHTML += `
@@ -309,6 +320,7 @@ function commuDInit(contextPath) {
 
 }
 
+//탭 텍스트 >> 이미지 (글 리스트)
 function tabChange(contextPath) {
     document.querySelectorAll('.listArea-div1-tab, .listArea-div2-tab').forEach(function (ev) {
 
@@ -344,6 +356,7 @@ function tabChange(contextPath) {
 }
 
 
+//modal 활성화 및 문구 추가
 function addModal(string) {
     // data-bs-toggle 속성 추가
     document.querySelector('#like-btn').setAttribute("data-bs-toggle", "modal");
@@ -360,6 +373,7 @@ function addModal(string) {
     document.querySelector('#modal-body').innerText = string;
 }
 
+//글 내용 불러오기
 function boardLoadingExecute(board, context) {
     document.querySelector("#tabNameP").innerText = board.tabName;
     document.querySelector("#boardTitleP").innerText = board.boardTitle;
@@ -399,7 +413,11 @@ function boardLoadingExecute(board, context) {
 }
 
 
+//댓글 페이징( < 1 2 3 4 5 > ) 작성하기
 function replyPagingReload(pi, contextPath) {
+    
+
+    cPage = pi.currentPage
     const paging = document.querySelector('#reply-pagination');
     paging.innerHTML = '';
     console.log(pi)
@@ -498,12 +516,13 @@ function replyPagingReload(pi, contextPath) {
 
     }
 
+    //댓글 불러오기
     replyList({ cno: urlParam.get('cno'), cpage: pi.currentPage }, function (result) {
         replyListReload(result, contextPath, urlParam.get('cno'), pi.currentPage)
     });
 
 
-
+    //페이징 버튼별 이벤트 부여
     $("#reply-leftArrow").on("click", function () {
 
         replyPaging({ cno: urlParam.get('cno'), cpage: (pi.currentPage - 1) }, function (pi) {
@@ -565,7 +584,9 @@ function replyPagingReload(pi, contextPath) {
 
 }
 
+//댓글 리스트 가져오기 및 적용하기
 function replyListReload(result, contextPath, a, b) {
+    console.log("댓글로드 실행")
     document.querySelector('#replys').innerHTML = '';
     let loginInfo;
     getLoginInfo(0, function (re) {
@@ -580,6 +601,16 @@ function replyListReload(result, contextPath, a, b) {
         console.log(result)
         result.forEach((reply) => {
             let temp = '';
+            if(reply.replyPNo === 0){
+                temp += `
+                    <div class="mother-reply" data-group-id="${reply.replyNo}" data-reply-no="${reply.replyNo}">
+                `;
+            }
+            if(reply.replyPNo !== 0){
+                temp += `
+                    <div class="child-reply" data-group-id="${reply.replyGroup}" data-reply-no="${reply.replyNo}" data-mother-no="${reply.replyPNo}">
+                `;
+            }
             if(reply.status === 'N'){
                 temp += `
                     <div class="reply" id="reply${reply.replyNo}">
@@ -598,11 +629,16 @@ function replyListReload(result, contextPath, a, b) {
                         <p class="font-size-subtitle">${reply.memberNickname}</p>
                         <p class="font-size-content">${reply.replyContent}</p>
                         <div class="font-size-footer">
-                        <button>답글</button>
+                `
+                
+                if (loginInfo != null) {
+                    temp += `
+                        <button id="re-reply${reply.replyNo}">답글</button>
                         |
                         <button>신고</button>
-                `
-        
+                    `
+                }
+
                 if (loginInfo != null && loginInfo === reply.memberNo) {
                     temp += `
                         |
@@ -618,10 +654,15 @@ function replyListReload(result, contextPath, a, b) {
                 
                 `
             }
-            
-    
-            document.querySelector('#replys').innerHTML += temp;
-    
+            temp += `</div>`
+            if(reply.replyPNo === 0){
+                document.querySelector('#replys').innerHTML += temp;
+            }
+            if(reply.replyPNo !== 0){
+                document.querySelector(`[data-reply-no="${reply.replyPNo}"]`).innerHTML += temp;
+            }
+        })
+        result.forEach((reply) => {
             // jQuery로 삭제 버튼 이벤트 등록
             $(`#delete-reply${reply.replyNo}`).on('click', function () {
                 console.log(reply.replyNo)
@@ -660,8 +701,48 @@ function replyListReload(result, contextPath, a, b) {
                 })
     
             });
+
+            //jQuery로 답글 버튼 이벤트 등록
+            $(`#re-reply${reply.replyNo}`).on('click', function(){
+                $(`#re-reply${reply.replyNo}`).off("click");
+                const target = document.querySelector(`#reply${reply.replyNo}`);
+                if (target && target.nextElementSibling) {
+                    target.nextElementSibling.insertAdjacentHTML('afterbegin', `
+                        <form class="reply-section" method="post" action="detail/replyWrite">
+                            <div class="reply-write">
+                                <textarea id="reply-write-area" placeholder="댓은 거울" name="replyContent"></textarea>
+                                <input type="hidden" name="cno" value="${a}">
+                                <input type="hidden" name="certiNo" value="${urlParam.get('certiNo')}">
+                                <input type="hidden" name="replyGroup" value="${reply.replyGroup}">
+                                <input type="hidden" name="replyPNo" value="${reply.replyNo}">
+                                <input type="hidden" name="cpage" value="${cPage}">
+                                <button id="reply-write-btn" class="reply-write-active">
+                                    <img src="${contextPath}/resources/static/img/button/Vector.png" alt="">
+                                    <span class="font-size-subtitle">작성</span>
+                                </button>
+                            </div>
+                        </form>
+                    `);
+                } else {
+                    document.querySelector(`[data-reply-no="${reply.replyNo}"]`).innerHTML += `
+                        <form class="reply-section" method="post" action="detail/replyWrite">
+                            <div class="reply-write">
+                                <textarea id="reply-write-area" placeholder="댓은 거울" name="replyContent"></textarea>
+                                <input type="hidden" name="cno" value="${a}">
+                                <input type="hidden" name="certiNo" value="${urlParam.get('certiNo')}">
+                                <input type="hidden" name="replyGroup" value="${reply.replyGroup}">
+                                <input type="hidden" name="replyPNo" value="${reply.replyNo}">
+                                <input type="hidden" name="cpage" value="${cPage}">
+                                <button id="reply-write-btn" class="reply-write-active">
+                                    <img src="${contextPath}/resources/static/img/button/Vector.png" alt="">
+                                    <span class="font-size-subtitle">작성</span>
+                                </button>
+                            </div>
+                        </form>
+                    `;
+                }
+            })
     
         })
     });
-    
 }

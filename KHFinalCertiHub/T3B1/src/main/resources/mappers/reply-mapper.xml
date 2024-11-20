@@ -29,6 +29,7 @@
    	<where>
   	 	<!-- STATUS = 'Y' -->
   	 	AND BOARD_NO = #{cno}
+  	 	AND REPLY_PNO IS NULL
   	 </where> 
   </select>
   
@@ -51,6 +52,7 @@
   	  JOIN MEMBER M ON (R.MEMBER_NO = M.MEMBER_NO)
   	 <where>
   	 	R.BOARD_NO = #{boardNo}
+  	 	AND R.REPLY_PNO IS NULL
   	 </where> 
   	 ORDER BY REPLY_NO ASC
   </select>
@@ -63,6 +65,9 @@
 	  		(
 	  		REPLY_NO,
 			BOARD_NO,
+			<if test="replyPNo != 0">
+				REPLY_PNO,
+			</if>
 			MEMBER_NO,
 			REPLY_CONTENT,
 			STATUS,
@@ -75,10 +80,18 @@
 	  		(
 	  			REPLY_SEQ.NEXTVAL,
 	  			#{boardNo},
+	  			<if test="replyPNo != 0">
+					#{replyPNo},
+				</if>
 	  			#{memberNo},
 	  			#{replyContent},
 	  			'Y',
+	  			<if test="replyGroup == 0">
+	  				REPLY_SEQ.CURRVAL,
+	  			</if>
+	  			<if test="replyGroup != 0">
 	  			#{replyGroup},
+	  			</if>
 	  			#{replyDepth},
 	  			#{replyOrder},
 	  			#{childCount}
@@ -101,6 +114,30 @@
 		WHERE
 		REPLY_NO = #{replyNo}
 	</update>
+	
+	
+	
+	<select id="selectChildReplyList" resultMap="replyResult">
+		SELECT R.REPLY_NO,
+			R.BOARD_NO,
+			R.REPLY_PNO,
+			R.MEMBER_NO,
+			R.REPLY_CONTENT,
+			R.STATUS,
+			R.REPLY_GROUP,
+			R.REPLY_DEPTH,
+			R.REPLY_ORDER,
+			R.CHILD_COUNT,
+			M.MEMBER_NICKNAME,
+			M.MEMBER_IMG
+  	  FROM REPLY R
+  	  JOIN MEMBER M ON (R.MEMBER_NO = M.MEMBER_NO)
+  	 <where>
+  	 	R.REPLY_GROUP = #{replyNo}
+  	 	AND R.REPLY_PNO IS NOT NULL
+  	 </where> 
+  	 ORDER BY REPLY_NO ASC
+  </select>
 </mapper>
 
 
