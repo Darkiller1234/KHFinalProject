@@ -101,6 +101,7 @@ footer {
     /* padding-bottom: 20px !important;
     padding-top: 20px; */
     display: flex;
+    flex-direction: row !important;
     gap: 10px;
 }
 
@@ -633,4 +634,12 @@ footer {
     background-color: #006D77;
     color: white;
     cursor: pointer;
+}
+
+
+
+
+.child-reply {
+    max-width: 100%;
+    margin-left: 30px;
 }

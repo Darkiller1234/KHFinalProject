@@ -20,6 +20,7 @@ function fileUpload(files, contextPath) {
     })
 }
 
+//파일 업로드
 function insertFile(data, callback){
     		
     $.ajax({
@@ -38,6 +39,7 @@ function insertFile(data, callback){
     })
 }
 
+//init함수
 function commuEInit(contextPath) {
     const summernote = $('#summernote')
 
@@ -63,6 +65,7 @@ function commuEInit(contextPath) {
         }
     });
 
+    //탭 좌우스크롤
     const scrollContainer = document.querySelector('.scroll-container');
 
     let isDown = false;
@@ -95,7 +98,7 @@ function commuEInit(contextPath) {
     });
 
 
-
+    //글 수정완료
     $("#submitWrite").on("click", function() {
         const checkedRadio = document.querySelector('input[name="btnradio"]:checked');
         document.querySelector('input[name="tabNo"]').value = checkedRadio.value;
@@ -103,7 +106,7 @@ function commuEInit(contextPath) {
 
 
 
-
+    //인기글
     poppularAll(null, function(result){
         result.forEach((boardT) => {
             document.querySelector('#popular-list-area-all').innerHTML += `
