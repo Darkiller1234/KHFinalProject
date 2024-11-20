@@ -147,6 +147,30 @@ public class StudyController {
 		return "redirect:search";
 	}
 	
+	@RequestMapping("deleteStudy")
+	public String deleteStudy(HttpSession session, int no) {
+		int memberNo = ((Member)session.getAttribute("loginMember")).getMemberNo();
+		
+		HashMap<String, Integer> searchInfo = new HashMap<>();
+		searchInfo.put("memberNo", memberNo);
+		searchInfo.put("studyNo", no);
+
+		boolean isManager = studyService.isStudyManager(searchInfo);
+		if(!isManager) {
+			session.setAttribute("errorMsg", "스터디 그룹 삭제 권한이 없습니다.");
+			return "redirect:/error";
+		}
+		
+		int result = studyService.deleteStudy(no);
+		
+		if(result < 1) {
+			session.setAttribute("errorMsg", "스터디 그룹 삭제에 실패했습니다.");
+			return "redirect:/error";
+		}
+		
+		return "redirect:search";
+	}
+	
 	@RequestMapping("list")
 	public String studyBoardPage(Model m, HttpSession session) {
 		Member member = ((Member)session.getAttribute("loginMember"));
@@ -249,7 +273,7 @@ public class StudyController {
 		searchInfo.put("managerNo", memberNo);
 		searchInfo.put("boardNo", no);
 		
-		boolean isWriter = studyService.isBoardWriter(searchInfo);
+		boolean isWriter = studyService.isWriter(searchInfo);
 
 		if(!isWriter) {
 			session.setAttribute("errorMsg", "게시글 수정 권한이 없습니다.");
@@ -326,11 +350,11 @@ public class StudyController {
 		pi.setPageLimit(pageLimit);
 		
 		// 검색 옵션 저장
-		SearchOption so = new SearchOption();
-		if(keyword != null && !keyword.equals("")) so.setKeyword(keyword);
-		so.setNo(no);
+		HashMap<String, Object> searchInfo = new HashMap<>();
+		if(keyword != null && !keyword.equals("")) searchInfo.put("keyword",keyword);
+		searchInfo.put("studyNo", no);
 		
-		ArrayList<Member> memberList = studyService.selectStudyMemberList(pi, so);
+		ArrayList<Member> memberList = studyService.selectStudyMemberList(pi, searchInfo);
 		
 		return new Gson().toJson(memberList);
 	}
@@ -412,8 +436,16 @@ public class StudyController {
 	@ResponseBody
 	@RequestMapping(value="banMember", produces="application/json; charset=UTF-8")
 	public String banMember(HttpSession session, int memberNo, int studyNo) {
+		HashMap<String, String> resultObj = new HashMap<>(); // 결과값 반환용 객ㅔ
 		String result = "N"; // 실패 N 성공 Y
 		Member manager = (Member)session.getAttribute("loginMember");
+		
+		// 스스로 추방하기 방지
+		if(manager.getMemberNo() == memberNo) {
+			result = "P";
+			resultObj.put("success",result);
+			return new Gson().toJson(resultObj);
+		}
 		
 		// 요창한 사용자가 해당 스터디그룹 매니저인지 권한 검사후 삭제 수행
 		HashMap<String, Integer> searchInfo = new HashMap<>();
@@ -428,7 +460,6 @@ public class StudyController {
 			result = studyService.deleteStudyMember(searchInfo);
 		}
 		
-		HashMap<String, String> resultObj = new HashMap<>();
 		resultObj.put("success",result);
 
 		return new Gson().toJson(resultObj);

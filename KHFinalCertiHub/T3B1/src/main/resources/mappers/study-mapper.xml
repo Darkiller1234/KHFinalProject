@@ -97,7 +97,7 @@
 	            M.MEMBER_INTRO AS MANAGER_INTRO,
 	            COUNT(*) AS MEMBER_COUNT
 	       FROM STUDY S
-	    INNER JOIN STUDY_MEMBER SM ON (S.STUDY_NO = SM.STUDY_NO) AND S.STUDY_NO = #{no}
+	    INNER JOIN STUDY_MEMBER SM ON (S.STUDY_NO = SM.STUDY_NO) AND S.STUDY_NO = #{studyNo}
 	    LEFT JOIN MEMBER M ON(M.MEMBER_NO = S.MANAGER_NO)
 	    GROUP BY S.STUDY_NO, S.MANAGER_NO, M.MEMBER_NICKNAME, S.STUDY_NAME, S.STUDY_INFO, S.STUDY_IMG, S.STUDY_RECRUIT, 
 	        M.MEMBER_INTRO
@@ -106,7 +106,7 @@
   <select id="countStudyMember" resultType="_int">
 		SELECT COUNT(*)
 		  FROM STUDY_MEMBER
-	     WHERE STUDY_NO = #{no}
+	     WHERE STUDY_NO = #{studyNo}
   </select>
   
   <select id="selectStudyMemberList" resultMap="MemberResultSet">
@@ -114,7 +114,7 @@
 		   MEMBER_NICKNAME,
 		   MEMBER_IMG
 	  FROM MEMBER M
-INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{no}
+INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{studyNo}
 	<if test="keyword != null">
 		AND MEMBER_NICKNAME LIKE '%' || #{keyword} || '%'
 	</if>
@@ -146,7 +146,7 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{no}
   <update id="increaseView">
 	UPDATE STUDY_BOARD
 	SET VIEW_COUNT = VIEW_COUNT + 1
-	WHERE STUDY_BOARD_NO = #{no}
+	WHERE STUDY_BOARD_NO = #{boardNo}
   </update>
   
   <select id="selectBoard" resultMap="BoardResultSet">
@@ -158,7 +158,7 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{no}
 			STUDY_RECRUIT
 	  FROM STUDY_BOARD
  LEFT JOIN STUDY USING (STUDY_NO)
-     WHERE STUDY_BOARD_NO = #{no}
+     WHERE STUDY_BOARD_NO = #{boardNo}
   </select>
   
   <select id="checkStudyManager" resultType="int">
@@ -306,6 +306,11 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{no}
   	 DELETE FROM STUDY_MEMBER
   	  WHERE MEMBER_NO = #{memberNo}
   	    AND STUDY_NO = #{studyNo}
+  </delete>
+  
+  <delete id="deleteStudy">
+  	 DELETE FROM STUDY
+  	  WHERE STUDY_NO = #{studyNo}
   </delete>
 
 </mapper>

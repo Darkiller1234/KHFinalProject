@@ -32,13 +32,13 @@ public interface StudyService {
 	 * @param 스터디 그룹 번호 no
 	 * @return 스터디 그룹 정보
 	 */
-	Study selectStudy(int no);
+	Study selectStudy(int studyNo);
 
 	/**
 	 * @param 스터디 그룹 번호 no
 	 * @return 스터디 그룹 가입 회원 수
 	 */
-	int countStudyMember(int no);
+	int countStudyMember(int studyNo);
 	
 	/**
 	 * 스터디 그룹 회원 정보 조회
@@ -47,7 +47,7 @@ public interface StudyService {
 		   MEMBER_NICKNAME,
 		   MEMBER_IMG
 	 */
-	ArrayList<Member> selectStudyMemberList(PageInfo pi, SearchOption so);
+	ArrayList<Member> selectStudyMemberList(PageInfo pi, HashMap<String, Object> searchInfo);
 
 	/**
 	 * @param keyword(검색), null이면 모든 게시글 개수
@@ -71,7 +71,7 @@ public interface StudyService {
 	 * @param 게시글 번호 no
 	 * @return 게시글 내용 조회
 	 */
-	StudyBoard selectBoard(int no);
+	StudyBoard selectBoard(int boardNo);
 
 	/**
 	 * @param 멤버번호 memberNo
@@ -98,7 +98,7 @@ public interface StudyService {
 	 * @param HashMap key=managerNo(요청 멤버 번호),boardNo(게시글 번호)
 	 * @return true=본인, false=타인
 	 */
-	boolean isBoardWriter(HashMap<String, Integer> searchInfo);
+	boolean isWriter(HashMap<String, Integer> searchInfo);
 
 	/**
 	 * 스터디 그룹 홍보 게시글 삽입
@@ -163,7 +163,12 @@ public interface StudyService {
 	 * @return Y= 삭제 성공, N= 삭제 실패
 	 */
 	String deleteStudyMember(HashMap<String, Integer> searchInfo);
-	
-	
+
+	/**
+	 * 스터디 그룹 삭제
+	 * @param int no(스터디 그룹 번호)
+	 * @return 성공= 1, 실패=0
+	 */
+	int deleteStudy(int studyNo);
 
 }

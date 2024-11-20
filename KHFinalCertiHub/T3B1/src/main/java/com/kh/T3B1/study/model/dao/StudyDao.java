@@ -27,19 +27,19 @@ public class StudyDao {
 		return (ArrayList)sqlSession.selectList("studyMapper.selectStudyList", so, rowBounds);
 	}
 
-	public Study selectStudy(SqlSessionTemplate sqlSession, int no) {
-		return sqlSession.selectOne("studyMapper.selectStudy",no);
+	public Study selectStudy(SqlSessionTemplate sqlSession, int studyNo) {
+		return sqlSession.selectOne("studyMapper.selectStudy",studyNo);
 	}
 
-	public int countStudyMember(SqlSessionTemplate sqlSession, int no) {
-		return sqlSession.selectOne("studyMapper.countStudyMember",no);
+	public int countStudyMember(SqlSessionTemplate sqlSession, int studyNo) {
+		return sqlSession.selectOne("studyMapper.countStudyMember",studyNo);
 	}
 
-	public ArrayList<Member> selectStudyMemberList(SqlSessionTemplate sqlSession, PageInfo pi, SearchOption so) {
+	public ArrayList<Member> selectStudyMemberList(SqlSessionTemplate sqlSession, PageInfo pi, HashMap<String, Object> searchInfo) {
 		int offset = (pi.getCurrentPage() - 1) * pi.getPageLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getPageLimit());
 		
-		return (ArrayList)sqlSession.selectList("studyMapper.selectStudyMemberList", so, rowBounds);
+		return (ArrayList)sqlSession.selectList("studyMapper.selectStudyMemberList", searchInfo, rowBounds);
 	}
 
 	public int countBoard(SqlSessionTemplate sqlSession, String keyword) {
@@ -54,12 +54,12 @@ public class StudyDao {
 	}
 	
 
-	public Integer increaseView(SqlSessionTemplate sqlSession, int no) {
-		return sqlSession.update("studyMapper.increaseView",no);
+	public Integer increaseView(SqlSessionTemplate sqlSession, int boardNo) {
+		return sqlSession.update("studyMapper.increaseView", boardNo);
 	}
 
-	public StudyBoard selectBoard(SqlSessionTemplate sqlSession, int no) {
-		return sqlSession.selectOne("studyMapper.selectBoard", no);
+	public StudyBoard selectBoard(SqlSessionTemplate sqlSession, int boardNo) {
+		return sqlSession.selectOne("studyMapper.selectBoard", boardNo);
 	}
 
 	public Integer checkStudyManager(SqlSessionTemplate sqlSession,int memberNo) {
@@ -116,6 +116,10 @@ public class StudyDao {
 
 	public int deleteStudyMember(SqlSessionTemplate sqlSession, HashMap<String, Integer> searchInfo) {
 		return sqlSession.delete("studyMapper.deleteStudyMember", searchInfo);
+	}
+
+	public int deleteStudy(SqlSessionTemplate sqlSession, int studyNo) {
+		return sqlSession.delete("studyMapper.deleteStudy", studyNo);
 	}
 	
 }

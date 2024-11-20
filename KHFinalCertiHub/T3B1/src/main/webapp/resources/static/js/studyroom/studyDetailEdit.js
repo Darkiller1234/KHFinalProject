@@ -14,6 +14,7 @@ function initStudyDetailEdit(contextPath, isRecruit){
     }
 
     initForm()
+    initDeleteButton(state)
     initBanButton(state)
     initSelectBox(state)
     initMemberList(state)
@@ -47,12 +48,22 @@ function initForm(){
     input.contentEditable = true;
 }
 
+function initDeleteButton(state) {
+    const deleteButton = document.getElementById('deleteButton')
+
+    deleteButton.onclick = () => {
+        location.href = state.contextPath + '/study/deleteStudy?no=' + state.studyNo
+    }
+}
+
 function initBanButton(state){
     const banButton = document.getElementById('banButton')
 
     const onBanMember = (res) => {
         if(res.success == 'Y') {
             state.currentMember.remove()
+        } else if(res.success == 'P') {
+            alert('본인을 추방할수 없습니다!!!')
         } else {
             alert('멤버 추방에 실패했습니다.')
         }

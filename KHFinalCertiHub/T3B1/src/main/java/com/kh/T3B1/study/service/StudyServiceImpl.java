@@ -36,18 +36,18 @@ public class StudyServiceImpl implements StudyService{
 	}
 
 	@Override
-	public Study selectStudy(int no) {
-		return studyDao.selectStudy(sqlSession, no);
+	public Study selectStudy(int studyNo) {
+		return studyDao.selectStudy(sqlSession, studyNo);
 	}
 
 	@Override
-	public int countStudyMember(int no) {
-		return studyDao.countStudyMember(sqlSession, no);
+	public int countStudyMember(int studyNo) {
+		return studyDao.countStudyMember(sqlSession, studyNo);
 	}
 
 	@Override
-	public ArrayList<Member> selectStudyMemberList(PageInfo pi, SearchOption so) {
-		return studyDao.selectStudyMemberList(sqlSession, pi, so);
+	public ArrayList<Member> selectStudyMemberList(PageInfo pi, HashMap<String, Object> searchInfo) {
+		return studyDao.selectStudyMemberList(sqlSession, pi, searchInfo);
 	}
 
 	@Override
@@ -61,14 +61,14 @@ public class StudyServiceImpl implements StudyService{
 	}
 
 	@Override
-	public StudyBoard selectBoard(int no) {
-		int result = studyDao.increaseView(sqlSession, no);
+	public StudyBoard selectBoard(int boardNo) {
+		int result = studyDao.increaseView(sqlSession, boardNo);
 		
 		if(result < 0) {
 			return null;
 		}
 		
-		return studyDao.selectBoard(sqlSession, no);
+		return studyDao.selectBoard(sqlSession, boardNo);
 	}
 
 	@Override
@@ -101,7 +101,7 @@ public class StudyServiceImpl implements StudyService{
 	}
 	
 	@Override
-	public boolean isBoardWriter(HashMap<String, Integer> searchInfo) {
+	public boolean isWriter(HashMap<String, Integer> searchInfo) {
 		boolean result = false;
 		Integer isWriter = studyDao.isWriter(sqlSession,searchInfo);
 
@@ -212,5 +212,10 @@ public class StudyServiceImpl implements StudyService{
 		}
 		
 		return "N";
+	}
+
+	@Override
+	public int deleteStudy(int studyNo) {
+		return studyDao.deleteStudy(sqlSession, studyNo);
 	}
 }
