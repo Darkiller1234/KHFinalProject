@@ -210,5 +210,12 @@
 		)
 	</insert>
 	
+	<select id ="findId" resultType="String">
+		SELECT MEMBER_ID
+		FROM MEMBER
+		WHERE MEMBER_NAME = #{memberName}
+		AND EMAIL = #{email}
+	</select>
+	
 </mapper>
 

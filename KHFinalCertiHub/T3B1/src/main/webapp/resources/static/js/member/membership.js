@@ -92,4 +92,7 @@ window.onload = function(){
             checkResultPwd.style.display = "none";
         }
     }
+    
+
+    
 }
