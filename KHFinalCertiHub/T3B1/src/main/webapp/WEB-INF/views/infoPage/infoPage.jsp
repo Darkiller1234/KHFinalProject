@@ -334,28 +334,28 @@
                                         <button>내일</button>
                                         <button>모레</button> <br>
                                         <select id="selectArea1" class="examArea">
-                                            <option value="1">강원도</option>
-                                            <option value="2">경기도</option>
-                                            <option value="3">경상남도 </option>
-                                            <option value="4">경상북도 </option>
-                                            <option value="5">광주 </option>
-                                            <option value="6">대구 </option>
-                                            <option value="7 ">대전 </option>
-                                            <option value="8 ">부산 </option>
-                                            <option value="9">서울</option>
-                                            <option value="10 ">세종 </option>
-                                            <option value="11 ">울산 </option>
-                                            <option value="12 ">인천 </option>
-                                            <option value="13 ">전라남도 </option>
-                                            <option value="14 ">전라북도 </option>
-                                            <option value="15 ">제주 </option>
-                                            <option value="16 ">충청남도 </option>
-                                            <option value="17 ">충청북도 </option>
+                                            <option value="73,134">강원도</option>
+                                            <option value="60, 120">경기도</option>
+                                            <option value="91, 77">경상남도 </option>
+                                            <option value="87, 106">경상북도 </option>
+                                            <option value="58, 74">광주 </option>
+                                            <option value="89, 90">대구 </option>
+                                            <option value="67, 100">대전 </option>
+                                            <option value="98, 76">부산 </option>
+                                            <option value="60, 127">서울</option>
+                                            <option value="66, 103">세종 </option>
+                                            <option value="102, 84">울산 </option>
+                                            <option value="55, 124">인천 </option>
+                                            <option value="51, 124">전라남도 </option>
+                                            <option value="63, 89">전라북도 </option>
+                                            <option value="52, 67">제주 </option>
+                                            <option value="68, 100">충청남도 </option>
+                                            <option value="69, 107">충청북도 </option>
                                         </select>
                                         <table>
                                             <thead>
                                                 <tr>
-                                                    <th colspan="25">28일(월)</th>
+                                                    <th colspan="25">오늘</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -388,30 +388,84 @@
                                                 </tr>
                                                 <tr>
                                                     <td><b>날씨</b></td>
-                                                    <td>구름많음 <br></td>
-                                                    <td>구름많음 <br></td>
-                                                    <td>구름많음 <br></td>
-                                                    <td>맑음</td>
-                                                    <td>맑음</td>
-                                                    <td>맑음</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
                                                 </tr>
                                                 <tr>
                                                     <td><b>습도</b></td>
-                                                    <td>20% </td>
-                                                    <td>20% </td>
-                                                    <td>20% </td>
-                                                    <td>10% </td>
-                                                    <td>10%</td>
-                                                    <td>10%</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
                                                 </tr>
                                                 <tr>
                                                     <td><b>기온</b></td>
-                                                    <td>7</td>
-                                                    <td>8</td>
-                                                    <td>8</td>
-                                                    <td>9</td>
-                                                    <td>9</td>
-                                                    <td>10</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -419,17 +473,32 @@
                                     <pre><b>글피~최대 10일</b></pre> <br>
                                     <div class="midTermWheather">
                                         <select id="selectArea2" class="examArea">
-                                            <option value="11B00000">서울, 인천, 경기도</option>
-                                            <option value="11D10000">강원도영서</option>
-                                            <option value="11D20000">강원도영동</option>
-                                            <option value="11C20000">대전, 세종, 충청남도</option>
-                                            <option value="11C10000">충청북도</option>
-                                            <option value="11F20000">광주, 전라남도</option>
-                                            <option value="11F10000">전북자치도</option>
-                                            <option value="11H10000">대구, 경상북도</option>
-                                            <option value="11H20000">부산, 울산, 경상남도</option>
-                                            <option value="11G00000">제주도</option>
+                                            <option value="11B00000,11B10101">서울</option>
+                                            <option value="11B00000,11B20201">인천</option>
+                                            <option value="11B00000,11B20601">수원</option>
+                                            <option value="11B00000,11B20305">파주</option>
+                                            <option value="11D10000,11D10301">춘천</option>
+                                            <option value="11D10000,11D10401">원주</option>
+                                            <option value="11D20000,11D20501">강릉</option>
+                                            <option value="11C20000,11C20401">대전</option>
+                                            <option value="11C20000,11C20101">서산</option>
+                                            <option value="11C20000,11C20404">세종</option>
+                                            <option value="11C10000,11C10301">청주</option>
+                                            <option value="11F20000,11F20501">광주</option>
+                                            <option value="11F20000,21F20801">목포</option>
+                                            <option value="11F20000,11F20401">여수</option>
+                                            <option value="11F10000,11F10201">전주</option>
+                                            <option value="11F10000,21F10501">군산</option>
+                                            <option value="11H10000,11H10701">대구</option>
+                                            <option value="11H10000,11H10501">안동</option>
+                                            <option value="11H10000,11H10201">포항</option>
+                                            <option value="11H20000,11H20201">부산</option>
+                                            <option value="11H20000,11H20101">울산</option>
+                                            <option value="11H20000,11H20301">창원</option>
+                                            <option value="11G00000,11G00201">제주</option>
+                                            <option value="11G00000,11G00401">서귀포</option>
                                         </select>
+                                        
                                         <table>
                                             <thead>
                                                 <tr>
@@ -446,7 +515,8 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>날씨</td>
+                                                    <td>날씨 <br>
+                                                    오전/오후</td>
                                                     <td></td>
                                                     <td></td>
                                                     <td></td>
@@ -501,5 +571,4 @@
             <script src="<%=contextPath%>/resources/static/js/infopage/shortWeather.js"></script>
             <%@ include file="../common/footer.jsp" %>
     </body>
-
     </html>
