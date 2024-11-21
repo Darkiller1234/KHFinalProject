@@ -17,7 +17,7 @@
         <div class="hr"></div>
         <h3>아이디를 받을 방식을 선택해주세요.</h3>
 
-        <form action="idfindpage" method="post" id="idfind" onsubmit="return handleSubmit(event);">
+        <form action="" method="post" id="idfind" onsubmit="return handleSubmit(event);">
             <div class="form-group">
                 <button type="button" class="btn phone" id="phoneButton" onclick="setSendMethod('phone')">
                     휴대전화 번호로 전송
