@@ -38,9 +38,8 @@ public class PersonalPageController {
 	@RequestMapping(value="view/getMemberInfo", produces="application/json; charset-UTF-8")
 	public String ajaxGetMemberInfo(int pno, HttpSession session) {
 		
-		Member User = (Member)session.getAttribute("loginMember");
-		int likeStatus = communityService.ajaxCommunityLikeStatusJson(cno, User.getMemberNo());
-		return new Gson().toJson(likeStatus);
+		Member m = personalService.ajaGetMemberInfo(pno);
+		return new Gson().toJson(m);
 	}
 	
 	@RequestMapping("viewSc")
