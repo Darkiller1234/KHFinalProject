@@ -34,5 +34,7 @@
 		<mapper resource="mappers/common-mapper.xml"/>
 		<mapper resource="mappers/search-mapper.xml"/>
 		<mapper resource="mappers/study-mapper.xml"/>
+		<mapper resource="mappers/personal-mapper.xml"/>
+		
 	</mappers>
 </configuration>

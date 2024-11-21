@@ -9,6 +9,8 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/personal/commonPersonal.css">
 
         <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/static/js/personal/anotherPageViewAjax.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/static/js/personal/anotherPageView.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/personal/anotherPageView.css">
         <title>Document</title>
@@ -24,7 +26,7 @@
                     
                     <div class="top-view">
                         <div id="member-name" class="font-size-title">
-                            스타레일고수가될거야님의 페이지
+                            
                         </div>
                         <div class="btn-group" role="group" aria-label="Basic radio toggle button group" id="category-btn">
                             <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off"
@@ -67,12 +69,12 @@
                         <div class="left-view">
                             <div id="simple-profile-view">
                                 <img class="profile-image" src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" alt="">
-                                <p class="font-size-subtitle">스타레일고수가될거야</p>
+                                <p class="font-size-subtitle" id="simple-view-name"></p>
                                 <div class="like-heart">
                                     <button><img src="<%=contextPath%>/resources/static/img/profile/heart.png" alt="하트"></button>
                                     <p>234</p>
                                 </div>
-                                <p class="font-size-content">청계천</p>
+                                <p class="font-size-content" id="simple-view-intro"></p>
                                 <div id="favor-certi">
                                     <p class="font-size-subtitle">관심 자격증</p>
                                     <div class="look-license">
@@ -113,12 +115,12 @@
                         </div>
                     </div>
                     <div class="bottom-view">
-                        <div class="font-size-content">
-                            <img src="<%=contextPath%>/resources/static/img/personalPage/check.png" alt="체크">
+                        <div class="font-size-content" id="mentor-ask-status">
+                            <img src="<%=contextPath%>/resources/static/img/button/valid_icon.png" alt="체크">
                             <p>질문가능</p>
                         </div>
-                        <div class="font-size-subtitle">
-                            <button class="btn-primary"  data-bs-toggle="modal" data-bs-target="#apply-modal"><img src="<%=contextPath%>/resources/static/img/personalPage/Phonecall.png" alt="전화중아이콘">신청하기</button>
+                        <div class="font-size-subtitle" id="mentor-ask-sub">
+                            <button class="btn-primary"  data-bs-toggle="modal" data-bs-target="#apply-modal"><img src="<%=contextPath%>/resources/static/img/personalPage/Phonecall.png" alt="전화중아이콘"><p>신청하기</p></button>
                         </div>
                     </div>
 
@@ -139,7 +141,7 @@
                             </div>
                     
                             <!-- Modal body -->
-                            <div class="modal-body">
+                            <div class="modal-body" id="modal-text">
                             신청되었습니다.
                             </div>
                     

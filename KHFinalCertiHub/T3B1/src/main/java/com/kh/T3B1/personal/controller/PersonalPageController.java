@@ -38,9 +38,38 @@ public class PersonalPageController {
 	@RequestMapping(value="view/getMemberInfo", produces="application/json; charset-UTF-8")
 	public String ajaxGetMemberInfo(int pno, HttpSession session) {
 		
-		Member m = personalService.ajaGetMemberInfo(pno);
+		Member m = personalService.ajaxGetMemberInfo(pno);
 		return new Gson().toJson(m);
 	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value="view/getMentorSubInfo", produces="application/json; charset-UTF-8")
+	public String ajaxGetMentorSubInfo(int pno, HttpSession session) {
+		
+		
+		if(session.getAttribute("loginMember") == null) {
+			return new Gson().toJson(-1);
+		}
+		int mNo = ((Member)session.getAttribute("loginMember")).getMemberNo();
+		int result = personalService.ajaxGetMentorSubInfo(pno, mNo);
+		return new Gson().toJson(result);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="view/insertMentorSub", produces="application/json; charset-UTF-8")
+	public String ajaxInsertMentorSub(int pno, HttpSession session) {
+		
+		
+		if(session.getAttribute("loginMember") == null) {
+			return new Gson().toJson(-1);
+		}
+		int mNo = ((Member)session.getAttribute("loginMember")).getMemberNo();
+		int result = personalService.ajaxInsertMentorSub(pno, mNo);
+		return new Gson().toJson(result);
+	}
+	
+	
 	
 	@RequestMapping("viewSc")
 	public String PersonalPageViewSchedule(Model p) {
