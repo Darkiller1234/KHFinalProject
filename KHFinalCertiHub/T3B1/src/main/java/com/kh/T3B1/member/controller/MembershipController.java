@@ -9,6 +9,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -120,18 +122,31 @@ public class MembershipController {
 	}
 	
 	@RequestMapping("idfind")
-	public String idfindPage() {
+	public String idfind() {
 		return "member/idfind";
 	}
 	
-	@RequestMapping("idfindpage")
-	public String idfindPage2() {
-		return "member/idfindpage";
+	@RequestMapping("findemail")
+	public String findemail() {
+		return "member/findemail";
 	}
 	
-	@RequestMapping("idfindpages")
-	public String idfindPages() {
+	@RequestMapping(value = "/idfindpages", method = RequestMethod.POST)
+	public String findId(@RequestParam String memberName, @RequestParam String email, Model model) {
+		
+		String memberid = memberService.findId(memberName, email); 
+		System.out.println(memberid);
+		if(memberid != null) {
+			model.addAttribute("memberId",memberid);
+		}else {
+			model.addAttribute("error", "입력한 정보에 대한 아이디가 없습니다.");
+		}
 		return "member/idfindpages";
+	}
+	
+	@RequestMapping("findphone")
+	public String findphone() {
+		return "member/findphone";
 	}
 	
 	@RequestMapping("pwdfind")
