@@ -23,68 +23,6 @@ $(document).ready(function () {
 function initInfoPage(contextPath){
     initSelectBox(contextPath)
     initList(contextPath)
-    SiSelectBox(contextPath)
-    selectAreaBox(contextPath)
-}
-
-
-
-function SiSelectBox(contextPath){
-    const selectBoxList = document.querySelectorAll('.si-select');
-
-    selectBoxList.forEach(selectBox => {
-        let data = {
-            name : 'si-list',
-            default : '시',
-            imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
-            items : [
-                ['서울'],
-                ['경기도'],
-                ['인천'],
-                ['부산'],
-                ['경북'],
-                ['경남'],
-                ['전북'],
-                ['전남'],
-                ['충북'],
-                ['충남'],
-                ['강원도'],
-                ['대전'],
-                ['제주'],
-            ]
-        }
-
-        createSelectBox(selectBox, data)
-    })
-}
-
-function selectAreaBox(contextPath){
-    const selectBoxList = document.querySelectorAll('.selectArea');
-
-    selectBoxList.forEach(selectBox => {
-        let data = {
-            name : 'si-list',
-            default : '시',
-            imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
-            items : [
-                ['서울'],
-                ['경기도'],
-                ['인천'],
-                ['부산'],
-                ['경북'],
-                ['경남'],
-                ['전북'],
-                ['전남'],
-                ['충북'],
-                ['충남'],
-                ['강원도'],
-                ['대전'],
-                ['제주'],
-            ]
-        }
-
-        createSelectBox(selectBox, data)
-    })
 }
 
 

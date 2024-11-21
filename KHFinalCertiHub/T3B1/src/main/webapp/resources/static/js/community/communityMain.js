@@ -1,7 +1,9 @@
+//자격증 변경
 function certiChange(certiNumber) {
     redirect(certiNumber);
 }
 
+//탭 변경
 function tabNoChange(certiNo, tabNo){
     // 현재 페이지의 URL 주소
     const url = new URL(window.location.href);
@@ -13,6 +15,7 @@ function tabNoChange(certiNo, tabNo){
     
 }
 
+//페이지 변경 ( < 1 2 3 4 5 >)
 function pageChange(currentPage, certiNo, tabNo){
     // 현재 페이지의 URL 주소
     const url = new URL(window.location.href);
@@ -23,11 +26,13 @@ function pageChange(currentPage, certiNo, tabNo){
     redirect(certiNo, tabNo, currentPage, $('input[name="array"]').val(), preFilterNo, preFilterText)
 }
 
+//택스트 기반 검색 실행 (정렬기준 등)
 function searchExcute(certiNo, tabNo){
     redirect(certiNo, tabNo, 1, $('input[name="array"]').val(), $('input[name="filter"]').val(), document.querySelector('#search-input-text').value)
 }
 
 
+//엔터 클릭시 검색실행
 function keypress(event, certiNo, tabNo){
     console.log("asdf")
     if (event.key === 'Enter') {
@@ -35,10 +40,12 @@ function keypress(event, certiNo, tabNo){
     }
 }
 
+//그냥 이거 쓸래유 = 윤대한
 function DirectAttack(path){ // 함수명 직관적으로 지어주세요 = 일동
     location.href=path;
 }
 
+//main에서 놀기
 function redirect(certiNo, tabNo, currentPage, orderBy, filterNo, filterText){
     let path = "main?";
     if(certiNo){
@@ -62,8 +69,9 @@ function redirect(certiNo, tabNo, currentPage, orderBy, filterNo, filterText){
     location.href=path;
 }
 
+//init함수
 function commuMInit(contextPath){
-    let data1 = {
+    let data1 = {       //selectbox정보
         name : 'array',
         default : '최신순',
         imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
@@ -87,9 +95,11 @@ function commuMInit(contextPath){
         ]
     }
 
+    //select박스 만들기
     createSelectBox(document.getElementById('selectbox1'), data1);
     createSelectBox(document.getElementById('selectbox2'), data2);
 
+    //탭 텍스트 >> 이미지 변경 ( 글 리스트는 jsp에서 작성됨 )
     tabChange(contextPath);
 
 
@@ -100,6 +110,7 @@ function commuMInit(contextPath){
     const preOrderBy = urlParam.get('orderBy');
     const preFilterNo = urlParam.get('filterNo');
 
+    //전에 선택했던 selectbox 가져오기
     if(preOrderBy !== undefined){
         document.querySelector('input[name="array"]').value = preOrderBy;
         switch (preOrderBy) {
@@ -140,13 +151,7 @@ function commuMInit(contextPath){
         }
     }
 
-
-
-
-    // if()
-    // document.querySelector('input[name="array"]').value = "원하는 값";
-
-
+    //탭 좌우스크롤
     const scrollContainer = document.querySelector('.scroll-container');
 
 let isDown = false;
@@ -177,8 +182,43 @@ scrollContainer.addEventListener('mousemove', (e) => {
   const walk = (x - startX) * 3; // 스크롤 속도를 조절하세요
   scrollContainer.scrollLeft = scrollLeft - walk;
 });
+
+
+
+//인기글
+poppularAll(null, function(result){
+    result.forEach((boardT) => {
+        document.querySelector('#popular-list-area-all').innerHTML += `
+            <div class="popular-div" id="popularAll${boardT.boardNo}">
+                <span>${boardT.boardTitle}</span><span>[${boardT.replyCount}]</span><span>${boardT.likeCount - boardT.hateCount}</span>
+            </div>
+        `
+    });
+    result.forEach((boardT) => {
+        $(`#popularAll${boardT.boardNo}`).on("click", function(){
+            location.href= `detail?cno=${boardT.boardNo}&certiNo=${boardT.licenseNo}`
+        });
+    })
+})
+
+poppularThis({licenseNo: urlParam.get('certiNo')}, function(result){
+    result.forEach((boardT) => {
+        document.querySelector('#popular-list-area-this').innerHTML += `
+            <div class="popular-div" id="popularThis${boardT.boardNo}">
+                <span>${boardT.boardTitle}</span><span>[${boardT.replyCount}]</span><span>${boardT.likeCount - boardT.hateCount}</span>
+            </div>
+        `
+
+    });
+    result.forEach((boardT) => {
+        $(`#popularThis${boardT.boardNo}`).on("click", function(){
+            location.href= `detail?cno=${boardT.boardNo}&certiNo=${boardT.licenseNo}`
+        });
+    })
+})
 }
 
+//탭 택스트 >> 이미지
 function tabChange(contextPath) {
     document.querySelectorAll('.listArea-div1-tab, .listArea-div2-tab').forEach(function(ev){
 
@@ -218,4 +258,29 @@ function tabChange(contextPath) {
 }
 
 
+//인기글 ajax
+function poppularAll(data, callback){
+    $.ajax({
+        url: "detail/poppularAll",
+        data: data,
+        success: function(res){
+            callback(res);
+        },
+        error: function(res){
+            console.log("전체개시판 인기글 ajax 오류");
+        }
+    })
+}
 
+function poppularThis(data, callback){
+    $.ajax({
+        url: "detail/poppularThis",
+        data: data,
+        success: function(res){
+            callback(res);
+        },
+        error: function(res){
+            console.log("현재개시판 인기글 ajax 오류");
+        }
+    })
+}

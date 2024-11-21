@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/studyroom/mentorDetail.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/studyroom/studyDetail.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/studyroom/studyDetailEdit.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/studyroom/studyCreate.css">
+    <script src="${pageContext.request.contextPath}/resources/static/js/studyroom/studyCreate.js"></script>
     <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
 </head>
 <body>
@@ -41,15 +43,16 @@
                         <input type="text" class="form-control" name="studyName" placeholder="그룹명을 입력해주세요.(90Bytes까지 가능)" required>
 
                         <div class="font-size-title">그룹 소개</div>
-                        <textarea placeholder="그룹을 소개할 문구를 작성해주세요.(3000Bytes까지 가능)" class="form-control" name="studyInfo"></textarea>
+                        <div class="study-info form-control" placeholder="그룹을 소개할 문구를 작성해주세요.(3000Bytes까지 가능)"></div>
+                        <!-- placeholder="그룹을 소개할 문구를 작성해주세요.(3000Bytes까지 가능)" -->
 
                         <div class="font-size-title">
                             그룹 프로필
                         </div>
 
                         <div class="group-img">
-                            <img src="<%=contextPath%>/resources/static/img/profile/default_profile.png" class="rounded-circle" alt="Cinque Terre">
-                            <input type="file" name="studyImg">
+                            <img id="profile" src="<%=contextPath%>/resources/static/img/profile/default_profile.png" class="rounded-circle" alt="Cinque Terre">
+                            <input type="file" name="profileImg" onchange="loadImg(this)">
                         </div>
                     </form>
 

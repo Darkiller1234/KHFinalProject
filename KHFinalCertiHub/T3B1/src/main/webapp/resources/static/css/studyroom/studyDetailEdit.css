@@ -5,9 +5,53 @@
 }
 
 .mentor-info textarea{
+    display:none;
+}
+
+.mentor-info .study-info{
     resize: none;
     height:500px;
+    overflow-y: scroll;
+    /* 스크롤 표시 제거 */
+    -ms-overflow-style: none; /* 인터넷 익스플로러 */
+    scrollbar-width: none; /* 파이어폭스 */
 }
+
+/* 스크롤 표시 제거 ( 크롬, 사파리, 오페라, 엣지 ) */
+.mentor-info .study-info::-webkit-scrollbar{
+    display: none;
+}
+
+/* div 입력창에 placeholder 추가 */
+[contenteditable="true"]:empty:before {
+    content: attr(placeholder);
+    color:#6c757d
+ }
+
+ /* 스터디 그룹 모집여부 셀렉트박스 */
+.recruit-option .custom-select{
+    width:200px;
+}
+
+/* 스터디 그룹 삭제 버튼 영역 */
+.delete-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-section button{
+    background-color: #f05555;
+}
+
+.delete-section button:hover{
+    background-color: #e97171;
+}
+
+.delete-section button:focus{
+    background-color: #df3737;
+}
+
 
 .close-button{
     width:40px;
@@ -31,6 +75,10 @@
         flex-direction: column;
         gap: 20px;
     }
+
+    .recruit-option .custom-select{
+        width:100%;
+    }
     
 }
 
@@ -40,4 +88,7 @@
         gap: 20px;
     }
     
+    .recruit-option .custom-select{
+        width:100%;
+    }
 }

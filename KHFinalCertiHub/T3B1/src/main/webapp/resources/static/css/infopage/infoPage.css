@@ -120,18 +120,19 @@ table th {
     background-color: #83C5BE;
 }
 
-table th, table td {
+table th,
+table td {
     height: 35px;
     border: 2px solid #83C5BE;
     text-align: center;
     word-wrap: break-word;
 }
 
-table th{
+table th {
     font-size: 14px;
 }
 
-table td{
+table td {
     font-size: 12px;
 }
 
@@ -144,7 +145,7 @@ h4 {
     border: 1px solid #83C5BE;
 }
 
-p{
+p {
     font-size: 14px;
 }
 
@@ -192,15 +193,14 @@ span {
 
 
 /* 장소 검색 */
-.region{
+.region {
     display: flex;
-    justify-content: end;
     gap: 10px;
 }
 
-.search-btn{
-    width:85px;
-    height:30px;
+.search-btn {
+    width: 85px;
+    height: 30px;
     border: none;
     border-radius: 5px;
     background-color: #006D77;
@@ -210,20 +210,50 @@ span {
 }
 
 
-.weather{
+.weather {
     width: 100%;
     overflow-x: auto;
 }
 
-.weather table th{
+.weather table th {
     background-color: #ffffff;
     border-color: black;
     border-width: 2px 1px 1px;
-    
+
 }
 
-.weather table td{
+.weather table td {
     background-color: #ffffff;
     border-color: black;
     border-width: 2px 1px 1px;
 }
+
+#areaList {
+    max-height: 300px;
+    min-width: 500px;
+    /* 스크롤 활성화 */
+    overflow-y: auto;
+    padding: 10px;
+    border: 1px solid #83C5BE;
+    background-color: #e6f4f1;
+    border-radius: 5px;
+}
+
+#areaList li {
+    margin-bottom: 10px;
+    /* 항목 간 간격 */
+    line-height: 1.6;
+    /* 줄 간격 */
+}
+
+#areaSelect {
+    width: 200px;
+    height: 50px;
+    border-radius: 5px;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    text-align: center;
+    background-color: #83C5BE;
+}
+

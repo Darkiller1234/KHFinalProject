@@ -17,7 +17,14 @@
     <div class="wrapper padding">
         <div class="title">
             <div class="page-title font-size-title">스터디 그룹 찾기</div>
-            <button class="btn btn-primary" onclick="location.href='create'">그룹 만들기</button> 
+            <c:choose>
+                <c:when test="${loginMember ne null}">
+                    <button class="btn btn-primary" onclick="location.href='create'">그룹 만들기</button> 
+                </c:when>
+                <c:otherwise>
+                    <button class="btn btn-primary" onclick="alert('로그인한 유저만 이용가능합니다.')">그룹 만들기</button> 
+                </c:otherwise>
+            </c:choose>
         </div>
 
         <form class="search-section" action="search">

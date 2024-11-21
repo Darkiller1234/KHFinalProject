@@ -101,6 +101,7 @@ footer {
     /* padding-bottom: 20px !important;
     padding-top: 20px; */
     display: flex;
+    flex-direction: row !important;
     gap: 10px;
 }
 
@@ -375,6 +376,7 @@ footer {
     border: #006D77 1px solid;
     background-color: #EDF6F9;
     border-radius: 5px;
+    width: 100%;
 }
 
 .focused {
@@ -620,4 +622,24 @@ footer {
 
 #boardContentP img{
     max-width: 100%;
+}
+
+
+.btn-outline-primary:hover {
+    background-color: white !important;
+
+}
+
+.popular-div:hover {
+    background-color: #006D77;
+    color: white;
+    cursor: pointer;
+}
+
+
+
+
+.child-reply {
+    max-width: 100%;
+    margin-left: 30px;
 }

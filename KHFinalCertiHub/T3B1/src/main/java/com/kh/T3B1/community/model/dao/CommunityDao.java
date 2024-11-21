@@ -1,6 +1,7 @@
 package com.kh.T3B1.community.model.dao;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
@@ -104,5 +105,18 @@ public class CommunityDao {
 	public int replyWrite(SqlSessionTemplate sqlSession, Reply r) {
 		
 		return sqlSession.insert("replyMapper.insertReply", r);
+	}
+
+	public int deleteReply(SqlSessionTemplate sqlSession, int replyNo) {
+
+		return sqlSession.update("replyMapper.deleteReply", replyNo);
+	}
+
+	public int editReply(SqlSessionTemplate sqlSession, Reply temp) {
+		return sqlSession.update("replyMapper.editReply", temp);
+	}
+
+	public ArrayList<Reply> selectChildReplyList(SqlSessionTemplate sqlSession, int replyNo) {
+		return (ArrayList)sqlSession.selectList("replyMapper.selectChildReplyList", replyNo);
 	}
 }

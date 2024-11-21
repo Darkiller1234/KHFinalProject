@@ -20,6 +20,7 @@ function fileUpload(files, contextPath) {
     })
 }
 
+//파일 업로드
 function insertFile(data, callback){
     		
     $.ajax({
@@ -38,6 +39,7 @@ function insertFile(data, callback){
     })
 }
 
+//init함수
 function commuEInit(contextPath) {
     const summernote = $('#summernote')
 
@@ -63,6 +65,7 @@ function commuEInit(contextPath) {
         }
     });
 
+    //탭 좌우스크롤
     const scrollContainer = document.querySelector('.scroll-container');
 
     let isDown = false;
@@ -95,11 +98,45 @@ function commuEInit(contextPath) {
     });
 
 
-
+    //글 수정완료
     $("#submitWrite").on("click", function() {
         const checkedRadio = document.querySelector('input[name="btnradio"]:checked');
         document.querySelector('input[name="tabNo"]').value = checkedRadio.value;
     });
+
+
+
+    //인기글
+    poppularAll(null, function(result){
+        result.forEach((boardT) => {
+            document.querySelector('#popular-list-area-all').innerHTML += `
+                <div class="popular-div" id="popularAll${boardT.boardNo}">
+                    <span>${boardT.boardTitle}</span><span>[${boardT.replyCount}]</span><span>${boardT.likeCount - boardT.hateCount}</span>
+                </div>
+            `
+        });
+        result.forEach((boardT) => {
+            $(`#popularAll${boardT.boardNo}`).on("click", function(){
+                location.href= `detail?cno=${boardT.boardNo}&certiNo=${boardT.licenseNo}`
+            });
+        })
+    })
+    
+    poppularThis({licenseNo: urlParam.get('certiNo')}, function(result){
+        result.forEach((boardT) => {
+            document.querySelector('#popular-list-area-this').innerHTML += `
+                <div class="popular-div" id="popularThis${boardT.boardNo}">
+                    <span>${boardT.boardTitle}</span><span>[${boardT.replyCount}]</span><span>${boardT.likeCount - boardT.hateCount}</span>
+                </div>
+            `
+    
+        });
+        result.forEach((boardT) => {
+            $(`#popularThis${boardT.boardNo}`).on("click", function(){
+                location.href= `detail?cno=${boardT.boardNo}&certiNo=${boardT.licenseNo}`
+            });
+        })
+    })
 }
 
 
@@ -109,4 +146,32 @@ function commuEInit(contextPath) {
 function getCheckedRadioValue() {
     const checkedRadio = document.querySelector('input[name="btnradio"]:checked');
     document.querySelector('input[name="tabNo"]').value = checkedRadio.value;
+}
+
+
+
+function poppularAll(data, callback){
+    $.ajax({
+        url: "detail/poppularAll",
+        data: data,
+        success: function(res){
+            callback(res);
+        },
+        error: function(res){
+            console.log("전체개시판 인기글 ajax 오류");
+        }
+    })
+}
+
+function poppularThis(data, callback){
+    $.ajax({
+        url: "detail/poppularThis",
+        data: data,
+        success: function(res){
+            callback(res);
+        },
+        error: function(res){
+            console.log("현재개시판 인기글 ajax 오류");
+        }
+    })
 }

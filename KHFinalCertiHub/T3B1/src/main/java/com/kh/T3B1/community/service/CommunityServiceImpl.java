@@ -154,4 +154,26 @@ public class CommunityServiceImpl implements CommunityService{
 	public int replyWrite(Reply r) {
 		return communityDao.replyWrite(sqlSession, r);
 	}
+
+	@Override
+	public int deleteReply(int replyNo) {
+		return communityDao.deleteReply(sqlSession, replyNo);
+	}
+
+	@Override
+	public int editReply(Reply temp) {
+		return communityDao.editReply(sqlSession, temp);
+	}
+
+	@Override
+	public ArrayList<Reply> selectChildReplyList(ArrayList<Reply> list) {
+		ArrayList<Reply> result = new ArrayList<Reply>();
+		for(Reply r : list) {
+			ArrayList<Reply> temp = communityDao.selectChildReplyList(sqlSession, r.getReplyNo());
+			if(temp != null) {
+				result.addAll(temp);
+			}
+		}
+		return result;
+	}
 }

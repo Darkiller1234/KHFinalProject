@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -38,6 +39,7 @@ public class CommunityController {
 		this.communityService = communityService;
 	}
 	
+	//커뮤니티 메인 (글 리스트들 불러오기)
 	@RequestMapping("main")
 	public String CommunityMain(@RequestParam(value="cpage", defaultValue="1") int currentPage,
 			@RequestParam(value="certiNo", defaultValue="1") int certiNo,
@@ -57,6 +59,10 @@ public class CommunityController {
 			boardForSelect.setOrderBy(orderBy);
 		}
 		
+		
+		//택스트 검색이 비어있으면 filterNo = 0
+		// 1: 전체 2: 제목 3: 내용 4: 제목/내용 5: 작성자이름
+		// 댓글도 3차때 추가예정
 		if(!filterText.equals("")) {
 			if(filterNo == 0) {
 				filterNo = 2;  // 주석으로 숫자 의미 추가하면 좋을듯요 - 동영
@@ -66,17 +72,21 @@ public class CommunityController {
 		}
 		
 		
+		//조건에 맞는 전체 게시글 갯수
 		int boardCount = communityService.selectListCount(boardForSelect);		// 전체 개시글 수
 		
-		
+		//페이징
 		PageInfo pi = Template.getPageInfo(boardCount, currentPage, 10, 30);		//페이징
 		
+		//현제페이지가 최대페이지보다 크면 최대페이지로 고정 (근데 굳이?) 음수로가면 페이지 번호는 음수로 가긴 하는데, 1펀 페이지 리스트 나옴
 		if(pi.getCurrentPage() > pi.getMaxPage()) {								//헛소리
 			pi.setCurrentPage(pi.getMaxPage());
 		}
 		
+		//글 리스트 가져오기
 		ArrayList<Board> list = communityService.selectList(pi, boardForSelect);	//게시글 리스트
 		
+		//자격증 리스트 가져오기
 		ArrayList<String> certiList = communityService.selectCertiList();			//자격증 게시판 목록 불러오기
 		
 		
@@ -95,6 +105,7 @@ public class CommunityController {
 		}
 		
 		// 게시글 탭 목록도 DB랑 연동하면 좋을거 같아용 - 동영
+		// 3차때 할게용
 		
 		c.addAttribute("notiList", notiList);
 		c.addAttribute("list", list);
@@ -106,8 +117,11 @@ public class CommunityController {
 		c.addAttribute("tabNo", tabNo);
 		return "community/communityMain";
 	}
+	
+	
+	//커뮤니티 글 페이지 (여전히 글 리스트 불러오기 + 글 정보도 불러옴)
 	@RequestMapping("detail")
-	public String CommunityDetail(@RequestParam(value="certiNo", defaultValue="1") int certiNo,
+	public String CommunityDetail(@RequestParam(value="certiNo", defaultValue="1") int certiNo, @RequestParam(value="cpage", defaultValue="-1") int cpage,
 			int cno,Model c) {
 		
 		boolean tmp = communityService.increaseViewCount(cno);
@@ -127,7 +141,7 @@ public class CommunityController {
 		int boardCount = communityService.selectListCount(dump);
 		
 		
-		PageInfo pi = Template.getPageInfo(boardCount, 1, 10, 5);
+		PageInfo pi = Template.getPageInfo(boardCount, 1, 10, 30);
 		
 		ArrayList<Board> list = communityService.selectList(pi, dump);
 		
@@ -141,8 +155,12 @@ public class CommunityController {
 		c.addAttribute("pageName","commuDInit");
 		c.addAttribute("certiNo", certiNo);
 		c.addAttribute("cno", cno);
+		c.addAttribute("cpage", cpage);
 		return "community/communityDetail";
 	}
+	
+	
+	//커뮤니티 글 쓰기
 	@RequestMapping("write")
 	public String CommunityWrite(int certiNo, Model c, HttpSession session) {
 		ArrayList<String> certiList = communityService.selectCertiList();
@@ -159,6 +177,8 @@ public class CommunityController {
 		return "community/communityWrite";
 	}
 	
+	
+	//커뮤니티 글 페이지 [글쓴이 프로필 사진 불러오기]
 	@ResponseBody
 	@RequestMapping(value="detail/writerProfileImgJson", produces="application/json; charset-UTF-8")
 	public String ajaxCommunityWriterProfileImg(int cno) {
@@ -166,6 +186,8 @@ public class CommunityController {
 		return new Gson().toJson(imgPath);
 	}
 	
+	
+	//커뮤니티 글 페이지 [좋아요/싫어요 눌렀었는지 확인]
 	@ResponseBody
 	@RequestMapping(value="detail/likeStatusJson", produces="application/json; charset-UTF-8")
 	public String ajaxCommunityLikeStatusJson(int cno, HttpSession session) {
@@ -177,6 +199,8 @@ public class CommunityController {
 		return new Gson().toJson(likeStatus);
 	}
 	
+	
+	//커뮤니티 글 페이지 [좋아요 버튼 누르기]
 	@ResponseBody
 	@RequestMapping(value="detail/likeBtnClickJson", produces="application/json; charset-UTF-8")
 	public String ajaxCommunityLikeBtnClickJson(int cno, HttpSession session) {
@@ -187,6 +211,8 @@ public class CommunityController {
 		return new Gson().toJson(success);
 	}
 	
+	
+	//커뮤니티 글 페이지 [싫어요 버튼 누르기]
 	@ResponseBody
 	@RequestMapping(value="detail/hateBtnClickJson", produces="application/json; charset-UTF-8")
 	public String ajaxCommunityHateBtnClickJson(int cno, HttpSession session) {
@@ -197,6 +223,8 @@ public class CommunityController {
 		return new Gson().toJson(success);
 	}
 	
+	
+	//커뮤니티 글 페이지 [글 내용 가져오기 (비동기)]
 	@ResponseBody
 	@RequestMapping(value="detail/boardLoadingJson", produces="application/json; charset-UTF-8")
 	public String ajaxCommunityBoardLoadingJson(int cno) {
@@ -211,7 +239,7 @@ public class CommunityController {
 	
 	
 	
-	
+	//커뮤니티 글 쓰기 [써머노트 글 db에 업로드]
 	@PostMapping("write/board")
 	public String insertBoard(Board b, Model m, HttpSession session) {
 		b.setLicenseNo((int)session.getAttribute("licenseNo"));
@@ -223,6 +251,8 @@ public class CommunityController {
 		return "redirect:/community/detail?cno=" + result + "&certiNo=" + b.getLicenseNo();
 	}
 	
+	
+	//커뮤니티 글 쓰기 [써머노트 파일 올리기]
 	@ResponseBody
 	@PostMapping("write/upload")
 	public String upload(List<MultipartFile> fileList, HttpSession session) {
@@ -239,7 +269,7 @@ public class CommunityController {
 	
 	
 	
-	
+	//써머노트 사용 함수 (파일 저장)
 	public String saveFile(MultipartFile upfile, HttpSession session, String path) {
 		//파일원본명
 		String originName = upfile.getOriginalFilename(); 
@@ -272,7 +302,7 @@ public class CommunityController {
 
 
 
-
+	//커뮤니티 글 페이지 [글 삭제]
 	@ResponseBody
 	@RequestMapping(value="detail/clickDeleteBtn", produces="application/json; charset-UTF-8")
 	public String ajaxClickDeleteBtn(int cno, HttpSession session) {
@@ -280,6 +310,8 @@ public class CommunityController {
 		return new Gson().toJson(temp);
 	}
 	
+	
+	//커뮤니티 글 페이지 [글 수정]
 	@ResponseBody
 	@RequestMapping(value="detail/clickEditBtn", produces="application/json; charset-UTF-8")
 	public String ajaxClickEditBtn(int cno, HttpSession session) {
@@ -292,6 +324,7 @@ public class CommunityController {
 	
 	
 	
+	//커뮤니티 글 페이지 [댓글 리스트 가져오기]
 	@ResponseBody
 	@RequestMapping(value="detail/replyList", produces="application/json; charset-UTF-8")
 	public String ajaxReplyList(int cno, int cpage, HttpSession session) {
@@ -302,10 +335,19 @@ public class CommunityController {
 		PageInfo pi = Template.getPageInfo(count, cpage, 10, 5);
 		
 		ArrayList<Reply> list = communityService.selectReplyList(pi, cno);
+		ArrayList<Reply> childList = communityService.selectChildReplyList(list);
+		System.out.println(childList);
+		if(childList != null) {
+			list.addAll(childList);
+		}
+		
+		
 		System.out.println(list);
 		return new Gson().toJson(list);
 	}
 	
+	
+	//커뮤니티 글 페이지 [댓글 페이징 정보 가져오기]
 	@ResponseBody
 	@RequestMapping(value="detail/replyPaging", produces="application/json; charset-UTF-8")
 	public String ajaxReplyPaging(int cno, int cpage, HttpSession session) {
@@ -320,24 +362,78 @@ public class CommunityController {
 	
 	
 	
+	//커뮤니티 글 페이지 [댓글 작성하기]
 	@PostMapping("detail/replyWrite")
-	public String replyWrite(String replyContent, int certiNo, int cno, Model m, HttpSession session) {
+	public String replyWrite(String replyContent, int certiNo, int cno, int replyGroup, int replyPNo, @RequestParam(value="cpage", defaultValue="-1") int cpage, Model m, HttpSession session) {
 		Member member = (Member) session.getAttribute("loginMember");
 		
+		System.out.println(replyGroup + " sss " + replyPNo);
 		Reply r = new Reply();
 		r.setBoardNo(cno);
-		r.setReplyPNo(0);
+		r.setReplyPNo(replyPNo);
 		r.setMemberNo(member.getMemberNo());
-		r.setReplyContent(replyContent);
-		r.setReplyGroup(0);
+		r.setReplyContent(replyContent.replaceAll("\r\n|\r|\n", "<br>"));
+		r.setReplyGroup(replyGroup);
 		r.setReplyOrder(0);
 		r.setChildCount(0);
 		
 		int result = communityService.replyWrite(r);
 		
 		
+		return "redirect:/community/detail?cno=" + cno + "&certiNo=" + certiNo + "&cpage=" + cpage;
+	}
+	
+	
+	//커뮤니티 글 페이지 [댓글 삭제하기]
+	@ResponseBody
+	@RequestMapping(value="detail/deleteReply", produces="application/json; charset-UTF-8")
+	public String deleteReply(@RequestParam(value="replyNo", defaultValue="0") int replyNo, Model m, HttpSession session) {
+		int result = communityService.deleteReply(replyNo);
+		return new Gson().toJson(result);
+	}
+	
+	
+	//커뮤니티 글 페이지 [로그인 정보 가져오기]
+	@ResponseBody
+	@RequestMapping(value="detail/getLoginInfo", produces="application/json; charset-UTF-8")
+	public String getLoginInfo(HttpSession session) {
+		return new Gson().toJson((Member)session.getAttribute("loginMember"));
+	}
+	
+	
+	//커뮤니티 글 페이지 [댓글 수정하기]
+	@ResponseBody
+	@RequestMapping(value="detail/editReply", produces="application/json; charset-UTF-8")
+	public String editReply(int replyNo, String replyContent) {
+		Reply temp = new Reply();
+		temp.setReplyNo(replyNo);
+		temp.setReplyContent(replyContent.replaceAll("\r\n|\r|\n", "<br>"));
+		int result = communityService.editReply(temp);
+		return new Gson().toJson(result);
+	}
+	
+	
+	//커뮤니티 글 페이지 [인기글(전체)]
+	@ResponseBody
+	@RequestMapping(value="detail/poppularAll", produces="application/json; charset-UTF-8")
+	public String poppularAll() {
+		Board temp = new Board();
+		temp.setOrderBy(2);
 		
-		return "redirect:/community/detail?cno=" + cno + "&certiNo=" + certiNo;
+		PageInfo pi = Template.getPageInfo(5, 1, 1, 5);
+		return new Gson().toJson(communityService.selectList(pi, temp));
+	}
+	
+	
+	//커뮤니티 글 페이지 [인기글(해당 게시판)]
+	@ResponseBody
+	@RequestMapping(value="detail/poppularThis", produces="application/json; charset-UTF-8")
+	public String poppularThis(int licenseNo) {
+		Board temp = new Board();
+		temp.setOrderBy(2);
+		temp.setLicenseNo(licenseNo);
+		PageInfo pi = Template.getPageInfo(5, 1, 1, 5);
+		return new Gson().toJson(communityService.selectList(pi, temp));
 	}
 	
 	
@@ -346,13 +442,7 @@ public class CommunityController {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-
+	//커뮤니티 글 수정 페이지 (해당 글 정보 가져오기)
 	@RequestMapping("edit")
 	public String CommunityEdit(int certiNo, Model c, HttpSession session) {
 		ArrayList<String> certiList = communityService.selectCertiList();
@@ -373,6 +463,7 @@ public class CommunityController {
 	}
 
 
+	//커뮤니티 글 수정 페이지 (수정 완료 및 리턴)
 	@PostMapping("edit/board")
 	public String editBoard(Board b, Model m, HttpSession session) {
 		b.setLicenseNo((int)session.getAttribute("licenseNo"));
