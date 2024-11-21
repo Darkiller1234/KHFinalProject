@@ -40,7 +40,11 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 
+	@Override
+	public String findId(String memberName, String email) {
+		String memberid = memberDao.findId(sqlSession, memberName, email);
+		return memberid;
+	}
 
 
-	
 }

@@ -1,6 +1,5 @@
 // 전송 방법을 설정하는 함수
 function setSendMethod(method) {
-    // 선택한 전송 방법을 숨겨진 input 필드에 저장
     const sendMethodInput = document.getElementById('sendMethod');
     const phoneButton = document.querySelector('.btn.phone');
     const emailButton = document.querySelector('.btn.email');
@@ -33,7 +32,7 @@ function highlightButton(method) {
     }
 }
 
-// 폼 제출 처리 함수
+// 다음 버튼 클릭 시 페이지 이동 처리 함수
 function handleSubmit(event) {
     const sendMethod = document.getElementById('sendMethod').value; // 현재 선택된 전송 방법 가져오기
 
@@ -42,6 +41,11 @@ function handleSubmit(event) {
         event.preventDefault(); // 폼 전송을 막음
         alert('휴대전화 번호 전송이나 이메일로 전송을 선택해주세요.'); // 경고 메시지 표시
     } else {
-        document.forms[0].submit(); // 전송 방법이 선택되었으므로 폼을 제출
+        // 전송 방법에 맞는 페이지로 이동
+        if (sendMethod === 'phone') {
+            window.location.href = 'findphone'; // 휴대전화 번호로 전송을 선택한 경우
+        } else if (sendMethod === 'email') {
+            window.location.href = 'findemail'; // 이메일로 전송을 선택한 경우
+        }
     }
 }
