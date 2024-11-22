@@ -71,28 +71,24 @@
                                 <img class="profile-image" src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" alt="">
                                 <p class="font-size-subtitle" id="simple-view-name"></p>
                                 <div class="like-heart">
-                                    <button><img src="<%=contextPath%>/resources/static/img/profile/heart.png" alt="하트"></button>
-                                    <p>234</p>
+                                    <button data-bs-toggle="modal" data-bs-target="#apply-modal2"><img id="mentor-like" src="<%=contextPath%>/resources/static/img/profile/heart.png" alt="하트"></button>
+                                    <p></p>
                                 </div>
                                 <p class="font-size-content" id="simple-view-intro"></p>
-                                <div id="favor-certi">
-                                    <p class="font-size-subtitle">관심 자격증</p>
-                                    <div class="look-license">
-                                        <div class="tag bgcolor3 font-size-content">정보처리기사</div>
-                                        <div class="tag bgcolor3 font-size-content">빅데이터분석기사</div>
-                                        <div class="tag bgcolor3 font-size-content">네트워크관리사</div>
-                                        <div class="tag bgcolor3 font-size-content">정보보안기사</div>
-                                        <div class="tag bgcolor3 font-size-content">빅데이터분석기사</div>
-                                    </div>
-                                </div>
                             </div>
+                            <br>
                             <div id="own-certi-view">
                                 <p class="font-size-subtitle">보유 자격증</p>
                                 <div class="look-license">
-                                    <div class="tag bgcolor3 font-size-content">정보처리기사</div>
-                                    <div class="tag bgcolor3 font-size-content">정보보안기사</div>
+                                </div>
+                            </div>  
+                            <br>
+                            <div id="favor-certi">
+                                <p class="font-size-subtitle">관심 자격증</p>
+                                <div class="look-license">
                                 </div>
                             </div>
+                            <br><br>
                         </div>
                         <div class="right-view">
                             <div id="history-view">
@@ -143,6 +139,34 @@
                             <!-- Modal body -->
                             <div class="modal-body" id="modal-text">
                             신청되었습니다.
+                            </div>
+                    
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                            <button type="button" data-bs-dismiss="modal">닫기</button>
+                            </div>
+                    
+                        </div>
+                        </div>
+                    </div>
+
+                    <!-- 모달창 -->
+                    <div class="modal" id="apply-modal2">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                    
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                            <h4 class="modal-title">                
+                                <img 
+                                src="<%=contextPath%>/resources/static/img/logo/logo_big.png"
+                                ">
+                            </h4>
+                            </div>
+                    
+                            <!-- Modal body -->
+                            <div class="modal-body" id="modal-text2">
+                            잠시만 기다려주세요...
                             </div>
                     
                             <!-- Modal footer -->

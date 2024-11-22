@@ -37,3 +37,55 @@ function ajaxInsertMentorSub(data, callback){
         }
     })
 }
+
+function ajaxGetLikeStatus(data, callback){
+    $.ajax({
+        url: "view/getLikeStatus",
+        data: data, 
+        success: function(res){
+            callback(res);
+        },
+        error: function(res){
+            console.log("좋아요 여부 및 갯수 ajax 오류")
+        }
+    })
+}
+
+function ajaxLikebtnClick(data, callback){
+    $.ajax({
+        url: "view/likebtnClick",
+        data: data, 
+        success: function(res){
+            callback(res);
+        },
+        error: function(res){
+            console.log("좋아요 버튼 클릭 ajax 오류")
+        }
+    })
+}
+
+function ajaxGetHaveLicense(data, callback){
+    $.ajax({
+        url: "view/haveLicense",
+        data: data, 
+        success: function(res){
+            callback(res);
+        },
+        error: function(res){
+            console.log("보유 자격증 ajax 오류")
+        }
+    })
+}
+
+function ajaxGetLookLicense(data, callback){
+    $.ajax({
+        url: "view/lookLicense",
+        data: data, 
+        success: function(res){
+            callback(res);
+        },
+        error: function(res){
+            console.log("관심 자격증 ajax 오류")
+        }
+    })
+}

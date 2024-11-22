@@ -212,3 +212,19 @@
     width: 20px;
     height: 20px;
 }
+
+#mentor-like {
+    width: 20px;
+    height: 20px;
+}
+
+.like-heart > button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.like-heart{
+    display: flex;
+    align-items: center;
+}

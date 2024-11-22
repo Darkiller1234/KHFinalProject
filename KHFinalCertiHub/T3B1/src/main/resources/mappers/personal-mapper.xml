@@ -28,6 +28,16 @@
 	  	<result column="LIKE_COUNT" property="mentorLike"/>
 	</resultMap>
 	
+ 
+	<resultMap type="License2" id="licenseResultSet">
+		<result column="LICENSE_NO" property="licenseNo"/>
+		<result column="MEMBER_NO" property="memberNo"/>
+		<result column="CONFIRM_DATE" property="confirmDate"/>
+		<result column="SYMBOL_LICENSE" property="symbolLicense"/>
+		<result column="LICENSE_NAME" property="licenseName"/>
+		<result column="LICENSE_DESC" property="licenseDesc"/>
+	</resultMap>
+	
 	<select id="getMemberInfo" resultType="Member" resultMap="memberResultSet">
 		SELECT MEMBER_NICKNAME,
 			MEMBER_IMG,
@@ -62,8 +72,61 @@
 			1
 		)
 	</insert>
-
 	
+	<select id="getLikeCount" resultType="_int">
+		SELECT COUNT(*)
+	    FROM MENTOR_LIKE_LOG
+	    WHERE MENTOR_NO = #{pno}
+	</select>
+
+	<select id="getLikeStatus" resultType="int">
+	    SELECT CASE 
+	        WHEN EXISTS (
+	            SELECT 1
+	            FROM MENTOR_LIKE_LOG
+	            WHERE MEMBER_NO = #{memberNo}
+	            AND MENTOR_NO = #{pno}
+	        ) THEN 1
+	        ELSE 0
+	    END AS is_exists 
+	    FROM DUAL
+	</select>
+	
+	<insert id="insertMentorLike">
+		INSERT INTO MENTOR_LIKE_LOG
+		VALUES (
+			#{memberNo},
+			#{pno}
+		)
+	</insert>
+	
+	<delete id="deleteMentorLike">
+		DELETE FROM MENTOR_LIKE_LOG
+		 WHERE MEMBER_NO = #{memberNo}
+	       AND MENTOR_NO = #{pno}
+	</delete>
+	
+	<select id="haveLicense" resultType="License2" resultMap="licenseResultSet">
+		SELECT ML.LICENSE_NO,
+			ML.MEMBER_NO,
+			TO_CHAR(ML.CONFIRM_DATE, 'YYYY-MM-DD') AS CONFIRM_DATE,
+			ML.SYMBOL_LICENSE,
+			L.LICENSE_NAME,
+			L.LICENSE_DESC
+		FROM MEMBER_LICENSE ML
+		JOIN LICENSE L ON (ML.LICENSE_NO = L.LICENSE_NO)
+		WHERE MEMBER_NO = #{pno}
+	</select>
+	
+	<select id="lookLicense" resultType="License2" resultMap="licenseResultSet">
+		SELECT ML.LICENSE_NO,
+			ML.MEMBER_NO,
+			L.LICENSE_NAME,
+			L.LICENSE_DESC
+		FROM MEMBER_LOOK_LICENSE ML
+		JOIN LICENSE L ON (ML.LICENSE_NO = L.LICENSE_NO)
+		WHERE MEMBER_NO = #{pno}
+	</select>
 </mapper>
 
 

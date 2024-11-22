@@ -1,5 +1,6 @@
 package com.kh.T3B1.personal.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.T3B1.member.model.vo.Member;
 import com.kh.T3B1.personal.model.dao.PersonalDao;
+import com.kh.T3B1.personal.model.vo.License2;
 
 import lombok.RequiredArgsConstructor;
 
@@ -41,6 +43,38 @@ public class PersonalServiceImpl implements PersonalService{
 		params.put("pno", pno);
 		params.put("mNo", mNo);
 		return personalDao.ajaxInsertMentorSub(sqlSession, params);
+	}
+
+	@Override
+	public int getLikeCount(int pno) {
+		return personalDao.getLikeCount(sqlSession, pno);
+	}
+
+	@Override
+	public int getLikeStatus(int pno, int memberNo) {
+		return personalDao.getLikeStatus(sqlSession, pno, memberNo);
+	}
+
+	@Override
+	public int likebtnClick(int pno, int memberNo) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("pno", pno);
+		params.put("memberNo", memberNo);
+		if(personalDao.getLikeStatus(sqlSession, pno, memberNo) > 0) {
+			return personalDao.deleteMentorLike(sqlSession, params);
+		} else {
+			return personalDao.insertMentorLike(sqlSession, params);
+		}
+	}
+
+	@Override
+	public ArrayList<License2> haveLicense(int pno) {
+		return personalDao.haveLicense(sqlSession, pno);
+	}
+
+	@Override
+	public ArrayList<License2> lookLicense(int pno) {
+		return personalDao.lookLicense(sqlSession, pno);
 	}
 
 }
