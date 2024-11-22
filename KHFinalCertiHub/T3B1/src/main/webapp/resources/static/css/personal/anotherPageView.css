@@ -22,7 +22,9 @@
 
 .profile-image {
     border-radius: 100%;
-
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
 }
 
 .like-heart {
@@ -87,12 +89,7 @@
     gap: 10px;
 }
 
-.bottom-view > div:nth-child(1) {
-    background-color: #EDF6F9;
-}
-
 .bottom-view > div:nth-child(2) {
-    background-color: #006D77;
     color: white;
 }
 
@@ -201,9 +198,33 @@
     white-space: nowrap;
 }
 
+#simple-view-intro{
+    text-align: center;
+}
 
 
 
 
 
 
+
+.bottom-view > div > img {
+    width: 20px;
+    height: 20px;
+}
+
+#mentor-like {
+    width: 20px;
+    height: 20px;
+}
+
+.like-heart > button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.like-heart{
+    display: flex;
+    align-items: center;
+}
