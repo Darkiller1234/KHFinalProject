@@ -1,110 +1,157 @@
-document.getElementById('selectArea1').addEventListener('change', function () {
-    callWeatherAPI(getRecentDate(), getRecentTime());
-});
+// 페이지 로드 시 강원도 데이터 자동 로드
+window.onload = function () {
+    fetchWeatherData(0);  // '오늘' 데이터 자동 로드
+    fetchWeatherData(1);  // '내일' 데이터 자동 로드
+    fetchWeatherData(2);  // '모레' 데이터 자동 로드
+};
 
-// 최근 날짜와 시간으로 API 호출하는 함수
-function callWeatherAPI(baseDate, baseTime) {
-    const regId = document.getElementById("selectArea1").value;
-    const [X, Y] = regId.split(','); // 지역 좌표 분리
+// 날씨 데이터 가져오기 함수
+function fetchWeatherData(dayOffset = 0) {
+    const areaSelect = document.getElementById("selectArea1");
+    const areaCoords = areaSelect.value.split(",");
+    const nx = areaCoords[0];
+    const ny = areaCoords[1];
 
-    const serviceKey = "AiATDYDO2nw7aWzpDtDvC8aswTEabFvLtwjy0RwuM2KnGpfE%2BD4ffB3SmCH4VqDihRDB%2FNR8RmbluUBQL%2Bo10w%3D%3D";
+    // 날짜 설정 (오늘, 내일, 모레 기준)
+    const today = new Date();
+    today.setDate(today.getDate() - 1 + dayOffset);  // 0=오늘, 1=내일, 2=모레
+    const baseDate = today.toISOString().split("T")[0].replace(/-/g, ""); // yyyyMMdd 형식
+    const baseTime = "2300";  // 기준 시간 23시
 
-    const shortWeatherUrl = `http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=${serviceKey}&numOfRows=1000&pageNo=1&dataType=JSON&base_date=${baseDate}&base_time=${baseTime}&nx=${X}&ny=${Y}`;
-    console.log(shortWeatherUrl); // 생성된 URL 확인
+    // API 호출 URL
+    const shortWeatherUrl = `http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=AiATDYDO2nw7aWzpDtDvC8aswTEabFvLtwjy0RwuM2KnGpfE%2BD4ffB3SmCH4VqDihRDB%2FNR8RmbluUBQL%2Bo10w%3D%3D&numOfRows=1000&pageNo=1&dataType=JSON&base_date=${baseDate}&base_time=${baseTime}&nx=${nx}&ny=${ny}`;
+
+    console.log("API URL:", shortWeatherUrl);  // API URL 로그로 확인
 
     // API 호출
     fetch(shortWeatherUrl)
-    .then((response) => response.json())
-    .then((data) => {
-        console.log(data); // 응답 데이터 확인
-        if (data.response && data.response.body && data.response.body.items) {
-            updateTable(data.response.body.items.item); // 테이블 업데이트
-        } else {
-            console.error("유효한 데이터가 없습니다:", data);
+    .then(response => response.text()) // 응답을 JSON 대신 text로 받아서 HTML 내용 확인
+    .then(data => {
+        console.log("응답 데이터:", data); // 이 부분을 통해 실제 받은 HTML 페이지 확인
+        try {
+            const jsonData = JSON.parse(data);  // 응답을 JSON으로 파싱
+            if (jsonData.response.header.resultCode === "00") {
+                const items = jsonData.response.body.items.item;
+                if (items && items.length > 0) {
+                    const forecastData = processWeatherData(items, dayOffset); // 데이터 가공
+                    renderWeatherTable(forecastData, dayOffset); // 테이블에 데이터 삽입
+                } else {
+                    console.error("날씨 데이터가 없습니다.");
+                }
+            } else {
+                console.error("API 호출 오류:", jsonData.response.header.resultMsg);
+            }
+        } catch (error) {
+            console.error("JSON 파싱 실패:", error);
         }
     })
-    .catch((error) => console.error("API 호출 실패:", error));
+    .catch((error) => {
+        console.error("API 호출 실패:", error);
+    });
 
 }
 
-// 오늘, 내일, 모레 버튼 클릭 이벤트
-document.querySelectorAll("button").forEach((button, index) => {
-    button.addEventListener("click", () => {
-        const baseDate = new Date();
-        baseDate.setDate(baseDate.getDate() + index); // 오늘(0), 내일(1), 모레(2)
+// API 데이터 가공 함수
+function processWeatherData(items, dayOffset) {
+    const forecastData = {
+        time: [],         // 시간 (00시, 03시, 06시 ...)
+        weather: [],      // 날씨 (맑음, 흐림 ...)
+        humidity: [],     // 습도 (%)
+        temperature: []   // 기온 (℃)
+    };
 
-        const BD = baseDate.toISOString().split('T')[0].replace(/-/g, ''); // YYYYMMDD 형식
-        const BT = getRecentTime();
+    const targetDate = new Date();
+    targetDate.setDate(targetDate.getDate() + dayOffset);  // 오늘(0), 내일(1), 모레(2)
+    const targetDateString = targetDate.toISOString().split("T")[0].replace(/-/g, "");
 
-        callWeatherAPI(BD, BT); // 버튼 클릭 시 날짜를 기준으로 API 호출
-    });
-});
+    // 시간 기준으로 데이터 필터링
+    items.forEach((item) => {
+        const hour = item.fcstTime.substring(0, 2); // '00', '03', '06' 처럼 시간 추출
+        const forecastDate = item.fcstDate;
 
-// 최근 발표 시각 계산
-function getRecentTime() {
-    const now = new Date();
-    const hour = now.getHours();
-    const minute = now.getMinutes();
+        // 목표 날짜에 맞는 데이터만 필터링
+        if (forecastDate === targetDateString) {
+            if (!forecastData.time.includes(hour)) {
+                forecastData.time.push(hour); // 시간 목록에 추가
+            }
 
-    const formattedTime = String(hour).padStart(2, '0') + String(minute).padStart(2, '0');
-    const timePoints = ["0200", "0500", "0800", "1100", "1400", "1700", "2000", "2300"];
-
-    for (let i = timePoints.length - 1; i >= 0; i--) {
-        if (formattedTime >= timePoints[i]) {
-            return timePoints[i];
+            // 각 데이터 항목 분류
+            if (item.category === "TMP") {   // 기온
+                forecastData.temperature.push(item.fcstValue + "℃");
+            } else if (item.category === "REH") {  // 습도
+                forecastData.humidity.push(item.fcstValue + "%");
+            } else if (item.category === "SKY") {  // 날씨
+                forecastData.weather.push(item.fcstValue === "1" ? "맑음" : "흐림");
+            }
         }
+    });
+
+    // 시간 순서대로 정렬
+    forecastData.time.sort();  // 00시, 03시, 06시, ...
+
+    console.log("가공된 날씨 데이터:", forecastData);  // 가공된 데이터 확인
+    return forecastData;
+}
+
+// 테이블 렌더링 함수
+function renderWeatherTable(forecastData, dayOffset) {
+    if (!forecastData || !forecastData.time || !forecastData.weather || !forecastData.temperature) {
+        console.error("잘못된 데이터:", forecastData);
+        return;
     }
-    return "2300"; // 0200 이전일 경우
-}
 
-// 최근 날짜 계산
-function getRecentDate() {
-    const now = new Date();
-    return now.toISOString().split('T')[0].replace(/-/g, '');
-}
+    const table = dayOffset === 0 ? document.getElementById("todayTable")
+        : dayOffset === 1 ? document.getElementById("tomorrowTable")
+        : document.getElementById("dayAfterTomorrowTable");
 
-// 테이블 업데이트 함수 (동일)
-function updateTable(items) {
-    const weatherData = items.filter(
-        (item) =>
-            item.category === "PTY" || // 날씨 상태
-            item.category === "REH" || // 습도
-            item.category === "TMP"   // 기온
-    );
+    const tbody = table.querySelector("tbody");
+    tbody.innerHTML = "";
 
-    const weatherRow = document.querySelector("tr:nth-child(2)");
-    const humidityRow = document.querySelector("tr:nth-child(3)");
-    const tempRow = document.querySelector("tr:nth-child(4)");
-
-    weatherRow.querySelectorAll("td:not(:first-child)").forEach((td) => (td.textContent = ""));
-    humidityRow.querySelectorAll("td:not(:first-child)").forEach((td) => (td.textContent = ""));
-    tempRow.querySelectorAll("td:not(:first-child)").forEach((td) => (td.textContent = ""));
-
-    weatherData.forEach((item) => {
-        const timeIndex = parseInt(item.fcstTime.substring(0, 2));
-        const targetCell = document.querySelector(`tr:nth-child(${getRowIndex(item.category)}) td:nth-child(${timeIndex + 2})`);
-
-        if (targetCell) {
-            if (item.category === "PTY") targetCell.textContent = getWeatherStatus(item.fcstValue);
-            if (item.category === "REH") targetCell.textContent = item.fcstValue + "%";
-            if (item.category === "TMP") targetCell.textContent = item.fcstValue + "°C";
-        }
+    // 시간 행 생성
+    const timeRow = document.createElement('tr');
+    let th = document.createElement('th');
+    th.innerText = "시간";
+    timeRow.appendChild(th);
+    forecastData.time.forEach((time) => {
+        const td = document.createElement('td');
+        td.innerText = time + "시";
+        timeRow.appendChild(td);
     });
-}
+    tbody.appendChild(timeRow);
 
-function getRowIndex(category) {
-    if (category === "PTY") return 2;
-    if (category === "REH") return 3;
-    if (category === "TMP") return 4;
-}
+    // 날씨 행 생성
+    const weatherRow = document.createElement('tr');
+    th = document.createElement('th');
+    th.innerText = "날씨";
+    weatherRow.appendChild(th);
+    forecastData.weather.forEach((weather) => {
+        const td = document.createElement('td');
+        td.innerText = weather;
+        weatherRow.appendChild(td);
+    });
+    tbody.appendChild(weatherRow);
 
-function getWeatherStatus(code) {
-    const status = { 0: "맑음", 1: "비", 2: "비/눈", 3: "눈", 4: "소나기" };
-    return status[code] || "알 수 없음";
-}
+    // 습도 행 생성
+    const humidityRow = document.createElement('tr');
+    th = document.createElement('th');
+    th.innerText = "습도";
+    humidityRow.appendChild(th);
+    forecastData.humidity.forEach((humidity) => {
+        const td = document.createElement('td');
+        td.innerText = humidity;
+        humidityRow.appendChild(td);
+    });
+    tbody.appendChild(humidityRow);
 
-// 페이지 로드 시 초기 데이터 로드
-window.onload = function () {
-    document.getElementById("selectArea1").value = "73,134"; // 기본 지역 설정
-    document.getElementById("selectArea1").dispatchEvent(new Event("change"));
-};
+    // 기온 행 생성
+    const temperatureRow = document.createElement('tr');
+    th = document.createElement('th');
+    th.innerText = "기온";
+    temperatureRow.appendChild(th);
+    forecastData.temperature.forEach((temp) => {
+        const td = document.createElement('td');
+        td.innerText = temp;
+        temperatureRow.appendChild(td);
+    });
+    tbody.appendChild(temperatureRow);
+}
