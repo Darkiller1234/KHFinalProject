@@ -1,6 +1,7 @@
 // 셀렉트 박스
 function initcompilerPage(contextPath){
     languageSelectBox(contextPath)
+    initButtonEvent(contextPath)
 }
 
 function languageSelectBox(contextPath){
@@ -22,5 +23,38 @@ function languageSelectBox(contextPath){
         }
 
         createSelectBox(selectBox, data)
+    })
+}
+
+function initButtonEvent(contextPath){
+    const executeButton = document.getElementById('executeButton')
+    const result = document.getElementById('result')
+
+    let state = {
+        contextPath: contextPath,
+    }
+
+    const onRunCode = (res)=> {
+        result.innerText = res.result
+    }
+
+    executeButton.onclick = () => {
+        const textarea = document.getElementById('main')
+        state.code = textarea.value
+        ajaxRunCode(state, onRunCode)
+    }
+}
+
+function ajaxRunCode(state, callback){
+    $.ajax({
+        url: state.contextPath + '/compiler/run',
+        type:'post',
+        data: {
+            code: state.code,
+        },
+        success: callback,
+        error: ()=> {
+            console.log('코드 실행 요청 실패')
+        }
     })
 }
