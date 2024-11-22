@@ -34,12 +34,24 @@ public class MemberDao {
 		findData.put("email", email);
 		return sqlSession.selectOne("memberMapper.findId",findData);
 	}
+
+	public String findPwd(SqlSessionTemplate sqlSession, String memberId, String email) {
+		Map<String, String> findData = new HashMap<>();
+		findData.put("memberId", memberId);
+		findData.put("email", email);
+		return sqlSession.selectOne("memberMapper.findPwd",findData);
+	}
+
+	public void updatePassword(SqlSessionTemplate sqlSession,String memberId, String encodePassword) {
+		Map<String, String>updateData = new HashMap<>();
+		updateData.put("memberId", memberId);
+		updateData.put("encodePassword",encodePassword);
+		sqlSession.update("memberMapper.updatePassword",updateData);		
+	}
+
 	
-	// memberMapper.를 줘야하는것으로 알고있는데 
-	// memberMapper.를 주면 오류가 뜬다 
-	// 이유를 모르겠습니다.
-
-
+	
+	
 	
 	
 	

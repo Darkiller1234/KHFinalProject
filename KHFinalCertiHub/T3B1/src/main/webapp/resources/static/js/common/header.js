@@ -86,6 +86,10 @@ function init(contextPath, pageName, optional){
             initPersonalMentor(contextPath);
             break;
 
+        case "personalView":
+            initPersonalView(contextPath);
+            break;
+
         // 메시지 페이지
 
         // 관리자 페이지

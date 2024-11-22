@@ -18,7 +18,7 @@
 
         <div class="hr"></div>
 
-        <form action="pwdfindpages" method="post" id="membershipForm">
+        <form action="<%=contextPath%>/member/pwdfindpages" method="post" id="membershipForm">
             <div class="form-group">
                 <label for="memberId">아이디</label>
                 <input type="text" class="form-control" id="memberId" placeholder="아이디 입력" name="memberId" required>
@@ -29,7 +29,7 @@
                 <span class="error-msg" id="emailError"></span>
 
                 <div class="next-button">
-                    <button type="button" class="btn-primary" id="nextButton" onclick="handleSubmit(event)">다음</button>
+                    <button type="submit" class="btn-primary" id="nextButton">다음</button>
                 </div>
             </div>
         </form>
