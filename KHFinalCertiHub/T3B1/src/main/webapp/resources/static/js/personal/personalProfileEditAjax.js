@@ -16,3 +16,16 @@ function saveProfile(formData, callback) {
         }
     });
 }
+
+function ajaxProfileLookLicense(data, callback){
+    $.ajax({
+        url: "profile/lookLicense",
+        data: data,
+        success: function(res){
+            callback(res);
+        },
+        error: function(res){
+            console.log("관심 자격증 ajax 오류");
+        }
+    })
+}

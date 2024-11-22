@@ -109,15 +109,7 @@
                             </div>
 
                             <div class="look-license-list">
-                                <div class="look-license">
-                                    <div class="font-size-subtitle">정보처리기사</div>
-                                    <button onclick="removeLookLicense(this)"><img src="<%=contextPath%>/resources/static/img/button/x_icon_red.png"></button>
-                                </div>
-
-                                <div class="look-license">
-                                    <div class="font-size-subtitle">빅데이터분석기사</div>
-                                    <button onclick="removeLookLicense(this)"><img src="<%=contextPath%>/resources/static/img/button/x_icon_red.png"></button>
-                                </div>
+                                
                             </div>
 
                         </div>

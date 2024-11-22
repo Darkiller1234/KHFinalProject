@@ -61,5 +61,14 @@ public class PersonalDao {
 	public int saveProfile(SqlSessionTemplate sqlSession, Member m) {
 		return sqlSession.update("personalMapper.saveProfile", m);
 	}
+
+	public int selectLookLicense(SqlSessionTemplate sqlSession, Map<String, Object> params) {
+		return sqlSession.selectOne("personalMapper.selectLookLicense", params);
+	}
+
+	public void insertLookLicense(SqlSessionTemplate sqlSession, Map<String, Object> params) {
+		sqlSession.insert("personalMapper.insertLookLicense", params);
+		
+	}
 	
 }

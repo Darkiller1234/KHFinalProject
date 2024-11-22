@@ -26,6 +26,9 @@ import com.kh.T3B1.member.model.vo.Member;
 import com.kh.T3B1.personal.model.vo.License2;
 import com.kh.T3B1.personal.service.PersonalService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 @RequestMapping("/personal")
 public class PersonalPageController {
@@ -152,6 +155,7 @@ public class PersonalPageController {
 		return "personal/personalProfileEdit";
 	}
 	
+	
 	@ResponseBody
 	@RequestMapping(value="proflie/save", produces="application/json; charset-UTF-8")
 	public String SaveProfile(@RequestParam(value = "memberImg", required = false) MultipartFile memberImg,
@@ -164,8 +168,23 @@ public class PersonalPageController {
 		}
 		
 		int result = memberService.nicknameCheck(nickName);
-		if(result > 0) {
-			return new Gson().toJson(-1);
+		Gson gson = new Gson();
+		ArrayList<String> licenseNames = gson.fromJson(licenseNamesJson, new TypeToken<List<String>>(){}.getType());
+		
+		if(licenseNames.size() != 0) {
+			for(int i = 0; i < licenseNames.size(); i++) {
+				personalService.insertLookLicense(((Member)session.getAttribute("loginMember")).getMemberNo(), licenseNames.get(i));
+			}
+		}
+		
+		
+		if(result > 0 )  {
+			if(((Member)session.getAttribute("loginMember")).getMemberNickname().equals(nickName)) {
+				
+			}else {
+				return new Gson().toJson(-1);
+			}
+
 		}
 		
 		Member m = ((Member)session.getAttribute("loginMember"));
@@ -207,6 +226,13 @@ public class PersonalPageController {
 		return new Gson().toJson(1);
 	}
 	
+	
+	@ResponseBody
+	@RequestMapping(value="profile/lookLicense", produces="application/json; charset-UTF-8")
+	public String ajaxProfileLookLicense(HttpSession session) {
+		ArrayList<License2> list = personalService.lookLicense(((Member)session.getAttribute("loginMember")).getMemberNo());
+		return new Gson().toJson(list);
+	}
 	
 	
 	
