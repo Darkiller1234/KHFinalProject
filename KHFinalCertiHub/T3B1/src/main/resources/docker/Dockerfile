@@ -1,4 +1,4 @@
-# 이미지 설정 (Python, jdk17, c++)
+# 이미지 설정 (OpenJDK 24)
 FROM python:3.9-alpine
 RUN apk add openjdk17
 RUN apk add g++
