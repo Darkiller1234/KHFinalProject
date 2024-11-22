@@ -39,6 +39,20 @@ function initSelectBox(contextPath){
     })
 
 
+
+    ajaxProfileLookLicense(null, function (result) {
+        result.forEach(license => {
+            document.querySelector('.look-license-list').innerHTML += `
+            <div class="look-license">
+                <div class="font-size-subtitle">${license.licenseName}</div>
+                <button onclick="removeLookLicense(this)"><img src="${contextPath}/resources/static/img/button/x_icon_red.png"></button>
+            </div>
+            `
+            
+        });
+    })
+
+
 }
 
 // 숨겨진 파일 입력창을 클릭

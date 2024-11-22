@@ -25,4 +25,6 @@ public interface PersonalService {
 
 	int saveProfile(Member m);
 
+	void insertLookLicense(int memberNo, String string);
+
 }

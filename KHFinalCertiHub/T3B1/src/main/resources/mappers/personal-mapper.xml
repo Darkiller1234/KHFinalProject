@@ -143,6 +143,26 @@
 		WHERE
 		MEMBER_NO = #{memberNo}
 	</update>
+	<select id="selectLookLicense" resultType="_int">
+		SELECT CASE 
+       WHEN EXISTS (
+           SELECT 1
+           FROM MEMBER_LOOK_LICENSE ML
+           JOIN LICENSE L ON ML.LICENSE_NO = L.LICENSE_NO
+           WHERE ML.MEMBER_NO = #{memberNo}
+           AND L.LICENSE_NAME = #{string}
+       ) THEN 1
+       	ELSE 0
+		   END AS is_exists	
+		FROM DUAL
+	</select>
+	
+	<insert id="insertLookLicense">
+		INSERT INTO MEMBER_LOOK_LICENSE (MEMBER_NO, LICENSE_NO)
+		SELECT #{memberNo}, LICENSE_NO
+		FROM LICENSE
+		WHERE LICENSE_NAME = #{string}
+	</insert>
 </mapper>
 
 
