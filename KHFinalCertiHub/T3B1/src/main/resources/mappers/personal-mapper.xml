@@ -127,6 +127,22 @@
 		JOIN LICENSE L ON (ML.LICENSE_NO = L.LICENSE_NO)
 		WHERE MEMBER_NO = #{pno}
 	</select>
+	
+	<update id="saveProfile">
+		UPDATE MEMBER
+		SET
+			MEMBER_INTRO = #{memberIntro},
+			MEMBER_NICKNAME = #{memberNickname},
+			MEMBER_NAME = #{memberName},
+			EMAIL = #{email},
+			PHONE = #{phone},
+			MEMBER_IMG = #{memberImg},
+			MANAGER_STATUS = #{managerStatus},
+			MENTOR_INTRO = #{mentorIntro},
+			CAREER = #{career}
+		WHERE
+		MEMBER_NO = #{memberNo}
+	</update>
 </mapper>
 
 

@@ -77,4 +77,9 @@ public class PersonalServiceImpl implements PersonalService{
 		return personalDao.lookLicense(sqlSession, pno);
 	}
 
+	@Override
+	public int saveProfile(Member m) {
+		return personalDao.saveProfile(sqlSession, m);
+	}
+
 }

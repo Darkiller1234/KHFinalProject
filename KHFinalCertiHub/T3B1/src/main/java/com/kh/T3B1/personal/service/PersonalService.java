@@ -23,4 +23,6 @@ public interface PersonalService {
 
 	ArrayList<License2> lookLicense(int pno);
 
+	int saveProfile(Member m);
+
 }

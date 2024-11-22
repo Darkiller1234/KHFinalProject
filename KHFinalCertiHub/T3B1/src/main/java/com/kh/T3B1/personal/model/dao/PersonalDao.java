@@ -57,5 +57,9 @@ public class PersonalDao {
 	public ArrayList<License2> lookLicense(SqlSessionTemplate sqlSession, int pno) {
 		return (ArrayList)sqlSession.selectList("personalMapper.lookLicense", pno);
 	}
+
+	public int saveProfile(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.update("personalMapper.saveProfile", m);
+	}
 	
 }
