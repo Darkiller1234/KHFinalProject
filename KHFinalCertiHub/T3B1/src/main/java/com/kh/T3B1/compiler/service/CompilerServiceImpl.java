@@ -7,6 +7,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.stereotype.Service;
 
@@ -45,9 +47,12 @@ public class CompilerServiceImpl implements CompilerService{
 		}
 		// 코드 실행 결과를 받아오는데 성공하면 결과를 DB에 저장
 		File filePath = new File("C:/KHFinalProject/KHFinalCertiHub/T3B1/src/main/resources/docker");
+		// 도커 이미지 빌드 -t 빌드명
 		String build = "docker build -t certihub_compiler .";
 		// -v : 도커 공유 볼륨, 로컬(서버) 경로와 도커 컨테이너의 파일을 동기화한다.
-		String run = "docker run --rm -v "+ filePath +":/app certihub_compiler";
+		// memory = 메모리 용량 제한
+		String containerName = UUID.randomUUID().toString().replace("-", ""); // 랜덤 컨테이너명 부여
+		String run = "docker run --name="+ containerName +" --memory=64m --rm -v "+ filePath +":/app certihub_compiler";
 		
 		try {
 			// 이미지 빌드 및 끝날때 까지 동기처리(waitFor)
@@ -65,16 +70,31 @@ public class CompilerServiceImpl implements CompilerService{
 		    BufferedReader stdErr = new BufferedReader(new InputStreamReader(runProcess.getErrorStream()));
 			
 			String line = null;
+			boolean isSuccess = true; // 시간 초과 확인 변수 ( 정상 종료 :true, 시간 초과 : false )
 			
-		    System.out.println("=== Standard Output ===");
-		    while ((line = stdOut.readLine()) != null) {
-		    	result += line;
-		    }
+			try {
+				isSuccess = runProcess.waitFor(30, TimeUnit.SECONDS);
+				if(!isSuccess) {
+					String stop = "docker stop " + containerName;
+					Runtime.getRuntime().exec(stop);
+					runProcess.destroy();
+					result = "30초 시간 초과!!";
+				}
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+			if(isSuccess) {
+			    // 정상 출력 결과
+			    while ((line = stdOut.readLine()) != null) {
+			    	result += line;
+			    }
 
-		    System.out.println("=== Error Output ===");
-		    while ((line = stdErr.readLine()) != null) {
-		    	result += line;
-		    }
+			    // 에러 결과
+			    while ((line = stdErr.readLine()) != null) {
+			    	result += line;
+			    }
+			}
 		    
 		} catch (IOException e) {
 			e.printStackTrace();
