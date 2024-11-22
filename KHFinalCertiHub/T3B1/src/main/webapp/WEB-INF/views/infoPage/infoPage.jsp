@@ -330,146 +330,66 @@
                                     <br><br>
                                     <div class="shortTermWheather">
                                         <pre><b>해당 지역 날씨 정보 (현재 날짜 기준 최대 10일)</b></pre> <br>
-                                        <button>오늘</button>
-                                        <button>내일</button>
-                                        <button>모레</button> <br>
                                         <select id="selectArea1" class="examArea">
                                             <option value="73,134">강원도</option>
                                             <option value="60, 120">경기도</option>
-                                            <option value="91, 77">경상남도 </option>
-                                            <option value="87, 106">경상북도 </option>
-                                            <option value="58, 74">광주 </option>
-                                            <option value="89, 90">대구 </option>
-                                            <option value="67, 100">대전 </option>
-                                            <option value="98, 76">부산 </option>
+                                            <option value="91, 77">경상남도</option>
+                                            <option value="87, 106">경상북도</option>
+                                            <option value="58, 74">광주</option>
+                                            <option value="89, 90">대구</option>
+                                            <option value="67, 100">대전</option>
+                                            <option value="98, 76">부산</option>
                                             <option value="60, 127">서울</option>
-                                            <option value="66, 103">세종 </option>
-                                            <option value="102, 84">울산 </option>
-                                            <option value="55, 124">인천 </option>
-                                            <option value="51, 124">전라남도 </option>
-                                            <option value="63, 89">전라북도 </option>
-                                            <option value="52, 67">제주 </option>
-                                            <option value="68, 100">충청남도 </option>
-                                            <option value="69, 107">충청북도 </option>
+                                            <option value="66, 103">세종</option>
+                                            <option value="102, 84">울산</option>
+                                            <option value="55, 124">인천</option>
+                                            <option value="51, 124">전라남도</option>
+                                            <option value="63, 89">전라북도</option>
+                                            <option value="52, 67">제주</option>
+                                            <option value="68, 100">충청남도</option>
+                                            <option value="69, 107">충청북도</option>
                                         </select>
-                                        <table>
-                                            <thead>
-                                                <tr>
-                                                    <th colspan="25">오늘</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td><b>시간</b></td>
-                                                    <td>01시</td>
-                                                    <td>02시</td>
-                                                    <td>03시</td>
-                                                    <td>04시</td>
-                                                    <td>05시</td>
-                                                    <td>06시</td>
-                                                    <td>07시</td>
-                                                    <td>08시</td>
-                                                    <td>09시</td>
-                                                    <td>10시</td>
-                                                    <td>11시</td>
-                                                    <td>12시</td>
-                                                    <td>13시</td>
-                                                    <td>14시</td>
-                                                    <td>15시</td>
-                                                    <td>16시</td>
-                                                    <td>17시</td>
-                                                    <td>18시</td>
-                                                    <td>19시</td>
-                                                    <td>20시</td>
-                                                    <td>21시</td>
-                                                    <td>22시</td>
-                                                    <td>23시</td>
-                                                    <td>00시</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><b>날씨</b></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><b>습도</b></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><b>기온</b></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div> <br><br>
+                                    
+                                        <div class="accordion-item">
+                                            <button class="accordion-toggle" id="todayBtn">오늘</button>
+                                            <table id="todayTable" style="display:none;">
+                                                <thead>
+                                                    <tr><th colspan="25">오늘</th></tr>
+                                                </thead>
+                                                <tbody>
+                                                    <!-- 시간, 날씨, 습도, 기온을 넣을 각 tr이 여기에 들어갑니다 -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    
+                                        <div class="accordion-item">
+                                            <button class="accordion-toggle" id="tomorrowBtn">내일</button>
+                                            <table id="tomorrowTable" style="display:none;">
+                                                <thead>
+                                                    <tr><th colspan="25">내일</th></tr>
+                                                </thead>
+                                                <tbody>
+                                                    <!-- 내일의 날씨 정보 -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    
+                                        <div class="accordion-item">
+                                            <button class="accordion-toggle" id="dayAfterTomorrowBtn">모레</button>
+                                            <table id="dayAfterTomorrowTable" style="display:none;">
+                                                <thead>
+                                                    <tr><th colspan="25">모레</th></tr>
+                                                </thead>
+                                                <tbody>
+                                                    <!-- 모레의 날씨 정보 -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    
+                                    
+
+                                    <br><br>
                                     <pre><b>글피~최대 10일</b></pre> <br>
                                     <div class="midTermWheather">
                                         <select id="selectArea2" class="examArea">
@@ -498,7 +418,7 @@
                                             <option value="11G00000,11G00201">제주</option>
                                             <option value="11G00000,11G00401">서귀포</option>
                                         </select>
-                                        
+
                                         <table>
                                             <thead>
                                                 <tr>
@@ -516,7 +436,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td>날씨 <br>
-                                                    오전/오후</td>
+                                                        오전/오후</td>
                                                     <td></td>
                                                     <td></td>
                                                     <td></td>
@@ -551,7 +471,6 @@
                                             </tbody>
                                         </table>
                                     </div> <br><br>
-                                   
                                 </div>
                             </div>
                         </div>
@@ -571,4 +490,5 @@
             <script src="<%=contextPath%>/resources/static/js/infopage/shortWeather.js"></script>
             <%@ include file="../common/footer.jsp" %>
     </body>
+
     </html>
