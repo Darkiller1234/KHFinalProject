@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/personal/personalProfileEdit.css">
 
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/personal/commonPersonal.css">
+        <script src="${pageContext.request.contextPath}/resources/static/js/personal/personalProfileEditAjax.js"></script>
         <script src="${pageContext.request.contextPath}/resources/static/js/personal/personalProfileEdit.js"></script>
 
         <title>Document</title>
@@ -85,10 +86,9 @@
                             </div>
                         </nav>
                     </div>
-
                     <div class="middle-view">
                         <div class="left-view">
-                            <img id="profile"src="${pageContext.request.contextPath}/resources/static/img/profile/profileTest.webp" alt="저장">
+                            <img id="profile"src="${pageContext.request.contextPath}${loginMember.memberImg}" alt="저장">
                             <button class="btn btn-primary" onclick="chooseImg()">파일 업로드</button>
                             <div class="file">
                                 <input type="file" id="profileInput" name="memberImg" onchange="loadImg(this)">
@@ -97,9 +97,9 @@
 
                         <div class="right-view">
                             <div class="font-size-title">닉네임 변경</div>
-                            <input type="text" class="form-control" name="memberNickname" value="스타레일고수가될거야">
+                            <input type="text" class="form-control" name="memberNickname" value="${loginMember.memberNickname}">
                             <div class="font-size-title">자기소개</div>
-                            <textarea class="form-control" name="member-intro">김용하청계천빠뜨리기</textarea>
+                            <textarea class="form-control" name="member-intro">${loginMember.memberIntro}</textarea>
                             <div class="font-size-title">관심 자격증</div>
 
                             <div class="choose-menu">
@@ -125,7 +125,7 @@
 
                     <div class="bottom-view">
                         <div class="font-size-subtitle">
-                            <button class="btn-primary"  data-bs-toggle="modal" data-bs-target="#apply-modal"><img src="<%=contextPath%>/resources/static/img/button/save_icon.png" alt="저장">저장</button>
+                            <button id="save-btn" class="btn-primary"  data-bs-toggle="modal" data-bs-target="#apply-modal"><img src="<%=contextPath%>/resources/static/img/button/save_icon.png" alt="저장">저장</button>
                         </div>
                     </div>
 
