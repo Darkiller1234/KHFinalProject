@@ -212,10 +212,23 @@
 	
 	<select id ="findId" resultType="String">
 		SELECT MEMBER_ID
-		FROM MEMBER
+			FROM MEMBER
 		WHERE MEMBER_NAME = #{memberName}
-		AND EMAIL = #{email}
+			AND EMAIL = #{email}
 	</select>
+	
+	<select id = "findPwd" resultType = "String">
+		SELECT MEMBER_PWD
+			FROM MEMBER
+		WHERE MEMBER_ID = #{memberId}
+			AND EMAIL = #{email}
+	</select>
+	
+	<update id ="updatePassword">
+		UPDATE MEMBER
+		SET MEMBER_PWD = #{encodePassword}
+		WHERE MEMBER_ID = #{memberId}
+	</update>
 	
 </mapper>
 

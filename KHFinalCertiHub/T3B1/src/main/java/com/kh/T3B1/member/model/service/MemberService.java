@@ -16,5 +16,10 @@ public interface MemberService {
 	
 	String findId(String memberName, String email);
 
+	String findPwd(String memberId, String email);
+
+	
+
+
 	
 }
