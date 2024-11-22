@@ -154,13 +154,28 @@ public class MembershipController {
 		return "member/pwdfind";
 	}
 	
-	@RequestMapping("pwdfindpage")
-	public String pwdfindPage2() {
-		return "member/pwdfindpage";
+	@RequestMapping("pwdfindemail")
+	public String pwdfindemail() {
+		return "member/pwdfindemail";
 	}
 	
-	@RequestMapping("pwdfindpages")
-	public String pwdfindPages() {
+	@RequestMapping("pwdfindphone")
+	public String pwdfindphone() {
+		return "member/pwdfindphone";
+	}
+	
+	@RequestMapping(value = "/pwdfindpages", method = RequestMethod.POST)
+	public String findPwd(@RequestParam String memberId, @RequestParam String email, Model model) {
+		
+		String tempPassword = memberService.findPwd(memberId,email);
+		
+		if(tempPassword != null) {
+			model.addAttribute("tempPassword", tempPassword);
+			model.addAttribute("message", "임시 비밀번호가 이메일로 전송되었습니다.");
+		}else {
+			model.addAttribute("error","입력한 정보가 없습니다.");
+		}
+		
 		return "member/pwdfindpages";
 	}
 }
