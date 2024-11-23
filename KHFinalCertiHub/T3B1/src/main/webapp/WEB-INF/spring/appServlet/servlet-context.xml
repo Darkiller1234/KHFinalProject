@@ -45,6 +45,7 @@
 	 		<mapping path="/study/insertBoard"/>
 	 		<mapping path="/study/deleteBoard"/>
 	 		<mapping path="/study/manageStudy"/>
+	 		<mapping path="/compiler/run"/>
 	 		<mapping path="/community/edit/board"/>
 	 		<mapping path="/community/edit"/>
 	 		<mapping path="/community/detail/clickEditBtn"/>

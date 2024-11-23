@@ -20,6 +20,7 @@
 		<typeAlias type="com.kh.T3B1.study.model.vo.Study" alias ="Study"/>
 		<typeAlias type="com.kh.T3B1.study.model.vo.StudyBoard" alias ="StudyBoard"/>
 		<typeAlias type="com.kh.T3B1.personal.model.vo.License2" alias ="License2"/>
+		<typeAlias type="com.kh.T3B1.compiler.model.vo.CompilerLog" alias ="CompilerLog"/>
 	</typeAliases>
 
 	<!-- environments : mybatis에서 연동할 db정보들을 등록하는 영역 environments에 기술했던 db연결관련 
@@ -36,6 +37,6 @@
 		<mapper resource="mappers/search-mapper.xml"/>
 		<mapper resource="mappers/study-mapper.xml"/>
 		<mapper resource="mappers/personal-mapper.xml"/>
-		
+		<mapper resource="mappers/compiler-mapper.xml"/>
 	</mappers>
 </configuration>

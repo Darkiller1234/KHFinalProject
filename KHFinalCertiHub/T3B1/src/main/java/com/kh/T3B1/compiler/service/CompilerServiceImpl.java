@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 
 import com.kh.T3B1.compiler.model.dao.CompilerDao;
@@ -23,6 +24,8 @@ import lombok.extern.slf4j.Slf4j;
 public class CompilerServiceImpl implements CompilerService{
 	
 	public final CompilerDao compilerDao;
+	
+	public final SqlSessionTemplate sqlSession;
 
 	@Override
 	public String runCode(HashMap<String, Object> compileInfo) {
@@ -99,6 +102,9 @@ public class CompilerServiceImpl implements CompilerService{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+	    compileInfo.put("execResult", result);
+	    compilerDao.insertLog(sqlSession, compileInfo);
 		
 		return result;
 	}
