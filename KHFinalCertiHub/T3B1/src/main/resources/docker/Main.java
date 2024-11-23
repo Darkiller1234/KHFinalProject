@@ -4,10 +4,7 @@ import java.io.*;
 
 class Main {
     public static void main(String[] args) {
-        for(int i = 0; i < 4; i++){
-System.out.println("Hello world!");
-}
-        System.out.println("Hello world!");
+        System.out.println("코미는 낮보다 밤이 좋아");
     }
 }
                             
