@@ -115,9 +115,6 @@ public class StudyController {
 		boolean isManager = false; // 해당 스터디 그룹의 매니저가 맞는지 검증하는 변수
 		int result = 0; // 삽입이 정상적으로 됬는지 확인하는 변수 0 : 실패 / 1 : 성공
 		
-		log.info("memberNo : {}",memberNo);
-		log.info("board : {}",board);
-		
 		if(board.getStudyNo() != null) {
 			HashMap<String, Integer> searchInfo = new HashMap<>();
 			searchInfo.put("memberNo", memberNo);
@@ -235,6 +232,7 @@ public class StudyController {
 	@PostMapping("uploadImg")
 	public String upload(List<MultipartFile> fileList, HttpSession session) {
 		List<String> changeNameList = new ArrayList<>();
+		
 		for(MultipartFile f : fileList) {
 			changeNameList.add(Template.saveFile(f, session, "/resources/static/img/studyBoard/"));
 		}
