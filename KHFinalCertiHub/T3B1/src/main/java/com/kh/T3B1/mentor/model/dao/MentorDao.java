@@ -50,4 +50,16 @@ public class MentorDao {
 		return sqlSession.delete("memberMapper.deleteLikeMentor",likeInfo);
 	}
 
+	public String checkMentorValid(SqlSessionTemplate sqlSession, int mentorNo) {
+		return sqlSession.selectOne("memberMapper.checkMentorValid", mentorNo);
+	}
+
+	public int insertApply(SqlSessionTemplate sqlSession, HashMap<String, Integer> insertInfo) {
+		return sqlSession.insert("memberMapper.insertApply", insertInfo);
+	}
+
+	public Integer isApplyExist(SqlSessionTemplate sqlSession, HashMap<String, Integer> insertInfo) {
+		return sqlSession.selectOne("memberMapper.isApplyExist", insertInfo);
+	}
+
 }

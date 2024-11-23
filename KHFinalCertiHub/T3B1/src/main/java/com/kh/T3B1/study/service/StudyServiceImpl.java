@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.T3B1.common.vo.PageInfo;
@@ -15,7 +14,9 @@ import com.kh.T3B1.study.model.vo.Study;
 import com.kh.T3B1.study.model.vo.StudyBoard;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class StudyServiceImpl implements StudyService{
@@ -35,18 +36,18 @@ public class StudyServiceImpl implements StudyService{
 	}
 
 	@Override
-	public Study selectStudy(int no) {
-		return studyDao.selectStudy(sqlSession, no);
+	public Study selectStudy(int studyNo) {
+		return studyDao.selectStudy(sqlSession, studyNo);
 	}
 
 	@Override
-	public int countStudyMember(int no) {
-		return studyDao.countStudyMember(sqlSession, no);
+	public int countStudyMember(int studyNo) {
+		return studyDao.countStudyMember(sqlSession, studyNo);
 	}
 
 	@Override
-	public ArrayList<Member> selectStudyMemberList(PageInfo pi, SearchOption so) {
-		return studyDao.selectStudyMemberList(sqlSession, pi, so);
+	public ArrayList<Member> selectStudyMemberList(PageInfo pi, HashMap<String, Object> searchInfo) {
+		return studyDao.selectStudyMemberList(sqlSession, pi, searchInfo);
 	}
 
 	@Override
@@ -60,8 +61,14 @@ public class StudyServiceImpl implements StudyService{
 	}
 
 	@Override
-	public StudyBoard selectBoard(int no) {
-		return studyDao.selectBoard(sqlSession, no);
+	public StudyBoard selectBoard(int boardNo) {
+		int result = studyDao.increaseView(sqlSession, boardNo);
+		
+		if(result < 0) {
+			return null;
+		}
+		
+		return studyDao.selectBoard(sqlSession, boardNo);
 	}
 
 	@Override
@@ -81,7 +88,7 @@ public class StudyServiceImpl implements StudyService{
 	}
 
 	@Override
-	public boolean isStudyMananger(HashMap<String, Integer> searchInfo) {
+	public boolean isStudyManager(HashMap<String, Integer> searchInfo) {
 		boolean isManager = false;
 		
 		// EXISTS 결과가 조회된다면 매니저가 맞음
@@ -92,10 +99,134 @@ public class StudyServiceImpl implements StudyService{
 		
 		return isManager;
 	}
+	
+	@Override
+	public boolean isWriter(HashMap<String, Integer> searchInfo) {
+		boolean result = false;
+		Integer isWriter = studyDao.isWriter(sqlSession,searchInfo);
+
+		if(isWriter != null) {
+			result = true;
+		}
+		
+		return result;
+	}
 
 	@Override
 	public int insertBoard(StudyBoard board) {
 		return studyDao.insertBoard(sqlSession, board);
 	}
+
+	@Override
+	public int deleteBoard(HashMap<String, Integer> searchInfo) {
+		int result = 0;
+		Integer isWriter = studyDao.isWriter(sqlSession,searchInfo);
+
+		if(isWriter != null) {
+			result = studyDao.deleteBoard(sqlSession, searchInfo);
+		}
+		
+		return result;
+	}
+
+	@Override
+	public int updateBoard(StudyBoard board) {
+		int result = 0;
+		HashMap<String, Integer> searchInfo = new HashMap<>();
+		searchInfo.put("managerNo", board.getManagerNo());
+		searchInfo.put("boardNo", board.getBoardNo());
+		
+		Integer isWriter = studyDao.isWriter(sqlSession,searchInfo);
+
+		if(isWriter != null) {
+			result = studyDao.updateBoard(sqlSession, board);
+		}
+		
+		return result;
+	}
+
+	@Override
+	public String checkStudyRecruit(int studyNo) {
+		String result = studyDao.checkStudyRecruit(sqlSession, studyNo);
+		
+		if(result == null) result = "N";
+		
+		return result;
+	}
 	
+	@Override
+	public String isApplyExist(HashMap<String, Integer> searchInfo) {
+		Integer isExist = studyDao.isApplyExist(sqlSession, searchInfo);
+		// 이미 신청했다면 isExist 값이 존재, 중복 E 리턴
+		if(isExist != null) {
+			return "E";
+		}
+		
+		return "N";
+	}
+
+	@Override
+	public String insertApply(HashMap<String, Integer> insertInfo) {
+		Integer isExist = studyDao.isApplyExist(sqlSession, insertInfo);
+		// 이미 신청했다면 isExist 값이 존재, 중복 E 리턴
+		if(isExist != null) {
+			return "E";
+		}
+		
+		int insertResult = studyDao.insertApply(sqlSession, insertInfo);
+		if(insertResult > 0) {
+			return "Y";
+		} else {
+			return "N";
+		}
+	}
+
+	@Override
+	public int insertStudy(Study study) {
+		int memberResult = 0;
+		int studyResult = studyDao.insertStudy(sqlSession, study);
+		
+		// 스터디 그룹 생성에 성공했다면
+		if(studyResult > 0) {
+			memberResult = studyDao.insertStudyMember(sqlSession, study);
+		}
+		
+		if(memberResult * studyResult == 0) {
+			sqlSession.rollback();
+		}
+		
+		return memberResult * studyResult;
+	}
+	
+	@Override
+	public int updateStudy(Study study) {
+		return studyDao.updateStudy(sqlSession, study);
+	}
+
+	@Override
+	public String deleteStudyMember(HashMap<String, Integer> searchInfo) {
+		int result = studyDao.deleteStudyMember(sqlSession, searchInfo);
+		
+		if(result > 0) {
+			return "Y";
+		}
+		
+		return "N";
+	}
+
+	@Override
+	public int deleteStudy(int studyNo) {
+		return studyDao.deleteStudy(sqlSession, studyNo);
+	}
+
+	@Override
+	public String updateRecruit(HashMap<String, Object> updateInfo) {
+		int result = studyDao.updateRecruit(sqlSession, updateInfo);
+		
+		if(result > 0) {
+			return "Y";
+		}
+		
+		return "N";
+	}
 }

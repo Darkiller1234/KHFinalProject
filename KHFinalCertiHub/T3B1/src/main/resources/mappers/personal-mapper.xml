@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace: 해당 mapper파일의 고유한 별칭 -->
+
+<mapper namespace="personalMapper">
+	<resultMap type="Member" id="memberResultSet">
+	  	<result column="MEMBER_NO" property="memberNo"/>
+	  	<result column="MEMBER_ID" property="memberId"/>
+	  	<result column="MEMBER_PWD" property="memberPwd"/>
+	  	<result column="MEMBER_NAME" property="memberName"/>
+	  	<result column="MEMBER_INTRO" property="memberIntro"/>
+	  	<result column="MEMBER_NICKNAME" property="memberNickname"/>
+	  	<result column="EMAIL" property="email"/>
+	  	<result column="PHONE" property="phone"/>
+	  	<result column="MEMBER_IMG" property="memberImg"/>
+	  	<result column="ENROLL_DATE" property="enrollDate"/>
+	  	<result column="STATUS" property="status"/>
+	  	<result column="MANAGER_STATUS" property="managerStatus"/>
+	  	<result column="MENTOR_STATUS" property="mentorStatus"/>
+	  	<result column="MENTOR_VALID" property="mentorValid"/>
+	  	<result column="MENTOR_INTRO" property="mentorIntro"/>
+	  	<result column="CAREER" property="career"/>
+	  	<result column="LICENSE_NAME" property="symbolLicense"/>
+	  	<result column="LICENSE_NO" property="symbolLicenseNo"/>
+	  	<result column="LIKE_COUNT" property="mentorLike"/>
+	</resultMap>
+	
+ 
+	<resultMap type="License2" id="licenseResultSet">
+		<result column="LICENSE_NO" property="licenseNo"/>
+		<result column="MEMBER_NO" property="memberNo"/>
+		<result column="CONFIRM_DATE" property="confirmDate"/>
+		<result column="SYMBOL_LICENSE" property="symbolLicense"/>
+		<result column="LICENSE_NAME" property="licenseName"/>
+		<result column="LICENSE_DESC" property="licenseDesc"/>
+	</resultMap>
+	
+	<select id="getMemberInfo" resultType="Member" resultMap="memberResultSet">
+		SELECT MEMBER_NICKNAME,
+			MEMBER_IMG,
+			CAREER,
+			MEMBER_INTRO,
+			MENTOR_STATUS,
+			MENTOR_INTRO,
+			MENTOR_VALID
+		FROM MEMBER
+		WHERE STATUS = 'Y'
+		AND MEMBER_NO = #{pno}
+	</select>
+	
+	<select id="getMentorSubInfo" resultType="int">
+		SELECT COALESCE(APPLY_NO, 0) AS APPLY_NO
+		FROM APPLY_LOG
+		WHERE APPLICANT_NO = #{mNo}
+		AND RECIPIENT_NO = #{pno}
+		AND APPLY_KIND = 1
+	</select>
+	
+	<insert id="insertMentorSub">
+		INSERT INTO APPLY_LOG(
+			APPLY_NO,
+			APPLICANT_NO,
+			RECIPIENT_NO,
+			APPLY_KIND
+		) VALUES (
+			APPLY_LOG_SEQ.NEXTVAL,
+			#{mNo},
+			#{pno},
+			1
+		)
+	</insert>
+	
+	<select id="getLikeCount" resultType="_int">
+		SELECT COUNT(*)
+	    FROM MENTOR_LIKE_LOG
+	    WHERE MENTOR_NO = #{pno}
+	</select>
+
+	<select id="getLikeStatus" resultType="int">
+	    SELECT CASE 
+	        WHEN EXISTS (
+	            SELECT 1
+	            FROM MENTOR_LIKE_LOG
+	            WHERE MEMBER_NO = #{memberNo}
+	            AND MENTOR_NO = #{pno}
+	        ) THEN 1
+	        ELSE 0
+	    END AS is_exists 
+	    FROM DUAL
+	</select>
+	
+	<insert id="insertMentorLike">
+		INSERT INTO MENTOR_LIKE_LOG
+		VALUES (
+			#{memberNo},
+			#{pno}
+		)
+	</insert>
+	
+	<delete id="deleteMentorLike">
+		DELETE FROM MENTOR_LIKE_LOG
+		 WHERE MEMBER_NO = #{memberNo}
+	       AND MENTOR_NO = #{pno}
+	</delete>
+	
+	<select id="haveLicense" resultType="License2" resultMap="licenseResultSet">
+		SELECT ML.LICENSE_NO,
+			ML.MEMBER_NO,
+			TO_CHAR(ML.CONFIRM_DATE, 'YYYY-MM-DD') AS CONFIRM_DATE,
+			ML.SYMBOL_LICENSE,
+			L.LICENSE_NAME,
+			L.LICENSE_DESC
+		FROM MEMBER_LICENSE ML
+		JOIN LICENSE L ON (ML.LICENSE_NO = L.LICENSE_NO)
+		WHERE MEMBER_NO = #{pno}
+	</select>
+	
+	<select id="lookLicense" resultType="License2" resultMap="licenseResultSet">
+		SELECT ML.LICENSE_NO,
+			ML.MEMBER_NO,
+			L.LICENSE_NAME,
+			L.LICENSE_DESC
+		FROM MEMBER_LOOK_LICENSE ML
+		JOIN LICENSE L ON (ML.LICENSE_NO = L.LICENSE_NO)
+		WHERE MEMBER_NO = #{pno}
+	</select>
+	
+	<update id="saveProfile">
+		UPDATE MEMBER
+		SET
+			MEMBER_INTRO = #{memberIntro},
+			MEMBER_NICKNAME = #{memberNickname},
+			MEMBER_NAME = #{memberName},
+			EMAIL = #{email},
+			PHONE = #{phone},
+			MEMBER_IMG = #{memberImg},
+			MANAGER_STATUS = #{managerStatus},
+			MENTOR_INTRO = #{mentorIntro},
+			CAREER = #{career}
+		WHERE
+		MEMBER_NO = #{memberNo}
+	</update>
+	<select id="selectLookLicense" resultType="_int">
+		SELECT CASE 
+       WHEN EXISTS (
+           SELECT 1
+           FROM MEMBER_LOOK_LICENSE ML
+           JOIN LICENSE L ON ML.LICENSE_NO = L.LICENSE_NO
+           WHERE ML.MEMBER_NO = #{memberNo}
+           AND L.LICENSE_NAME = #{string}
+       ) THEN 1
+       	ELSE 0
+		   END AS is_exists	
+		FROM DUAL
+	</select>
+	
+	<insert id="insertLookLicense">
+		INSERT INTO MEMBER_LOOK_LICENSE (MEMBER_NO, LICENSE_NO)
+		SELECT #{memberNo}, LICENSE_NO
+		FROM LICENSE
+		WHERE LICENSE_NAME = #{string}
+	</insert>
+</mapper>
+
+
+

@@ -43,32 +43,33 @@ crossorigin="anonymous">
                     <label for="memberId">* 아이디</label>
                     <div style="display: flex; gap: 10px;">
                         <input type="text" class="form-control" id="memberId" placeholder="아이디 입력" name="memberId" required>
-                        <button type="submit" class="btn btn-secondary" id="checkId">중복 확인</button>
                     </div>
-                    <span class="error-msg" id="memberIdError"></span>
+                    <div id="checkResultId" style="font-size:0.7em; display:none;"></div>
+                    
 
                     <label for="memberPwd">* 비밀번호</label>
-                    <input type="password" class="form-control" id="memberPwd" placeholder="비밀번호 입력" name="memberPwd" required minlength="4">
+                    <input type="password" class="form-control" id="memberPwd"  placeholder="비밀번호 입력" name="memberPwd" required minlength="4">
 
                     <label for="checkPwd">* 비밀번호 확인</label>
-                    <input type="password" class="form-control" id="checkPwd" placeholder="비밀번호 확인" name="checkPwd" required>
-                    <span class="error-msg" id="checkPwdError"></span>
+                    <input type="password" class="form-control" id="checkPwd"  placeholder="비밀번호 확인" name="checkPwd" required>
+                    <div id="checkResultPwd" style="font-size:0.7em; display:none;"></div>
 
                     <label for="memberName">* 이름</label>
                     <input type="text" class="form-control" id="memberName" placeholder="이름 입력" name="memberName" required>
-                    <span class="error-msg" id="NameError"></span>
+                    
 
                     <label for="memberNickname">* 닉네임</label>
                     <input type="text" class="form-control" id="memberNickname" placeholder="닉네임 입력" name="memberNickname" required>
-                    <span class="error-msg" id="nickNameError"></span>
+                    <div id="checkResultnickName" style="font-size:0.7em; display:none;"></div>
+                    
 
                     <label for="email">* 이메일</label>
                     <input type="email" class="form-control" id="email" placeholder="이메일 입력" name="email" required>
-                    <span class="error-msg" id="emailError"></span>
+                    
 
                     <label for="phone">* 전화번호</label>
                     <input type="text" class="form-control" id="phone" placeholder="전화번호 입력(-없이)" name="phone" required>
-                    <span class="error-msg" id="phoneError"></span>
+                    
                 </div>
                 <div class="btns">
                     <button type="reset" class="btn btn-danger">취소</button>

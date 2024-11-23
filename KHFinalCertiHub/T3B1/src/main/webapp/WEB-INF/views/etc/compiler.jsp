@@ -38,14 +38,14 @@ class Main {
                     </div>
                     <div class="result-screen">
                         <div class="result-title">실행 결과</div>
-                        <div class="result">
-                            Hello world!
+                        <div id="result" class="result">
+
                         </div>
                         <div class="takeTime">
                             <p>0.012345 초 소요됨</p>
                             <div class="btns">
                                 <button class="btn1">질문하기</button>
-                                <button class="btn2">실행</button>
+                                <button id="executeButton" class="btn2">실행</button>
                             </div>
                            
                         </div>

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.community.model.dao.CommunityDao;
 import com.kh.T3B1.community.model.vo.Board;
+import com.kh.T3B1.community.model.vo.Reply;
 
 import lombok.RequiredArgsConstructor;
 
@@ -108,7 +109,71 @@ public class CommunityServiceImpl implements CommunityService{
 	}
 
 	
+	@Override
+	public int ajaxClickDeleteBtn(int cno, int memberNo) {
+		if(communityDao.selectBoardOne(sqlSession, cno).getMemberNo() == memberNo){
+			return communityDao.deleteBoardOne(sqlSession, cno);
+			
+		} else {
+			return 0;
+		}
+	}
 	
-	
+	@Override
+	public int ajaxClickEditBtn(int cno, int memberNo) {
+		if(communityDao.selectBoardOne(sqlSession, cno).getMemberNo() == memberNo){
+			return 1;
+			
+		} else {
+			return 0;
+		}
+	}
 
+	@Override
+	public int updateBoard(Board b){
+		int result = communityDao.updateBoard(sqlSession, b);
+		if(result > 0) {
+			int bNum = b.getBoardNo();
+			return bNum;
+		} else {
+			return 0;
+		}
+	}
+
+	@Override
+	public int replySelectListCount(int cno) {
+		return communityDao.replySelectListCount(sqlSession, cno);
+	}
+
+	@Override
+	public ArrayList<Reply> selectReplyList(PageInfo pi, int cno) {
+		return communityDao.selectReplyList(sqlSession, pi, cno);
+	}
+
+	@Override
+	public int replyWrite(Reply r) {
+		return communityDao.replyWrite(sqlSession, r);
+	}
+
+	@Override
+	public int deleteReply(int replyNo) {
+		return communityDao.deleteReply(sqlSession, replyNo);
+	}
+
+	@Override
+	public int editReply(Reply temp) {
+		return communityDao.editReply(sqlSession, temp);
+	}
+
+	@Override
+	public ArrayList<Reply> selectChildReplyList(ArrayList<Reply> list) {
+		ArrayList<Reply> result = new ArrayList<Reply>();
+		for(Reply r : list) {
+			ArrayList<Reply> temp = communityDao.selectChildReplyList(sqlSession, r.getReplyNo());
+			if(temp != null) {
+				result.addAll(temp);
+			}
+		}
+		return result;
+	}
 }

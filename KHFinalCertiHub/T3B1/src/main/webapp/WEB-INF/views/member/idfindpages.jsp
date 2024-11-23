@@ -16,22 +16,18 @@
     <div class="wrapper">
         <h2>아이디 찾기</h2>
         <div class="hr"></div>
-        <h4>고객님의 정보와 일치하는 아이디입니다.</h4>
 
-        <form action="login" method="post" id="idfind">
-            <div class="form-group">
-                <label for="userId">아이디</label>
-                <input type="text" id="userId" value="사용자아이디" readonly>
-            </div>
-            <div class="form-group">
-                <label for="registrationDate">가입일</label>
-                <input type="text" id="registrationDate" value="2024-11-04" readonly>
-            </div>
+                <form action="<%=contextPath%>/member/login" method="post" id="idfindpagesForm">
+                    <div class="form-group">
+                        <label for="memberId">아이디</label>
+                        <input type="text" id="memberId" name="memberId" value="${memberId}" readonly>
+                    </div>
 
-            <div class="next-button">
-                <button type="submit" class="btn-primary">메인으로</button>
-            </div>
-        </form>
+
+                    <div class="next-button">
+                        <button type="submit" class="btn-primary">메인으로</button>
+                    </div>
+                </form>
     </div>
 </body>
 </html>

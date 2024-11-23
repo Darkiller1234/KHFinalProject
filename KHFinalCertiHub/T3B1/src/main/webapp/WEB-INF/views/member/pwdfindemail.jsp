@@ -18,18 +18,18 @@
 
         <div class="hr"></div>
 
-        <form action="pwdfindpages" method="post" id="membershipForm">
+        <form action="<%=contextPath%>/member/pwdfindpages" method="post" id="membershipForm">
             <div class="form-group">
-                <label for="name">아이디</label>
-                <input type="text" class="form-control" id="userId" placeholder="아이디 입력" name="userId" required>
+                <label for="memberId">아이디</label>
+                <input type="text" class="form-control" id="memberId" placeholder="아이디 입력" name="memberId" required>
                 <span class="error-msg" id="userIdError"></span>
 
-                <label for="Email">이메일</label>
-                <input type="email" class="form-control" id="Email" placeholder="이메일 입력" name="Email" required>
+                <label for="email">이메일</label>
+                <input type="email" class="form-control" id="email" placeholder="이메일 입력" name="email" required>
                 <span class="error-msg" id="emailError"></span>
 
                 <div class="next-button">
-                    <button type="button" class="btn-primary" id="nextButton" onclick="handleSubmit(event)">다음</button>
+                    <button type="submit" class="btn-primary" id="nextButton">다음</button>
                 </div>
             </div>
         </form>

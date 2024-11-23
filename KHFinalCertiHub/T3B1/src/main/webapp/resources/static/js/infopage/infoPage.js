@@ -23,101 +23,6 @@ $(document).ready(function () {
 function initInfoPage(contextPath){
     initSelectBox(contextPath)
     initList(contextPath)
-    SiSelectBox(contextPath)
-    GunSelectBox(contextPath)
-    DongSelectBox(contextPath)
-    TestSelectBox(contextPath)
-}
-
-
-
-function SiSelectBox(contextPath){
-    const selectBoxList = document.querySelectorAll('.si-select');
-
-    selectBoxList.forEach(selectBox => {
-        let data = {
-            name : 'si-list',
-            default : '시',
-            imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
-            items : [
-                ['서울'],
-                ['경기도'],
-                ['인천'],
-                ['부산'],
-                ['경북'],
-                ['경남'],
-                ['전북'],
-                ['전남'],
-                ['충북'],
-                ['충남'],
-                ['강원도'],
-                ['대전'],
-                ['제주'],
-            ]
-        }
-
-        createSelectBox(selectBox, data)
-    })
-}
-
-function GunSelectBox(contextPath){
-    const selectBoxList = document.querySelectorAll('.gun-select');
-    selectBoxList.forEach(selectBox => {
-        let data = {
-            name : 'gun-list',
-            default : '구',
-            imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
-            items : [
-                ['강남'],
-                ['강서'],
-                ['도봉'],
-                ['서부']
-            ]
-        }
-
-        createSelectBox(selectBox, data)
-    })
-}
-
-function DongSelectBox(contextPath){
-    const selectBoxList = document.querySelectorAll('.dong-select');
-    selectBoxList.forEach(selectBox => {
-        let data = {
-            name : 'dong-list',
-            default : '동',
-            imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
-            items : [
-                ['1동'],
-                ['2동'],
-                ['3동'],
-                ['4동'],
-
-            ]
-        }
-
-        createSelectBox(selectBox, data)
-    })
-}
-
-function TestSelectBox(contextPath){
-    const selectBoxList = document.querySelectorAll('.test-select');
-    selectBoxList.forEach(selectBox => {
-        let data = {
-            name : 'test-list',
-            default : '시험장 안내',
-            imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
-            items : [
-                ['1시험장'],
-                ['2시험장'],
-                ['3시험장'],
-                ['4시험장'],
-                ['5시험장'],
-
-            ]
-        }
-
-        createSelectBox(selectBox, data)
-    })
 }
 
 
@@ -141,8 +46,6 @@ function initSelectBox(contextPath){
 
 function initList(contextPath){
     const boardList = document.querySelector('.board-content'); 
-    console.log(boardList);
-    
     let data = {
         url: contextPath + "/info",
         header : [

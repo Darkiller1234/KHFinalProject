@@ -329,7 +329,9 @@
 	  			LICENSE_NO,
 	  			MEMBER_NO,
 	  			BOARD_TITLE,
-	  			BOARD_CONTENT
+	  			BOARD_CONTENT,
+	  			BOARD_DATE,
+	  			STATUS
 	  		)
 	  		VALUES
 	  		(
@@ -338,7 +340,9 @@
 	  			#{licenseNo},
 	  			#{memberNo},
 	  			#{boardTitle},
-	  			#{boardContent}
+	  			#{boardContent},
+	  			SYSDATE,
+	  			'Y'
 	  		)
 	  		
 	  
@@ -350,6 +354,43 @@
 	  	SELECT BOARD_SEQ.CURRVAL
 	  	FROM DUAL
 	  </select>
+
+	  <update id="deleteReply">
+	  	UPDATE REPLY
+	  	SET
+	  	STATUS = 'N'
+		 WHERE REPLY_NO = #{replyNo}
+	  </update>
+
+	<!-- 글 수정 -->
+	<update id="updateBoard" parameterType="Board">
+		UPDATE BOARD
+		SET
+		BOARD_TITLE = #{boardTitle},
+		BOARD_CONTENT = #{boardContent}
+		WHERE
+		BOARD_NO = #{boardNo}
+	</update>
+	
+	
+	<select id="poppularAll" parameterType="Board">
+		SELECT B.BOARD_NO,
+				B.LICENSE_NO,
+				B.BOARD_TITLE,
+				CASE
+  					WHEN SYSDATE - B.BOARD_DATE >= 1 THEN TO_CHAR(B.BOARD_DATE, 'YYYY-MM-DD')
+  					ELSE TO_CHAR(B.BOARD_DATE, 'HH24 : mi')
+  				END AS BOARD_DATE,
+  				B.LIKE_COUNT,
+  				B.HATE_COUNT,
+  				BR.REPLY_COUNT
+  		FROM BOARD B
+		LEFT JOIN (SELECT BOARD_NO, COUNT(*) AS REPLY_COUNT
+  	  		FROM REPLY
+  	  		GROUP BY BOARD_NO
+  	  		) BR ON (B.BOARD_NO = BR.BOARD_NO)
+	</select>
+	
 </mapper>
 
 

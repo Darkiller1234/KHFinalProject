@@ -14,7 +14,9 @@ import com.kh.T3B1.member.model.vo.Member;
 import com.kh.T3B1.mentor.model.dao.MentorDao;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RequiredArgsConstructor // 의존성 주입, 초기화 되지 않은 final 필드에 생성자 생성
 @Service
 public class MentorServiceImpl implements MentorService {
@@ -83,5 +85,36 @@ public class MentorServiceImpl implements MentorService {
 		return likeCount;
 	}
 
+	@Override
+	public String checkMentorValid(int mentorNo) {
+		return mentorDao.checkMentorValid(sqlSession, mentorNo);
+	}
+	
+	@Override
+	public String isApplyExist(HashMap<String, Integer> searchInfo) {
+		Integer isExist = mentorDao.isApplyExist(sqlSession, searchInfo);
+		// 이미 신청했다면 isExist 값이 존재, 중복 E 리턴
+		if(isExist != null) {
+			return "E";
+		}
+		
+		return "N";
+	}
+	
+	@Override
+	public String insertApply(HashMap<String, Integer> insertInfo) {
+		Integer isExist = mentorDao.isApplyExist(sqlSession, insertInfo);
+		// 이미 신청했다면 isExist 값이 존재, 중복 E 리턴
+		if(isExist != null) {
+			return "E";
+		}
+		
+		int insertResult = mentorDao.insertApply(sqlSession, insertInfo);
+		if(insertResult > 0) {
+			return "Y";
+		} else {
+			return "N";
+		}
+	}
 
 }

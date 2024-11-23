@@ -52,8 +52,10 @@
                   <p id="boardTitleP"></p>
                 </div>
                 <div>
-                  <button><img src="<%=contextPath%>/resources/static/img/button/delete.png" alt="">삭제</button>
-                  <button><img src="<%=contextPath%>/resources/static/img/button/pencil_icon.png" alt="">수정</button>
+                  <c:if test="${loginMember.memberNo eq Bo.memberNo}">
+                    <button id="delete-btn"><img src="<%=contextPath%>/resources/static/img/button/delete.png" alt="">삭제</button>
+                    <button id="edit-btn"><img src="<%=contextPath%>/resources/static/img/button/pencil_icon.png" alt="">수정</button>
+                  </c:if>
                 </div>
                 
               </div>
@@ -66,30 +68,14 @@
               </div>
               <div>
                 <div>
-                  <button id="like-btn"><img src="<%=contextPath%>/resources/static/img/button/good.png" alt="">좋아요</button>
-                  <button id="hate-btn"><img src="<%=contextPath%>/resources/static/img/button/bad.png" alt="">싫어요</button>
+                    <button id="like-btn"><img src="<%=contextPath%>/resources/static/img/button/good.png" alt="">좋아요</button>
+                    <button id="hate-btn"><img src="<%=contextPath%>/resources/static/img/button/bad.png" alt="">싫어요</button>
                 </div>
                 <button>신고</button>
               </div>
               <div id="replys">
-                <div class="reply">
-                  <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" alt="">
-                  <div>
-                    <p class="font-size-subtitle">윤대한</p>
-                    <p class="font-size-content">왜 안알려줌? 빨리 알려주셈</p>
-                    <div class="font-size-footer">
-                      <button>답글</button>
-                      |
-                      <button>신고</button>
-                      |
-                      <button>삭제</button>
-                      |
-                      <button>수정</button>
-                    </div>
-                  </div>
-                </div>
               </div>
-              <div class="pagination">
+              <div class="pagination" id="reply-pagination">
                 <span class="page-num">1</span>
                 <span class="page-num active">2</span>
                 <span class="page-arrow">></span>
@@ -97,10 +83,16 @@
                 <script>
                   console.log('${loginMember.memberNo}')
                 </script>
-              <form action="">
+              <form class="reply-section" method="post" action="detail/replyWrite">
                 <div class="reply-write">
-                  <textarea id="reply-write-area" placeholder="댓은 거울"></textarea>
-                  <button id="reply-write-btn"><img src="<%=contextPath%>/resources/static/img/button/Vector.png" alt=""><span class="font-size-subtitle">작성</span></button>
+                  <textarea id="reply-write-area" <c:if test="${loginMember != null}">placeholder="댓은 거울"</c:if> name="replyContent" <c:if test="${loginMember == null}">disabled placeholder="로그인 후 이용가능"</c:if>></textarea>
+                  <c:if test="${loginMember != null}">
+                    <input type="hidden" name="cno" value="${cno}">
+                    <input type="hidden" name="certiNo" value="${certiNo}">
+                    <input type="hidden" name="replyGroup" value="0">
+                    <input type="hidden" name="replyPNo" value="0">
+                    <button id="reply-write-btn"><img src="<%=contextPath%>/resources/static/img/button/Vector.png" alt=""><span class="font-size-subtitle">작성</span></button>
+                  </c:if>
                 </div>
               </form>
               
@@ -376,9 +368,6 @@
               <h2 class="font-size-subtitle">이 게시판의 인기글</h2>
               <div class="popular-list-info">
                 <span>제목</span><span>댓글수</span><span>추천수</span>
-              </div>
-              <div>
-                <span>이거 왜 안됨?모녀듀어펴ㅠ어뎌륭더</span><span>[99999]</span><span>-999999</span>
               </div>
             </div>
           </div>

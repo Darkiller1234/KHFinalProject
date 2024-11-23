@@ -14,4 +14,7 @@ public class StudyBoard {
 	// 스터디그룹 매니저 닉네임
 	private int managerNo;
 	private String managerName;
+	
+	// 스터디 모집 여부
+	private String studyRecruit;
 }

@@ -18,13 +18,19 @@
         <h2>비밀번호 찾기</h2>
         <div class="hr"></div>
 
-        <form action="login" method="post" id="pwdfindpages">
+        <form action="<%=contextPath%>/member/login" method="post" id="pwdfindpages">
             <div class="form-group">
                 <div class="image-text-container">
                     <div class="image-container">
                         <img src="<%=contextPath%>/resources/static/img/member/Email.png" alt="이메일 아이콘">
                     </div>
-                    <span class="notification-text">작성하신 이메일로 임시 비밀번호가 전송되었습니다.</span>
+
+                    <!-- 메시지 표시 -->
+                    <c:choose>
+                        <c:when test="${not empty tempPassword}">
+                            <span class="notification-text"><strong>${tempPassword}</strong></span>
+                        </c:when>
+                    </c:choose>
                 </div>
             </div>
 

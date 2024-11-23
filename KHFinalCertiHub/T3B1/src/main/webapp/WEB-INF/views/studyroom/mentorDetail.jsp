@@ -21,24 +21,24 @@
                     <img src="<%=contextPath%>${mentor.memberImg}" class="rounded-circle" alt="Cinque Terre">
                 </div>
                 <div class="mentor-name font-size-subtitle">${mentor.memberNickname}</div>
-                <c:choose>
-                    <c:when test="${isLiked eq 'Y'}">
-                        <div id="likeTag" class="tag bgcolor4" onclick="likeMentor()"><img src="<%=contextPath%>/resources/static/img/profile/full_heart.png">${mentor.mentorLike}</div>
-                    </c:when>
-                    <c:otherwise>
-                        <div id="likeTag" class="tag bgcolor3" onclick="likeMentor()"><img src="<%=contextPath%>/resources/static/img/profile/heart.png">${mentor.mentorLike}</div>
-                    </c:otherwise>
-                </c:choose>
+                <div id="likeTag" class="tag"></div>
                 <div class="symbol-license">${mentor.symbolLicense}</div>
                 <div class="member-intro font-size-footer">${mentor.memberIntro}</div>
                 <c:choose>
                     <c:when test="${mentor.mentorValid eq 'Y'}">
                         <div class="tag valid bgcolor3"><img src="<%=contextPath%>/resources/static/img/button/valid_icon.png">질문가능</div>
-                        <button class="btn-primary"  data-bs-toggle="modal" data-bs-target="#apply-modal">신청하기</button>
+                        <c:choose>
+                            <c:when test="${isApplied eq 'E'}">
+                                <button id="applyButton" class="btn-primary applied" disabled>신청완료</button>
+                            </c:when>
+                            <c:otherwise>
+                                <button id="applyButton" class="btn-primary">신청하기</button>
+                            </c:otherwise>
+                        </c:choose>
                     </c:when>
                     <c:otherwise>
                         <div class="tag valid bgcolor4"><img src="<%=contextPath%>/resources/static/img/button/stop_icon.png">질문불가</div>
-                        <button class="btn-primary"  data-bs-toggle="modal" data-bs-target="#apply-modal" disabled>신청불가</button>
+                        <button id="applyButton" class="btn-primary"  data-bs-toggle="modal" data-bs-target="#apply-modal" disabled>신청불가</button>
                     </c:otherwise>
                 </c:choose>
             </div>

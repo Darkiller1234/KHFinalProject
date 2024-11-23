@@ -1,5 +1,6 @@
 package com.kh.T3B1.member.controller;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -8,6 +9,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -28,7 +31,6 @@ public class MembershipController {
 	public MembershipController(MemberService memberService, BCryptPasswordEncoder bcryptPasswordEncoder) {
 		this.memberService = memberService;
 		this.bcryptPasswordEncoder = bcryptPasswordEncoder;
-		
 	}
 	
 	@RequestMapping("membership")
@@ -47,6 +49,19 @@ public class MembershipController {
 			return "NNNNY";
 		}
 	}
+	
+	@ResponseBody
+	@RequestMapping("nicknameCheck.me")
+	public String nicknameCheck(String checknickName) {
+		int result = memberService.nicknameCheck(checknickName);
+		
+		if(result > 0) {
+			return "NN";
+		}else {
+			return "NY";
+		}
+	}
+	
 	
 
 	@RequestMapping("join")
@@ -84,11 +99,11 @@ public class MembershipController {
 			mv.addObject("errorMsg","비밀번호가 틀렸습니다.");
 			mv.setViewName("member/login");
 		}else {
-//			Cookie ck = new Cookie("saveId", loginMember.getMemberId());
+			Cookie ck = new Cookie("saveId", loginMember.getMemberId());
 			if(saveId == null) {
-//				ck.setMaxAge(0);
+				ck.setMaxAge(0);
 			}
-//			response.addCookie(ck);
+			response.addCookie(ck);
 			
 			session.setAttribute("loginMember", loginMember);
 			
@@ -107,18 +122,31 @@ public class MembershipController {
 	}
 	
 	@RequestMapping("idfind")
-	public String idfindPage() {
+	public String idfind() {
 		return "member/idfind";
 	}
 	
-	@RequestMapping("idfindpage")
-	public String idfindPage2() {
-		return "member/idfindpage";
+	@RequestMapping("findemail")
+	public String findemail() {
+		return "member/findemail";
 	}
 	
-	@RequestMapping("idfindpages")
-	public String idfindPages() {
+	@RequestMapping(value = "/idfindpages", method = RequestMethod.POST)
+	public String findId(@RequestParam String memberName, @RequestParam String email, Model model) {
+		
+		String memberid = memberService.findId(memberName, email); 
+		System.out.println(memberid);
+		if(memberid != null) {
+			model.addAttribute("memberId",memberid);
+		}else {
+			model.addAttribute("error", "입력한 정보에 대한 아이디가 없습니다.");
+		}
 		return "member/idfindpages";
+	}
+	
+	@RequestMapping("findphone")
+	public String findphone() {
+		return "member/findphone";
 	}
 	
 	@RequestMapping("pwdfind")
@@ -126,13 +154,28 @@ public class MembershipController {
 		return "member/pwdfind";
 	}
 	
-	@RequestMapping("pwdfindpage")
-	public String pwdfindPage2() {
-		return "member/pwdfindpage";
+	@RequestMapping("pwdfindemail")
+	public String pwdfindemail() {
+		return "member/pwdfindemail";
 	}
 	
-	@RequestMapping("pwdfindpages")
-	public String pwdfindPages() {
+	@RequestMapping("pwdfindphone")
+	public String pwdfindphone() {
+		return "member/pwdfindphone";
+	}
+	
+	@RequestMapping(value = "/pwdfindpages", method = RequestMethod.POST)
+	public String findPwd(@RequestParam String memberId, @RequestParam String email, Model model) {
+		
+		String tempPassword = memberService.findPwd(memberId,email);
+		
+		if(tempPassword != null) {
+			model.addAttribute("tempPassword", tempPassword);
+			model.addAttribute("message", "임시 비밀번호가 이메일로 전송되었습니다.");
+		}else {
+			model.addAttribute("error","입력한 정보가 없습니다.");
+		}
+		
 		return "member/pwdfindpages";
 	}
 }

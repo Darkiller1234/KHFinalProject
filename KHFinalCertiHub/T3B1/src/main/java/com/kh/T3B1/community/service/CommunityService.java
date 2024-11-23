@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.community.model.vo.Board;
+import com.kh.T3B1.community.model.vo.Reply;
 
 public interface CommunityService {
 	//게시글 총 갯수 가져오기
@@ -36,5 +37,32 @@ public interface CommunityService {
 	//싫어요 누르기
 	int ajaxCommunityHateBtnClickJson(int cno, int memberNo);
 
+	//글쓰기
 	int insertBoard(Board b);
+
+	//글삭제하기
+	int ajaxClickDeleteBtn(int cno, int memberNo);
+
+	//글수정하기
+	int ajaxClickEditBtn(int cno, int memberNo);
+
+	//글수정완료하기
+	int updateBoard(Board b);
+
+	//댓글갯수 가져오기
+	int replySelectListCount(int cno);
+
+	//댓글리스트 가져오기
+	ArrayList<Reply> selectReplyList(PageInfo pi, int cno);
+
+	//댓글 쓰기
+	int replyWrite(Reply r);
+
+	//댓글 삭제하기
+	int deleteReply(int replyNo);
+	
+	//댓글 수정하기
+	int editReply(Reply temp);
+
+	ArrayList<Reply> selectChildReplyList(ArrayList<Reply> list);
 }

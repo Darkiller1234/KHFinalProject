@@ -12,4 +12,14 @@ public interface MemberService {
 
 	Member loginMember(Member m);
 
+	int nicknameCheck(String checknickName);
+	
+	String findId(String memberName, String email);
+
+	String findPwd(String memberId, String email);
+
+	
+
+
+	
 }

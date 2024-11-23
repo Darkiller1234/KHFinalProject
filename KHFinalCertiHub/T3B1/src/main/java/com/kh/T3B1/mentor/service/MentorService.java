@@ -34,5 +34,14 @@ public interface MentorService {
 	// 멘토 좋아요 취소
 	int deleteLikeMentor(HashMap<String, Integer> likeInfo);
 
+	// 멘토의 멘티 신청 활성화 여부 확인
+	String checkMentorValid(int mentorNo);
+	
+	// 멘토에게 이미 멘티 신청했는지 확인
+	String isApplyExist(HashMap<String, Integer> searchInfo);
+
+	// 멘토에게 멘티 신청
+	String insertApply(HashMap<String, Integer> insertInfo);
+
 	
 }

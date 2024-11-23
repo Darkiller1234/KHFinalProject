@@ -14,12 +14,15 @@
     <%@ include file="../common/header.jsp" %>
 
     <div class="wrapper padding">
+        <input id="boardNo" type="hidden" value="${board.studyNo}">
         <div class="subtitle">
             <div class="page-title font-size-content">스터디 모집 & 현황</div>
 
-            <div class="title-option">
-                <div class="custom-select"></div>
-            </div>
+            <c:if test="${loginMember.memberNo eq board.managerNo}">
+                <div class="title-option">
+                    <div class="custom-select"></div>
+                </div>
+            </c:if>
         </div>
 
         <div class="page-title font-size-title">${board.boardTitle}</div>
@@ -32,11 +35,11 @@
     <div class="option">
         <c:choose>
             <c:when test="${loginMember.memberNo eq board.managerNo}">
-                <button class="delete btn-primary">
+                <button id="deleteButton" type="button" class="delete btn-primary">
                     <img src="${pageContext.request.contextPath}/resources/static/img/button/trash_icon.png">
                     삭제
                 </button>
-                <button class="modify btn-primary">
+                <button id="editButton" class="modify btn-primary">
                     <img src="${pageContext.request.contextPath}/resources/static/img/button/scissors_icon.png">
                     수정
                 </button>
@@ -48,7 +51,7 @@
         </button>
         <c:choose>
             <c:when test="${loginMember ne null}">
-                <button class="apply btn-primary" data-bs-toggle="modal" data-bs-target="#apply-alert">
+                <button id="applyButton" class="apply btn-primary">
                     <img src="${pageContext.request.contextPath}/resources/static/img/button/pencil_icon.png">
                     신청하기
                 </button>
@@ -62,7 +65,7 @@
     </div>
 
     <!-- 모달창 -->
-    <div class="modal" id="apply-alert">
+    <div class="modal" id="apply-modal">
         <div class="modal-dialog">
         <div class="modal-content">
     

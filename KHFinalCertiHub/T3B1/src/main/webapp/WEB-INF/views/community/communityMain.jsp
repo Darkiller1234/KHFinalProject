@@ -330,9 +330,6 @@
                 <div class="popular-list-info">
                   <span>제목</span><span>댓글수</span><span>추천수</span>
                 </div>
-                <div>
-                  <span>이거 왜 안됨?모녀듀어펴ㅠ어뎌륭더</span><span>[99999]</span><span>-999999</span>
-                </div>
               </div>
             </div>
             
