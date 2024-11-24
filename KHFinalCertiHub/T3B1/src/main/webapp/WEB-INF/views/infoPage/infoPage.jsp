@@ -350,9 +350,8 @@
                                             <option value="69, 107">충청북도</option>
                                         </select>
                                     
-                                        <div class="accordion-item">
-                                            <button class="accordion-toggle" id="todayBtn">오늘</button>
-                                            <table id="todayTable" style="display:none;">
+                                    
+                                            <table id="todayTable">
                                                 <thead>
                                                     <tr><th colspan="25">오늘</th></tr>
                                                 </thead>
@@ -360,11 +359,9 @@
                                                     <!-- 시간, 날씨, 습도, 기온을 넣을 각 tr이 여기에 들어갑니다 -->
                                                 </tbody>
                                             </table>
-                                        </div>
-                                    
-                                        <div class="accordion-item">
-                                            <button class="accordion-toggle" id="tomorrowBtn">내일</button>
-                                            <table id="tomorrowTable" style="display:none;">
+                                            <br><br>
+                                     
+                                            <table id="tomorrowTable">
                                                 <thead>
                                                     <tr><th colspan="25">내일</th></tr>
                                                 </thead>
@@ -372,11 +369,10 @@
                                                     <!-- 내일의 날씨 정보 -->
                                                 </tbody>
                                             </table>
-                                        </div>
+                                            <br><br>
                                     
-                                        <div class="accordion-item">
-                                            <button class="accordion-toggle" id="dayAfterTomorrowBtn">모레</button>
-                                            <table id="dayAfterTomorrowTable" style="display:none;">
+                                     
+                                            <table id="dayAfterTomorrowTable">
                                                 <thead>
                                                     <tr><th colspan="25">모레</th></tr>
                                                 </thead>
@@ -385,7 +381,7 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                    </div>
+                                        <br><br>
                                     
                                     
 

@@ -1,54 +1,56 @@
 // 페이지 로드 시 강원도 데이터 자동 로드
 window.onload = function () {
-    fetchWeatherData(0);  // '오늘' 데이터 자동 로드
-    fetchWeatherData(1);  // '내일' 데이터 자동 로드
-    fetchWeatherData(2);  // '모레' 데이터 자동 로드
+    fetchWeatherData(0); // '오늘' 데이터 자동 로드
+    fetchWeatherData(1); // '내일' 데이터 자동 로드
+    fetchWeatherData(2); // '모레' 데이터 자동 로드
+
+    // 지역 변경 이벤트 추가
+    document.getElementById("selectArea1").addEventListener("change", () => {
+        fetchWeatherData(0); // '오늘' 데이터 갱신
+        fetchWeatherData(1); // '내일' 데이터 갱신
+        fetchWeatherData(2); // '모레' 데이터 갱신
+    });
 };
 
 // 날씨 데이터 가져오기 함수
 function fetchWeatherData(dayOffset = 0) {
     const areaSelect = document.getElementById("selectArea1");
     const areaCoords = areaSelect.value.split(",");
-    const nx = areaCoords[0];
-    const ny = areaCoords[1];
+    const nx = areaCoords[0].trim();
+    const ny = areaCoords[1].trim();
 
-    // 날짜 설정 (오늘, 내일, 모레 기준)
+    // 날짜 설정 (base_date 계산: 항상 전날 기준으로 설정)
     const today = new Date();
-    today.setDate(today.getDate() - 1 + dayOffset);  // 0=오늘, 1=내일, 2=모레
+    today.setDate(today.getDate() - 1); // 전날 기준으로 설정
     const baseDate = today.toISOString().split("T")[0].replace(/-/g, ""); // yyyyMMdd 형식
-    const baseTime = "2300";  // 기준 시간 23시
+    const baseTime = "2300"; // 기준 시간 고정
 
     // API 호출 URL
-    const shortWeatherUrl = `http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=AiATDYDO2nw7aWzpDtDvC8aswTEabFvLtwjy0RwuM2KnGpfE%2BD4ffB3SmCH4VqDihRDB%2FNR8RmbluUBQL%2Bo10w%3D%3D&numOfRows=1000&pageNo=1&dataType=JSON&base_date=${baseDate}&base_time=${baseTime}&nx=${nx}&ny=${ny}`;
+    const timestamp = new Date().getTime(); // 캐싱 방지를 위한 타임스탬프 추가
+    const shortWeatherUrl = `http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=AiATDYDO2nw7aWzpDtDvC8aswTEabFvLtwjy0RwuM2KnGpfE%2BD4ffB3SmCH4VqDihRDB%2FNR8RmbluUBQL%2Bo10w%3D%3D&numOfRows=1000&pageNo=1&dataType=JSON&base_date=${baseDate}&base_time=${baseTime}&nx=${nx}&ny=${ny}&_=${timestamp}`;
 
-    console.log("API URL:", shortWeatherUrl);  // API URL 로그로 확인
+    console.log("API 호출 URL:", shortWeatherUrl); // 디버깅용 로그 출력
 
     // API 호출
     fetch(shortWeatherUrl)
-    .then(response => response.text()) // 응답을 JSON 대신 text로 받아서 HTML 내용 확인
-    .then(data => {
-        console.log("응답 데이터:", data); // 이 부분을 통해 실제 받은 HTML 페이지 확인
-        try {
-            const jsonData = JSON.parse(data);  // 응답을 JSON으로 파싱
-            if (jsonData.response.header.resultCode === "00") {
-                const items = jsonData.response.body.items.item;
+        .then(response => response.json())
+        .then(data => {
+            console.log("응답 데이터:", data); // 디버깅용 응답 로그
+            if (data.response.header.resultCode === "00") {
+                const items = data.response.body.items.item;
                 if (items && items.length > 0) {
-                    const forecastData = processWeatherData(items, dayOffset); // 데이터 가공
-                    renderWeatherTable(forecastData, dayOffset); // 테이블에 데이터 삽입
+                    const forecastData = processWeatherData(items, dayOffset);
+                    renderWeatherTable(forecastData, dayOffset);
                 } else {
                     console.error("날씨 데이터가 없습니다.");
                 }
             } else {
-                console.error("API 호출 오류:", jsonData.response.header.resultMsg);
+                console.error("API 호출 오류:", data.response.header.resultMsg);
             }
-        } catch (error) {
-            console.error("JSON 파싱 실패:", error);
-        }
-    })
-    .catch((error) => {
-        console.error("API 호출 실패:", error);
-    });
-
+        })
+        .catch(error => {
+            console.error("API 호출 실패:", error);
+        });
 }
 
 // API 데이터 가공 함수
@@ -61,7 +63,7 @@ function processWeatherData(items, dayOffset) {
     };
 
     const targetDate = new Date();
-    targetDate.setDate(targetDate.getDate() + dayOffset);  // 오늘(0), 내일(1), 모레(2)
+    targetDate.setDate(targetDate.getDate() + dayOffset); // 오늘(0), 내일(1), 모레(2)
     const targetDateString = targetDate.toISOString().split("T")[0].replace(/-/g, "");
 
     // 시간 기준으로 데이터 필터링
@@ -87,9 +89,9 @@ function processWeatherData(items, dayOffset) {
     });
 
     // 시간 순서대로 정렬
-    forecastData.time.sort();  // 00시, 03시, 06시, ...
+    forecastData.time.sort(); // 00시, 03시, 06시, ...
 
-    console.log("가공된 날씨 데이터:", forecastData);  // 가공된 데이터 확인
+    console.log("가공된 날씨 데이터:", forecastData); // 가공된 데이터 확인
     return forecastData;
 }
 
@@ -99,6 +101,22 @@ function renderWeatherTable(forecastData, dayOffset) {
         console.error("잘못된 데이터:", forecastData);
         return;
     }
+
+    const weatherIcons = {
+        "맑음": "/T3B1/resources/static/img/weather/sun.png",
+        "비": "/T3B1/resources/static/img/weather/rain.png",
+        "흐리고 비": "/T3B1/resources/static/img/weather/rain.png",
+        "소나기": "/T3B1/resources/static/img/weather/rain.png",
+        "구름많고 비": "/T3B1/resources/static/img/weather/rain.png",
+        "눈": "/T3B1/resources/static/img/weather/snow.png",
+        "흐리고 눈": "/T3B1/resources/static/img/weather/snow.png",
+        "흐리고 비/눈": "/T3B1/resources/static/img/weather/snow.png",
+        "구름많고 눈": "/T3B1/resources/static/img/weather/snow.png",
+        "구름많고 비/눈": "/T3B1/resources/static/img/weather/snow.png",
+        "구름많음": "/T3B1/resources/static/img/weather/sunAndCloud.png",
+        "흐림": "/T3B1/resources/static/img/weather/cloud.png",
+        "-": "/T3B1/resources/static/img/weather/unknown.png"
+    };
 
     const table = dayOffset === 0 ? document.getElementById("todayTable")
         : dayOffset === 1 ? document.getElementById("tomorrowTable")
@@ -119,14 +137,19 @@ function renderWeatherTable(forecastData, dayOffset) {
     });
     tbody.appendChild(timeRow);
 
-    // 날씨 행 생성
+    // 날씨 행 생성 (이미지 추가)
     const weatherRow = document.createElement('tr');
     th = document.createElement('th');
     th.innerText = "날씨";
     weatherRow.appendChild(th);
     forecastData.weather.forEach((weather) => {
         const td = document.createElement('td');
-        td.innerText = weather;
+        const img = document.createElement('img');
+        img.src = weatherIcons[weather] || weatherIcons["-"]; // 날씨에 해당하는 이미지 경로
+        img.alt = weather; // 대체 텍스트
+        img.style.width = "30px"; // 이미지 크기 조정
+        img.style.height = "30px";
+        td.appendChild(img);
         weatherRow.appendChild(td);
     });
     tbody.appendChild(weatherRow);
