@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace: 해당 mapper파일의 고유한 별칭 -->
+
+<mapper namespace="compilerMapper">
+	<resultMap type="CompilerLog" id="compilerLogResultSet">
+		<result column="COMPILE_NO" property="compileNo" />
+		<result column="MEMBER_NO" property="memberNo" />
+		<result column="CODE" property="code" />
+		<result column="EXEC_RESULT" property="execResult" />
+		<result column="EXEC_TIME" property="execTime" />
+		<result column="COMPILE_DATE" property="compileDate" />
+	</resultMap>
+	
+	<insert id="insertLog" parameterType="HashMap">
+		INSERT INTO COMPILER_LOG(
+			COMPILE_NO,
+			MEMBER_NO,
+			CODE,
+			EXEC_RESULT	
+		) VALUES (
+			COMPILE_SEQ.NEXTVAL,
+			#{memberNo},
+			#{code},
+			#{execResult}
+		)
+	</insert>
+	
+</mapper>
+
+
+

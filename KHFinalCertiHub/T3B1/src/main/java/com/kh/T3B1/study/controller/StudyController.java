@@ -405,6 +405,7 @@ public class StudyController {
 	@PostMapping("uploadImg")
 	public String upload(List<MultipartFile> fileList, HttpSession session) {
 		List<String> changeNameList = new ArrayList<>();
+		
 		for(MultipartFile f : fileList) {
 			changeNameList.add(Template.saveFile(f, session, "/resources/static/img/studyBoard/"));
 		}
