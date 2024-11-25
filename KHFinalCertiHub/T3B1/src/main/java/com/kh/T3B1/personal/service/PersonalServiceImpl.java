@@ -92,5 +92,10 @@ public class PersonalServiceImpl implements PersonalService{
 		}
 		
 	}
+
+	@Override
+	public ArrayList<String> getNotOwnCertiList(int pno) {
+		return personalDao.getNotOwnCertiList(sqlSession, pno);
+	}
 	
 }

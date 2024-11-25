@@ -70,5 +70,9 @@ public class PersonalDao {
 		sqlSession.insert("personalMapper.insertLookLicense", params);
 		
 	}
+
+	public ArrayList<String> getNotOwnCertiList(SqlSessionTemplate sqlSession, int pno) {
+		return (ArrayList)sqlSession.selectList("personalMapper.getNotOwnCertiList", pno);
+	}
 	
 }

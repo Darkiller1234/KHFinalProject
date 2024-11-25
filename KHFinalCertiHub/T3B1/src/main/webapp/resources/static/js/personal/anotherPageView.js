@@ -66,9 +66,9 @@ function setMemberInfo(result, pno, contextPath){
         document.querySelector('#mentor-ask-status').remove()
         document.querySelector('#mentor-ask-sub').remove()
         if(result.memberIntro === null || result.memberIntro === '' || result.memberIntro === undefined){
-            document.querySelector('#intro-detail p').textContent = "이분은 너무 쿨해서 자기소개도 패스하셨습니다.";
+            document.querySelector('#intro-detail').innerText = "이분은 너무 쿨해서 자기소개도 패스하셨습니다.";
         } else{
-            document.querySelector('#intro-detail p').textContent = result.memberIntro;
+            document.querySelector('#intro-detail').innerText = result.memberIntro;
         }
         
     }
