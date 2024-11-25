@@ -37,17 +37,17 @@ class Main {
                         </div>
                     </div>
                     <div class="result-screen">
-                        <div class="result-title">실행 결과</div>
-                        <div id="result" class="result">
-
-                        </div>
-                        <div class="takeTime">
-                            <p>0.012345 초 소요됨</p>
-                            <div class="btns">
-                                <button class="btn1">질문하기</button>
-                                <button id="executeButton" class="btn2">실행</button>
+                            <div class="takeTime">
+                                <p class="time-show">0.012345 초 소요됨</p>
+                                <div class="btns">
+                                    <button class="btn1">질문하기</button>
+                                    <button id="executeButton" class="btn2">실행</button>
+                                </div>
+                            
                             </div>
-                           
+                        <div class="result-option">
+                            <div class="result-title">실행 결과</div>
+                            <div id="result" class="result"></div>
                         </div>
 
                     </div>
