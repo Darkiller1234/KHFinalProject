@@ -2,6 +2,7 @@
 function initcompilerPage(contextPath){
     languageSelectBox(contextPath)
     initButtonEvent(contextPath)
+    initTextarea()
 }
 
 function languageSelectBox(contextPath){
@@ -24,6 +25,26 @@ function languageSelectBox(contextPath){
 
         createSelectBox(selectBox, data)
     })
+}
+
+function initTextarea(){
+    const textarea = document.getElementById('main')
+
+    textarea.onkeydown = (ev) => {
+        if(ev.key == 'Tab'){
+            // 탭키 누를시 커서 이동 이벤트(기본이벤트) 방지
+            ev.preventDefault();
+
+            // input, textarea에서 사용 가능한 커서 위치 요소
+            const cursor = textarea.selectionEnd; // 커서 끝지점
+
+            // 현재 커서 위치에 탭 삽입
+            textarea.value = textarea.value.substring(0, cursor) + '\t' + textarea.value.substring(cursor);
+
+            // 커서를 탭 뒤로 이동 ( 삽입한 문자열 길이(1)만큼 더하기 )
+            textarea.selectionEnd = cursor + 1;
+        }
+    }
 }
 
 function initButtonEvent(contextPath){
