@@ -27,4 +27,6 @@ public interface PersonalService {
 
 	void insertLookLicense(int memberNo, String string);
 
+	ArrayList<String> getNotOwnCertiList(int pno);
+
 }

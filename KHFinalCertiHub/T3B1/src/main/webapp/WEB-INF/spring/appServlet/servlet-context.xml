@@ -57,6 +57,12 @@
 	 		<mapping path="/community/write"/>
 	 		<mapping path="/community/detail/replyWrite"/>
 	 		<mapping path="/personal/profile"/>
+	 		<mapping path="/personal/certiRegi"/>
+	 		<mapping path="/personal/makeSc"/>
+	 		<mapping path="/personal/mentor"/>
+	 		<mapping path="/personal/Change"/>
+	 		<mapping path="/personal/ChangePage"/>
+
 	 		<beans:bean class="com.kh.T3B1.common.interceptor.LoginInterceptor" id="loginIntercepter" />
 	 	</interceptor>
 	 </interceptors>
