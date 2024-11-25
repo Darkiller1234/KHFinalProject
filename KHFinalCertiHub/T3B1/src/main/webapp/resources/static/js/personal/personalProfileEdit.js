@@ -31,7 +31,8 @@ function initSelectBox(contextPath){
             formData.append('memberImg', fileInput.files[0]);
         }
         formData.append('nickName', document.querySelector('input[name="memberNickname"]').value)
-        formData.append('intro', document.querySelector('textarea[name="member-intro"]').textContent)
+        formData.append('intro', document.querySelector('#member-intro').value)
+        console.log(document.querySelector('#member-intro').value);
         formData.append('licenseNames', JSON.stringify(licenseNames));
         saveProfile(formData, function (result) {
             console.log(result);

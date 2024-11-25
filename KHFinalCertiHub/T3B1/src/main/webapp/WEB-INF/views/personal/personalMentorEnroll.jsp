@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/personal/personalCertiRegi.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/personal/personalMentorEnroll.css">
 
-        <!-- <script src="${pageContext.request.contextPath}/resources/static/js/personal/personalMentorEnroll.js"></script> -->
+        <script src="${pageContext.request.contextPath}/resources/static/js/personal/personalMentorEnroll.js"></script>
 
         <title>Document</title>
     </head>
