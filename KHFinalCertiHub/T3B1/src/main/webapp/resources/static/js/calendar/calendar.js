@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // 필기시험 원서접수 기간
                 if (item.docRegStartDt && item.docRegEndDt) {
                     events.push({
-                        title: '정보처리기사 필기 원서접수',
+                        title: `필기 원서접수(${formatDate(item.docRegStartDt)} ~ ${formatDate(item.docRegEndDt)})`,
                         start: formatDate(item.docRegStartDt),
                         end: formatDate(item.docRegEndDt),
                         color: '#FF6F61' // 커스텀 색상
@@ -80,16 +80,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 // 필기시험 기간
                 if (item.docExamStartDt && item.docExamEndDt) {
                     events.push({
-                        title: `정보처리기사 필기시험 (${formatDate(item.docExamStartDt)} ~ ${formatDate(item.docExamEndDt)})`, // 시작일과 종료일을 한 번에 표시
+                        title: `필기시험 (${formatDate(item.docExamStartDt)} ~ ${formatDate(item.docExamEndDt)})`, // 시작일과 종료일을 한 번에 표시
                         start: formatDate(item.docExamStartDt), // 시작일
                         end: formatDate(item.docExamEndDt),   // 종료일
-                        color: '#4CAF50'  // 색상 설정 (필기시험에 대한 색상)
+                        color: '#4CAF50'  // 색상 설정 
                     });
                 }
                 // 필기시험 합격 발표일
                 if (item.docPassDt) {
                     events.push({
-                        title: ' 필기 합격 발표',
+                        title: '필기 합격 발표',
                         start: formatDate(item.docPassDt),
                         color: '#FFC107'
                     });
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // 실기시험 원서접수 기간
                 if (item.pracRegStartDt && item.pracRegEndDt) {
                     events.push({
-                        title: '정보처리기사 실기 원서접수',
+                        title: `실기 원서접수 (${formatDate(item.pracRegStartDt)}~${formatDate(item.pracRegEndDt)})`,
                         start: formatDate(item.pracRegStartDt),
                         end: formatDate(item.pracRegEndDt),
                         color: '#FF9800'
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // 실기시험 기간
                 if (item.pracExamStartDt && item.pracExamEndDt) {
                     events.push({
-                        title: '정보처리기사 실기시험',
+                        title: `실기시험 (${formatDate(item.pracExamStartDt)}~${formatDate(item.pracExamEndDt)})`,
                         start: formatDate(item.pracExamStartDt),
                         end: formatDate(item.pracExamEndDt),
                         color: '#2196F3'
