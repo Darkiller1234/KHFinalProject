@@ -55,40 +55,19 @@ public class CompilerServiceImpl implements CompilerService{
 			
 			// 이미지 파일이 존재하지 않으면 빌드한다
 			if(stdOut.readLine() == null) {
-				log.info("도커 이미지 빌드중");
 				// 도커 이미지 빌드 -t 빌드명
 				String build = "docker build -t certihub_compiler .";
 				
 				// 이미지 빌드 및 끝날때 까지 동기처리(waitFor)
-				Process buildProcess = Runtime.getRuntime().exec(build, null, filePath);
-				buildProcess.waitFor();
-				
-			    // 표준 출력 읽기
-				stdOut = new BufferedReader(new InputStreamReader(buildProcess.getInputStream()));
-			    // 표준 에러 읽기
-			    stdErr = new BufferedReader(new InputStreamReader(buildProcess.getErrorStream()));
-				
-				String line = null;
-			    // 정상 출력 결과
-			    while ((line = stdOut.readLine()) != null) {
-			    	result += line + "\n";
-			    }
-
-			    // 에러 결과
-			    while ((line = stdErr.readLine()) != null) {
-			    	result += line + "\n";
-			    }
-			    log.info("result : {}",result);
-			    result = "";
+				Runtime.getRuntime().exec(build, null, filePath).waitFor();
 			}
 			
 			// -v : 도커 공유 볼륨, 로컬(서버) 경로와 도커 컨테이너의 파일을 동기화한다.
 			// memory = 메모리 용량 제한
 			// exec : 외부에서 도커 컨테이너 접속
-			// -it : interactive terminal STDIN 표준 입출력을 열고 가상 tty (pseudo-TTY) 를 통해 접속
-			String run = "docker run --name="+ containerName +" --memory=64m -v "+ dockerPath +":/app certihub_compiler";
-			String compile = "docker exec -it " + containerName + " javac "+ containerName +".java ";
-			String exec = "docker exec -it " + containerName + " java "+ containerName;
+			String run = "docker run -t --name="+ containerName +" --memory=64m -v "+ dockerPath +":/app certihub_compiler";
+			String compile = "docker exec " + containerName + " javac "+ containerName +".java ";
+			String exec = "docker exec " + containerName + " java "+ containerName;
 			
 			Runtime.getRuntime().exec(run, null, filePath).waitFor(); // 컨테이너 생성
 			Runtime.getRuntime().exec(compile, null, filePath).waitFor(); // 자바 클래스 파일 컴파일
