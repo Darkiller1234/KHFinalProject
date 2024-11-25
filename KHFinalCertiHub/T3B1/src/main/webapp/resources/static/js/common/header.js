@@ -90,6 +90,10 @@ function init(contextPath, pageName, optional){
             initPersonalView(contextPath);
             break;
 
+        case "personalMentorEnroll":
+            initPersonalMentorEnroll(contextPath);
+            break;
+
         // 메시지 페이지
 
         // 관리자 페이지

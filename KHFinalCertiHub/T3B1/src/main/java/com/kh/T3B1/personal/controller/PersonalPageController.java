@@ -142,6 +142,17 @@ public class PersonalPageController {
 		return "personal/personalCertiRegi";
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="certiRegi/getNotOwnCertiList", produces="application/json; charset-UTF-8")
+	public String GetNotOwnCertiList(HttpSession session) {
+		int pno = ((Member)session.getAttribute("loginMember")).getMemberNo();
+		
+		ArrayList<String> list = personalService.getNotOwnCertiList(pno);
+		
+		
+		return new Gson().toJson(list);
+	}
+	
 	@RequestMapping("makeSc")
 	public String PersonalPageMakeSchedule(Model p) {
 		p.addAttribute("pageName", "PersonalPmSc");
@@ -241,6 +252,13 @@ public class PersonalPageController {
 		// 멘토 가입했다면 personalMentor, 가입하지 않았다면 personalMentorEnroll 페이지로
 		p.addAttribute("pageName","personalMentor");
 		return "personal/personalMentor";
+	}
+	
+	@RequestMapping("mentor/enroll")
+	public String PersonalMentorEnrollPage(Model p) {
+		// 멘토 가입했다면 personalMentor, 가입하지 않았다면 personalMentorEnroll 페이지로
+		p.addAttribute("pageName","personalMentorEnroll");
+		return "personal/personalMentorEnroll";
 	}
 	
 	@RequestMapping("Change")

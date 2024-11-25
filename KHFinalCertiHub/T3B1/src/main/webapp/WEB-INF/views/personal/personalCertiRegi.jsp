@@ -9,6 +9,8 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
         <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/static/js/personal/personalCertiRegiAjax.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/static/js/personal/personalCertiRegi.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
         
         <title>Document</title>
@@ -25,62 +27,94 @@
                         <div id="member-name" class="font-size-title">
                             개인 페이지
                         </div>
-                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group" id="category-btn">
+                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group"
+                            id="category-btn">
                             <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="btnradio1" onclick="location.href='<%=contextPath%>/personal/profile'">프로필 편집</label>
+                            <label class="btn btn-outline-primary" for="btnradio1"
+                                onclick="location.href='<%=contextPath%>/personal/profile'">프로필 편집</label>
 
                             <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="btnradio2" onclick="location.href='<%=contextPath%>/personal/Change'">개인정보 변경</label>
+                            <label class="btn btn-outline-primary" for="btnradio2"
+                                onclick="location.href='<%=contextPath%>/personal/Change'">개인정보 변경</label>
 
-                            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off"
-                                checked>
-                            <label class="btn btn-outline-primary" for="btnradio3" onclick="location.href='<%=contextPath%>/personal/certiRegi'">자격증 인증 신청</label>
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary" for="btnradio3"
+                                onclick="location.href='<%=contextPath%>/personal/certiRegi'">자격증 인증 신청</label>
 
-                            <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="btnradio4" onclick="location.href='<%=contextPath%>/personal/mentor'">멘토 정보 수정</label>
+                            <c:choose>
+                                <c:when test="${loginMember.mentorStatus eq 'Y'}">
+                                    <input type="radio" class="btn-check" name="btnradio" id="btnradio4"
+                                        autocomplete="off">
+                                    <label class="btn btn-outline-primary" for="btnradio4"
+                                        onclick="location.href='<%=contextPath%>/personal/mentor'">멘토 정보 수정</label>
+                                </c:when>
+                                <c:otherwise>
+                                    <input type="radio" class="btn-check" name="btnradio" id="btnradio4"
+                                        autocomplete="off">
+                                    <label class="btn btn-outline-primary" for="btnradio4"
+                                        onclick="location.href='<%=contextPath%>/personal/mentor/enroll'">멘토 신청</label>
+                                </c:otherwise>
+                            </c:choose>
 
                             <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="btnradio5" onclick="location.href='<%=contextPath%>/personal/makeSc'">계획표 만들기</label>
+                            <label class="btn btn-outline-primary" for="btnradio5"
+                                onclick="location.href='<%=contextPath%>/personal/makeSc'">계획표 만들기</label>
                         </div>
 
                         <nav class="navbar bg-body-tertiary page-title font-size-subtitle" id="certiSelect">
                             <div class="container-fluid">
                                 <div class="container-fluid" id="testdiv" data-bs-toggle="collapse"
-                                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                                aria-label="Toggle navigation">
+                                    data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                                    aria-label="Toggle navigation">
                                     <a class="navbar-brand font-size-title" href="#" data-bs-toggle="collapse"
-                                    data-bs-target="#navbarNav" aria-controls="navbarNav">자격증 인증 신청</a>
+                                        data-bs-target="#navbarNav" aria-controls="navbarNav">자격증 인증 신청</a>
                                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
                                         aria-label="Toggle navigation">
-                                        <span class="navbar-toggler-icon"><img src="<%=contextPath%>/resources/static/img/button/triangle_down.png" alt=""></span>
+                                        <span class="navbar-toggler-icon"><img
+                                                src="<%=contextPath%>/resources/static/img/button/triangle_down.png"
+                                                alt=""></span>
                                     </button>
                                 </div>
-                                
+
                                 <div class="collapse navbar-collapse" id="navbarNav">
                                     <ul class="navbar-nav">
                                         <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" href="<%=contextPath%>/personal/profile">프로필 편집</a>
+                                            <a class="nav-link active" aria-current="page"
+                                                href="<%=contextPath%>/personal/profile">프로필 편집</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" href="<%=contextPath%>/personal/Change">개인정보 변경</a>
+                                            <a class="nav-link active" aria-current="page"
+                                                href="<%=contextPath%>/personal/Change">개인정보 변경</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" href="<%=contextPath%>/personal/certiRegi">자격증 인증 신청</a>
+                                            <a class="nav-link active" aria-current="page"
+                                                href="<%=contextPath%>/personal/certiRegi">자격증 인증 신청</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" href="<%=contextPath%>/personal/mentor">멘토 정보 수정</a>
+                                            <c:choose>
+                                                <c:when test="${loginMember.mentorStatus eq 'Y'}">
+                                                    <a class="nav-link active" aria-current="page"
+                                                        href="<%=contextPath%>/personal/mentor">멘토 정보 수정</a>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <a class="nav-link active" aria-current="page"
+                                                        href="<%=contextPath%>/personal/mentor/enroll">멘토 신청</a>
+                                                </c:otherwise>
+                                            </c:choose>
+
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" href="<%=contextPath%>/personal/makeSc">계획표 만들기</a>
+                                            <a class="nav-link active" aria-current="page"
+                                                href="<%=contextPath%>/personal/makeSc">계획표 만들기</a>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                         </nav>
-                    </div>
                     <div id="middle-view">
                         <div class="left-view">
+                            <br><br>
                             <div id="certi-select">
                                 <div class="font-size-subtitle">
                                     인증 신청할 자격증
@@ -105,7 +139,7 @@
                                 <div id="certi-file-upload">
 
                                 </div>
-                                    <img id="profile"src="${pageContext.request.contextPath}/resources/static/img/profile/profileTest.webp" alt="저장">
+                                    <img id="profile"src="${pageContext.request.contextPath}/resources/static/img/profile/default_profile.png" alt="저장">
                                     <button class="font-size-content" id="upload-btn" onclick="chooseImg()">파일 업로드</button>
                                     <div class="file">
                                         <input type="file" id="profileInput" name="memberImg" onchange="loadImg(this)">
@@ -118,7 +152,7 @@
                     </div>
                     <div class="bottom-view">
                         <div class="font-size-subtitle">
-                            <button class="btn-primary"  data-bs-toggle="modal" data-bs-target="#apply-modal"><img src="<%=contextPath%>/resources/static/img/personalPage/Phonecall.png" alt="전화중아이콘">신청하기</button>
+                            <button id="regi-btn" class="btn-primary"  data-bs-toggle="modal" data-bs-target="#apply-modal"><img src="<%=contextPath%>/resources/static/img/personalPage/Phonecall.png" alt="전화중아이콘">신청하기</button>
                         </div>
                     </div>
 
@@ -137,8 +171,8 @@
                             </div>
 
                             <!-- Modal body -->
-                            <div class="modal-body">
-                            신청되었습니다.
+                            <div class="modal-body" id="modal-text">
+                                잠시만 기다려주세요...
                             </div>
 
                             <!-- Modal footer -->
@@ -156,7 +190,7 @@
                 
             </div>
             <%@ include file="../common/footer.jsp" %>
-                <script src="<%=contextPath%>/resources/static/js/personal/personalCertiRegi.js"></script>
+                
     </body>
 
     </html>

@@ -163,6 +163,20 @@
 		FROM LICENSE
 		WHERE LICENSE_NAME = #{string}
 	</insert>
+	
+	<select id="getNotOwnCertiList" resultType="string">
+		SELECT 
+		    L.LICENSE_NAME
+		FROM 
+		    LICENSE L
+		LEFT JOIN 
+		    MEMBER_LICENSE ML
+		ON 
+		    L.LICENSE_NO = ML.LICENSE_NO
+		    AND ML.MEMBER_NO = #{pno}
+		WHERE 
+		    ML.MEMBER_NO IS NULL
+	</select>
 </mapper>
 
 
