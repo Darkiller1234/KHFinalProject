@@ -50,20 +50,34 @@ public class CompilerServiceImpl implements CompilerService{
 		}
 		// 코드 실행 결과를 받아오는데 성공하면 결과를 DB에 저장
 		File filePath = new File("C:/KHFinalProject/KHFinalCertiHub/T3B1/src/main/resources/docker");
-		// 도커 이미지 빌드 -t 빌드명
-		String build = "docker build -t certihub_compiler .";
-		// -v : 도커 공유 볼륨, 로컬(서버) 경로와 도커 컨테이너의 파일을 동기화한다.
-		// memory = 메모리 용량 제한
+		
+		try {
+			// 도커 이미지 찾기, 태그명 설정하지 않을시 기본 latest(최신버전) -q : 이미지 ID값만 가져오기
+			String imageCheck = "docker images -q certihub_compile";
+			
+			Process imageCheckProcess = Runtime.getRuntime().exec(imageCheck);
+			BufferedReader stdOut = new BufferedReader(new InputStreamReader(imageCheckProcess.getInputStream()));
+		    
+			// 이미지 파일이 존재하지 않으면 빌드한다
+			if(stdOut.readLine() == null) {
+				// 도커 이미지 빌드 -t 빌드명
+				String build = "docker build -t certihub_compiler .";
+				// -v : 도커 공유 볼륨, 로컬(서버) 경로와 도커 컨테이너의 파일을 동기화한다.
+				// memory = 메모리 용량 제한
+				
+				// 이미지 빌드 및 끝날때 까지 동기처리(waitFor)
+				Runtime.getRuntime().exec(build, null, filePath).waitFor();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
 		String containerName = UUID.randomUUID().toString().replace("-", ""); // 랜덤 컨테이너명 부여
 		String run = "docker run --name="+ containerName +" --memory=64m --rm -v "+ filePath +":/app certihub_compiler";
 		
 		try {
-			// 이미지 빌드 및 끝날때 까지 동기처리(waitFor)
-			try {
-				Runtime.getRuntime().exec(build, null, filePath).waitFor();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
 			
 			Process runProcess = Runtime.getRuntime().exec(run, null, filePath);
 			
@@ -90,12 +104,12 @@ public class CompilerServiceImpl implements CompilerService{
 			if(isSuccess) {
 			    // 정상 출력 결과
 			    while ((line = stdOut.readLine()) != null) {
-			    	result += line;
+			    	result += line + "\n";
 			    }
 
 			    // 에러 결과
 			    while ((line = stdErr.readLine()) != null) {
-			    	result += line;
+			    	result += line + "\n";
 			    }
 			}
 		    
