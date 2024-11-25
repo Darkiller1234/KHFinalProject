@@ -61,7 +61,9 @@ function updateWeatherTable(landData, tempData) {
         "구름많고 비":"/T3B1/resources/static/img/weather/rain.png",
         "눈":"/T3B1/resources/static/img/weather/snow.png",
         "흐리고 눈":"/T3B1/resources/static/img/weather/snow.png",
+        "흐리고 비/눈":"/T3B1/resources/static/img/weather/snow.png",
         "구름많고 눈":"/T3B1/resources/static/img/weather/snow.png",
+        "구름많고 비/눈":"/T3B1/resources/static/img/weather/snow.png",
         "구름많음":"/T3B1/resources/static/img/weather/sunAndCloud.png",
         "흐림": "/T3B1/resources/static/img/weather/cloud.png",
         "-": "/T3B1/resources/static/img/weather/unknown.png"

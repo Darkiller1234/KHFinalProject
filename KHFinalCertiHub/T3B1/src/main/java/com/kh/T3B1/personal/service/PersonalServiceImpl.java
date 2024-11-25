@@ -20,7 +20,7 @@ public class PersonalServiceImpl implements PersonalService{
 	
 	@Autowired
 	private final SqlSessionTemplate sqlSession;
-
+	
 	@Autowired
 	private final PersonalDao personalDao;
 	
@@ -36,7 +36,7 @@ public class PersonalServiceImpl implements PersonalService{
 		params.put("mNo", mNo);
 		return personalDao.ajaxGetMentorSubInfo(sqlSession, params);
 	}
-
+	
 	@Override
 	public int ajaxInsertMentorSub(int pno, int mNo) {
 		Map<String, Object> params = new HashMap<>();
@@ -44,17 +44,17 @@ public class PersonalServiceImpl implements PersonalService{
 		params.put("mNo", mNo);
 		return personalDao.ajaxInsertMentorSub(sqlSession, params);
 	}
-
+	
 	@Override
 	public int getLikeCount(int pno) {
 		return personalDao.getLikeCount(sqlSession, pno);
 	}
-
+	
 	@Override
 	public int getLikeStatus(int pno, int memberNo) {
 		return personalDao.getLikeStatus(sqlSession, pno, memberNo);
 	}
-
+	
 	@Override
 	public int likebtnClick(int pno, int memberNo) {
 		Map<String, Object> params = new HashMap<>();
@@ -66,15 +66,31 @@ public class PersonalServiceImpl implements PersonalService{
 			return personalDao.insertMentorLike(sqlSession, params);
 		}
 	}
-
+	
 	@Override
 	public ArrayList<License2> haveLicense(int pno) {
 		return personalDao.haveLicense(sqlSession, pno);
 	}
-
+	
 	@Override
 	public ArrayList<License2> lookLicense(int pno) {
 		return personalDao.lookLicense(sqlSession, pno);
 	}
-
+	
+	@Override
+	public int saveProfile(Member m) {
+		return personalDao.saveProfile(sqlSession, m);
+	}
+	
+	@Override
+	public void insertLookLicense(int memberNo, String string) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("string", string);
+		params.put("memberNo", memberNo);
+		if(personalDao.selectLookLicense(sqlSession, params) == 0) {
+			personalDao.insertLookLicense(sqlSession, params);
+		}
+		
+	}
+	
 }

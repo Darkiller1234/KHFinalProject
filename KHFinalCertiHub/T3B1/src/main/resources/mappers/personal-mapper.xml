@@ -127,6 +127,42 @@
 		JOIN LICENSE L ON (ML.LICENSE_NO = L.LICENSE_NO)
 		WHERE MEMBER_NO = #{pno}
 	</select>
+	
+	<update id="saveProfile">
+		UPDATE MEMBER
+		SET
+			MEMBER_INTRO = #{memberIntro},
+			MEMBER_NICKNAME = #{memberNickname},
+			MEMBER_NAME = #{memberName},
+			EMAIL = #{email},
+			PHONE = #{phone},
+			MEMBER_IMG = #{memberImg},
+			MANAGER_STATUS = #{managerStatus},
+			MENTOR_INTRO = #{mentorIntro},
+			CAREER = #{career}
+		WHERE
+		MEMBER_NO = #{memberNo}
+	</update>
+	<select id="selectLookLicense" resultType="_int">
+		SELECT CASE 
+       WHEN EXISTS (
+           SELECT 1
+           FROM MEMBER_LOOK_LICENSE ML
+           JOIN LICENSE L ON ML.LICENSE_NO = L.LICENSE_NO
+           WHERE ML.MEMBER_NO = #{memberNo}
+           AND L.LICENSE_NAME = #{string}
+       ) THEN 1
+       	ELSE 0
+		   END AS is_exists	
+		FROM DUAL
+	</select>
+	
+	<insert id="insertLookLicense">
+		INSERT INTO MEMBER_LOOK_LICENSE (MEMBER_NO, LICENSE_NO)
+		SELECT #{memberNo}, LICENSE_NO
+		FROM LICENSE
+		WHERE LICENSE_NAME = #{string}
+	</insert>
 </mapper>
 
 
