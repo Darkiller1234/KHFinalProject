@@ -153,6 +153,48 @@ public class PersonalPageController {
 		return new Gson().toJson(list);
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="certiRegi/regi", produces="application/json; charset-UTF-8")
+	public String regiCerti(@RequestParam(value="memberImg") MultipartFile certiImg,
+			@RequestParam(value="licenseName") String licenseName, HttpSession session) {
+		
+		int licenseNo = personalService.getLicenseNo(licenseName);
+		License2 dump = new License2();
+		dump.setLicenseNo(licenseNo);
+		dump.setMemberNo(((Member)session.getAttribute("loginMember")).getMemberNo());
+
+		if (certiImg != null && !certiImg.isEmpty()) {
+			
+			//파일원본명
+			String originName = certiImg.getOriginalFilename(); 
+			
+			//확장자
+			String ext = originName.substring(originName.lastIndexOf("."));
+			
+			//년월일시분초
+			String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+			
+			//5자리 랜덤값
+			int randNum = (int)(Math.random() * 90000) + 10000;
+			
+			String changeName = currentTime + "_" + randNum + ext;
+			
+			//첨부파일 저장할 폴더의 물리적 경로
+			String savePath = session.getServletContext().getRealPath("/resources/static/img/license/");
+			try {
+				certiImg.transferTo(new File(savePath + changeName));
+			} catch (IllegalStateException | IOException e) {
+				return new Gson().toJson(-1);
+			}
+			dump.setLicenseImg("/resources/static/img/license/" + changeName);
+        }
+		
+		int result = personalService.saveLicenseEnroll(dump); 
+		
+		return new Gson().toJson(1);
+		
+	}
+	
 	@RequestMapping("makeSc")
 	public String PersonalPageMakeSchedule(Model p) {
 		p.addAttribute("pageName", "PersonalPmSc");

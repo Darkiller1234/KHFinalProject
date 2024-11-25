@@ -97,5 +97,15 @@ public class PersonalServiceImpl implements PersonalService{
 	public ArrayList<String> getNotOwnCertiList(int pno) {
 		return personalDao.getNotOwnCertiList(sqlSession, pno);
 	}
+
+	@Override
+	public int getLicenseNo(String licenseName) {
+		return personalDao.getLicenseNo(sqlSession, licenseName);
+	}
+
+	@Override
+	public int saveLicenseEnroll(License2 dump) {
+		return personalDao.saveLicenseEnroll(sqlSession, dump);
+	}
 	
 }

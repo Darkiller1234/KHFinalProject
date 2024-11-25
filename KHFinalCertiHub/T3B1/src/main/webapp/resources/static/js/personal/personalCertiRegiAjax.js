@@ -1,6 +1,6 @@
 function regiCerti(formData, callback) {
     $.ajax({
-        url: 'proflie/save', // 서버 엔드포인트
+        url: 'certiRegi/regi', // 서버 엔드포인트
         type: 'POST',
         processData: false, // FormData 전송 시 필수
         contentType: false, // FormData 전송 시 필수

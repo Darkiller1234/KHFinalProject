@@ -36,6 +36,7 @@
 		<result column="SYMBOL_LICENSE" property="symbolLicense"/>
 		<result column="LICENSE_NAME" property="licenseName"/>
 		<result column="LICENSE_DESC" property="licenseDesc"/>
+		<result column="LICENSE_IMG" property="licenseImg"/>
 	</resultMap>
 	
 	<select id="getMemberInfo" resultType="Member" resultMap="memberResultSet">
@@ -177,6 +178,31 @@
 		WHERE 
 		    ML.MEMBER_NO IS NULL
 	</select>
+	
+	<select id="getLicenseNo" resultType="int">
+		SELECT
+			LICENSE_NO
+		FROM
+			LICENSE
+		WHERE
+			LICENSE_NAME = #{licenseName}
+	</select>
+	
+	<insert id="saveLicenseEnroll" parameterType="License2">
+		INSERT
+			INTO MEMBER_LICENSE
+			(
+				LICENSE_NO,
+				MEMBER_NO,
+				LICENSE_IMG
+			)
+			VALUES
+			(
+				#{licenseNo},
+				#{memberNo},
+				#{licenseImg}
+			)
+	</insert>
 </mapper>
 
 

@@ -3,7 +3,7 @@ function persoCRInit(contextPath){
 
     let data1 = {
         name : 'array',
-        default : '정보처리기사',
+        default : '',
         imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
         items : [
             
@@ -11,16 +11,23 @@ function persoCRInit(contextPath){
     }
 
     getNotOwnCertiList(null, function(result){
-        data1.items = result.map(item => [item]);
-        console.log(result)
-        console.log(data1.items)
-        createSelectBox(document.getElementById('selectbox1'), data1);
+        if(result.length === 0){
+            createSelectBox(document.getElementById('selectbox1'), data1);
+        } else{
+            data1.items = result.map(item => [item]);
+            data1.default = result[0];
+            console.log(result)
+            console.log(data1.items)
+            createSelectBox(document.getElementById('selectbox1'), data1);
+            document.querySelector('input[name="array"]').value = result[0];
+        }
+        
     })
 
     
 
 
-    $("#regi-btn").on("click", regiBtnClick)
+    $("#regi-btn").on("click", () => regiBtnClick(contextPath))
 
     
 }
@@ -46,12 +53,14 @@ function loadImg(_input){
     }
 }
 
-function regiBtnClick(){
+function regiBtnClick(contextPath){
     $("#regi-btn").off("click");
+    document.querySelector('#modal-text').textContent = "잠시만 기다려주세요..."
+    
     const fileInput = document.querySelector('#profileInput');
     const formData = new FormData();
-    const licenseList = document.querySelector('.look-license-list');
-    const licenseNames = Array.from(licenseList.querySelectorAll('.look-license .font-size-subtitle')).map(license => license.innerText);
+    // const licenseList = document.querySelector('.look-license-list');
+    // const licenseNames = Array.from(licenseList.querySelectorAll('.look-license .font-size-subtitle')).map(license => license.innerText);
 
 
     // 파일이 있는 경우 추가
@@ -64,11 +73,34 @@ function regiBtnClick(){
         $("#regi-btn").on("click", regiBtnClick);
         return;
     }
-    formData.append('nickName', document.querySelector('input[name="memberNickname"]').value)
-    formData.append('intro', document.querySelector('textarea[name="member-intro"]').textContent)
-    formData.append('licenseNames', JSON.stringify(licenseNames));
-    saveProfile(formData, function (result) {
-        console.log(result);
+    console.log(document.querySelector('#selectbox1 > .custom-select > .button-select > div').textContent);
+    formData.append('licenseName', document.querySelector('#selectbox1 > .custom-select > .button-select > div').textContent)
+    regiCerti(formData, function (result) {
+        if(result === 1){
+            document.querySelector('#modal-text').textContent = "신청을 성공하셨습니다."
+        } else {
+            document.querySelector('#modal-text').textContent = "신청 실패"
+        }
+        document.querySelector('#selectbox1').innerHTML = '';
+        let data1 = {
+            name : 'array',
+            default : '',
+            imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
+            items : [
+                
+            ]
+        }
+    
+        getNotOwnCertiList(null, function(result){
+            data1.items = result.map(item => [item]);
+            data1.default = result[0];
+            console.log(result)
+            console.log(data1.items)
+            createSelectBox(document.getElementById('selectbox1'), data1);
+            document.querySelector('input[name="array"]').value = result[0];
+            $("#regi-btn").on("click", () => regiBtnClick(contextPath))
+        })
+
+        
     })
-    $("#regi-btn").on("click", regiBtnClick)
 }
