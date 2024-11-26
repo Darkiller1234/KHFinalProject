@@ -29,4 +29,8 @@ public interface PersonalService {
 
 	ArrayList<String> getNotOwnCertiList(int pno);
 
+	int getLicenseNo(String licenseName);
+
+	int saveLicenseEnroll(License2 dump);
+
 }
