@@ -6,7 +6,7 @@ async function fetchExamData() {
     const selectedRegion = document.getElementById("areaSelect").value;
     const apiUrl = "https://api.odcloud.kr/api/15059980/v1/uddi:de1aa92f-2507-4fc4-aa21-d0e019e4b504";
     const apiKey = "AiATDYDO2nw7aWzpDtDvC8aswTEabFvLtwjy0RwuM2KnGpfE%2BD4ffB3SmCH4VqDihRDB%2FNR8RmbluUBQL%2Bo10w%3D%3D";
-
+    
     // 지역 선택 확인
     if (!selectedRegion) {
         document.getElementById("areaList").innerHTML = "<li>지역을 선택하세요.</li>";
