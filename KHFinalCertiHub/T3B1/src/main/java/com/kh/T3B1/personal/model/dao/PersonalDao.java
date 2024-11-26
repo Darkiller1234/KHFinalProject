@@ -74,5 +74,13 @@ public class PersonalDao {
 	public ArrayList<String> getNotOwnCertiList(SqlSessionTemplate sqlSession, int pno) {
 		return (ArrayList)sqlSession.selectList("personalMapper.getNotOwnCertiList", pno);
 	}
+
+	public int getLicenseNo(SqlSessionTemplate sqlSession, String licenseName) {
+		return sqlSession.selectOne("personalMapper.getLicenseNo", licenseName);
+	}
+
+	public int saveLicenseEnroll(SqlSessionTemplate sqlSession, License2 dump) {
+		return sqlSession.insert("personalMapper.saveLicenseEnroll", dump);
+	}
 	
 }

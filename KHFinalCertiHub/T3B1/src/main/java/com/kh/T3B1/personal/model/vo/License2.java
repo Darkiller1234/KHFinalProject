@@ -10,4 +10,5 @@ public class License2 {
 	private String symbolLicense;
 	private String licenseName;
 	private String licenseDesc;
+	private String licenseImg;
 }
