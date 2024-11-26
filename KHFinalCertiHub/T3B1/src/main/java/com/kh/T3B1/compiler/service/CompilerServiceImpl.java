@@ -47,7 +47,7 @@ public class CompilerServiceImpl implements CompilerService{
 		
 		try {
 			// 도커 이미지 찾기, 태그명 설정하지 않을시 기본 latest(최신버전) -q : 이미지 ID값만 가져오기
-			String imageCheck = "docker images -q certihub_compile";
+			String imageCheck = "docker images -q certihub_compiler";
 			
 			Process imageCheckProcess = Runtime.getRuntime().exec(imageCheck);
 			BufferedReader stdOut = new BufferedReader(new InputStreamReader(imageCheckProcess.getInputStream()));
@@ -55,23 +55,43 @@ public class CompilerServiceImpl implements CompilerService{
 			
 			// 이미지 파일이 존재하지 않으면 빌드한다
 			if(stdOut.readLine() == null) {
+				log.info("\n\ndocker이미지 빌드중\n\n");
 				// 도커 이미지 빌드 -t 빌드명
 				String build = "docker build -t certihub_compiler .";
+				log.info("build 명령어 : {}", build);
 				
 				// 이미지 빌드 및 끝날때 까지 동기처리(waitFor)
-				Runtime.getRuntime().exec(build, null, filePath).waitFor();
+				Process buildResult = Runtime.getRuntime().exec(build, null, filePath);
+				buildResult.waitFor();
+				
+			    // 표준 출력 읽기
+				stdOut = new BufferedReader(new InputStreamReader(buildResult.getInputStream()));
+			    // 표준 에러 읽기
+			    stdErr = new BufferedReader(new InputStreamReader(buildResult.getErrorStream()));
+				
+				String line = null;
+
+			    // 정상 출력 결과
+			    while ((line = stdOut.readLine()) != null) {
+			    	result += line + "\n";
+			    }
+
+			    // 에러 결과
+			    while ((line = stdErr.readLine()) != null) {
+			    	result += line + "\n";
+			    }
+			    
+			    log.info("\n\n빌드결과 : {}\n\n",result);
+			    result = "";
 			}
 			
 			// -v : 도커 공유 볼륨, 로컬(서버) 경로와 도커 컨테이너의 파일을 동기화한다.
 			// memory = 메모리 용량 제한
 			// exec : 외부에서 도커 컨테이너 접속
-			String run = "docker run -t --name="+ containerName +" --memory=64m -v "+ dockerPath +":/app certihub_compiler";
-			String compile = "docker exec " + containerName + " javac "+ containerName +".java ";
-			String exec = "docker exec " + containerName + " java "+ containerName;
-			
-			Runtime.getRuntime().exec(run, null, filePath).waitFor(); // 컨테이너 생성
-			Runtime.getRuntime().exec(compile, null, filePath).waitFor(); // 자바 클래스 파일 컴파일
-			Process execResult = Runtime.getRuntime().exec(exec, null, filePath); // 클래스 파일 실행
+			String run = "docker run --rm --name="+ containerName +" --memory=64m -v " + dockerPath + "/code:/app/code "
+					+ "-e uuid=" + containerName +" certihub_compiler";
+
+			Process execResult = Runtime.getRuntime().exec(run, null, filePath); // 클래스 파일 실행
 			
 		    // 표준 출력 읽기
 			stdOut = new BufferedReader(new InputStreamReader(execResult.getInputStream()));
