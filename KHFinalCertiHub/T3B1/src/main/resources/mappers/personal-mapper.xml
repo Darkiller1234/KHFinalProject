@@ -117,6 +117,7 @@
 		FROM MEMBER_LICENSE ML
 		JOIN LICENSE L ON (ML.LICENSE_NO = L.LICENSE_NO)
 		WHERE MEMBER_NO = #{pno}
+		AND ML.CONFIRM_DATE IS NOT NULL
 	</select>
 	
 	<select id="lookLicense" resultType="License2" resultMap="licenseResultSet">
@@ -203,6 +204,41 @@
 				#{licenseImg}
 			)
 	</insert>
+	
+	<update id="ajaxSetMentorEnroll" parameterType="Member">
+		UPDATE MEMBER
+		SET
+		MENTOR_STATUS = 'Y',
+		MENTOR_INTRO = #{mentorIntro},
+		CAREER = #{career}
+		WHERE
+		MEMBER_NO = #{memberNo}
+	</update>
+	
+	<update id="setSymbolLicense">
+		UPDATE MEMBER_LICENSE
+		SET
+		SYMBOL_LICENSE = 'Y'
+		WHERE MEMBER_NO = #{pno}
+		AND LICENSE_NO = #{licenseNo}
+	</update>
+	
+	<update id="ajaxSetMentor" parameterType="Member">
+		UPDATE MEMBER
+		SET
+		MENTOR_INTRO = #{mentorIntro},
+		CAREER = #{career},
+		MENTOR_VALID = #{mentorValid}
+		WHERE
+		MEMBER_NO = #{memberNo}
+	</update>
+	
+	<update id="resetSymbolLicense">
+		UPDATE MEMBER_LICENSE
+		SET
+		SYMBOL_LICENSE = 'N'
+		WHERE MEMBER_NO = #{pno}
+	</update>
 </mapper>
 
 

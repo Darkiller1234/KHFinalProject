@@ -107,5 +107,23 @@ public class PersonalServiceImpl implements PersonalService{
 	public int saveLicenseEnroll(License2 dump) {
 		return personalDao.saveLicenseEnroll(sqlSession, dump);
 	}
+
+	@Override
+	public int ajaxSetMentorEnroll(Member temp) {
+		return personalDao.ajaxSetMentorEnroll(sqlSession, temp);
+	}
+
+	@Override
+	public int setSymbolLicense(String licenseName, int pno) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("licenseNo", personalDao.getLicenseNo(sqlSession, licenseName));
+		params.put("pno", pno);
+		return personalDao.setSymbolLicense(sqlSession, params);
+	}
+
+	@Override
+	public int ajaxSetMentor(Member temp) {
+		return personalDao.ajaxSetMentor(sqlSession, temp);
+	}
 	
 }

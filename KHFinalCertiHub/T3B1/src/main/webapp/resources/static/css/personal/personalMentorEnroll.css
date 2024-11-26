@@ -35,7 +35,7 @@
 }
 
 /* 오른쪽 영역 */
-.right-view div{
+.right-view > div{
     margin-bottom:10px;
 }
 
@@ -91,4 +91,48 @@
         display: none;
     }
 
+}
+
+
+
+#selectbox1 {
+    width: fit-content;
+}
+
+.button-select > div {
+    max-width: fit-content;
+    margin-left: 10px;
+}
+
+.button-select > img {
+    margin-right: 10px;
+}
+
+.button-select {
+    padding: 0px;
+    height: 40px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.custom-select {
+    width: 100% !important;
+}
+
+#select {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+#select > div {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
