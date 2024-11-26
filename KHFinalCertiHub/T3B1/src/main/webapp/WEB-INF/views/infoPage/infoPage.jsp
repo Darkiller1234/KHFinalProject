@@ -125,102 +125,21 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="accordion-item">
                                 <button class="accordion-toggle">시험내용</button>
                                 <div class="accordion-content">
-                                    <h6>개요</h6> <br>
-                                    <b>정보처리기사 Engineer Information Processing</b> <br>
-                                    <p>컴퓨터를 효과적으로 활용하기 위해서 하드웨어뿐만 아니라 정교한 소프트웨어가 필요함.</p>
-                                    <p>이에 따라 우수한 프로그램을 개발하여 업무의 효율성을 높이고, 궁극적으로 국가발전에 이바지하기 위해서 컴퓨터에 관한 전문적인 지식과 기술을 갖춘
-                                        사람을 양성 할 목적으로 제정됨.</p> <br> <br>
-
-                                    <h6>1. 관련학과</h6>
-                                    &nbsp;&nbsp;<p>대학 및 전문대학의 전자, 컴퓨터, 전산 계열학과 (컴퓨터공학과, 전산 공학, 전자계산공학과, 전산학과, 소프트웨어공학과등)
-                                        및 동국대, 숭실대, 광운대, 한남대 부설 전자계산원.</p>
-                                    &nbsp;&nbsp;<p class="test-color">응시자격사항에서 '관련학과'는 '모든 대학, 모든 학과'가 해당됩니다.</p>
-                                    &nbsp;&nbsp;<h6>2. 시험 과목 및 합격 기준</h6> <br><br>
-                                    <table>
-                                        <colgroup class="second-table">
-                                            <col>
-                                            <col>
-                                            <col>
-                                            <col>
-                                            <col>
-                                        </colgroup>
-                                        <thead>
-                                            <tr>
-                                                <th></th>
-                                                <th>과목</th>
-                                                <th>검정 방법</th>
-                                                <th>합격 기준</th>
-                                                <th>응시료</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td rowspan="5">필기</td>
-                                                <td>1. 소프트웨어 설계</td>
-                                                <td rowspan="5">객관식 4지 택일형 과목당 20문항 (과목당 30분)</td>
-                                                <td rowspan="5">100점을 만점으로 하여 과목당 40점 이상, 전과목 평균 60점 이상</td>
-                                                <td rowspan="5">19,400원</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2. 소프트웨어 개발</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3. 데이터베이스 구축</td>
-                                            </tr>
-                                            <tr>
-                                                <td>4. 프로그래밍언어 활용</td>
-                                            </tr>
-                                            <tr>
-                                                <td>5. 정보시스템 구축관리</td>
-                                            </tr>
-                                            <tr>
-                                                <td rowspan="12">실기</td>
-                                                <td>1. 요구사항 확인</td>
-                                                <td rowspan="12">필답형(2시간 30분)</td>
-                                                <td rowspan="12">100점을 만점으로 하여 60점 이상.</td>
-                                                <td rowspan="12">22,600원</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2. 데이터 입출력 구현</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3. 통합 구현</td>
-                                            </tr>
-                                            <tr>
-                                                <td>4. 서버프로그램 구현</td>
-                                            </tr>
-                                            <tr>
-                                                <td>5. 인터페이스 구현</td>
-                                            </tr>
-                                            <tr>
-                                                <td>6. 화면 설계</td>
-                                            </tr>
-                                            <tr>
-                                                <td>7. 애플리케이션 테스트 관리</td>
-                                            </tr>
-                                            <tr>
-                                                <td>8. SQL 응용</td>
-                                            </tr>
-                                            <tr>
-                                                <td>9. 소프트웨어 개발 보안 구축</td>
-                                            </tr>
-                                            <tr>
-                                                <td>10. 프로그래밍 언어 활용</td>
-                                            </tr>
-                                            <tr>
-                                                <td>11. 응용 SW 기초 기술 활용</td>
-                                            </tr>
-                                            <tr>
-                                                <td>12. 제품소프트웨어 패키징</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <br><br>
+                                    <div class="testContent">
+                                        <!-- 동적으로 생성되는 리스트 -->
+                                        <ul id="exam-list">
+                                            <!-- 리스트 항목들이 동적으로 추가됩니다. -->
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
+                            
+
+
                             <div class="accordion-item">
                                 <button class="accordion-toggle">시험일정</button>
                                 <div class="accordion-content">
@@ -349,41 +268,47 @@
                                             <option value="68, 100">충청남도</option>
                                             <option value="69, 107">충청북도</option>
                                         </select>
-                                    
-                                    
-                                            <table id="todayTable">
-                                                <thead>
-                                                    <tr><th colspan="25">오늘</th></tr>
-                                                </thead>
-                                                <tbody>
-                                                    <!-- 시간, 날씨, 습도, 기온을 넣을 각 tr이 여기에 들어갑니다 -->
-                                                </tbody>
-                                            </table>
-                                            <br><br>
-                                     
-                                            <table id="tomorrowTable">
-                                                <thead>
-                                                    <tr><th colspan="25">내일</th></tr>
-                                                </thead>
-                                                <tbody>
-                                                    <!-- 내일의 날씨 정보 -->
-                                                </tbody>
-                                            </table>
-                                            <br><br>
-                                    
-                                     
-                                            <table id="dayAfterTomorrowTable">
-                                                <thead>
-                                                    <tr><th colspan="25">모레</th></tr>
-                                                </thead>
-                                                <tbody>
-                                                    <!-- 모레의 날씨 정보 -->
-                                                </tbody>
-                                            </table>
-                                        </div>
+
+
+                                        <table id="todayTable">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="25">오늘</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!-- 시간, 날씨, 습도, 기온을 넣을 각 tr이 여기에 들어갑니다 -->
+                                            </tbody>
+                                        </table>
                                         <br><br>
-                                    
-                                    
+
+                                        <table id="tomorrowTable">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="25">내일</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!-- 내일의 날씨 정보 -->
+                                            </tbody>
+                                        </table>
+                                        <br><br>
+
+
+                                        <table id="dayAfterTomorrowTable">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="25">모레</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!-- 모레의 날씨 정보 -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <br><br>
+
+
 
                                     <br><br>
                                     <pre><b>글피~최대 10일</b></pre> <br>
@@ -484,6 +409,7 @@
             <script src="<%=contextPath%>/resources/static/js/infopage/area.js"></script>
             <script src="<%=contextPath%>/resources/static/js/infopage/midWeather.js"></script>
             <script src="<%=contextPath%>/resources/static/js/infopage/shortWeather.js"></script>
+            <script src="<%=contextPath%>/resources/static/js/infopage/certiInfo.js"></script>
             <%@ include file="../common/footer.jsp" %>
     </body>
 
