@@ -26,11 +26,12 @@ public class CompilerController {
 	
 	@ResponseBody
 	@PostMapping(value="run", produces="application/json; charset=UTF-8")
-	public String runCode(HttpSession session, String code) {
+	public String runCode(HttpSession session, String code, int selectedLang) {
 		Member member = (Member)session.getAttribute("loginMember");
 		
 		HashMap<String, Object> compileInfo = new HashMap<>();
 		compileInfo.put("memberNo", member.getMemberNo());
+		compileInfo.put("selectedLang", selectedLang);
 		compileInfo.put("code", code);
 
 		String result = compilerService.runCode(compileInfo);

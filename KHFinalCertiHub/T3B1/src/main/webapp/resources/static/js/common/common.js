@@ -108,7 +108,7 @@ function createSelectBox(div, data){
         list.className = 'item';
         list.innerText = item[0];
 
-        if(item.length === 2){
+        if(item.length === 2 && item != null){
             list.dataset.value = item[1]
         }
 
@@ -150,24 +150,8 @@ function createSelectBox(div, data){
 }
 
 /*
-    이벤트 부여된 셀렉트 박스 생성함수
-    selectBox : selectBox를 생성할 div
-    data : {
-        name = 서버로 보낼 input명
-        default = selectBox의 default값
-        imgUrl = selectBox 화살표 이미지 경로
-        items = [
-            ['항목1'], 
-            ['항목2', 항목 선택시 발생함수 ],  // 항목에 이벤트를 추가하고 싶다면 리스트에 값 2개
-            ['항목3'],
-            ... 
-        ]
-    }
-*/
-
-/*
     테이블 생성 함수
-    %주의사항 : 첫번째 데이터는 무조건 title로 간주 %
+    %주의사항 : 첫번째 데이터는 무조건 키값으로 간주 %
 
     div : 안에 테이블을 생성할 영역
     data = {
