@@ -33,4 +33,10 @@ public interface PersonalService {
 
 	int saveLicenseEnroll(License2 dump);
 
+	int ajaxSetMentorEnroll(Member temp);
+
+	int setSymbolLicense(String licenseName, int pno);
+
+	int ajaxSetMentor(Member temp);
+
 }

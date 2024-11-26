@@ -92,13 +92,17 @@ function regiBtnClick(contextPath){
         }
     
         getNotOwnCertiList(null, function(result){
-            data1.items = result.map(item => [item]);
-            data1.default = result[0];
-            console.log(result)
-            console.log(data1.items)
-            createSelectBox(document.getElementById('selectbox1'), data1);
-            document.querySelector('input[name="array"]').value = result[0];
-            $("#regi-btn").on("click", () => regiBtnClick(contextPath))
+            if(result.length === 0){
+                createSelectBox(document.getElementById('selectbox1'), data1);
+            } else{
+                data1.items = result.map(item => [item]);
+                data1.default = result[0];
+                console.log(result)
+                console.log(data1.items)
+                createSelectBox(document.getElementById('selectbox1'), data1);
+                document.querySelector('input[name="array"]').value = result[0];
+                $("#regi-btn").on("click", () => regiBtnClick(contextPath))
+            }
         })
 
         

@@ -5,14 +5,15 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/personal/commonPersonal.css">
+        <link rel="stylesheet"
+            href="${pageContext.request.contextPath}/resources/static/css/personal/commonPersonal.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
         <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
         <script src="${pageContext.request.contextPath}/resources/static/js/personal/personalCertiRegiAjax.js"></script>
         <script src="${pageContext.request.contextPath}/resources/static/js/personal/personalCertiRegi.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-        
+
         <title>Document</title>
     </head>
 
@@ -37,7 +38,8 @@
                             <label class="btn btn-outline-primary" for="btnradio2"
                                 onclick="location.href='<%=contextPath%>/personal/Change'">개인정보 변경</label>
 
-                            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" checked>
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off"
+                                checked>
                             <label class="btn btn-outline-primary" for="btnradio3"
                                 onclick="location.href='<%=contextPath%>/personal/certiRegi'">자격증 인증 신청</label>
 
@@ -112,6 +114,7 @@
                                 </div>
                             </div>
                         </nav>
+                    </div>
                     <div id="middle-view">
                         <div class="left-view">
                             <br><br>
@@ -122,75 +125,79 @@
                                     <div id="selectbox1" class="custom-select font-size-content">
 
                                     </div>
-                                </div> 
-                                
+                                </div>
+
 
                             </div>
                         </div>
                         <div class="right-view">
                             <div id="certi-file">
-                                
+
                                 <br><br>
                                 <div id="upload-btn-div">
                                     <div class="font-size-subtitle">
-                                    자격증 파일
-                                </div>
-                                <br><br>
-                                <div id="certi-file-upload">
+                                        자격증 파일
+                                    </div>
+                                    <br><br>
+                                    <div id="certi-file-upload">
 
-                                </div>
-                                    <img id="profile"src="${pageContext.request.contextPath}/resources/static/img/profile/default_profile.png" alt="저장">
-                                    <button class="font-size-content" id="upload-btn" onclick="chooseImg()">파일 업로드</button>
+                                    </div>
+                                    <img id="profile"
+                                        src="${pageContext.request.contextPath}/resources/static/img/profile/default_profile.png"
+                                        alt="저장">
+                                    <button class="font-size-content" id="upload-btn" onclick="chooseImg()">파일
+                                        업로드</button>
                                     <div class="file">
                                         <input type="file" id="profileInput" name="memberImg" onchange="loadImg(this)">
                                     </div>
                                     <br><br>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
                     <div class="bottom-view">
                         <div class="font-size-subtitle">
-                            <button id="regi-btn" class="btn-primary"  data-bs-toggle="modal" data-bs-target="#apply-modal"><img src="<%=contextPath%>/resources/static/img/personalPage/Phonecall.png" alt="전화중아이콘">신청하기</button>
+                            <button id="regi-btn" class="btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#apply-modal"><img
+                                    src="<%=contextPath%>/resources/static/img/personalPage/Phonecall.png"
+                                    alt="전화중아이콘">신청하기</button>
                         </div>
                     </div>
 
                     <!-- 모달창 -->
                     <div class="modal" id="apply-modal">
                         <div class="modal-dialog">
-                        <div class="modal-content">
+                            <div class="modal-content">
 
-                            <!-- Modal Header -->
-                            <div class="modal-header">
-                            <h4 class="modal-title">                
-                                <img 
-                                src="<%=contextPath%>/resources/static/img/logo/logo_big.png"
-                                ">
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+                                        <img src="<%=contextPath%>/resources/static/img/logo/logo_big.png" ">
                             </h4>
                             </div>
 
                             <!-- Modal body -->
-                            <div class="modal-body" id="modal-text">
-                                잠시만 기다려주세요...
+                            <div class=" modal-body" id="modal-text">
+                                        잠시만 기다려주세요...
+                                </div>
+
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <button type="button" data-bs-dismiss="modal">닫기</button>
+                                </div>
+
                             </div>
-
-                            <!-- Modal footer -->
-                            <div class="modal-footer">
-                            <button type="button" data-bs-dismiss="modal">닫기</button>
-                            </div>
-
                         </div>
-                        </div>
-</div>
+                    </div>
 
-                    
+
+
+
 
                 </div>
-                
-            </div>
-            <%@ include file="../common/footer.jsp" %>
-                
+                <%@ include file="../common/footer.jsp" %>
+
     </body>
 
     </html>
