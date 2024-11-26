@@ -19,3 +19,12 @@
 .valid-choose .custom-select{
     width:130px;
 }
+
+
+.button-select{
+    width: fit-content !important;
+}
+
+.item-list {
+    min-width: fit-content !important;
+}
