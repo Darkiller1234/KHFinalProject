@@ -27,4 +27,16 @@ public interface PersonalService {
 
 	void insertLookLicense(int memberNo, String string);
 
+	ArrayList<String> getNotOwnCertiList(int pno);
+
+	int getLicenseNo(String licenseName);
+
+	int saveLicenseEnroll(License2 dump);
+
+	int ajaxSetMentorEnroll(Member temp);
+
+	int setSymbolLicense(String licenseName, int pno);
+
+	int ajaxSetMentor(Member temp);
+
 }

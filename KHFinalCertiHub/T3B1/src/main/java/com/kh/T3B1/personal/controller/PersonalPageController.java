@@ -142,6 +142,59 @@ public class PersonalPageController {
 		return "personal/personalCertiRegi";
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="certiRegi/getNotOwnCertiList", produces="application/json; charset-UTF-8")
+	public String GetNotOwnCertiList(HttpSession session) {
+		int pno = ((Member)session.getAttribute("loginMember")).getMemberNo();
+		
+		ArrayList<String> list = personalService.getNotOwnCertiList(pno);
+		
+		
+		return new Gson().toJson(list);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="certiRegi/regi", produces="application/json; charset-UTF-8")
+	public String regiCerti(@RequestParam(value="memberImg") MultipartFile certiImg,
+			@RequestParam(value="licenseName") String licenseName, HttpSession session) {
+		
+		int licenseNo = personalService.getLicenseNo(licenseName);
+		License2 dump = new License2();
+		dump.setLicenseNo(licenseNo);
+		dump.setMemberNo(((Member)session.getAttribute("loginMember")).getMemberNo());
+
+		if (certiImg != null && !certiImg.isEmpty()) {
+			
+			//파일원본명
+			String originName = certiImg.getOriginalFilename(); 
+			
+			//확장자
+			String ext = originName.substring(originName.lastIndexOf("."));
+			
+			//년월일시분초
+			String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+			
+			//5자리 랜덤값
+			int randNum = (int)(Math.random() * 90000) + 10000;
+			
+			String changeName = currentTime + "_" + randNum + ext;
+			
+			//첨부파일 저장할 폴더의 물리적 경로
+			String savePath = session.getServletContext().getRealPath("/resources/static/img/license/");
+			try {
+				certiImg.transferTo(new File(savePath + changeName));
+			} catch (IllegalStateException | IOException e) {
+				return new Gson().toJson(-1);
+			}
+			dump.setLicenseImg("/resources/static/img/license/" + changeName);
+        }
+		
+		int result = personalService.saveLicenseEnroll(dump); 
+		
+		return new Gson().toJson(1);
+		
+	}
+	
 	@RequestMapping("makeSc")
 	public String PersonalPageMakeSchedule(Model p) {
 		p.addAttribute("pageName", "PersonalPmSc");
@@ -237,11 +290,98 @@ public class PersonalPageController {
 	
 	
 	@RequestMapping("mentor")
-	public String PersonalMentorPage(Model p) {
-		// 멘토 가입했다면 personalMentor, 가입하지 않았다면 personalMentorEnroll 페이지로
+	public String PersonalMentorPage(Model p, HttpSession session) {
+		if(((Member)session.getAttribute("loginMember")).getMentorStatus().equals("N")) {
+			return "redirect:/personal/mentor/enroll";
+		}
 		p.addAttribute("pageName","personalMentor");
 		return "personal/personalMentor";
 	}
+	
+	@RequestMapping("mentor/enroll")
+	public String PersonalMentorEnrollPage(Model p, HttpSession session) {
+		if(((Member)session.getAttribute("loginMember")).getMentorStatus().equals("Y")) {
+			return "redirect:/personal/mentor";
+		}
+		
+		p.addAttribute("pageName","personalMentorEnroll");
+		return "personal/personalMentorEnroll";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="mentor/getStatus", produces="application/json; charset-UTF-8")
+	public String ajaxGetMemberStatus(HttpSession session) {
+		Member m = new Member();
+		Member temp = (Member)session.getAttribute("loginMember");
+		m.setMemberImg(temp.getMemberImg());
+		m.setMemberNickname(temp.getMemberNickname());
+		m.setMemberIntro(temp.getMemberIntro());
+		m.setMentorValid(temp.getMentorValid());
+		m.setMentorIntro(temp.getMentorIntro());
+		m.setCareer(temp.getCareer());
+		return new Gson().toJson(m);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="mentor/getHaveLicense", produces="application/json; charset-UTF-8")
+	public String ajaxGetHaveLicense(HttpSession session) {
+		ArrayList<License2> list = personalService.haveLicense(((Member)session.getAttribute("loginMember")).getMemberNo());
+		return new Gson().toJson(list);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="mentor/setMentorEnroll", produces="application/json; charset-UTF-8")
+	public String ajaxSetMentorEnroll(String career, String intro, String licenseName, HttpSession session) {
+		int pno = ((Member)session.getAttribute("loginMember")).getMemberNo();
+		Member temp = new Member();
+		temp.setCareer(career);
+		temp.setMentorIntro(intro);
+		temp.setMemberNo(pno);
+		
+		int result = personalService.ajaxSetMentorEnroll(temp);
+		
+		int result2 = personalService.setSymbolLicense(licenseName, ((Member)session.getAttribute("loginMember")).getMemberNo());
+		if(result == 1 && result2 ==1) {
+			Member m = (Member)session.getAttribute("loginMember");
+			m.setCareer(career);
+			m.setMentorIntro(intro);
+			m.setMentorStatus("Y");
+			session.setAttribute("loginMember", m);
+			return new Gson().toJson(1);
+		}
+		return new Gson().toJson(0);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="mentor/getLikeCount", produces="application/json; charset-UTF-8")
+	public String ajaxGetMentorLikeCount(HttpSession session) {
+		
+		
+		int likeCount = personalService.getLikeCount(((Member)session.getAttribute("loginMember")).getMemberNo());
+
+		return new Gson().toJson(likeCount);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="mentor/setMentor", produces="application/json; charset-UTF-8")
+	public String ajaxSetMentor(String career, String intro, String liName, String valid, HttpSession session) {
+		Member temp = (Member)session.getAttribute("loginMember");
+		temp.setCareer(career);
+		temp.setMentorIntro(intro);
+		if(valid.equals("질문가능")) {
+			temp.setMentorValid("Y");
+		} else {
+			temp.setMentorValid("N");
+		}
+		
+		int result = personalService.ajaxSetMentor(temp);
+		
+		int result2 = personalService.setSymbolLicense(liName, ((Member)session.getAttribute("loginMember")).getMemberNo());
+		session.setAttribute("loginMember", temp);
+		return new Gson().toJson(1);
+	}
+	
+	
 	
 	@RequestMapping("Change")
 	public String PersonalChange() {

@@ -70,5 +70,30 @@ public class PersonalDao {
 		sqlSession.insert("personalMapper.insertLookLicense", params);
 		
 	}
+
+	public ArrayList<String> getNotOwnCertiList(SqlSessionTemplate sqlSession, int pno) {
+		return (ArrayList)sqlSession.selectList("personalMapper.getNotOwnCertiList", pno);
+	}
+
+	public int getLicenseNo(SqlSessionTemplate sqlSession, String licenseName) {
+		return sqlSession.selectOne("personalMapper.getLicenseNo", licenseName);
+	}
+
+	public int saveLicenseEnroll(SqlSessionTemplate sqlSession, License2 dump) {
+		return sqlSession.insert("personalMapper.saveLicenseEnroll", dump);
+	}
+
+	public int ajaxSetMentorEnroll(SqlSessionTemplate sqlSession, Member temp) {
+		return sqlSession.update("personalMapper.ajaxSetMentorEnroll", temp);
+	}
+
+	public int setSymbolLicense(SqlSessionTemplate sqlSession, Map params) {
+		sqlSession.update("personalMapper.resetSymbolLicense", params);
+		return sqlSession.update("personalMapper.setSymbolLicense", params);
+	}
+
+	public int ajaxSetMentor(SqlSessionTemplate sqlSession, Member temp) {
+		return sqlSession.update("personalMapper.ajaxSetMentor", temp);
+	}
 	
 }

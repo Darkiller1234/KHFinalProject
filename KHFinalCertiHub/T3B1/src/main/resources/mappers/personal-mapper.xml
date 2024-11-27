@@ -36,6 +36,7 @@
 		<result column="SYMBOL_LICENSE" property="symbolLicense"/>
 		<result column="LICENSE_NAME" property="licenseName"/>
 		<result column="LICENSE_DESC" property="licenseDesc"/>
+		<result column="LICENSE_IMG" property="licenseImg"/>
 	</resultMap>
 	
 	<select id="getMemberInfo" resultType="Member" resultMap="memberResultSet">
@@ -116,6 +117,7 @@
 		FROM MEMBER_LICENSE ML
 		JOIN LICENSE L ON (ML.LICENSE_NO = L.LICENSE_NO)
 		WHERE MEMBER_NO = #{pno}
+		AND ML.CONFIRM_DATE IS NOT NULL
 	</select>
 	
 	<select id="lookLicense" resultType="License2" resultMap="licenseResultSet">
@@ -163,6 +165,80 @@
 		FROM LICENSE
 		WHERE LICENSE_NAME = #{string}
 	</insert>
+	
+	<select id="getNotOwnCertiList" resultType="string">
+		SELECT 
+		    L.LICENSE_NAME
+		FROM 
+		    LICENSE L
+		LEFT JOIN 
+		    MEMBER_LICENSE ML
+		ON 
+		    L.LICENSE_NO = ML.LICENSE_NO
+		    AND ML.MEMBER_NO = #{pno}
+		WHERE 
+		    ML.MEMBER_NO IS NULL
+	</select>
+	
+	<select id="getLicenseNo" resultType="int">
+		SELECT
+			LICENSE_NO
+		FROM
+			LICENSE
+		WHERE
+			LICENSE_NAME = #{licenseName}
+	</select>
+	
+	<insert id="saveLicenseEnroll" parameterType="License2">
+		INSERT
+			INTO MEMBER_LICENSE
+			(
+				LICENSE_NO,
+				MEMBER_NO,
+				LICENSE_IMG
+			)
+			VALUES
+			(
+				#{licenseNo},
+				#{memberNo},
+				#{licenseImg}
+			)
+	</insert>
+	
+	<update id="ajaxSetMentorEnroll" parameterType="Member">
+		UPDATE MEMBER
+		SET
+		MENTOR_STATUS = 'Y',
+		MENTOR_INTRO = #{mentorIntro},
+		CAREER = #{career}
+		WHERE
+		MEMBER_NO = #{memberNo}
+	</update>
+	
+	<update id="setSymbolLicense">
+		UPDATE MEMBER_LICENSE
+		SET
+		SYMBOL_LICENSE = 'Y'
+		WHERE MEMBER_NO = #{pno}
+		AND LICENSE_NO = #{licenseNo}
+	</update>
+	
+	<update id="ajaxSetMentor" parameterType="Member">
+		UPDATE MEMBER
+		SET
+		MENTOR_INTRO = #{mentorIntro},
+		CAREER = #{career},
+		MENTOR_VALID = #{mentorValid}
+		WHERE
+		MEMBER_NO = #{memberNo}
+	</update>
+	
+	<update id="resetSymbolLicense">
+		UPDATE MEMBER_LICENSE
+		SET
+		SYMBOL_LICENSE = 'N'
+		WHERE MEMBER_NO = #{pno}
+	</update>
 </mapper>
 
 

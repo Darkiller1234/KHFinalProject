@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/personal/personalMentorEnroll.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/personal/personalMentor.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/personal/commonPersonal.css">
+        <script src="${pageContext.request.contextPath}/resources/static/js/personal/personalMentorAjax.js"></script>
         <script src="${pageContext.request.contextPath}/resources/static/js/personal/personalMentor.js"></script>
 
         <title>Document</title>
@@ -31,55 +32,95 @@
                         <div id="member-name" class="font-size-title">
                             개인 페이지
                         </div>
-                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group" id="category-btn">
+                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group"
+                            id="category-btn">
                             <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="btnradio1" onclick="location.href='<%=contextPath%>/personal/profile'">프로필 편집</label>
+                            <label class="btn btn-outline-primary" for="btnradio1"
+                                onclick="location.href='<%=contextPath%>/personal/profile'">프로필 편집</label>
 
                             <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="btnradio2" onclick="location.href='<%=contextPath%>/personal/Change'">개인정보 변경</label>
+                            <label class="btn btn-outline-primary" for="btnradio2"
+                                onclick="location.href='<%=contextPath%>/personal/Change'">개인정보 변경</label>
 
-                            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off"
-                                >
-                            <label class="btn btn-outline-primary" for="btnradio3" onclick="location.href='<%=contextPath%>/personal/certiRegi'">자격증 인증 신청</label>
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="btnradio3"
+                                onclick="location.href='<%=contextPath%>/personal/certiRegi'">자격증 인증 신청</label>
 
-                            <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off"
-                            checked>
-                            <label class="btn btn-outline-primary" for="btnradio4" onclick="location.href='<%=contextPath%>/personal/mentor'">멘토 정보 수정</label>
+                            <c:choose>
+                                <c:when test="${loginMember.mentorStatus eq 'Y'}">
+                                    <input type="radio" class="btn-check" name="btnradio" id="btnradio4"
+                                        autocomplete="off" checked>
+                                    <label class="btn btn-outline-primary" for="btnradio4"
+                                        onclick="location.href='<%=contextPath%>/personal/mentor'">멘토 정보 수정</label>
+                                </c:when>
+                                <c:otherwise>
+                                    <input type="radio" class="btn-check" name="btnradio" id="btnradio4"
+                                        autocomplete="off" checked>
+                                    <label class="btn btn-outline-primary" for="btnradio4"
+                                        onclick="location.href='<%=contextPath%>/personal/mentor/enroll'">멘토 신청</label>
+                                </c:otherwise>
+                            </c:choose>
 
                             <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="btnradio5" onclick="location.href='<%=contextPath%>/personal/makeSc'">계획표 만들기</label>
+                            <label class="btn btn-outline-primary" for="btnradio5"
+                                onclick="location.href='<%=contextPath%>/personal/makeSc'">계획표 만들기</label>
                         </div>
 
                         <nav class="navbar bg-body-tertiary page-title font-size-subtitle" id="certiSelect">
                             <div class="container-fluid">
                                 <div class="container-fluid" id="testdiv" data-bs-toggle="collapse"
-                                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                                aria-label="Toggle navigation">
+                                    data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                                    aria-label="Toggle navigation">
                                     <a class="navbar-brand font-size-title" href="#" data-bs-toggle="collapse"
-                                    data-bs-target="#navbarNav" aria-controls="navbarNav">멘토 정보 수정</a>
+                                        data-bs-target="#navbarNav" aria-controls="navbarNav">
+                                        <c:choose>
+                                            <c:when test="${loginMember.mentorStatus eq 'Y'}">
+                                                멘토 정보 수정
+                                            </c:when>
+                                            <c:otherwise>
+                                                멘토 신청
+                                            </c:otherwise>
+                                        </c:choose>
+                                        </a>
                                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
                                         aria-label="Toggle navigation">
-                                        <span class="navbar-toggler-icon"><img src="<%=contextPath%>/resources/static/img/button/triangle_down.png" alt=""></span>
+                                        <span class="navbar-toggler-icon"><img
+                                                src="<%=contextPath%>/resources/static/img/button/triangle_down.png"
+                                                alt=""></span>
                                     </button>
                                 </div>
-                                
+
                                 <div class="collapse navbar-collapse" id="navbarNav">
                                     <ul class="navbar-nav">
                                         <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" href="<%=contextPath%>/personal/profile">프로필 편집</a>
+                                            <a class="nav-link active" aria-current="page"
+                                                href="<%=contextPath%>/personal/profile">프로필 편집</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" href="<%=contextPath%>/personal/Change">개인정보 변경</a>
+                                            <a class="nav-link active" aria-current="page"
+                                                href="<%=contextPath%>/personal/Change">개인정보 변경</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" href="<%=contextPath%>/personal/certiRegi">자격증 인증 신청</a>
+                                            <a class="nav-link active" aria-current="page"
+                                                href="<%=contextPath%>/personal/certiRegi">자격증 인증 신청</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" href="<%=contextPath%>/personal/mentor">멘토 정보 수정</a>
+                                            <c:choose>
+                                                <c:when test="${loginMember.mentorStatus eq 'Y'}">
+                                                    <a class="nav-link active" aria-current="page"
+                                                        href="<%=contextPath%>/personal/mentor">멘토 정보 수정</a>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <a class="nav-link active" aria-current="page"
+                                                        href="<%=contextPath%>/personal/mentor/enroll">멘토 신청</a>
+                                                </c:otherwise>
+                                            </c:choose>
+
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" href="<%=contextPath%>/personal/makeSc">계획표 만들기</a>
+                                            <a class="nav-link active" aria-current="page"
+                                                href="<%=contextPath%>/personal/makeSc">계획표 만들기</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -98,118 +139,20 @@
                                     <div class="profile-img small">
                                         <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
                                     </div>
-                                    <div class="mentor-name font-size-subtitle">User01</div>
-                                    <div class="tag bgcolor3"><img src="<%=contextPath%>/resources/static/img/button/heart.png">1.2k</div>
-                                    <div class="symbol-license">빅데이터분석기사</div>
-                                    <div class="member-intro font-size-footer">안녕하세요~ 반갑습니다~~ 잘부탁드려용~~ 저는 민트초코파인애플피자 좋아합니다 감사합니다</div>
-                                    <div class="mentor-valid accept"><img src="<%=contextPath%>/resources/static/img/button/valid_icon.png">질문가능</div>
+                                    <div class="mentor-name font-size-subtitle"></div>
+                                    <div class="tag bgcolor3" id="likeCount"><img src="<%=contextPath%>/resources/static/img/button/heart.png"></div>
+                                    <div class="symbol-license"></div>
+                                    <div class="member-intro font-size-footer"></div>
+                                    <div class="mentor-valid accept"><img src="<%=contextPath%>/resources/static/img/button/valid_icon.png"></div>
                                 </div>
 
                                 <div class="mentor-info">
                                     <div class="font-size-title">경력</div>
                                     <div class="mentor-career">
-                                        네트워크 분야 5년 경력<br>
-                                        2016 ~ 2019 XX회사 근무<br>
-                                        2019 ~ 2024 OO회사 OO직<br>
                                     </div>
                                     <div class="font-size-title">소개</div>
                                     <div class="mentor-intro">
-                                        난 너를 믿었던만큼 난 내 친구도 믿었기에
-                                        난 아무런 부담없이 널 내 친구에게 소개시켜 줬고
-                                        그런 만남이 있은 후부터 우리는 자주 함께 만나며
-                                        즐거운 시간을 보내며 함께 어울렸던 것뿐인데
-                                        그런 만남이 어디부터 잘못됐는지
-                                        난 알 수 없는 예감에 조금씩 빠져들고 있을때쯤
-                                        넌 나보다 내 친구에게 관심을 더 보이며
-                                        날 조금씩 멀리하던
-                                        그 어느 날 너와 내가 심하게 다툰 그 날 이후로
-                                        너와 내 친구는 연락도 없고 날 피하는 것 같아
-                                        그제서야 난 느낀거야 모든 것이 잘못돼 있는걸
-                                        너와 내 친구는 어느새 다정한 연인이 돼 있었지
-                                        있을 수 없는 일이라며 난 울었어
-                                        내 사랑과 우정을 모두 버려야 했기에
-                                        또 다른 내 친구는 내 어깰 두드리며
-                                        잊어버리라 했지만 잊지 못할 것 같아
-                                        너를 사랑했던 것만큼 난 내 친구도 믿었기에
-                                        난 자연스럽게 너와 함께 어울렸던 것뿐인데
-                                        어디서부터 우리의 믿음이 깨지기 시작했는지
-                                        난 알지도 못한 채 어색함을 느끼면서
-                                        그렇게 함께 만나온 시간이 길어지면 질수록
-                                        넌 내게서 더 조금씩 멀어지는 것을 느끼며
-                                        난 예감을 했었지 넌 나보다 내 친구에게
-                                        관심이 더 있었다는 걸
-                                        그 어느 날 너와 내가 심하게 다툰 그 날 이후로
-                                        너와 내 친구는 연락도 없고 날 피하는 것같아
-                                        그제서야 난 느낀거야 모든 것이 잘못돼 있는걸
-                                        너와 내 친구는 어느새 다정한 연인이 돼 있었지
-                                        있을 수 없는 일이라며 난 울었어
-                                        내 사랑과 우정을 모두 버려야 했기에
-                                        또 다른 내 친구는 내 어깰 두드리며
-                                        잊어버리라 했지만 잊지 못할 것 같아
-                                        난 너를 믿었던만큼 난 내 친구도 믿었기에
-                                        난 아무런 부담없이 널 내 친구에게 소개시켜 줬고
-                                        그런 만남이 있은 후부터 우리는 자주 함께 만나며
-                                        즐거운 시간을 보내며 함께 어울렸던 것뿐인데
-                                        그런 만남이 어디부터 잘못됐는지
-                                        난 알 수 없는 예감에 조금씩 빠져들고 있을때쯤
-                                        넌 나보다 내 친구에게 관심을 더 보이며
-                                        날 조금씩 멀리하던
-                                        그 어느 날 너와 내가 심하게 다툰 그 날 이후로
-                                        너와 내 친구는 연락도 없고 날 피하는 것 같아
-                                        그제서야 난 느낀거야 모든 것이 잘못돼 있는걸
-                                        너와 내 친구는 어느새 다정한 연인이 돼 있었지
-                                        있을 수 없는 일이라며 난 울었어
-                                        내 사랑과 우정을 모두 버려야 했기에
-                                        또 다른 내 친구는 내 어깰 두드리며
-                                        잊어버리라 했지만 잊지 못할 것 같아
-                                        너를 사랑했던 것만큼 난 내 친구도 믿었기에
-                                        난 자연스럽게 너와 함께 어울렸던 것뿐인데
-                                        어디서부터 우리의 믿음이 깨지기 시작했는지
-                                        난 알지도 못한 채 어색함을 느끼면서
-                                        그렇게 함께 만나온 시간이 길어지면 질수록
-                                        넌 내게서 더 조금씩 멀어지는 것을 느끼며
-                                        난 예감을 했었지 넌 나보다 내 친구에게
-                                        관심이 더 있었다는 걸
-                                        그 어느 날 너와 내가 심하게 다툰 그 날 이후로
-                                        너와 내 친구는 연락도 없고 날 피하는 것같아
-                                        그제서야 난 느낀거야 모든 것이 잘못돼 있는걸
-                                        너와 내 친구는 어느새 다정한 연인이 돼 있었지
-                                        있을 수 없는 일이라며 난 울었어
-                                        내 사랑과 우정을 모두 버려야 했기에
-                                        또 다른 내 친구는 내 어깰 두드리며
-                                        잊어버리라 했지만 잊지 못할 것 같아
-                                        난 너를 믿었던만큼 난 내 친구도 믿었기에
-                                        난 아무런 부담없이 널 내 친구에게 소개시켜 줬고
-                                        그런 만남이 있은 후부터 우리는 자주 함께 만나며
-                                        즐거운 시간을 보내며 함께 어울렸던 것뿐인데
-                                        그런 만남이 어디부터 잘못됐는지
-                                        난 알 수 없는 예감에 조금씩 빠져들고 있을때쯤
-                                        넌 나보다 내 친구에게 관심을 더 보이며
-                                        날 조금씩 멀리하던
-                                        그 어느 날 너와 내가 심하게 다툰 그 날 이후로
-                                        너와 내 친구는 연락도 없고 날 피하는 것 같아
-                                        그제서야 난 느낀거야 모든 것이 잘못돼 있는걸
-                                        너와 내 친구는 어느새 다정한 연인이 돼 있었지
-                                        있을 수 없는 일이라며 난 울었어
-                                        내 사랑과 우정을 모두 버려야 했기에
-                                        또 다른 내 친구는 내 어깰 두드리며
-                                        잊어버리라 했지만 잊지 못할 것 같아
-                                        너를 사랑했던 것만큼 난 내 친구도 믿었기에
-                                        난 자연스럽게 너와 함께 어울렸던 것뿐인데
-                                        어디서부터 우리의 믿음이 깨지기 시작했는지
-                                        난 알지도 못한 채 어색함을 느끼면서
-                                        그렇게 함께 만나온 시간이 길어지면 질수록
-                                        넌 내게서 더 조금씩 멀어지는 것을 느끼며
-                                        난 예감을 했었지 넌 나보다 내 친구에게
-                                        관심이 더 있었다는 걸
-                                        그 어느 날 너와 내가 심하게 다툰 그 날 이후로
-                                        너와 내 친구는 연락도 없고 날 피하는 것같아
-                                        그제서야 난 느낀거야 모든 것이 잘못돼 있는걸
-                                        너와 내 친구는 어느새 다정한 연인이 돼 있었지
-                                        있을 수 없는 일이라며 난 울었어
-                                        내 사랑과 우정을 모두 버려야 했기에
-                                        또 다른 내 친구는 내 어깰 두드리며
-                                        잊어버리라 했지만 잊지 못할 것 같아
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -220,24 +163,25 @@
                         <div class="right-view">
                             <div class="font-size-title">보유 자격증</div>
                             <div class="look-license">
-                                <div class="tag bgcolor3 font-size-content">정보처리기사</div>
-                                <div class="tag bgcolor3 font-size-content">빅데이터분석기사</div>
-                                <div class="tag bgcolor3 font-size-content">네트워크관리사</div>
-                                <div class="tag bgcolor3 font-size-content">정보보안기사</div>
-                                <div class="tag bgcolor3 font-size-content">빅데이터분석기사</div>
+
+                            </div>
+                            <div>대표 자격증 선택</div>
+                            <div id="select">
+                                <div id="selectbox1">
+
+                                </div>
                             </div>
                             <div class="career-input font-size-title">경력 입력</div>
-                            <textarea class="form-control" name="member-intro">김용하청계천빠뜨리기</textarea>
+                            <textarea class="form-control" name="member-intro" id="career-textarea"></textarea>
                             <div class="intro-input font-size-title">자기소개 입력</div>
-                            <textarea class="form-control" name="member-intro">김용하청계천빠뜨리기</textarea>
-                            <div class="intro-input font-size-title">질문 가능 여부</div>
+                            <textarea class="form-control" name="member-intro" id="intro-textarea"></textarea>
                             <div class="valid-choose"></div>
                         </div>
                     </div>
 
                     <div class="bottom-view">
                         <div class="font-size-subtitle">
-                            <button class="btn-primary"  data-bs-toggle="modal" data-bs-target="#apply-modal"><img src="<%=contextPath%>/resources/static/img/button/save_icon.png" alt="저장">저장</button>
+                            <button class="btn-primary"  data-bs-toggle="modal" data-bs-target="#apply-modal" id="save-mentor"><img src="<%=contextPath%>/resources/static/img/button/save_icon.png" alt="저장">저장</button>
                         </div>
                     </div>
 
