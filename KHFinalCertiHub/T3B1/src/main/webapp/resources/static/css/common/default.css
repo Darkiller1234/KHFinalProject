@@ -285,6 +285,7 @@ div1과 div2의 구조가 다름
 }
 
 .listArea-div1-writter {
+    max-width: 90px;
     min-width: 90px;
     justify-content: center;
     text-align: center;
@@ -327,6 +328,7 @@ div1과 div2의 구조가 다름
 }
 
 .listArea-div2-rightStuff {
+    min-width: fit-content;
     display: flex;
     gap: 5px;
     padding-right: 10px;
@@ -352,6 +354,7 @@ div1과 div2의 구조가 다름
 }
 
 .listArea-div2-writter {
+    min-width: 0;
     justify-content: left;
     padding-left: 10px;
 }
@@ -418,7 +421,6 @@ div1과 div2의 구조가 다름
 
     .listArea-div2-writter {
         text-align: left;
-        min-width: fit-content;
     }
 
     .listArea-div2-tab {

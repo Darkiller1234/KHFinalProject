@@ -77,8 +77,8 @@ function initPersonalMentorEnroll(contextPath) {
 }
 
 function mentorEnroll(){
-    let career = document.querySelector('#career-textarea').value;
-    let intro = document.querySelector('#intro-textarea').value;
+    let career = document.querySelector('#career-textarea').value.replace(/(?:\r\n|\r|\n)/g, '<br>');
+    let intro = document.querySelector('#intro-textarea').value.replace(/(?:\r\n|\r|\n)/g, '<br>');
     let licenseName = document.querySelector(".button-select > div").innerText;
     ajaxSetMentorEnroll({career: career, intro: intro, licenseName: licenseName}, function(result) {
         if(result > 0) {

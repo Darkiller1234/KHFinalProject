@@ -119,6 +119,17 @@ footer {
     gap: 5px;
 }
 
+.reply > div {
+    max-width: 100%;
+    min-width: 0;
+}
+
+#reply_nick{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 
 #detail-area > div:nth-child(1) > div:nth-child(2){
     gap: 5px;
@@ -164,15 +175,6 @@ footer {
     background-color: #ffffff;
     border: #83C5BE 3px solid;
     border-radius: 40px;
-}
-
-#search-area div:nth-child(2) select{  /* 제목, 내용 등 셀렉트 박스 */
-    /* width: 100px;
-    border: none;
-    left: 10px;
-    border-radius: 40px;
-    background-color: none;
-    padding-left: 5px; */
 }
 
 
@@ -260,49 +262,6 @@ footer {
     justify-content: space-around;
     height: 40px;
     
-}
-
-#search-area div:nth-child(1) {
-    /* background-color: #ffffff;
-    border: #83C5BE 3px solid;
-    border-radius: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center; */
-}
-
-#search-area div:nth-child(1) select {
-    /* border: none;
-    border-radius: 40px; */
-}
-
-#search-area div:nth-child(2) {
-    /* background-color: #ffffff;
-    border: #83C5BE 3px solid;
-    border-radius: 40px; */
-}
-
-#search-area div:nth-child(2) input {
-    /* border: none; */
-}
-
-#search-area div:nth-child(2) select{  /* 제목, 내용 등 셀렉트 박스 */
-    /* width: 100px;
-    border: none;
-    left: 10px;
-    border-radius: 40px;
-    background-color: none; */
-}
-
-#search-area select {
-    /* width: 100px;
-    /* border: #83C5BE 4px soild ; 
-    border-radius: 40px;
-    background-color: none; */
-}
-
-#search-area div:nth-child(2) select:focus, #search-area select:focus{  /* focus 시 외부라인 나타나는거 제거 */
-    /* outline: none; */
 }
 
 #detail-area > div:nth-child(1), #detail-area > div:nth-child(2){     /* 글 구역 */
@@ -446,13 +405,60 @@ footer {
     #popular-list-div {     /* 인기글 리스트 */
         display: none;
     }
+    #nick-profile-like-div{
+        display: grid !important;
+        justify-content: left !important;
+        grid-template-areas:
+            "a b"
+            "c c";
+            height: auto;
+            grid-template-columns: minmax(auto, auto) minmax(auto, 100%);
+        
+    }
+    #nickNameP{
+        grid-area: a;
+    }
+    #profile_img{
+        grid-area: b;
+        margin-right: auto;
+    }
+    #likehatereplyviewdateCountP{
+        grid-area: c;
+        min-width: 0 !important;
+        white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    }
 }
 
 @media (max-width: 480px) {
     #popular-list-div {     /* 인기글 리스트 */
         display: none;
     }
-    
+    #nick-profile-like-div{
+        display: grid !important;
+        justify-content: left !important;
+        grid-template-areas:
+            "a b"
+            "c c";
+            height: auto;
+            grid-template-columns: minmax(auto, auto) minmax(auto, 100%);
+    }
+    #nickNameP{
+        grid-area: a;
+    }
+    #profile_img{
+        grid-area: b;
+    }
+    #likehatereplyviewdateCountP{
+        grid-area: c;
+        min-width: 0 !important;
+        max-width: 100%;
+        white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    }
 }
 
 
@@ -594,17 +600,30 @@ footer {
 }
 
 
-
-#nickNameP{
+#nick-profile-like-div{
     display: flex;
     align-items: center;
 }
 
-#nickNameP > img{
+#nickNameP{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: fit-content;
+}
+
+#profile_img{
     width: 20px;
     height: 20px;
     object-fit: contain;
+    margin-right: auto;
 }
+
+#likehatereplyviewdateCountP{
+    min-width: fit-content;
+}
+
+
 
 
 .selected {
