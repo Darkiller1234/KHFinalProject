@@ -8,29 +8,60 @@ function initChatbotPage(contextPath){
         sendMessage: sendMessage,
         sendButton: sendButton,
         messageWindow: messageWindow,
+        answer: null,
     }
 
     initSendChatEvent(state);
 }
 
 function initSendChatEvent(state){
+    const onGetChat = (res) => {
+        console.log(res)
+        
+        state.answer = res.status == 'Y' ? res.answer : 'AI가 답변생성에 실패했습니다...'
+        state.sendMessage.value = ""
+        createBotMessageBox(state.messageWindow, state)
+    }
+    
     state.sendMessage.onkeypress = (e) => {
+
+        if( (e.code !== 'Enter' && e.type !== 'click') || state.sendMessage.value == "" ){
+            return;
+        }
+
         addMessage(e, state)
+        ajaxGetChat(state, onGetChat)
     }
     state.sendButton.onclick = (e) => {
+
+        if( (e.code !== 'Enter' && e.type !== 'click') || state.sendMessage.value == "" ){
+            return;
+        }
+
         addMessage(e, state)
+        ajaxGetChat(state, onGetChat)
     }
+}
+
+function ajaxGetChat(state, callback){
+    $.ajax({
+        url: state.contextPath + '/chatbot/getChat',
+        type:"post",
+        data: {
+            ask : state.sendMessage.value,
+        },
+        success: callback,
+        error: () => {
+            console.log("챗봇 호출 실패")
+        }
+    })
 }
 
 function addMessage(e, state){
-    if( (e.code !== 'Enter' && e.type !== 'click') || state.sendMessage.value == ""){
-        return;
-    }
-
-    createMessageBox(state.messageWindow, state)
+    createUserMessageBox(state.messageWindow, state)
 }
 
-function createMessageBox(div, state){
+function createUserMessageBox(div, state){
     const message = document.createElement('div')
     message.className = 'message mine'
 
@@ -43,12 +74,49 @@ function createMessageBox(div, state){
     const content = document.createElement('div')
     content.className = 'content'
     content.innerText = state.sendMessage.value;
-    state.sendMessage.value = ""
 
     info.appendChild(content)
     card.appendChild(info)
     message.appendChild(card)
 
+    div.prepend(message) // 요소 맨 앞에 자식 추가
+}
+
+function createBotMessageBox(div, state){
+    const message = document.createElement('div')
+    message.className = 'message'
+
+    const card = document.createElement('div')
+    card.className = 'message-card'
+
+    // 프로필 사진
+    const thumbnail = document.createElement('div')
+    const thumbnailImg = document.createElement('img')
+
+    thumbnail.className = 'thumbnail'
+    thumbnailImg.className = 'rounded-circle'
+    thumbnailImg.src = state.contextPath + "/resources/static/img/profile/profileTest.webp"
+    thumbnail.appendChild(thumbnailImg)
+
+    const info = document.createElement('div')
+    info.className = 'info'
+
+    const userName = document.createElement('div')
+    userName.className = 'user-name'
+    userName.innerText = '챗봇 도우미'
+
+    const content = document.createElement('div')
+    content.className = 'content'
+    content.innerText = state.answer;
+    state.answer = ""
+
+    info.appendChild(userName)
+    info.appendChild(content)
+
+    card.appendChild(thumbnail)
+    card.appendChild(info)
+
+    message.appendChild(card)
     div.prepend(message)
 }
 
@@ -58,11 +126,5 @@ function chatScroll(){
     messageWindow.scrollTo({
         top: messageWindow.scrollHeight,
         behavior: 'smooth'
-    })
-}
-
-function ajaxGetChat(){
-    $.ajax({
-        url:'c'
     })
 }

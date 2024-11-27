@@ -4,5 +4,7 @@ import lombok.Data;
 
 @Data
 public class ChatbotLog {
-	
+	private int logNo;
+	private String idAddr;
+	private String chatDate;
 }
