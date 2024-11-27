@@ -16,6 +16,7 @@ local.properties
 
 # ignore properties file
 config.properties
+apikey.properties
 
 # JDT-specific (Eclipse Java Development Tools)      
 .classpath
@@ -174,3 +175,4 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/java,eclipse
+apikey.js

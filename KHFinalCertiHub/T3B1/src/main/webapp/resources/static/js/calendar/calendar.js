@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
         $.ajax({
             url: 'https://apis.data.go.kr/B490007/qualExamSchd/getQualExamSchdList',
             data: {
-                serviceKey: 'AiATDYDO2nw7aWzpDtDvC8aswTEabFvLtwjy0RwuM2KnGpfE+D4ffB3SmCH4VqDihRDB/NR8RmbluUBQL+o10w==',
+                serviceKey: eventAPI_KEY,
                 numOfRows: 20,
                 pageNo: 1,
                 dataFormat: 'json',
