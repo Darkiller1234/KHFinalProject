@@ -41,12 +41,12 @@ function initSelectBox(contextPath) {
             if (result.memberIntro === undefined) {
                 document.querySelector('.member-intro').innerText = ""
             } else {
-                document.querySelector('.member-intro').innerText = result.memberIntro;
+                document.querySelector('.member-intro').innerText = result.memberIntro.replace(/<br>/gi, '\n');
             }
             if (result.mentorIntro === undefined) {
                 document.querySelector('#career-textarea').value = "";
             } else {
-                document.querySelector('#career-textarea').value = result.career;
+                document.querySelector('#career-textarea').value = result.career.replace(/<br>/gi, '\n');
                 document.querySelector('.mentor-career').innerText = result.career;
             }
             if (result.career === undefined) {
@@ -83,7 +83,7 @@ function initSelectBox(contextPath) {
 
 
             ajaxGetMentorLikeCount(null, function (result) {
-                document.querySelector('#likeCount').innerHTML += result;
+                document.querySelector('#likeCount').innerHTML += converseDigit(result);
             })
 
 
@@ -143,11 +143,14 @@ function initSelectBox(contextPath) {
 }
 
 function mentorSave(){
-    let career = document.querySelector('#career-textarea').value;
-    let intro = document.querySelector('#intro-textarea').value;
+    let career = document.querySelector('#career-textarea').value.replace(/(?:\r\n|\r|\n)/g, '<br>');
+    let intro = document.querySelector('#intro-textarea').value.replace(/(?:\r\n|\r|\n)/g, '<br>');
     let licenseName = document.querySelector(".button-select > div").innerText;
     let valid = document.querySelector(".valid-choose > .custom-select > .button-select > div").innerText;
     ajaxSetMentor({career: career, intro: intro, liName: licenseName, valid: valid}, function(result) {
         console.log(result)
+        if(result === 1){
+            document.querySelector(".modal-body").textContent = "저장 성공"
+        }
     })
 }

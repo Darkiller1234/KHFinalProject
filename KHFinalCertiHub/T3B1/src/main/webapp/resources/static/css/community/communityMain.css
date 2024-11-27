@@ -169,15 +169,6 @@ footer {
     border-radius: 40px;
 }
 
-#search-area div:nth-child(2) select{  /* 제목, 내용 등 셀렉트 박스 */
-    /* width: 100px;
-    border: none;
-    left: 10px;
-    border-radius: 40px;
-    background-color: none;
-    padding-left: 5px; */
-}
-
 
 #selectbox2 > button {
     border: none;
@@ -263,49 +254,6 @@ footer {
     justify-content: space-around;
     height: 40px;
     
-}
-
-#search-area div:nth-child(1) {
-    /* background-color: #ffffff;
-    border: #83C5BE 3px solid;
-    border-radius: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center; */
-}
-
-#search-area div:nth-child(1) select {
-    /* border: none;
-    border-radius: 40px; */
-}
-
-#search-area div:nth-child(2) {
-    /* background-color: #ffffff;
-    border: #83C5BE 3px solid;
-    border-radius: 40px; */
-}
-
-#search-area div:nth-child(2) input {
-    /* border: none; */
-}
-
-#search-area div:nth-child(2) select{  /* 제목, 내용 등 셀렉트 박스 */
-    /* width: 100px;
-    border: none;
-    left: 10px;
-    border-radius: 40px;
-    background-color: none; */
-}
-
-#search-area select {
-    /* width: 100px;
-    /* border: #83C5BE 4px soild ; 
-    border-radius: 40px;
-    background-color: none; */
-}
-
-#search-area div:nth-child(2) select:focus, #search-area select:focus{  /* focus 시 외부라인 나타나는거 제거 */
-    /* outline: none; */
 }
 
 #detail-area > div:nth-child(1), #detail-area > div:nth-child(2){     /* 글 구역 */
