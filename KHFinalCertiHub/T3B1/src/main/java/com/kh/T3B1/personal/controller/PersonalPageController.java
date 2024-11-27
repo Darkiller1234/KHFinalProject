@@ -216,9 +216,6 @@ public class PersonalPageController {
 			@RequestParam("intro") String intro,
 			@RequestParam("licenseNames") String licenseNamesJson, HttpSession session) {
 		
-		if(nickName == "") {
-			return new Gson().toJson(-2);
-		}
 		
 		int result = memberService.nicknameCheck(nickName);
 		Gson gson = new Gson();
@@ -242,7 +239,7 @@ public class PersonalPageController {
 		
 		Member m = ((Member)session.getAttribute("loginMember"));
 		m.setMemberNickname(nickName);
-		m.setMemberIntro(intro);
+		m.setMemberIntro(intro.replaceAll("(?:\\r\\n|\\r|\\n)", "<br>"));
 		
 		
 		

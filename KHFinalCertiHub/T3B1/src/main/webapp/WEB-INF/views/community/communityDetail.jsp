@@ -59,8 +59,9 @@
                 </div>
                 
               </div>
-              <div>
+              <div id="nick-profile-like-div">
                 <p id="nickNameP"></p>
+                <img id="profile_img" src="<%=contextPath%>/resources/static/img/profile/default_profile.png" alt="">
                 <p id="likehatereplyviewdateCountP"></p>
               </div>
               <div>

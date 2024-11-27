@@ -137,7 +137,7 @@
                             <div class="example">
                                 <div class="mentor-card">
                                     <div class="profile-img small">
-                                        <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
+                                        <img src="<%=contextPath%>/resources/static/img/profile/default_profile.png" class="rounded-circle" alt="Cinque Terre">
                                     </div>
                                     <div class="mentor-name font-size-subtitle"></div>
                                     <div class="tag bgcolor3" id="likeCount"><img src="<%=contextPath%>/resources/static/img/button/heart.png"></div>
@@ -204,7 +204,7 @@
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    저장되었습니다.
+                    잠시만 기다려주세요...
                 </div>
 
                 <!-- Modal footer -->
