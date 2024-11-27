@@ -36,21 +36,23 @@ public class ChatbotController {
         if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
             ip = request.getHeader("Proxy-Client-IP"); // WebLogic(WAS) 모듈 weblogic connector(mod_wl)에서 사용하는 헤더
         } 
-        else if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
             ip = request.getHeader("WL-Proxy-Client-IP"); // WebLogic(WAS) 헤더 2
         } 
-        else if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
             ip = request.getHeader("HTTP_CLIENT_IP"); // PHP에서 실제 Client IP를 구하는데 사용
         } 
-        else if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
             ip = request.getHeader("HTTP_X_FORWARDED_FOR"); // ASP에서 실제 Client IP를 구하는데 사용
         }
-        else if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
             ip = request.getHeader("X-Real-IP"); // Nginx 리버스 프록시에서 사용
         }
-        else if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
             ip = request.getRemoteAddr(); // 프록시 서버가 없을때 기본적으로 클라이언트 IP가 담김
         }
+        
+        log.info("\n\nip : {} \n\n",ip);
         
         // ip주소값이 존재하면 실행
         if(ip != null) {
@@ -59,6 +61,7 @@ public class ChatbotController {
             sendInfo.put("ask",ask);
             
             String answer = chatbotService.getChat(sendInfo);
+            result.put("status", "Y");
             result.put("answer", answer);
         }
         
