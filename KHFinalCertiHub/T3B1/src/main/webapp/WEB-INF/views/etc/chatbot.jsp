@@ -103,8 +103,8 @@
             </div>
 
             <div class="search-form">
-                <input id="sendText" type="text" onkeypress="addMessage(event)">
-                <button class="rounded-circle" onclick="addMessage(event)">
+                <input id="sendText" type="text">
+                <button id="sendButton" class="rounded-circle">
                     <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
                 </button> 
             </div>

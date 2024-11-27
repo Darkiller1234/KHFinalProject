@@ -16,6 +16,7 @@ local.properties
 
 # ignore properties file
 config.properties
+.env
 
 # JDT-specific (Eclipse Java Development Tools)      
 .classpath
