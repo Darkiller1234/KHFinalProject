@@ -28,7 +28,7 @@
                     <!-- 메시지 표시 -->
                     <c:choose>
                         <c:when test="${not empty tempPassword}">
-                            <span class="notification-text"><strong>${tempPassword}</strong></span>
+                            <span class="notification-text"><strong>입력하신 이메일로 임시 비밀번호가 전송되었습니다.</strong></span>
                         </c:when>
                     </c:choose>
                 </div>

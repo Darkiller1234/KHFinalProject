@@ -69,4 +69,18 @@
       <context:include-filter type="annotation" expression="org.aspectj.lang.annotation.Aspect"/>
    </context:component-scan>
    
+   <!-- mail 보내기 위함 -->
+   <bean id="sender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="${mail.smtp.host}"/>
+		<property name="port" value="${mail.smtp.port}"/>
+		<property name="username" value="${mail.smtp.username}"/>
+		<property name="password" value="${mail.smtp.password}"/>
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+			</props>
+		</property>
+	</bean>
+   
 </beans>

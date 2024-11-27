@@ -82,5 +82,18 @@ public class PersonalDao {
 	public int saveLicenseEnroll(SqlSessionTemplate sqlSession, License2 dump) {
 		return sqlSession.insert("personalMapper.saveLicenseEnroll", dump);
 	}
+
+	public int ajaxSetMentorEnroll(SqlSessionTemplate sqlSession, Member temp) {
+		return sqlSession.update("personalMapper.ajaxSetMentorEnroll", temp);
+	}
+
+	public int setSymbolLicense(SqlSessionTemplate sqlSession, Map params) {
+		sqlSession.update("personalMapper.resetSymbolLicense", params);
+		return sqlSession.update("personalMapper.setSymbolLicense", params);
+	}
+
+	public int ajaxSetMentor(SqlSessionTemplate sqlSession, Member temp) {
+		return sqlSession.update("personalMapper.ajaxSetMentor", temp);
+	}
 	
 }

@@ -4,6 +4,8 @@ import java.util.Random;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -20,9 +22,10 @@ public class MemberServiceImpl implements MemberService{
 	private MemberDao memberDao;
 	
 	@Autowired
-	private BCryptPasswordEncoder passwordEncoder;
+	private BCryptPasswordEncoder passwordEncoder;	
 	
-	
+	@Autowired
+	private JavaMailSender mailSender;
 	
 	
 	public int membershipPage(Member m) {
@@ -70,10 +73,24 @@ public class MemberServiceImpl implements MemberService{
 		String encodePassword = passwordEncoder.encode(tempPassword);
 		memberDao.updatePassword(sqlSession,memberId,encodePassword);
 		
+		//4. 이메일로 임시 비밀번호 전송
+		sendTemporaryPasswordEmail(email,tempPassword);
+		
+		
 		return tempPassword;
 		
 	}
-
+	
+	private void sendTemporaryPasswordEmail(String email, String tempPassword) {
+		SimpleMailMessage message = new SimpleMailMessage();
+		message.setTo(email);
+		message.setSubject("임시 비밀번호 발급 안내");
+		message.setText("요청하신 임시 비밀번호는" + 
+						tempPassword + 
+						"로그인 후 비밀번호를 변경해 주세요.");
+		
+		mailSender.send(message);
+	}
 
 	private String generateTempPassword() {
 		int length = 8; //임시 비밀번호 길이
