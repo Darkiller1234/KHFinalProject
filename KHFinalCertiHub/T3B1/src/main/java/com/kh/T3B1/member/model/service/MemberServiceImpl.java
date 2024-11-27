@@ -4,6 +4,8 @@ import java.util.Random;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -20,9 +22,10 @@ public class MemberServiceImpl implements MemberService{
 	private MemberDao memberDao;
 	
 	@Autowired
-	private BCryptPasswordEncoder passwordEncoder;
+	private BCryptPasswordEncoder passwordEncoder;	
 	
-	
+	@Autowired
+	private JavaMailSender mailSender;
 	
 	
 	public int membershipPage(Member m) {
