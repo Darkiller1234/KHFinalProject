@@ -20,6 +20,19 @@ function initSelectBox(contextPath){
     createSelectBox(selectBoxList[0], data1)
 
     $("#save-btn").on("click", function(){
+        document.querySelector('.modal-body').textContent = "잠시만 기다려주세요...";
+        if(document.querySelector('input[name="memberNickname"]').value.length > 20){
+            document.querySelector('.modal-body').textContent = "닉네임이 너무 길어요";
+            return;
+        }
+        if(document.querySelector('input[name="memberNickname"]').value.replace(/\s/g, "").length == 0){
+            document.querySelector('.modal-body').textContent = "닉네임을 입력해주세요.";
+            return;
+        }
+        if(document.querySelector('#member-intro').value.length > 100){
+            document.querySelector('.modal-body').textContent = "자기소개가 너무 길어요";
+            return;
+        }
         const fileInput = document.querySelector('#profileInput');
         const formData = new FormData();
         const licenseList = document.querySelector('.look-license-list');
@@ -36,6 +49,15 @@ function initSelectBox(contextPath){
         formData.append('licenseNames', JSON.stringify(licenseNames));
         saveProfile(formData, function (result) {
             console.log(result);
+            if(result === -1){
+                document.querySelector('.modal-body').textContent = "닉네임이 중복입니다.";
+            }
+            else if(result === 0) {
+                document.querySelector('.modal-body').textContent = "저장 실패";
+            }
+            else if(result === 1) {
+                document.querySelector('.modal-body').textContent = "저장을 성공하였습니다.";
+            }
         })
     })
 
@@ -53,6 +75,9 @@ function initSelectBox(contextPath){
         });
     })
 
+
+    const textarea = document.querySelector('#member-intro');
+    textarea.value = textarea.value.replace(/<br\s*\/?>/gi, '\n');
 
 }
 

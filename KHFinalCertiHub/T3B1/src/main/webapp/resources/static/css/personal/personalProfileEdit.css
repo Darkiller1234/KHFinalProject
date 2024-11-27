@@ -33,6 +33,8 @@
 
 .right-view input{
     background-color:#EDF6F9;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .right-view textarea{
@@ -96,7 +98,7 @@
 
 /* 맨 밑 버튼 영역 */
 .bottom-view{
-    padding:100px;
+    padding:30px;
 }
 
 @media (min-width: 721px) {

@@ -408,7 +408,7 @@ function boardLoadingExecute(board, context) {
     getWriterProfileImg({ cno: urlParam.get('cno') }, function (result) {
 
         pathImg = context + result;
-        document.querySelector('#nickNameP').innerHTML += `<img src="` + pathImg + `" alt=""></img>`;
+        document.querySelector('#profile_img').src = pathImg;
     })
 }
 
@@ -626,7 +626,7 @@ function replyListReload(result, contextPath, a, b) {
                         <input type="hidden" value="${reply.replyNo}" name="replyNo">
                     <img src="` + contextPath + `${reply.memberImg}" alt="">
                     <div>
-                        <p class="font-size-subtitle">${reply.memberNickname}</p>
+                        <p class="font-size-subtitle" id="reply_nick">${reply.memberNickname}</p>
                         <p class="font-size-content">${reply.replyContent}</p>
                         <div class="font-size-footer">
                 `
