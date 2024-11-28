@@ -1,8 +1,10 @@
 package com.kh.T3B1.chatbot.service;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -23,7 +25,7 @@ public class ChatbotServiceImpl implements ChatbotService{
 	@Override
 	public String getChat(HashMap<String, String> sendInfo) {
 		String url = "https://api.openai.com/v1/chat/completions";
-		String result = null;
+		String result = "";
 
 		try {
 			URL requestURL= new URL(url);
@@ -44,7 +46,12 @@ public class ChatbotServiceImpl implements ChatbotService{
 			JsonArray msgArray = new JsonArray();
 			msgArray.add(msg);
 			
-			jsonObject.add("message", msgArray);
+			jsonObject.add("messages", msgArray);
+			
+			try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(urlConnection.getOutputStream(), "UTF-8"))) {
+	            writer.write(jsonObject.toString());
+	            writer.flush();
+	        }
 			
 			BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 			
