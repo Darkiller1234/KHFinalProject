@@ -1,3 +1,17 @@
+// 페이지 로드 시 강원도 데이터 자동 로드
+window.onload = function () {
+    fetchWeatherData(0); // '오늘' 데이터 자동 로드
+    fetchWeatherData(1); // '내일' 데이터 자동 로드
+    fetchWeatherData(2); // '모레' 데이터 자동 로드
+
+    // 지역 변경 이벤트 추가
+    document.getElementById("selectArea1").addEventListener("change", () => {
+        fetchWeatherData(0); // '오늘' 데이터 갱신
+        fetchWeatherData(1); // '내일' 데이터 갱신
+        fetchWeatherData(2); // '모레' 데이터 갱신
+    });
+};
+
 // 날씨 데이터 가져오기 함수
 function fetchWeatherData(dayOffset = 0) {
     const areaSelect = document.getElementById("selectArea1");
@@ -5,16 +19,15 @@ function fetchWeatherData(dayOffset = 0) {
     const nx = areaCoords[0].trim();
     const ny = areaCoords[1].trim();
 
-    // 날짜 설정 (base_date 계산: 목표 날짜에 맞춰 설정)
-    const targetDate = new Date();
-    targetDate.setDate(targetDate.getDate() - 1 + dayOffset); // 목표 날짜 계산
-    const baseDate = targetDate.toISOString().split("T")[0].replace(/-/g, ""); // yyyyMMdd 형식
+    // 날짜 설정 (base_date 계산: 항상 전날 기준으로 설정)
+    const today = new Date();
+    today.setDate(today.getDate() - 1); // 전날 기준으로 설정
+    const baseDate = today.toISOString().split("T")[0].replace(/-/g, ""); // yyyyMMdd 형식
     const baseTime = "2300"; // 기준 시간 고정
 
     // API 호출 URL
-    const serviceKey = shortWeatherAPI_KEY; // 인증키
     const timestamp = new Date().getTime(); // 캐싱 방지를 위한 타임스탬프 추가
-    const shortWeatherUrl = `http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=${serviceKey}&numOfRows=1000&pageNo=1&dataType=JSON&base_date=${baseDate}&base_time=${baseTime}&nx=${nx}&ny=${ny}&_=${timestamp}`;
+    const shortWeatherUrl = `http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=AiATDYDO2nw7aWzpDtDvC8aswTEabFvLtwjy0RwuM2KnGpfE%2BD4ffB3SmCH4VqDihRDB%2FNR8RmbluUBQL%2Bo10w%3D%3D&numOfRows=1000&pageNo=1&dataType=JSON&base_date=${baseDate}&base_time=${baseTime}&nx=${nx}&ny=${ny}&_=${timestamp}`;
 
     console.log("API 호출 URL:", shortWeatherUrl); // 디버깅용 로그 출력
 

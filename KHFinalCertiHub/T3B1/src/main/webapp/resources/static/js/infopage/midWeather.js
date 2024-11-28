@@ -5,30 +5,19 @@ document.getElementById('selectArea2').addEventListener('change', function () {
     const regId1 = values[0]; // 첫 번째 값 (날씨 데이터용)
     const regId2 = values[1]; // 두 번째 값 (기온 데이터용)
 
+    const serviceKey = "AiATDYDO2nw7aWzpDtDvC8aswTEabFvLtwjy0RwuM2KnGpfE%2BD4ffB3SmCH4VqDihRDB%2FNR8RmbluUBQL%2Bo10w%3D%3D"; // 인증키
     const tmFc = getRecentForecastTime(); // 최근 발표 시각 계산
 
     // 날씨 예보 API URL
-    const midLandUrl = `http://localhost:5555/T3B1/info/lib/mid-weather?regionCode=${regId1}&tmFc=${tmFc}`;
+    const midLandUrl = `http://apis.data.go.kr/1360000/MidFcstInfoService/getMidLandFcst?serviceKey=${serviceKey}&regId=${regId1}&tmFc=${tmFc}&dataType=JSON&numOfRows=100&pageNo=1`;
 
     // 기온 예보 API URL
-    const midTempUrl = `http://localhost:5555/T3B1/info/lib/mid-weather?regionCode=${regId2}&tmFc=${tmFc}`;
+    const midTempUrl = `https://apis.data.go.kr/1360000/MidFcstInfoService/getMidTa?serviceKey=${serviceKey}&regId=${regId2}&tmFc=${tmFc}&dataType=JSON&numOfRows=100&pageNo=1`;
 
     // 두 API 호출 및 데이터 결합
     Promise.all([
-        fetch(midLandUrl).then(response => {
-            console.log('날씨 API 호출 URL:', midLandUrl);
-            if (!response.ok) {
-                throw new Error('API 호출 실패: ' + response.statusText);
-            }
-            return response.json(); // JSON으로 파싱
-        }),
-        fetch(midTempUrl).then(response => {
-            console.log('기온 API 호출 URL:', midTempUrl);
-            if (!response.ok) {
-                throw new Error('API 호출 실패: ' + response.statusText);
-            }
-            return response.json(); // JSON으로 파싱
-        })
+        fetch(midLandUrl).then(response => response.json()), // 날씨 정보
+        fetch(midTempUrl).then(response => response.json())  // 기온 정보
     ])
         .then(([landData, tempData]) => {
             updateWeatherTable(landData, tempData); // 테이블 업데이트
@@ -88,7 +77,6 @@ function updateWeatherTable(landData, tempData) {
     console.log("itemsLand:", itemsLand); // 날씨 데이터 확인
     console.log("itemsTemp:", itemsTemp); // 기온 데이터 확인
 
-    // 날씨 데이터 업데이트 (3일차부터 10일차까지)
     for (let day = 3; day <= 10; day++) {
         let weatherMorning, weatherAfternoon, rainMorning, rainAfternoon;
 
@@ -114,7 +102,7 @@ function updateWeatherTable(landData, tempData) {
         const weatherAfternoonIcon = weatherIcons[weatherAfternoon] || weatherIcons["-"];
 
         // 테이블 업데이트
-        weatherRow[day - 2].innerHTML = ` 
+        weatherRow[day - 2].innerHTML = `
             <img src="${weatherMorningIcon}" alt="${weatherMorning}" title="${weatherMorning}" />
             / 
             <img src="${weatherAfternoonIcon}" alt="${weatherAfternoon}" title="${weatherAfternoon}" />
@@ -123,4 +111,3 @@ function updateWeatherTable(landData, tempData) {
         rainRow[day - 2].innerHTML = `${rainMorning}% / ${rainAfternoon}%`;
     }
 }
-

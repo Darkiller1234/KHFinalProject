@@ -7,7 +7,7 @@ $(document).ready(function () {
         $.ajax({
             url: 'https://apis.data.go.kr/B490007/qualExamSchd/getQualExamSchdList',
             data: {
-                serviceKey: eventAPI_KEY,
+                serviceKey: 'AiATDYDO2nw7aWzpDtDvC8aswTEabFvLtwjy0RwuM2KnGpfE+D4ffB3SmCH4VqDihRDB/NR8RmbluUBQL+o10w==',
                 numOfRows: 20, // 한 페이지 결과 수
                 pageNo: 1, // 페이지 번호
                 dataFormat: 'json', // 응답 데이터 포맷 (json)

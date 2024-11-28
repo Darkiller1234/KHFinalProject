@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const jmCd = "1320"; // 종목 코드
-    const serviceKey = certiInfoAPI_KEY;
+    const serviceKey = "AiATDYDO2nw7aWzpDtDvC8aswTEabFvLtwjy0RwuM2KnGpfE%2BD4ffB3SmCH4VqDihRDB%2FNR8RmbluUBQL%2Bo10w%3D%3D";
     const apiUrl = `http://openapi.q-net.or.kr/api/service/rest/InquiryInformationTradeNTQSVC/getList?jmCd=${jmCd}&ServiceKey=${serviceKey}`;
 
     const examListContainer = document.querySelector("#exam-list");
