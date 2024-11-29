@@ -1,4 +1,4 @@
-package com.kh.T3B1.member.model.service;
+package com.kh.T3B1.member.service;
 
 import com.kh.T3B1.member.model.vo.Member;
 

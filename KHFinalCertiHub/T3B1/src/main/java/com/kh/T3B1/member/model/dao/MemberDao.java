@@ -1,4 +1,4 @@
-package com.kh.T3B1.member.dao;
+package com.kh.T3B1.member.model.dao;
 
 import java.util.HashMap;
 import java.util.Map;

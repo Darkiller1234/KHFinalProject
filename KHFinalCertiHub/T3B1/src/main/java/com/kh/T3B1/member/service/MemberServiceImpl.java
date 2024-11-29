@@ -1,4 +1,4 @@
-package com.kh.T3B1.member.model.service;
+package com.kh.T3B1.member.service;
 
 import java.util.Random;
 
@@ -9,7 +9,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.kh.T3B1.member.dao.MemberDao;
+import com.kh.T3B1.member.model.dao.MemberDao;
 import com.kh.T3B1.member.model.vo.Member;
 
 @Service
