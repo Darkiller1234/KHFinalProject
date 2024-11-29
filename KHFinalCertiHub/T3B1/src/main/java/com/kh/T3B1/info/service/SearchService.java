@@ -1,4 +1,4 @@
-package com.kh.T3B1.info.model.service;
+package com.kh.T3B1.info.service;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.kh.T3B1.main.model.service;
+package com.kh.T3B1.main.service;
 
 import java.util.List;
 

@@ -125,5 +125,20 @@ public class PersonalServiceImpl implements PersonalService{
 	public int ajaxSetMentor(Member temp) {
 		return personalDao.ajaxSetMentor(sqlSession, temp);
 	}
+
+	@Override
+	public int updateMember(Member temp) {
+		return personalDao.updateMember(sqlSession, temp);
+	}
+
+	@Override
+	public int ajaxSubmitChange(Member temp) {
+		return personalDao.ajaxSubmitChange(sqlSession, temp);
+	}
+
+	@Override
+	public int ajaxSubmitDelete(int memberNo) {
+		return personalDao.ajaxSubmitDelete(sqlSession, memberNo);
+	}
 	
 }
