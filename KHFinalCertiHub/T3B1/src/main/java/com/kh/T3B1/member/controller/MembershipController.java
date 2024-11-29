@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kh.T3B1.member.model.service.MemberService;
 import com.kh.T3B1.member.model.vo.Member;
+import com.kh.T3B1.member.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
 
