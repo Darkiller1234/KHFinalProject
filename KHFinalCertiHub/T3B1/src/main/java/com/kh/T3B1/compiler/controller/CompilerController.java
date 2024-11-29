@@ -30,7 +30,7 @@ public class CompilerController {
 		Member member = (Member)session.getAttribute("loginMember");
 		
 		HashMap<String, Object> compileInfo = new HashMap<>();
-		compileInfo.put("memberNo", member.getMemberNo());
+		if(member != null) compileInfo.put("memberNo", member.getMemberNo());
 		compileInfo.put("selectedLang", selectedLang);
 		compileInfo.put("code", code);
 
