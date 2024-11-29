@@ -95,5 +95,17 @@ public class PersonalDao {
 	public int ajaxSetMentor(SqlSessionTemplate sqlSession, Member temp) {
 		return sqlSession.update("personalMapper.ajaxSetMentor", temp);
 	}
+
+	public int updateMember(SqlSessionTemplate sqlSession, Member temp) {
+		return sqlSession.update("personalMapper.updateMember", temp);
+	}
+
+	public int ajaxSubmitChange(SqlSessionTemplate sqlSession, Member temp) {
+		return sqlSession.update("personalMapper.ajaxSubmitChange", temp);
+	}
+
+	public int ajaxSubmitDelete(SqlSessionTemplate sqlSession, int memberNo) {
+		return sqlSession.update("personalMapper.ajaxSubmitDelete", memberNo);
+	}
 	
 }

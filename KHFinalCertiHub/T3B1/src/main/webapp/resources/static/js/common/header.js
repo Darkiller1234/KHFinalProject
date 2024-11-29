@@ -94,6 +94,10 @@ function init(contextPath, pageName, optional){
             initPersonalMentorEnroll(contextPath);
             break;
 
+        case "personalChangePage":
+            initPersonalChangePage(contextPath);
+            break;
+
         // 메시지 페이지
 
         // 관리자 페이지
