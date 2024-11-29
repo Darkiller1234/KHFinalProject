@@ -35,6 +35,7 @@
                 
             </div>
 
+            
             <div class="search-form">
                 <input id="sendText" type="text">
                 <button id="sendButton" class="rounded-circle">

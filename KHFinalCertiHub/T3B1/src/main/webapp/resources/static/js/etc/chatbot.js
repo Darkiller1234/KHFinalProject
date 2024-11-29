@@ -2,12 +2,14 @@ function initChatbotPage(contextPath){
     const sendMessage = document.querySelector('#sendText')
     const sendButton = document.querySelector('#sendButton')
     const messageWindow = document.querySelector('.message-window')
+    const loadingBar = document.querySelector('.loading-section')
 
     let state = {
         contextPath: contextPath,
         sendMessage: sendMessage,
         sendButton: sendButton,
         messageWindow: messageWindow,
+        loadingBar: loadingBar,
         answer: null,
     }
 
@@ -16,8 +18,7 @@ function initChatbotPage(contextPath){
 
 function initSendChatEvent(state){
     const onGetChat = (res) => {
-        console.log(res)
-        
+        state.loadingBar.style.display = 'none';
         state.answer = res.status == 'Y' ? res.answer : '오늘의 요청 한도를 초과하셨습니다.'
         state.sendMessage.value = ""
         createBotMessageBox(state.messageWindow, state)
@@ -44,6 +45,8 @@ function initSendChatEvent(state){
 }
 
 function ajaxGetChat(state, callback){
+    state.loadingBar.style.display = 'flex';
+
     $.ajax({
         url: state.contextPath + '/chatbot/getChat',
         type:"post",
