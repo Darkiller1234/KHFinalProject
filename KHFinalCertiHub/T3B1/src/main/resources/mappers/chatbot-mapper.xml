@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace: 해당 mapper파일의 고유한 별칭 -->
+
+<mapper namespace="chatbotMapper">
+	<resultMap type="chatbotLog" id="chatbotLogResultSet">
+		<result column="LOG_NO" property="logNo" />
+		<result column="IP_ADDR" property="idAddr" />
+		<result column="CHAT_DATE" property="chatDate" />
+	</resultMap>
+	
+	<select id="getDailyRequestCount" resultType="int">
+		SELECT COUNT(*)
+		  FROM CHATBOT_LOG
+		 WHERE CHAT_DATE > TRUNC(SYSDATE)
+		   AND IP_ADDR = #{ip}
+	</select>
+	
+	<insert id="insertLog" parameterType="HashMap">
+		INSERT INTO CHATBOT_LOG(
+			LOG_NO,
+			IP_ADDR
+		) VALUES (
+			CHATBOT_LOG_SEQ.NEXTVAL,
+			#{ip}
+		)
+	</insert>
+	
+</mapper>
+
+
+

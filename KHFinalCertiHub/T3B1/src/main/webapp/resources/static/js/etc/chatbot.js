@@ -18,7 +18,7 @@ function initSendChatEvent(state){
     const onGetChat = (res) => {
         console.log(res)
         
-        state.answer = res.status == 'Y' ? res.answer : 'AI가 답변생성에 실패했습니다...'
+        state.answer = res.status == 'Y' ? res.answer : '오늘의 요청 한도를 초과하셨습니다.'
         state.sendMessage.value = ""
         createBotMessageBox(state.messageWindow, state)
     }
@@ -95,7 +95,7 @@ function createBotMessageBox(div, state){
 
     thumbnail.className = 'thumbnail'
     thumbnailImg.className = 'rounded-circle'
-    thumbnailImg.src = state.contextPath + "/resources/static/img/profile/profileTest.webp"
+    thumbnailImg.src = state.contextPath + "/resources/static/img/profile/chatbot.png"
     thumbnail.appendChild(thumbnailImg)
 
     const info = document.createElement('div')

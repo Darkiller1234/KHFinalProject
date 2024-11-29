@@ -9,5 +9,11 @@ public interface ChatbotService {
 	 * @return String answer(ChatGPT로 생성된 답변)
 	 */
 	String getChat(HashMap<String, String> sendInfo);
+
+	/** 
+	 * @param String ip : 일일 요청횟수를 확인할 ip주소
+	 * @return int 일일 요청횟수
+	 */
+	Integer getDailyRequestCount(String ip);
 	
 }

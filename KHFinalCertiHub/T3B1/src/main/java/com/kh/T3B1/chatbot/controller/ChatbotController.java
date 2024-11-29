@@ -52,17 +52,22 @@ public class ChatbotController {
             ip = request.getRemoteAddr(); // 프록시 서버가 없을때 기본적으로 클라이언트 IP가 담김
         }
         
-        log.info("\n\nip : {} \n\n",ip);
+        log.info("request ip : {}",ip);
         
         // ip주소값이 존재하면 실행
         if(ip != null) {
-            HashMap<String, String> sendInfo = new HashMap<>();
-            sendInfo.put("ip",ip);
-            sendInfo.put("ask",ask);
-            
-            String answer = chatbotService.getChat(sendInfo);
-            result.put("status", "Y");
-            result.put("answer", answer);
+        	// 해당 아이피로 gpt 사용 횟수 조회
+        	Integer dailyReqCnt = chatbotService.getDailyRequestCount(ip);
+        	
+            if(dailyReqCnt != null && dailyReqCnt < 10) {
+                HashMap<String, String> sendInfo = new HashMap<>();
+                sendInfo.put("ip",ip);
+                sendInfo.put("ask",ask);
+                
+                String answer = chatbotService.getChat(sendInfo);
+                result.put("status", "Y");
+                result.put("answer", answer);
+            }
         }
         
 		return new Gson().toJson(result);
