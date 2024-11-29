@@ -15,14 +15,19 @@ window.addEventListener('resize', function() {
 
 // 입력을 체크하고 페이지 이동을 처리하는 함수
 function validateAndRedirect() {
-    var userPwd = document.getElementById("userPwd").value; // 입력된 값을 가져옴
+    let userPwd = document.getElementById("userPwd").value; // 입력된 값을 가져옴
     
     // 입력값이 비어있으면 경고 메시지를 띄움
     if (userPwd.trim() === "") {
         alert("비밀번호를 입력해주세요.");
     } else {
-        // 값이 있으면 페이지로 이동
-        location.href = "ChangePage";
+        ajaxCheckPwd({pwd: userPwd}, function (result) {
+            if(result === 0){
+                alert("비밀번호가 일치하지 않습니다.")
+            } else {
+                location.href = "ChangePage";
+            }
+        })
     }
 }
 
