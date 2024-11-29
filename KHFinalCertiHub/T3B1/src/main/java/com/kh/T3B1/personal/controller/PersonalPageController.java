@@ -12,6 +12,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +22,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.kh.T3B1.member.model.service.MemberService;
 import com.kh.T3B1.member.model.vo.Member;
+import com.kh.T3B1.member.service.MemberService;
 import com.kh.T3B1.personal.model.vo.License2;
 import com.kh.T3B1.personal.service.PersonalService;
 
@@ -37,10 +38,13 @@ public class PersonalPageController {
 	
 	private final MemberService memberService;
 	
+	private final BCryptPasswordEncoder bcryptPasswordEncoder;
+	
 	@Autowired
-	public PersonalPageController(PersonalService personalService, MemberService memberService) {
+	public PersonalPageController(PersonalService personalService, MemberService memberService, BCryptPasswordEncoder bcryptPasswordEncoder) {
 		this.personalService = personalService;
 		this.memberService = memberService;
+		this.bcryptPasswordEncoder = bcryptPasswordEncoder;
 	}
 	
 	@RequestMapping("view")
@@ -381,13 +385,108 @@ public class PersonalPageController {
 	
 	
 	@RequestMapping("Change")
-	public String PersonalChange() {
+	public String PersonalChange() {		// 세션에서 비밀번호 사라지면 수정해야함
 		return "personal/personalChange";
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="Change/checkPwd", produces="application/json; charset-UTF-8")
+	public int ajaxCheckPwd(String pwd, HttpSession session) {
+		
+		int result = bcryptPasswordEncoder.matches(pwd, ((Member)session.getAttribute("loginMember")).getMemberPwd())?1:0;
+		session.setAttribute("changeEnterCheck", true);
+		
+		return result;
+	}
+	
 	@RequestMapping("ChangePage")
-	public String PersonalChangePage() {
-		return "personal/personalChangePage";
+	public String PersonalChangePage(HttpSession session, Model p) {
+		if(session.getAttribute("changeEnterCheck") != null && (boolean)session.getAttribute("changeEnterCheck")) {
+//			session.setAttribute("changeEnterCheck", false);
+			p.addAttribute("pageName","personalChangePage");
+			return "personal/personalChangePage";
+		}
+		return "redirect:/personal/Change";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="ChangePage/getInitData", produces="application/json; charset-UTF-8")
+	public String ajaxGetInitData(HttpSession session) {
+		
+		Member temp = ((Member)session.getAttribute("loginMember"));
+		
+		Member m = new Member();
+		m.setMemberName(temp.getMemberName());
+		m.setEmail(temp.getEmail());
+		m.setPhone(temp.getPhone());
+		
+		return new Gson().toJson(m);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="ChangePage/setUpdateData", produces="application/json; charset-UTF-8")
+	public String ajaxSetUpdateData(String name,
+			String email,
+			String phone,
+			HttpSession session) {
+		
+		Member temp = ((Member)session.getAttribute("loginMember"));
+		
+		temp.setEmail(email);
+		temp.setPhone(phone);
+		temp.setMemberName(name);
+		
+		int result = personalService.updateMember(temp);
+		if(result == 1) {
+			session.setAttribute("loginMember", temp);
+			return new Gson().toJson(result);
+		} else {
+			return new Gson().toJson(result);
+		}
+		
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="ChangePage/submitChange", produces="application/json; charset-UTF-8")
+	public String ajaxSubmitChange(String pwd,
+			String newPwd,
+			HttpSession session) {
+		
+		Member temp = ((Member)session.getAttribute("loginMember"));
+		
+		if(bcryptPasswordEncoder.matches(pwd, ((Member)session.getAttribute("loginMember")).getMemberPwd())) {
+			temp.setMemberPwd(bcryptPasswordEncoder.encode(newPwd));
+			int result = personalService.ajaxSubmitChange(temp);
+			if(result == 1) {
+				session.setAttribute("loginMember", temp);
+				return new Gson().toJson(result);
+			} else {
+				return new Gson().toJson(result);
+			}
+		} else {
+			return new Gson().toJson(-1);
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="ChangePage/submitDelete", produces="application/json; charset-UTF-8")
+	public String ajaxSubmitDelete(String pwd,
+			HttpSession session) {
+		
+		int memberNo = ((Member)session.getAttribute("loginMember")).getMemberNo();
+		
+		if(bcryptPasswordEncoder.matches(pwd, ((Member)session.getAttribute("loginMember")).getMemberPwd())) {
+			int result = personalService.ajaxSubmitDelete(memberNo);
+			if(result == 1) {
+				session.removeAttribute("loginMember");
+				return new Gson().toJson(result);
+			} else {
+				return new Gson().toJson(result);
+			}
+		} else {
+			return new Gson().toJson(-1);
+		}
 	}
 
 }

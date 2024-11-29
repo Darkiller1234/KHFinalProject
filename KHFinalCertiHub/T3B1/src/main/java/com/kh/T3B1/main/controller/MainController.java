@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.T3B1.community.model.vo.Board;
-import com.kh.T3B1.main.model.service.MainService;
+import com.kh.T3B1.main.service.MainService;
 
 @Controller
 public class MainController {

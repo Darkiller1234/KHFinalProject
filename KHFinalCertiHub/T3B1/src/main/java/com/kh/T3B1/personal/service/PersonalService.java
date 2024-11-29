@@ -39,4 +39,10 @@ public interface PersonalService {
 
 	int ajaxSetMentor(Member temp);
 
+	int updateMember(Member temp);
+
+	int ajaxSubmitChange(Member temp);
+
+	int ajaxSubmitDelete(int memberNo);
+
 }

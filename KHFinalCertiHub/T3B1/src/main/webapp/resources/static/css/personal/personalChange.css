@@ -9,10 +9,6 @@ body {
     font-family: Arial, sans-serif;
 }
 
-.wrapper {
-    padding: 20px;
-}
-
 /* 탭 스타일 */
 .tabs {
     display: flex;
@@ -174,3 +170,8 @@ img {
     margin-right: 30%;
 }
 
+
+
+.btns > button {
+    width: 100px;
+}

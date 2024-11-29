@@ -207,12 +207,12 @@
                                         <select id="areaSelect" class="examArea">
                                             <option value="">지역 선택</option>
                                             <option value="강원">강원</option>
-                                            <option value="강원동부">강원</option>
+                                            <option value="강원동부">강원동부</option>
                                             <option value="경기남부">경기남부</option>
                                             <option value="경기동부">경기동부</option>
                                             <option value="경기북부">경기북부</option>
                                             <option value="경기서부">경기서부</option>
-                                            <option value="경남">경남서부</option>
+                                            <option value="경남">경남</option>
                                             <option value="경남서부">경남서부</option>
                                             <option value="경북">경북</option>
                                             <option value="경북동부">경북동부</option>

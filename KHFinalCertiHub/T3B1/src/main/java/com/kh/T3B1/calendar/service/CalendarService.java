@@ -1,4 +1,4 @@
-package com.kh.T3B1.calendar.model.service;
+package com.kh.T3B1.calendar.service;
 
 import java.util.ArrayList;
 

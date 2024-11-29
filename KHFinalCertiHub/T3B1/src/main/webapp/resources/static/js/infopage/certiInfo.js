@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 throw new Error("데이터가 없습니다.");
             }
 
-            //내용 초기화
+            // 내용 초기화
             examListContainer.innerHTML = "";
 
             items.forEach(item => {
@@ -32,15 +32,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 const infogb = item.querySelector("infogb")?.textContent || "";
                 const contents = item.querySelector("contents")?.textContent || "";
 
-                // HTML 태그 제거하기
-                const cleanContents = contents.replace(/<[^>]*>?/g, ""); 
+                // 텍스트 정리
+                const cleanContents = contents
+                    .replace(/<[^>]*>/g, "") // HTML 태그 제거
+                    .replace(/BODY \{.*?\}P \{.*?\}LI \{.*?\}/g, "") // CSS 스타일 제거
+                    .replace(/[\u2460-\u2473]/g,"<br>") // 원문자 줄바꿈
+                    .replace(/(\d+\.)/g, "<br>$1") // 번호 뒤 줄바꿈
+                    .replace(/<세부 평가 내역>/g, "<br><strong>세부 평가 내역:</strong><br>") // 특정 텍스트 변환
+                    // .replace(/\s*-\s*/g, "<br>- ") // '-'로 시작하는 항목 줄바꿈
+                    .replace(/\n+/g, "<br>"); // 일반 줄바꿈 처리
 
                 const listItem = document.createElement("li");
 
                 listItem.innerHTML = `
-                    <strong>종목명:</strong> ${jmfldnm} <br>
-                    <strong>출제범위:</strong> ${infogb} <br>
-                    <strong>내용:</strong> ${cleanContents}
+                    <strong>종목명:</strong> ${jmfldnm} <br><br>
+                    <strong>출제범위:</strong> ${infogb} <br><br>
+                    <strong>내용:</strong> ${cleanContents}<br><br>
                 `;
 
                 examListContainer.appendChild(listItem);
