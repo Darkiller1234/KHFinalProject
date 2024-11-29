@@ -47,7 +47,7 @@ function initSelectBox(contextPath){
 function initList(contextPath){
     const boardList = document.querySelector('.board-content'); 
     let data = {
-        url: contextPath + "/info",
+        url: contextPath + "/info/lib",
         header : [
             "제목",
             "작성자",
