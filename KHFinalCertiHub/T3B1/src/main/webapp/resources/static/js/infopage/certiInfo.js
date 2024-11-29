@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 throw new Error("데이터가 없습니다.");
             }
 
-            //내용 초기화
+            // 내용 초기화
             examListContainer.innerHTML = "";
 
             items.forEach(item => {
@@ -32,15 +32,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 const infogb = item.querySelector("infogb")?.textContent || "";
                 const contents = item.querySelector("contents")?.textContent || "";
 
-                // HTML 태그 제거하기
-                const cleanContents = contents.replace(/<[^>]*>?/g, ""); 
+                // HTML 태그 및 특정 CSS 스타일 제거하기
+                const cleanContents = contents
+                    .replace(/<[^>]*>?/g, "") // HTML 태그 제거
+                    .replace(/\n/g, "<br>") // 줄바꿈 문자 \n을 <br>로 변환
+                    .replace(/(\d+\.)/g, "<br>$1") // 숫자 뒤에 <br> 추가
+                    .replace(/BODY \{.*?\}P \{.*?\}LI \{.*?\}/g, ""); // 특정 스타일 제거
 
                 const listItem = document.createElement("li");
 
                 listItem.innerHTML = `
-                    <strong>종목명:</strong> ${jmfldnm} <br>
-                    <strong>출제범위:</strong> ${infogb} <br>
-                    <strong>내용:</strong> ${cleanContents}
+                    <strong>종목명:</strong> ${jmfldnm} <br><br>
+                    <strong>${infogb} </strong> <br><br>
+                    ${cleanContents}<br><br>
                 `;
 
                 examListContainer.appendChild(listItem);

@@ -256,3 +256,9 @@ span {
     text-align: center;
     background-color: #83C5BE;
 }
+
+#exam-list {
+    word-wrap: break-word; /* 단어가 길어서 한 줄을 넘칠 경우 자동으로 줄바꿈 */
+    word-break: break-word; /* 단어 중간에서 줄바꿈 */
+    white-space: normal; /* 텍스트가 너무 길어도 줄바꿈을 허용 */
+}

@@ -13,6 +13,9 @@ async function fetchExamData() {
         return;
     }
 
+    // 데이터 로딩 중 메시지 표시
+    document.getElementById("areaList").innerHTML = "<li>데이터를 불러오는중입니다....</li>";
+
     try {
         // 모든 페이지 데이터를 가져오기
         const allData = await fetchAllData(apiUrl, apiKey);
@@ -71,20 +74,34 @@ async function fetchAllData(apiUrl, apiKey) {
 function displayExamData(data) {
     const resultList = document.getElementById("areaList");
 
+    // "데이터 불러오는중" 메시지 제거
+    resultList.innerHTML = "";
+
     if (data.length === 0) {
         resultList.innerHTML = "<li>해당 지역의 시험장 데이터가 없습니다.</li>";
         return;
     }
 
+    // 시험장소와 시험일 기준으로 중복된 항목 제거
+    const uniqueData = [];
+    const locationsSeen = new Set();
 
+    data.forEach(item => {
+        const locationKey = `${item.시험장소}-${item.시험일}`; // 시험장소와 시험일을 결합한 키 생성
+
+        // 시험장소와 시험일이 이미 등장한 경우, 해당 항목을 추가하지 않음
+        if (!locationsSeen.has(locationKey)) {
+            locationsSeen.add(locationKey);
+            uniqueData.push(item);
+        }
+    });
 
     // 데이터를 줄바꿈 포함하여 출력
-    resultList.innerHTML = data.map(item => `
+    resultList.innerHTML = uniqueData.map(item => `
         <li style="margin-bottom: 10px;">
             <strong>지사명:</strong> ${item.지사명}<br>
             <strong>시험장소:</strong> ${item.시험장소.replace(/\n/g, "<br>")}<br>
             <strong>시험일:</strong> ${item.시험일}
-            <strong>부실:</strong> ${item.부}
         </li>
     `).join("");
 }
