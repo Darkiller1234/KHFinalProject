@@ -257,7 +257,7 @@
             </div>
             
             <div class="pagination">
-              <c:if test="${pi.currentPage != 1}">
+              <c:if test="${pi.currentPage > 1}">
                 <span class="page-arrow" onclick="pageChange(${pi.currentPage - 1}, ${certiNo}, ${tabNo})">
                   <img src="<%=contextPath%>/resources/static/img/button/arrow_left.png" alt="">
                 </span>
