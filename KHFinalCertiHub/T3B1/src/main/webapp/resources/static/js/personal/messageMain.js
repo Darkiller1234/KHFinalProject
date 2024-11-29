@@ -28,7 +28,6 @@ function talkroomClick(_this){
 
 function addMessage(e){
     const sendMessage = document.querySelector('#sendText')
-    console.log(sendMessage.value)
 
     if( (e.code !== 'Enter' && e.type !== 'click') || sendMessage.value == ""){
         return;

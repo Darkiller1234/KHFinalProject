@@ -1,15 +1,93 @@
-function addMessage(e){
+function initChatbotPage(contextPath){
     const sendMessage = document.querySelector('#sendText')
-    console.log(sendMessage.value)
+    const sendButton = document.querySelector('#sendButton')
+    const messageWindow = document.querySelector('.message-window')
+    const loadingBar = document.querySelector('.loading-section')
 
-    if( (e.code !== 'Enter' && e.type !== 'click') || sendMessage.value == ""){
-        return;
+    let state = {
+        contextPath: contextPath,
+        sendMessage: sendMessage,
+        sendButton: sendButton,
+        messageWindow: messageWindow,
+        loadingBar: loadingBar,
+        answer: null,
     }
 
-    const messageWindow = document.querySelector('.message-window')
+    initSendChatEvent(state);
+}
+
+function initSendChatEvent(state){
+    const onGetChat = (res) => {
+        state.loadingBar.style.display = 'none';
+        state.answer = res.status == 'Y' ? res.answer : '오늘의 요청 한도를 초과하셨습니다.'
+        state.sendMessage.value = ""
+        createBotMessageBox(state.messageWindow, state)
+    }
     
-    const div = document.createElement('div')
-    div.className = 'message mine'
+    state.sendMessage.onkeypress = (e) => {
+
+        if( (e.code !== 'Enter' && e.type !== 'click') || state.sendMessage.value == "" ){
+            return;
+        }
+
+        addMessage(e, state)
+        ajaxGetChat(state, onGetChat)
+    }
+    state.sendButton.onclick = (e) => {
+
+        if( (e.code !== 'Enter' && e.type !== 'click') || state.sendMessage.value == "" ){
+            return;
+        }
+
+        addMessage(e, state)
+        ajaxGetChat(state, onGetChat)
+    }
+}
+
+function ajaxGetChat(state, callback){
+    state.loadingBar.style.display = 'flex';
+
+    $.ajax({
+        url: state.contextPath + '/chatbot/getChat',
+        type:"post",
+        data: {
+            ask : state.sendMessage.value,
+        },
+        success: callback,
+        error: () => {
+            console.log("챗봇 호출 실패")
+        }
+    })
+}
+
+function addMessage(e, state){
+    createUserMessageBox(state.messageWindow, state)
+}
+
+function createUserMessageBox(div, state){
+    const message = document.createElement('div')
+    message.className = 'message mine'
+
+    const card = document.createElement('div')
+    card.className = 'message-card'
+
+    const info = document.createElement('div')
+    info.className = 'info'
+
+    const content = document.createElement('div')
+    content.className = 'content'
+    content.innerText = state.sendMessage.value;
+
+    info.appendChild(content)
+    card.appendChild(info)
+    message.appendChild(card)
+
+    div.prepend(message) // 요소 맨 앞에 자식 추가
+}
+
+function createBotMessageBox(div, state){
+    const message = document.createElement('div')
+    message.className = 'message'
 
     const card = document.createElement('div')
     card.className = 'message-card'
@@ -20,7 +98,7 @@ function addMessage(e){
 
     thumbnail.className = 'thumbnail'
     thumbnailImg.className = 'rounded-circle'
-    thumbnailImg.src = "../resources/static/img/profile/profileTest.webp"
+    thumbnailImg.src = state.contextPath + "/resources/static/img/profile/chatbot.png"
     thumbnail.appendChild(thumbnailImg)
 
     const info = document.createElement('div')
@@ -28,12 +106,12 @@ function addMessage(e){
 
     const userName = document.createElement('div')
     userName.className = 'user-name'
-    userName.innerText = 'User01'
+    userName.innerText = '챗봇 도우미'
 
     const content = document.createElement('div')
     content.className = 'content'
-    content.innerText = sendMessage.value;
-    sendMessage.value = ""
+    content.innerText = state.answer;
+    state.answer = ""
 
     info.appendChild(userName)
     info.appendChild(content)
@@ -41,15 +119,15 @@ function addMessage(e){
     card.appendChild(thumbnail)
     card.appendChild(info)
 
-    div.appendChild(card)
-    messageWindow.prepend(div)
+    message.appendChild(card)
+    div.prepend(message)
 }
 
 function chatScroll(){
-        const messageWindow = document.querySelector('.message-window')
+    const messageWindow = document.querySelector('.message-window')
 
-        messageWindow.scrollTo({
-            top: messageWindow.scrollHeight,
-            behavior: 'smooth'
-        })
+    messageWindow.scrollTo({
+        top: messageWindow.scrollHeight,
+        behavior: 'smooth'
+    })
 }
