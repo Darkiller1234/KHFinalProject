@@ -108,9 +108,9 @@
                                 <label for="phone">전화번호</label>
                                 <input type="tel" class="form-control" id="phone" placeholder="전화번호 입력" name="phone"
                                     required>
-
+                                <br>
                                 <div class="btns">
-                                    <button type="submit" id="updateBtn" class="btn btn-primary font-size-title">
+                                    <button type="submit" id="updateBtn" class="btn btn-primary">
                                         <img src="<%=contextPath%>/resources/static/img/button/Save.png">
                                         저장
                                     </button>
@@ -133,7 +133,7 @@
                             <!-- 회원 탈퇴 텍스트와 버튼 -->
                             <div class="account-delete">
                                 <span class="label">회원 탈퇴</span>
-                                <button class="btn-primary" data-bs-toggle="modal" data-bs-target="#delete-modal">회원
+                                <button class="btn-primary" data-bs-toggle="modal" data-bs-target="#delete-modal" id="#delete-modal">회원
                                     탈퇴</button>
                             </div>
                         </div>

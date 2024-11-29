@@ -49,7 +49,9 @@ public class CommunityController {
 			@RequestParam(value="filterText", defaultValue="") String filterText, Model c) {
 		
 		
-		
+		if(currentPage < 1) {
+			currentPage = 1;
+		}
 		Board boardForSelect = new Board();		// 리스트 불러오기용 보드객체
 		boardForSelect.setLicenseNo(certiNo);
 		boardForSelect.setTabNo(tabNo);
