@@ -239,6 +239,29 @@
 		SYMBOL_LICENSE = 'N'
 		WHERE MEMBER_NO = #{pno}
 	</update>
+	
+	<update id="updateMember" parameterType="Member">
+		UPDATE MEMBER
+		SET
+		MEMBER_NAME = #{memberName},
+		EMAIL = #{email},
+		PHONE = #{phone}
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+	
+	<update id="ajaxSubmitChange" parameterType="Member">
+		UPDATE MEMBER
+		SET
+		MEMBER_PWD = #{memberPwd}
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+	
+	<update id="ajaxSubmitDelete">
+		UPDATE MEMBER
+		SET
+		STATUS = 'N'
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
 </mapper>
 
 

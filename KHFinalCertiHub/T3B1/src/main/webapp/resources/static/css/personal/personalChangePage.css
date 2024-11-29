@@ -9,10 +9,6 @@ body {
     font-family: Arial, sans-serif;
 }
 
-.wrapper {
-    padding: 20px;
-}
-
 /* 탭 스타일 */
 .tabs {
     display: flex;
@@ -274,4 +270,8 @@ img {
 .dropdown-content.show {
     display: block;
     margin-right: 30%;
+}
+
+#delete-modal:focus {
+    background-color: #E29578;
 }
