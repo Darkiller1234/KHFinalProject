@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.kh.T3B1.common.template.Template;
 import com.kh.T3B1.common.vo.License;
 import com.kh.T3B1.common.vo.PageInfo;
-import com.kh.T3B1.info.model.service.SearchService;
+import com.kh.T3B1.info.service.SearchService;
 
 @Controller
 @RequestMapping("info/") 

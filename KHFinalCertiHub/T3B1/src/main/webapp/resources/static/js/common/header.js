@@ -131,6 +131,9 @@ function init(contextPath, pageName, optional){
             break;
 
         // 기타(챗봇 도우미)
+        case "chatbot":
+            initChatbotPage(contextPath);
+            break;
     }
 }
 

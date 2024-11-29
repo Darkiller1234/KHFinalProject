@@ -22,8 +22,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.kh.T3B1.member.model.service.MemberService;
 import com.kh.T3B1.member.model.vo.Member;
+import com.kh.T3B1.member.service.MemberService;
 import com.kh.T3B1.personal.model.vo.License2;
 import com.kh.T3B1.personal.service.PersonalService;
 
