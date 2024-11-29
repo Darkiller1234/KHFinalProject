@@ -62,6 +62,7 @@
 	 		<mapping path="/personal/Change"/>
 	 		<mapping path="/personal/ChangePage"/>
 	 		<mapping path="/personal/mentor/enroll"/>
+	 		<mapping path="/message/main"/>
 
 	 		<beans:bean class="com.kh.T3B1.common.interceptor.LoginInterceptor" id="loginIntercepter" />
 	 	</interceptor>

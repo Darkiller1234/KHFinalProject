@@ -10,6 +10,7 @@
 <title>서티허브 - 메세지</title>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/personal/messageMain.css">
+<script src="${pageContext.request.contextPath}/resources/static/js/personal/messageMainAjax.js"></script>
 <script src="${pageContext.request.contextPath}/resources/static/js/personal/messageMain.js"></script>
 
 </head>
@@ -18,36 +19,24 @@
     <%@ include file="../common/header.jsp" %>
 
 	<div class="wrapper calcHeight">
-                    <!-- <div class="option" onclick="sideClick(this)">
-                <div class="option-icon"><img src="${pageContext.request.contextPath}/resources/static/img/button/person_icon_light.png"></div>
-                <div class="option-text">멘토</div>
-            </div>
-            <div class="option" onclick="sideClick(this)">
-                <div class="option-icon"><img src="${pageContext.request.contextPath}/resources/static/img/button/group_icon_light.png"></div>
-                <div class="option-text">스터디그룹</div>
-            </div>
-            <div class="option" onclick="sideClick(this)">
-                <div class="option-icon"><img src="${pageContext.request.contextPath}/resources/static/img/button/noti_icon_light.png"></div>
-                <div class="option-text">알림</div>
-            </div> -->
         <div class="side">
             <div class="side-menu">
                 <label>
-                    <input type="radio" name="side-option" onclick="sideClick(this)" value="1">
+                    <input type="radio" name="side-option" value="1">
                     <div>
                         <div class="option-icon"><img src="${pageContext.request.contextPath}/resources/static/img/button/person_icon_light.png"></div>
                         <div class="option-text">멘토</div>
                     </div>
                 </label>
                 <label>
-                    <input type="radio" name="side-option" onclick="sideClick(this)" value="2">
+                    <input type="radio" name="side-option" value="2">
                     <div>
                         <div class="option-icon"><img src="${pageContext.request.contextPath}/resources/static/img/button/group_icon_light.png"></div>
                         <div class="option-text">스터디그룹</div>
                     </div>
                 </label>
                 <label>
-                    <input type="radio" name="side-option" onclick="sideClick(this)" value="3">
+                    <input type="radio" name="side-option" value="3">
                     <div>
                         <div class="option-icon"><img src="${pageContext.request.contextPath}/resources/static/img/button/noti_icon_light.png"></div>
                         <div class="option-text">알림</div>
@@ -55,7 +44,7 @@
                 </label>
             </div>
 
-            <div class="side-extend" data-previousOption="">
+            <div class="side-extend">
 
                 <div class="side-search">
                     <div class="search-form">
@@ -65,10 +54,9 @@
                         </button> 
                     </div>
                 </div>
-    
-                <div class="content">
-    
-                    <label>
+
+        
+                    <!-- <label>
                         <input type="radio" name="talkroom-option" onclick="talkroomClick(this)">
                         <div class="talkroom">
                             <div class="thumbnail" data-bs-toggle="modal" data-bs-target="#talkroomModal">
@@ -133,7 +121,7 @@
                                 <button class="btn-primary">거절</button>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- AJAX 조회결과 없을시 출력 -->
                     <!-- <div class="not-found">
@@ -141,6 +129,7 @@
                         <div class="font-size-subtitle">대화상대가 없습니다...</div>
                         <div class="font-size-content">멘티나 스터디 그룹을 신청해보세요!</div>
                     </div>  -->
+                <div class="content">
 
                 </div>
             </div>
