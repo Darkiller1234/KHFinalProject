@@ -14,10 +14,6 @@ local.properties
 .loadpath
 .recommenders
 
-# ignore properties file
-config.properties
-apikey.properties
-
 # JDT-specific (Eclipse Java Development Tools)      
 .classpath
 
