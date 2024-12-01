@@ -130,7 +130,8 @@
                         <div class="font-size-content">멘티나 스터디 그룹을 신청해보세요!</div>
                     </div>  -->
                 <div class="content">
-
+                    <div class="mentorTalk"></div>
+                    <div class="studyTalk"></div>
                 </div>
             </div>
             
