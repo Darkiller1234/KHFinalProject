@@ -17,14 +17,16 @@ function initReportBoard(contextPath) {
             "삭제"
         ],
         boardList : [
-            [
+            [   
+                "1",
                 "1",
                 "신고글",
                 "2023-10-5",
                 "처리",
                 "<button>삭제</button>"
             ],
-            [
+            [   
+                "2",
                 "2",
                 "신고글",
                 "2023-12-5",

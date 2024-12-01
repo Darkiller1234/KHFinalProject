@@ -19,12 +19,14 @@ function initCertifyBoard(contextPath) {
         boardList : [
             [
                 "1",
+                "1",
                 "자격증 인증합니다.",
                 "2023-10-5",
                 "수락하기",
                 "<button>삭제</button>"
             ],
-            [
+            [   
+                "1",
                 "1",
                 "자격증 인증합니다.",
                 "2023-10-5",

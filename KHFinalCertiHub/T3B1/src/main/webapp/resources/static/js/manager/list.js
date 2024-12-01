@@ -17,14 +17,16 @@ function initListBoard(contextPath) {
             "삭제"
         ],
         boardList : [
-            [
+            [   
+                "1",
                 "1",
                 "게시글",
                 "2023-10-5",
                 "246",
                 "<button>삭제</button>"
             ],
-            [
+            [   
+                "2",
                 "2",
                 "게시글",
                 "2023-10-5",
