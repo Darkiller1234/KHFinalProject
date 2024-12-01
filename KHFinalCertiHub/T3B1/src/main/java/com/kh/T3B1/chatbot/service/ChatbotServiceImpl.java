@@ -59,15 +59,15 @@ public class ChatbotServiceImpl implements ChatbotService{
 			
 			JsonObject jsonObject = new JsonObject();
 			jsonObject.addProperty("model","gpt-4o-mini");
-			jsonObject.addProperty("temperature",0.3); // 답변의 랜덤정도(0 ~ 1), 정보관련이면 낮게 값을 책정
+			jsonObject.addProperty("temperature",0.4); // 답변의 랜덤정도(0 ~ 1), 정보관련이면 낮게 값을 책정
 			
 			JsonObject maxToken = new JsonObject();
 			jsonObject.addProperty("max_completion_tokens", 300); // 사용할 최대 토큰수, 기본값=256
 			
 			JsonObject sysMsg = new JsonObject();
 			sysMsg.addProperty("role", "system");
-			sysMsg.addProperty("content", "You are an IT certificate expert. "
-					+ "You ignore it unless it's a certificate question. "
+			sysMsg.addProperty("content", "You are an IT certificate expert."
+					+ "You ignore it unless it's not related about IT or IT certificate."
 					+ "You always answer in Korean and use honorifics."
 					+ "You always sum up your answer at the end.");
 			

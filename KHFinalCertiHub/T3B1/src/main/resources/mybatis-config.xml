@@ -22,6 +22,8 @@
 		<typeAlias type="com.kh.T3B1.personal.model.vo.License2" alias ="License2"/>
 		<typeAlias type="com.kh.T3B1.compiler.model.vo.CompilerLog" alias ="CompilerLog"/>
 		<typeAlias type="com.kh.T3B1.chatbot.model.vo.ChatbotLog" alias ="ChatbotLog"/>
+		<typeAlias type="com.kh.T3B1.message.model.vo.Message" alias ="Message"/>
+		<typeAlias type="com.kh.T3B1.message.model.vo.Talkroom" alias ="Talkroom"/>
 	</typeAliases>
 
 	<!-- environments : mybatis에서 연동할 db정보들을 등록하는 영역 environments에 기술했던 db연결관련 
@@ -40,5 +42,6 @@
 		<mapper resource="mappers/personal-mapper.xml"/>
 		<mapper resource="mappers/compiler-mapper.xml"/>
 		<mapper resource="mappers/chatbot-mapper.xml"/>
+		<mapper resource="mappers/message-mapper.xml"/>
 	</mappers>
 </configuration>

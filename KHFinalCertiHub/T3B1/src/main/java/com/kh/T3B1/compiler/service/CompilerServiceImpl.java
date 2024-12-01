@@ -129,8 +129,11 @@ public class CompilerServiceImpl implements CompilerService{
 		
 		inputCode.delete();
 
-	    compileInfo.put("execResult", result);
-	    compilerDao.insertLog(sqlSession, compileInfo);
+		// 로그인한 멤버면 로그를 남겨준다.
+		if(compileInfo.get("member") != null) {
+		    compileInfo.put("execResult", result);
+		    compilerDao.insertLog(sqlSession, compileInfo);
+		}
 		
 		return result;
 	}

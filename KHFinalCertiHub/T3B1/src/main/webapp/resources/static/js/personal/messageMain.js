@@ -1,29 +1,138 @@
-function sideClick(_this){
-    const selected = _this.value;
-    const extendMenu = document.querySelector('.side-extend');
-    /* 
-        previousOption = html data태그값
-        이전에 눌렀던 side menu 선택값을 저장해둠
-        1 : 멘토 , 2 : 스터디그룹 , 3 : 알림
-    */
+function initMessageMain(contextPath) {
+    const sideContent = document.querySelector('.side-extend .content')
 
-    /* 눌렀던 사이드 메뉴를 또 누른다면 */
-    if(extendMenu.dataset.previousOption === _this.value){
-        /* extend 메뉴를 펼치지 않음 */
-        extendMenu.style.display = 'none';
-        extendMenu.dataset.previousOption = "";
-        return;
+    let state = {
+        sideContent: sideContent,
+        contextPath: contextPath,
+        previousOption: null,
+        mentorList: null,
+        studyList: null,
     }
 
-    /* 다른 사이드 메뉴 선택시 실행 */
-    extendMenu.style.display = 'block';
-    extendMenu.dataset.previousOption = selected;
+    initMenuButton(state);
 }
 
-function talkroomClick(_this){
-    const messageNotFound = document.querySelector('.message-section .not-found');
+const onMentorLoad = (res, state) => {
+    state.mentorList = res;
+    createMentorTalk(state.sideContent, state)
+}
 
-    messageNotFound.style.display = 'none';
+const onStudyLoad = (res, state) => {
+    console.log(res)
+    state.studyList = res;
+    createStudyTalk(state.sideContent, state)
+}
+
+function initMenuButton(state){
+    const radioList = document.querySelectorAll('.side-menu label input')
+
+    radioList[0].onclick = (e) => {
+        sideClick(e,state)
+
+        if(state.mentorList == null) {
+            ajaxLoadMentor(state, onMentorLoad);
+        }
+    }
+
+    radioList[1].onclick = (e) => {
+        sideClick(e,state)
+
+        if(state.mentorList == null) {
+            ajaxLoadStudy(state, onStudyLoad);
+        }
+    }
+}
+
+function createMentorTalk(div, state){
+    state.mentorList.forEach((talkroom)=>{
+        let label = document.createElement('label')
+
+        let radioInput = document.createElement('input')
+        radioInput.type = 'radio';
+        radioInput.name = 'talkroom-option';
+        radioInput.onclick = () => {
+            talkroomClick(talkroom.talkroomNo)
+        }
+        
+        let talkroomDiv = document.createElement('div')
+        talkroomDiv.className = "talkroom"
+
+        let profileDiv = document.createElement('div')
+        profileDiv.className = "thumbnail"
+
+        let profileImg = document.createElement('img')
+        profileImg.src = state.contextPath + talkroom.memberImg
+        profileImg.className ="rounded-circle"
+
+        let infoDiv = document.createElement('div')
+        infoDiv.className = "talkroom-info"
+
+        let name = document.createElement('div')
+        name.className = "talkroom-name"
+        name.innerHTML = talkroom.managerName
+
+        let lastTalk = document.createElement('div')
+        lastTalk.className = "last-talk"
+        lastTalk.innerHTML = "아직 더미로 추가"
+
+        profileDiv.appendChild(profileImg)
+        infoDiv.appendChild(name)
+        infoDiv.appendChild(lastTalk)
+
+        talkroomDiv.appendChild(profileDiv)
+        talkroomDiv.appendChild(infoDiv)
+
+        label.appendChild(radioInput)
+        label.appendChild(talkroomDiv)
+        
+        div.appendChild(label)
+    })
+}
+
+function createStudyTalk(div, state){
+    state.studyList.forEach((talkroom)=>{
+        let label = document.createElement('label')
+
+        let radioInput = document.createElement('input')
+        radioInput.type = 'radio';
+        radioInput.name = 'talkroom-option';
+        radioInput.onclick = () => {
+            talkroomClick(talkroom.talkroomNo)
+        }
+        
+        let talkroomDiv = document.createElement('div')
+        talkroomDiv.className = "talkroom"
+
+        let profileDiv = document.createElement('div')
+        profileDiv.className = "thumbnail"
+
+        let profileImg = document.createElement('img')
+        profileImg.src = state.contextPath + talkroom.studyImg
+        profileImg.className ="rounded-circle"
+
+        let infoDiv = document.createElement('div')
+        infoDiv.className = "talkroom-info"
+
+        let name = document.createElement('div')
+        name.className = "talkroom-name"
+        name.innerHTML = talkroom.studyName
+
+        let lastTalk = document.createElement('div')
+        lastTalk.className = "last-talk"
+        lastTalk.innerHTML = "아직 더미로 추가"
+
+        profileDiv.appendChild(profileImg)
+        infoDiv.appendChild(name)
+        infoDiv.appendChild(lastTalk)
+
+        talkroomDiv.appendChild(profileDiv)
+        talkroomDiv.appendChild(infoDiv)
+
+        label.appendChild(radioInput)
+        label.appendChild(talkroomDiv)
+        
+        div.appendChild(label)
+    })
 }
 
 function addMessage(e){
@@ -70,6 +179,33 @@ function addMessage(e){
 
     div.appendChild(card)
     messageWindow.prepend(div)
+}
+
+function sideClick(_this, state){
+    const extendMenu = document.querySelector('.side-extend');
+    /* 
+        previousOption : 이전에 눌렀던 side menu 선택값을 저장해둠
+        1 : 멘토 , 2 : 스터디그룹 , 3 : 알림
+    */
+
+    /* 눌렀던 사이드 메뉴를 또 누른다면 */
+    if(state.previousOption === _this.target.value){
+        /* extend 메뉴를 펼치지 않음 */
+        extendMenu.style.display = 'none';
+        state.previousOption = null;
+        return;
+    }
+
+    /* 다른 사이드 메뉴 선택시 실행 */
+    extendMenu.style.display = 'block';
+    state.previousOption = _this.target.value;
+}
+
+function talkroomClick(tno){
+    // const messageNotFound = document.querySelector('.message-section .not-found');
+
+    // messageNotFound.style.display = 'none';
+    console.log(tno)
 }
 
 function chatScroll(){

@@ -99,6 +99,9 @@ function init(contextPath, pageName, optional){
             break;
 
         // 메시지 페이지
+        case "messageMain":
+            initMessageMain(contextPath);
+            break;
 
         // 관리자 페이지
         case "managerPage":
