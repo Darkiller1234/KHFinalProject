@@ -96,6 +96,10 @@
     display: flex;
 }
 
+.content label{
+    width:100%;
+}
+
 .talkroom .thumbnail{
     width:20%;
     display: flex;
