@@ -14,4 +14,8 @@ public class MessageDao {
 		return (ArrayList)sqlSession.selectList("messageMapper.selectMentorList",memberNo);
 	}
 
+	public ArrayList<Talkroom> selectStudyList(SqlSessionTemplate sqlSession, int memberNo) {
+		return (ArrayList)sqlSession.selectList("messageMapper.selectStudyList",memberNo);
+	}
+
 }

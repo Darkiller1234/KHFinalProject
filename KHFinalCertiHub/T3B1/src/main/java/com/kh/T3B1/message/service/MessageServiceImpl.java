@@ -22,5 +22,10 @@ public class MessageServiceImpl implements MessageService {
 	public ArrayList<Talkroom> selectMentorList(int memberNo) {
 		return messageDao.selectMentorList(sqlSession, memberNo);
 	}
+
+	@Override
+	public ArrayList<Talkroom> selectStudyList(int memberNo) {
+		return messageDao.selectStudyList(sqlSession, memberNo);
+	}
 	
 }

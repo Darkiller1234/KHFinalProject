@@ -42,6 +42,20 @@
 	 INNER JOIN MEMBER M ON (T.MANAGER_NO = M.MEMBER_NO)
 	</select>
 	
+	<select id="selectStudyList" resultMap="talkroomResultSet">
+		 SELECT MT.TALKROOM_NO TALKROOM_NO,
+				T.MANAGER_NO MANAGER_NO,
+				T.STUDY_NO STUDY_NO,
+				T.TALKROOM_TYPE TALKROOM_TYPE,
+                S.STUDY_NAME STUDY_NAME,
+				S.STUDY_IMG STUDY_IMG
+   		   FROM MEMBER_TALKROOM MT
+	 INNER JOIN TALKROOM T ON (MT.TALKROOM_NO = T.TALKROOM_NO) 
+            AND MT.MEMBER_NO = #{memberNo} 
+            AND TALKROOM_TYPE = 2
+	 INNER JOIN STUDY S ON (T.STUDY_NO = S.STUDY_NO)
+	</select>
+	
 </mapper>
 
 

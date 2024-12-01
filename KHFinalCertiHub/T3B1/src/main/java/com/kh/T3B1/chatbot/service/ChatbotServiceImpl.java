@@ -66,8 +66,8 @@ public class ChatbotServiceImpl implements ChatbotService{
 			
 			JsonObject sysMsg = new JsonObject();
 			sysMsg.addProperty("role", "system");
-			sysMsg.addProperty("content", "You are an IT certificate expert. "
-					+ "You ignore it unless it's a certificate question. "
+			sysMsg.addProperty("content", "You are an IT certificate expert."
+					+ "You ignore it unless it's not related about IT or IT certificate."
 					+ "You always answer in Korean and use honorifics."
 					+ "You always sum up your answer at the end.");
 			

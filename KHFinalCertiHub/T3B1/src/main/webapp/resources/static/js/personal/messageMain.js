@@ -6,6 +6,7 @@ function initMessageMain(contextPath) {
         contextPath: contextPath,
         previousOption: null,
         mentorList: null,
+        studyList: null,
     }
 
     initMenuButton(state);
@@ -16,6 +17,12 @@ const onMentorLoad = (res, state) => {
     createMentorTalk(state.sideContent, state)
 }
 
+const onStudyLoad = (res, state) => {
+    console.log(res)
+    state.studyList = res;
+    createStudyTalk(state.sideContent, state)
+}
+
 function initMenuButton(state){
     const radioList = document.querySelectorAll('.side-menu label input')
 
@@ -24,6 +31,14 @@ function initMenuButton(state){
 
         if(state.mentorList == null) {
             ajaxLoadMentor(state, onMentorLoad);
+        }
+    }
+
+    radioList[1].onclick = (e) => {
+        sideClick(e,state)
+
+        if(state.mentorList == null) {
+            ajaxLoadStudy(state, onStudyLoad);
         }
     }
 }
@@ -55,6 +70,52 @@ function createMentorTalk(div, state){
         let name = document.createElement('div')
         name.className = "talkroom-name"
         name.innerHTML = talkroom.managerName
+
+        let lastTalk = document.createElement('div')
+        lastTalk.className = "last-talk"
+        lastTalk.innerHTML = "아직 더미로 추가"
+
+        profileDiv.appendChild(profileImg)
+        infoDiv.appendChild(name)
+        infoDiv.appendChild(lastTalk)
+
+        talkroomDiv.appendChild(profileDiv)
+        talkroomDiv.appendChild(infoDiv)
+
+        label.appendChild(radioInput)
+        label.appendChild(talkroomDiv)
+        
+        div.appendChild(label)
+    })
+}
+
+function createStudyTalk(div, state){
+    state.studyList.forEach((talkroom)=>{
+        let label = document.createElement('label')
+
+        let radioInput = document.createElement('input')
+        radioInput.type = 'radio';
+        radioInput.name = 'talkroom-option';
+        radioInput.onclick = () => {
+            talkroomClick(talkroom.talkroomNo)
+        }
+        
+        let talkroomDiv = document.createElement('div')
+        talkroomDiv.className = "talkroom"
+
+        let profileDiv = document.createElement('div')
+        profileDiv.className = "thumbnail"
+
+        let profileImg = document.createElement('img')
+        profileImg.src = state.contextPath + talkroom.studyImg
+        profileImg.className ="rounded-circle"
+
+        let infoDiv = document.createElement('div')
+        infoDiv.className = "talkroom-info"
+
+        let name = document.createElement('div')
+        name.className = "talkroom-name"
+        name.innerHTML = talkroom.studyName
 
         let lastTalk = document.createElement('div')
         lastTalk.className = "last-talk"

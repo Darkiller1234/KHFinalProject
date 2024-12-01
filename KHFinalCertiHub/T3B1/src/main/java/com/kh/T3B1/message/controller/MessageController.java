@@ -39,4 +39,14 @@ public class MessageController {
 		
 		return new Gson().toJson(talkroomList);
 	}
+	
+	@ResponseBody
+	@PostMapping(value="loadStudy", produces="application/json; charset=UTF-8")
+	public String loadStudy(HttpSession session) {
+		Member member = (Member)session.getAttribute("loginMember");
+		
+		ArrayList<Talkroom> talkroomList = messageService.selectStudyList(member.getMemberNo());
+		
+		return new Gson().toJson(talkroomList);
+	}
 }
