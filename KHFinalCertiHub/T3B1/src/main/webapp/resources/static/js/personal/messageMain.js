@@ -4,7 +4,7 @@ function initMessageMain(contextPath) {
 
     let state = {
         contextPath: contextPath,
-        managerNo: null, // 현재 톡방의 매니저 번호
+        managerNo: null, // 현재 선택한 톡방의 매니저 번호
         memberNo: null, // 현재 로그인한 멤버의 번호
         memberName: null, // 현재 로그인한 멤버의 닉네임
 
@@ -21,14 +21,14 @@ function initMessageMain(contextPath) {
         pageLimit: 10, // 불러올 메시지 개수 제한
     }
 
-    const initState = (res, state) => {
-        console.log(res)
+    const onLoadMemberInfo = (res, state) => {
         state.memberNo = res.memberNo
         state.memberName = res.memberName
     }
 
-    ajaxLoadMemberInfo(state, initState)
+    ajaxLoadMemberInfo(state, onLoadMemberInfo)
     initMenuButton(state);
+    initMessageScroll(state);
 }
 
 function initMenuButton(state){
@@ -62,6 +62,28 @@ function initMenuButton(state){
     }
 }
 
+function initMessageScroll(state){
+    let timer; // 스로틀링용 변수
+
+    const onMessageLoad = (res, state) => {
+        state.messageList = res
+        state.currentPage++;
+        createMessageCard(state.messageContent, state)
+    }
+
+    state.messageContent.onscroll = () => {
+        clearTimeout(timer)
+
+        timer = setTimeout( ()=> { 
+            // 스크롤이 최대 높이에 근접할 경우
+            if(state.messageContent.scrollTop <= state.messageContent.style.height * 0.1 ) {
+                ajaxLoadMessage(state, onMessageLoad)
+            }  
+        }, 200)
+    }
+}
+
+
 function talkroomClick(state, talkroomNo, managerNo){
     state.talkroomNo = talkroomNo
     state.managerNo = managerNo
@@ -70,14 +92,11 @@ function talkroomClick(state, talkroomNo, managerNo){
 
     const onMessageLoad = (res, state) => {
         state.messageList = res
+        state.currentPage++;
         createMessageCard(state.messageContent, state)
     }
 
     ajaxLoadMessage(state, onMessageLoad)
-}
-
-function createTalk(){
-
 }
 
 function createMentorTalk(div, state){
@@ -111,7 +130,7 @@ function createMentorTalk(div, state){
 
         let lastTalk = document.createElement('div')
         lastTalk.className = "last-talk"
-        lastTalk.innerHTML = "아직 더미로 추가"
+        lastTalk.innerHTML = talkroom.lastMessage != null ? talkroom.lastMessage : ""
 
         profileDiv.appendChild(profileImg)
         infoDiv.appendChild(name)
@@ -158,7 +177,7 @@ function createStudyTalk(div, state){
 
         let lastTalk = document.createElement('div')
         lastTalk.className = "last-talk"
-        lastTalk.innerHTML = "아직 더미로 추가"
+        lastTalk.innerHTML = talkroom.lastMessage != null ? talkroom.lastMessage : ""
 
         profileDiv.appendChild(profileImg)
         infoDiv.appendChild(name)
@@ -209,7 +228,7 @@ function createMessageCard(div, state){
         card.appendChild(info)
     
         messageDiv.appendChild(card)
-        div.prepend(messageDiv)
+        div.appendChild(messageDiv)
     })
 }
 
@@ -223,7 +242,7 @@ function addMessage(e){
 
     const messageWindow = document.querySelector('.message-window')
 
-    createMyMessage(messageWindow, sendMessage.value)
+    createMessageCard(messageWindow, sendMessage.value)
 }
 
 function sideClick(_this, state){
@@ -255,12 +274,10 @@ function sideClick(_this, state){
 
     switch(clickValue) {
         case "1":
-            console.log(state.sideContent.querySelector('.mentorTalk'))
             state.sideContent.querySelector('.mentorTalk').style.display = "block"
             break;
 
         case "2":
-            console.log(state.sideContent.querySelector('.studyTalk'))
             state.sideContent.querySelector('.studyTalk').style.display = "block"
             break;
     }

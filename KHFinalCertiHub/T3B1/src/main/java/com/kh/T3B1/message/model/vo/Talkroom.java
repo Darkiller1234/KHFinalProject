@@ -4,13 +4,15 @@ import lombok.Data;
 
 @Data
 public class Talkroom {
-	public int talkroomNo;
-	public int managerNo;
-	public int studyNo;
-	public int talkroomType;
+	private int talkroomNo;
+	private int managerNo;
+	private int studyNo;
+	private int talkroomType;
 	
-	public String managerName;
-	public String memberImg;
-	public String studyName;
-	public String studyImg;
+	private String managerName;
+	private String memberImg;
+	private String studyName;
+	private String studyImg;
+	
+	private String lastMessage;
 }
