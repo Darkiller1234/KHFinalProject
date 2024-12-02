@@ -21,12 +21,14 @@ function initManagerBoard(contextPath){
             boardList : [
             [
                 "1",
+                "1",
                 "공지사항입니다.",
                 "2023-10-5",
                 "1354",
                 "<button>삭제</button>"
             ],
             [
+                "2",
                 "2",
                 "공지사항입니다.",
                 "2023-12-5",

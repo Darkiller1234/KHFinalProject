@@ -18,7 +18,8 @@ function initUserBoard(contextPath) {
             "삭제"
         ],
         boardList : [
-            [
+            [   
+                "1",
                 "1",
                 "user01",
                 "sadasd@naver.com",
@@ -26,7 +27,7 @@ function initUserBoard(contextPath) {
                 "Y",
                 "<button>삭제</button>"
             ],
-            [
+            [   "2",
                 "2",
                 "user02",
                 "safrq@naver.com",

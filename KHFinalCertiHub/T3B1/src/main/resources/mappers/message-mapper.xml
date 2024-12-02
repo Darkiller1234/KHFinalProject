@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace: 해당 mapper파일의 고유한 별칭 -->
+
+<mapper namespace="messageMapper">
+	<resultMap type="Message" id="messageResultSet">
+		<result column="MESSAGE_NO" property="messageNo" />
+		<result column="TALKROOM_NO" property="talkroomNo" />
+		<result column="MEMBER_NO" property="memberNo" />
+		<result column="MESSAGE_CONTENT" property="messageContent" />
+		<result column="MEMBER_NICKNAME" property="memberName" />
+		<result column="MEMBER_IMG" property="memberImg" />
+	</resultMap>
+	
+	<resultMap type="Talkroom" id="talkroomResultSet">
+		<result column="TALKROOM_NO" property="talkroomNo" />
+		<result column="MANAGER_NO" property="managerNo" />
+		<result column="STUDY_NO" property="studyNo" />
+		<result column="TALKROOM_TYPE" property="talkroomType" />
+		<result column="MEMBER_NICKNAME" property="managerName" />
+		<result column="MEMBER_IMG" property="memberImg" />
+		<result column="STUDY_NAME" property="studyName" />
+		<result column="STUDY_IMG" property="studyImg" />
+	</resultMap>
+	
+	<select id="selectMentorList" resultMap="talkroomResultSet">
+		 SELECT MT.TALKROOM_NO TALKROOM_NO,
+				T.MANAGER_NO MANAGER_NO,
+				T.STUDY_NO STUDY_NO,
+				T.TALKROOM_TYPE TALKROOM_TYPE,
+				M.MEMBER_INTRO MEMBER_INTRO,
+				M.MEMBER_NICKNAME MEMBER_NICKNAME,
+				M.MEMBER_IMG MEMBER_IMG,
+				M.MENTOR_VALID MENTOR_VALID
+		   FROM MEMBER_TALKROOM MT
+	 INNER JOIN TALKROOM T ON (MT.TALKROOM_NO = T.TALKROOM_NO) 
+			              AND MT.MEMBER_NO = #{memberNo} 
+			              AND TALKROOM_TYPE = 1
+	 INNER JOIN MEMBER M ON (T.MANAGER_NO = M.MEMBER_NO)
+	</select>
+	
+	<select id="selectStudyList" resultMap="talkroomResultSet">
+		 SELECT MT.TALKROOM_NO TALKROOM_NO,
+				T.MANAGER_NO MANAGER_NO,
+				T.STUDY_NO STUDY_NO,
+				T.TALKROOM_TYPE TALKROOM_TYPE,
+                S.STUDY_NAME STUDY_NAME,
+				S.STUDY_IMG STUDY_IMG
+   		   FROM MEMBER_TALKROOM MT
+	 INNER JOIN TALKROOM T ON (MT.TALKROOM_NO = T.TALKROOM_NO) 
+            AND MT.MEMBER_NO = #{memberNo} 
+            AND TALKROOM_TYPE = 2
+	 INNER JOIN STUDY S ON (T.STUDY_NO = S.STUDY_NO)
+	</select>
+	
+</mapper>
+
+
+
