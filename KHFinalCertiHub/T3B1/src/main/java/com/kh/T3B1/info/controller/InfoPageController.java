@@ -46,4 +46,5 @@ public class InfoPageController {
 		m.addAttribute("pageName", "infoPage");
 		return "infoPage/infoPage";
 	}
+
 }

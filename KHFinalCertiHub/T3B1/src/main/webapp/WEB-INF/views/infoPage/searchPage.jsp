@@ -117,7 +117,7 @@
                 </div>
 
             </div>
-            <script src="<%=contextPath%>/resources/static/js/infopage/infoPage.js"></script>
+            <script src="<%=contextPath%>/resources/static/js/infopage/searchPage.js"></script>
 
             <%@ include file="../common/footer.jsp" %>
     </body>

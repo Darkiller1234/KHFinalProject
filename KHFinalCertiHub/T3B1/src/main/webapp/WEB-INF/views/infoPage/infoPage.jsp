@@ -10,7 +10,6 @@
         <script type="text/javascript"
             src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2a40239e8b746b411bf4057c27e822e9&libraries=services"></script>
         <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
-
     </head>
 
     <body>
@@ -137,8 +136,6 @@
                                     </div>
                                 </div>
                             </div>
-                            
-
 
                             <div class="accordion-item">
                                 <button class="accordion-toggle">시험일정</button>
@@ -249,6 +246,7 @@
                                     <br><br>
                                     <div class="shortTermWheather">
                                         <pre><b>해당 지역 날씨 정보 (현재 날짜 기준 최대 10일)</b></pre> <br>
+                                        <b>지역을 선택하세요</b> <br>
                                         <select id="selectArea1" class="examArea">
                                             <option value="73,134">강원도</option>
                                             <option value="60, 120">경기도</option>
@@ -307,9 +305,6 @@
                                         </table>
                                     </div>
                                     <br><br>
-
-
-
                                     <br><br>
                                     <pre><b>글피~최대 10일</b></pre> <br>
                                     <div class="midTermWheather">
@@ -397,19 +392,18 @@
                         </div>
                     </div>
                     <div id="tab-2" class="tab-content">
-                        <div class="selectBox">
-                            <div class="custom-select"></div>
+                        <div class="board-lib">
+                            
                         </div>
-                        <div class="board-content"></div>
                     </div>
                 </div>
             </div>
-            <script src="<%=contextPath%>/resources/static/js/infopage/infoPage.js"></script>
-            <script src="<%=contextPath%>/resources/static/js/infopage/map.js"></script>
-            <script src="<%=contextPath%>/resources/static/js/infopage/area.js"></script>
-            <script src="<%=contextPath%>/resources/static/js/infopage/midWeather.js"></script>
-            <script src="<%=contextPath%>/resources/static/js/infopage/shortWeather.js"></script>
-            <script src="<%=contextPath%>/resources/static/js/infopage/certiInfo.js"></script>
+            <script src="${pageContext.request.contextPath}/resources/static/js/infopage/infoPage.js"></script>
+            <script src="${pageContext.request.contextPath}/resources/static/js/infopage/map.js"></script>
+            <script src="${pageContext.request.contextPath}/resources/static/js/infopage/certiInfo.js"></script>
+            <script src="${pageContext.request.contextPath}/resources/static/js/infopage/area.js"></script>
+            <script src="${pageContext.request.contextPath}/resources/static/js/infopage/midWeather.js"></script>
+            <script src="${pageContext.request.contextPath}/resources/static/js/infopage/shortWeather.js"></script>
             <%@ include file="../common/footer.jsp" %>
     </body>
 

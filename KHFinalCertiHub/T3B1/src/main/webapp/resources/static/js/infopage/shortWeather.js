@@ -1,16 +1,10 @@
-// 페이지 로드 시 강원도 데이터 자동 로드
-window.onload = function () {
-    fetchWeatherData(0); // '오늘' 데이터 자동 로드
-    fetchWeatherData(1); // '내일' 데이터 자동 로드
-    fetchWeatherData(2); // '모레' 데이터 자동 로드
 
-    // 지역 변경 이벤트 추가
-    document.getElementById("selectArea1").addEventListener("change", () => {
-        fetchWeatherData(0); // '오늘' 데이터 갱신
-        fetchWeatherData(1); // '내일' 데이터 갱신
-        fetchWeatherData(2); // '모레' 데이터 갱신
-    });
-};
+// 지역 변경 이벤트 추가
+document.getElementById("selectArea1").addEventListener("change", () => {
+    fetchWeatherData(0); // '오늘' 데이터 갱신
+    fetchWeatherData(1); // '내일' 데이터 갱신
+    fetchWeatherData(2); // '모레' 데이터 갱신
+});
 
 // 날씨 데이터 가져오기 함수
 function fetchWeatherData(dayOffset = 0) {
@@ -120,7 +114,7 @@ function renderWeatherTable(forecastData, dayOffset) {
 
     const table = dayOffset === 0 ? document.getElementById("todayTable")
         : dayOffset === 1 ? document.getElementById("tomorrowTable")
-        : document.getElementById("dayAfterTomorrowTable");
+            : document.getElementById("dayAfterTomorrowTable");
 
     const tbody = table.querySelector("tbody");
     tbody.innerHTML = "";
