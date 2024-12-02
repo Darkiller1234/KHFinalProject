@@ -6,10 +6,10 @@ function initManagerPage(contextPath) {
 
 
 function initManagerBoard(contextPath){
-    const boardList = document.querySelector('.board-notice');
+    const boardList = document.querySelector('.board-manager');
 
     let data = {
-        url: contextPath + "/manager/notice",
+        url: contextPath + "/manager/manager",
         titleIndex : 2,
         header : [
                 "NO.",
@@ -48,7 +48,7 @@ function initManagerPageBar(contextPath) {
         startPage : 1,
         endPage : 5,
         currentPage : 1,
-        pageUrl : 'notice?',
+        pageUrl : 'manager?',
         imgUrl : [
             contextPath + '/resources/static/img/button/arrow_left.png',
             contextPath + '/resources/static/img/button/arrow_right.png'
