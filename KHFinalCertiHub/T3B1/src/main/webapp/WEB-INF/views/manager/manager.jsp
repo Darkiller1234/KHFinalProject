@@ -20,7 +20,7 @@
             <!-- 사이드바 -->
             <div class="sidebar">
                 <ul>
-                    <li><a href="<%=contextPath%>/manager/notice">공지</a></li>
+                    <li><a href="<%=contextPath%>/manager/manager">공지</a></li>
                     <li><a href="<%=contextPath%>/manager/certify">자격증 인증</a></li>
                     <li><a href="<%=contextPath%>/manager/list">게시글 관리</a></li>
                     <li><a href="<%=contextPath%>/manager/report">신고 목록</a></li>
@@ -34,11 +34,11 @@
                 <div class="search-form">
                     <input type="text">
                     <button class="rounded-circle" onclick="alert('클릭됨')">
-                        <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
+                        <img src="<%=contextPath%>/resources/static/img/button/search_icon.png" alt="검색 아이콘">
                     </button> 
                 </div>
                 
-                <div class="board-notice"></div>
+                <div class="board-manager"></div>
 
                 <!-- 페이징바 -->
                 <div class="manager-bar"></div>
