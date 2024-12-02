@@ -10,7 +10,6 @@
         <script type="text/javascript"
             src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2a40239e8b746b411bf4057c27e822e9&libraries=services"></script>
         <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
-
     </head>
 
     <body>
@@ -400,7 +399,7 @@
                         <div class="selectBox">
                             <div class="custom-select"></div>
                         </div>
-                        <div class="board-content"></div>
+                        <div class="board-lib"></div>
                     </div>
                 </div>
             </div>
