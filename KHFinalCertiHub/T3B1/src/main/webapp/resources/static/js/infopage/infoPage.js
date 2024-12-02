@@ -16,38 +16,14 @@ $(document).ready(function () {
 });
 
 
-// 검색기능 
-
-
-// 셀렉트박스 + 보드
+// 보드
 function initInfoPage(contextPath) {
-    initSelectBox(contextPath);
     libBoard(contextPath);
 }
-
-
-function initSelectBox(contextPath) {
-    const selectBoxList = document.querySelectorAll('.custom-select');
-    selectBoxList.forEach(selectBox => {
-        let data = {
-            name: 'boardLimit',
-            default: '10개씩',
-            imgUrl: `${contextPath}/resources/static/img/button/triangle_down.png`,
-            items: [
-                ['10개씩'],
-                ['15개씩'],
-                ['20개씩'],
-            ]
-        }
-
-        createSelectBox(selectBox, data)
-    })
-}
-
-function libBoard() {
+function libBoard(contextPath) {
     const boardList = document.querySelector('.board-lib');
     let data = {
-        ulr : contextPath + "/info/lib",
+        url : contextPath + "/info/lib",
         titleIndex: 10,
         header: [
             "제목",
@@ -69,7 +45,62 @@ function libBoard() {
                 "user01",
                 "2024.11.05",
                 "222"
-            ]
+            ],
+            [
+                "1",
+                "제목입니다3",
+                "user01",
+                "2024.11.05",
+                "222"
+            ],
+            [
+                "1",
+                "제목입니다4",
+                "user01",
+                "2024.11.05",
+                "222"
+            ],
+            [
+                "1",
+                "제목입니다5",
+                "user01",
+                "2024.11.05",
+                "222"
+            ],
+            [
+                "1",
+                "제목입니다6",
+                "user01",
+                "2024.11.05",
+                "222"
+            ],
+            [
+                "1",
+                "제목입니다7",
+                "user01",
+                "2024.11.05",
+                "222"
+            ],
+            [
+                "1",
+                "제목입니다8",
+                "user01",
+                "2024.11.05",
+                "222"
+            ],
+            [
+                "1",
+                "제목입니다9",
+                "user01",
+                "2024.11.05",
+                "222"
+            ],[
+                "1",
+                "제목입니다10",
+                "user01",
+                "2024.11.05",
+                "222"
+            ],
         ]
     }
 
@@ -81,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const toggles = document.querySelectorAll(".accordion-toggle");
 
     toggles.forEach(toggle => {
-        toggle.addEventListener("click", function () { // element.onclick 으로 바꾸면 유지보수가 더 좋습니다 - 김동영
+        toggle.addEventListener("click", function () {
             const content = this.nextElementSibling;
             if (content.style.display === "block") {
                 content.style.display = "none";

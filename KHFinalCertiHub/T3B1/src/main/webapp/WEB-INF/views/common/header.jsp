@@ -70,6 +70,7 @@ crossorigin="anonymous"></script>
                         <li class="submenu license">
                             <ul>
                                 <li><a href="<%=contextPath%>/info/search">자격증 검색</a></li>
+                                <li><a href="<%=contextPath%>/info/lib">자격증 정보</a></li>
                             </ul>
                         </li> 
 
