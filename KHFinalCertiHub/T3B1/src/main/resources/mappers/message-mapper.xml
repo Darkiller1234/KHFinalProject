@@ -11,6 +11,7 @@
 		<result column="TALKROOM_NO" property="talkroomNo" />
 		<result column="MEMBER_NO" property="memberNo" />
 		<result column="MESSAGE_CONTENT" property="messageContent" />
+		<result column="MESSAGE_DATE" property="messageDate" />
 		<result column="MEMBER_NICKNAME" property="memberName" />
 		<result column="MEMBER_IMG" property="memberImg" />
 	</resultMap>
@@ -54,6 +55,25 @@
             AND MT.MEMBER_NO = #{memberNo} 
             AND TALKROOM_TYPE = 2
 	 INNER JOIN STUDY S ON (T.STUDY_NO = S.STUDY_NO)
+	</select>
+	
+	<select id="countMessage" resultType="int">
+		SELECT COUNT(*)
+		  FROM MESSAGE
+		 WHERE TALKROOM_NO = #{talkroomNo}
+	</select>
+	
+	<select id="selectMessageList" resultMap="messageResultSet">
+		SELECT MSG.MESSAGE_NO ,
+		        MSG.TALKROOM_NO ,
+		        MSG.MEMBER_NO ,
+		        M.MEMBER_NICKNAME,
+		        M.MEMBER_IMG,
+		        MSG.MESSAGE_CONTENT ,
+		        MSG.MESSAGE_DATE 
+		   FROM MESSAGE MSG
+	 INNER JOIN MEMBER M ON (M.MEMBER_NO = MSG.MEMBER_NO) AND MSG.TALKROOM_NO = #{talkroomNo}
+	   ORDER BY MSG.MESSAGE_NO DESC
 	</select>
 	
 </mapper>

@@ -1,30 +1,50 @@
 function initMessageMain(contextPath) {
     const sideContent = document.querySelector('.side-extend .content')
+    const messageContent = document.querySelector('.message-section .message-window')
 
     let state = {
-        sideContent: sideContent,
         contextPath: contextPath,
+        managerNo: null, // 현재 톡방의 매니저 번호
+        memberNo: null, // 현재 로그인한 멤버의 번호
+        memberName: null, // 현재 로그인한 멤버의 닉네임
+
+        sideContent: sideContent, // 멘토, 멘티, 알림 선택메뉴
+        messageContent: messageContent, // 메시지 추가되는 영역
+
         previousOption: null, // 이전에 누른 사이드 메뉴 번호
+        talkroomNo: null, // 선택한 톡방 번호
         mentorList: null,
         studyList: null,
+        messageList: null,
+
+        currentPage: 1, // 현재 메시지 페이지 번호
+        pageLimit: 10, // 불러올 메시지 개수 제한
     }
 
+    const initState = (res, state) => {
+        console.log(res)
+        state.memberNo = res.memberNo
+        state.memberName = res.memberName
+    }
+
+    ajaxLoadMemberInfo(state, initState)
     initMenuButton(state);
-}
-
-const onMentorLoad = (res, state) => {
-    state.mentorList = res;
-    createMentorTalk(state.sideContent.querySelector('.mentorTalk'), state)
-}
-
-const onStudyLoad = (res, state) => {
-    state.studyList = res;
-    createStudyTalk(state.sideContent.querySelector('.studyTalk'), state)
 }
 
 function initMenuButton(state){
     const radioList = document.querySelectorAll('.side-menu label input')
 
+    
+    const onMentorLoad = (res, state) => {
+        state.mentorList = res;
+        createMentorTalk(state.sideContent.querySelector('.mentorTalk'), state)
+    }
+
+    const onStudyLoad = (res, state) => {
+        state.studyList = res;
+        createStudyTalk(state.sideContent.querySelector('.studyTalk'), state)
+    }
+     
     radioList[0].onclick = (e) => {
         sideClick(e,state)
 
@@ -42,7 +62,26 @@ function initMenuButton(state){
     }
 }
 
+function talkroomClick(state, talkroomNo, managerNo){
+    state.talkroomNo = talkroomNo
+    state.managerNo = managerNo
+    state.currentPage = 1
+    state.messageContent.innerHTML = ""
+
+    const onMessageLoad = (res, state) => {
+        state.messageList = res
+        createMessageCard(state.messageContent, state)
+    }
+
+    ajaxLoadMessage(state, onMessageLoad)
+}
+
+function createTalk(){
+
+}
+
 function createMentorTalk(div, state){
+
     state.mentorList.forEach((talkroom)=>{
         let label = document.createElement('label')
 
@@ -50,7 +89,7 @@ function createMentorTalk(div, state){
         radioInput.type = 'radio';
         radioInput.name = 'talkroom-option';
         radioInput.onclick = () => {
-            talkroomClick(talkroom.talkroomNo)
+            talkroomClick(state, talkroom.talkroomNo, talkroom.managerNo)
         }
         
         let talkroomDiv = document.createElement('div')
@@ -89,6 +128,7 @@ function createMentorTalk(div, state){
 }
 
 function createStudyTalk(div, state){
+
     state.studyList.forEach((talkroom)=>{
         let label = document.createElement('label')
 
@@ -96,7 +136,7 @@ function createStudyTalk(div, state){
         radioInput.type = 'radio';
         radioInput.name = 'talkroom-option';
         radioInput.onclick = () => {
-            talkroomClick(talkroom.talkroomNo)
+            talkroomClick(state, talkroom.talkroomNo, talkroom.managerNo)
         }
         
         let talkroomDiv = document.createElement('div')
@@ -134,6 +174,46 @@ function createStudyTalk(div, state){
     })
 }
 
+function createMessageCard(div, state){
+    state.messageList.forEach((msg) => {
+        const messageDiv = document.createElement('div')
+        messageDiv.className = msg.memberNo == state.memberNo ? 'message mine' : 'message'
+    
+        const card = document.createElement('div')
+        card.className = 'message-card'
+    
+        // 프로필 사진
+        const thumbnail = document.createElement('div')
+        const thumbnailImg = document.createElement('img')
+    
+        thumbnail.className = 'thumbnail'
+        thumbnailImg.className = 'rounded-circle'
+        thumbnailImg.src = state.contextPath + msg.memberImg
+        thumbnail.appendChild(thumbnailImg)
+    
+        const info = document.createElement('div')
+        info.className = 'info'
+    
+        const userName = document.createElement('div')
+        userName.className = 'user-name'
+        userName.innerText = msg.memberName
+    
+        const content = document.createElement('div')
+        content.className = 'content'
+        content.innerText = msg.messageContent;
+    
+        info.appendChild(userName)
+        info.appendChild(content)
+    
+        card.appendChild(thumbnail)
+        card.appendChild(info)
+    
+        messageDiv.appendChild(card)
+        div.prepend(messageDiv)
+    })
+}
+
+
 function addMessage(e){
     const sendMessage = document.querySelector('#sendText')
 
@@ -142,42 +222,8 @@ function addMessage(e){
     }
 
     const messageWindow = document.querySelector('.message-window')
-    
-    const div = document.createElement('div')
-    div.className = 'message mine'
 
-    const card = document.createElement('div')
-    card.className = 'message-card'
-
-    // 프로필 사진
-    const thumbnail = document.createElement('div')
-    const thumbnailImg = document.createElement('img')
-
-    thumbnail.className = 'thumbnail'
-    thumbnailImg.className = 'rounded-circle'
-    thumbnailImg.src = "../resources/static/img/profile/profileTest.webp"
-    thumbnail.appendChild(thumbnailImg)
-
-    const info = document.createElement('div')
-    info.className = 'info'
-
-    const userName = document.createElement('div')
-    userName.className = 'user-name'
-    userName.innerText = 'User01'
-
-    const content = document.createElement('div')
-    content.className = 'content'
-    content.innerText = sendMessage.value;
-    sendMessage.value = ""
-
-    info.appendChild(userName)
-    info.appendChild(content)
-
-    card.appendChild(thumbnail)
-    card.appendChild(info)
-
-    div.appendChild(card)
-    messageWindow.prepend(div)
+    createMyMessage(messageWindow, sendMessage.value)
 }
 
 function sideClick(_this, state){
@@ -222,13 +268,6 @@ function sideClick(_this, state){
     /* 다른 사이드 메뉴 선택시 실행 */
     extendMenu.style.display = 'block';
     state.previousOption = clickValue;
-}
-
-function talkroomClick(tno){
-    // const messageNotFound = document.querySelector('.message-section .not-found');
-
-    // messageNotFound.style.display = 'none';
-    console.log(tno)
 }
 
 function chatScroll(){
