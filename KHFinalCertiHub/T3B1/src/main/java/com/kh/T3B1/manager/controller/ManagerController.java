@@ -3,12 +3,13 @@ package com.kh.T3B1.manager.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/manager")
 public class ManagerController {
 	
-	@RequestMapping("notice")
+	@RequestMapping("manager")
 	public String noticePage(Model m) {
 		m.addAttribute("pageName","managerPage");
 		return "manager/manager";
