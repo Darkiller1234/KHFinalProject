@@ -94,7 +94,7 @@ crossorigin="anonymous"></script>
                             <ul>
                                 <li><a href="<%=contextPath%>/personal/profile">개인 페이지</a></li>
                                 <li><a href="<%=contextPath%>/message/main">메시지</a></li>
-                                <li><a href="<%=contextPath%>/manager/notice">관리자 페이지</a></li>
+                                <li><a href="<%=contextPath%>/manager/manager">관리자 페이지</a></li>
                             </ul>
                         </li> 
 
