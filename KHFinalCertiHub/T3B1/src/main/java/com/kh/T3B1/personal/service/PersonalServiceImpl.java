@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.kh.T3B1.member.model.vo.Member;
 import com.kh.T3B1.personal.model.dao.PersonalDao;
+import com.kh.T3B1.personal.model.vo.Calendar2;
+import com.kh.T3B1.personal.model.vo.FullCalendarVo;
 import com.kh.T3B1.personal.model.vo.License2;
 
 import lombok.RequiredArgsConstructor;
@@ -139,6 +141,19 @@ public class PersonalServiceImpl implements PersonalService{
 	@Override
 	public int ajaxSubmitDelete(int memberNo) {
 		return personalDao.ajaxSubmitDelete(sqlSession, memberNo);
+	}
+
+	@Override
+	public ArrayList<FullCalendarVo> ScLoad(int memberNo) {
+		return personalDao.scLoad(sqlSession, memberNo);
+	}
+
+	@Override
+	public ArrayList<FullCalendarVo> getCurrentDateInfo(int memberNo, String date) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("memberNo", memberNo);
+		params.put("date", date);
+		return personalDao.getCurrentDateInfo(sqlSession, params);
 	}
 	
 }

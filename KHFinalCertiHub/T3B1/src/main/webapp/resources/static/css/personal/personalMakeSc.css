@@ -8,20 +8,7 @@
     margin-top: 10px;
 }
 
-#today-job {
-    display: flex;
-    gap: 5px;
-    background-color: #EDF6F9;
-    border: #83C5BE 1px solid;
-    border-radius: 5px;
-    padding: 5px;
-    flex-direction: column;
-}
-
-
-
-
-#job-list {
+#today-job-list {
     display: flex;
     gap: 5px;
     position: relative;
@@ -33,7 +20,22 @@
     margin-bottom: 10px;
 }
 
-#job-list > button {
+
+
+
+#notToday-job-list {
+    display: flex;
+    gap: 5px;
+    position: relative;
+    background-color: #EDF6F9;
+    border: #83C5BE 1px solid;
+    border-radius: 5px;
+    padding: 5px;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+#notToday-job-list > button {
     position: absolute;
     top: 1px;
     right: 1px;
@@ -43,7 +45,7 @@
     border: none;
 }
 
-#job-list > button > img {
+#notToday-job-list > button > img {
     width: 30px
 }
 
@@ -82,11 +84,11 @@
 
 @media (min-width: 721px){
     .left-view{
-        width: 50%;
+        width: 70%;
     }
     
     .right-view{
-        width: 50%;
+        width: 30%;
     }
 
     #certiSelect {
@@ -185,3 +187,14 @@
 .display-none {
     display: none !important;
 }
+
+
+
+.custom-event {
+    background-color: var(--event-bg-color, #ffffff);
+    color: var(--event-text-color, #000000);
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
