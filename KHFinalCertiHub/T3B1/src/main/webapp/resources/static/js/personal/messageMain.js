@@ -13,13 +13,11 @@ function initMessageMain(contextPath) {
 }
 
 const onMentorLoad = (res, state) => {
-    console.log(res)
     state.mentorList = res;
     createMentorTalk(state.sideContent.querySelector('.mentorTalk'), state)
 }
 
 const onStudyLoad = (res, state) => {
-    console.log(res)
     state.studyList = res;
     createStudyTalk(state.sideContent.querySelector('.studyTalk'), state)
 }
