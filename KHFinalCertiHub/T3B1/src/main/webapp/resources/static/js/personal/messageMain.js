@@ -130,7 +130,7 @@ function createMentorTalk(div, state){
 
         let lastTalk = document.createElement('div')
         lastTalk.className = "last-talk"
-        lastTalk.innerHTML = talkroom.lastMessage != null ? talkroom.lastMessage : ""
+        lastTalk.innerHTML = talkroom.lastMessage != null ? talkroom.lastMessage : "대화가 없습니다."
 
         profileDiv.appendChild(profileImg)
         infoDiv.appendChild(name)
@@ -177,7 +177,7 @@ function createStudyTalk(div, state){
 
         let lastTalk = document.createElement('div')
         lastTalk.className = "last-talk"
-        lastTalk.innerHTML = talkroom.lastMessage != null ? talkroom.lastMessage : ""
+        lastTalk.innerHTML = talkroom.lastMessage != null ? talkroom.lastMessage : "대화가 없습니다."
 
         profileDiv.appendChild(profileImg)
         infoDiv.appendChild(name)
