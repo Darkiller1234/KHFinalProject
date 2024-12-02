@@ -3,6 +3,8 @@ package com.kh.T3B1.personal.service;
 import java.util.ArrayList;
 
 import com.kh.T3B1.member.model.vo.Member;
+import com.kh.T3B1.personal.model.vo.Calendar2;
+import com.kh.T3B1.personal.model.vo.FullCalendarVo;
 import com.kh.T3B1.personal.model.vo.License2;
 
 public interface PersonalService {
@@ -44,5 +46,9 @@ public interface PersonalService {
 	int ajaxSubmitChange(Member temp);
 
 	int ajaxSubmitDelete(int memberNo);
+
+	ArrayList<FullCalendarVo> ScLoad(int memberNo);
+
+	ArrayList<FullCalendarVo> getCurrentDateInfo(int memberNo, String date);
 
 }

@@ -24,6 +24,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.kh.T3B1.member.model.vo.Member;
 import com.kh.T3B1.member.service.MemberService;
+import com.kh.T3B1.personal.model.vo.Calendar2;
+import com.kh.T3B1.personal.model.vo.FullCalendarVo;
 import com.kh.T3B1.personal.model.vo.License2;
 import com.kh.T3B1.personal.service.PersonalService;
 
@@ -204,6 +206,25 @@ public class PersonalPageController {
 		p.addAttribute("pageName", "PersonalPmSc");
 		return "personal/personalMakeSc";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="makeSc/scLoad", produces="application/json; charset-UTF-8")
+	public String ScLoad(HttpSession session) {
+		log.info(Integer.toString(((Member)session.getAttribute("loginMember")).getMemberNo()));
+		ArrayList<FullCalendarVo> list = personalService.ScLoad(((Member)session.getAttribute("loginMember")).getMemberNo());
+		
+		return new Gson().toJson(list);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="makeSc/getCurrentDateInfo", produces="application/json; charset-UTF-8")
+	public String GetCurrentDateInfo(String date, HttpSession session) {
+		log.info(Integer.toString(((Member)session.getAttribute("loginMember")).getMemberNo()));
+		ArrayList<FullCalendarVo> list = personalService.getCurrentDateInfo(((Member)session.getAttribute("loginMember")).getMemberNo(), date);
+		
+		return new Gson().toJson(list);
+	}
+	
 	
 	
 	@RequestMapping("profile")
