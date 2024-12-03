@@ -40,6 +40,14 @@
 		<result column="STUDY_NAME" property="studyName" />
 	</resultMap>
 	
+	<select id="countMentor" resultType="int">
+		SELECT COUNT(*)
+		  FROM TALKROOM T
+	INNER JOIN MEMBER_TALKROOM MT ON(T.TALKROOM_NO = MT.TALKROOM_NO) 
+	       AND T.TALKROOM_TYPE = 1
+	       AND MT.MEMBER_NO = #{memberNo}
+	</select>
+	
 	<select id="selectMentorList" resultMap="talkroomResultSet">
 		 SELECT MT.TALKROOM_NO TALKROOM_NO,
 		        T.MANAGER_NO MANAGER_NO,
@@ -62,6 +70,14 @@
      ) MNO ON (MT.TALKROOM_NO = MNO.TALKROOM_NO)
      LEFT JOIN MESSAGE MSG ON (MNO.MESSAGE_NO = MSG.MESSAGE_NO)
 	 INNER JOIN MEMBER M ON (T.MANAGER_NO = M.MEMBER_NO)
+	</select>
+	
+	<select id="countStudy" resultType="int">
+		SELECT COUNT(*)
+		  FROM TALKROOM T
+	INNER JOIN MEMBER_TALKROOM MT ON(T.TALKROOM_NO = MT.TALKROOM_NO) 
+	       AND T.TALKROOM_TYPE = 2
+	       AND MT.MEMBER_NO = #{memberNo}
 	</select>
 	
 	<select id="selectStudyList" resultMap="talkroomResultSet">

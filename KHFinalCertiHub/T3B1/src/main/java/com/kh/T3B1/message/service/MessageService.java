@@ -11,24 +11,36 @@ public interface MessageService {
 
 	/**
 	 * @param int memberNo(조회할 멤버 번호)
+	 * @return Integer 멘토 톡방 수
+	 */
+	Integer countMentor(int memberNo);
+
+	/**
+	 * @param PageInfo pi( pageLimit, currentPage ), int memberNo(조회할 멤버 번호)
 	 * @return ArrayList Talkroom 멘토 톡방 정보
 	 */
-	ArrayList<Talkroom> selectMentorList(int memberNo);
-
+	ArrayList<Talkroom> selectMentorList(PageInfo pi, int memberNo);
+	
 	/**
 	 * @param int memberNo(조회할 멤버 번호)
-	 * @return ArrayList Talkroom 스터디 톡방 정보
+	 * @return Integer 스터디 톡방 수
 	 */
-	ArrayList<Talkroom> selectStudyList(int memberNo);
+	Integer countStudy(int memberNo);
 
 	/**
-	 * @Param Integer talkroomNo(톡방 번호)
+	 * @param PageInfo pi( pageLimit, currentPage ), int memberNo(조회할 멤버 번호)
+	 * @return ArrayList Talkroom 스터디 톡방 정보
+	 */
+	ArrayList<Talkroom> selectStudyList(PageInfo pi, int memberNo);
+
+	/**
+	 * @param Integer talkroomNo(톡방 번호)
 	 * @return Integer 메시지 개수
 	 */
 	Integer countMessage(int talkroomNo);
 
 	/**
-	 * @Param PageInfo pi( pageLimit, currentPage ), int talkroomNo( 톡방번호 )
+	 * @param PageInfo pi( pageLimit, currentPage ), int talkroomNo( 톡방번호 )
 	 * @return ArrayList Message
 	 */
 	ArrayList<Message> selectMessageList(PageInfo pi, int talkroomNo);

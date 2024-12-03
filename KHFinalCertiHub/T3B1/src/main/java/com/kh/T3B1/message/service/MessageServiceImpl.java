@@ -20,15 +20,25 @@ public class MessageServiceImpl implements MessageService {
 	public final SqlSessionTemplate sqlSession;
 	
 	public final MessageDao messageDao;
-
+	
 	@Override
-	public ArrayList<Talkroom> selectMentorList(int memberNo) {
-		return messageDao.selectMentorList(sqlSession, memberNo);
+	public Integer countMentor(int memberNo) {
+		return messageDao.countMentor(sqlSession, memberNo);
 	}
 
 	@Override
-	public ArrayList<Talkroom> selectStudyList(int memberNo) {
-		return messageDao.selectStudyList(sqlSession, memberNo);
+	public ArrayList<Talkroom> selectMentorList(PageInfo pi, int memberNo) {
+		return messageDao.selectMentorList(sqlSession, pi, memberNo);
+	}
+	
+	@Override
+	public Integer countStudy(int memberNo) {
+		return messageDao.countStudy(sqlSession, memberNo);
+	}
+
+	@Override
+	public ArrayList<Talkroom> selectStudyList(PageInfo pi, int memberNo) {
+		return messageDao.selectStudyList(sqlSession, pi, memberNo);
 	}
 
 	@Override

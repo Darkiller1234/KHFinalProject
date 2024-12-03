@@ -13,13 +13,27 @@ import com.kh.T3B1.message.model.vo.Talkroom;
 
 @Repository
 public class MessageDao {
-
-	public ArrayList<Talkroom> selectMentorList(SqlSessionTemplate sqlSession, int memberNo) {
-		return (ArrayList)sqlSession.selectList("messageMapper.selectMentorList",memberNo);
+	
+	public Integer countMentor(SqlSessionTemplate sqlSession, int memberNo) {
+		return sqlSession.selectOne("messageMapper.countMentor", memberNo);
 	}
 
-	public ArrayList<Talkroom> selectStudyList(SqlSessionTemplate sqlSession, int memberNo) {
-		return (ArrayList)sqlSession.selectList("messageMapper.selectStudyList",memberNo);
+	public ArrayList<Talkroom> selectMentorList(SqlSessionTemplate sqlSession, PageInfo pi, int memberNo) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getPageLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getPageLimit());
+		
+		return (ArrayList)sqlSession.selectList("messageMapper.selectMentorList", memberNo, rowBounds);
+	}
+	
+	public Integer countStudy(SqlSessionTemplate sqlSession, int memberNo) {
+		return sqlSession.selectOne("messageMapper.countStudy", memberNo);
+	}
+
+	public ArrayList<Talkroom> selectStudyList(SqlSessionTemplate sqlSession, PageInfo pi, int memberNo) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getPageLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getPageLimit());
+		
+		return (ArrayList)sqlSession.selectList("messageMapper.selectStudyList",memberNo, rowBounds);
 	}
 
 	public Integer countMessage(SqlSessionTemplate sqlSession, int talkroomNo) {

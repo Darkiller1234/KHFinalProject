@@ -20,9 +20,26 @@ function initMessageMain(contextPath) {
         applyList: null,
 
         currentPage: 1, // 현재 메시지 페이지 번호
-        sideCurrentPage: 1, // 사이드 메뉴 페이지 번호
+        mentorCurrentPage: 1,
+        studyCurrentPage: 1,
+        applyCurrentPage: 1,
         pageLimit: 10, // 불러올 메시지 개수 제한
 
+        callbacks:{
+            onMentorLoad: (res, state) => {
+                state.mentorList = res;
+                createMentorTalk(state.sideContent.querySelector('.mentorTalk'), state)
+            },
+            onStudyLoad: (res, state) => {
+                state.studyList = res;
+                createStudyTalk(state.sideContent.querySelector('.studyTalk'), state)
+            },
+            onApplyLoad: (res, state) => {
+                state.applyCurrentPage++;
+                state.applyList = res;
+                createApplyList(state.sideContent.querySelector('.applyList'), state)
+            },
+        },
     }
 
     const onLoadMemberInfo = (res, state) => {
@@ -39,7 +56,6 @@ function initMessageMain(contextPath) {
 function initMenuButton(state){
     const radioList = document.querySelectorAll('.side-menu label input')
 
-    
     const onMentorLoad = (res, state) => {
         state.mentorList = res;
         createMentorTalk(state.sideContent.querySelector('.mentorTalk'), state)
@@ -51,7 +67,7 @@ function initMenuButton(state){
     }
 
     const onApplyLoad = (res, state) => {
-        state.sideCurrentPage++;
+        state.applyCurrentPage++;
         state.applyList = res;
         createApplyList(state.sideContent.querySelector('.applyList'), state)
     }
@@ -103,7 +119,29 @@ function initMessageScroll(state){
 }
 
 function initSideScroll(state){
-    
+    const sideExtend = document.querySelector('.side-extend')
+    let timer; // 스로틀링용 변수
+
+    const onApplyLoad = (res, state) => {
+        state.applyList = res
+        state.applyCurrentPage++;
+
+        if(res){
+            createApplyList(state.sideContent.querySelector('.applyList'), state)
+        }
+    }
+
+    sideExtend.onscroll = () => {
+        clearTimeout(timer)
+
+        timer = setTimeout( ()=> { 
+            if( sideExtend.scrollTop + sideExtend.style.height >= (sideExtend.style.height) ) {
+                if(state.currentOption == 3) {
+                    ajaxLoadApply(state, onApplyLoad)
+                }
+            }  
+        }, 200)
+    }
 }
 
 
@@ -324,8 +362,8 @@ function addMessage(e){
 }
 
 function sideClick(_this, state){
-    state.sideCurrentPage = 1;
     const extendMenu = document.querySelector('.side-extend');
+    extendMenu.scrollTop = 0
     state.currentOption = _this.target.value
     /* 
         previousOption : 이전에 눌렀던 side menu 선택값을 저장해둠
