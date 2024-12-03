@@ -1,13 +1,21 @@
 package com.kh.T3B1.manager.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import com.kh.T3B1.manager.model.vo.ManagerBoard;
+import com.kh.T3B1.manager.service.ManagerService;
 
 @Controller
 @RequestMapping("/manager")
 public class ManagerController {
+	
+	@Autowired
+	private ManagerService managerService;
 	
 	@RequestMapping("manager")
 	public String noticePage(Model m) {

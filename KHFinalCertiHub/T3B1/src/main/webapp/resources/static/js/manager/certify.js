@@ -7,7 +7,7 @@ function initCertifyBoard(contextPath) {
     const boardList = document.querySelector('.board-certify');
 
     let data = {
-        url: contextPath + "/manager/certify",
+        url: contextPath + "/manager/certify?no=",
         titleIndex : 2,
         header : [
             "NO.",
@@ -46,7 +46,7 @@ function initCertifyPageBar(contextPath) {
         startPage : 1,
         endPage : 5,
         currentPage : 1,
-        pageUrl : 'certify?',
+        pageUrl : contextPath + '/manager/certify?',
         imgUrl : [
             contextPath + '/resources/static/img/button/arrow_left.png',
             contextPath + '/resources/static/img/button/arrow_right.png'

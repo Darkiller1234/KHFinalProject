@@ -7,7 +7,7 @@ function initUserBoard(contextPath) {
     const boardList = document.querySelector('.board-user');
 
     let data = {
-        url : contextPath + "/manager/user",
+        url : contextPath + "/manager/user?no=",
         titleIndex : 2,
         header : [
             "NO.",
@@ -48,7 +48,7 @@ function initUserPageBar(contextPath) {
         startPage : 1,
         endPage : 5,
         currentPage : 1,
-        pageUrl : 'user?',
+        pageUrl : contextPath + '/manager/user?',
         imgUrl : [
             contextPath + '/resources/static/img/button/arrow_left.png',
             contextPath + '/resources/static/img/button/arrow_right.png'
