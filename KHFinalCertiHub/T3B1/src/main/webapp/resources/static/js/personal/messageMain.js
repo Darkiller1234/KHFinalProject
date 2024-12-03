@@ -172,9 +172,15 @@ function addMessage(e, state){
         memberNo: state.memberNo,
         memberImg: state.memberImg,
         memberName: state.memberName,
+        talkroomNo: state.talkroomNo,
         messageContent: state.sendMessage.value,
     }
-    createMessageCard(state, userChat)
+
+    if(state.socket != null){
+        createMessageCard(state, userChat)
+        state.socket.send(JSON.stringify(userChat))
+    }
+    
     state.sendMessage.value = ""
 }
 

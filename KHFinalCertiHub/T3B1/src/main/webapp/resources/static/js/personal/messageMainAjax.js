@@ -73,6 +73,7 @@ function ajaxLoadMessage(state, callback){
 
 function socketConnect(state){
     const socket = new WebSocket("ws://localhost:5600/T3B1/sendMessage")
+    state.socket = socket;
     
     // 소켓 연결 성공시 실행
     socket.onopen = function(){
@@ -93,10 +94,7 @@ function socketConnect(state){
     socket.onmessage = function(ev){
         console.log(ev)
         const receive = JSON.parse(ev.data);
+        console.log(receive)
     }
 
-    function sendMsg(){
-        console.log(msgData)
-        socket.send(JSON.stringify(msgData));
-    }
 }

@@ -29,15 +29,16 @@ public class MessageSocketServer extends TextWebSocketHandler {
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		Member member = (Member)session.getAttributes().get("loginMember");
+		String talkroomNo = ((Integer)session.getAttributes().get("talkroomNo")).toString();
+		log.info("MemberNo : {} 톡방 {}번 연결됨...", member.getMemberNo(), talkroomNo);
 		
-		log.info("{} 연결됨...", member.getMemberNickname());
-		userSessions.put(Integer.toString(member.getMemberNo()), session);
+		userSessions.put(talkroomNo, session);
 	}
 
 	//클라이언트로부터 메세지를 받을 때 호출되는 메소드
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-
+		log.info("보내진 메시지 : {}", message.getPayload());
 	}
 
 	//클라이언트가 연결을 끊을 때 호출되는 메소드

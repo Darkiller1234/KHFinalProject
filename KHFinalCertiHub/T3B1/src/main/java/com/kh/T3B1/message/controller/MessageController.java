@@ -119,6 +119,8 @@ public class MessageController {
 	@ResponseBody
 	@PostMapping(value="loadMessage", produces="application/json; charset=UTF-8")
 	public String loadMessage(HttpSession session, int pageLimit, int currentPage, int talkroomNo) {
+		session.setAttribute("talkroomNo", talkroomNo);
+		
 		Member member = (Member)session.getAttribute("loginMember");
 		
 		// 요청 한번에 불러올 메시지의 수, 최대 10개 까지
