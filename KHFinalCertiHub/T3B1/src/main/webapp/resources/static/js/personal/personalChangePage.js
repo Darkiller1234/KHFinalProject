@@ -65,6 +65,9 @@ function submitChange() {
             return;
         } else if(result === 1) {
             alert("비밀번호가 변경되었습니다.");
+            document.getElementById("userPwd").value = '';
+            document.getElementById("newcheckPwd").value = '';
+            document.getElementById("checkPwd").value = '';
             // 모달 닫기
             document.getElementById("dummychange-btn").click();
         }

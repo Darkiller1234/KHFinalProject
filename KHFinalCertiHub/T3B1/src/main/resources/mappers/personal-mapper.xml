@@ -39,6 +39,22 @@
 		<result column="LICENSE_IMG" property="licenseImg"/>
 	</resultMap>
 	
+	<resultMap type="Calendar2" id="calendarResultSet">
+		<result column="CALENDAR_NO" property="calendarNo"/>
+		<result column="MEMBER_NO" property="memberNo"/>
+		<result column="START_DATE" property="startDate"/>
+		<result column="END_DATE" property="endDate"/>
+		<result column="CALENDAR_DETAIL" property="calendarDetail"/>
+	</resultMap>
+	
+	<resultMap type="FullCalendarVo" id="fullCalendarResultSet">
+		<result column="CALENDAR_DETAIL" property="title"/>
+		<result column="START_DATE" property="start"/>
+		<result column="END_DATE" property="end"/>
+		<result column="BACKGROUND_COLOR" property="backgroundColor"/>
+		<result column="TEXT_COLOR" property="textColor"/>
+	</resultMap>
+	
 	<select id="getMemberInfo" resultType="Member" resultMap="memberResultSet">
 		SELECT MEMBER_NICKNAME,
 			MEMBER_IMG,
@@ -262,6 +278,29 @@
 		STATUS = 'N'
 		WHERE MEMBER_NO = #{memberNo}
 	</update>
+	
+	<select id="scLoad" resultType="FullCalendarVo" resultMap="fullCalendarResultSet">
+		SELECT TO_char(START_DATE, 'YYYY-MM-DD"T"HH24:MI:SS') START_DATE,
+				TO_char(END_DATE, 'YYYY-MM-DD"T"HH24:MI:SS') END_DATE,
+				CALENDAR_DETAIL,
+				BACKGROUND_COLOR,
+				TEXT_COLOR
+		FROM MEMBER_CALENDAR
+		WHERE MEMBER_NO = #{memberNo}
+	</select>
+	
+	<select id="getCurrentDateInfo" resultType="FullCalendarVo" resultMap="fullCalendarResultSet">
+		SELECT 
+		    TO_CHAR(START_DATE, 'YYYY-MM-DD"T"HH24:MI:SS') AS START_DATE,
+		    TO_CHAR(END_DATE, 'YYYY-MM-DD"T"HH24:MI:SS') AS END_DATE,
+		    CALENDAR_DETAIL,
+		    BACKGROUND_COLOR,
+		    TEXT_COLOR
+		FROM MEMBER_CALENDAR
+		WHERE MEMBER_NO = #{memberNo}
+		  AND TO_DATE(#{date}, 'YYYY-MM-DD') &gt;= TRUNC(START_DATE)
+		AND TO_DATE(#{date}, 'YYYY-MM-DD') &lt;= TRUNC(END_DATE)
+	</select>
 </mapper>
 
 

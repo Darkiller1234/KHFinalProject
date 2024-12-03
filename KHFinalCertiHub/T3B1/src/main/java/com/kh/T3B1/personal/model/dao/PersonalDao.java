@@ -8,8 +8,14 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.T3B1.member.model.vo.Member;
+import com.kh.T3B1.personal.model.vo.Calendar2;
+import com.kh.T3B1.personal.model.vo.FullCalendarVo;
 import com.kh.T3B1.personal.model.vo.License2;
 
+import lombok.extern.slf4j.Slf4j;
+
+
+@Slf4j
 @Repository
 public class PersonalDao {
 
@@ -106,6 +112,16 @@ public class PersonalDao {
 
 	public int ajaxSubmitDelete(SqlSessionTemplate sqlSession, int memberNo) {
 		return sqlSession.update("personalMapper.ajaxSubmitDelete", memberNo);
+	}
+
+	public ArrayList<FullCalendarVo> scLoad(SqlSessionTemplate sqlSession, int memberNo) {
+		ArrayList<FullCalendarVo> list = (ArrayList)sqlSession.selectList("personalMapper.scLoad", memberNo);
+		log.info(list.toString());
+		return list;
+	}
+
+	public ArrayList<FullCalendarVo> getCurrentDateInfo(SqlSessionTemplate sqlSession, Map<String, Object> params) {
+		return (ArrayList)sqlSession.selectList("personalMapper.getCurrentDateInfo", params);
 	}
 	
 }
