@@ -11,6 +11,7 @@ function initMessageMain(contextPath) {
         sideContent: sideContent, // 멘토, 멘티, 알림 선택메뉴
         messageContent: messageContent, // 메시지 추가되는 영역
 
+        currentOption: null, // 현재 누른 사이드 메뉴 번호
         previousOption: null, // 이전에 누른 사이드 메뉴 번호
         talkroomNo: null, // 선택한 톡방 번호
         mentorList: null,
@@ -19,7 +20,9 @@ function initMessageMain(contextPath) {
         applyList: null,
 
         currentPage: 1, // 현재 메시지 페이지 번호
+        sideCurrentPage: 1, // 사이드 메뉴 페이지 번호
         pageLimit: 10, // 불러올 메시지 개수 제한
+
     }
 
     const onLoadMemberInfo = (res, state) => {
@@ -29,6 +32,7 @@ function initMessageMain(contextPath) {
 
     ajaxLoadMemberInfo(state, onLoadMemberInfo)
     initMenuButton(state);
+    initSideScroll(state);
     initMessageScroll(state);
 }
 
@@ -47,6 +51,7 @@ function initMenuButton(state){
     }
 
     const onApplyLoad = (res, state) => {
+        state.sideCurrentPage++;
         state.applyList = res;
         createApplyList(state.sideContent.querySelector('.applyList'), state)
     }
@@ -95,6 +100,10 @@ function initMessageScroll(state){
             }  
         }, 200)
     }
+}
+
+function initSideScroll(state){
+    
 }
 
 
@@ -216,7 +225,7 @@ function createApplyList(div, state){
         profileDiv.className = "thumbnail"
 
         let profileImg = document.createElement('img')
-        profileImg.src = state.contextPath + apply.memberImg
+        profileImg.src = state.contextPath + apply.applicantImg
         profileImg.className ="rounded-circle"
 
         let infoDiv = document.createElement('div')
@@ -224,15 +233,36 @@ function createApplyList(div, state){
 
         let name = document.createElement('div')
         name.className = "talkroom-name"
-        name.innerHTML = talkroom.studyName
 
         let lastTalk = document.createElement('div')
         lastTalk.className = "last-talk"
-        lastTalk.innerHTML = talkroom.lastMessage != null ? talkroom.lastMessage : "대화가 없습니다."
+
+        if(apply.applyKind == 1){
+            name.innerHTML = apply.applicantName + '님의 멘티 신청'
+            lastTalk.innerHTML = '수락하시겠습니까?'
+        } else if (apply.applyKind == 2) {
+            name.innerHTML = apply.applicantName + '님의 스터디 신청'
+            lastTalk.innerHTML = apply.studyName
+        }
+
+        let buttonDiv = document.createElement('div')
+        buttonDiv.className = 'option'
+
+        let acceptBtn = document.createElement('button')
+        acceptBtn.className = 'btn-accept'
+        acceptBtn.innerHTML = '수락'
+
+        let rejectBtn = document.createElement('button')
+        rejectBtn.className = 'btn-primary'
+        rejectBtn.innerHTML = '거절'
+
+        buttonDiv.appendChild(acceptBtn)
+        buttonDiv.appendChild(rejectBtn)
 
         profileDiv.appendChild(profileImg)
         infoDiv.appendChild(name)
         infoDiv.appendChild(lastTalk)
+        infoDiv.appendChild(buttonDiv)
 
         talkroomDiv.appendChild(profileDiv)
         talkroomDiv.appendChild(infoDiv)
@@ -294,15 +324,16 @@ function addMessage(e){
 }
 
 function sideClick(_this, state){
+    state.sideCurrentPage = 1;
     const extendMenu = document.querySelector('.side-extend');
-    let clickValue = _this.target.value
+    state.currentOption = _this.target.value
     /* 
         previousOption : 이전에 눌렀던 side menu 선택값을 저장해둠
         1 : 멘토 , 2 : 스터디그룹 , 3 : 알림
     */
 
     /* 눌렀던 사이드 메뉴를 또 누른다면 */
-    if(state.previousOption === clickValue){
+    if(state.previousOption === state.currentOption){
         /* extend 메뉴를 펼치지 않음 */
         extendMenu.style.display = 'none';
         state.previousOption = null;
@@ -320,7 +351,7 @@ function sideClick(_this, state){
         element.style.display = 'none';
     })
 
-    switch(clickValue) {
+    switch(state.currentOption) {
         case "1":
             state.sideContent.querySelector('.mentorTalk').style.display = "block"
             break;
@@ -328,11 +359,15 @@ function sideClick(_this, state){
         case "2":
             state.sideContent.querySelector('.studyTalk').style.display = "block"
             break;
+
+        case "3":
+            state.sideContent.querySelector('.applyList').style.display = "block"
+            break;
     }
 
     /* 다른 사이드 메뉴 선택시 실행 */
     extendMenu.style.display = 'block';
-    state.previousOption = clickValue;
+    state.previousOption = state.currentOption;
 }
 
 function chatScroll(){

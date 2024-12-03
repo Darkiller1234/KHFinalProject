@@ -32,6 +32,21 @@ function ajaxLoadStudy(state, callback){
     })
 }
 
+function ajaxLoadApply(state, callback){
+    $.ajax({
+        url:'loadApply',
+        type: 'post',
+        data: {
+            currentPage : state.sideCurrentPage,
+            pageLimit : state.pageLimit,
+        },
+        success: (res) => callback(res, state),
+        error: () => {
+            console.log("신청 로딩 실패")
+        }
+    })
+}
+
 function ajaxLoadMessage(state, callback){
     $.ajax({
         url:'loadMessage',
