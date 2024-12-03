@@ -21,10 +21,9 @@ import com.kh.T3B1.member.model.vo.Member;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Component
+@Component("MessageSocketServer")
 public class MessageSocketServer extends TextWebSocketHandler {
 	private final Map<String, WebSocketSession> userSessions = new ConcurrentHashMap<>();
-
 	
 	//클라이언트가 연결을 맺을 때 호출이되는 메소드
 	@Override
