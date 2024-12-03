@@ -4,6 +4,8 @@ import lombok.Data;
 
 @Data
 public class FullCalendarVo {
+	private int memberNo;
+	private int id;
 	private String title;
 	private String start;
 	private String end;

@@ -100,6 +100,10 @@ function init(contextPath, pageName, optional){
             initPersonalChangePage(contextPath);
             break;
 
+        case "personalViewSchedule":
+            initPersonalViewSc(contextPath);
+            break;
+
         // 메시지 페이지
         case "messageMain":
             initMessageMain(contextPath);

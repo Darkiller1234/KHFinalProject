@@ -133,7 +133,7 @@ public class PersonalServiceImpl implements PersonalService{
 		return personalDao.updateMember(sqlSession, temp);
 	}
 
-	@Override
+	@Override	
 	public int ajaxSubmitChange(Member temp) {
 		return personalDao.ajaxSubmitChange(sqlSession, temp);
 	}
@@ -154,6 +154,19 @@ public class PersonalServiceImpl implements PersonalService{
 		params.put("memberNo", memberNo);
 		params.put("date", date);
 		return personalDao.getCurrentDateInfo(sqlSession, params);
+	}
+
+	@Override
+	public int deleteSc(int memberNo, int calendarNo) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("memberNo", memberNo);
+		params.put("calendarNo", calendarNo);
+		return personalDao.deleteSc(sqlSession, params);
+	}
+
+	@Override
+	public int insertSc(FullCalendarVo cal) {
+		return personalDao.insertSc(sqlSession, cal);
 	}
 	
 }
