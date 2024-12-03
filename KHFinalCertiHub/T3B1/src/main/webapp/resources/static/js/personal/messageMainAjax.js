@@ -11,7 +11,6 @@ function ajaxLoadMemberInfo(state, callback){
 }
 
 function ajaxLoadMentor(state, callback){
-    console.log('멘토 로딩 ajax')
     $.ajax({
         url:'loadMentor',
         type: 'post',
@@ -27,7 +26,6 @@ function ajaxLoadMentor(state, callback){
 }
 
 function ajaxLoadStudy(state, callback){
-    console.log('스터디 로딩 ajax')
     $.ajax({
         url:'loadStudy',
         type: 'post',
@@ -43,8 +41,6 @@ function ajaxLoadStudy(state, callback){
 }
 
 function ajaxLoadApply(state, callback){
-    console.log('신청 로딩 ajax')
-    console.log(state.applyCurrentPage)
     $.ajax({
         url:'loadApply',
         type: 'post',
@@ -60,7 +56,6 @@ function ajaxLoadApply(state, callback){
 }
 
 function ajaxLoadMessage(state, callback){
-    console.log('메시지 로딩 ajax')
     $.ajax({
         url:'loadMessage',
         type:'post',
@@ -74,4 +69,34 @@ function ajaxLoadMessage(state, callback){
             console.log("스터디 로딩 실패")
         }
     })
+}
+
+function socketConnect(state){
+    const socket = new WebSocket("ws://localhost:5600/T3B1/sendMessage")
+    
+    // 소켓 연결 성공시 실행
+    socket.onopen = function(){
+        console.log('연결성공....')
+    }
+
+    // 소켓 연결 종료시 실행
+    socket.onclose = function(){
+        console.log('연결끊어짐....')
+    }
+
+    // 소켓 연결 실패시 실행
+    socket.onerror = function(){
+        console.log('연결실패....')
+    }
+
+    //socket연결로부터 데이터가 도착했을 때 실행하는 이벤트
+    socket.onmessage = function(ev){
+        console.log(ev)
+        const receive = JSON.parse(ev.data);
+    }
+
+    function sendMsg(){
+        console.log(msgData)
+        socket.send(JSON.stringify(msgData));
+    }
 }

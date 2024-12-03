@@ -42,6 +42,7 @@ public class MessageController {
 		HashMap<String, Object> memberInfo = new HashMap<>();
 		memberInfo.put("memberNo", member.getMemberNo());
 		memberInfo.put("memberName", member.getMemberNickname());
+		memberInfo.put("memberImg", member.getMemberImg());
 		
 		return new Gson().toJson(memberInfo);
 	}

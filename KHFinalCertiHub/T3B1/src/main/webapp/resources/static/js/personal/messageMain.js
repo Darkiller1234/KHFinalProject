@@ -1,6 +1,7 @@
 function initMessageMain(contextPath) {
     const sideContent = document.querySelector('.side-extend .content')
     const messageContent = document.querySelector('.message-section .message-window')
+    const sendMessage = document.querySelector('#sendText')
 
     let state = {
         contextPath: contextPath,
@@ -10,6 +11,7 @@ function initMessageMain(contextPath) {
 
         sideContent: sideContent, // 멘토, 멘티, 알림 선택메뉴
         messageContent: messageContent, // 메시지 추가되는 영역
+        sendMessage: sendMessage, // 보내는 메시지가 저장되있는 dom 요소
 
         currentOption: null, // 현재 누른 사이드 메뉴 번호
         previousOption: null, // 이전에 누른 사이드 메뉴 번호
@@ -27,17 +29,43 @@ function initMessageMain(contextPath) {
 
         callbacks:{
             onMentorLoad: (res, state) => {
+                state.mentorCurrentPage++;
                 state.mentorList = res;
-                createMentorTalk(state.sideContent.querySelector('.mentorTalk'), state)
+
+                if(res){
+                    createMentorTalk(state.sideContent.querySelector('.mentorTalk'), state)
+                }
             },
             onStudyLoad: (res, state) => {
+                state.studyCurrentPage++;
                 state.studyList = res;
-                createStudyTalk(state.sideContent.querySelector('.studyTalk'), state)
+
+                if(res){
+                    createStudyTalk(state.sideContent.querySelector('.studyTalk'), state)
+                }
             },
             onApplyLoad: (res, state) => {
                 state.applyCurrentPage++;
                 state.applyList = res;
-                createApplyList(state.sideContent.querySelector('.applyList'), state)
+
+                if(res){
+                    createApplyList(state.sideContent.querySelector('.applyList'), state)
+                }
+            },
+            onMessageLoad: (res, state) => {
+                state.messageList = res
+                state.currentPage++;
+
+                if(res){
+                     // 만약 메시지 추가가 과거기록을 불러와 추가하는것이라면
+                     // state.messageContent에 prepend가 아닌 append 해야함
+                     // scroll이 column-reverse이기 때문
+                     // 구분을 위한 변수
+                    state.messageList.forEach((msg) => {
+                        msg.isLoading = true
+                        createMessageCard(state, msg)
+                    })
+                }
             },
         },
     }
@@ -45,38 +73,24 @@ function initMessageMain(contextPath) {
     const onLoadMemberInfo = (res, state) => {
         state.memberNo = res.memberNo
         state.memberName = res.memberName
+        state.memberImg = res.memberImg
     }
 
     ajaxLoadMemberInfo(state, onLoadMemberInfo)
     initMenuButton(state);
     initSideScroll(state);
     initMessageScroll(state);
+    initChatEvent(state);
 }
 
 function initMenuButton(state){
     const radioList = document.querySelectorAll('.side-menu label input')
-
-    const onMentorLoad = (res, state) => {
-        state.mentorList = res;
-        createMentorTalk(state.sideContent.querySelector('.mentorTalk'), state)
-    }
-
-    const onStudyLoad = (res, state) => {
-        state.studyList = res;
-        createStudyTalk(state.sideContent.querySelector('.studyTalk'), state)
-    }
-
-    const onApplyLoad = (res, state) => {
-        state.applyCurrentPage++;
-        state.applyList = res;
-        createApplyList(state.sideContent.querySelector('.applyList'), state)
-    }
      
     radioList[0].onclick = (e) => {
         sideClick(e,state)
 
         if(state.mentorList == null) {
-            ajaxLoadMentor(state, onMentorLoad);
+            ajaxLoadMentor(state, state.callbacks.onMentorLoad);
         }
     }
 
@@ -84,7 +98,7 @@ function initMenuButton(state){
         sideClick(e,state)
 
         if(state.studyList == null) {
-            ajaxLoadStudy(state, onStudyLoad);
+            ajaxLoadStudy(state, state.callbacks.onStudyLoad);
         }
     }
 
@@ -92,7 +106,7 @@ function initMenuButton(state){
         sideClick(e,state)
 
         if(state.applyList == null) {
-            ajaxLoadApply(state, onApplyLoad);
+            ajaxLoadApply(state, state.callbacks.onApplyLoad);
         }
     }
 }
@@ -100,19 +114,13 @@ function initMenuButton(state){
 function initMessageScroll(state){
     let timer; // 스로틀링용 변수
 
-    const onMessageLoad = (res, state) => {
-        state.messageList = res
-        state.currentPage++;
-        createMessageCard(state.messageContent, state)
-    }
-
     state.messageContent.onscroll = () => {
         clearTimeout(timer)
 
         timer = setTimeout( ()=> { 
             // 스크롤이 최대 높이에 근접할 경우
             if(state.messageContent.scrollTop <= state.messageContent.style.height * 0.1 ) {
-                ajaxLoadMessage(state, onMessageLoad)
+                ajaxLoadMessage(state, state.callbacks.onMessageLoad)
             }  
         }, 200)
     }
@@ -122,26 +130,52 @@ function initSideScroll(state){
     const sideExtend = document.querySelector('.side-extend')
     let timer; // 스로틀링용 변수
 
-    const onApplyLoad = (res, state) => {
-        state.applyList = res
-        state.applyCurrentPage++;
-
-        if(res){
-            createApplyList(state.sideContent.querySelector('.applyList'), state)
-        }
-    }
-
     sideExtend.onscroll = () => {
         clearTimeout(timer)
 
         timer = setTimeout( ()=> { 
             if( sideExtend.scrollTop + sideExtend.style.height >= (sideExtend.style.height) ) {
-                if(state.currentOption == 3) {
-                    ajaxLoadApply(state, onApplyLoad)
+                
+                if(state.currentOption == 1) {
+                    ajaxLoadMentor(state, state.callbacks.onMentorLoad)
+                }
+
+                else if(state.currentOption == 2) {
+                    ajaxLoadStudy(state, state.callbacks.onStudyLoad)
+                }
+                
+                else if(state.currentOption == 3) {
+                    ajaxLoadApply(state, state.callbacks.onApplyLoad)
                 }
             }  
         }, 200)
     }
+}
+
+function initChatEvent(state){
+    const searchButton = document.getElementById('sendButton')
+    searchButton.onclick = (e) => {
+        addMessage(e, state)
+    }
+
+    state.sendMessage.onkeypress = (e) => {
+        addMessage(e, state)
+    }
+}
+
+function addMessage(e, state){
+    if( (e.code !== 'Enter' && e.type !== 'click') || state.sendMessage.value == ""){
+        return;
+    }
+
+    let userChat = {
+        memberNo: state.memberNo,
+        memberImg: state.memberImg,
+        memberName: state.memberName,
+        messageContent: state.sendMessage.value,
+    }
+    createMessageCard(state, userChat)
+    state.sendMessage.value = ""
 }
 
 
@@ -151,13 +185,8 @@ function talkroomClick(state, talkroomNo, managerNo){
     state.currentPage = 1
     state.messageContent.innerHTML = ""
 
-    const onMessageLoad = (res, state) => {
-        state.messageList = res
-        state.currentPage++;
-        createMessageCard(state.messageContent, state)
-    }
-
-    ajaxLoadMessage(state, onMessageLoad)
+    ajaxLoadMessage(state, state.callbacks.onMessageLoad)
+    socketConnect(state)
 }
 
 function createMentorTalk(div, state){
@@ -309,56 +338,46 @@ function createApplyList(div, state){
     })
 }
 
-function createMessageCard(div, state){
-    state.messageList.forEach((msg) => {
-        const messageDiv = document.createElement('div')
-        messageDiv.className = msg.memberNo == state.memberNo ? 'message mine' : 'message'
-    
-        const card = document.createElement('div')
-        card.className = 'message-card'
-    
-        // 프로필 사진
-        const thumbnail = document.createElement('div')
-        const thumbnailImg = document.createElement('img')
-    
-        thumbnail.className = 'thumbnail'
-        thumbnailImg.className = 'rounded-circle'
-        thumbnailImg.src = state.contextPath + msg.memberImg
-        thumbnail.appendChild(thumbnailImg)
-    
-        const info = document.createElement('div')
-        info.className = 'info'
-    
-        const userName = document.createElement('div')
-        userName.className = 'user-name'
-        userName.innerText = msg.memberName
-    
-        const content = document.createElement('div')
-        content.className = 'content'
-        content.innerText = msg.messageContent;
-    
-        info.appendChild(userName)
-        info.appendChild(content)
-    
-        card.appendChild(thumbnail)
-        card.appendChild(info)
-    
-        messageDiv.appendChild(card)
-        div.appendChild(messageDiv)
-    })
-}
+function createMessageCard(state, data){
+    const messageDiv = document.createElement('div')
+    messageDiv.className = data.memberNo == state.memberNo ? 'message mine' : 'message'
 
+    const card = document.createElement('div')
+    card.className = 'message-card'
 
-function addMessage(e){
-    const sendMessage = document.querySelector('#sendText')
+    // 프로필 사진
+    const thumbnail = document.createElement('div')
+    const thumbnailImg = document.createElement('img')
 
-    if( (e.code !== 'Enter' && e.type !== 'click') || sendMessage.value == ""){
-        return;
+    thumbnail.className = 'thumbnail'
+    thumbnailImg.className = 'rounded-circle'
+    thumbnailImg.src = state.contextPath + data.memberImg
+    thumbnail.appendChild(thumbnailImg)
+
+    const info = document.createElement('div')
+    info.className = 'info'
+
+    const userName = document.createElement('div')
+    userName.className = 'user-name'
+    userName.innerText = data.memberName
+
+    const content = document.createElement('div')
+    content.className = 'content'
+    content.innerText = data.messageContent;
+
+    info.appendChild(userName)
+    info.appendChild(content)
+
+    card.appendChild(thumbnail)
+    card.appendChild(info)
+
+    messageDiv.appendChild(card)
+
+    if(data.isLoading) {
+        state.messageContent.appendChild(messageDiv)
+    } else {
+        state.messageContent.prepend(messageDiv)
     }
-
-    const messageWindow = document.querySelector('.message-window')
-
-    createMessageCard(messageWindow, sendMessage.value)
 }
 
 function sideClick(_this, state){

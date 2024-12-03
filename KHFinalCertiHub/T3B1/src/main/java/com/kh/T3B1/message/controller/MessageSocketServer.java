@@ -28,7 +28,10 @@ public class MessageSocketServer extends TextWebSocketHandler {
 	//클라이언트가 연결을 맺을 때 호출이되는 메소드
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-
+		Member member = (Member)session.getAttributes().get("loginMember");
+		
+		log.info("{} 연결됨...", member.getMemberNickname());
+		userSessions.put(Integer.toString(member.getMemberNo()), session);
 	}
 
 	//클라이언트로부터 메세지를 받을 때 호출되는 메소드
