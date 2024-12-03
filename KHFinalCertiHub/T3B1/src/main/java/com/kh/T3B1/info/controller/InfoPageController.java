@@ -14,11 +14,11 @@ import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.info.service.SearchService;
 
 @Controller
-@RequestMapping("info/") 
+@RequestMapping("info/")
 public class InfoPageController {
-	
+
 	private final SearchService searchService;
-	
+
 	@Autowired
 	public InfoPageController(SearchService searchService) {
 		this.searchService = searchService;
@@ -26,19 +26,28 @@ public class InfoPageController {
 
 	// 검색 페이지로 이동
 	@RequestMapping("search")
-	public String searchPage(
-	    @RequestParam(value="keyword", defaultValue="") String keyword,
-	    @RequestParam(value="cpage", defaultValue="1") int currentPage,
-	    Model m 
-	) {
-	    int SearchCount = searchService.selectResultCount(keyword);
-	    PageInfo pi = Template.getPageInfo(SearchCount, currentPage, 10, 5);
-	    ArrayList<License> list = searchService.selectListResult(pi, keyword);
-	    
-	    m.addAttribute("list", list);
-	    m.addAttribute("pi", pi);
-	    return "infoPage/searchPage";
-	}
+	public String searchPage(@RequestParam(value = "keyword", defaultValue = "") String keyword,
+			@RequestParam(value = "cpage", defaultValue = "1") int currentPage, Model m) {
+		// 검색 결과의 총 개수 조회
+		int searchCount = searchService.selectResultCount(keyword);
+
+		// 페이지 정보 객체 생성 (현재 페이지, 총 검색 개수, 한 페이지당 항목 수, 페이지 범위)
+		PageInfo pi = Template.getPageInfo(searchCount, currentPage, 10, 5);
+		System.out.println("pi : " + pi);
+		System.out.println("keyword :" + keyword);
+		
+		// 검색 결과 목록 조회
+		ArrayList<License> list = searchService.selectListResult(pi, keyword);
+		System.out.println("list :" + list);
+		// 모델에 데이터를 추가
+		m.addAttribute("list", list); // 검색 결과 목록
+		m.addAttribute("pi", pi); // 페이징 정보
+		m.addAttribute("keyword", keyword); // 검색 키워드 (페이징 후에도 검색어가 유지되도록)
+		m.addAttribute("pageName", "searchPage");
+
+		// 검색 페이지로 이동
+		return "infoPage/searchPage";
+	}  
 
 	// 정보창으로 이동
 	@RequestMapping("lib")
@@ -46,5 +55,10 @@ public class InfoPageController {
 		m.addAttribute("pageName", "infoPage");
 		return "infoPage/infoPage";
 	}
-
+	
+	@RequestMapping("board")
+	public String boardPage(Model m) {
+		m.addAttribute("pageName","boardPage");
+		return "infoPage/boardPage";
+	}
 }

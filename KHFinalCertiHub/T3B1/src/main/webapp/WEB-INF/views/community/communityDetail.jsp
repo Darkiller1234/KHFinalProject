@@ -391,8 +391,7 @@
               <div class="modal-header">
               <h4 class="modal-title">                
                   <img 
-                  src="<%=contextPath%>/resources/static/img/logo/logo_big.png"
-                  ">
+                  src="<%=contextPath%>/resources/static/img/logo/logo_big.png">
               </h4>
               </div>
       

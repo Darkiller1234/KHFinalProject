@@ -18,12 +18,13 @@
             </div>
 
             <!-- 검색 폼 -->
-            <form class="search-form" action="" method="get">
-                <input type="text" placeholder="검색어를 입력하세요" value="${keyword}">
+            <form class="search-form" action="<%=contextPath%>/info/search" method="get">
+                <input type="text" name="keyword" placeholder="검색어를 입력하세요" value="${keyword}">
                 <button type="submit">
                     <img src="<%=contextPath%>/resources/static/img/button/search_icon.png" alt="검색">
                 </button>
             </form>
+
             <br><br>
             <!-- 분류 탭 -->
             <div class="container">
@@ -87,35 +88,51 @@
             </div>
             <br><br>
 
-
             <div class="results-container">
                 <p>검색 결과 ${pi.listCount}건</p>
                 <c:forEach var="item" items="${list}">
                     <div class="result-item">
                         <h3>${item.licenseName}</h3>
-                        <p>시험일 | ${item.year}년 | 분야 | ${item.status}</p>
-                        <button class="view-details"
-                            onclick="location.href='<%=contextPath%>/info/lib'">${item.qualificationType}</button>
+                        <h4>${item.licenseDesc}</h4>
                     </div>
                 </c:forEach>
-
-                <br><br> 
-
-                <!-- 페이징바 -->
-                <div class="pagination">
-                    <span class="page-arrow">
-                        <img src="<%=contextPath%>/resources/static/img/button/arrow_left.png" alt="">
-                    </span>
-                    <span class="page-num">1</span>
-                    <span class="page-num active">2</span>
-                    <span class="page-num">3</span>
-                    <span class="page-num">4</span>
-                    <span class="page-num">5</span>
-                    <span class="page-arrow">
-                        <img src="<%=contextPath%>/resources/static/img/button/arrow_right.png" alt="">
-                    </span>
+            <br><br>
+                 <!-- 페이징바 -->
+                 <div class="pagination">
+                    <!-- 이전 페이지 화살표 -->
+                    <c:if test="${pi.currentPage > 1}">
+                        <span class="page-arrow">
+                            <a href="?cpage=${pi.currentPage - 1}&keyword=${keyword}">
+                                <img src="<%=contextPath%>/resources/static/img/button/arrow_left.png" alt="">
+                            </a>
+                        </span>
+                    </c:if>
+                
+                    <!-- 페이지 번호들 -->
+                    <c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
+                        <c:choose>
+                            <c:when test="${page == pi.currentPage}">
+                                <span class="page-num active">${page}</span>
+                            </c:when>
+                            <c:otherwise>
+                                <span class="page-num">
+                                    <a href="?cpage=${page}&keyword=${keyword}">${page}</a>
+                                </span>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                
+                    <!-- 다음 페이지 화살표 -->
+                    <c:if test="${pi.currentPage < pi.maxPage}">
+                        <span class="page-arrow">
+                            <a href="?cpage=${pi.currentPage + 1}&keyword=${keyword}">
+                                <img src="<%=contextPath%>/resources/static/img/button/arrow_right.png" alt="">
+                            </a>
+                        </span>
+                    </c:if>
                 </div>
-
+                
+                
             </div>
             <script src="<%=contextPath%>/resources/static/js/infopage/searchPage.js"></script>
 
