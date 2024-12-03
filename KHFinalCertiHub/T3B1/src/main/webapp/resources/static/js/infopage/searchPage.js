@@ -1,3 +1,23 @@
+// function initInfoPage(contextPath){
+//     initSearchPageBar(contextPath);
+// }
+
+// function initSearchPageBar(contextPath) {
+//     const pagingBar = document.querySelector('.paging-bar');
+
+//     const data = {
+//         startPage : 1,
+//         endPage : 5,
+//         currentPage : 1,
+//         pageUrl : 'search?',
+//         imgUrl : [
+//             contextPath + '/resources/static/img/button/arrow_left.png',
+//             contextPath + '/resources/static/img/button/arrow_right.png'
+//         ]
+//     }
+//     createPageBar(pagingBar, data)
+// }
+
 // 탭 게시물
 $(document).ready(function () {
     $('ul.tabs li').click(function () {
@@ -15,4 +35,3 @@ $(document).ready(function () {
     });
 });
 
-// 검색기능 
