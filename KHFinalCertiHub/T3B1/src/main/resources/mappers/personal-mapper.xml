@@ -53,6 +53,7 @@
 		<result column="END_DATE" property="end"/>
 		<result column="BACKGROUND_COLOR" property="backgroundColor"/>
 		<result column="TEXT_COLOR" property="textColor"/>
+		<result column="CALENDAR_NO" property="id"/>
 	</resultMap>
 	
 	<select id="getMemberInfo" resultType="Member" resultMap="memberResultSet">
@@ -280,7 +281,9 @@
 	</update>
 	
 	<select id="scLoad" resultType="FullCalendarVo" resultMap="fullCalendarResultSet">
-		SELECT TO_char(START_DATE, 'YYYY-MM-DD"T"HH24:MI:SS') START_DATE,
+		SELECT 
+				CALENDAR_NO,
+				TO_char(START_DATE, 'YYYY-MM-DD"T"HH24:MI:SS') START_DATE,
 				TO_char(END_DATE, 'YYYY-MM-DD"T"HH24:MI:SS') END_DATE,
 				CALENDAR_DETAIL,
 				BACKGROUND_COLOR,
@@ -291,6 +294,7 @@
 	
 	<select id="getCurrentDateInfo" resultType="FullCalendarVo" resultMap="fullCalendarResultSet">
 		SELECT 
+			CALENDAR_NO,
 		    TO_CHAR(START_DATE, 'YYYY-MM-DD"T"HH24:MI:SS') AS START_DATE,
 		    TO_CHAR(END_DATE, 'YYYY-MM-DD"T"HH24:MI:SS') AS END_DATE,
 		    CALENDAR_DETAIL,
@@ -301,6 +305,26 @@
 		  AND TO_DATE(#{date}, 'YYYY-MM-DD') &gt;= TRUNC(START_DATE)
 		AND TO_DATE(#{date}, 'YYYY-MM-DD') &lt;= TRUNC(END_DATE)
 	</select>
+	
+	<delete id="deleteSc">
+		DELETE FROM MEMBER_CALENDAR
+		 WHERE MEMBER_NO = #{memberNo}
+	       AND CALENDAR_NO = #{calendarNo}
+	</delete>
+	
+	<insert id="insertSc" parameterType="FullCalendarVo">
+		INSERT INTO MEMBER_CALENDAR
+		VALUES (
+			MEMBER_CALENDAR_SEQ.NEXTVAL,
+			#{memberNo},
+			TO_DATE(#{start}, 'YYYY-MM-DDHH24:MI:SS'),
+			TO_DATE(#{end}, 'YYYY-MM-DDHH24:MI:SS'),
+			#{title},
+			#{backgroundColor},
+			#{textColor}
+		)
+	</insert>
+	
 </mapper>
 
 

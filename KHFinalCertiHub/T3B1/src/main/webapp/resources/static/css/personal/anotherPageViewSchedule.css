@@ -95,11 +95,11 @@
 
 @media (min-width: 721px){
     .left-view{
-        width: 50%;
+        width: 70%;
     }
     
     .right-view{
-        width: 50%;
+        width: 30%;
     }
 
     #certiSelect {
