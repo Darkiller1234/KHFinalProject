@@ -37,7 +37,9 @@
                     </button> 
                 </div>
 
-                <div class="board-user"></div>
+                <div class="board-user">
+                    
+                </div>
 
                 <!-- 페이징바 -->
                 <div class="user-bar"></div>
