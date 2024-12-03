@@ -48,58 +48,58 @@ function persoMSInit(contextPath){
     createSelectBox(document.getElementById('repeat-count-select'), data3);
 
 
-    const alarmInput = document.querySelector('#repeat-select .custom-select .button-select div');
-    const repeatcount = document.querySelector('#repeat-count-select .custom-select .button-select div');
-    const repeatCountSelect = document.getElementById('repeat-count-select');
-    const repeatcountinput = document.getElementById('repeat-count-input');
-    const repeaddataset = document.getElementById('repeat-date-set');
+    // const alarmInput = document.querySelector('#repeat-select .custom-select .button-select div');
+    // const repeatcount = document.querySelector('#repeat-count-select .custom-select .button-select div');
+    // const repeatCountSelect = document.getElementById('repeat-count-select');
+    // const repeatcountinput = document.getElementById('repeat-count-input');
+    // const repeaddataset = document.getElementById('repeat-date-set');
 
-    if (alarmInput.innerText === '반복 안 함') {
-        repeatCountSelect.classList.add('display-none');
-        repeatcountinput.classList.add('display-none');
-        repeaddataset.classList.add('display-none');
-    } else {
-        if (repeatcount.innerText !== '일정 횟수 반복') {
-            repeatcountinput.classList.add('display-none');
-        } else {
-            repeatcountinput.classList.remove('display-none');
-        }
-        if (repeatcount.innerText !== '시작/종료 날짜 지정') {
-            repeaddataset.classList.add('display-none');
-        } else {
-            repeaddataset.classList.remove('display-none');
-        }
-        repeatCountSelect.classList.remove('display-none');
-    }
+    // if (alarmInput.innerText === '반복 안 함') {
+    //     repeatCountSelect.classList.add('display-none');
+    //     repeatcountinput.classList.add('display-none');
+    //     repeaddataset.classList.add('display-none');
+    // } else {
+    //     if (repeatcount.innerText !== '일정 횟수 반복') {
+    //         repeatcountinput.classList.add('display-none');
+    //     } else {
+    //         repeatcountinput.classList.remove('display-none');
+    //     }
+    //     if (repeatcount.innerText !== '시작/종료 날짜 지정') {
+    //         repeaddataset.classList.add('display-none');
+    //     } else {
+    //         repeaddataset.classList.remove('display-none');
+    //     }
+    //     repeatCountSelect.classList.remove('display-none');
+    // }
 
 
-    if (alarmInput && repeatCountSelect) {
-        document.querySelectorAll('.item').forEach(element => {
-            element.addEventListener('mousedown', () => {
-                if (alarmInput.innerText === '반복 안 함') {
-                    repeatCountSelect.classList.add('display-none');
-                    repeatcountinput.classList.add('display-none');
-                    repeaddataset.classList.add('display-none');
-                } else {
-                    if (repeatcount.innerText !== '일정 횟수 반복') {
-                        repeatcountinput.classList.add('display-none');
-                    } else {
-                        repeatcountinput.classList.remove('display-none');
-                    }
-                    if (repeatcount.innerText !== '시작/종료 날짜 지정') {
-                        repeaddataset.classList.add('display-none');
-                    } else {
-                        repeaddataset.classList.remove('display-none');
-                    }
-                    repeatCountSelect.classList.remove('display-none');
-                }
+    // if (alarmInput && repeatCountSelect) {
+    //     document.querySelectorAll('.item').forEach(element => {
+    //         element.addEventListener('mousedown', () => {
+    //             if (alarmInput.innerText === '반복 안 함') {
+    //                 repeatCountSelect.classList.add('display-none');
+    //                 repeatcountinput.classList.add('display-none');
+    //                 repeaddataset.classList.add('display-none');
+    //             } else {
+    //                 if (repeatcount.innerText !== '일정 횟수 반복') {
+    //                     repeatcountinput.classList.add('display-none');
+    //                 } else {
+    //                     repeatcountinput.classList.remove('display-none');
+    //                 }
+    //                 if (repeatcount.innerText !== '시작/종료 날짜 지정') {
+    //                     repeaddataset.classList.add('display-none');
+    //                 } else {
+    //                     repeaddataset.classList.remove('display-none');
+    //                 }
+    //                 repeatCountSelect.classList.remove('display-none');
+    //             }
                 
                 
-            });
-        });
-    } else {
-        console.warn("Required elements not found in the DOM.");
-    }
+    //         });
+    //     });
+    // } else {
+    //     console.warn("Required elements not found in the DOM.");
+    // }
 
 
 
@@ -314,10 +314,11 @@ function persoMSInit(contextPath){
 
                     // 날짜만 비교
                     if (todayDateOnly >= startDateOnly && todayDateOnly <= endDateOnly) {
-                        document.querySelector('#today-job-div-list').appendChild(createDateChild(event));
+                        document.querySelector('#today-job-div-list').appendChild(createDateChild(event, 0));
+                        document.querySelector('#notToday-job-div-list').appendChild(createDateChild(event, 1));
                         console.log(`현재 날짜는 "${event.title}" 이벤트의 범위 내에 있습니다.`);
                     } else {
-                        document.querySelector('#notToday-job-div-list').appendChild(createDateChild(event));
+                        document.querySelector('#notToday-job-div-list').appendChild(createDateChild(event, 1));
                         console.log(`현재 날짜는 "${event.title}" 이벤트의 범위 내에 있지 않습니다.`);
                     }
     
@@ -359,7 +360,7 @@ function persoMSInit(contextPath){
     }
     
     
-    function createDateChild(event) {
+    function createDateChild(event, test) {
         // 새로운 div 요소 생성
         const newDiv = document.createElement('div');
         const jobDetailDiv = document.createElement('div');
@@ -383,27 +384,67 @@ function persoMSInit(contextPath){
         // 날짜 범위 텍스트 생성
         const dateRangeText = isSameDay
           ? `${formatDate(startDate)} ${formatTime(startDate)} ~ ${formatTime(endDate)}`
-          : `${formatDate(startDate)} ${formatTime(startDate)} ~ ${formatDate(endDate)} ${formatTime(endDate)}`;
+          : `${formatDate(startDate)} ${formatTime(startDate)}\n ~ ${formatDate(endDate)} ${formatTime(endDate)}`;
       
         // 클래스 추가
         newDiv.classList.add(isSameDay ? 'today-job-div' : 'notToday-job-div');
         jobDetailDiv.classList.add('job-detail');
         fontSizeSubtitleDiv.classList.add('font-size-subtitle');
         fontSizeContentDiv.classList.add('font-size-content');
-        deleteButton.classList.add('delete-job');
+        
       
         // 텍스트 내용 설정
-        fontSizeSubtitleDiv.textContent = dateRangeText;
+        fontSizeSubtitleDiv.innerText = dateRangeText;
         fontSizeContentDiv.textContent = event.title || '작업 제목 없음';
-        deleteButton.textContent = '삭제';
-      
+        
+
+
         // 요소 구조 조합
         jobDetailDiv.appendChild(fontSizeSubtitleDiv);
         jobDetailDiv.appendChild(fontSizeContentDiv);
         newDiv.appendChild(jobDetailDiv);
-        newDiv.appendChild(deleteButton);
-      
+        // newDiv.appendChild(deleteButton);
+
         // 생성된 요소 반환 (또는 DOM에 추가)
+
+        if(test === 1){
+            deleteButton.classList.add('delete-job');
+            deleteButton.textContent = '삭제';
+            // 버튼 클릭 이벤트 추가
+            deleteButton.addEventListener('click', () => {
+                $.ajax({
+                    url: "makeSc/deleteSc",
+                    data: {calendarNo: event.id},
+                    success: function(res){
+                        // FullCalendar에서 이벤트 삭제
+                        const calendarEvent = calendar.getEventById(event.id); // FullCalendar 이벤트 ID로 이벤트 가져오기
+                        if (calendarEvent) {
+                            calendarEvent.remove(); // 캘린더에서 이벤트 제거
+                            console.log(`"${event.title}" 작업이 캘린더에서 삭제되었습니다.`);
+                            newDiv.remove();
+                        } else {
+                            console.error('캘린더에서 이벤트를 찾을 수 없습니다.');
+                        }
+                        
+                    },
+                    error: function(res){
+                        console.log("일정 삭제 ajax 오류");
+                    }
+                })
+                
+                console.log(`"${event.title}" 작업이 삭제되었습니다.`);
+            });
+
+            
+            fontSizeSubtitleDiv.appendChild(deleteButton);
+        }
+
+
+        
+
+
+      
+        
         return newDiv;
     }
 
@@ -418,7 +459,7 @@ function persoMSInit(contextPath){
             success: function(res){
                 if(res[0] !== null){
                     res.forEach(dt => {
-                        list.appendChild(createDateChild(dt));
+                        list.appendChild(createDateChild(dt, 1));
                     });
                 }
             },
@@ -427,6 +468,81 @@ function persoMSInit(contextPath){
             }
         })
     }
+
+    $("#backColorInput").on("input", function(){
+        const elements = document.querySelectorAll('.modal-content *:not(button)');
+        const colorValue = document.querySelector('#backColorInput').value;
+
+        // NodeList의 각 요소에 대해 스타일 설정
+        elements.forEach(element => {
+            element.style.backgroundColor = colorValue;
+        });
+        document.querySelector('.modal-content').style.backgroundColor = colorValue;
+    })
+
+    $("#fontColorInput").on("input", function(){
+        const elements = document.querySelectorAll('.modal-content *:not(button)');
+        const colorValue = document.querySelector('#fontColorInput').value;
+
+        // NodeList의 각 요소에 대해 스타일 설정
+        elements.forEach(element => {
+            element.style.color = colorValue;
+        });
+        document.querySelector('.modal-content').style.color = colorValue;
+    })
+
+
+    $("#calendarSave").on("click",  function() {
+        // 값 가져오기
+        const startDate = document.querySelector('#start-date input[type=date]').value;
+        const startTime = document.querySelector('#start-date input[type=time]').value;
+        const endDate = document.querySelector('#end-date input[type=date]').value;
+        const endTime = document.querySelector('#end-date input[type=time]').value;
+
+        // Date 객체로 변환
+        const startDateTime = new Date(`${startDate}T${startTime}`);
+        const endDateTime = new Date(`${endDate}T${endTime}`);
+
+        // 유효성 검사
+        if (endDateTime < startDateTime) {
+            alert("끝 날짜와 시간이 시작 날짜와 시간보다 앞설 수 없습니다!");
+        } else {
+            const title = document.querySelector('#titleInputArea input').value;
+            if(title.replace(/\s/g, "").length == 0){
+                alert("내용을 입력해주세요!");
+            } else {
+                const start = startDate + startTime;
+                const end = endDate + endTime;
+                const textColor = document.querySelector('#backColorInput').value;
+                const backgroundColor = document.querySelector('#fontColorInput').value;
+                $.ajax({
+                    url: "makeSc/insertSc",
+                    data: {
+                        start: start,
+                        end: end,
+                        textColor: textColor,
+                        backgroundColor: backgroundColor,
+                        title: title
+                    },
+                    success: function(res){
+                        if(res){
+                            alert("일정 생성에 성공하였습니다.");
+                            location.reload(true);
+                        } else {
+                            alert("다시 시도해주세요.")
+                        }
+                    },
+                    error: function(res){
+                        console.log("일정 생성 ajax 오류");
+                    }
+                })
+            }
+            
+        }
+
+        console.log(document.querySelector('#backColorInput').value)
+        console.log(document.querySelector('#fontColorInput').value)
+    })
 
 }
 

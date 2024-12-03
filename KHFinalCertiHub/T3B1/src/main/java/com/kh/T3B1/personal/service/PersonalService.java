@@ -51,4 +51,8 @@ public interface PersonalService {
 
 	ArrayList<FullCalendarVo> getCurrentDateInfo(int memberNo, String date);
 
+	int deleteSc(int memberNo, int calendarNo);
+
+	int insertSc(FullCalendarVo cal);
+
 }

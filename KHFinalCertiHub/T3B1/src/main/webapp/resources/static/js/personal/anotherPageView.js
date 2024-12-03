@@ -3,15 +3,24 @@ function initPersonalView(contextPath) {
     const url = new URL(window.location.href);
     // URL의 파라미터값을 가진 객체
     const urlParam = url.searchParams;
-    getMemberInfo(urlParam.get('pno'), contextPath);
-    getSetLikeStatus(urlParam.get('pno'), contextPath);
-    getSetLicense(urlParam.get('pno'), contextPath);
+    const result = getMemberInfo(urlParam.get('pno'), contextPath);
+    if(result !== undefined){
+        getSetLikeStatus(urlParam.get('pno'), contextPath);
+        getSetLicense(urlParam.get('pno'), contextPath);
+    }
+    
 }
 
 
 function getMemberInfo(pno, contextPath){
     ajaxGetMemberInfo({pno: pno}, function(result){
-        setMemberInfo(result, pno, contextPath);
+        if(result === null){
+            document.querySelector('#middle-view-profileInfo').innerHTML = "<h1>해당 유저의 정보가 없습니다.</h1>"
+            document.querySelector('.bottom-view').innerHTML = ""
+            return null;
+        }else {
+            setMemberInfo(result, pno, contextPath);
+        }
     })
 }
 
@@ -82,6 +91,7 @@ function getSetLikeStatus(pno, contextPath){
 
 function getLikeStatus(pno, contextPath){
     ajaxGetLikeStatus({pno: pno}, function(result){
+        console.log(result)
         document.querySelector('.like-heart > p').textContent = result.likeCount;
         if(result.likeStatus === 1){
             document.querySelector('#mentor-like').src = contextPath + '/resources/static/img/profile/full_heart.png'

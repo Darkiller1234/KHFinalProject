@@ -11,7 +11,6 @@
         <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
         <script src="${pageContext.request.contextPath}/resources/static/js/personal/anotherPageViewAjax.js"></script>
         <script src="${pageContext.request.contextPath}/resources/static/js/personal/anotherPageView.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/personal/anotherPageView.css">
         <title>Document</title>
     </head>
@@ -31,10 +30,10 @@
                         <div class="btn-group" role="group" aria-label="Basic radio toggle button group" id="category-btn">
                             <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off"
                             checked>
-                            <label class="btn btn-outline-primary" for="btnradio1" onclick="location.href='<%=contextPath%>/personal/view'">프로필 정보</label>
+                            <label class="btn btn-outline-primary" for="btnradio1" onclick="location.href='<%=contextPath%>/personal/view?pno=${pno}'">프로필 정보</label>
 
                             <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="btnradio2" onclick="location.href='<%=contextPath%>/personal/viewSc'">스케줄</label>
+                            <label class="btn btn-outline-primary" for="btnradio2" onclick="location.href='<%=contextPath%>/personal/viewSc?pno=${pno}'">스케줄</label>
                         </div>
 
                         <nav class="navbar bg-body-tertiary page-title font-size-subtitle" id="certiSelect">
@@ -54,10 +53,10 @@
                                 <div class="collapse navbar-collapse" id="navbarNav">
                                     <ul class="navbar-nav">
                                         <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" href="<%=contextPath%>/personal/view">프로필 정보</a>
+                                            <a class="nav-link active" aria-current="page" href="<%=contextPath%>/personal/view?pno=${pno}">프로필 정보</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" href="<%=contextPath%>/personal/viewSc">스케줄</a>
+                                            <a class="nav-link active" aria-current="page" href="<%=contextPath%>/personal/viewSc?pno=${pno}">스케줄</a>
                                         </li>
                                         
                                     </ul>
@@ -68,7 +67,7 @@
                     <div id="middle-view-profileInfo">
                         <div class="left-view">
                             <div id="simple-profile-view">
-                                <img class="profile-image" src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" alt="">
+                                <img class="profile-image" src="<%=contextPath%>/resources/static/img/profile/default_profile.png" alt="">
                                 <p class="font-size-subtitle" id="simple-view-name"></p>
                                 <div class="like-heart">
                                     <button data-bs-toggle="modal" data-bs-target="#apply-modal2"><img id="mentor-like" src="<%=contextPath%>/resources/static/img/profile/heart.png" alt="하트"></button>
@@ -94,17 +93,12 @@
                             <div id="history-view">
                                 <p class="font-size-subtitle">경력</p>
                                 <div id="history-list" class="font-size-content">
-                                    IT 전문 회사 5초 근무<br>
-                                        2000 ~ 2000 네이버 개발직<br>
-                                        2000 ~ 2000 네이트 임원<br>
-                                        2000 ~ 2000 넥슨 잠복근무<br>
                                 </div>
                             </div>
                             <div id="intro-view">
                                 <p class="font-size-subtitle">자기소개</p>
                                 <div id="intro-detail" class="font-size-content">
                                     <p>
-                                        김용하 청계천에 빠뜨리고 싶어
                                     </p>
                                 </div>
                             </div>
