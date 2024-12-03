@@ -123,5 +123,13 @@ public class PersonalDao {
 	public ArrayList<FullCalendarVo> getCurrentDateInfo(SqlSessionTemplate sqlSession, Map<String, Object> params) {
 		return (ArrayList)sqlSession.selectList("personalMapper.getCurrentDateInfo", params);
 	}
+
+	public int deleteSc(SqlSessionTemplate sqlSession, Map<String, Object> params) {
+		return sqlSession.delete("personalMapper.deleteSc", params);
+	}
+
+	public int insertSc(SqlSessionTemplate sqlSession, FullCalendarVo cal) {
+		return sqlSession.insert("personalMapper.insertSc", cal);
+	}
 	
 }

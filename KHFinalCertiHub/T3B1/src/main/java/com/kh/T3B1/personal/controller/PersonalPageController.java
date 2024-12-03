@@ -55,6 +55,7 @@ public class PersonalPageController {
 			return"redirect:error";
 		}
 		p.addAttribute("pageName", "personalView");
+		p.addAttribute("pno", pno);
 		return "personal/anotherPageView";
 	}
 	
@@ -137,9 +138,36 @@ public class PersonalPageController {
 	}
 	
 	@RequestMapping("viewSc")
-	public String PersonalPageViewSchedule(Model p) {
+	public String PersonalPageViewSchedule(int pno,Model p) {
+		if(pno<=0) {
+			return"redirect:error";
+		}
 		p.addAttribute("pageName", "personalViewSchedule");
+		p.addAttribute("pno", pno);
 		return "personal/anotherPageViewSchedule";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="viewSc/scLoad", produces="application/json; charset-UTF-8")
+	public String viewScLoad(int pno, HttpSession session) {
+		ArrayList<FullCalendarVo> list = personalService.ScLoad(pno);
+		
+		return new Gson().toJson(list);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="viewSc/getCurrentDateInfo", produces="application/json; charset-UTF-8")
+	public String viewGetCurrentDateInfo(String date, int pno, HttpSession session) {
+		ArrayList<FullCalendarVo> list = personalService.getCurrentDateInfo(pno, date);
+		
+		return new Gson().toJson(list);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="viewSc/memberCheck", produces="application/json; charset-UTF-8")
+	public String memberCheck(String date, int pno, HttpSession session) {
+		Member m = personalService.ajaxGetMemberInfo(pno);
+		return new Gson().toJson(m);
 	}
 	
 	@RequestMapping("certiRegi")
@@ -219,12 +247,28 @@ public class PersonalPageController {
 	@ResponseBody
 	@RequestMapping(value="makeSc/getCurrentDateInfo", produces="application/json; charset-UTF-8")
 	public String GetCurrentDateInfo(String date, HttpSession session) {
-		log.info(Integer.toString(((Member)session.getAttribute("loginMember")).getMemberNo()));
 		ArrayList<FullCalendarVo> list = personalService.getCurrentDateInfo(((Member)session.getAttribute("loginMember")).getMemberNo(), date);
 		
 		return new Gson().toJson(list);
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="makeSc/deleteSc", produces="application/json; charset-UTF-8")
+	public String DeleteSc(int calendarNo, HttpSession session) {
+		
+		int result = personalService.deleteSc(((Member)session.getAttribute("loginMember")).getMemberNo(), calendarNo);
+		
+		return new Gson().toJson(result); 
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="makeSc/insertSc", produces="application/json; charset-UTF-8")
+	public String InsertSc(FullCalendarVo cal, HttpSession session) {
+		cal.setMemberNo(((Member)session.getAttribute("loginMember")).getMemberNo());
+		int result = personalService.insertSc(cal);
+		
+		return new Gson().toJson(result); 
+	}
 	
 	
 	@RequestMapping("profile")
