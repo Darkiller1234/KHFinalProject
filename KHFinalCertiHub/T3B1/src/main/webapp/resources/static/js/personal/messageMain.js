@@ -16,6 +16,7 @@ function initMessageMain(contextPath) {
         mentorList: null,
         studyList: null,
         messageList: null,
+        applyList: null,
 
         currentPage: 1, // 현재 메시지 페이지 번호
         pageLimit: 10, // 불러올 메시지 개수 제한
@@ -44,6 +45,11 @@ function initMenuButton(state){
         state.studyList = res;
         createStudyTalk(state.sideContent.querySelector('.studyTalk'), state)
     }
+
+    const onApplyLoad = (res, state) => {
+        state.applyList = res;
+        createApplyList(state.sideContent.querySelector('.applyList'), state)
+    }
      
     radioList[0].onclick = (e) => {
         sideClick(e,state)
@@ -58,6 +64,14 @@ function initMenuButton(state){
 
         if(state.studyList == null) {
             ajaxLoadStudy(state, onStudyLoad);
+        }
+    }
+
+    radioList[2].onclick = (e) => {
+        sideClick(e,state)
+
+        if(state.applyList == null) {
+            ajaxLoadApply(state, onApplyLoad);
         }
     }
 }
@@ -190,6 +204,40 @@ function createStudyTalk(div, state){
         label.appendChild(talkroomDiv)
         
         div.appendChild(label)
+    })
+}
+
+function createApplyList(div, state){
+    state.applyList.forEach((apply)=>{
+        let talkroomDiv = document.createElement('div')
+        talkroomDiv.className = "talkroom"
+
+        let profileDiv = document.createElement('div')
+        profileDiv.className = "thumbnail"
+
+        let profileImg = document.createElement('img')
+        profileImg.src = state.contextPath + apply.memberImg
+        profileImg.className ="rounded-circle"
+
+        let infoDiv = document.createElement('div')
+        infoDiv.className = "talkroom-info"
+
+        let name = document.createElement('div')
+        name.className = "talkroom-name"
+        name.innerHTML = talkroom.studyName
+
+        let lastTalk = document.createElement('div')
+        lastTalk.className = "last-talk"
+        lastTalk.innerHTML = talkroom.lastMessage != null ? talkroom.lastMessage : "대화가 없습니다."
+
+        profileDiv.appendChild(profileImg)
+        infoDiv.appendChild(name)
+        infoDiv.appendChild(lastTalk)
+
+        talkroomDiv.appendChild(profileDiv)
+        talkroomDiv.appendChild(infoDiv)
+        
+        div.appendChild(talkroomDiv)
     })
 }
 

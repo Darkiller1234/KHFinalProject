@@ -28,6 +28,18 @@
 		<result column="MESSAGE_CONTENT" property="lastMessage" />
 	</resultMap>
 	
+	<resultMap type="ApplyLog" id="applyLogResultSet">
+		<result column="APPLY_NO" property="applyNo" />
+		<result column="APPLICANT_NO" property="applicantNo" />
+		<result column="RECIPIENT_NO" property="recipientNo" />
+		<result column="STUDY_NO" property="studyNo" />
+		<result column="APPLY_KIND" property="applyKind" />
+		<result column="APPLY_DATE" property="applyDate" />
+		<result column="MEMBER_NICKNAME" property="applicantName" />
+		<result column="MEMBER_IMG" property="applicantImg" />
+		<result column="STUDY_NAME" property="studyName" />
+	</resultMap>
+	
 	<select id="selectMentorList" resultMap="talkroomResultSet">
 		 SELECT MT.TALKROOM_NO TALKROOM_NO,
 		        T.MANAGER_NO MANAGER_NO,
@@ -91,6 +103,27 @@
 		   FROM MESSAGE MSG
 	 INNER JOIN MEMBER M ON (M.MEMBER_NO = MSG.MEMBER_NO) AND MSG.TALKROOM_NO = #{talkroomNo}
 	   ORDER BY MSG.MESSAGE_NO DESC
+	</select>
+	
+	<select id="countApply" resultType="int">
+		SELECT COUNT(*)
+		  FROM APPLY_LOG
+		 WHERE RECIPIENT_NO = #{memberNo}
+	</select>
+	
+	<select id="selectApplyList" resultMap="applyLogResultSet">
+		 SELECT APPLY_NO ,
+				APPLICANT_NO ,
+				RECIPIENT_NO ,
+				AL.STUDY_NO ,
+				APPLY_KIND ,
+				APPLY_DATE ,
+				MEMBER_NICKNAME ,
+				MEMBER_IMG, 
+				STUDY_NAME
+		  FROM APPLY_LOG AL
+	INNER JOIN MEMBER M ON(AL.APPLICANT_NO = M.MEMBER_NO) AND RECIPIENT_NO = #{memberNo}
+	 LEFT JOIN STUDY S ON (AL.STUDY_NO = S.STUDY_NO)
 	</select>
 	
 </mapper>

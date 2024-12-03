@@ -250,11 +250,13 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{study
 		INSERT INTO APPLY_LOG(
 			APPLY_NO,
 			APPLICANT_NO,
+			RECIPIENT_NO,
 			STUDY_NO,
 			APPLY_KIND
 		) VALUES (
 			APPLY_LOG_SEQ.NEXTVAL,
 			#{memberNo},
+			#{recipientNo},
 			#{studyNo},
 			2
 		)

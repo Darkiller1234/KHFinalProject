@@ -132,6 +132,7 @@
                 <div class="content">
                     <div class="mentorTalk"></div>
                     <div class="studyTalk"></div>
+                    <div class="applyList"></div>
                 </div>
             </div>
             

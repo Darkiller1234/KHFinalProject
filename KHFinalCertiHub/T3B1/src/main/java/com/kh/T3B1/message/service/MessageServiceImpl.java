@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.message.model.dao.MessageDao;
+import com.kh.T3B1.message.model.vo.ApplyLog;
 import com.kh.T3B1.message.model.vo.Message;
 import com.kh.T3B1.message.model.vo.Talkroom;
 
@@ -38,6 +39,16 @@ public class MessageServiceImpl implements MessageService {
 	@Override
 	public ArrayList<Message> selectMessageList(PageInfo pi, int talkroomNo) {
 		return messageDao.selectMessageList(sqlSession, pi, talkroomNo);
+	}
+	
+	@Override
+	public Integer countApply(int memberNo) {
+		return messageDao.countApply(sqlSession, memberNo);
+	}
+
+	@Override
+	public ArrayList<ApplyLog> selectApplyList(PageInfo pi, int memberNo) {
+		return messageDao.selectApplyList(sqlSession, pi, memberNo);
 	}
 	
 }

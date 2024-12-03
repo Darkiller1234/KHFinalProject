@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.T3B1.common.vo.PageInfo;
+import com.kh.T3B1.message.model.vo.ApplyLog;
 import com.kh.T3B1.message.model.vo.Message;
 import com.kh.T3B1.message.model.vo.Talkroom;
 
@@ -30,6 +31,17 @@ public class MessageDao {
 		RowBounds rowBounds = new RowBounds(offset, pi.getPageLimit());
 		
 		return (ArrayList)sqlSession.selectList("messageMapper.selectMessageList", talkroomNo, rowBounds);
+	}
+
+	public Integer countApply(SqlSessionTemplate sqlSession, int memberNo) {
+		return sqlSession.selectOne("messageMapper.countApply", memberNo);
+	}
+
+	public ArrayList<ApplyLog> selectApplyList(SqlSessionTemplate sqlSession, PageInfo pi, int memberNo) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getPageLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getPageLimit());
+		
+		return (ArrayList)sqlSession.selectList("messageMapper.selectApplyList", memberNo, rowBounds);
 	}
 
 }
