@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="managerMapper">
+	<resultMap type="ManagerBoard" id="managerboardResult">
+		<result column="Board_NO" property="boardno"/> 
+		<result column="Board_Title" property="boardtitle"/> 
+		<result column="Board_DATE" property="boarddate"/> 
+		<result column="Board_Views" property="boardviews"/> 
+		<result column="Board_Handle" property="boardhandle"/> 
+		<result column="Board_Email" property="boardemail"/> 
+		<result column="Board_Mentor" property="boardmentor"/> 
+	</resultMap>
+	
+
+	
+</mapper>

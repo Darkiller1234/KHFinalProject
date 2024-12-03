@@ -7,7 +7,7 @@ function initListBoard(contextPath) {
     const boardList = document.querySelector('.board-list');
 
     let data = {
-        url: contextPath + "/manager/list",
+        url: contextPath + "/manager/list?no=",
         titleIndex : 2,
         header : [
             "NO.",
@@ -46,7 +46,7 @@ function initListPageBar(contextPath) {
         startPage : 1,
         endPage : 5,
         currentPage : 1,
-        pageUrl : 'list?',
+        pageUrl : '/manager/list?',
         imgUrl : [
             contextPath + '/resources/static/img/button/arrow_left.png',
             contextPath + '/resources/static/img/button/arrow_right.png'
