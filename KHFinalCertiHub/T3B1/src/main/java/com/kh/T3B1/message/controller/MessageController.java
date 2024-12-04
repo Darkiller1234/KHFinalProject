@@ -18,6 +18,7 @@ import com.kh.T3B1.message.model.vo.ApplyLog;
 import com.kh.T3B1.message.model.vo.Message;
 import com.kh.T3B1.message.model.vo.Talkroom;
 import com.kh.T3B1.message.service.MessageService;
+import com.kh.T3B1.study.service.StudyService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -27,6 +28,7 @@ import lombok.RequiredArgsConstructor;
 public class MessageController {
 	
 	public final MessageService messageService;
+	public final StudyService studyService;
 	
 	@RequestMapping("main")
 	public String messageMainPage(HttpSession session, Model m) {
@@ -140,5 +142,51 @@ public class MessageController {
 		ArrayList<Message> messageList = messageService.selectMessageList(pi, talkroomNo);
 		
 		return new Gson().toJson(messageList);
+	}
+	
+	@ResponseBody
+	@PostMapping(value="acceptApply", produces="application/json; charset=UTF-8")
+	public String acceptApply(HttpSession session, int applyNo, int studyNo, int applicantNo, int applyKind) {
+		HashMap<String, String> resultObj = new HashMap<>();
+		String result = "N";
+		Member member = (Member)session.getAttribute("loginMember");
+
+		HashMap<String, Integer> searchInfo = new HashMap<>();
+		searchInfo.put("memberNo", member.getMemberNo());
+		searchInfo.put("applicantNo", applicantNo);
+		searchInfo.put("applyNo", applyNo);
+		
+		if(applyKind == 1) {
+			result = messageService.createTalkroom(searchInfo);
+		}		
+		else if(applyKind == 2) {
+			searchInfo.put("studyNo", studyNo);
+			boolean isManager = studyService.isStudyManager(searchInfo);
+			
+			if(isManager)
+				result = studyService.joinStudy(searchInfo);
+		}
+		
+		resultObj.put("result", result);
+		return new Gson().toJson(resultObj);
+	}
+	
+	@ResponseBody
+	@PostMapping(value="rejectApply", produces="application/json; charset=UTF-8")
+	public String rejectApply(HttpSession session, int applyNo, int studyNo, int applicantNo, int applyKind) {
+		HashMap<String, String> resultObj = new HashMap<>();
+		String result = "N";
+		
+//		Member member = (Member)session.getAttribute("loginMember");
+
+//		HashMap<String, Integer> searchInfo = new HashMap<>();
+//		searchInfo.put("memberNo", member.getMemberNo());
+//		searchInfo.put("applicantNo", applicantNo);
+//		searchInfo.put("applyNo", applyNo);
+
+		result = messageService.deleteApplyLog(applyNo);
+		
+		resultObj.put("result", result);
+		return new Gson().toJson(resultObj);
 	}
 }

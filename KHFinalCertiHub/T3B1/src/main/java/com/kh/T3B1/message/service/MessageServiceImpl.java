@@ -1,9 +1,11 @@
 package com.kh.T3B1.message.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.message.model.dao.MessageDao;
@@ -64,6 +66,41 @@ public class MessageServiceImpl implements MessageService {
 	@Override
 	public Integer insertMessage(Message sendMessage) {
 		return messageDao.insertMessage(sqlSession, sendMessage);
+	}
+
+	@Transactional(rollbackFor = {Exception.class})
+	@Override
+	public String createTalkroom(HashMap<String, Integer> searchInfo) {
+		String result = "Y";
+		
+		int talkResult = messageDao.insertMentorTalkroom(sqlSession, searchInfo);
+		if(talkResult == 0) {
+			throw new RuntimeException("멘토 톡방 생성 실패");
+		}
+		
+		int mentorResult = messageDao.insertMentorTalkroomMember(sqlSession, searchInfo.get("memberNo"));
+		if(mentorResult == 0) {
+			throw new RuntimeException("멘토 톡방 가입 실패");
+		}
+		
+		int menteeResult = messageDao.insertMentorTalkroomMember(sqlSession, searchInfo.get("applicantNo"));
+		if(menteeResult == 0) {
+			throw new RuntimeException("멘티 톡방 가입 실패");
+		}
+		
+		return result;
+	}
+
+	@Override
+	public String deleteApplyLog(int applyNo) {
+		String result = "N";
+		
+		Integer deleteResult = messageDao.deleteApplyLog(sqlSession,applyNo);
+		if(deleteResult != null && deleteResult != 0) {
+			result = "Y";
+		}
+		
+		return result;
 	}
 	
 }

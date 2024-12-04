@@ -1,6 +1,7 @@
 package com.kh.T3B1.message.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.message.model.vo.ApplyLog;
@@ -62,5 +63,17 @@ public interface MessageService {
 	 * @return insert 결과 행 수
 	 */
 	Integer insertMessage(Message sendMessage);
+
+	/**
+	 * @param HashMap key=memberNo(멘토 번호), applicantNo(신청 유저 번호)
+	 * @return 성공=Y, 실패= RuntimeException
+	 */
+	String createTalkroom(HashMap<String, Integer> searchInfo);
+
+	/**
+	 * @param int applyNo(요청 번호)
+	 * @return 성공=Y, 실패=N
+	 */
+	String deleteApplyLog(int applyNo);
 
 }

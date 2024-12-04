@@ -11,6 +11,7 @@
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/personal/messageMain.css">
 <script src="${pageContext.request.contextPath}/resources/static/js/personal/messageMainAjax.js"></script>
+<script src="${pageContext.request.contextPath}/resources/static/js/personal/messageMainCreate.js"></script>
 <script src="${pageContext.request.contextPath}/resources/static/js/personal/messageMain.js"></script>
 
 </head>

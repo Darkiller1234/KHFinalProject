@@ -156,6 +156,63 @@
 		)
 	</insert>
 	
+	<insert id="insertMentorTalkroom">
+		INSERT INTO TALKROOM(
+			TALKROOM_NO,
+			MANAGER_NO,
+			TALKROOM_TYPE
+		) VALUES (
+			TALKROOM_SEQ.NEXTVAL,
+			#{memberNo},
+			1
+		)
+	</insert>
+	
+  	<insert id="insertStudyTalkroom">
+		INSERT INTO TALKROOM(
+			TALKROOM_NO,
+			MANAGER_NO,
+			STUDY_NO,
+			TALKROOM_TYPE
+		) VALUES (
+			TALKROOM_SEQ.NEXTVAL,
+			#{memberNo},
+			STUDY_SEQ.CURRVAL,
+			2
+		)
+	</insert>
+	
+  	<insert id="insertMentorTalkroomMember">
+		INSERT INTO MEMBER_TALKROOM(
+			MEMBER_NO,
+			TALKROOM_NO
+		) VALUES (
+			#{memberNo},
+			TALKROOM_SEQ.CURRVAL
+		)
+	</insert>
+	
+  	<insert id="insertTalkroomMember">
+		INSERT INTO MEMBER_TALKROOM(
+			MEMBER_NO,
+			TALKROOM_NO
+		) VALUES (
+			#{memberNo},
+			#{talkroomNo}
+		)
+	</insert>
+	
+	<select id="selectStudyTalkroomNo">
+		SELECT TALKROOM_NO
+		  FROM TALKROOM
+		 WHERE STUDY_NO = #{studyNo}
+	</select>
+	
+	<delete id="deleteApplyLog">
+		DELETE FROM APPLY_LOG
+		WHERE APPLY_NO = #{applyNo}
+	</delete>
+	
 </mapper>
 
 

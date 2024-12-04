@@ -1,6 +1,7 @@
 package com.kh.T3B1.message.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -10,6 +11,7 @@ import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.message.model.vo.ApplyLog;
 import com.kh.T3B1.message.model.vo.Message;
 import com.kh.T3B1.message.model.vo.Talkroom;
+import com.kh.T3B1.study.model.vo.Study;
 
 @Repository
 public class MessageDao {
@@ -60,6 +62,30 @@ public class MessageDao {
 
 	public Integer insertMessage(SqlSessionTemplate sqlSession, Message sendMessage) {
 		return sqlSession.insert("messageMapper.insertMessage", sendMessage);
+	}
+
+	public int insertMentorTalkroom(SqlSessionTemplate sqlSession, HashMap<String, Integer> searchInfo) {
+		return sqlSession.insert("messageMapper.insertMentorTalkroom", searchInfo);
+	}
+	
+	public int insertStudyTalkroom(SqlSessionTemplate sqlSession, int memberNo) {
+		return sqlSession.insert("messageMapper.insertStudyTalkroom", memberNo);
+	}
+
+	public int insertMentorTalkroomMember(SqlSessionTemplate sqlSession, int memberNo) {
+		return  sqlSession.insert("messageMapper.insertMentorTalkroomMember", memberNo);
+	}
+	
+	public int insertTalkroomMember(SqlSessionTemplate sqlSession, HashMap<String, Integer> searchInfo) {
+		return sqlSession.insert("messageMapper.insertTalkroomMember", searchInfo);
+	}
+
+	public int selectStudyTalkroomNo(SqlSessionTemplate sqlSession, Integer studyNo) {
+		return sqlSession.selectOne("messageMapper.selectStudyTalkroomNo", studyNo);
+	}
+
+	public Integer deleteApplyLog(SqlSessionTemplate sqlSession, int applyNo) {
+		return sqlSession.delete("messageMapper.deleteApplyLog");
 	}
 
 }
