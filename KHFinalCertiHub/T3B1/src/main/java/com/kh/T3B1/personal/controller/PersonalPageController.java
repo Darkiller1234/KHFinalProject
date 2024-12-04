@@ -353,6 +353,13 @@ public class PersonalPageController {
 		return new Gson().toJson(list);
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="profile/getCertiList", produces="application/json; charset-UTF-8")
+	public String getCertiList(HttpSession session) {
+		ArrayList<String> certiList = personalService.selectCertiList();
+		return new Gson().toJson(certiList);
+	}
+	
 	
 	
 	@RequestMapping("mentor")

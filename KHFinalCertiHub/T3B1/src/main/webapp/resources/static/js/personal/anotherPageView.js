@@ -3,23 +3,22 @@ function initPersonalView(contextPath) {
     const url = new URL(window.location.href);
     // URL의 파라미터값을 가진 객체
     const urlParam = url.searchParams;
-    const result = getMemberInfo(urlParam.get('pno'), contextPath); 
-    if(result !== undefined){
-        getSetLikeStatus(urlParam.get('pno'), contextPath);
-        getSetLicense(urlParam.get('pno'), contextPath);
-    }
+    getMemberInfo(urlParam.get('pno'), contextPath, urlParam); 
+    
     
 }
 
 
-function getMemberInfo(pno, contextPath){
+function getMemberInfo(pno, contextPath, urlParam){
     ajaxGetMemberInfo({pno: pno}, function(result){
+        console.log(result)
         if(result === null){
             document.querySelector('#middle-view-profileInfo').innerHTML = "<h1>해당 유저의 정보가 없습니다.</h1>"
             document.querySelector('.bottom-view').innerHTML = ""
-            return null;
         }else {
             setMemberInfo(result, pno, contextPath);
+            getSetLikeStatus(urlParam.get('pno'), contextPath);
+            getSetLicense(urlParam.get('pno'), contextPath);
         }
     })
 }

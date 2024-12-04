@@ -4,6 +4,8 @@ function init(contextPath, pageName, optional){
     };
     onResizeHandler();
 
+    console.log("pageName : " + pageName)
+
     switch(pageName){
         // 자격증 검색
         case "infoPage":
@@ -25,6 +27,10 @@ function init(contextPath, pageName, optional){
 
         case "commuDInit":
             commuDInit(contextPath);
+            break;
+
+        case "commuSCInit":
+            commuSCInit(contextPath);
             break;
 
         // 멘토

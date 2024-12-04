@@ -5,10 +5,12 @@ import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.common.vo.SearchOption;
 import com.kh.T3B1.member.model.vo.Member;
+import com.kh.T3B1.message.model.dao.MessageDao;
 import com.kh.T3B1.study.model.dao.StudyDao;
 import com.kh.T3B1.study.model.vo.Study;
 import com.kh.T3B1.study.model.vo.StudyBoard;
@@ -24,6 +26,7 @@ public class StudyServiceImpl implements StudyService{
 	public final SqlSessionTemplate sqlSession;
 	
 	public final StudyDao studyDao;
+	public final MessageDao messageDao;
 
 	@Override
 	public int countStudy() {
@@ -181,21 +184,34 @@ public class StudyServiceImpl implements StudyService{
 		}
 	}
 
+	@Transactional(rollbackFor = {Exception.class})
 	@Override
 	public int insertStudy(Study study) {
-		int memberResult = 0;
 		int studyResult = studyDao.insertStudy(sqlSession, study);
 		
-		// 스터디 그룹 생성에 성공했다면
-		if(studyResult > 0) {
-			memberResult = studyDao.insertStudyMember(sqlSession, study);
+		if(studyResult == 0) {
+			throw new RuntimeException("스터디 그룹 생성 실패");
 		}
 		
-		if(memberResult * studyResult == 0) {
-			sqlSession.rollback();
+		int memberResult = studyDao.insertStudyMember(sqlSession, study.getManagerNo());
+		
+		if(memberResult == 0) {
+			throw new RuntimeException("스터디 그룹 멤버 추가 실패");
 		}
 		
-		return memberResult * studyResult;
+		int talkResult = messageDao.insertStudyTalkroom(sqlSession, study.getManagerNo());
+		
+		if(talkResult == 0) {
+			throw new RuntimeException("스터디 그룹 톡방 생성 실패");
+		}
+		
+		int talkMemberResult = messageDao.insertTalkroomMember(sqlSession, study.getManagerNo());
+		
+		if(talkMemberResult == 0) {
+			throw new RuntimeException("스터디 그룹 톡방 멤버 추가 실패");
+		}
+		
+		return memberResult * studyResult * talkResult * talkMemberResult;
 	}
 	
 	@Override
@@ -229,4 +245,28 @@ public class StudyServiceImpl implements StudyService{
 		
 		return "N";
 	}
+
+	@Override
+	public String joinStudy(HashMap<String, Integer> searchInfo) {
+		String result = "Y";
+		
+		int memberResult = studyDao.insertStudyMember(sqlSession, searchInfo.get("applicantNo"));
+		if(memberResult == 0) {
+			throw new RuntimeException("스터디 그룹 멤버 추가 실패");
+		}
+		
+		int talkroomNo = messageDao.selectStudyTalkroomNo(sqlSession, searchInfo.get("studyNo"));
+		if(talkroomNo == 0) {
+			throw new RuntimeException("스터디 그룹 톡방 조회 실패");
+		}
+		searchInfo.put("talkroomNo", talkroomNo);
+		
+		int talkResult = messageDao.insertTalkroomMember(sqlSession, searchInfo);
+		if(talkResult == 0) {
+			throw new RuntimeException("스터디그룹 톡방 회원 추가 실패");
+		}
+		
+		return result;
+	}
+
 }

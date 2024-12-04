@@ -250,11 +250,13 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{study
 		INSERT INTO APPLY_LOG(
 			APPLY_NO,
 			APPLICANT_NO,
+			RECIPIENT_NO,
 			STUDY_NO,
 			APPLY_KIND
 		) VALUES (
 			APPLY_LOG_SEQ.NEXTVAL,
 			#{memberNo},
+			#{recipientNo},
 			#{studyNo},
 			2
 		)
@@ -280,13 +282,13 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{study
 		)
 	</insert>
 	
-	<insert id="insertStudyMember" parameterType="Study">
+	<insert id="insertStudyMember">
 		INSERT INTO STUDY_MEMBER(
 			MEMBER_NO,
 			STUDY_NO,
 			CONFIRM_DATE
 		) VALUES (
-			#{managerNo},
+			#{memberNo},
 			STUDY_SEQ.CURRVAL,
 			SYSDATE
 		)
@@ -319,6 +321,6 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{study
   	   SET STUDY_RECRUIT = #{recruit}
   	 WHERE STUDY_NO = #{studyNo}
   </update>
-
+	
 </mapper>
 

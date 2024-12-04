@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.T3B1.common.template.Template;
+import com.kh.T3B1.common.vo.DataBoard;
 import com.kh.T3B1.common.vo.License;
 import com.kh.T3B1.common.vo.PageInfo;
+import com.kh.T3B1.info.service.DataBoardService;
 import com.kh.T3B1.info.service.SearchService;
 
 @Controller
@@ -18,10 +20,12 @@ import com.kh.T3B1.info.service.SearchService;
 public class InfoPageController {
 
 	private final SearchService searchService;
+	private final DataBoardService dataBoardService;
 
 	@Autowired
-	public InfoPageController(SearchService searchService) {
+	public InfoPageController(SearchService searchService, DataBoardService dataBoardService) {
 		this.searchService = searchService;
+		this.dataBoardService = dataBoardService;
 	}
 
 	// 검색 페이지로 이동
@@ -33,7 +37,7 @@ public class InfoPageController {
 
 		// 페이지 정보 객체 생성 (현재 페이지, 총 검색 개수, 한 페이지당 항목 수, 페이지 범위)
 		PageInfo pi = Template.getPageInfo(searchCount, currentPage, 10, 5);
-		
+
 		// 검색 결과 목록 조회
 		ArrayList<License> list = searchService.selectListResult(pi, keyword);
 
@@ -45,7 +49,7 @@ public class InfoPageController {
 
 		// 검색 페이지로 이동
 		return "infoPage/searchPage";
-	}  
+	}
 
 	// 정보창으로 이동
 	@RequestMapping("lib")
@@ -53,10 +57,18 @@ public class InfoPageController {
 		m.addAttribute("pageName", "infoPage");
 		return "infoPage/infoPage";
 	}
-	
+
+	// 자료실 보드
 	@RequestMapping("board")
-	public String boardPage(Model m) {
-		m.addAttribute("pageName","boardPage");
-		return "infoPage/boardPage";
-	}
+	public String boardListPage(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, Model m) {
+        int listCount = dataBoardService.selectDataBoardCount();  // 총 게시글 수
+        PageInfo pi = Template.getPageInfo(listCount, currentPage, 10, 5);  // 페이징 정보 생성
+
+        ArrayList<DataBoard> boardList = dataBoardService.selectDataBoardList(pi);  // 게시글 목록 조회
+
+        m.addAttribute("boardList", boardList);
+        m.addAttribute("pi", pi);
+        m.addAttribute("pageName", "dataBoard");
+        return "infoPage/dataBoard";
+    }
 }

@@ -13,6 +13,7 @@ import com.kh.T3B1.community.model.dao.CommunityDao;
 import com.kh.T3B1.community.model.vo.Board;
 import com.kh.T3B1.community.model.vo.Reply;
 import com.kh.T3B1.community.model.vo.Report;
+import com.kh.T3B1.personal.model.vo.License2;
 
 import lombok.RequiredArgsConstructor;
 
@@ -212,5 +213,10 @@ public class CommunityServiceImpl implements CommunityService{
 	@Override
 	public int insertReportReply(Report r) {
 		return communityDao.insertReportReply(sqlSession, r);
+	}
+
+	@Override
+	public ArrayList<License2> getCertiList(String search) {
+		return communityDao.getCertiList(sqlSession, search);
 	}
 }

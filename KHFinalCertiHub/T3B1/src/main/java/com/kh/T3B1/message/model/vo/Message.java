@@ -8,6 +8,7 @@ public class Message {
 	private int talkroomNo;
 	private int memberNo;
 	private String messageContent;
+	private String messageDate;
 	
 	private String memberName;
 	private String memberImg;

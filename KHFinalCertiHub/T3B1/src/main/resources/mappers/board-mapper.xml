@@ -24,6 +24,16 @@
 		<result column="REPLY_COUNT" property="replyCount" />
 
 	</resultMap>
+	
+	<resultMap type="License2" id="licenseResultSet">
+		<result column="LICENSE_NO" property="licenseNo"/>
+		<result column="MEMBER_NO" property="memberNo"/>
+		<result column="CONFIRM_DATE" property="confirmDate"/>
+		<result column="SYMBOL_LICENSE" property="symbolLicense"/>
+		<result column="LICENSE_NAME" property="licenseName"/>
+		<result column="LICENSE_DESC" property="licenseDesc"/>
+		<result column="LICENSE_IMG" property="licenseImg"/>
+	</resultMap>
 
   <!-- 게시글 총 갯수 조회 -->
   <select id="selectListCount" resultType="int">
@@ -477,6 +487,12 @@
 		FROM BOARD
 		WHERE STATUS = 'Y' AND TAB_NO =1
 		ORDER BY Board_NO DESC
+	</select>
+	
+	<select id="getCertiList" resultMap="licenseResultSet">
+		SELECT LICENSE_NO, LICENSE_NAME
+	    FROM LICENSE
+	    WHERE LICENSE_NAME LIKE '%' || #{search} || '%'
 	</select>
 	
 </mapper>
