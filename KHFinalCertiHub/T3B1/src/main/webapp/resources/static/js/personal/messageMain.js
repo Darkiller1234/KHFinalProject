@@ -21,6 +21,12 @@ function initMessageMain(contextPath) {
         messageList: null,
         applyList: null,
 
+        // 요청 처리용 변수
+        applyNo:null,
+        studyNo:null,
+        applicantNo:null,
+        applyKind:null,
+
         currentPage: 1, // 현재 메시지 페이지 번호
         mentorCurrentPage: 1,
         studyCurrentPage: 1,
