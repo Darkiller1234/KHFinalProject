@@ -417,6 +417,9 @@ function boardLoadingExecute(board, context) {
     document.querySelector("#tabNameP").innerText = board.tabName;
     document.querySelector("#boardTitleP").innerText = board.boardTitle;
     document.querySelector("#nickNameP").innerText = board.memberNickname;
+    $("#nickNameP").on("click", function(){
+        location.href=`${context}/personal/view?pno=${board.memberNo}`
+    })
     document.querySelector("#likehatereplyviewdateCountP").innerText = `좋아요 ` + board.likeCount + ` | 싫어요 ` + board.hateCount + ` | 댓글 ` + board.replyCount + ` | 조회수 ` + board.viewCount + ` | ` + board.boardDate;
     document.querySelector("#boardContentP").innerHTML = board.boardContent;
     switch (document.querySelector('#tabNameP').textContent.trim()) {
@@ -665,7 +668,7 @@ function replyListReload(result, contextPath, a, b) {
                         <input type="hidden" value="${reply.replyNo}" name="replyNo">
                     <img src="` + contextPath + `${reply.memberImg}" alt="">
                     <div>
-                        <p class="font-size-subtitle" id="reply_nick">${reply.memberNickname}</p>
+                        <p class="font-size-subtitle" id="reply_nick" onclick='location.href="${contextPath}/personal/view?pno=${reply.memberNo}"'>${reply.memberNickname}</p>
                         <p class="font-size-content">${reply.replyContent}</p>
                         <div class="font-size-footer">
                 `
