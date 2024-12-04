@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.community.model.vo.Board;
 import com.kh.T3B1.manager.model.dao.ManagerDao;
+import com.kh.T3B1.member.model.vo.Member;
 
 @Service
 public class ManagerServiceImpl implements ManagerService {
@@ -33,6 +34,16 @@ public class ManagerServiceImpl implements ManagerService {
 	public ArrayList<Board> managerList(PageInfo pi) {
 		
 		return managerDao.managerList(sqlSession, pi);
+	}
+
+	@Override
+	public int CountUser(String keyword) {
+		return managerDao.CountUser(sqlSession, keyword);
+	}
+
+	@Override
+	public ArrayList<Member> selectUserList(PageInfo pi, String keyword) {
+		return managerDao.selectUserList(sqlSession, pi, keyword);
 	}
 
 }

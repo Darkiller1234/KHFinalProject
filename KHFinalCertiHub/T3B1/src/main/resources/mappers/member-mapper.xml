@@ -234,5 +234,20 @@
 		WHERE MEMBER_ID = #{memberId}
 	</update>
 	
+	<!-- 유저 검색 쿼리만 실행 -->
+	<select id="selectUserList" resultMap="memberResultSet">
+		SELECT MEMBER_NO, MEMBER_NICKNAME, EMAIL, ENROLL_DATE, MENTOR_STATUS
+		FROM MEMBER
+		WHERE MEMBER_ID LIKE '%' || #{keyword} || '%'
+		ORDER BY MEMBER_NO
+	</select>
+	
+	<!-- 유저 검색 결과 개수 쿼리 -->
+	<select id="CountUser" resultType="int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE MEMBER_ID LIKE '%' || #{keyword} || '%'
+	</select>
+	
 </mapper>
 
