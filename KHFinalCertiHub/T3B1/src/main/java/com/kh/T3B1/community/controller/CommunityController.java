@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,6 +23,7 @@ import com.kh.T3B1.common.template.Template;
 import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.community.model.vo.Board;
 import com.kh.T3B1.community.model.vo.Reply;
+import com.kh.T3B1.community.model.vo.Report;
 import com.kh.T3B1.community.service.CommunityService;
 import com.kh.T3B1.member.model.vo.Member;
 
@@ -437,6 +437,42 @@ public class CommunityController {
 		PageInfo pi = Template.getPageInfo(5, 1, 1, 5);
 		return new Gson().toJson(communityService.selectList(pi, temp));
 	}
+	
+	//커뮤니티 글 페이지 [글 신고 여부 확인]
+	@ResponseBody
+	@RequestMapping(value="detail/checkReportBoard", produces="application/json; charset-UTF-8")
+	public String checkReportBoard(int cno, HttpSession session) {
+		int result = communityService.checkReportBoard(cno, ((Member)session.getAttribute("loginMember")).getMemberNo());
+		return new Gson().toJson(result);
+	}
+	
+	//커뮤니티 글 페이지 [글 신고]
+	@ResponseBody
+	@RequestMapping(value="detail/insertReportBoard", produces="application/json; charset-UTF-8")
+	public String insertReportBoard(Report R, HttpSession session) {
+		R.setAccuserNo(((Member)session.getAttribute("loginMember")).getMemberNo());
+		R.setAccusedNo(communityService.getBoardWriter(R.getBoardNo()));
+		int result = communityService.insertReportBoard(R);
+		return new Gson().toJson(result);
+	}
+	
+	//커뮤니티 글 페이지 [댓글 신고 여부 확인]
+		@ResponseBody
+		@RequestMapping(value="detail/checkReportReply", produces="application/json; charset-UTF-8")
+		public String checkReportReply(int cno, HttpSession session) {
+			int result = communityService.checkReportReply(cno, ((Member)session.getAttribute("loginMember")).getMemberNo());
+			return new Gson().toJson(result);
+		}
+		
+		//커뮤니티 글 페이지 [댓글 신고]
+		@ResponseBody
+		@RequestMapping(value="detail/insertReportReply", produces="application/json; charset-UTF-8")
+		public String insertReportReply(Report R, HttpSession session) {
+			R.setAccuserNo(((Member)session.getAttribute("loginMember")).getMemberNo());
+			R.setAccusedNo(communityService.getReplyWriter(R.getReplyNo()));
+			int result = communityService.insertReportReply(R);
+			return new Gson().toJson(result);
+		}
 	
 	
 	
