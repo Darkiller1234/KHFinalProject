@@ -9,7 +9,6 @@ function initBoardList(contextPath){
 
     let data = {
         url : contextPath + "/notice/noticepost?no=",
-        titleIndex: 1,
         header : [
             "제목",
             "작성자",
