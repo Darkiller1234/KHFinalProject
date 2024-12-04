@@ -612,6 +612,10 @@ footer {
     max-width: fit-content;
 }
 
+#nickNameP:hover, #reply_nick:hover{
+    cursor: pointer;
+}
+
 #profile_img{
     width: 20px;
     height: 20px;
