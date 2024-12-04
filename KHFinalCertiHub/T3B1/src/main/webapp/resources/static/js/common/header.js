@@ -4,6 +4,8 @@ function init(contextPath, pageName, optional){
     };
     onResizeHandler();
 
+    console.log("pageName : " + pageName)
+
     switch(pageName){
         // 자격증 검색
         case "infoPage":

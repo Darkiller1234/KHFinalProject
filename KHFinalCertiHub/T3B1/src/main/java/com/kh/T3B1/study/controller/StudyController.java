@@ -62,7 +62,7 @@ public class StudyController {
 		
 		int result = studyService.insertStudy(study);
 		
-		if(result < 1) {
+		if(result == 0) {
 			session.setAttribute("errorMsg", "스터디 그룹 생성에 실패했습니다.");
 			return "redirect:/error";
 		}
@@ -419,12 +419,13 @@ public class StudyController {
 		String result = "N"; // 실패 N 성공 Y
 		Member member = (Member)session.getAttribute("loginMember");
 		 
-		String studyValid = studyService.checkStudyRecruit(studyNo);
+		Study study = studyService.selectStudy(studyNo);
 		
 		// 현재 스터디그룹 멤버 모집 중인지 확인한다
-		if(studyValid.equals("Y")) {
+		if(study.getStudyRecruit().equals("Y")) {
 			HashMap<String, Integer> insertInfo = new HashMap<>();
 			insertInfo.put("memberNo",member.getMemberNo());
+			insertInfo.put("recipientNo",study.getManagerNo());
 			insertInfo.put("studyNo",studyNo);
 
 			result = studyService.insertApply(insertInfo);
@@ -471,7 +472,7 @@ public class StudyController {
 	@ResponseBody
 	@PostMapping(value="updateRecruit", produces="application/json; charset=UTF-8")
 	public String banMember(HttpSession session, String recruit, int studyNo, int boardNo) {
-		HashMap<String, String> resultObj = new HashMap<>(); // 결과값 반환용 객ㅔ
+		HashMap<String, String> resultObj = new HashMap<>(); // 결과값 반환용 객체
 		String result = "N"; // 실패 N 성공 Y
 		Member manager = (Member)session.getAttribute("loginMember");
 		

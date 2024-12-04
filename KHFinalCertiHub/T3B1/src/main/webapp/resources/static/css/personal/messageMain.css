@@ -110,6 +110,7 @@
 
 .talkroom .thumbnail img{
     width: 100%;
+    height: 100%;
 }
 
 .talkroom .talkroom-info{
@@ -381,6 +382,14 @@
         display:none;
     }
 
+    .talkroom .thumbnail{
+        width:25%;
+    }    
+
+    .talkroom .talkroom-info{
+        width:75%;
+    }
+    
     .modal-header .modal-title img{
         width:100px;
         height:100px;

@@ -110,8 +110,8 @@ public class StudyDao {
 		return sqlSession.insert("studyMapper.insertStudy", study);
 	}
 
-	public int insertStudyMember(SqlSessionTemplate sqlSession, Study study) {
-		return sqlSession.insert("studyMapper.insertStudyMember", study);
+	public int insertStudyMember(SqlSessionTemplate sqlSession, int memberNo) {
+		return sqlSession.insert("studyMapper.insertStudyMember", memberNo);
 	}
 
 	public int updateStudy(SqlSessionTemplate sqlSession, Study study) {

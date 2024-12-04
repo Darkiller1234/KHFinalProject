@@ -22,7 +22,7 @@ public class SearchDao {
 	    // SQL 실행 (selectList는 Mapper에서 쿼리를 실행)
 	    return (ArrayList) sqlSession.selectList("searchMapper.selectListResult", keyword, rowBounds);
 	}
-
+	
 
 
 

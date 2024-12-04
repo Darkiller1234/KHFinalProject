@@ -11,6 +11,7 @@
 		<result column="TALKROOM_NO" property="talkroomNo" />
 		<result column="MEMBER_NO" property="memberNo" />
 		<result column="MESSAGE_CONTENT" property="messageContent" />
+		<result column="MESSAGE_DATE" property="messageDate" />
 		<result column="MEMBER_NICKNAME" property="memberName" />
 		<result column="MEMBER_IMG" property="memberImg" />
 	</resultMap>
@@ -24,22 +25,59 @@
 		<result column="MEMBER_IMG" property="memberImg" />
 		<result column="STUDY_NAME" property="studyName" />
 		<result column="STUDY_IMG" property="studyImg" />
+		<result column="MESSAGE_CONTENT" property="lastMessage" />
 	</resultMap>
+	
+	<resultMap type="ApplyLog" id="applyLogResultSet">
+		<result column="APPLY_NO" property="applyNo" />
+		<result column="APPLICANT_NO" property="applicantNo" />
+		<result column="RECIPIENT_NO" property="recipientNo" />
+		<result column="STUDY_NO" property="studyNo" />
+		<result column="APPLY_KIND" property="applyKind" />
+		<result column="APPLY_DATE" property="applyDate" />
+		<result column="MEMBER_NICKNAME" property="applicantName" />
+		<result column="MEMBER_IMG" property="applicantImg" />
+		<result column="STUDY_NAME" property="studyName" />
+	</resultMap>
+	
+	<select id="countMentor" resultType="int">
+		SELECT COUNT(*)
+		  FROM TALKROOM T
+	INNER JOIN MEMBER_TALKROOM MT ON(T.TALKROOM_NO = MT.TALKROOM_NO) 
+	       AND T.TALKROOM_TYPE = 1
+	       AND MT.MEMBER_NO = #{memberNo}
+	</select>
 	
 	<select id="selectMentorList" resultMap="talkroomResultSet">
 		 SELECT MT.TALKROOM_NO TALKROOM_NO,
-				T.MANAGER_NO MANAGER_NO,
-				T.STUDY_NO STUDY_NO,
-				T.TALKROOM_TYPE TALKROOM_TYPE,
-				M.MEMBER_INTRO MEMBER_INTRO,
-				M.MEMBER_NICKNAME MEMBER_NICKNAME,
-				M.MEMBER_IMG MEMBER_IMG,
-				M.MENTOR_VALID MENTOR_VALID
+		        T.MANAGER_NO MANAGER_NO,
+		        T.STUDY_NO STUDY_NO,
+		        T.TALKROOM_TYPE TALKROOM_TYPE,
+		        M.MEMBER_INTRO MEMBER_INTRO,
+		        M.MEMBER_NICKNAME MEMBER_NICKNAME,
+		        M.MEMBER_IMG MEMBER_IMG,
+		        M.MENTOR_VALID MENTOR_VALID,
+		        MSG.MESSAGE_CONTENT MESSAGE_CONTENT
 		   FROM MEMBER_TALKROOM MT
 	 INNER JOIN TALKROOM T ON (MT.TALKROOM_NO = T.TALKROOM_NO) 
-			              AND MT.MEMBER_NO = #{memberNo} 
+			              AND MT.MEMBER_NO = #{memberNo}
 			              AND TALKROOM_TYPE = 1
+      LEFT JOIN (
+        	SELECT MAX(MESSAGE_NO) AS MESSAGE_NO,
+            		TALKROOM_NO
+           	  FROM MESSAGE
+          GROUP BY TALKROOM_NO
+     ) MNO ON (MT.TALKROOM_NO = MNO.TALKROOM_NO)
+     LEFT JOIN MESSAGE MSG ON (MNO.MESSAGE_NO = MSG.MESSAGE_NO)
 	 INNER JOIN MEMBER M ON (T.MANAGER_NO = M.MEMBER_NO)
+	</select>
+	
+	<select id="countStudy" resultType="int">
+		SELECT COUNT(*)
+		  FROM TALKROOM T
+	INNER JOIN MEMBER_TALKROOM MT ON(T.TALKROOM_NO = MT.TALKROOM_NO) 
+	       AND T.TALKROOM_TYPE = 2
+	       AND MT.MEMBER_NO = #{memberNo}
 	</select>
 	
 	<select id="selectStudyList" resultMap="talkroomResultSet">
@@ -48,13 +86,132 @@
 				T.STUDY_NO STUDY_NO,
 				T.TALKROOM_TYPE TALKROOM_TYPE,
                 S.STUDY_NAME STUDY_NAME,
-				S.STUDY_IMG STUDY_IMG
+				S.STUDY_IMG STUDY_IMG,
+                MSG.MESSAGE_CONTENT MESSAGE_CONTENT
    		   FROM MEMBER_TALKROOM MT
 	 INNER JOIN TALKROOM T ON (MT.TALKROOM_NO = T.TALKROOM_NO) 
-            AND MT.MEMBER_NO = #{memberNo} 
+            AND MT.MEMBER_NO = #{memberNo}
             AND TALKROOM_TYPE = 2
+      LEFT JOIN (
+         SELECT MAX(MESSAGE_NO) AS MESSAGE_NO,
+                TALKROOM_NO
+           FROM MESSAGE
+       GROUP BY TALKROOM_NO
+     ) MNO ON (MT.TALKROOM_NO = MNO.TALKROOM_NO)
+     LEFT JOIN MESSAGE MSG ON (MNO.MESSAGE_NO = MSG.MESSAGE_NO)
 	 INNER JOIN STUDY S ON (T.STUDY_NO = S.STUDY_NO)
 	</select>
+	
+	<select id="countMessage" resultType="int">
+		SELECT COUNT(*)
+		  FROM MESSAGE
+		 WHERE TALKROOM_NO = #{talkroomNo}
+	</select>
+	
+	<select id="selectMessageList" resultMap="messageResultSet">
+		SELECT MSG.MESSAGE_NO ,
+		        MSG.TALKROOM_NO ,
+		        MSG.MEMBER_NO ,
+		        M.MEMBER_NICKNAME,
+		        M.MEMBER_IMG,
+		        MSG.MESSAGE_CONTENT ,
+		        MSG.MESSAGE_DATE 
+		   FROM MESSAGE MSG
+	 INNER JOIN MEMBER M ON (M.MEMBER_NO = MSG.MEMBER_NO) AND MSG.TALKROOM_NO = #{talkroomNo}
+	   ORDER BY MSG.MESSAGE_NO DESC
+	</select>
+	
+	<select id="countApply" resultType="int">
+		SELECT COUNT(*)
+		  FROM APPLY_LOG
+		 WHERE RECIPIENT_NO = #{memberNo}
+	</select>
+	
+	<select id="selectApplyList" resultMap="applyLogResultSet">
+		 SELECT APPLY_NO ,
+				APPLICANT_NO ,
+				RECIPIENT_NO ,
+				AL.STUDY_NO ,
+				APPLY_KIND ,
+				APPLY_DATE ,
+				MEMBER_NICKNAME ,
+				MEMBER_IMG, 
+				STUDY_NAME
+		  FROM APPLY_LOG AL
+	INNER JOIN MEMBER M ON(AL.APPLICANT_NO = M.MEMBER_NO) AND RECIPIENT_NO = #{memberNo}
+	 LEFT JOIN STUDY S ON (AL.STUDY_NO = S.STUDY_NO)
+	</select>
+	
+	<insert id="insertMessage" parameterType="Message">
+		INSERT INTO MESSAGE(
+		    MESSAGE_NO,
+		    TALKROOM_NO,
+		    MEMBER_NO,
+		    MESSAGE_CONTENT
+		) VALUES (
+		    MESSAGE_SEQ.NEXTVAL,
+		    #{talkroomNo},
+		    #{memberNo},
+		    #{messageContent}
+		)
+	</insert>
+	
+	<insert id="insertMentorTalkroom">
+		INSERT INTO TALKROOM(
+			TALKROOM_NO,
+			MANAGER_NO,
+			TALKROOM_TYPE
+		) VALUES (
+			TALKROOM_SEQ.NEXTVAL,
+			#{memberNo},
+			1
+		)
+	</insert>
+	
+  	<insert id="insertStudyTalkroom">
+		INSERT INTO TALKROOM(
+			TALKROOM_NO,
+			MANAGER_NO,
+			STUDY_NO,
+			TALKROOM_TYPE
+		) VALUES (
+			TALKROOM_SEQ.NEXTVAL,
+			#{memberNo},
+			STUDY_SEQ.CURRVAL,
+			2
+		)
+	</insert>
+	
+  	<insert id="insertMentorTalkroomMember">
+		INSERT INTO MEMBER_TALKROOM(
+			MEMBER_NO,
+			TALKROOM_NO
+		) VALUES (
+			#{memberNo},
+			TALKROOM_SEQ.CURRVAL
+		)
+	</insert>
+	
+  	<insert id="insertTalkroomMember">
+		INSERT INTO MEMBER_TALKROOM(
+			MEMBER_NO,
+			TALKROOM_NO
+		) VALUES (
+			#{memberNo},
+			#{talkroomNo}
+		)
+	</insert>
+	
+	<select id="selectStudyTalkroomNo">
+		SELECT TALKROOM_NO
+		  FROM TALKROOM
+		 WHERE STUDY_NO = #{studyNo}
+	</select>
+	
+	<delete id="deleteApplyLog">
+		DELETE FROM APPLY_LOG
+		WHERE APPLY_NO = #{applyNo}
+	</delete>
 	
 </mapper>
 

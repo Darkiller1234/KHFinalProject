@@ -11,6 +11,7 @@
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/personal/messageMain.css">
 <script src="${pageContext.request.contextPath}/resources/static/js/personal/messageMainAjax.js"></script>
+<script src="${pageContext.request.contextPath}/resources/static/js/personal/messageMainCreate.js"></script>
 <script src="${pageContext.request.contextPath}/resources/static/js/personal/messageMain.js"></script>
 
 </head>
@@ -55,83 +56,17 @@
                     </div>
                 </div>
 
-        
-                    <!-- <label>
-                        <input type="radio" name="talkroom-option" onclick="talkroomClick(this)">
-                        <div class="talkroom">
-                            <div class="thumbnail" data-bs-toggle="modal" data-bs-target="#talkroomModal">
-                                <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
-                            </div>
-                            <div class="talkroom-info">
-                                <div class="talkroom-name">제2934325회 정처기 스터디방</div>
-                                <div class="last-talk">테스트용 메시지입니다람쥐썬더!!!!!</div>
-                            </div>
-                        </div>
-                    </label>
+                <!-- AJAX 조회결과 없을시 출력 -->
+                <!-- <div class="not-found">
+                    <img src="${pageContext.request.contextPath}/resources/static/img/button/sad_emote.png">
+                    <div class="font-size-subtitle">대화상대가 없습니다...</div>
+                    <div class="font-size-content">멘티나 스터디 그룹을 신청해보세요!</div>
+                </div>  -->
 
-                    <label>
-                        <input type="radio" name="talkroom-option" onclick="talkroomClick(this)">
-                        <div class="talkroom">
-                            <div class="thumbnail" data-bs-toggle="modal" data-bs-target="#userModal">
-                                <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
-                            </div>
-                            <div class="talkroom-info">
-                                <div class="talkroom-name">User01</div>
-                                <div class="last-talk">코미는 낮보다 밤이 좋아 그런데 요즘 내가 점점이상해 버터랑 똑같아 사료먹으면</div>
-                            </div>
-                        </div>
-                    </label>
-
-                    <label>
-                        <input type="radio" name="talkroom-option" onclick="talkroomClick(this)">
-                        <div class="talkroom">
-                            <div class="thumbnail" data-bs-toggle="modal" data-bs-target="#userModal">
-                                <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
-                            </div>
-                            <div class="talkroom-info">
-                                <div class="talkroom-name">User01</div>
-                                <div class="last-talk">테스트용 메시지입니다람쥐썬더!!!!!</div>
-                            </div>
-                        </div>
-                    </label>
-
-                    <div class="talkroom">
-                        <div class="thumbnail">
-                            <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
-                        </div>
-                        <div class="talkroom-info">
-                            <div class="talkroom-name" data-bs-toggle="modal" data-bs-target="#talkroomModal">User01님의 멘티 신청</div>
-                            <div class="last-talk">수락하시겠습니까?</div>
-                            <div class="option">
-                                <button class="btn-accept">수락</button>
-                                <button class="btn-primary">거절</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="talkroom">
-                        <div class="thumbnail">
-                            <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
-                        </div>
-                        <div class="talkroom-info">
-                            <div class="talkroom-name" data-bs-toggle="modal" data-bs-target="#talkroomModal">User01님의 스터디 신청</div>
-                            <div class="last-talk">정보보안기사 30일 용사 스터디그룹</div>
-                            <div class="option">
-                                <button class="btn-accept">수락</button>
-                                <button class="btn-primary">거절</button>
-                            </div>
-                        </div>
-                    </div> -->
-
-                    <!-- AJAX 조회결과 없을시 출력 -->
-                    <!-- <div class="not-found">
-                        <img src="${pageContext.request.contextPath}/resources/static/img/button/sad_emote.png">
-                        <div class="font-size-subtitle">대화상대가 없습니다...</div>
-                        <div class="font-size-content">멘티나 스터디 그룹을 신청해보세요!</div>
-                    </div>  -->
                 <div class="content">
                     <div class="mentorTalk"></div>
                     <div class="studyTalk"></div>
+                    <div class="applyList"></div>
                 </div>
             </div>
             
@@ -140,77 +75,8 @@
         <div class="message-section">
             <div class="message-window">
 
-                <div class="message mine">
-                    <div class="message-card">
-                        <div class="thumbnail" data-bs-toggle="modal" data-bs-target="#userModal">
-                            <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
-                        </div>
-                        <div class="info">
-                            <div class="user-name">User01</div>
-                            <div class="content">테스트용 메시지입니다...테스트용 메시지입니다...</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="message mine">
-                    <div class="message-card">
-                        <div class="thumbnail" data-bs-toggle="modal" data-bs-target="#userModal">
-                            <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
-                        </div>
-                        <div class="info">
-                            <div class="user-name">User01</div>
-                            <div class="content">테스트용 메시지입니다...</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="message">
-                    <div class="message-card">
-                        <div class="thumbnail" data-bs-toggle="modal" data-bs-target="#userModal">
-                            <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
-                        </div>
-                        <div class="info">
-                            <div class="user-name">
-                                User01
-                                <img src="<%=contextPath%>/resources/static/img/button/manager_icon.png">
-                            </div>
-                            <div class="content">
-                                난 너를 믿었던만큼 난 내 친구도 믿었기에
-                                난 아무런 부담없이 널 내 친구에게 소개시켜 줬고
-                                그런 만남이 있은 후부터 우리는 자주 함께 만나며
-                                즐거운 시간을 보내며 함께 어울렸던 것뿐인데
-                                그런 만남이 어디부터 잘못됐는지
-                                난 알 수 없는 예감에 조금씩 빠져들고 있을때쯤
-                                넌 나보다 내 친구에게 관심을 더 보이며
-                                날 조금씩 멀리하던
-                                그 어느 날 너와 내가 심하게 다툰 그 날 이후로
-                                너와 내 친구는 연락도 없고 날 피하는 것 같아
-                                그제서야 난 느낀거야 모든 것이 잘못돼 있는걸
-                                너와 내 친구는 어느새 다정한 연인이 돼 있었지
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="date">
                     <div>2024년 11월 6일</div>
-                </div>
-
-                <div class="message">
-                    <div class="message-card">
-                        <div class="thumbnail" data-bs-toggle="modal" data-bs-target="#userModal">
-                            <img src="<%=contextPath%>/resources/static/img/profile/profileTest.webp" class="rounded-circle" alt="Cinque Terre">
-                        </div>
-                        <div class="info">
-                            <div class="user-name">
-                                User01
-                                <img src="<%=contextPath%>/resources/static/img/button/manager_icon.png">
-                            </div>
-                            <div class="content">
-                                과거 메시지1
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- 채팅방 선택전 표시 -->
@@ -223,8 +89,8 @@
             </div>
 
             <div class="search-form">
-                <input id="sendText" type="text" onkeypress="addMessage(event)">
-                <button class="rounded-circle" onclick="addMessage(event)">
+                <input id="sendText" type="text">
+                <button id="sendButton" class="rounded-circle">
                     <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
                 </button> 
             </div>

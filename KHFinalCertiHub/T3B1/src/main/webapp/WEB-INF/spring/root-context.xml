@@ -61,6 +61,9 @@
       <property name="maxInMemorySize" value="100000000" />
    </bean>
    
+   <!-- 트랜잭션 빈 등록 -->
+   <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"><property name="dataSource" ref="dataSource"/></bean>
+   
    <!-- @Aspect 및 하위 어노테이션 활성화 -->
    <aop:aspectj-autoproxy/>
 
