@@ -9,14 +9,14 @@ function initManagerBoard(contextPath){
     const boardList = document.querySelector('.board-manager');
 
     let data = {
-        url: contextPath + "/manager/manager?no=",
+        url: contextPath + "/notice/noticepost?no=",
         titleIndex : 2,
         header : [
                 "NO.",
                 "제목",
                 "등록일",
-                "조회수",
-                "삭제"
+                "조회수"
+                
             ],
             boardList : [
             [
@@ -24,16 +24,16 @@ function initManagerBoard(contextPath){
                 "1",
                 "공지사항입니다.",
                 "2023-10-5",
-                "1354",
-                "<button>삭제</button>"
+                "1354"
+                
             ],
             [
                 "2",
                 "2",
                 "공지사항입니다.",
                 "2023-12-5",
-                "894",
-                "<button>삭제</button>"
+                "894"
+                
             ]
         ]
     }

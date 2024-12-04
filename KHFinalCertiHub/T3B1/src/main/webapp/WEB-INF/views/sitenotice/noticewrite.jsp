@@ -17,16 +17,16 @@
 
             <div class="notice-title">공지사항</div>
 
-            <form class="write-section" onsubmit="return false;">
+            <form class="write-section" method="post" action="notice">
                 <input type="text" class="title" name="title" placeholder="이곳에 제목을 입력해주세요.(300Bytes 까지 가능)">
                 <div class="board-content">
 
-                    <div id="summernote"></div>
+                    <textarea id="summernote" name="boardContent"></textarea>
 
                 </div>
         
                 <div class="board-option">
-                    <button type="submit" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/notice'">작성완료</button>
+                    <button type="submit" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/notice/notice'">작성완료</button>
                 </div>
             </form>
         </div>
