@@ -5,14 +5,19 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
+        <!-- FullCalendar CSS (CDN) -->
+        <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css" rel="stylesheet" />
+        <!-- FullCalendar JS (CDN) -->
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+        
         <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-        <script src="${pageContext.request.contextPath}/resources/static/js/personal/personalMakeSc.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/static/js/personal/anotherPageViewSchedule.js"></script>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/personal/anotherPageViewSchedule.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/personal/commonPersonal.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/personal/anotherPageView.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/personal/personalMakeSc.css">
         <title>Document</title>
     </head>
 
@@ -25,15 +30,16 @@
                 <div id="full-view">
                     <div class="top-view">
                         <div id="member-name" class="font-size-title">
-                            스타레일고수가될거야님의 페이지
+                            
                         </div>
                         <div class="btn-group" role="group" aria-label="Basic radio toggle button group" id="category-btn">
-                            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="btnradio1" onclick="location.href='<%=contextPath%>/personal/view'">프로필 정보</label>
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off"
+                            >
+                            <label class="btn btn-outline-primary" for="btnradio1" onclick="location.href='<%=contextPath%>/personal/view?pno=${pno}'">프로필 정보</label>
 
                             <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off"
                             checked>
-                            <label class="btn btn-outline-primary" for="btnradio2" onclick="location.href='<%=contextPath%>/personal/viewSc'">스케줄</label>
+                            <label class="btn btn-outline-primary" for="btnradio2" onclick="location.href='<%=contextPath%>/personal/viewSc?pno=${pno}'">스케줄</label>
                         </div>
 
                         <nav class="navbar bg-body-tertiary page-title font-size-subtitle" id="certiSelect">
@@ -53,10 +59,10 @@
                                 <div class="collapse navbar-collapse" id="navbarNav">
                                     <ul class="navbar-nav">
                                         <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" href="<%=contextPath%>/personal/view">프로필 정보</a>
+                                            <a class="nav-link active" aria-current="page" href="<%=contextPath%>/personal/view?pno=${pno}">프로필 정보</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" href="<%=contextPath%>/personal/viewSc">스케줄</a>
+                                            <a class="nav-link active" aria-current="page" href="<%=contextPath%>/personal/viewSc?pno=${pno}">스케줄</a>
                                         </li>
                                         
                                     </ul>
@@ -67,52 +73,25 @@
                     <div id="middle-view">
                         <div class="left-view">
                             <div id="calendar">
-                                <img src="<%=contextPath%>/resources/static/img/personalPage/calendar.png" alt="">
+                                <div id="calendar"></div>
                             </div>
                         </div>
                         <div class="right-view">
-                            <div id="today-job">
+                            <div id="today-job-list">
                                 <div class="font-size-subtitle">
-                                    오늘의 일정
+                                    오늘의 할일
                                 </div>
-                                <div>
-                                    <div class="font-size-subtitle">
-                                        11월 7일 18:00 ~ 20:00
-                                    </div>
-                                    <div class="font-size-content">
-                                        야근
-                                    </div>
+                                <div id="today-job-div-list">
+
                                 </div>
 
                             </div>
-                            <div id="job-list">
+                            <div id="notToday-job-list">
                                 <div class="font-size-subtitle">
-                                    전체 일정
+                                    일정 목록
                                 </div>
-                                
-                                <div>
-                                    <div class="font-size-subtitle">
-                                        11월 8일 18:00 ~ 20:00
-                                    </div>
-                                    <div class="font-size-content">
-                                        야근
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="font-size-subtitle">
-                                        11월 9일 15:00 ~ 18:00
-                                    </div>
-                                    <div class="font-size-content">
-                                        회의
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="font-size-subtitle">
-                                        11월 10일 15:00 ~ 18:00
-                                    </div>
-                                    <div class="font-size-content">
-                                        회의
-                                    </div>
+                                <div id="notToday-job-div-list">
+
                                 </div>
                             </div>
                         </div>

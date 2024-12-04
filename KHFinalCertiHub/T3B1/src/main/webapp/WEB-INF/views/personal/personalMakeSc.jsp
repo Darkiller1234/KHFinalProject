@@ -115,7 +115,7 @@
                             </div>
                             <div id="notToday-job-list">
                                 <div class="font-size-subtitle">
-                                    일정 생성하기
+                                    일정 목록
                                 </div>
                                 <button id="job-add-btn" type="button" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal"><img
@@ -161,7 +161,12 @@
                                     <input type="time" value="19:00">
                                 </div>
                             </div>
-
+                            <div id="titleInputArea">
+                                <input type="text" placeholder="이곳에 내용 입력">
+                            </div>
+                            <div id="selectColor">
+                                배경색: <input type="color" id="backColorInput" value="#ffffff"> 글씨색: <input type="color" id="fontColorInput" value="#000000">
+                            </div>
                             <div id="setting-grid-stuff">
                                 <img src="<%=contextPath%>/resources/static/img/personalPage/alarm.png" alt="">
                                 <div id="alarm-select" class="custom-select">
@@ -202,7 +207,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                            <button type="button" class="btn btn-primary">일정 저장</button>
+                            <button type="button" class="btn btn-primary" id="calendarSave">일정 저장</button>
                         </div>
                     </div>
                 </div>
