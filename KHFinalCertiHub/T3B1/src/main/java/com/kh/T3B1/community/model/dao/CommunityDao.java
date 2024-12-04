@@ -12,6 +12,7 @@ import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.community.model.vo.Board;
 import com.kh.T3B1.community.model.vo.Reply;
 import com.kh.T3B1.community.model.vo.Report;
+import com.kh.T3B1.personal.model.vo.License2;
 
 @Repository
 public class CommunityDao {
@@ -143,5 +144,9 @@ public class CommunityDao {
 
 	public int insertReportReply(SqlSessionTemplate sqlSession, Report r) {
 		return sqlSession.insert("boardMapper.insertReportBoard", r);
+	}
+
+	public ArrayList<License2> getCertiList(SqlSessionTemplate sqlSession, String search) {
+		return (ArrayList)sqlSession.selectList("boardMapper.getCertiList", search);
 	}
 }

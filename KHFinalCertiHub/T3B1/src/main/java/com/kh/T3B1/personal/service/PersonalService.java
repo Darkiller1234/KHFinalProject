@@ -55,4 +55,6 @@ public interface PersonalService {
 
 	int insertSc(FullCalendarVo cal);
 
+	ArrayList<String> selectCertiList();
+
 }

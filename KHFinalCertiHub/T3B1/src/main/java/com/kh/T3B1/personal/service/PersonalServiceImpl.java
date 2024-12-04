@@ -168,5 +168,10 @@ public class PersonalServiceImpl implements PersonalService{
 	public int insertSc(FullCalendarVo cal) {
 		return personalDao.insertSc(sqlSession, cal);
 	}
+
+	@Override
+	public ArrayList<String> selectCertiList() {
+		return personalDao.selectCertiList(sqlSession);
+	}
 	
 }

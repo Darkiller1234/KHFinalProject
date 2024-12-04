@@ -29,6 +29,10 @@ function init(contextPath, pageName, optional){
             commuDInit(contextPath);
             break;
 
+        case "commuSCInit":
+            commuSCInit(contextPath);
+            break;
+
         // 멘토
         case "mentorSearch":
             initMentorSearch(contextPath); // optional : 자격증 목록

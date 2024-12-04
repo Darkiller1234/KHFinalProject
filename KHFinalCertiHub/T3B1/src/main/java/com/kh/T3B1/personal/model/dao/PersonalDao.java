@@ -131,5 +131,9 @@ public class PersonalDao {
 	public int insertSc(SqlSessionTemplate sqlSession, FullCalendarVo cal) {
 		return sqlSession.insert("personalMapper.insertSc", cal);
 	}
+
+	public ArrayList<String> selectCertiList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("boardMapper.selectCertiList");
+	}
 	
 }

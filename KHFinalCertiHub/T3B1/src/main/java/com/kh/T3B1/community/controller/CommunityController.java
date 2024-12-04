@@ -26,6 +26,7 @@ import com.kh.T3B1.community.model.vo.Reply;
 import com.kh.T3B1.community.model.vo.Report;
 import com.kh.T3B1.community.service.CommunityService;
 import com.kh.T3B1.member.model.vo.Member;
+import com.kh.T3B1.personal.model.vo.License2;
 
 
 @Controller
@@ -483,7 +484,7 @@ public class CommunityController {
 	//커뮤니티 글 수정 페이지 (해당 글 정보 가져오기)
 	@RequestMapping("edit")
 	public String CommunityEdit(int certiNo, Model c, HttpSession session) {
-		ArrayList<String> certiList = communityService.selectCertiList();
+			
 		
 		
 		
@@ -495,7 +496,6 @@ public class CommunityController {
 		c.addAttribute("Bo", temp);
 		
 		c.addAttribute("pageName","commuEInit");
-		c.addAttribute("certiList", certiList);
 		c.addAttribute("certiNo", certiNo);
 		return "community/communityEdit";
 	}
@@ -520,6 +520,30 @@ public class CommunityController {
 	}
 	
 	
+	//커뮤니티 자격증별 게시판 선택
+	@RequestMapping("selectCerti")
+	public String CommunitySelectCerti(Model c, HttpSession session) {
+			
+		
+		
+		
+		//자격증 리스트 가져오기
+		ArrayList<String> certiList = communityService.selectCertiList();	
+		c.addAttribute("pageName","commuSCInit");
+		c.addAttribute("certiList", certiList);
+		return "community/communitySelectCerti";
+	}
+
+	
+	//커뮤니티 자격증별 게시판 선택 [자격증 리스트]
+	@ResponseBody
+	@RequestMapping(value="selectCerti/getCertiList", produces="application/json; charset-UTF-8")
+	public String getCertiList(String searchString, HttpSession session) {
+		ArrayList<License2> list = communityService.getCertiList(searchString);
+		
+		
+		return new Gson().toJson(list);
+	}
 	
 	
 	

@@ -47,16 +47,18 @@
     padding-bottom: 1.5px;
 }
 
-#favor-certi {
+/* #favor-certi {
     display: grid;
     align-items: center;
     text-align: center;
     justify-content: center;
-}
+} */
 
 #favor-certi p {
-    grid-column: 1/4;
-    margin-bottom: 5px;
+    /* grid-column: 1/4;
+    margin-bottom: 5px; */
+    text-align: center;
+    padding-bottom: 10px;
 }
 
 #favor-certi span {

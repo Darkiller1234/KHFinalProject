@@ -5,19 +5,24 @@ function initPersonalProfileEdit(contextPath){
 function initSelectBox(contextPath){
     const selectBoxList = document.querySelectorAll('.license-choose');
 
-    const data1 = {
-        name : 'license',
-        default : '정보처리기사',
-        imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
-        items : [
-            ['정보처리기사'],
-            ['네트워크관리사'],
-            ['정보보안기사'],
-            ['빅데이터분석기사']
-        ]
-    } 
 
-    createSelectBox(selectBoxList[0], data1)
+
+    getCertiList(0, function(result) {
+        console.log(result)
+        const processedData = result.map(item => [item]);
+
+        console.log(processedData);
+        const data1 = {
+            name : 'license',
+            default : '정보처리기사',
+            imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
+            items : processedData
+        } 
+    
+        createSelectBox(selectBoxList[0], data1)
+    })
+
+    
 
     $("#save-btn").on("click", function(){
         document.querySelector('.modal-body').textContent = "잠시만 기다려주세요...";
