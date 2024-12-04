@@ -460,6 +460,25 @@
 		FROM REPLY
 		WHERE REPLY_NO = #{replyNo}
 	</select>
+	
+	<!-- 게시글 총 갯수 조회 -->
+	<select id="managerListCount" resultType="int">
+		SELECT COUNT(*)
+			FROM BOARD
+		WHERE STATUS = 'Y'
+	</select>
+	
+	<!-- 게시글 조회 -->
+	<select id="managerList" resultMap="boardResult" parameterType="Board">
+		SELECT BOARD_NO boardNo,
+			   BOARD_TITLE boardTitle,
+			   BOARD_DATE boardDate,
+			   VIEW_COUNT viewCount
+		FROM BOARD
+		WHERE STATUS = 'Y' AND TAB_NO =1
+		ORDER BY Board_NO DESC
+	</select>
+	
 </mapper>
 
 

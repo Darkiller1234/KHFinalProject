@@ -96,6 +96,7 @@ crossorigin="anonymous"></script>
                                 <li><a href="<%=contextPath%>/personal/profile">개인 페이지</a></li>
                                 <li><a href="<%=contextPath%>/message/main">메시지</a></li>
                                 <li><a href="<%=contextPath%>/manager/manager">관리자 페이지</a></li>
+                                <li><a href="<%=contextPath%>/notice/notice">관리자 게시판</a></li>
                             </ul>
                         </li> 
 

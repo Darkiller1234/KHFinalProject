@@ -93,7 +93,7 @@
                 <c:forEach var="item" items="${list}">
                     <div class="result-item">
                         <h3>${item.licenseName}</h3>
-                        <h4>${item.licenseDesc}</h4>
+                        <h6>${item.licenseDesc}</h6>
                     </div>
                 </c:forEach>
             <br><br>

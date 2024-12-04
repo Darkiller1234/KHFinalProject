@@ -7,7 +7,7 @@ function initReportBoard(contextPath) {
     const boardList = document.querySelector('.board-report');
 
     let data = {
-        url : contextPath + "/manager/report?no=",
+        url : contextPath + "/communit/report?no=",
         titleIndex : 2,
         header : [
             "NO.",
