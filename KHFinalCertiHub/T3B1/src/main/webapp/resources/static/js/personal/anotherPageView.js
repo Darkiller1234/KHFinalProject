@@ -3,7 +3,7 @@ function initPersonalView(contextPath) {
     const url = new URL(window.location.href);
     // URL의 파라미터값을 가진 객체
     const urlParam = url.searchParams;
-    const result = getMemberInfo(urlParam.get('pno'), contextPath);
+    const result = getMemberInfo(urlParam.get('pno'), contextPath); 
     if(result !== undefined){
         getSetLikeStatus(urlParam.get('pno'), contextPath);
         getSetLicense(urlParam.get('pno'), contextPath);

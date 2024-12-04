@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.community.model.vo.Board;
 import com.kh.T3B1.community.model.vo.Reply;
+import com.kh.T3B1.community.model.vo.Report;
 
 @Repository
 public class CommunityDao {
@@ -118,5 +119,29 @@ public class CommunityDao {
 
 	public ArrayList<Reply> selectChildReplyList(SqlSessionTemplate sqlSession, int replyNo) {
 		return (ArrayList)sqlSession.selectList("replyMapper.selectChildReplyList", replyNo);
+	}
+
+	public int checkReportBoard(SqlSessionTemplate sqlSession, Map<String, Object> params) {
+		return sqlSession.selectOne("boardMapper.checkReportBoard", params);
+	}
+
+	public int getBoardWriter(SqlSessionTemplate sqlSession, int boardNo) {
+		return sqlSession.selectOne("boardMapper.getBoardWriter", boardNo);
+	}
+
+	public int insertReportBoard(SqlSessionTemplate sqlSession, Report r) {
+		return sqlSession.insert("boardMapper.insertReportBoard", r);
+	}
+
+	public int checkReportReply(SqlSessionTemplate sqlSession, Map<String, Object> params) {
+		return sqlSession.selectOne("boardMapper.checkReportReply", params);
+	}
+
+	public int getReplyWriter(SqlSessionTemplate sqlSession, int replyNo) {
+		return sqlSession.selectOne("boardMapper.getReplyWriter", replyNo);
+	}
+
+	public int insertReportReply(SqlSessionTemplate sqlSession, Report r) {
+		return sqlSession.insert("boardMapper.insertReportBoard", r);
 	}
 }
