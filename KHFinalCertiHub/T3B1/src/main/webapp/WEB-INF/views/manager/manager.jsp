@@ -39,6 +39,7 @@
                 </div>
                 
                 <div class="board-manager"></div>
+                
 
                 <!-- 페이징바 -->
                 <div class="manager-bar"></div>
