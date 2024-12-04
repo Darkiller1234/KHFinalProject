@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.community.model.vo.Board;
 import com.kh.T3B1.community.model.vo.Reply;
+import com.kh.T3B1.community.model.vo.Report;
 
 public interface CommunityService {
 	//게시글 총 갯수 가져오기
@@ -65,4 +66,16 @@ public interface CommunityService {
 	int editReply(Reply temp);
 
 	ArrayList<Reply> selectChildReplyList(ArrayList<Reply> list);
+
+	int checkReportBoard(int cno, int memberNo);
+
+	int getBoardWriter(int boardNo);
+
+	int insertReportBoard(Report r);
+
+	int checkReportReply(int cno, int memberNo);
+
+	int getReplyWriter(int replyNo);
+
+	int insertReportReply(Report r);
 }

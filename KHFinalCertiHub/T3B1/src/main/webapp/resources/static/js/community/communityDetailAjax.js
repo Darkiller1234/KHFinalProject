@@ -190,3 +190,59 @@ function poppularThis(data, callback){
         }
     })
 }
+
+//글 신고 여부
+function checkReportBoard(data, callback){
+    $.ajax({
+        url: "detail/checkReportBoard",
+        data: data,
+        success: function(res){
+            callback(res);
+        },
+        error: function(res){
+            console.log("글 신고여부 확인 ajax 오류");
+        }
+    })
+}
+
+//글 신고 insert
+function insertReportBoard(data, callback){
+    $.ajax({
+        url: "detail/insertReportBoard",
+        data: data,
+        success: function(res){
+            callback(res);
+        },
+        error: function(res){
+            console.log("글 신고 ajax 오류");
+        }
+    })
+}
+
+//댓글 신고 여부
+function checkReportReply(data, callback){
+    $.ajax({
+        url: "detail/checkReportReply",
+        data: data,
+        success: function(res){
+            callback(res);
+        },
+        error: function(res){
+            console.log("댓 신고여부 확인 ajax 오류");
+        }
+    })
+}
+
+//댓글 신고 insert
+function insertReportReply(data, callback){
+    $.ajax({
+        url: "detail/insertReportReply",
+        data: data,
+        success: function(res){
+            callback(res);
+        },
+        error: function(res){
+            console.log("댓글 신고 ajax 오류");
+        }
+    })
+}

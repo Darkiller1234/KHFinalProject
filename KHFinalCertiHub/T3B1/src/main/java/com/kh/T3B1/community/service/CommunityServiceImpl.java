@@ -12,6 +12,7 @@ import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.community.model.dao.CommunityDao;
 import com.kh.T3B1.community.model.vo.Board;
 import com.kh.T3B1.community.model.vo.Reply;
+import com.kh.T3B1.community.model.vo.Report;
 
 import lombok.RequiredArgsConstructor;
 
@@ -175,5 +176,41 @@ public class CommunityServiceImpl implements CommunityService{
 			}
 		}
 		return result;
+	}
+
+	@Override
+	public int checkReportBoard(int cno, int memberNo) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("cno", cno);
+		params.put("memberNo", memberNo);
+		return communityDao.checkReportBoard(sqlSession, params);
+	}
+
+	@Override
+	public int getBoardWriter(int boardNo) {
+		return communityDao.getBoardWriter(sqlSession, boardNo);
+	}
+
+	@Override
+	public int insertReportBoard(Report r) {
+		return communityDao.insertReportBoard(sqlSession, r);
+	}
+
+	@Override
+	public int checkReportReply(int cno, int memberNo) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("cno", cno);
+		params.put("memberNo", memberNo);
+		return communityDao.checkReportReply(sqlSession, params);
+	}
+
+	@Override
+	public int getReplyWriter(int replyNo) {
+		return communityDao.getReplyWriter(sqlSession, replyNo);
+	}
+
+	@Override
+	public int insertReportReply(Report r) {
+		return communityDao.insertReportReply(sqlSession, r);
 	}
 }
