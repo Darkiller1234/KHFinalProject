@@ -31,6 +31,7 @@ public class SearchServiceImpl implements SearchService {
     public ArrayList<License> selectListResult(PageInfo pi, String keyword) {
         return searchDao.selectListResult(sqlSession, pi, keyword);
     }
+
 }
 
 

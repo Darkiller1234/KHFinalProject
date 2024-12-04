@@ -62,7 +62,7 @@
             https://naver.me/FPnLdbwi
             <br><br>
             신청서 작성 후 신청서 하단의 오픈채팅방에 입장
-            (킥오프 접속 정보는 오픈채팅방에 공지 됩니다)
+            (킥오프 접속 정보는 오픈채팅방에 공지 됩니다)   
         </div>
     </div>
 
@@ -75,7 +75,7 @@
             <img src="${pageContext.request.contextPath}/resources/static/img/button/scissors_icon.png">
             수정
         </button>
-        <button class="back btn-primary" onclick="location.href='${pageContext.request.contextPath}/study/list'">
+        <button class="back btn-primary" onclick="location.href='${pageContext.request.contextPath}/notice/notice'">
             <img src="${pageContext.request.contextPath}/resources/static/img/button/menu_icon.png">
             목록
         </button>

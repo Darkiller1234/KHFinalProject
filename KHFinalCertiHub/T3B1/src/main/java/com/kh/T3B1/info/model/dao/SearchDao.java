@@ -19,8 +19,11 @@ public class SearchDao {
 	public ArrayList<License> selectListResult(SqlSessionTemplate sqlSession, PageInfo pi, String keyword) {
 	    int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 	    RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+	    // SQL 실행 (selectList는 Mapper에서 쿼리를 실행)
 	    return (ArrayList) sqlSession.selectList("searchMapper.selectListResult", keyword, rowBounds);
 	}
+
+
 
 
 }

@@ -391,6 +391,94 @@
   	  		) BR ON (B.BOARD_NO = BR.BOARD_NO)
 	</select>
 	
+	<select id="checkReportBoard" resultType="int">
+		SELECT COUNT(*)
+		FROM REPORT
+		WHERE BOARD_NO = #{cno}
+		AND ACCUSER_NO = #{memberNo}
+	</select>
+	
+	<!-- 글쓴이 가져오기 -->
+	<select id="getBoardWriter" resultType="int">
+		SELECT MEMBER_NO
+		FROM BOARD
+		WHERE BOARD_NO = #{boardNo}
+	</select>
+	
+	<!-- 신고 글 insert -->
+	<insert id="insertReportBoard" parameterType="Report">
+		INSERT INTO REPORT(
+			REPORT_NO,
+			ACCUSER_NO,
+			ACCUSED_NO,
+			<if test="boardNo != 0">
+			BOARD_NO,
+			</if>
+			<if test="replyNo != 0">
+			REPLY_NO,
+			</if>
+			<if test="messageNo != 0">
+			MESSAGE_NO,
+			</if>
+			<if test="studyBoardNo != 0">
+			STUDY_NO,
+			</if>
+			REPORT_TYPE_NO,
+			REPORT_DETAIL
+		)
+		VALUES(
+			REPORT_SEQ.NEXTVAL,
+			#{accuserNo},
+			#{accusedNo},
+			<if test="boardNo != 0">
+			#{boardNo},
+			</if>
+			<if test="replyNo != 0">
+			#{replyNo},
+			</if>
+			<if test="messageNo != 0">
+			#{messageNo},
+			</if>
+			<if test="studyBoardNo != 0">
+			#{stydyBoardNo},
+			</if>
+			#{reportTypeNo},
+			#{reportDetail}
+		)
+	</insert>
+	
+	<select id="checkReportReply" resultType="int">
+		SELECT COUNT(*)
+		FROM REPORT
+		WHERE REPLY_NO = #{cno}
+		AND ACCUSER_NO = #{memberNo}
+	</select>
+	
+	<!-- 글쓴이 가져오기 -->
+	<select id="getReplyWriter" resultType="int">
+		SELECT MEMBER_NO
+		FROM REPLY
+		WHERE REPLY_NO = #{replyNo}
+	</select>
+	
+	<!-- 게시글 총 갯수 조회 -->
+	<select id="managerListCount" resultType="int">
+		SELECT COUNT(*)
+			FROM BOARD
+		WHERE STATUS = 'Y'
+	</select>
+	
+	<!-- 게시글 조회 -->
+	<select id="managerList" resultMap="boardResult" parameterType="Board">
+		SELECT BOARD_NO boardNo,
+			   BOARD_TITLE boardTitle,
+			   BOARD_DATE boardDate,
+			   VIEW_COUNT viewCount
+		FROM BOARD
+		WHERE STATUS = 'Y' AND TAB_NO =1
+		ORDER BY Board_NO DESC
+	</select>
+	
 </mapper>
 
 

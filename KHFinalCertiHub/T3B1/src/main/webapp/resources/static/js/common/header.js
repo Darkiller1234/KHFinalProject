@@ -130,6 +130,10 @@ function init(contextPath, pageName, optional){
             initNoticePage(contextPath);
             break;
 
+        case "noticeWrite":
+            initNoticeWrite(contextPath);
+            break;
+
         case "certifyPage":
             initCertifyPage(contextPath);
             break;

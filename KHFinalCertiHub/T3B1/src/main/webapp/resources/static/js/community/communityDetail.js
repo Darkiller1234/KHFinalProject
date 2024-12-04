@@ -316,7 +316,46 @@ function commuDInit(contextPath) {
     
 
     
+    getLoginInfo(0, function (re) {
+        console.log(re);
+        if(re !== null){
+            $("#repoerBtn").on("click", function () {
+                checkReportBoard({ cno: urlParam.get('cno') }, function(result){
+                    if(result < 1){
+                        $("#report-board-modal #report-submit-button").off("click");
+                        $("#report-board-modal #report-submit-button").on("click", function(){
+                            const selectedElement = document.querySelector('#report-board-modal input[name="reportNumber"]:checked');
+                            if (selectedElement) {
+                                const selectedReportNumber = selectedElement.value;
+                                const reportReason = document.querySelector('#report-board-modal textarea[name=reportReason').value;
+                                insertReportBoard({
+                                    boardNo: urlParam.get('cno'),
+                                    reportTypeNo: selectedReportNumber,
+                                    reportDetail: reportReason
+                                }, function(result){
+                                    if(result > 0){
+                                        alert("신고가 정상적으로 처리되었습니다.")
+                                        location.reload(true);
+                                    }else{
+                                        alert("신고가 실패하였습니다. 다시 시도해주세요.")
+                                    }
+                                })
+                            } else {
+                                alert("신고 사유를 선택해주세요.")
+                            }
+                        })
+                    } else {
+                        document.querySelector("#report-board-modal .modal-body").innerHTML = "이미 신고하신 글입니다."
+                        document.querySelector("#report-board-modal .modal-footer").innerHTML = ""  
+                    }
+                })
+            });
+        }
+    })
+    
 
+
+    
 
 }
 
@@ -378,6 +417,9 @@ function boardLoadingExecute(board, context) {
     document.querySelector("#tabNameP").innerText = board.tabName;
     document.querySelector("#boardTitleP").innerText = board.boardTitle;
     document.querySelector("#nickNameP").innerText = board.memberNickname;
+    $("#nickNameP").on("click", function(){
+        location.href=`${context}/personal/view?pno=${board.memberNo}`
+    })
     document.querySelector("#likehatereplyviewdateCountP").innerText = `좋아요 ` + board.likeCount + ` | 싫어요 ` + board.hateCount + ` | 댓글 ` + board.replyCount + ` | 조회수 ` + board.viewCount + ` | ` + board.boardDate;
     document.querySelector("#boardContentP").innerHTML = board.boardContent;
     switch (document.querySelector('#tabNameP').textContent.trim()) {
@@ -626,7 +668,7 @@ function replyListReload(result, contextPath, a, b) {
                         <input type="hidden" value="${reply.replyNo}" name="replyNo">
                     <img src="` + contextPath + `${reply.memberImg}" alt="">
                     <div>
-                        <p class="font-size-subtitle" id="reply_nick">${reply.memberNickname}</p>
+                        <p class="font-size-subtitle" id="reply_nick" onclick='location.href="${contextPath}/personal/view?pno=${reply.memberNo}"'>${reply.memberNickname}</p>
                         <p class="font-size-content">${reply.replyContent}</p>
                         <div class="font-size-footer">
                 `
@@ -635,7 +677,7 @@ function replyListReload(result, contextPath, a, b) {
                     temp += `
                         <button id="re-reply${reply.replyNo}">답글</button>
                         |
-                        <button>신고</button>
+                        <button id="replyReport${reply.replyNo}" data-bs-toggle="modal" data-bs-target="#report-reply-modal">신고</button>
                     `
                 }
 
@@ -663,6 +705,45 @@ function replyListReload(result, contextPath, a, b) {
             }
         })
         result.forEach((reply) => {
+            // 신고 버튼 이벤트 등록
+            $(`#replyReport${reply.replyNo}`).on('click', function () {
+                getLoginInfo(0, function (re) {
+                    if(re !== null){
+                            checkReportReply({ cno: reply.replyNo }, function(result){
+                                console.log(result)
+                                if(result < 1){
+                                    $("#report-reply-modal #report-submit-button").off("click");
+                                    $("#report-reply-modal #report-submit-button").on("click", function(){
+                                        const selectedElement = document.querySelector('#report-reply-modal input[name="reportNumber"]:checked');
+                                        if (selectedElement) {
+                                            const selectedReportNumber = selectedElement.value;
+                                            const reportReason = document.querySelector('#report-reply-modal textarea[name=reportReason').value;
+                                            insertReportReply({
+                                                replyNo: reply.replyNo,
+                                                reportTypeNo: selectedReportNumber,
+                                                reportDetail: reportReason
+                                            }, function(result){
+                                                if(result > 0){
+                                                    alert("신고가 정상적으로 처리되었습니다.")
+                                                    location.reload(true);
+                                                }else{
+                                                    alert("신고가 실패하였습니다. 다시 시도해주세요.")
+                                                }
+                                            })
+                                        } else {
+                                            alert("신고 사유를 선택해주세요.")
+                                        }
+                                    })
+                                } else {
+                                    alert("이미 신고하신 댓글입니다.");
+                                    document.querySelector("#report-reply-modal .modal-footer button[data-bs-dismiss=modal]").click();  
+                                }
+                            })
+                    }
+                })
+            })
+
+
             // jQuery로 삭제 버튼 이벤트 등록
             $(`#delete-reply${reply.replyNo}`).on('click', function () {
                 console.log(reply.replyNo)
