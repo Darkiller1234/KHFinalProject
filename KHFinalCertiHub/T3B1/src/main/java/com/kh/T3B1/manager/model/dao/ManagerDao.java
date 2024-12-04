@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.community.model.vo.Board;
+import com.kh.T3B1.member.model.vo.Member;
 
 
 @Repository
@@ -24,6 +25,17 @@ public class ManagerDao {
 		
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		return (ArrayList)sqlSession.selectList("boardMapper.managerList", pi, rowBounds);
+	}
+
+	public int CountUser(SqlSessionTemplate sqlSession, String keyword) {
+		return sqlSession.selectOne("memberMapper.CountUser",keyword);
+	}
+
+	public ArrayList<Member> selectUserList(SqlSessionTemplate sqlSession, PageInfo pi, String keyword) {
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		// SQL 실행(selectList는 Mapper 에서 쿼리를 실행)
+		return (ArrayList)sqlSession.selectList("memberMapper.selectUserList", keyword, rowBounds);
 	}
 
 
