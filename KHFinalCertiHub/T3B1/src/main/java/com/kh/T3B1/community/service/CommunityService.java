@@ -6,6 +6,7 @@ import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.community.model.vo.Board;
 import com.kh.T3B1.community.model.vo.Reply;
 import com.kh.T3B1.community.model.vo.Report;
+import com.kh.T3B1.personal.model.vo.License2;
 
 public interface CommunityService {
 	//게시글 총 갯수 가져오기
@@ -78,4 +79,6 @@ public interface CommunityService {
 	int getReplyWriter(int replyNo);
 
 	int insertReportReply(Report r);
+
+	ArrayList<License2> getCertiList(String search);
 }

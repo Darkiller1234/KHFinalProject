@@ -29,3 +29,16 @@ function ajaxProfileLookLicense(data, callback){
         }
     })
 }
+
+function getCertiList(data, callback){
+    $.ajax({
+        url: "profile/getCertiList",
+        data: data,
+        success: function(res){
+            callback(res);
+        },
+        error: function(res){
+            console.log("자격증 리스트 ajax 오류");
+        }
+    })
+}
