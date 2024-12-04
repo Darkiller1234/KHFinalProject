@@ -33,12 +33,10 @@ public class InfoPageController {
 
 		// 페이지 정보 객체 생성 (현재 페이지, 총 검색 개수, 한 페이지당 항목 수, 페이지 범위)
 		PageInfo pi = Template.getPageInfo(searchCount, currentPage, 10, 5);
-		System.out.println("pi : " + pi);
-		System.out.println("keyword :" + keyword);
 		
 		// 검색 결과 목록 조회
 		ArrayList<License> list = searchService.selectListResult(pi, keyword);
-		System.out.println("list :" + list);
+
 		// 모델에 데이터를 추가
 		m.addAttribute("list", list); // 검색 결과 목록
 		m.addAttribute("pi", pi); // 페이징 정보

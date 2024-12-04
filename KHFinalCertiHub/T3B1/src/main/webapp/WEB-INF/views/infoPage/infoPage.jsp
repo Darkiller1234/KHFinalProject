@@ -19,9 +19,11 @@
             <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/infopage/map.css">
             <div class="wrapper">
                 <div class="container">
-                    <div class="certi">
-                        <h1>정보처리기사</h1>
-                    </div>
+                    <c:forEach var="item" items="${list}">
+                        <div class="result-item">
+                            <h1>>${item.licenseName}</h1>
+                        </div>
+                    </c:forEach>
                 </div>
                 <div class="tab-container">
                     <ul class="tabs">
@@ -393,7 +395,7 @@
                     </div>
                     <div id="tab-2" class="tab-content">
                         <div class="board-lib">
-                            
+
                         </div>
                     </div>
                 </div>
