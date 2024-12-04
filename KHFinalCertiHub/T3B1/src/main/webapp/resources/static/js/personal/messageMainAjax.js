@@ -92,9 +92,8 @@ function socketConnect(state){
 
     //socket연결로부터 데이터가 도착했을 때 실행하는 이벤트
     socket.onmessage = function(ev){
-        console.log(ev)
         const receive = JSON.parse(ev.data);
-        console.log(receive)
+        createMessageCard(state, receive)
     }
 
 }
