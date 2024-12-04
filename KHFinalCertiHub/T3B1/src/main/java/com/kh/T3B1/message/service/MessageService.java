@@ -57,4 +57,10 @@ public interface MessageService {
 	 */
 	ArrayList<ApplyLog> selectApplyList(PageInfo pi, int memberNo);
 
+	/**
+	 * @param Message (memberNo, memberName, memberImg, talkroomNo, messageContent, messageDate)
+	 * @return insert 결과 행 수
+	 */
+	Integer insertMessage(Message sendMessage);
+
 }

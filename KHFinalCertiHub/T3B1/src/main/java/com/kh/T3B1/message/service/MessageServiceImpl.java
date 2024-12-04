@@ -60,5 +60,10 @@ public class MessageServiceImpl implements MessageService {
 	public ArrayList<ApplyLog> selectApplyList(PageInfo pi, int memberNo) {
 		return messageDao.selectApplyList(sqlSession, pi, memberNo);
 	}
+
+	@Override
+	public Integer insertMessage(Message sendMessage) {
+		return messageDao.insertMessage(sqlSession, sendMessage);
+	}
 	
 }

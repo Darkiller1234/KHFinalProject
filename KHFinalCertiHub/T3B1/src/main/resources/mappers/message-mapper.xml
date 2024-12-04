@@ -142,6 +142,20 @@
 	 LEFT JOIN STUDY S ON (AL.STUDY_NO = S.STUDY_NO)
 	</select>
 	
+	<insert id="insertMessage" parameterType="Message">
+		INSERT INTO MESSAGE(
+		    MESSAGE_NO,
+		    TALKROOM_NO,
+		    MEMBER_NO,
+		    MESSAGE_CONTENT
+		) VALUES (
+		    MESSAGE_SEQ.NEXTVAL,
+		    #{talkroomNo},
+		    #{memberNo},
+		    #{messageContent}
+		)
+	</insert>
+	
 </mapper>
 
 

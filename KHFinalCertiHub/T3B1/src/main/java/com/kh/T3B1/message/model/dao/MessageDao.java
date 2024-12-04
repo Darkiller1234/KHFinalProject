@@ -58,4 +58,8 @@ public class MessageDao {
 		return (ArrayList)sqlSession.selectList("messageMapper.selectApplyList", memberNo, rowBounds);
 	}
 
+	public Integer insertMessage(SqlSessionTemplate sqlSession, Message sendMessage) {
+		return sqlSession.insert("messageMapper.insertMessage", sendMessage);
+	}
+
 }

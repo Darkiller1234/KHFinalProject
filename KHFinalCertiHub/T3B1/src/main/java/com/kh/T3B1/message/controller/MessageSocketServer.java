@@ -1,12 +1,12 @@
 package com.kh.T3B1.message.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
@@ -18,6 +18,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.kh.T3B1.member.model.vo.Member;
 import com.kh.T3B1.message.model.vo.Message;
+import com.kh.T3B1.message.service.MessageService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,6 +27,13 @@ import lombok.extern.slf4j.Slf4j;
 public class MessageSocketServer extends TextWebSocketHandler {
 	private final Map<String, WebSocketSession> userSessions = new ConcurrentHashMap<>();
 	private final Map<String, Set<String>> talkroomUserList = new ConcurrentHashMap<>(); 
+	
+	public final MessageService messageService;
+	
+	@Autowired
+	public MessageSocketServer(MessageService messageService) {
+		this.messageService = messageService;
+	}
 	
 	//클라이언트가 연결을 맺을 때 호출이되는 메소드
 	@Override
@@ -67,6 +75,7 @@ public class MessageSocketServer extends TextWebSocketHandler {
 		sendMessage.setMessageDate(new Date().toLocaleString());
 		
 		sendMessageTalkroom(sendMessage);
+		Integer result = messageService.insertMessage(sendMessage);
 	}
 	
 	private void sendMessageTalkroom(Message message) {
@@ -76,7 +85,6 @@ public class MessageSocketServer extends TextWebSocketHandler {
 		Set<String> receiverList = talkroomUserList.get(Integer.toString(message.getTalkroomNo()));
 		
 		log.info("Message : {}", message);
-		log.info("톡방 유저 목록 : {}",receiverList);
 		
 		String str = new Gson().toJson(message);
 		TextMessage msg = new TextMessage(str);
