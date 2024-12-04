@@ -24,6 +24,7 @@
 		<typeAlias type="com.kh.T3B1.chatbot.model.vo.ChatbotLog" alias ="ChatbotLog"/>
 		<typeAlias type="com.kh.T3B1.message.model.vo.Message" alias ="Message"/>
 		<typeAlias type="com.kh.T3B1.message.model.vo.Talkroom" alias ="Talkroom"/>
+		<typeAlias type="com.kh.T3B1.message.model.vo.ApplyLog" alias ="ApplyLog"/>
 		<typeAlias type="com.kh.T3B1.personal.model.vo.Calendar2" alias ="Calendar2"/>
 		<typeAlias type="com.kh.T3B1.personal.model.vo.FullCalendarVo" alias ="FullCalendarVo"/>
 		<typeAlias type="com.kh.T3B1.community.model.vo.Report" alias ="Report"/>

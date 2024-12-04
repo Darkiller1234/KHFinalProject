@@ -178,4 +178,10 @@ public interface StudyService {
 	 */
 	String updateRecruit(HashMap<String, Object> updateInfo);
 
+	/**
+	 * @param HashMap key=studyNo(가입할 스터디 그룹 번호), memberNo(가입시킬 회원 번호)
+	 * @return 성공=Y, 실패= RuntimeException
+	 */
+	String joinStudy(HashMap<String, Integer> searchInfo);
+
 }
