@@ -193,7 +193,7 @@ public class StudyServiceImpl implements StudyService{
 			throw new RuntimeException("스터디 그룹 생성 실패");
 		}
 		
-		int memberResult = studyDao.insertStudyMember(sqlSession, study.getManagerNo());
+		int memberResult = studyDao.insertStudyManager(sqlSession, study.getManagerNo());
 		
 		if(memberResult == 0) {
 			throw new RuntimeException("스터디 그룹 멤버 추가 실패");
@@ -205,7 +205,7 @@ public class StudyServiceImpl implements StudyService{
 			throw new RuntimeException("스터디 그룹 톡방 생성 실패");
 		}
 		
-		int talkMemberResult = messageDao.insertTalkroomMember(sqlSession, study.getManagerNo());
+		int talkMemberResult = messageDao.initTalkroomMember(sqlSession, study.getManagerNo());
 		
 		if(talkMemberResult == 0) {
 			throw new RuntimeException("스터디 그룹 톡방 멤버 추가 실패");
@@ -250,7 +250,7 @@ public class StudyServiceImpl implements StudyService{
 	public String joinStudy(HashMap<String, Integer> searchInfo) {
 		String result = "Y";
 		
-		int memberResult = studyDao.insertStudyMember(sqlSession, searchInfo.get("applicantNo"));
+		int memberResult = studyDao.insertStudyMember(sqlSession, searchInfo);
 		if(memberResult == 0) {
 			throw new RuntimeException("스터디 그룹 멤버 추가 실패");
 		}
@@ -264,6 +264,11 @@ public class StudyServiceImpl implements StudyService{
 		int talkResult = messageDao.insertTalkroomMember(sqlSession, searchInfo);
 		if(talkResult == 0) {
 			throw new RuntimeException("스터디그룹 톡방 회원 추가 실패");
+		}
+		
+		int applyResult = messageDao.updateApply(sqlSession, searchInfo.get("applyNo"));
+		if(applyResult == 0) {
+			throw new RuntimeException("요청 승인 날짜 처리 실패");
 		}
 		
 		return result;

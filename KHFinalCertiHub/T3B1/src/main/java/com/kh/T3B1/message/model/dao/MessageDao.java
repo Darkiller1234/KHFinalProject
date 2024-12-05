@@ -72,8 +72,8 @@ public class MessageDao {
 		return sqlSession.insert("messageMapper.insertStudyTalkroom", memberNo);
 	}
 
-	public int insertMentorTalkroomMember(SqlSessionTemplate sqlSession, int memberNo) {
-		return  sqlSession.insert("messageMapper.insertMentorTalkroomMember", memberNo);
+	public int initTalkroomMember(SqlSessionTemplate sqlSession, int memberNo) {
+		return  sqlSession.insert("messageMapper.initTalkroomMember", memberNo);
 	}
 	
 	public int insertTalkroomMember(SqlSessionTemplate sqlSession, HashMap<String, Integer> searchInfo) {
@@ -85,7 +85,11 @@ public class MessageDao {
 	}
 
 	public Integer deleteApplyLog(SqlSessionTemplate sqlSession, int applyNo) {
-		return sqlSession.delete("messageMapper.deleteApplyLog");
+		return sqlSession.delete("messageMapper.deleteApplyLog", applyNo);
+	}
+
+	public int updateApply(SqlSessionTemplate sqlSession, Integer applyNo) {
+		return sqlSession.update("messageMapper.updateApply", applyNo);
 	}
 
 }

@@ -109,9 +109,13 @@ public class StudyDao {
 	public int insertStudy(SqlSessionTemplate sqlSession, Study study) {
 		return sqlSession.insert("studyMapper.insertStudy", study);
 	}
+	
+	public int insertStudyManager(SqlSessionTemplate sqlSession, int memberNo) {
+		return sqlSession.insert("studyMapper.insertStudyManager", memberNo);
+	}
 
-	public int insertStudyMember(SqlSessionTemplate sqlSession, int memberNo) {
-		return sqlSession.insert("studyMapper.insertStudyMember", memberNo);
+	public int insertStudyMember(SqlSessionTemplate sqlSession, HashMap<String, Integer> searchInfo) {
+		return sqlSession.insert("studyMapper.insertStudyMember", searchInfo);
 	}
 
 	public int updateStudy(SqlSessionTemplate sqlSession, Study study) {

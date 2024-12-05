@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
@@ -146,7 +147,8 @@ public class MessageController {
 	
 	@ResponseBody
 	@PostMapping(value="acceptApply", produces="application/json; charset=UTF-8")
-	public String acceptApply(HttpSession session, int applyNo, int studyNo, int applicantNo, int applyKind) {
+	public String acceptApply(HttpSession session, int applyNo, 
+			@RequestParam(required = false) int studyNo, int applicantNo, int applyKind) {
 		HashMap<String, String> resultObj = new HashMap<>();
 		String result = "N";
 		Member member = (Member)session.getAttribute("loginMember");
@@ -163,8 +165,11 @@ public class MessageController {
 			searchInfo.put("studyNo", studyNo);
 			boolean isManager = studyService.isStudyManager(searchInfo);
 			
-			if(isManager)
+			if(isManager) {
+				// DB 추가를 위해 memberNo를 매니저 번호에서 요청자 번호로 변경
+				searchInfo.put("memberNo", applicantNo);
 				result = studyService.joinStudy(searchInfo);
+			}
 		}
 		
 		resultObj.put("result", result);
