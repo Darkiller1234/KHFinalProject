@@ -178,17 +178,10 @@ public class MessageController {
 	
 	@ResponseBody
 	@PostMapping(value="rejectApply", produces="application/json; charset=UTF-8")
-	public String rejectApply(HttpSession session, int applyNo, int studyNo, int applicantNo, int applyKind) {
+	public String rejectApply(HttpSession session, int applyNo) {
 		HashMap<String, String> resultObj = new HashMap<>();
 		String result = "N";
 		
-//		Member member = (Member)session.getAttribute("loginMember");
-
-//		HashMap<String, Integer> searchInfo = new HashMap<>();
-//		searchInfo.put("memberNo", member.getMemberNo());
-//		searchInfo.put("applicantNo", applicantNo);
-//		searchInfo.put("applyNo", applyNo);
-
 		result = messageService.deleteApplyLog(applyNo);
 		
 		resultObj.put("result", result);

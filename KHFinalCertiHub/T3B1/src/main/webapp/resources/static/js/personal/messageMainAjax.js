@@ -121,9 +121,6 @@ function ajaxRejectApply(state, callback){
         type:'post',
         data: {
             applyNo: state.applyNo,
-            studyNo: state.studyNo,
-            applicantNo: state?.applicantNo,
-            applyKind: state.applyKind,
         },
         success: (res) => callback(res, state),
         error: () => {
