@@ -118,6 +118,10 @@ function init(contextPath, pageName, optional){
             initManagerPage(contextPath);
             break;
 
+        case "commulistPage":
+            initCommulistPage(contextPath);
+            break;
+
         case "listPage":
             initListPage(contextPath);
             break;

@@ -11,6 +11,7 @@ import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.community.model.vo.Board;
 import com.kh.T3B1.manager.model.dao.ManagerDao;
 import com.kh.T3B1.member.model.vo.Member;
+import com.kh.T3B1.study.model.vo.StudyBoard;
 
 @Service
 public class ManagerServiceImpl implements ManagerService {
@@ -44,6 +45,26 @@ public class ManagerServiceImpl implements ManagerService {
 	@Override
 	public ArrayList<Member> selectUserList(PageInfo pi, String keyword) {
 		return managerDao.selectUserList(sqlSession, pi, keyword);
+	}
+
+	@Override
+	public int Countstudylist(String keyword) {
+		return managerDao.Countstudylist(sqlSession, keyword);
+	}
+
+	@Override
+	public ArrayList<StudyBoard> StudyList(PageInfo pi, String keyword) {
+		return managerDao.StudyList(sqlSession,pi,keyword);
+	}
+
+	@Override
+	public int Countcommulist(String keyword) {
+		return managerDao.Countcommulist(sqlSession, keyword);
+	}
+
+	@Override
+	public ArrayList<Board> CommuList(PageInfo pi, String keyword) {
+		return managerDao.CommuList(sqlSession, pi, keyword);
 	}
 
 }

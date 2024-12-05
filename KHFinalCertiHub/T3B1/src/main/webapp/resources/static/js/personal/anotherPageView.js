@@ -25,14 +25,29 @@ function getMemberInfo(pno, contextPath, urlParam){
 
 
 function setMemberInfo(result, pno, contextPath){
+    console.log(result);
     document.querySelector('#member-name').textContent = result.memberNickname + "님의 페이지";
     document.querySelector('#simple-view-name').textContent = result.memberNickname;
     document.querySelector('#simple-profile-view > img').src = contextPath + result.memberImg;
     if(result.mentorStatus === 'Y') {
         document.querySelector('#history-view p').textContent = '경력';
-        document.querySelector('#history-list').textContent = result.career;
-        document.querySelector('#simple-view-intro').textContent = result.memberIntro;
-        document.querySelector('#intro-detail p').textContent = result.mentorIntro;
+        if(result.career === "" || result.career === undefined){
+            document.querySelector('#history-list').textContent = "경력이 없습니다.";
+        }else {
+            document.querySelector('#history-list').textContent = result.career;
+        }
+        
+        if(result.memberIntro === "" || result.memberIntro === undefined){
+            document.querySelector('#simple-view-intro').textContent = "소개가 없습니다."
+        }else {
+            document.querySelector('#simple-view-intro').textContent = result.memberIntro;
+        }
+
+        if(result.mentorIntro === "" || result.mentorIntro === undefined){
+            document.querySelector('#intro-detail p').textContent = "멘토소개가 없습니다.";
+        }else {
+            document.querySelector('#intro-detail p').textContent = result.mentorIntro;
+        }
         if(result.mentorValid === 'N') {
             document.querySelector('.bottom-view > div > p').textContent = '질문불가'
             document.querySelector('.bottom-view > div > img').src = contextPath + '/resources/static/img/button/stop_icon.png'

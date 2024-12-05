@@ -495,6 +495,20 @@
 	    WHERE LICENSE_NAME LIKE '%' || #{search} || '%'
 	</select>
 	
+	<!-- 커뮤 검색 쿼리만 실행 -->
+	<select id="CommuList" resultMap="boardResult">
+		SELECT BOARD_NO, BOARD_TITLE, BOARD_DATE, VIEW_COUNT
+		FROM BOARD
+		WHERE BOARD_TITLE LIKE '%' || #{keyword} || '%'
+		ORDER BY BOARD_NO
+	</select>
+	
+	<!-- 커뮤 검색 결과 갯수 쿼리 -->
+	<select id="Countcommulist" resultType="int">
+		SELECT COUNT(*)
+		FROM BOARD
+		WHERE BOARD_TITLE LIKE '%' || #{keyword} || '%'
+	</select>
 </mapper>
 
 

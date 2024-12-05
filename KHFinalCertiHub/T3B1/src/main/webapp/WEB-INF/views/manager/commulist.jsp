@@ -1,21 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-    <!DOCTYPE html>
-    <html lang="en">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/manager/user.css">
-        <script src="${pageContext.request.contextPath}/resources/static/js/manager/user.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/manager/commulist.css">
+        <script src="${pageContext.request.contextPath}/resources/static/js/manager/commulist.js"></script>
         <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
 
-        <title>관리자 페이지</title>
-    </head>
+    <title>관리자 페이지</title>
+</head>
 
-    <body>
-        <%@ include file="../common/header.jsp" %>
+<body>
+    <%@ include file="../common/header.jsp" %>
             <div class="wrapper">
                 <div class="container">
                     <!-- 사이드바 -->
@@ -34,7 +33,7 @@
                         <h2>관리자 페이지</h2>
 
                         <!-- 검색 폼 -->
-                        <form class="search-form" action="<%=contextPath%>/manager/user" method="get" >
+                        <form class="search-form" action="<%=contextPath%>/manager/commulist" method="get" >
                             <input type="text" name="keyword" value="${keyword}">
                             <button type="submit">
                                 <img src="<%=contextPath%>/resources/static/img/button/search_icon.png" alt="검색">
@@ -46,18 +45,16 @@
                             <table>
                                     <tr>
                                         <th>NO.</th>
-                                        <th>유저명</th>
-                                        <th>이메일</th>
+                                        <th>제목</th>
                                         <th>등록일</th>
-                                        <th>멘토여부</th>
+                                        <th>조회수</th>
                                     </tr>
                                     <c:forEach var="item" items="${list}">
                                         <tr>
-                                            <td>${item.memberNo}</td>
-                                            <td>${item.memberNickname}</td>
-                                            <td>${item.email}</td>
-                                            <td>${item.enrollDate}</td>
-                                            <td>${item.mentorStatus}</td>                                                    
+                                            <td>${item.boardNo}</td>
+                                            <td>${item.boardTitle}</td>
+                                            <td>${item.boardDate}</td>
+                                            <td>${item.viewCount}</td>                                                    
                                         </tr>
                                     </c:forEach>
                             </table>    
@@ -96,6 +93,6 @@
                 </div>
             </div>
             <%@ include file="../common/footer.jsp" %>
-    </body>
-
-    </html>
+    
+</body>
+</html>
