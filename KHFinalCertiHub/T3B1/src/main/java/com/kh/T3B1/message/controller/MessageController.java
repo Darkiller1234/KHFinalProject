@@ -52,7 +52,7 @@ public class MessageController {
 	
 	@ResponseBody
 	@PostMapping(value="loadMentor", produces="application/json; charset=UTF-8")
-	public String loadMentor(HttpSession session, int currentPage, int pageLimit) {
+	public String loadMentor(HttpSession session, int currentPage, int pageLimit, String keyword) {
 		Member member = (Member)session.getAttribute("loginMember");
 		
 		// 요청 한번에 불러올 메시지의 수, 최대 10개 까지
@@ -68,14 +68,18 @@ public class MessageController {
 		pi.setCurrentPage(currentPage);
 		pi.setPageLimit(pageLimit);
 		
-		ArrayList<Talkroom> talkroomList = messageService.selectMentorList(pi, member.getMemberNo());
+		HashMap<String, Object> searchInfo = new HashMap<>();
+		searchInfo.put("memberNo", member.getMemberNo());
+		searchInfo.put("keyword", keyword);
+		
+		ArrayList<Talkroom> talkroomList = messageService.selectMentorList(pi, searchInfo);
 		
 		return new Gson().toJson(talkroomList);
 	}
 	
 	@ResponseBody
 	@PostMapping(value="loadStudy", produces="application/json; charset=UTF-8")
-	public String loadStudy(HttpSession session, int currentPage, int pageLimit) {
+	public String loadStudy(HttpSession session, int currentPage, int pageLimit, String keyword) {
 		Member member = (Member)session.getAttribute("loginMember");
 		
 		// 요청 한번에 불러올 메시지의 수, 최대 10개 까지
@@ -91,14 +95,18 @@ public class MessageController {
 		pi.setCurrentPage(currentPage);
 		pi.setPageLimit(pageLimit);
 		
-		ArrayList<Talkroom> talkroomList = messageService.selectStudyList(pi, member.getMemberNo());
+		HashMap<String, Object> searchInfo = new HashMap<>();
+		searchInfo.put("memberNo", member.getMemberNo());
+		searchInfo.put("keyword", keyword);
+		
+		ArrayList<Talkroom> talkroomList = messageService.selectStudyList(pi, searchInfo);
 		
 		return new Gson().toJson(talkroomList);
 	}
 	
 	@ResponseBody
 	@PostMapping(value="loadApply", produces="application/json; charset=UTF-8")
-	public String loadApply(HttpSession session, int pageLimit, int currentPage) {
+	public String loadApply(HttpSession session, int pageLimit, int currentPage, String keyword) {
 		Member member = (Member)session.getAttribute("loginMember");
 		
 		// 요청 한번에 불러올 메시지의 수, 최대 10개 까지
@@ -114,7 +122,11 @@ public class MessageController {
 		pi.setCurrentPage(currentPage);
 		pi.setPageLimit(pageLimit);
 		
-		ArrayList<ApplyLog> applyList = messageService.selectApplyList(pi, member.getMemberNo());
+		HashMap<String, Object> searchInfo = new HashMap<>();
+		searchInfo.put("memberNo", member.getMemberNo());
+		searchInfo.put("keyword", keyword);
+		
+		ArrayList<ApplyLog> applyList = messageService.selectApplyList(pi, searchInfo);
 		
 		return new Gson().toJson(applyList);
 	}

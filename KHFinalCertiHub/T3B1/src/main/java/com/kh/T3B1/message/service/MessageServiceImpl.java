@@ -29,8 +29,8 @@ public class MessageServiceImpl implements MessageService {
 	}
 
 	@Override
-	public ArrayList<Talkroom> selectMentorList(PageInfo pi, int memberNo) {
-		return messageDao.selectMentorList(sqlSession, pi, memberNo);
+	public ArrayList<Talkroom> selectMentorList(PageInfo pi, HashMap<String, Object> searchInfo) {
+		return messageDao.selectMentorList(sqlSession, pi, searchInfo);
 	}
 	
 	@Override
@@ -39,8 +39,8 @@ public class MessageServiceImpl implements MessageService {
 	}
 
 	@Override
-	public ArrayList<Talkroom> selectStudyList(PageInfo pi, int memberNo) {
-		return messageDao.selectStudyList(sqlSession, pi, memberNo);
+	public ArrayList<Talkroom> selectStudyList(PageInfo pi, HashMap<String, Object> searchInfo) {
+		return messageDao.selectStudyList(sqlSession, pi, searchInfo);
 	}
 
 	@Override
@@ -59,8 +59,8 @@ public class MessageServiceImpl implements MessageService {
 	}
 
 	@Override
-	public ArrayList<ApplyLog> selectApplyList(PageInfo pi, int memberNo) {
-		return messageDao.selectApplyList(sqlSession, pi, memberNo);
+	public ArrayList<ApplyLog> selectApplyList(PageInfo pi, HashMap<String, Object> searchInfo) {
+		return messageDao.selectApplyList(sqlSession, pi, searchInfo);
 	}
 
 	@Override
