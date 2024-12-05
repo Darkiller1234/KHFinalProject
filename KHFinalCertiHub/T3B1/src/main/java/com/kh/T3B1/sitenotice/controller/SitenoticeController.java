@@ -1,4 +1,4 @@
-package com.kh.T3B1.sitenoticecontroller;
+package com.kh.T3B1.sitenotice.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

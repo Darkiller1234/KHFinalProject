@@ -49,8 +49,8 @@
 
                 <div class="side-search">
                     <div class="search-form">
-                        <input type="text">
-                        <button class="rounded-circle" onclick="alert('클릭됨')">
+                        <input id="searchInput" type="text">
+                        <button id="searchBtn"class="rounded-circle" onclick="alert('클릭됨')">
                             <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
                         </button> 
                     </div>

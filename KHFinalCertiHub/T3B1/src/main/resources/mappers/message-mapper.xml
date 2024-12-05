@@ -70,6 +70,9 @@
      ) MNO ON (MT.TALKROOM_NO = MNO.TALKROOM_NO)
      LEFT JOIN MESSAGE MSG ON (MNO.MESSAGE_NO = MSG.MESSAGE_NO)
 	 INNER JOIN MEMBER M ON (T.MANAGER_NO = M.MEMBER_NO)
+	<if test="keyword != null">
+		AND M.MEMBER_NICKNAME LIKE '%' || #{keyword} || '%'
+	</if>
 	</select>
 	
 	<select id="countStudy" resultType="int">
@@ -100,6 +103,9 @@
      ) MNO ON (MT.TALKROOM_NO = MNO.TALKROOM_NO)
      LEFT JOIN MESSAGE MSG ON (MNO.MESSAGE_NO = MSG.MESSAGE_NO)
 	 INNER JOIN STUDY S ON (T.STUDY_NO = S.STUDY_NO)
+ 	<if test="keyword != null">
+		AND S.STUDY_NAME LIKE '%' || #{keyword} || '%'
+	</if>
 	</select>
 	
 	<select id="countMessage" resultType="int">
@@ -125,6 +131,7 @@
 		SELECT COUNT(*)
 		  FROM APPLY_LOG
 		 WHERE RECIPIENT_NO = #{memberNo}
+		   AND APPLY_DATE IS NOT NULL
 	</select>
 	
 	<select id="selectApplyList" resultMap="applyLogResultSet">
@@ -138,7 +145,12 @@
 				MEMBER_IMG, 
 				STUDY_NAME
 		  FROM APPLY_LOG AL
-	INNER JOIN MEMBER M ON(AL.APPLICANT_NO = M.MEMBER_NO) AND RECIPIENT_NO = #{memberNo}
+	INNER JOIN MEMBER M ON(AL.APPLICANT_NO = M.MEMBER_NO) 
+		   AND RECIPIENT_NO = #{memberNo} 
+		   AND APPLY_DATE IS NULL
+    <if test="keyword != null">
+		   AND M.MEMBER_NICKNAME LIKE '%' || #{keyword} || '%'
+    </if>
 	 LEFT JOIN STUDY S ON (AL.STUDY_NO = S.STUDY_NO)
 	</select>
 	
@@ -182,7 +194,7 @@
 		)
 	</insert>
 	
-  	<insert id="insertMentorTalkroomMember">
+  	<insert id="initTalkroomMember">
 		INSERT INTO MEMBER_TALKROOM(
 			MEMBER_NO,
 			TALKROOM_NO
@@ -202,7 +214,7 @@
 		)
 	</insert>
 	
-	<select id="selectStudyTalkroomNo">
+	<select id="selectStudyTalkroomNo" resultType="int">
 		SELECT TALKROOM_NO
 		  FROM TALKROOM
 		 WHERE STUDY_NO = #{studyNo}
@@ -212,6 +224,12 @@
 		DELETE FROM APPLY_LOG
 		WHERE APPLY_NO = #{applyNo}
 	</delete>
+	
+	<update id="updateApply">
+		UPDATE APPLY_LOG
+		   SET APPLY_DATE = SYSDATE
+		 WHERE APPLY_NO = #{applyNo}
+	</update>
 	
 </mapper>
 

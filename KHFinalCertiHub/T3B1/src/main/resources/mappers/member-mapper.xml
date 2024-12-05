@@ -242,7 +242,7 @@
 		ORDER BY MEMBER_NO
 	</select>
 	
-	<!-- 유저 검색 결과 개수 쿼리 -->
+	<!-- 유저 검색 결과 갯수 쿼리 -->
 	<select id="CountUser" resultType="int">
 		SELECT COUNT(*)
 		FROM MEMBER

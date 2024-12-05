@@ -67,6 +67,13 @@
           <mapping path="/personal/ChangePage"/>
           <mapping path="/personal/mentor/enroll"/>
           <mapping path="/message/main"/>
+          <mapping path="/message/getMemberInfo"/>
+          <mapping path="/message/loadMentor"/>
+          <mapping path="/message/loadStudy"/>
+          <mapping path="/message/loadApply"/>
+          <mapping path="/message/loadMessage"/>
+          <mapping path="/message/acceptApply"/>
+          <mapping path="/message/rejectApply"/>
           <beans:bean class="com.kh.T3B1.common.interceptor.LoginInterceptor" id="loginIntercepter" />
        </interceptor>
     </interceptors>

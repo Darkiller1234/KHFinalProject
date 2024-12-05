@@ -44,6 +44,7 @@ function ajaxLoadMentor(state, callback){
         data: {
             currentPage : state.mentorCurrentPage,
             pageLimit : state.pageLimit,
+            keyword : state?.keyword,
         },
         success: (res) => callback(res, state),
         error: () => {
@@ -59,6 +60,7 @@ function ajaxLoadStudy(state, callback){
         data: {
             currentPage : state.studyCurrentPage,
             pageLimit : state.pageLimit,
+            keyword : state?.keyword,
         },
         success: (res) => callback(res, state),
         error: () => {
@@ -74,6 +76,7 @@ function ajaxLoadApply(state, callback){
         data: {
             currentPage : state.applyCurrentPage,
             pageLimit : state.pageLimit,
+            keyword : state?.keyword,
         },
         success: (res) => callback(res, state),
         error: () => {
@@ -103,7 +106,10 @@ function ajaxAcceptApply(state, callback){
         url:'acceptApply',
         type:'post',
         data: {
-            
+            applyNo: state.applyNo,
+            studyNo: state.studyNo,
+            applicantNo: state?.applicantNo,
+            applyKind: state.applyKind,
         },
         success: (res) => callback(res, state),
         error: () => {
@@ -117,7 +123,7 @@ function ajaxRejectApply(state, callback){
         url:'rejectApply',
         type:'post',
         data: {
-
+            applyNo: state.applyNo,
         },
         success: (res) => callback(res, state),
         error: () => {

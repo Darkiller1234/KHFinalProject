@@ -29,8 +29,8 @@ public class MessageServiceImpl implements MessageService {
 	}
 
 	@Override
-	public ArrayList<Talkroom> selectMentorList(PageInfo pi, int memberNo) {
-		return messageDao.selectMentorList(sqlSession, pi, memberNo);
+	public ArrayList<Talkroom> selectMentorList(PageInfo pi, HashMap<String, Object> searchInfo) {
+		return messageDao.selectMentorList(sqlSession, pi, searchInfo);
 	}
 	
 	@Override
@@ -39,8 +39,8 @@ public class MessageServiceImpl implements MessageService {
 	}
 
 	@Override
-	public ArrayList<Talkroom> selectStudyList(PageInfo pi, int memberNo) {
-		return messageDao.selectStudyList(sqlSession, pi, memberNo);
+	public ArrayList<Talkroom> selectStudyList(PageInfo pi, HashMap<String, Object> searchInfo) {
+		return messageDao.selectStudyList(sqlSession, pi, searchInfo);
 	}
 
 	@Override
@@ -59,8 +59,8 @@ public class MessageServiceImpl implements MessageService {
 	}
 
 	@Override
-	public ArrayList<ApplyLog> selectApplyList(PageInfo pi, int memberNo) {
-		return messageDao.selectApplyList(sqlSession, pi, memberNo);
+	public ArrayList<ApplyLog> selectApplyList(PageInfo pi, HashMap<String, Object> searchInfo) {
+		return messageDao.selectApplyList(sqlSession, pi, searchInfo);
 	}
 
 	@Override
@@ -78,14 +78,19 @@ public class MessageServiceImpl implements MessageService {
 			throw new RuntimeException("멘토 톡방 생성 실패");
 		}
 		
-		int mentorResult = messageDao.insertMentorTalkroomMember(sqlSession, searchInfo.get("memberNo"));
+		int mentorResult = messageDao.initTalkroomMember(sqlSession, searchInfo.get("memberNo"));
 		if(mentorResult == 0) {
 			throw new RuntimeException("멘토 톡방 가입 실패");
 		}
 		
-		int menteeResult = messageDao.insertMentorTalkroomMember(sqlSession, searchInfo.get("applicantNo"));
+		int menteeResult = messageDao.initTalkroomMember(sqlSession, searchInfo.get("applicantNo"));
 		if(menteeResult == 0) {
 			throw new RuntimeException("멘티 톡방 가입 실패");
+		}
+		
+		int applyResult = messageDao.updateApply(sqlSession, searchInfo.get("applyNo"));
+		if(applyResult == 0) {
+			throw new RuntimeException("요청 승인 날짜 처리 실패");
 		}
 		
 		return result;
@@ -95,7 +100,7 @@ public class MessageServiceImpl implements MessageService {
 	public String deleteApplyLog(int applyNo) {
 		String result = "N";
 		
-		Integer deleteResult = messageDao.deleteApplyLog(sqlSession,applyNo);
+		Integer deleteResult = messageDao.deleteApplyLog(sqlSession, applyNo);
 		if(deleteResult != null && deleteResult != 0) {
 			result = "Y";
 		}

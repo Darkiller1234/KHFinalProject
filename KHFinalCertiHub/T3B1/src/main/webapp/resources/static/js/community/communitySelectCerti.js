@@ -1,9 +1,9 @@
 function commuSCInit(context) {
-    $("#sex").focus(function() {
-        document.querySelector('#sex2').classList.remove('disvisible');
+    $("#searchCerti").focus(function() {
+        document.querySelector('#searchResult').classList.remove('disvisible');
         console.log("Input field is focused");
         const searchValue = $(this).val(); // Input 값을 가져옵니다.
-        $("#sex2").empty();
+        $("#searchResult").empty();
         $.ajax({
             url: "selectCerti/getCertiList",
             data: {
@@ -22,8 +22,8 @@ function commuSCInit(context) {
                         location.href = `${context}/community/main?certiNo=${r.licenseNo}`
                     });
         
-                    // Append the new div to the #sex2 element
-                    $("#sex2").append(newDiv);
+                    // Append the new div to the #searchResult element
+                    $("#searchResult").append(newDiv);
                 });
             },
             error: function(res) {
@@ -32,9 +32,9 @@ function commuSCInit(context) {
         });
         console.log("Input value changed: " + $(this).val());
     });
-    $("#sex").on("change", function() {
+    $("#searchCerti").on("change", function() {
         const searchValue = $(this).val(); // Input 값을 가져옵니다.
-        $("#sex2").empty();
+        $("#searchResult").empty();
         $.ajax({
             url: "selectCerti/getCertiList",
             data: {
@@ -53,8 +53,8 @@ function commuSCInit(context) {
                         location.href = `${context}/community/main?certiNo=${r.licenseNo}`
                     });
         
-                    // Append the new div to the #sex2 element
-                    $("#sex2").append(newDiv);
+                    // Append the new div to the #searchResult element
+                    $("#searchResult").append(newDiv);
                 });
             },
             error: function(res) {
@@ -63,12 +63,12 @@ function commuSCInit(context) {
         });
         console.log("Input value changed: " + $(this).val());
     });
-    // $("#sex").blur(function() {
-    //     document.querySelector('#sex2').classList.add('disvisible');
-    //     console.log("Input field lost focus");
-    // });
+    $(document).on('mousedown', function(event) {
+        if (!$(event.target).closest('#searchResult, #searchCerti').length) {
+            // 클릭이 searchResult 또는 searchCerti 외부에서 발생하면
+            document.querySelector('#searchResult').classList.add('disvisible');
+            console.log("Input field lost focus");
+        }
+    });
 
-    function getCertiList(){
-
-    }
 }
