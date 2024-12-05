@@ -4,17 +4,18 @@ function socketConnect(state){
     
     // 소켓 연결 성공시 실행
     socket.onopen = function(){
-        console.log('연결성공....')
+        state.sendMessage.value = ""
+        state.sendMessage.disabled = false
     }
 
     // 소켓 연결 종료시 실행
     socket.onclose = function(){
-        console.log('연결끊어짐....')
     }
 
     // 소켓 연결 실패시 실행
     socket.onerror = function(){
-        console.log('연결실패....')
+        state.sendMessage.value = "서버와 연결에 실패했습니다..."
+        state.sendMessage.disabled = true
     }
 
     //socket연결로부터 데이터가 도착했을 때 실행하는 이벤트
