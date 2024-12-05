@@ -17,10 +17,10 @@ public interface MessageService {
 	Integer countMentor(int memberNo);
 
 	/**
-	 * @param PageInfo pi( pageLimit, currentPage ), int memberNo(조회할 멤버 번호)
+	 * @param PageInfo pi( pageLimit, currentPage ), HashMap key=int memberNo(조회할 멤버 번호), String keyword(검색어)
 	 * @return ArrayList Talkroom 멘토 톡방 정보
 	 */
-	ArrayList<Talkroom> selectMentorList(PageInfo pi, int memberNo);
+	ArrayList<Talkroom> selectMentorList(PageInfo pi, HashMap<String, Object> searchInfo);
 	
 	/**
 	 * @param int memberNo(조회할 멤버 번호)
@@ -29,10 +29,10 @@ public interface MessageService {
 	Integer countStudy(int memberNo);
 
 	/**
-	 * @param PageInfo pi( pageLimit, currentPage ), int memberNo(조회할 멤버 번호)
+	 * @param PageInfo pi( pageLimit, currentPage ), HashMap key=int memberNo(조회할 멤버 번호), String keyword(검색어)
 	 * @return ArrayList Talkroom 스터디 톡방 정보
 	 */
-	ArrayList<Talkroom> selectStudyList(PageInfo pi, int memberNo);
+	ArrayList<Talkroom> selectStudyList(PageInfo pi, HashMap<String, Object> searchInfo);
 
 	/**
 	 * @param Integer talkroomNo(톡방 번호)
@@ -53,10 +53,10 @@ public interface MessageService {
 	Integer countApply(int memberNo);
 	
 	/**
-	 * @param PageInfo pi( pageLimit, currentPage ), int memberNo(조회할 멤버 번호)
+	 * @param PageInfo pi( pageLimit, currentPage ), HashMap key=int memberNo(조회할 멤버 번호), String keyword(검색어)
 	 * @return ArrayList ApplyLog 신청목록
 	 */
-	ArrayList<ApplyLog> selectApplyList(PageInfo pi, int memberNo);
+	ArrayList<ApplyLog> selectApplyList(PageInfo pi, HashMap<String, Object> searchInfo);
 
 	/**
 	 * @param Message (memberNo, memberName, memberImg, talkroomNo, messageContent, messageDate)

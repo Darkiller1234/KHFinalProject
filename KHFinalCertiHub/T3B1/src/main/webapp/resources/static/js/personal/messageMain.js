@@ -1,7 +1,8 @@
 function initMessageMain(contextPath) {
     const sideContent = document.querySelector('.side-extend .content')
     const messageContent = document.querySelector('.message-section .message-window')
-    const sendMessage = document.querySelector('#sendText')
+    const sendMessage = document.getElementById('sendText')
+    const searchInput = document.getElementById('searchInput')
 
     let state = {
         contextPath: contextPath,
@@ -12,6 +13,7 @@ function initMessageMain(contextPath) {
         sideContent: sideContent, // 멘토, 멘티, 알림 선택메뉴
         messageContent: messageContent, // 메시지 추가되는 영역
         sendMessage: sendMessage, // 보내는 메시지가 저장되있는 dom 요소
+        searchInput: searchInput, // 멘토/스터디그룹 검색용 dom 요소
 
         currentOption: null, // 현재 누른 사이드 메뉴 번호
         previousOption: null, // 이전에 누른 사이드 메뉴 번호
@@ -33,6 +35,7 @@ function initMessageMain(contextPath) {
         studyCurrentPage: 1,
         applyCurrentPage: 1,
         pageLimit: 10, // 불러올 메시지 개수 제한
+        keyword: null, // 검색용 키워드
 
         callbacks:{
             onMentorLoad: (res, state) => {
@@ -95,6 +98,7 @@ function initMessageMain(contextPath) {
     initSideScroll(state);
     initMessageScroll(state);
     initChatEvent(state);
+    initSearchTalk(state);
 }
 
 function initMenuButton(state){
@@ -166,8 +170,42 @@ function initSideScroll(state){
     }
 }
 
+function initSearchTalk(state){
+    let timer; // 스로틀링용 변수
+
+    state.searchInput.onkeypress = (e) => {
+        if( (e.code !== 'Enter' && e.type !== 'click') ){
+            return;
+        }
+
+        clearTimeout(timer)
+
+        state.keyword = state.searchInput.value;
+
+        timer = setTimeout( ()=> {  
+            if(state.currentOption == 1) {
+                state.mentorCurrentPage = 1
+                document.querySelector('.mentorTalk').innerHTML = ""
+                ajaxLoadMentor(state, state.callbacks.onMentorLoad)
+            }
+            else if(state.currentOption == 2) {
+                state.studyCurrentPage = 1
+                document.querySelector('.studyTalk').innerHTML = ""
+                ajaxLoadStudy(state, state.callbacks.onStudyLoad)
+            }
+            
+            else if(state.currentOption == 3) {
+                state.applyCurrentPage = 1
+                document.querySelector('.applyList').innerHTML = ""
+                ajaxLoadApply(state, state.callbacks.onApplyLoad)
+            }
+        }, 200)
+    }
+}
+
 function initChatEvent(state){
     const searchButton = document.getElementById('sendButton')
+
     searchButton.onclick = (e) => {
         addMessage(e, state)
     }
