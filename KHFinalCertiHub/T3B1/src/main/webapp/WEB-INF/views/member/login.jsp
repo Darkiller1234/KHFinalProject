@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/common/default.css">
 <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/member/login.css">
-<script src="<%=contextPath%>/resources/static/js/member/login.js"></script>
+<script src="${pageContext.request.contextPath}/resources/static/js/member/login.js"></script>
 <title>로그인</title>
 </head>
 <body>
@@ -44,13 +44,13 @@
 
                     <p>또는</p>
 
-                    <div class="social-login">
-                        <button class="google-btn">Sign up with Google</button>
-                        <button class="kakao-btn">네이버 로그인</button>
-                    </div>
+                    
                 </div>
             </form>
-
+                    <div class="social-login">
+                        <button class="google-btn">Sign up with Google</button>
+                        <button class="kakao-btn" onclick="naverLogin()">네이버 로그인</button>
+                    </div>
             <!--<input type ="button" onclick="naverLogin()" value="네이버 로그인"></input>-->
             <!-- 
                 function naverLogin() {

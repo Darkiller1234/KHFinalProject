@@ -128,10 +128,28 @@ function createApplyList(div, state){
         let acceptBtn = document.createElement('button')
         acceptBtn.className = 'btn-accept'
         acceptBtn.innerHTML = '수락'
+        acceptBtn.onclick = () => {
+            state.applyElement = talkroomDiv
+            state.applyNo = apply.applyNo
+            state.studyNo = apply.studyNo
+            state.applicantNo = apply.applicantNo
+            state.applyKind = apply.applyKind
+
+            ajaxAcceptApply(state, state.callbacks.onApply)
+        }
 
         let rejectBtn = document.createElement('button')
         rejectBtn.className = 'btn-primary'
         rejectBtn.innerHTML = '거절'
+        rejectBtn.onclick = () => {
+            state.applyElement = talkroomDiv
+            state.applyNo = apply.applyNo
+            state.studyNo = apply.studyNo
+            state.applicantNo = apply.applicantNo
+            state.applyKind = apply.applyKind
+
+            ajaxRejectApply(state, state.callbacks.onApply)
+        }
 
         buttonDiv.appendChild(acceptBtn)
         buttonDiv.appendChild(rejectBtn)
