@@ -103,7 +103,10 @@ function ajaxAcceptApply(state, callback){
         url:'acceptApply',
         type:'post',
         data: {
-            
+            applyNo: state.applyNo,
+            studyNo: state.studyNo,
+            applicantNo: state?.applicantNo,
+            applyKind: state.applyKind,
         },
         success: (res) => callback(res, state),
         error: () => {
@@ -117,7 +120,10 @@ function ajaxRejectApply(state, callback){
         url:'rejectApply',
         type:'post',
         data: {
-
+            applyNo: state.applyNo,
+            studyNo: state.studyNo,
+            applicantNo: state?.applicantNo,
+            applyKind: state.applyKind,
         },
         success: (res) => callback(res, state),
         error: () => {

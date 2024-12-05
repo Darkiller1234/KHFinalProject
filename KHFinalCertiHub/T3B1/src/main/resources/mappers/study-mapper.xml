@@ -282,7 +282,7 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{study
 		)
 	</insert>
 	
-	<insert id="insertStudyMember">
+	<insert id="insertStudyManager">
 		INSERT INTO STUDY_MEMBER(
 			MEMBER_NO,
 			STUDY_NO,
@@ -290,6 +290,18 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{study
 		) VALUES (
 			#{memberNo},
 			STUDY_SEQ.CURRVAL,
+			SYSDATE
+		)
+	</insert>
+	
+	<insert id="insertStudyMember">
+		INSERT INTO STUDY_MEMBER(
+			MEMBER_NO,
+			STUDY_NO,
+			CONFIRM_DATE
+		) VALUES (
+			#{memberNo},
+			#{studyNo},
 			SYSDATE
 		)
 	</insert>

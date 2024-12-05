@@ -26,6 +26,7 @@ function initMessageMain(contextPath) {
         studyNo:null,
         applicantNo:null,
         applyKind:null,
+        applyElement:null, // 현재 누른 요청 dom 요소
 
         currentPage: 1, // 현재 메시지 페이지 번호
         mentorCurrentPage: 1,
@@ -73,6 +74,13 @@ function initMessageMain(contextPath) {
                     })
                 }
             },
+            onApply: (res, state) => {
+                if(res.result == 'Y'){
+                    state.applyElement.remove()
+                } else {
+                    alert('요청 처리에 실패했습니다.')
+                }
+            }
         },
     }
 
