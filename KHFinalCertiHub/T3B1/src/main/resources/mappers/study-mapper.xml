@@ -333,6 +333,21 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{study
   	   SET STUDY_RECRUIT = #{recruit}
   	 WHERE STUDY_NO = #{studyNo}
   </update>
+  
+  <!-- 홍보 검색 쿼리만 실행 -->
+  <select id="StudyList" resultMap="BoardResultSet">
+	SELECT STUDY_BOARD_NO, STUDY_BOARD_TITLE, STUDY_BOARD_DATE, VIEW_COUNT
+	FROM STUDY_BOARD
+	WHERE STUDY_BOARD_TITLE LIKE '%' || #{keyword} || '%'
+	ORDER BY STUDY_BOARD_NO     
+  </select>
+  
+  <!-- 홍보 검색 결과 갯수 쿼리 -->
+	<select id="Countstudylist" resultType="int">
+		SELECT COUNT(*)
+		FROM STUDY_BOARD
+		WHERE STUDY_BOARD_TITLE LIKE '%' || #{keyword} || '%'
+	</select>
 	
 </mapper>
 
