@@ -395,7 +395,6 @@
                     </div>
                     <div id="tab-2" class="tab-content">
                         <div class="board-lib">
-
                         </div>
                     </div>
                 </div>

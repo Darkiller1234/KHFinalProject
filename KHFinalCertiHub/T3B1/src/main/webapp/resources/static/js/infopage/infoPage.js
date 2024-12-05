@@ -23,7 +23,7 @@ function initInfoPage(contextPath) {
 function libBoard(contextPath) {
     const boardList = document.querySelector('.board-lib');
     let data = {
-        url : contextPath + "/info/lib",
+        url : contextPath + "/info/board?cpage=${pi.currentPage}",
         titleIndex: 1,
         header: [
             "제목",

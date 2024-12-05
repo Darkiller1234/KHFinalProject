@@ -1,46 +1,51 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>서티허브 - 스터디 그룹</title>
+    <!DOCTYPE html>
+    <html lang="en">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/studyroom/studyBoard.css">
-    <script src="${pageContext.request.contextPath}/resources/static/js/studyroom/studyBoard.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
-</head>
-<body>
-    <%@ include file="../common/header.jsp" %>
-        <table>
-            <thead>
-                <tr>
-                    <th>제목</th>
-                    <th>작성자</th>
-                    <th>작성일</th>
-                    <th>조회수</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach var="board" items="${boardList}">
-                    <tr>
-                        <td>${board.dataBoardTitle}</td>
-                        <td>${board.memberNo}</td>
-                        <td>${board.boardDate}</td>
-                        <td>${board.viewCount}</td>
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>자료실게시판</title>
+        <link rel="stylesheet"
+            href="${pageContext.request.contextPath}/resources/static/css/studyroom/studyBoardView.css">
+        <script src="${pageContext.request.contextPath}/resources/static/js/studyroom/studyBoardView.js"></script>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/infoPage/infoPage.css">
+        <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
 
-        <!-- 페이징 처리 -->
-        <div>
-            <c:forEach var="i" begin="1" end="${pi.maxPage}">
-                <a href="?cpage=${i}">${i}</a>
+    </head>
+
+    <body>
+        <%@ include file="../common/header.jsp" %>
+            <div class="wrapper padding">
+                <input id="boardNo" type="hidden" value="${board.studyNo}">
+                <div class="subtitle">
+                    <div class="page-title font-size-content">자료실게시판</div>
+
+                    <c:if test="${loginMember.memberNo eq board.managerNo}">
+                        <div class="title-option">
+                            <div class="custom-select"></div>
+                        </div>
+                    </c:if>
+                </div>
+            </div>
+
+            <c:forEach var="board" items="${boardList}">
+                <div class="page-title font-size-title">${board.dataBoardTitle}</div>
+
+                <div class="content">
+                    ${board.dataBoardContent}
+                </div>
             </c:forEach>
-        </div>
+
+            <!-- 페이징 처리 -->
+            <!-- <div>
+                <c:forEach var="i" begin="1" end="${pi.maxPage}">
+                    <a href="?cpage=${i}">${i}</a>
+                </c:forEach>
+            </div> -->
 
 
-    <%@ include file="../common/footer.jsp" %>
-</body>
-</html>
+            <%@ include file="../common/footer.jsp" %>
+    </body>
+
+    </html>
