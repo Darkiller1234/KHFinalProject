@@ -229,7 +229,7 @@ public class MembershipController {
 	@RequestMapping("login/naver")
 	public String naverLoginCallback(String code, String state, HttpSession session) throws Exception {
 		
-		String redirectURL = URLEncoder.encode("http://192.168.30.12:5600/T3B1/member/login/naver", "UTF-8");
+		String redirectURL = URLEncoder.encode("http://localhost:5600/T3B1/member/login/naver", "UTF-8");
 		String apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code";
 		apiURL += "&client_id=" + clientId;
 		apiURL += "&client_secret=" + clientSecret;
