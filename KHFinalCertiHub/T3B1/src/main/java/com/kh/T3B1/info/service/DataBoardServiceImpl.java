@@ -1,13 +1,12 @@
 package com.kh.T3B1.info.service;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.T3B1.common.vo.DataBoard;
-import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.info.model.dao.DataBoardDao;
 
 @Service
@@ -23,15 +22,12 @@ public class DataBoardServiceImpl implements DataBoardService {
         this.dataBoardDao = dataBoardDao;
     }
 
-    // 페이징 처리된 게시글 목록 조회
     @Override
-    public ArrayList<DataBoard> selectDataBoardList(PageInfo pi) {
-        return dataBoardDao.selectDataBoardList(sqlSession, pi);
+    public List<DataBoard> selectDataBoardList(int no) {
+        
+    	return dataBoardDao.selectDataBoardList(sqlSession, no);
+        
     }
 
-    // 전체 게시글 수 조회
-    @Override
-    public int selectDataBoardCount() {
-        return dataBoardDao.selectDataBoardCount(sqlSession);
-    }
+
 }
