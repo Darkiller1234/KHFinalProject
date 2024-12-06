@@ -25,6 +25,8 @@
   	<result column="LICENSE_NAME" property="symbolLicense"/>
   	<result column="LICENSE_NO" property="symbolLicenseNo"/>
   	<result column="LIKE_COUNT" property="mentorLike"/>
+  	<result column="SOCIAL" property="social"/>
+  	<result column="SOCIAL_ID" property="socialId"/>
   </resultMap>
 
   <select id="countMentor" resultType="_int">
@@ -156,6 +158,7 @@
 		FROM MEMBER
 		WHERE MEMBER_ID = #{memberId}
 		AND STATUS = 'Y'
+		AND SOCIAL IS NULL
 	</select>
 	
 	<insert id="likeMentor" parameterType="HashMap">
@@ -249,5 +252,59 @@
 		WHERE MEMBER_ID LIKE '%' || #{keyword} || '%'
 	</select>
 	
+	<!-- naver 가입여부 확인 -->
+	<select id="naverMemberCheck" resultType="_int">
+		SELECT COUNT(*)
+			FROM MEMBER
+		WHERE SOCIAL_ID = #{id}
+	</select>
+	
+	<!-- naver계정으로 회원가입 -->
+	<insert id="naverJoin" parameterType="Member">
+		INSERT INTO MEMBER(
+			MEMBER_NO,
+			MEMBER_ID,
+			MEMBER_PWD,
+			MEMBER_NICKNAME,
+			MEMBER_NAME,
+			EMAIL,
+			PHONE,
+			SOCIAL,
+			SOCIAL_ID
+		) 
+		VALUES (
+			MEMBER_SEQ.NEXTVAL,
+			#{memberId},
+			#{memberPwd},
+			#{memberNickname},
+			#{memberName},
+			#{email},
+			#{phone},
+			#{social},
+			#{socialId}
+		)
+	</insert>
+	
+	<!-- naver로 가입한 계정 정보 조회 -->
+	<select id="getNaverMember" parameterType="Member" resultMap="memberResultSet">
+		SELECT MEMBER_NO,
+				MEMBER_ID,
+				MEMBER_PWD,
+				MEMBER_NAME,
+				MEMBER_INTRO,
+				MEMBER_NICKNAME,
+				EMAIL,
+				PHONE,
+				MEMBER_IMG,
+				ENROLL_DATE,
+				STATUS,
+				MANAGER_STATUS,
+				MENTOR_STATUS,
+				SOCIAL,
+				SOCIAL_ID
+		FROM MEMBER
+		WHERE SOCIAL_ID = #{id}
+		AND STATUS = 'Y'
+	</select>
 </mapper>
 

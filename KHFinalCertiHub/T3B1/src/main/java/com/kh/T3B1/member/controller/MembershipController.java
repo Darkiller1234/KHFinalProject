@@ -8,6 +8,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -226,7 +227,7 @@ public class MembershipController {
 	
 
 	@RequestMapping("login/naver")
-	public String naverLoginCallback(String code, String state) throws Exception {
+	public String naverLoginCallback(String code, String state, HttpSession session) throws Exception {
 		
 		String redirectURL = URLEncoder.encode("http://192.168.30.12:5600/T3B1/member/login/naver", "UTF-8");
 		String apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code";
@@ -272,15 +273,118 @@ public class MembershipController {
 			
 			
 			// "id" 값 가져오기 (널 체크)
-	        String id = memberInfo.has("id") && !memberInfo.get("id").isJsonNull()
-	            ? memberInfo.get("id").getAsString()
-	            : null;
+//	        String id = memberInfo.has("id") && !memberInfo.get("id").isJsonNull()
+//	            ? memberInfo.get("id").getAsString()
+//	            : null;
 			
+			
+			
+			
+			
+			//고유번호 저장
+	        String id = memberInfo.get("id").getAsString();
+	        
+	        
+	        //네이버 로그인 회원정보 확인
+	        if(memberService.naverMemberCheck(id) == 0) {
+
+		        
+		        Member naverM = new Member();
+		        naverM.setSocialId(id);
+		        naverM.setSocial("N");
+		        
+		        
+		        //랜덤 아이디 생성
+		        final String upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		        final String lowerCase = "abcdefghijklmnopqrstuvwxyz";
+		        final String numbers = "0123456789";
+		        final String specialCharacters = "!@#$%^&*()-_=+[]{}|;:,.<>?/";
+
+		        final String allCharacters = upperCase + lowerCase + numbers + specialCharacters;
+
+		        SecureRandom random = new SecureRandom();
+		        
+		        String result2 = "";
+		        while(true) {
+		        	result2 = "";
+		        	for (int i = 0; i < 15; i++) {
+			            int index = random.nextInt(allCharacters.length());
+			            result2 += allCharacters.charAt(index);
+			        }
+		        	if(memberService.idCheck(result2)== 0) {
+		        		break;
+		        	}
+		        }
+		        
+		        
+		        naverM.setMemberId(result2);
+		        
+		        naverM.setMemberPwd("naver");
+		        
+		        
+		        //이메일 있으면 넣기
+		        if(memberInfo.has("email")) {
+		        	naverM.setEmail(memberInfo.get("email").getAsString());
+		        }
+		        
+		        //핸드폰번호 있으면 넣기
+		        if(memberInfo.has("mobile")) {
+		        	naverM.setPhone(memberInfo.get("mobile").getAsString());
+		        }
+		        
+		        //이름 있으면 넣기
+		        if(memberInfo.has("name")) {
+		        	naverM.setMemberName(memberInfo.get("name").getAsString());
+		        }
+		        
+		        session.setAttribute("naverRegi", naverM);
+		        
+		        return "member/naverRegi";
+			} else {
+				Member loginMember = memberService.getNaverMember(id);
+				
+				
+				
+				session.setAttribute("loginMember", loginMember);
+				
+				return "redirect:/main";
+				
+			}
+	        
 			
 		}
 		
 		return "redirect:/";
 	}
+	
+	@RequestMapping("login/naverJoin")
+	public String naverJoin(Member m, HttpSession session, Model model) {
+		
+		Member naver = (Member)session.getAttribute("naverRegi");
+		m.setMemberId(naver.getMemberId());
+		m.setMemberPwd(naver.getMemberPwd());
+		m.setSocial(naver.getSocial());
+		m.setSocialId(naver.getSocialId());
+		
+		
+		// 회원가입 처리
+		int result = memberService.naverJoin(m);
+		
+		// 결과에 따라 알림 메시지 설정 및 페이지 이동
+		if(result > 0) {
+
+			
+			session.setAttribute("loginMember", m);
+			return "redirect:/";
+		}else {
+			model.addAttribute("errorMsg", "회원가입 실패");
+			return "redirect:/member/login";
+		}
+	}
+	
+	
+	
+	
 	
 	//API에 GET요청 보내고 응답을 받아오는 메서드
 	private static String get(String apiUrl, Map<String, String> requestHeaders) {

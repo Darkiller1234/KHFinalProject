@@ -457,7 +457,12 @@ public class PersonalPageController {
 	
 	
 	@RequestMapping("Change")
-	public String PersonalChange() {		// 세션에서 비밀번호 사라지면 수정해야함
+	public String PersonalChange(HttpSession session) {		// 세션에서 비밀번호 사라지면 수정해야함
+		
+		if(((Member)session.getAttribute("loginMember")).getMemberPwd() != null) {
+			session.setAttribute("changeEnterCheck", true);
+			return "personal/personalChangePage";
+		}
 		return "personal/personalChange";
 	}
 	
@@ -547,8 +552,7 @@ public class PersonalPageController {
 			HttpSession session) {
 		
 		int memberNo = ((Member)session.getAttribute("loginMember")).getMemberNo();
-		
-		if(bcryptPasswordEncoder.matches(pwd, ((Member)session.getAttribute("loginMember")).getMemberPwd())) {
+		if(((Member)session.getAttribute("loginMember")).getSocial() != null && ((Member)session.getAttribute("loginMember")).getSocial().equals('N')) {
 			int result = personalService.ajaxSubmitDelete(memberNo);
 			if(result == 1) {
 				session.removeAttribute("loginMember");
@@ -557,8 +561,19 @@ public class PersonalPageController {
 				return new Gson().toJson(result);
 			}
 		} else {
-			return new Gson().toJson(-1);
+			if(bcryptPasswordEncoder.matches(pwd, ((Member)session.getAttribute("loginMember")).getMemberPwd())) {
+				int result = personalService.ajaxSubmitDelete(memberNo);
+				if(result == 1) {
+					session.removeAttribute("loginMember");
+					return new Gson().toJson(result);
+				} else {
+					return new Gson().toJson(result);
+				}
+			} else {
+				return new Gson().toJson(-1);
+			}
 		}
+		
 	}
 
 }
