@@ -155,6 +155,11 @@ function init(contextPath, pageName, optional){
         case "chatbot":
             initChatbotPage(contextPath);
             break;
+
+        // 메인 페이지
+        case "mainPage":
+            initMainPage(contextPath);
+            break;
     }
 }
 

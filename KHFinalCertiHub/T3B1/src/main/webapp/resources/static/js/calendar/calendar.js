@@ -157,4 +157,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         return null;
     }
+
+
+
+
+    loadPersonalCalendar(calendar);
 });
