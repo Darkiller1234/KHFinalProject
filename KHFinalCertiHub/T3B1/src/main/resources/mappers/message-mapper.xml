@@ -21,6 +21,7 @@
 		<result column="MANAGER_NO" property="managerNo" />
 		<result column="STUDY_NO" property="studyNo" />
 		<result column="TALKROOM_TYPE" property="talkroomType" />
+		<result column="LAST_UPDATE" property="lastUpdate" />
 		<result column="MEMBER_NICKNAME" property="managerName" />
 		<result column="MEMBER_IMG" property="memberImg" />
 		<result column="STUDY_NAME" property="studyName" />
