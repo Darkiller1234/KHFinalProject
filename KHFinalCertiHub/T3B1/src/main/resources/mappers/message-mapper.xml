@@ -50,7 +50,7 @@
 	</select>
 	
 	<select id="selectMentorList" resultMap="talkroomResultSet">
-		SELECT  M.MEMBER_NO,
+		SELECT  M.MEMBER_NO MANAGER_NO,
 	        MT.TALKROOM_NO,
 	        M.MEMBER_INTRO MEMBER_INTRO,
 	        M.MEMBER_NICKNAME MEMBER_NICKNAME,
@@ -71,14 +71,14 @@
 	<if test="keyword != null">
 		AND M.MEMBER_NICKNAME LIKE '%' || #{keyword} || '%'
 	</if>
-	ORDER BY MSG.MESSAGE_NO, TALKROOM_NO
+	ORDER BY TALKROOM_NO
 	</select>
 	
 	<select id="selectLastMessage" resultType="String">
 		SELECT MESSAGE_CONTENT
 		FROM MESSAGE
 		WHERE MESSAGE_NO = (
-		    SELECT MAX(MESSAGE_NO)
+		    SELECT MAX(MESSAGE_NO) MESSAGE_NO
 		    FROM MESSAGE
 		    WHERE TALKROOM_NO = #{talkroomNo}
 		)
