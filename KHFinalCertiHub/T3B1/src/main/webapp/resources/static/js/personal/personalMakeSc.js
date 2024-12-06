@@ -6,46 +6,46 @@ function persoMSInit(contextPath){
     document.getElementById('repeat-end-cal').value = new Date().toISOString().substring(0, 10);
     
 
-    let data1 = {
-        name : 'alarm',
-        default : '10분 전',
-        imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
-        items : [
-            ['10분 전'],
-            ['1시간 전'],
-            ['1일 전'],
-            ['일정 시작시간에']
-        ]
-    }
+    // let data1 = {
+    //     name : 'alarm',
+    //     default : '10분 전',
+    //     imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
+    //     items : [
+    //         ['10분 전'],
+    //         ['1시간 전'],
+    //         ['1일 전'],
+    //         ['일정 시작시간에']
+    //     ]
+    // }
 
-    createSelectBox(document.getElementById('alarm-select'), data1);
+    // createSelectBox(document.getElementById('alarm-select'), data1);
 
-    let data2 = {
-        name : 'repeat',
-        default : '반복 안 함',
-        imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
-        items : [
-            ['1일 마다'],
-            ['1주 마다'],
-            ['1개월 마다'],
-            ['반복 안 함']
-        ]
-    }
+    // let data2 = {
+    //     name : 'repeat',
+    //     default : '반복 안 함',
+    //     imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
+    //     items : [
+    //         ['1일 마다'],
+    //         ['1주 마다'],
+    //         ['1개월 마다'],
+    //         ['반복 안 함']
+    //     ]
+    // }
 
-    createSelectBox(document.getElementById('repeat-select'), data2);
+    // createSelectBox(document.getElementById('repeat-select'), data2);
 
-    let data3 = {
-        name : 'repeat-select',
-        default : '계속 반복',
-        imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
-        items : [
-            ['일정 횟수 반복'],
-            ['계속 반복'],
-            ['시작/종료 날짜 지정']
-        ]
-    }
+    // let data3 = {
+    //     name : 'repeat-select',
+    //     default : '계속 반복',
+    //     imgUrl : `${contextPath}/resources/static/img/button/triangle_down.png`,
+    //     items : [
+    //         ['일정 횟수 반복'],
+    //         ['계속 반복'],
+    //         ['시작/종료 날짜 지정']
+    //     ]
+    // }
 
-    createSelectBox(document.getElementById('repeat-count-select'), data3);
+    // createSelectBox(document.getElementById('repeat-count-select'), data3);
 
 
     // const alarmInput = document.querySelector('#repeat-select .custom-select .button-select div');

@@ -373,8 +373,8 @@ public class MembershipController {
 		// 결과에 따라 알림 메시지 설정 및 페이지 이동
 		if(result > 0) {
 
-			
-			session.setAttribute("loginMember", m);
+			Member loginMember = memberService.getNaverMember(naver.getSocialId());
+			session.setAttribute("loginMember", loginMember);
 			return "redirect:/";
 		}else {
 			model.addAttribute("errorMsg", "회원가입 실패");
