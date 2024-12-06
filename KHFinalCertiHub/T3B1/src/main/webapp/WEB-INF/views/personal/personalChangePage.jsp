@@ -122,13 +122,15 @@
                         </div>
 
                         <div class="right-view">
-
-                            <!-- 비밀번호 변경 텍스트와 버튼 -->
-                            <div class="password-change">
-                                <span class="label">비밀번호 변경</span>
-                                <button class="btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#change-modal">변경하기</button>
-                            </div>
+                            <c:if test="${loginMember.social} !== 'N'">
+                                <!-- 비밀번호 변경 텍스트와 버튼 -->
+                                <div class="password-change">
+                                    <span class="label">비밀번호 변경</span>
+                                    <button class="btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#change-modal">변경하기</button>
+                                </div>
+                            </c:if>
+                            
 
                             <!-- 회원 탈퇴 텍스트와 버튼 -->
                             <div class="account-delete">
@@ -182,11 +184,20 @@
                                 </h4>
                             </div>
                             <!-- Modal body -->
-                            <div class="modal-body">
-                                비밀번호를 입력하세요.
-                                <input type="password" class="form-control" id="userPwddelete" name="userPwddelete"
-                                    required>
-                            </div>
+                            <c:if test="${loginMember.social} !== 'N'">
+                                <div class="modal-body">
+                                    비밀번호를 입력하세요.
+                                    <input type="password" class="form-control" id="userPwddelete" name="userPwddelete"
+                                        required>
+                                </div>
+                            </c:if> 
+
+                            <c:if test="${loginMember.social} === 'N'">
+                                <div class="modal-body">
+                                    정말 탈퇴하시겠습니까?
+                                    <input type="hidden"class="form-control" id="userPwddelete" name="userPwddelete" value="null">
+                                </div>
+                            </c:if> 
                             <!-- Modal footer -->
                             <div class="modal-footer">
                                 <button type="button" class="font-size-subtitle" id="dummydelete-btn">탈퇴</button>

@@ -73,4 +73,16 @@ public class MemberDao {
 		sqlSession.update("memberMapper.updatePassword",updateData);		
 	}
 
+	public int naverMemberCheck(SqlSessionTemplate sqlSession, String id) {
+		return sqlSession.selectOne("memberMapper.naverMemberCheck", id);
+	}
+
+	public int naverJoin(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.insert("memberMapper.naverJoin", m);
+	}
+
+	public Member getNaverMember(SqlSessionTemplate sqlSession, String id) {
+		return sqlSession.selectOne("memberMapper.getNaverMember", id);
+	}
+
 }

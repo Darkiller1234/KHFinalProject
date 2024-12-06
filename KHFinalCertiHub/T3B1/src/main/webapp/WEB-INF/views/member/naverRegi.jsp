@@ -33,30 +33,16 @@ crossorigin="anonymous">
             <h2>간편 회원가입</h2>
             <div class="social-login">
                 <button class="google-btn">Sign up with Google</button>
-                <button class="kakao-btn" onclick="naverLogin()">네이버로 가입하기</button>
+                <button class="kakao-btn">네이버로 가입하기</button>
             </div>
 
             <p>또는</p>
 
-            <form action="join" method="post" id="membershipForm">
+            <form action="naverJoin" method="post" id="membershipForm">
                 <div class="form-group">
-                    <label for="memberId">* 아이디</label>
-                    <div style="display: flex; gap: 10px;">
-                        <input type="text" class="form-control" id="memberId" placeholder="아이디 입력" name="memberId" required>
-                    </div>
-                    <div id="checkResultId" style="font-size:0.7em; display:none;"></div>
-                    
-
-                    <label for="memberPwd">* 비밀번호</label>
-                    <input type="password" class="form-control" id="memberPwd"  placeholder="비밀번호 입력" name="memberPwd" required minlength="4">
-
-                    <label for="checkPwd">* 비밀번호 확인</label>
-                    <input type="password" class="form-control" id="checkPwd"  placeholder="비밀번호 확인" name="checkPwd" required>
-                    <div id="checkResultPwd" style="font-size:0.7em; display:none;"></div>
-
                     <label for="memberName">* 이름</label>
-                    <input type="text" class="form-control" id="memberName" placeholder="이름 입력" name="memberName" required>
-                    
+                    <input type="text" class="form-control" id="memberName" placeholder="이름 입력" name="memberName" required
+                    value="${naverRegi.memberName}">
 
                     <label for="memberNickname">* 닉네임</label>
                     <input type="text" class="form-control" id="memberNickname" placeholder="닉네임 입력" name="memberNickname" required>
@@ -64,11 +50,13 @@ crossorigin="anonymous">
                     
 
                     <label for="email">* 이메일</label>
-                    <input type="email" class="form-control" id="email" placeholder="이메일 입력" name="email" required>
+                    <input type="email" class="form-control" id="email" placeholder="이메일 입력" name="email" required
+                    value="${naverRegi.email}">
                     
 
                     <label for="phone">* 전화번호</label>
-                    <input type="text" class="form-control" id="phone" placeholder="전화번호 입력(-없이)" name="phone" required>
+                    <input type="text" class="form-control" id="phone" placeholder="전화번호 입력" name="phone" required
+                    value="${naverRegi.phone}">
                     
                 </div>
                 <div class="btns">
