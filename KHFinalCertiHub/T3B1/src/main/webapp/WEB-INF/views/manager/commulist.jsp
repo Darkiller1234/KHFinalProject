@@ -7,8 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/manager/commulist.css">
-        <script src="${pageContext.request.contextPath}/resources/static/js/manager/commulist.js"></script>
-        <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
 
     <title>관리자 페이지</title>
 </head>
@@ -41,7 +40,7 @@
                         </form>
                         <br><br>
 
-                        <div class="board-user">
+                        <div class="board-commulist">
                             <table>
                                     <tr>
                                         <th>NO.</th>
@@ -51,7 +50,7 @@
                                     </tr>
                                     <c:forEach var="item" items="${list}">
                                         <tr>
-                                            <td>${item.boardNo}</td>
+                                            <td><a src="detail?${certiNo}?=&${cno}=">${item.boardNo}</a></td>
                                             <td>${item.boardTitle}</td>
                                             <td>${item.boardDate}</td>
                                             <td>${item.viewCount}</td>                                                    
@@ -61,7 +60,7 @@
                         </div>
                         <br><br>
                         <!-- 페이징바 -->
-                        <div class="user-bar">
+                        <div class="pagination">
                             <!-- 이전 페이지 화살표 -->
                             <c:if test="${pi.currentPage > 1}">
                                 <span class="page-arrow">

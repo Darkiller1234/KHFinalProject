@@ -55,7 +55,8 @@ public class ManagerDao {
 	}
 
 	public ArrayList<Board> CommuList(SqlSessionTemplate sqlSession, PageInfo pi, String keyword) {
-		int offset = (pi.getCurrentPage()-1)* pi.getBoardLimit();
+		int offset = (pi.getCurrentPage() -1)* pi.getBoardLimit();
+		
 		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
 		return (ArrayList)sqlSession.selectList("boardMapper.CommuList", keyword, rowBounds);
 	}
