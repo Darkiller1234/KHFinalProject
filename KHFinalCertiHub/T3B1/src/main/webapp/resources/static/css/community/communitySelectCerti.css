@@ -11,6 +11,7 @@ body, html {
     /* height: 100vh; */
     height: calc(100% - 290px);
     max-height: calc(100% - 290px);
+    min-height: 550px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -18,7 +19,6 @@ body, html {
 }
 
 footer {
-    bottom: 0;
     max-width: 1250px;
 }
 
