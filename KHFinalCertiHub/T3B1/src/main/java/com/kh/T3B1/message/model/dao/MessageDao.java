@@ -92,4 +92,8 @@ public class MessageDao {
 		return sqlSession.update("messageMapper.updateApply", applyNo);
 	}
 
+	public String selectLastMessage(SqlSessionTemplate sqlSession, int talkroomNo) {
+		return sqlSession.selectOne("messageMapper.selectLastMessage", talkroomNo);
+	}
+
 }
