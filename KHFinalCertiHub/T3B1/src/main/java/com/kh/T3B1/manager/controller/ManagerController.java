@@ -48,7 +48,8 @@ public class ManagerController {
 	
 	@RequestMapping("commulist")
 	public String commulistPage(@RequestParam(value = "keyword", defaultValue = "")String keyword,
-			@RequestParam(value = "capge", defaultValue = "1")int currentPage,Model m) {
+			@RequestParam(value = "cpage", defaultValue = "1")int currentPage,Model m) {
+		
 		//검색 결과의 총 갯수 조회
 		int commulistCount = managerService.Countcommulist(keyword);
 		
@@ -62,7 +63,7 @@ public class ManagerController {
 		m.addAttribute("list", list);
 		m.addAttribute("pi", pi);
 		m.addAttribute("keyword", keyword);
-		m.addAttribute("pageName","commulist");
+		m.addAttribute("pageName","commulistPage");
 		return "manager/commulist";
 	}
 	

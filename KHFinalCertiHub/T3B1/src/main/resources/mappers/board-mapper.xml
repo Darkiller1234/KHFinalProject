@@ -507,7 +507,7 @@
 	<select id="Countcommulist" resultType="int">
 		SELECT COUNT(*)
 		FROM BOARD
-		WHERE BOARD_TITLE LIKE '%' || #{keyword} || '%'
+		WHERE BOARD_NO LIKE '%' || #{keyword} || '%'
 	</select>
 </mapper>
 

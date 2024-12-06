@@ -142,7 +142,7 @@
                             <div class="accordion-item">
                                 <button class="accordion-toggle">시험일정</button>
                                 <div class="accordion-content">
-                                    <h5>정보처리기사(2024년)</h5>
+                                    <h5>기사 시험일정(2024년)</h5>
                                     <table>
                                         <tr>
                                             <th>회별</th>
@@ -192,7 +192,7 @@
                                     <br><br><br>
                                     <div class="test-color">
                                         <b>※ 4회 시험은 없습니다. <br>
-                                            ※ 정보처리기사 필기 시험 CBT 방식으로 시행됩니다. <br>
+                                            ※ 필기 시험은 CBT 방식으로 시행됩니다. <br>
                                             ※ 응시자격서류제출은 실기시험 원서접수전까지 제출해야 합니다. <br>
                                             (실기시험 접수기간과 응시자격서류 제출기간이 다르므로 반드시 확인하시기 바랍니다.)</b>
                                     </div>

@@ -1,6 +1,7 @@
 package com.kh.T3B1.info.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -60,15 +61,12 @@ public class InfoPageController {
 
 	// 자료실 보드
 	@RequestMapping("board")
-	public String boardListPage(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, Model m) {
-        int listCount = dataBoardService.selectDataBoardCount();  // 총 게시글 수
-        PageInfo pi = Template.getPageInfo(listCount, currentPage, 10, 5);  // 페이징 정보 생성
+	public String boardList(int no, Model m) {
+	    List<DataBoard> boardList = dataBoardService.selectDataBoardList(no); // 게시글 목록 조회
+	    System.out.println("boardList:" + boardList);
+	    m.addAttribute("boardList", boardList);
+	    m.addAttribute("pageName", "dataBoard");
+	    return "infoPage/dataBoard";
+	}
 
-        ArrayList<DataBoard> boardList = dataBoardService.selectDataBoardList(pi);  // 게시글 목록 조회
-        System.out.println("boardList:"+ boardList);
-        m.addAttribute("boardList", boardList);
-        m.addAttribute("pi", pi);
-        m.addAttribute("pageName", "dataBoard");
-        return "infoPage/dataBoard";
-    }
 }

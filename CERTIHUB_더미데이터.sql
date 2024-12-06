@@ -2685,6 +2685,46 @@ VALUES (299, 311, 2, '하하하299');
 INSERT INTO REPLY (REPLY_NO, BOARD_NO, MEMBER_NO, REPLY_CONTENT) 
 VALUES (300, 311, 3, '하하하300');
 
-INSERT INTO DATA_BOARD VALUES(DATA_BOARD_SEQ.NEXTVAL, 1 , '응시료 안내', '정보처리기사 필기수수료: 19400 실기수수료: 22600', SYSDATE ,0);
+
+INSERT INTO DATA_BOARD VALUES(DATA_BOARD_SEQ.NEXTVAL, 1 , '민간자격증 응시료 안내', 
+'데이터아키텍처 전문가(DAP)' || ':' || ' ' || '100,000원' || CHR(10) ||
+'데이터아키텍처 준전문가(DAsP)' || ':' || ' ' || '50,000원' || CHR(10) ||
+'SQL 전문가(SQLP)' || ':' || ' ' || '100,000원' || CHR(10) ||
+'SQL 개발자(SQLD)' || ':' || ' ' || '50,000원' || CHR(10) ||
+'데이터 분석 전문가(ADP) - 필기' || ':' || ' ' || '80,000원' || CHR(10) ||
+'데이터 분석 전문가(ADP) - 실기' || ':' || ' ' || '70,000원' || CHR(10) ||
+'데이터 분석 준전문가(ADsP)' || ':' || ' ' || '50,000원' || CHR(10) ||
+'네트워크관리사 1,2급 - 필기' || ':' || ' ' || '43,000원' || CHR(10) ||
+'네트워크관리사 - 1급 실기' || ':' || ' ' || '100,000원' || CHR(10) ||
+'네트워크관리사 - 2급 실기' || ':' || ' ' || '78,000원' || CHR(10) ||
+'빅데이터분석기사 - 필기' || ':' || ' ' || '17,800원' || CHR(10) ||
+'빅데이터분석기사 - 실기' || ':' || ' ' || '40,800원', SYSDATE ,0);
+INSERT INTO DATA_BOARD VALUES(DATA_BOARD_SEQ.NEXTVAL, 1,
+    '정보처리기사 시험 개정 안내(필기)',
+    '변경전' || CHR(10) || 
+    '과목명 : 정보처리실무' || CHR(10) || 
+    '시험방식 : 필답형' || CHR(10) || 
+    '시험시간 : 3시간' || CHR(10) || 
+    '문 제 수 : 12~15문항' || CHR(10) || 
+    '문제유형 : 단답형, 약술형 등' || CHR(10) ||
+    '변경 후' || CHR(10) || 
+    '과목명 : 정보처리실무(변경없음)' || CHR(10) ||
+    '시험방식 : 필답형(변경없음)' || CHR(10) ||
+    '시험시간 : 2시간 30분' || CHR(10) ||
+    '문제수 : 20문항기준±5문제' || CHR(10) ||
+    '문제유형 : 단답형, 약술형 등' || CHR(10) ||
+    '※ 2020년 시험에 대한 실기시험(필답형) 공개문제는 일체 제공하지 않습니다. ※',
+    SYSDATE,
+    0
+);
+INSERT INTO DATA_BOARD VALUES(DATA_BOARD_SEQ.NEXTVAL, 1 , '응시료 안내', '정보처리기사' || CHR(10) ||  '필기수수료: 19400' || CHR(10) || '실기수수료: 22600', SYSDATE ,0);
+INSERT INTO DATA_BOARD VALUES(DATA_BOARD_SEQ.NEXTVAL, 1 , '응시료 안내', '정보처리기사' || CHR(10) ||  '필기수수료: 19400' || CHR(10) || '실기수수료: 22600', SYSDATE ,0);
+INSERT INTO DATA_BOARD VALUES(DATA_BOARD_SEQ.NEXTVAL, 1 , '응시료 안내', '정보처리기사' || CHR(10) ||  '필기수수료: 19400' || CHR(10) || '실기수수료: 22600', SYSDATE ,0);
+INSERT INTO DATA_BOARD VALUES(DATA_BOARD_SEQ.NEXTVAL, 1 , '응시료 안내', '정보처리기사' || CHR(10) ||  '필기수수료: 19400' || CHR(10) || '실기수수료: 22600', SYSDATE ,0);
+INSERT INTO DATA_BOARD VALUES(DATA_BOARD_SEQ.NEXTVAL, 1 , '응시료 안내', '정보처리기사' || CHR(10) ||  '필기수수료: 19400' || CHR(10) || '실기수수료: 22600', SYSDATE ,0);
+INSERT INTO DATA_BOARD VALUES(DATA_BOARD_SEQ.NEXTVAL, 1 , '응시료 안내', '정보처리기사' || CHR(10) ||  '필기수수료: 19400' || CHR(10) || '실기수수료: 22600', SYSDATE ,0);
+INSERT INTO DATA_BOARD VALUES(DATA_BOARD_SEQ.NEXTVAL, 1 , '응시료 안내', '정보처리기사' || CHR(10) ||  '필기수수료: 19400' || CHR(10) || '실기수수료: 22600', SYSDATE ,0);
+INSERT INTO DATA_BOARD VALUES(DATA_BOARD_SEQ.NEXTVAL, 1 , '응시료 안내', '정보처리기사' || CHR(10) ||  '필기수수료: 19400' || CHR(10) || '실기수수료: 22600', SYSDATE ,0);
+
 
 COMMIT;

@@ -1,0 +1,46 @@
+.subtitle{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.page-title.font-size-title{
+    border-bottom:2px solid #006D77;
+    margin-bottom:20px;
+}
+
+/* 게시글 버튼 영역 */
+.back-btn{
+    width: 135px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap:20px;
+    margin: 50px auto;
+    background-color: #83C5BE;
+    color: black;
+    border-radius: 5px;
+}
+.back-btn img{
+    width: 30px;
+    height: 30px;
+}
+
+
+.back-btn:hover{
+    opacity: 0.8;
+}
+
+.back-btn:hover{
+    background-color: #83C5BE;
+    color: white;
+}
+.back-btn:focus{
+    background-color: #83C5BE;
+    color: white;
+}
+
+.content{
+    margin: 5px;
+}

@@ -13,20 +13,15 @@
         <result column="BOARD_DATE" property="boardDate"/>
         <result column="VIEW_COUNT" property="viewCount"/>
     </resultMap>
-    
-    <!-- 게시글 총 개수 조회 -->
-    <select id="selectDataBoardCount" resultType="int">
-        SELECT COUNT(*) 
-        FROM DATA_BOARD
-    </select>
 
     <!-- 게시글 목록 조회 -->
     <select id="selectDataBoardList" resultMap="selectDataResult">
-        SELECT DATA_BOARD_TITLE, 
-               DATA_BOARD_CONTENT, 
-               BOARD_DATE, 
-               VIEW_COUNT
-        FROM DATA_BOARD
-        ORDER BY BOARD_DATE DESC
+		SELECT DATA_BOARD_TITLE, 
+		       DATA_BOARD_CONTENT, 
+		       BOARD_DATE, 
+		       VIEW_COUNT
+		FROM DATA_BOARD
+		WHERE DATA_BOARD_NO = #{no}
+
     </select>
 </mapper>
