@@ -210,7 +210,6 @@ function initPersonalViewSc(contextPath) {
             url: "viewSc/scLoad",
             data: {pno: urlParam.get('pno')},
             success: function(events){
-                console.log(events)
                 const today = new Date();
         
                 if(events[0] !== null){
@@ -228,10 +227,8 @@ function initPersonalViewSc(contextPath) {
                         if (todayDateOnly >= startDateOnly && todayDateOnly <= endDateOnly) {
                             document.querySelector('#today-job-div-list').appendChild(createDateChild(event, 0));
                             document.querySelector('#notToday-job-div-list').appendChild(createDateChild(event, 0));
-                            console.log(`현재 날짜는 "${event.title}" 이벤트의 범위 내에 있습니다.`);
                         } else {
                             document.querySelector('#notToday-job-div-list').appendChild(createDateChild(event, 0));
-                            console.log(`현재 날짜는 "${event.title}" 이벤트의 범위 내에 있지 않습니다.`);
                         }
         
                         event.dateRange = createDateRangeWithTime(event.start, event.end);
@@ -365,7 +362,6 @@ function initPersonalViewSc(contextPath) {
     }
 
     function getCurrentDateInfo(info){
-        console.log(info.dateStr)
         const list = document.querySelector('#notToday-job-div-list');
         list.innerHTML = "";
         $.ajax({

@@ -101,9 +101,6 @@
                                                 href="<%=contextPath%>/personal/certiRegi">자격증 인증 신청</a>
                                         </li>
                                         <li class="nav-item">
-                                            <script>
-                                                console.log("${loginMember.mentorStatus}")
-                                            </script>
                                             <c:choose>
                                                 <c:when test="${loginMember.mentorStatus eq 'Y'}">
                                                     <a class="nav-link active" aria-current="page"
@@ -139,7 +136,7 @@
                             <input type="text" class="form-control" name="memberNickname"
                                 value="${loginMember.memberNickname}">
                             <div class="font-size-title">자기소개</div>
-                            <textarea class="form-control" id="member-intro" name="member-intro" onchange="console.log(document.querySelector('#member-intro').value)">${loginMember.memberIntro}</textarea>
+                            <textarea class="form-control" id="member-intro" name="member-intro" >${loginMember.memberIntro}</textarea>
                             <div class="font-size-title">관심 자격증</div>
 
                             <div class="choose-menu">

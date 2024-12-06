@@ -108,7 +108,6 @@ function submitDelete(contextPath) {
 function updateBtn(event){
     event.preventDefault();
     document.getElementById("tempUpdateBtn").click();
-    console.log("lol")
     document.querySelector('#apply-modal .modal-body').textContent = "잠시만 기다려주세요..."
     ajaxSetUpdateData({
         name: document.querySelector('input[name="name"]').value,

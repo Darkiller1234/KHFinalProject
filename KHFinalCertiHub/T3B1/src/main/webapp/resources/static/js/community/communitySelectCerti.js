@@ -1,7 +1,6 @@
 function commuSCInit(context) {
     $("#searchCerti").focus(function() {
         document.querySelector('#searchResult').classList.remove('disvisible');
-        console.log("Input field is focused");
         const searchValue = $(this).val(); // Input 값을 가져옵니다.
         $("#searchResult").empty();
         $.ajax({
@@ -30,7 +29,6 @@ function commuSCInit(context) {
                 console.log("자격증 종류 가져오기 ajax 오류");
             }
         });
-        console.log("Input value changed: " + $(this).val());
     });
     $("#searchCerti").on("change", function() {
         const searchValue = $(this).val(); // Input 값을 가져옵니다.
@@ -61,13 +59,11 @@ function commuSCInit(context) {
                 console.log("자격증 종류 가져오기 ajax 오류");
             }
         });
-        console.log("Input value changed: " + $(this).val());
     });
     $(document).on('mousedown', function(event) {
         if (!$(event.target).closest('#searchResult, #searchCerti').length) {
             // 클릭이 searchResult 또는 searchCerti 외부에서 발생하면
             document.querySelector('#searchResult').classList.add('disvisible');
-            console.log("Input field lost focus");
         }
     });
 

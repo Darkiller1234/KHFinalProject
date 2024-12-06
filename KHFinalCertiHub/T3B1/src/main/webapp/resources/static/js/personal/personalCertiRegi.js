@@ -16,8 +16,6 @@ function persoCRInit(contextPath){
         } else{
             data1.items = result.map(item => [item]);
             data1.default = result[0];
-            console.log(result)
-            console.log(data1.items)
             createSelectBox(document.getElementById('selectbox1'), data1);
             document.querySelector('input[name="array"]').value = result[0];
         }
@@ -73,7 +71,6 @@ function regiBtnClick(contextPath){
         $("#regi-btn").on("click", regiBtnClick);
         return;
     }
-    console.log(document.querySelector('#selectbox1 > .custom-select > .button-select > div').textContent);
     formData.append('licenseName', document.querySelector('#selectbox1 > .custom-select > .button-select > div').textContent)
     regiCerti(formData, function (result) {
         if(result === 1){
@@ -97,8 +94,6 @@ function regiBtnClick(contextPath){
             } else{
                 data1.items = result.map(item => [item]);
                 data1.default = result[0];
-                console.log(result)
-                console.log(data1.items)
                 createSelectBox(document.getElementById('selectbox1'), data1);
                 document.querySelector('input[name="array"]').value = result[0];
                 $("#regi-btn").on("click", () => regiBtnClick(contextPath))

@@ -297,11 +297,9 @@ function persoMSInit(contextPath){
         fetch('makeSc/scLoad')
         .then((response) => response.json())
         .then((events) => {
-            console.log(events)
             const today = new Date();
     
             if(events[0] !== null){
-                console.log("에엑따")
                 events.forEach(event => {
                     const today = new Date();
                     const todayDateOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate()); // 시간 제거
@@ -316,10 +314,8 @@ function persoMSInit(contextPath){
                     if (todayDateOnly >= startDateOnly && todayDateOnly <= endDateOnly) {
                         document.querySelector('#today-job-div-list').appendChild(createDateChild(event, 0));
                         document.querySelector('#notToday-job-div-list').appendChild(createDateChild(event, 1));
-                        console.log(`현재 날짜는 "${event.title}" 이벤트의 범위 내에 있습니다.`);
                     } else {
                         document.querySelector('#notToday-job-div-list').appendChild(createDateChild(event, 1));
-                        console.log(`현재 날짜는 "${event.title}" 이벤트의 범위 내에 있지 않습니다.`);
                     }
     
                     event.dateRange = createDateRangeWithTime(event.start, event.end);
@@ -450,7 +446,6 @@ function persoMSInit(contextPath){
 
 
     function getCurrentDateInfo(info){
-        console.log(info.dateStr)
         const list = document.querySelector('#notToday-job-div-list');
         list.innerHTML = "";
         $.ajax({
@@ -539,9 +534,6 @@ function persoMSInit(contextPath){
             }
             
         }
-
-        console.log(document.querySelector('#backColorInput').value)
-        console.log(document.querySelector('#fontColorInput').value)
     })
 
 }

@@ -76,9 +76,6 @@
                 <span class="page-num active">2</span>
                 <span class="page-arrow">></span>
               </div>
-              <script>
-                console.log('${loginMember.memberNo}')
-              </script>
               <form class="reply-section" method="post" action="detail/replyWrite">
                 <div class="reply-write">
                   <textarea id="reply-write-area" <c:if
