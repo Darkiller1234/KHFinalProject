@@ -11,7 +11,6 @@ function initPersonalView(contextPath) {
 
 function getMemberInfo(pno, contextPath, urlParam){
     ajaxGetMemberInfo({pno: pno}, function(result){
-        console.log(result)
         if(result === null){
             document.querySelector('#middle-view-profileInfo').innerHTML = "<h1>해당 유저의 정보가 없습니다.</h1>"
             document.querySelector('.bottom-view').innerHTML = ""
@@ -25,7 +24,6 @@ function getMemberInfo(pno, contextPath, urlParam){
 
 
 function setMemberInfo(result, pno, contextPath){
-    console.log(result);
     document.querySelector('#member-name').textContent = result.memberNickname + "님의 페이지";
     document.querySelector('#simple-view-name').textContent = result.memberNickname;
     document.querySelector('#simple-profile-view > img').src = contextPath + result.memberImg;
@@ -105,7 +103,6 @@ function getSetLikeStatus(pno, contextPath){
 
 function getLikeStatus(pno, contextPath){
     ajaxGetLikeStatus({pno: pno}, function(result){
-        console.log(result)
         document.querySelector('.like-heart > p').textContent = result.likeCount;
         if(result.likeStatus === 1){
             document.querySelector('#mentor-like').src = contextPath + '/resources/static/img/profile/full_heart.png'

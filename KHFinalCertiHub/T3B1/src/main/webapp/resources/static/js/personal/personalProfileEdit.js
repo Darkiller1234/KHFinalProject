@@ -8,10 +8,8 @@ function initSelectBox(contextPath){
 
 
     getCertiList(0, function(result) {
-        console.log(result)
         const processedData = result.map(item => [item]);
 
-        console.log(processedData);
         const data1 = {
             name : 'license',
             default : '정보처리기사',
@@ -50,10 +48,8 @@ function initSelectBox(contextPath){
         }
         formData.append('nickName', document.querySelector('input[name="memberNickname"]').value)
         formData.append('intro', document.querySelector('#member-intro').value)
-        console.log(document.querySelector('#member-intro').value);
         formData.append('licenseNames', JSON.stringify(licenseNames));
         saveProfile(formData, function (result) {
-            console.log(result);
             if(result === -1){
                 document.querySelector('.modal-body').textContent = "닉네임이 중복입니다.";
             }

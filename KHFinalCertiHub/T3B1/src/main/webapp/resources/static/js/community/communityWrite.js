@@ -1,6 +1,5 @@
 //썸머노트에 이미지업로드가 발생하였을 때 동작하는 함수
 function fileUpload(files, contextPath) {
-    console.log(files)
     //썸머노트는 이미지를 추가하면 해당 이미지파일을 전달해준다.
     //callbacks에 onImageUpload를 작성하지 않을경우 자동으로 이미지를 string으로 변환하여 준다.
     //callbacks에 onImageUpload를 작성할 경우 해당 이미지 경로를 직접 작성해 주어야 한다.

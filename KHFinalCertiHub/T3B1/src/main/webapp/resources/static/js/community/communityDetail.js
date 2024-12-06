@@ -317,7 +317,6 @@ function commuDInit(contextPath) {
 
     
     getLoginInfo(0, function (re) {
-        console.log(re);
         if(re !== null){
             $("#repoerBtn").on("click", function () {
                 checkReportBoard({ cno: urlParam.get('cno') }, function(result){
@@ -462,7 +461,6 @@ function replyPagingReload(pi, contextPath) {
     cPage = pi.currentPage
     const paging = document.querySelector('#reply-pagination');
     paging.innerHTML = '';
-    console.log(pi)
     // 조건 1: 현재 페이지가 1이 아닌 경우, 왼쪽 화살표 추가
     if (pi.currentPage != 1 && pi.currentPage > 0) {
         paging.innerHTML += `
@@ -628,19 +626,15 @@ function replyPagingReload(pi, contextPath) {
 
 //댓글 리스트 가져오기 및 적용하기
 function replyListReload(result, contextPath, a, b) {
-    console.log("댓글로드 실행")
     document.querySelector('#replys').innerHTML = '';
     let loginInfo;
     getLoginInfo(0, function (re) {
-        console.log(re);
         if(re !== null){
             loginInfo = re.memberNo;
         }
         else {
             loginInfo = null;
         }
-        console.log(loginInfo);
-        console.log(result)
         result.forEach((reply) => {
             let temp = '';
             if(reply.replyPNo === 0){
@@ -710,7 +704,6 @@ function replyListReload(result, contextPath, a, b) {
                 getLoginInfo(0, function (re) {
                     if(re !== null){
                             checkReportReply({ cno: reply.replyNo }, function(result){
-                                console.log(result)
                                 if(result < 1){
                                     $("#report-reply-modal #report-submit-button").off("click");
                                     $("#report-reply-modal #report-submit-button").on("click", function(){
@@ -746,9 +739,7 @@ function replyListReload(result, contextPath, a, b) {
 
             // jQuery로 삭제 버튼 이벤트 등록
             $(`#delete-reply${reply.replyNo}`).on('click', function () {
-                console.log(reply.replyNo)
                 deleteReply({replyNo: reply.replyNo}, function (res) {
-                    console.log(res)
                     if (res > 0) {
                         document.querySelector(`#reply${reply.replyNo}`).innerHTML = `
                         삭제된 댓글입니다.
@@ -771,7 +762,6 @@ function replyListReload(result, contextPath, a, b) {
                 
                 `
                 $(`#reply-write-btn2`).on('click', function(){
-                    console.log("asdf")
                     editReply({ replyNo: reply.replyNo, replyContent: document.querySelector('#reply-write-area2').value }, function (pi) {
                         if(pi>0){
                             replyList({ cno: a, cpage: b }, function (result) {

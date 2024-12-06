@@ -16,7 +16,6 @@ function initSelectBox(contextPath) {
     ajaxGetHaveLicense(null, function (list) {
         data1.items = list.map(item => [item.licenseName]);
         data1.default = list[0].licenseName;
-        console.log(data1.items);
 
 
 
@@ -35,7 +34,6 @@ function initSelectBox(contextPath) {
 
 
         ajaxGetMemberStatus(null, function (result) {
-            console.log(result)
             document.querySelector('.mentor-name').textContent = result.memberNickname;
             document.querySelector('.profile-img img').src = contextPath + result.memberImg;
             if (result.memberIntro === undefined) {
@@ -104,7 +102,6 @@ function initSelectBox(contextPath) {
             const targetDiv2 = document.querySelector(".valid-choose > .custom-select > .button-select > div");
 
             const observer2 = new MutationObserver(() => {
-                console.log(document.querySelector('.mentor-valid').innerHTML)
                 if (targetDiv2.innerText === '질문가능') {
                     document.querySelector('.mentor-valid').innerHTML = `<img src="${contextPath}/resources/static/img/button/valid_icon.png">` + '질문가능'
                     document.querySelector('.mentor-valid').classList.remove('bgcolor4');
@@ -148,7 +145,6 @@ function mentorSave(){
     let licenseName = document.querySelector(".button-select > div").innerText;
     let valid = document.querySelector(".valid-choose > .custom-select > .button-select > div").innerText;
     ajaxSetMentor({career: career, intro: intro, liName: licenseName, valid: valid}, function(result) {
-        console.log(result)
         if(result === 1){
             document.querySelector(".modal-body").textContent = "저장 성공"
         }

@@ -107,9 +107,6 @@
                         </div>
                     </nav>
                 </div>
-                <script>
-                    console.log(`${loginMember}`)
-                </script>
                 <!-- 콘텐츠 영역 -->
                 <div class="content">
                     <h2>비밀번호 입력</h2>

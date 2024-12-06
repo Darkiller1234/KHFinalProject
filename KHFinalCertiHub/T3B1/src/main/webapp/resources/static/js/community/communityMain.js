@@ -34,7 +34,6 @@ function searchExcute(certiNo, tabNo){
 
 //엔터 클릭시 검색실행
 function keypress(event, certiNo, tabNo){
-    console.log("asdf")
     if (event.key === 'Enter') {
         searchExcute(certiNo, tabNo);
     }

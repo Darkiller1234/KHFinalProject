@@ -15,7 +15,6 @@ function initPersonalMentorEnroll(contextPath) {
         else {
             data1.items = list.map(item => [item.licenseName]);
             data1.default = list[0].licenseName;
-            console.log(data1.items);
 
 
 
@@ -34,7 +33,6 @@ function initPersonalMentorEnroll(contextPath) {
 
 
             ajaxGetMemberStatus(null, function (result) {
-                console.log(result)
                 document.querySelector('.mentor-name').textContent = result.memberNickname;
                 document.querySelector('.profile-img img').src = contextPath + result.memberImg;
                 if(result.memberIntro === undefined){
