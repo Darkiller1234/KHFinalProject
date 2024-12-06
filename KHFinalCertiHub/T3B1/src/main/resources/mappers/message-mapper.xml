@@ -71,6 +71,7 @@
 	<if test="keyword != null">
 		AND M.MEMBER_NICKNAME LIKE '%' || #{keyword} || '%'
 	</if>
+	ORDER BY MSG.MESSAGE_NO, TALKROOM_NO
 	</select>
 	
 	<select id="selectLastMessage" resultType="String">
