@@ -65,7 +65,7 @@ public class InfoPageController {
         PageInfo pi = Template.getPageInfo(listCount, currentPage, 10, 5);  // 페이징 정보 생성
 
         ArrayList<DataBoard> boardList = dataBoardService.selectDataBoardList(pi);  // 게시글 목록 조회
-
+        System.out.println("boardList:"+ boardList);
         m.addAttribute("boardList", boardList);
         m.addAttribute("pi", pi);
         m.addAttribute("pageName", "dataBoard");

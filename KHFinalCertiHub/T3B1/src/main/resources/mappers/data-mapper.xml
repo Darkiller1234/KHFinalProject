@@ -22,9 +22,7 @@
 
     <!-- 게시글 목록 조회 -->
     <select id="selectDataBoardList" resultMap="selectDataResult">
-        SELECT DATA_BOARD_NO, 
-               MEMBER_NO, 
-               DATA_BOARD_TITLE, 
+        SELECT DATA_BOARD_TITLE, 
                DATA_BOARD_CONTENT, 
                BOARD_DATE, 
                VIEW_COUNT

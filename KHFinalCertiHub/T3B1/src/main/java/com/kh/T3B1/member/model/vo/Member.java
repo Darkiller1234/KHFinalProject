@@ -25,4 +25,8 @@ public class Member {
 	private String symbolLicense;
 	private int symbolLicenseNo;
 	private int mentorLike;
+	
+	//네이버 로그인 추가정보
+	private String social;
+	private String socialId;
 }

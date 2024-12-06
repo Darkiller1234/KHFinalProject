@@ -117,5 +117,20 @@ public class MemberServiceImpl implements MemberService{
 		return tempPassword.toString();
 	}
 
+	@Override
+	public int naverMemberCheck(String id) {
+		return memberDao.naverMemberCheck(sqlSession,id);
+	}
+
+	@Override
+	public int naverJoin(Member m) {
+		return memberDao.naverJoin(sqlSession,m);
+	}
+
+	@Override
+	public Member getNaverMember(String id) {
+		return memberDao.getNaverMember(sqlSession,id);
+	}
+
 
 }
