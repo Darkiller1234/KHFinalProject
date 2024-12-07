@@ -92,7 +92,7 @@
                 <p>검색 결과 ${pi.listCount}건</p>
                 <c:forEach var="item" items="${list}">
                     <div class="result-item">
-                        <h3>${item.licenseName}</h3>
+                        <button class="result-btn">${item.licenseName}</button>
                         <h6>${item.licenseDesc}</h6>
                     </div>
                 </c:forEach>

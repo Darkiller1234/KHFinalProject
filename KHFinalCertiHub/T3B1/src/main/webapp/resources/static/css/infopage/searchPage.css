@@ -209,3 +209,10 @@ ul.tabs li.current {
   background-color: #006D77; 
   color: white;
 }
+
+.result-btn{
+  border-radius: 5px;
+  background-color: #83C5BE;
+  border: none;
+  margin-bottom: 15px;
+}

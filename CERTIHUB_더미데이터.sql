@@ -2717,14 +2717,7 @@ INSERT INTO DATA_BOARD VALUES(DATA_BOARD_SEQ.NEXTVAL, 1,
     SYSDATE,
     0
 );
-INSERT INTO DATA_BOARD VALUES(DATA_BOARD_SEQ.NEXTVAL, 1 , '응시료 안내', '정보처리기사' || CHR(10) ||  '필기수수료: 19400' || CHR(10) || '실기수수료: 22600', SYSDATE ,0);
-INSERT INTO DATA_BOARD VALUES(DATA_BOARD_SEQ.NEXTVAL, 1 , '응시료 안내', '정보처리기사' || CHR(10) ||  '필기수수료: 19400' || CHR(10) || '실기수수료: 22600', SYSDATE ,0);
-INSERT INTO DATA_BOARD VALUES(DATA_BOARD_SEQ.NEXTVAL, 1 , '응시료 안내', '정보처리기사' || CHR(10) ||  '필기수수료: 19400' || CHR(10) || '실기수수료: 22600', SYSDATE ,0);
-INSERT INTO DATA_BOARD VALUES(DATA_BOARD_SEQ.NEXTVAL, 1 , '응시료 안내', '정보처리기사' || CHR(10) ||  '필기수수료: 19400' || CHR(10) || '실기수수료: 22600', SYSDATE ,0);
-INSERT INTO DATA_BOARD VALUES(DATA_BOARD_SEQ.NEXTVAL, 1 , '응시료 안내', '정보처리기사' || CHR(10) ||  '필기수수료: 19400' || CHR(10) || '실기수수료: 22600', SYSDATE ,0);
-INSERT INTO DATA_BOARD VALUES(DATA_BOARD_SEQ.NEXTVAL, 1 , '응시료 안내', '정보처리기사' || CHR(10) ||  '필기수수료: 19400' || CHR(10) || '실기수수료: 22600', SYSDATE ,0);
-INSERT INTO DATA_BOARD VALUES(DATA_BOARD_SEQ.NEXTVAL, 1 , '응시료 안내', '정보처리기사' || CHR(10) ||  '필기수수료: 19400' || CHR(10) || '실기수수료: 22600', SYSDATE ,0);
-INSERT INTO DATA_BOARD VALUES(DATA_BOARD_SEQ.NEXTVAL, 1 , '응시료 안내', '정보처리기사' || CHR(10) ||  '필기수수료: 19400' || CHR(10) || '실기수수료: 22600', SYSDATE ,0);
-
+INSERT INTO DATA_BOARD VALUES(DATA_BOARD_SEQ.NEXTVAL, 1 , '국가공인 민간자격증 안내', '<a href="https://www.q-net.or.kr/crf008.do?id=crf0080101" target="_blank">Q-Net 사이트로 이동</a>
+', SYSDATE ,0);
 
 COMMIT;
