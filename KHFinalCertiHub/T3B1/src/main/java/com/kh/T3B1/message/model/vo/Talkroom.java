@@ -8,6 +8,7 @@ public class Talkroom {
 	private int managerNo;
 	private int studyNo;
 	private int talkroomType;
+	private String lastUpdate;
 	
 	private String managerName;
 	private String memberImg;

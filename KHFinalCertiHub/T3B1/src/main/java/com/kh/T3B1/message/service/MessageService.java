@@ -76,4 +76,10 @@ public interface MessageService {
 	 */
 	String deleteApplyLog(int applyNo);
 
+	/**
+	 * @param int memberNo
+	 * @return ArrayList 멤버가 속한 톡방 번호목록
+	 */
+	ArrayList<Integer> selectTalkroomList(int memberNo);
+
 }

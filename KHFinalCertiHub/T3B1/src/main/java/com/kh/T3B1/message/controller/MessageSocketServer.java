@@ -25,8 +25,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Component("MessageSocketServer")
 public class MessageSocketServer extends TextWebSocketHandler {
-	private final Map<String, WebSocketSession> userSessions = new ConcurrentHashMap<>();
-	private final Map<String, Set<String>> talkroomUserList = new ConcurrentHashMap<>(); 
+	private final Map<String, WebSocketSession> userSessions = new ConcurrentHashMap<>(); // 유저번호당 세션 배열
+	private final Map<String, Set<String>> talkroomUserList = new ConcurrentHashMap<>(); // 유저가 속한 톡방의 유저세션 목록
+	private final Map<String, Message> recentMessage = new ConcurrentHashMap<>(); // 최신 메시지 캐싱용 배열
 	
 	public final MessageService messageService;
 	
@@ -80,11 +81,13 @@ public class MessageSocketServer extends TextWebSocketHandler {
 	
 	private void sendMessageTalkroom(Message message) {
 		String senderNo = Integer.toString(message.getMemberNo());
-		
-		WebSocketSession senderSession = userSessions.get(senderNo);
-		Set<String> receiverList = talkroomUserList.get(Integer.toString(message.getTalkroomNo()));
+		String talkroomNo = Integer.toString(message.getTalkroomNo());
+		Set<String> receiverList = talkroomUserList.get(talkroomNo);
 		
 		log.info("Message : {}", message);
+		
+		// 최신 메시지 업데이트
+		recentMessage.put(talkroomNo, message);
 		
 		String str = new Gson().toJson(message);
 		TextMessage msg = new TextMessage(str);
@@ -100,6 +103,11 @@ public class MessageSocketServer extends TextWebSocketHandler {
 			}
 		}
 	}
+	
+	// 최신 메시지 목록 반환
+	public Map<String, Message> getRecentMessage(){
+		return this.recentMessage;
+	}
 
 	//클라이언트가 연결을 끊을 때 호출되는 메소드
 	@Override
@@ -110,6 +118,9 @@ public class MessageSocketServer extends TextWebSocketHandler {
 		
 		Set<String> receiverList = talkroomUserList.get(talkroomNo);
 		receiverList.remove(memberNo);
+		userSessions.remove(memberNo);
+		
+		log.info("MemberNo : {} 톡방 {}번 연결 해제됨...", memberNo, talkroomNo);
 		
 		super.afterConnectionClosed(session, status);
 	}

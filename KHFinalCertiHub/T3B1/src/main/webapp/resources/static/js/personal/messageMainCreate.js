@@ -16,6 +16,9 @@ function createMentorTalk(div, state){
 
         let profileDiv = document.createElement('div')
         profileDiv.className = "thumbnail"
+        profileDiv.onclick = () => {
+            window.open(state.contextPath + '/personal/view?pno=' + talkroom.managerNo)
+        }
 
         let profileImg = document.createElement('img')
         profileImg.src = state.contextPath + talkroom.memberImg
@@ -63,6 +66,9 @@ function createStudyTalk(div, state){
 
         let profileDiv = document.createElement('div')
         profileDiv.className = "thumbnail"
+        profileDiv.onclick = () => {
+            window.open(state.contextPath + '/study/detail?no=' + talkroom.studyNo)
+        }
 
         let profileImg = document.createElement('img')
         profileImg.src = state.contextPath + talkroom.studyImg
@@ -100,6 +106,9 @@ function createApplyList(div, state){
 
         let profileDiv = document.createElement('div')
         profileDiv.className = "thumbnail"
+        profileDiv.onclick = () => {
+            window.open(state.contextPath + '/personal/view?pno=' + apply.applicantNo)
+        }
 
         let profileImg = document.createElement('img')
         profileImg.src = state.contextPath + apply.applicantImg
@@ -175,6 +184,10 @@ function createMessageCard(state, data){
 
     // 프로필 사진
     const thumbnail = document.createElement('div')
+    thumbnail.onclick = () => {
+        window.open(state.contextPath + '/personal/view?pno=' + data.memberNo)
+    }
+
     const thumbnailImg = document.createElement('img')
 
     thumbnail.className = 'thumbnail'

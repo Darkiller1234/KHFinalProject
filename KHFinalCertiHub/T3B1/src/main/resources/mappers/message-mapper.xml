@@ -21,6 +21,7 @@
 		<result column="MANAGER_NO" property="managerNo" />
 		<result column="STUDY_NO" property="studyNo" />
 		<result column="TALKROOM_TYPE" property="talkroomType" />
+		<result column="LAST_UPDATE" property="lastUpdate" />
 		<result column="MEMBER_NICKNAME" property="managerName" />
 		<result column="MEMBER_IMG" property="memberImg" />
 		<result column="STUDY_NAME" property="studyName" />
@@ -49,36 +50,38 @@
 	</select>
 	
 	<select id="selectMentorList" resultMap="talkroomResultSet">
-		 SELECT  M.MEMBER_NO,
-           MT.TALKROOM_NO,
-           M.MEMBER_INTRO MEMBER_INTRO,
-           M.MEMBER_NICKNAME MEMBER_NICKNAME,
-           M.MEMBER_IMG MEMBER_IMG,
-           M.MENTOR_VALID MENTOR_VALID,
-           MSG.MESSAGE_CONTENT MESSAGE_CONTENT
-      FROM MEMBER M
-      INNER JOIN (
-          SELECT MEMBER_NO,
-                  TALKROOM_NO
-          FROM MEMBER_TALKROOM
-          WHERE TALKROOM_NO IN (
-              SELECT MT.TALKROOM_NO
-              FROM MEMBER_TALKROOM MT
-              INNER JOIN TALKROOM T ON(MT.TALKROOM_NO = T.TALKROOM_NO) AND T.TALKROOM_TYPE=1
-              WHERE MEMBER_NO = #{memberNo}
-          ) AND MEMBER_NO != #{memberNo}
-      ) MT ON (M.MEMBER_NO = MT.MEMBER_NO)
-      LEFT JOIN (
-                 SELECT MAX(MESSAGE_NO) AS MESSAGE_NO,
-                        TALKROOM_NO
-                      FROM MESSAGE
-                GROUP BY TALKROOM_NO
-           ) MNO ON (MT.TALKROOM_NO = MNO.TALKROOM_NO)
-      LEFT JOIN MESSAGE MSG ON (MNO.MESSAGE_NO = MSG.MESSAGE_NO)
+		SELECT  M.MEMBER_NO MANAGER_NO,
+	        MT.TALKROOM_NO,
+	        M.MEMBER_INTRO MEMBER_INTRO,
+	        M.MEMBER_NICKNAME MEMBER_NICKNAME,
+	        M.MEMBER_IMG MEMBER_IMG,
+	        M.MENTOR_VALID MENTOR_VALID
+		FROM MEMBER M
+		INNER JOIN (
+		    SELECT MEMBER_NO,
+		            TALKROOM_NO
+		    FROM MEMBER_TALKROOM
+		    WHERE TALKROOM_NO IN (
+		        SELECT MT.TALKROOM_NO
+		        FROM MEMBER_TALKROOM MT
+		        INNER JOIN TALKROOM T ON(MT.TALKROOM_NO = T.TALKROOM_NO) AND T.TALKROOM_TYPE=1
+		        WHERE MEMBER_NO = #{memberNo}
+		    ) AND MEMBER_NO != #{memberNo}
+		) MT ON (M.MEMBER_NO = MT.MEMBER_NO)
 	<if test="keyword != null">
 		AND M.MEMBER_NICKNAME LIKE '%' || #{keyword} || '%'
 	</if>
-	ORDER BY MSG.MESSAGE_NO, TALKROOM_NO
+	ORDER BY TALKROOM_NO
+	</select>
+	
+	<select id="selectLastMessage" resultType="String">
+		SELECT MESSAGE_CONTENT
+		FROM MESSAGE
+		WHERE MESSAGE_NO = (
+		    SELECT MAX(MESSAGE_NO) MESSAGE_NO
+		    FROM MESSAGE
+		    WHERE TALKROOM_NO = #{talkroomNo}
+		)
 	</select>
 	
 	<select id="countStudy" resultType="int">
@@ -237,7 +240,10 @@
 		 WHERE APPLY_NO = #{applyNo}
 	</update>
 	
+	<select id="selectTalkroomList" resultType="int">
+		SELECT TALKROOM_NO
+		FROM MEMBER_TALKROOM
+		WHERE MEMBER_NO = #{memberNo}
+	</select>
+	
 </mapper>
-
-
-

@@ -30,7 +30,14 @@ public class MessageServiceImpl implements MessageService {
 
 	@Override
 	public ArrayList<Talkroom> selectMentorList(PageInfo pi, HashMap<String, Object> searchInfo) {
-		return messageDao.selectMentorList(sqlSession, pi, searchInfo);
+		ArrayList<Talkroom> talkList = messageDao.selectMentorList(sqlSession, pi, searchInfo);
+		
+		for(Talkroom talk : talkList) {
+			String lastMessage = messageDao.selectLastMessage(sqlSession, talk.getTalkroomNo());
+			talk.setLastMessage(lastMessage);
+		}
+		
+		return talkList;
 	}
 	
 	@Override
@@ -106,6 +113,11 @@ public class MessageServiceImpl implements MessageService {
 		}
 		
 		return result;
+	}
+
+	@Override
+	public ArrayList<Integer> selectTalkroomList(int memberNo) {
+		return messageDao.selectTalkroomList(sqlSession, memberNo);
 	}
 	
 }
