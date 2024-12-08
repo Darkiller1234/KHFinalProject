@@ -114,5 +114,10 @@ public class MessageServiceImpl implements MessageService {
 		
 		return result;
 	}
+
+	@Override
+	public ArrayList<Integer> selectTalkroomList(int memberNo) {
+		return messageDao.selectTalkroomList(sqlSession, memberNo);
+	}
 	
 }

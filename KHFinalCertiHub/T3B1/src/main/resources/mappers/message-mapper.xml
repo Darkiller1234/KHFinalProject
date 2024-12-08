@@ -240,7 +240,10 @@
 		 WHERE APPLY_NO = #{applyNo}
 	</update>
 	
+	<select id="selectTalkroomList" resultType="list">
+		SELECT TALKROOM_NO
+		FROM MEMBER_TALKROOM
+		WHERE MEMBER_NO = #{memberNo}
+	</select>
+	
 </mapper>
-
-
-

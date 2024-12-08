@@ -96,4 +96,8 @@ public class MessageDao {
 		return sqlSession.selectOne("messageMapper.selectLastMessage", talkroomNo);
 	}
 
+	public ArrayList<Integer> selectTalkroomList(SqlSessionTemplate sqlSession, int memberNo) {
+		return (ArrayList)sqlSession.selectList("messageMapper.selectTalkroomList", memberNo);
+	}
+
 }

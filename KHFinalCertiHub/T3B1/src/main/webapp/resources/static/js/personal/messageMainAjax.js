@@ -4,12 +4,14 @@ function socketConnect(state){
     
     // 소켓 연결 성공시 실행
     socket.onopen = function(){
+        console.log("세션 연결...")
         state.sendMessage.value = ""
         state.sendMessage.disabled = false
     }
 
     // 소켓 연결 종료시 실행
     socket.onclose = function(){
+        console.log("세션 연결 종료...")
     }
 
     // 소켓 연결 실패시 실행
@@ -29,6 +31,18 @@ function socketConnect(state){
 function ajaxLoadMemberInfo(state, callback){
     $.ajax({
         url:'getMemberInfo',
+        type: 'post',
+        async: false,
+        success: (res) => callback(res, state),
+        error: () => {
+            console.log("멤버 정보 로딩 실패")
+        }
+    })
+}
+
+function ajaxLoadTalkroomList(state, callback){
+    $.ajax({
+        url:'getTalkroomList',
         type: 'post',
         async: false,
         success: (res) => callback(res, state),
@@ -129,6 +143,20 @@ function ajaxRejectApply(state, callback){
         success: (res) => callback(res, state),
         error: () => {
             console.log("요청 거절 실패")
+        }
+    })
+}
+
+function ajaxRecentMessage(state, callback){
+    $.ajax({
+        url:'getRecentMessage',
+        type:'post',
+        data: {
+            talkroomList : state?.talkroomList,
+        },
+        success: (res) => callback(res, state),
+        error: () => {
+            console.log("최신 메시지 로딩 실패")
         }
     })
 }
