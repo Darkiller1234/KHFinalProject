@@ -92,4 +92,12 @@ public class MessageDao {
 		return sqlSession.update("messageMapper.updateApply", applyNo);
 	}
 
+	public String selectLastMessage(SqlSessionTemplate sqlSession, int talkroomNo) {
+		return sqlSession.selectOne("messageMapper.selectLastMessage", talkroomNo);
+	}
+
+	public ArrayList<Integer> selectTalkroomList(SqlSessionTemplate sqlSession, int memberNo) {
+		return (ArrayList)sqlSession.selectList("messageMapper.selectTalkroomList", memberNo);
+	}
+
 }
