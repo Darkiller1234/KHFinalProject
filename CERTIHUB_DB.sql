@@ -62,12 +62,18 @@ CREATE TABLE LICENSE(
     LICENSE_NO NUMBER,
     LICENSE_NAME VARCHAR2(150) NOT NULL,
     LICENSE_DESC VARCHAR2(3000),
+    LICENSE_DOC_EXAM VARCHAR2(150),
+    LICENSE_PRAC_EXAM VARCHAR2(150),
+    LICENSE_EXAM_SCOPE VARCHAR2(1000),
     CONSTRAINT L_LNO_PK PRIMARY KEY(LICENSE_NO)
 );
 
 COMMENT ON COLUMN LICENSE.LICENSE_NO IS '자격증번호';
 COMMENT ON COLUMN LICENSE.LICENSE_NAME IS '자격증이름';
 COMMENT ON COLUMN LICENSE.LICENSE_DESC IS '자격증설명';
+COMMENT ON COLUMN LICENSE.LICENSE_DOC_EXAM IS '필기수험료';
+COMMENT ON COLUMN LICENSE.LICENSE_PRAC_EXAM IS '실기수험료';
+COMMENT ON COLUMN LICENSE.LICENSE_EXAM_SCOPE IS '출제범위';
 
 CREATE TABLE MEMBER(
     MEMBER_NO NUMBER,
@@ -539,25 +545,36 @@ INSERT INTO BOARD_TAB VALUES(BOARD_TAB_SEQ.NEXTVAL, '후기');
 INSERT INTO BOARD_TAB VALUES(BOARD_TAB_SEQ.NEXTVAL, '문제집/강의 추천');
 INSERT INTO BOARD_TAB VALUES(BOARD_TAB_SEQ.NEXTVAL, '문제집 거래');
 
-INSERT INTO LICENSE VALUES(LICENSE_SEQ.NEXTVAL,'정보처리기사','소프트웨어 개발 관련 자격증으로, 정보시스템의 생명주기 전반에 걸친 프로젝트 업무를 수행하는 직무로서 계획수립, 분석, 설계, 구현, 시험, 운영, 유지보수 등의 업무를 수행할 수 있는 능력을 검증하는 시험이다.');
-INSERT INTO LICENSE VALUES(LICENSE_SEQ.NEXTVAL,'네트워크관리사','네트워크관리사란 서버를 구축하고 보안 설정, 시스템 최적화 등 네트워크구축 및 이를 효과적으로 관리할 수 있는 인터넷 관련 기술력에 대한 자격이다.');
-INSERT INTO LICENSE VALUES(LICENSE_SEQ.NEXTVAL,'정보보안기사','정보보안기사(Engineer information security)는 과학기술정보통신부에서 주관하고 한국방송통신전파진흥원에서 시행하는 국가자격 시험 및 그 자격증을 의미한다.
-기존 한국인터넷진흥원 국가 공인 민간 자격증인 정보보호전문가(SIS) 자격증을 국가 기술 자격으로 업그레이드시킨 자격이다.');
-INSERT INTO LICENSE VALUES(LICENSE_SEQ.NEXTVAL,'빅데이터분석기사','2019년 창설된 대한민국의 기사등급 국가기술자격. 주무부처는 과학기술정보통신부와 통계청이며 검정시행기관은 한국데이터산업진흥원(K-DATA)이다.
-4차 산업혁명 시대를 맞아 빅데이터분석 전문인력 공급에 주력하기 위해 개발되었다. 빅데이터와 관련하여 관심과 수요가 증가한데 반해 필요한 역량, 기술, 지식 등의 기준 없이 수많은 민간 자격증이 난립하고 있는 상황을 해결하기 위해 신설되었다.');
-INSERT INTO LICENSE VALUES(LICENSE_SEQ.NEXTVAL,'정보통신기사','과학기술정보통신부에서 주관하는 자격. 1974년 유선설비기사1급으로 신설, 1991년에 정보통신설비기사1급이 등장하였으며 1998년 이를 통합하여 정보통신기사로 변경되었다.');
-INSERT INTO LICENSE VALUES(LICENSE_SEQ.NEXTVAL,'정보관리기술사','정보관리기술사(Professional Engineer Information Management)는 정보관리에 관련된 실무경험, 일반지식, 전문지식 및 응용능력과 기술사로서의 지도감리능력, 자질 및 품위를 측정하여 수여되는 기술사 자격증으로 국가기술자격의 일종이다. 정보처리기술사(수학응용)와 정보처리기술사(정보처리)가 1991년에 통합되어 정보관리기술사로 바뀐 것이다.');
-INSERT INTO LICENSE VALUES(LICENSE_SEQ.NEXTVAL,'컴퓨터시스템응용기술사','컴퓨터시스템응용기술사(Professional Engineer Computer System Application)는 과학기술정보통신부에서 주관하고 한국산업인력공단에서 시행하는 국가기술자격으로 기술사에 해당한다. 2010년에 정보기술 분야의 전자계산조직응용기술사와 전자 분야의 전자계산기기술사가 통합되어 현재의 명칭이 되었다.');
-INSERT INTO LICENSE VALUES(LICENSE_SEQ.NEXTVAL,'정보통신기술사','정보통신분야 최고 권위의 자격증이다.정보통신기술사는 정보통신기술(ICT)에 관한 고도의 전문지식과 실무경험을 바탕으로 계획?연구?설계?분석?조사?시험?시공?감리?평가?진단?시험운전?사업관리?기술판단(기술감정을 포함)?기술중재 또는 이에 관한 기술자문과 기술지도 업무를 수행하는 직무를 수행하는데 필요한 기술요건을 갖추었음을 입증한다.');
-INSERT INTO LICENSE VALUES(LICENSE_SEQ.NEXTVAL,'임베디드기사','대한민국의 컴퓨터 관련 자격증. 전자 분야 기사급 국가기술자격이다. 임베디드 시스템의 하드웨어를 분석하여 하드웨어에 대한 초기화 및 테스트 수행, 운영체제(OS) 부팅을 위한 부트로더를 포함하는 펌웨어와 임베디드 시스템의 OS 관련한 플랫폼 소프트웨어 및 응용 소프트웨어를 설계, 구현하는 능력 평가');
-INSERT INTO LICENSE VALUES(LICENSE_SEQ.NEXTVAL,'로봇소프트웨어개발기사','로봇의 제어부분을 설계 및 개발할 수 있는 능력을 검증하는 자격증이다. 기계공학, 컴퓨터공학 관련 학과 졸업(예정)자가 응시할 수 있다. ');
-INSERT INTO LICENSE VALUES(LICENSE_SEQ.NEXTVAL,'전자계산기기사','전자계산기기사는 컴퓨터의 중앙처리장치, 주변장치, 입력장치, 출력장치 및 보조기억장치들의 성능을 향상시키기 위하여 컴퓨터 시스템을 설계하고 설치 및 운용하는 업무 수행을 위한 국가기술자격 중 기사 자격이다.');
-INSERT INTO LICENSE VALUES(LICENSE_SEQ.NEXTVAL,'전자계산기조직응용기사','전자계산기조직응용기사는 컴퓨터 시스템의 하드웨어 구성과 시스템 운용을 위한 응용소프트웨어의 설계 및 구성에 따른 효율적인 전산 시스템을 설치, 운영하고 전자계산기 시스템을 유지, 보수하는 능력을 평가하여 부여하는 국가기술자격 중 기사 자격이다.
-2026년에 전자계산기기사를 흡수합병하고, 명칭도 컴퓨터시스템기사로 바뀐다.');
-INSERT INTO LICENSE VALUES(LICENSE_SEQ.NEXTVAL,'SQLD','Kdata(한국데이터산업진흥원)에서 주관하는 시험. SQLD는 SQL(Structured Query Language) + D(Developer)의 줄인 말로, SQL 개발자를 의미한다.2013년부터 민간자격증에서 국가 공인 민간자격증으로 승격되었다');
-INSERT INTO LICENSE VALUES(LICENSE_SEQ.NEXTVAL,'SQLP','SQL(Structured Query Language) + P(Professional)의 줄인 말로, SQL 전문가를 의미한다. 공인자격 제2013-02호에 해당하는 데이터베이스 SQL 국가공인 자격증이다. 하위 자격증으로 SQLD가 있다.');
-INSERT INTO LICENSE VALUES(LICENSE_SEQ.NEXTVAL,'데이터분석 전문가','데이터분석 전문가 자격검정 시험. 빅데이터 시대가 도래하고 데이터 분석가의 필요성이 증가함에 따라 데이터 분석 전문가 자격에 대한 기업의 수요를 반영하여 2014년부터 실시한 시험으로 과학기술정보통신부가 주무부처이고 한국데이터산업진흥원이 시행한다.
-공식 명칭인 국가공인 데이터분석 전문가를 영어로 쓴 Advanced Data Analytics Professional를 줄여서 ADP라고 부른다.');
+INSERT INTO LICENSE VALUES(LICENSE_SEQ.NEXTVAL,'정보처리기사','소프트웨어 개발 관련 자격증으로, 정보시스템의 생명주기 전반에 걸친 프로젝트 업무를 수행하는 직무로서 계획수립, 분석, 설계, 구현, 시험, 운영, 유지보수 등의 업무를 수행할 수 있는 능력을 검증하는 시험이다.',
+'19,400원','22,600원', CHR(10) || '1.소프트웨어설계' || CHR(10) || '2.소프트웨어개발' || CHR(10) || '3.데이터베이스구축' || CHR(10) || '4.프로그래밍언어활용' || CHR(10) || '5.정보시스템구축관리');
+INSERT INTO LICENSE VALUES(LICENSE_SEQ.NEXTVAL,'네트워크관리사','네트워크관리사란 서버를 구축하고 보안 설정, 시스템 최적화 등 네트워크구축 및 이를 효과적으로 관리할 수 있는 인터넷 관련 기술력에 대한 자격이다.',
+'43,000원','78,000원', CHR(10) || '1.TCP/IP' || CHR(10) || '2.네트워크일반' || CHR(10) || '3.NOS' || CHR(10) || '4.네트워크 운용기기' );
+INSERT INTO LICENSE VALUES(LICENSE_SEQ.NEXTVAL,'정보보안기사','정보보안기사(Engineer information security)는 과학기술정보통신부에서 주관하고 한국방송통신전파진흥원에서 시행하는 국가자격 시험 및 그 자격증을 의미한다.기존 한국인터넷진흥원 국가 공인 민간 자격증인 정보보호전문가(SIS) 자격증을 국가 기술 자격으로 업그레이드시킨 자격이다.',
+'18,800원','21,900원', CHR(10) || '1.시스템보안' || CHR(10) || '2.네트워크보안' || CHR(10) || '3.어플리케이션보안' || CHR(10) || '4.정보보안일반' || CHR(10) || '5.정보보안관리 및 법규');
+INSERT INTO LICENSE VALUES(LICENSE_SEQ.NEXTVAL,'빅데이터분석기사','2019년 창설된 대한민국의 기사등급 국가기술자격. 주무부처는 과학기술정보통신부와 통계청이며 검정시행기관은 한국데이터산업진흥원(K-DATA)이다.4차 산업혁명 시대를 맞아 빅데이터분석 전문인력 공급에 주력하기 위해 개발되었다. 빅데이터와 관련하여 관심과 수요가 증가한데 반해 필요한 역량, 기술, 지식 등의 기준 없이 수많은 민간 자격증이 난립하고 있는 상황을 해결하기 위해 신설되었다.',
+'17,800원','40,800원', CHR(10) || '1.빅데이터 분석기획' || CHR(10) || '2.빅데이터 탐색' || CHR(10) || '3.빅데이터 모델링' || CHR(10) || '4.빅데이터 결과 해석');
+INSERT INTO LICENSE VALUES(LICENSE_SEQ.NEXTVAL,'정보통신기사','과학기술정보통신부에서 주관하는 자격. 1974년 유선설비기사1급으로 신설, 1991년에 정보통신설비기사1급이 등장하였으며 1998년 이를 통합하여 정보통신기사로 변경되었다.',
+'18,800원','21,900원', CHR(10) || '1. 정보전송일반' || CHR(10) || '2. 정보통신기기' || CHR(10) || '3. 정보통신네트워크' || CHR(10) || '4. 정보시스템운용' || CHR(10) || '5. 컴퓨터 일반 및 정보설비 기준');
+INSERT INTO LICENSE VALUES(LICENSE_SEQ.NEXTVAL,'정보관리기술사','정보관리기술사(Professional Engineer Information Management)는 정보관리에 관련된 실무경험, 일반지식, 전문지식 및 응용능력과 기술사로서의 지도감리능력, 자질 및 품위를 측정하여 수여되는 기술사 자격증으로 국가기술자격의 일종이다. 정보처리기술사(수학응용)와 정보처리기술사(정보처리)가 1991년에 통합되어 정보관리기술사로 바뀐 것이다.',
+'67,800원','	87,100원', CHR(10) || '1.영역1' || CHR(10) || '2.영역2' || CHR(10) || '3.영역3' || CHR(10) || '4.영역4');
+INSERT INTO LICENSE VALUES(LICENSE_SEQ.NEXTVAL,'컴퓨터시스템응용기술사','컴퓨터시스템응용기술사(Professional Engineer Computer System Application)는 과학기술정보통신부에서 주관하고 한국산업인력공단에서 시행하는 국가기술자격으로 기술사에 해당한다. 2010년에 정보기술 분야의 전자계산조직응용기술사와 전자 분야의 전자계산기기술사가 통합되어 현재의 명칭이 되었다.',
+'67,800원','87,100원', CHR(10) || '1.영역1' || CHR(10) || '2.영역2' || CHR(10) || '3.영역3' || CHR(10) || '4.영역4');
+INSERT INTO LICENSE VALUES(LICENSE_SEQ.NEXTVAL,'정보통신기술사','정보통신분야 최고 권위의 자격증이다.정보통신기술사는 정보통신기술(ICT)에 관한 고도의 전문지식과 실무경험을 바탕으로 계획?연구?설계?분석?조사?시험?시공?감리?평가?진단?시험운전?사업관리?기술판단(기술감정을 포함)?기술중재 또는 이에 관한 기술자문과 기술지도 업무를 수행하는 직무를 수행하는데 필요한 기술요건을 갖추었음을 입증한다.',
+'65,800원','82,200원','무선, 유선통신망의 설계, 시공, 보전 및 음성, 데이터, 방송에 관계되는 통신방식, 프로토콜, 기기와 설비, 기술기준에 관계되는 사항');
+INSERT INTO LICENSE VALUES(LICENSE_SEQ.NEXTVAL,'임베디드기사','대한민국의 컴퓨터 관련 자격증. 전자 분야 기사급 국가기술자격이다. 임베디드 시스템의 하드웨어를 분석하여 하드웨어에 대한 초기화 및 테스트 수행, 운영체제(OS) 부팅을 위한 부트로더를 포함하는 펌웨어와 임베디드 시스템의 OS 관련한 플랫폼 소프트웨어 및 응용 소프트웨어를 설계, 구현하는 능력 평가',
+'19,400원','22,600원', CHR(10) || '1.임베디드하드웨어' || CHR(10) || '2.임베디드펌웨어' || CHR(10) || '3.임베디드플랫폼' || CHR(10) || '4.임베디드소프트웨어');
+INSERT INTO LICENSE VALUES(LICENSE_SEQ.NEXTVAL,'로봇소프트웨어개발기사','로봇의 제어부분을 설계 및 개발할 수 있는 능력을 검증하는 자격증이다. 기계공학, 컴퓨터공학 관련 학과 졸업(예정)자가 응시할 수 있다.',
+'19,400원','30,300원', CHR(10) || '1.로봇운영소프트웨어' || CHR(10) || '2.로봇소프트웨어구조설계' || CHR(10) || '3.모션소프트웨어' || CHR(10) || '4.지능소프트웨어');
+INSERT INTO LICENSE VALUES(LICENSE_SEQ.NEXTVAL,'전자계산기기사','전자계산기기사는 컴퓨터의 중앙처리장치, 주변장치, 입력장치, 출력장치 및 보조기억장치들의 성능을 향상시키기 위하여 컴퓨터 시스템을 설계하고 설치 및 운용하는 업무 수행을 위한 국가기술자격 중 기사 자격이다.',
+'19,400원','22,600원', CHR(10) || '1.시스템프로그래밍' || CHR(10) || '2.전자계산기구조' || CHR(10) || '3.마이크로전자계산기' || CHR(10) || '4.논리회로' || CHR(10) || '5.데이타통신');
+INSERT INTO LICENSE VALUES(LICENSE_SEQ.NEXTVAL,'전자계산기조직응용기사','전자계산기조직응용기사는 컴퓨터 시스템의 하드웨어 구성과 시스템 운용을 위한 응용소프트웨어의 설계 및 구성에 따른 효율적인 전산 시스템을 설치, 운영하고 전자계산기 시스템을 유지, 보수하는 능력을 평가하여 부여하는 국가기술자격 중 기사 자격이다.2026년에 전자계산기기사를 흡수합병하고, 명칭도 컴퓨터시스템기사로 바뀐다.',
+'19,400원','22,600원', CHR(10) || '1.전자계산기프로그래밍' || CHR(10) || '2.자료구조및데이타통신' || CHR(10) || '3.전자계산기구조' || CHR(10) || '4.운영체제' || CHR(10) || '5.마이크로전자계산기');
+INSERT INTO LICENSE VALUES(LICENSE_SEQ.NEXTVAL,'SQLD','Kdata(한국데이터산업진흥원)에서 주관하는 시험. SQLD는 SQL(Structured Query Language) + D(Developer)의 줄인 말로, SQL 개발자를 의미한다.2013년부터 민간자격증에서 국가 공인 민간자격증으로 승격되었다',
+'50,000원','실기없음',' CHR(10) || 1.데이터 모델링의 이해' || CHR(10) || '2.SQL 기본 및 활용');
+INSERT INTO LICENSE VALUES(LICENSE_SEQ.NEXTVAL,'SQLP','SQL(Structured Query Language) + P(Professional)의 줄인 말로, SQL 전문가를 의미한다. 공인자격 제2013-02호에 해당하는 데이터베이스 SQL 국가공인 자격증이다. 하위 자격증으로 SQLD가 있다.',
+'100,000원','실기없음',' CHR(10) || 1.데이터 모델링의 이해' || CHR(10) || '2.SQL 기본 및 활용' || CHR(10) || 'SQL 고급활용 및 튜닝');
+INSERT INTO LICENSE VALUES(LICENSE_SEQ.NEXTVAL,'데이터분석 전문가','데이터분석 전문가 자격검정 시험. 빅데이터 시대가 도래하고 데이터 분석가의 필요성이 증가함에 따라 데이터 분석 전문가 자격에 대한 기업의 수요를 반영하여 2014년부터 실시한 시험으로 과학기술정보통신부가 주무부처이고 한국데이터산업진흥원이 시행한다.공식 명칭인 국가공인 데이터분석 전문가를 영어로 쓴 Advanced Data Analytics Professional를 줄여서 ADP라고 부른다.',
+'80,000원','70,000원', CHR(10) || '1.데이터 이해' || CHR(10) || '2.데이터 처리 기술 이해' || CHR(10) || '3.데이터분석 기획' || CHR(10) || '4.데이터분석' || CHR(10) || '5.데이터 시각화');
 
 
 

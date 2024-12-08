@@ -7,6 +7,9 @@ public class License {
 	private int licenseNo;
 	private String licenseName;
 	private String licenseDesc;
+	private String licenseDocExam;
+	private String licensePracExam;
+	private String licenseExamScope;
 }
 
 
