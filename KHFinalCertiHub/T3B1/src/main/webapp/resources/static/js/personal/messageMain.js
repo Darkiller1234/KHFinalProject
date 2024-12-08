@@ -94,14 +94,12 @@ function initMessageMain(contextPath) {
         state.memberImg = res.memberImg
     }
 
-    const onRecentMessage = (res, state) => {
-        console.log(res)
+    const onLoadTalkroomList = (res, state) => {
+        state.talkroomList = res
     }
 
-    const onLoadTalkroomList = (res, state) => {
+    const onRecentMessage = (res, state) => {
         console.log(res)
-        state.talkroomList = res.talkroomList
-        console.log(state.talkroomList)
     }
 
     ajaxLoadMemberInfo(state, onLoadMemberInfo)

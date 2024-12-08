@@ -240,7 +240,7 @@
 		 WHERE APPLY_NO = #{applyNo}
 	</update>
 	
-	<select id="selectTalkroomList" resultType="list">
+	<select id="selectTalkroomList" resultType="int">
 		SELECT TALKROOM_NO
 		FROM MEMBER_TALKROOM
 		WHERE MEMBER_NO = #{memberNo}
