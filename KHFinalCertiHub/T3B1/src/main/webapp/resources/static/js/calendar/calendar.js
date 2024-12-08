@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function () {
             case '기술사':
                 return '#4CAF50'; // 초록
             case '기능장':
-                return '#FFEB3B'; // 노랑
+                return '#FF9800'; // 노랑
             default:
                 return '#9E9E9E'; // 기본 색상 (회색)
         }

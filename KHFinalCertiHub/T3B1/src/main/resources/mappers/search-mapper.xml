@@ -7,11 +7,14 @@
         <result column="LICENSE_NO" property="licenseNo"/>
         <result column="LICENSE_NAME" property="licenseName"/>
         <result column="LICENSE_DESC" property="licenseDesc"/>
+        <result column="LICENSE_DOC_EXAM" property="licenseDocExam"/>
+        <result column="LICENSE_PRAC_EXAM" property="licensePracExam"/>
+        <result column="LICENSE_EXAM_SCOPE" property="licenseExamScope"/>
     </resultMap>
 
     <!-- 검색 쿼리만 실행 -->
     <select id="selectListResult" resultMap="searchResultList">
-        SELECT LICENSE_NO, LICENSE_NAME, LICENSE_DESC
+        SELECT *
         FROM LICENSE
         WHERE LICENSE_NAME LIKE '%' || #{keyword} || '%'
         ORDER BY LICENSE_NO

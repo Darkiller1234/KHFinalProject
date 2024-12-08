@@ -19,11 +19,7 @@
             <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/infopage/map.css">
             <div class="wrapper">
                 <div class="container">
-                    <c:forEach var="item" items="${list}">
-                        <div class="result-item">
-                            <h1>>${item.licenseName}</h1>
-                        </div>
-                    </c:forEach>
+                    <h1>자료실</h1>
                 </div>
                 <div class="tab-container">
                     <ul class="tabs">
