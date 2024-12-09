@@ -89,3 +89,29 @@ function ajaxGetLookLicense(data, callback){
         }
     })
 }
+
+function checkReportMember(data, callback){
+    $.ajax({
+        url: "view/checkReportMember",
+        data: data, 
+        success: function(res){
+            callback(res);
+        },
+        error: function(res){
+            console.log("신고 확인 ajax 오류")
+        }
+    })
+}
+
+function insertReportMember(data, callback){
+    $.ajax({
+        url: "view/insertReportMember",
+        data: data, 
+        success: function(res){
+            callback(res);
+        },
+        error: function(res){
+            console.log("신고 인서트 ajax 오류")
+        }
+    })
+}
