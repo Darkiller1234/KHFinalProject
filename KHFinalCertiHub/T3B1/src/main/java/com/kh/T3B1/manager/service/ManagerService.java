@@ -31,6 +31,7 @@ public interface ManagerService {
 	// 커뮤 게시판 검색목록
 	ArrayList<Board> CommuList(PageInfo pi, String keyword);
 
-
+	// 인증되지 않은 자격증 신청 개수 불러오기
+	int countLicenseList(String keyword);
 
 }

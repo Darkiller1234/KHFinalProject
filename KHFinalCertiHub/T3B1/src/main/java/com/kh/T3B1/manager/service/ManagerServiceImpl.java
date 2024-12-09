@@ -67,4 +67,9 @@ public class ManagerServiceImpl implements ManagerService {
 		return managerDao.CommuList(sqlSession, pi, keyword);
 	}
 
+	@Override
+	public int countLicenseList(String keyword) {
+		return managerDao.countLicenseList(sqlSession, keyword);
+	}
+
 }
