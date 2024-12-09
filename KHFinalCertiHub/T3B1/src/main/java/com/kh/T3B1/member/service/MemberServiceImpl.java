@@ -118,18 +118,18 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public int naverMemberCheck(String id) {
-		return memberDao.naverMemberCheck(sqlSession,id);
+	public int socialMemberCheck(String id) {
+		return memberDao.socialMemberCheck(sqlSession,id);
 	}
 
 	@Override
-	public int naverJoin(Member m) {
-		return memberDao.naverJoin(sqlSession,m);
+	public int socialJoin(Member m) {
+		return memberDao.socialJoin(sqlSession,m);
 	}
 
 	@Override
-	public Member getNaverMember(String id) {
-		return memberDao.getNaverMember(sqlSession,id);
+	public Member getSocialMember(String id) {
+		return memberDao.getSocialMember(sqlSession,id);
 	}
 
 

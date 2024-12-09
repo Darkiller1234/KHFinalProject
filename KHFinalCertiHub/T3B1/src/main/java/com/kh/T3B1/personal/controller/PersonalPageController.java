@@ -459,11 +459,11 @@ public class PersonalPageController {
 	@RequestMapping("Change")
 	public String PersonalChange(HttpSession session) {		// 세션에서 비밀번호 사라지면 수정해야함
 		
-		if(((Member)session.getAttribute("loginMember")).getMemberPwd() != null) {
+		if(((Member)session.getAttribute("loginMember")).getSocial() != null && !((Member)session.getAttribute("loginMember")).getSocial().equals("")) {
 			session.setAttribute("changeEnterCheck", true);
-			return "personal/personalChangePage";
+			return "redirect:/personal/ChangePage";
 		}
-		return "personal/personalChange";
+		return "/personal/personalChange";
 	}
 	
 	@ResponseBody
