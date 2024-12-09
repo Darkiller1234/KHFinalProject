@@ -2,6 +2,7 @@ package com.kh.T3B1.personal.service;
 
 import java.util.ArrayList;
 
+import com.kh.T3B1.common.model.vo.Report;
 import com.kh.T3B1.member.model.vo.Member;
 import com.kh.T3B1.personal.model.vo.Calendar2;
 import com.kh.T3B1.personal.model.vo.FullCalendarVo;
@@ -56,5 +57,9 @@ public interface PersonalService {
 	int insertSc(FullCalendarVo cal);
 
 	ArrayList<String> selectCertiList();
+
+	int checkReportMember(int pno, int memberNo);
+
+	int insertReportMember(Report r);
 
 }

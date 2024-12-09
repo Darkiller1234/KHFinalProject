@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.T3B1.common.model.vo.Report;
 import com.kh.T3B1.member.model.vo.Member;
 import com.kh.T3B1.personal.model.dao.PersonalDao;
 import com.kh.T3B1.personal.model.vo.Calendar2;
@@ -172,6 +173,19 @@ public class PersonalServiceImpl implements PersonalService{
 	@Override
 	public ArrayList<String> selectCertiList() {
 		return personalDao.selectCertiList(sqlSession);
+	}
+
+	@Override
+	public int checkReportMember(int pno, int memberNo) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("memberNo", memberNo);
+		params.put("pno", pno);
+		return personalDao.checkReportMember(sqlSession, params);
+	}
+
+	@Override
+	public int insertReportMember(Report r) {
+		return personalDao.insertReportMember(sqlSession, r);
 	}
 	
 }

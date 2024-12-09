@@ -325,6 +325,54 @@
 		)
 	</insert>
 	
+	<select id="checkReportMember" resultType="_int">
+		SELECT COUNT(*)
+		FROM REPORT
+		WHERE ACCUSER_NO = #{memberNo}
+		AND ACCUSED_NO = #{pno}
+	</select>
+	
+	<insert id="insertReportMember" parameterType="Report">
+		INSERT INTO REPORT(
+			REPORT_NO,
+			ACCUSER_NO,
+			ACCUSED_NO,
+			<if test="boardNo != 0">
+			BOARD_NO,
+			</if>
+			<if test="replyNo != 0">
+			REPLY_NO,
+			</if>
+			<if test="messageNo != 0">
+			MESSAGE_NO,
+			</if>
+			<if test="studyBoardNo != 0">
+			STUDY_NO,
+			</if>
+			REPORT_TYPE_NO,
+			REPORT_DETAIL
+		)
+		VALUES(
+			REPORT_SEQ.NEXTVAL,
+			#{accuserNo},
+			#{accusedNo},
+			<if test="boardNo != 0">
+			#{boardNo},
+			</if>
+			<if test="replyNo != 0">
+			#{replyNo},
+			</if>
+			<if test="messageNo != 0">
+			#{messageNo},
+			</if>
+			<if test="studyBoardNo != 0">
+			#{stydyBoardNo},
+			</if>
+			#{reportTypeNo},
+			#{reportDetail}
+		)
+	</insert>
+	
 </mapper>
 
 
