@@ -33,7 +33,7 @@
                 <h2>관리자 페이지</h2>
 
                 <!-- 검색 폼 -->
-                <div class="search-form" action="<%=contextPath%/manager/certify" method="get">
+                <div class="search-form">
                     <input type="text" name="keyword" value="${keyword}">
                     <button type="submit">
                         <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
@@ -42,19 +42,7 @@
                 <br><br>
 
                 <div class="board-certify">
-                    <table>
-                        <tr>
-                            <th>NO.</th>
-                            <th>제목</th>
-                            <th>등록일</th>
-                            <th>수락하기</th>
-                        </tr>
-                        <c:forEach var="item" items="${list}">
-                            <tr>
-                                <td>${item}</td>
-                            </tr>
-                        </c:forEach>
-                    </table>
+                    
                 </div>
                 <br><br>
 
