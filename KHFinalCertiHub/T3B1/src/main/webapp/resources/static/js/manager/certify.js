@@ -80,7 +80,7 @@ function initPageBar(contextPath, data) {
     }
 
     createPageBar(pagingBar, pageInfo)
-}
+} 
 
 function ajaxLoadBoard(pageInfo, callback){
     return function() {

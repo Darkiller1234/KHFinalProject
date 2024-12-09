@@ -40,36 +40,6 @@ public class ManagerServiceImpl implements ManagerService {
 	}
 
 	@Override
-	public int CountUser(String keyword) {
-		return managerDao.CountUser(sqlSession, keyword);
-	}
-
-	@Override
-	public ArrayList<Member> selectUserList(PageInfo pi, String keyword) {
-		return managerDao.selectUserList(sqlSession, pi, keyword);
-	}
-
-	@Override
-	public int Countstudylist(String keyword) {
-		return managerDao.Countstudylist(sqlSession, keyword);
-	}
-
-	@Override
-	public ArrayList<StudyBoard> StudyList(PageInfo pi, String keyword) {
-		return managerDao.StudyList(sqlSession,pi,keyword);
-	}
-
-	@Override
-	public int Countcommulist(String keyword) {
-		return managerDao.Countcommulist(sqlSession, keyword);
-	}
-
-	@Override
-	public ArrayList<Board> CommuList(PageInfo pi, String keyword) {
-		return managerDao.CommuList(sqlSession, pi, keyword);
-	}
-
-	@Override
 	public int countLicenseList(String keyword) {
 		return managerDao.countLicenseList(sqlSession, keyword);
 	}
@@ -80,6 +50,35 @@ public class ManagerServiceImpl implements ManagerService {
 	}
 
 	@Override
+	public int countUserList(String keyword) {
+		return managerDao.countUserList(sqlSession, keyword);
+	}
+
+	@Override
+	public ArrayList<Member> selectUserList(PageInfo pi, SearchOption so) {
+		return managerDao.selectUserList(sqlSession, pi, so);
+	}
+
+	@Override
+	public int countCommuList(String keyword) {
+		return managerDao.countCommuList(sqlSession, keyword);
+	}
+
+	@Override
+	public ArrayList<Board> selectCommuList(PageInfo pi, SearchOption so) {
+		return managerDao.selectCommuList(sqlSession, pi, so);
+	}
+
+	@Override
+	public int countListList(String keyword) {
+		return managerDao.countListList(sqlSession, keyword);
+	}
+
+	@Override
+	public ArrayList<StudyBoard> selectListList(PageInfo pi, SearchOption so) {
+		return managerDao.selectListList(sqlSession, pi, so);
+	}
+	
 	public int countReportList(String keyword) {
 		return managerDao.countReportList(sqlSession, keyword);
 	}
