@@ -145,8 +145,6 @@ public class ManagerController {
 		
 		ArrayList<License2> licenseList = managerService.selectLicenseList(pi, so);
 		
-		log.info("\nlicenseList : {}\n", licenseList);
-		
 		HashMap<String, String> jsonData =  new HashMap<>();
 		jsonData.put("board", new Gson().toJson(licenseList));
 		jsonData.put("pageInfo", new Gson().toJson(pi));
