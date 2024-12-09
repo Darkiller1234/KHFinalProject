@@ -42,8 +42,8 @@
                 <div id="licenseModal" class="modal" style="display: none;">
                     <div class="modal-content">
                         <span class="close-btn">&times;</span>
-                        <h2 id="modalLicenseName"></h2>
-                        <p>시험 범위: <span id="modalLicenseScope"></span></p>
+                        <h2 id="modalLicenseName"></h2> <br>
+                        <p>시험 범위 <br> <span id="modalLicenseScope"></span></p> <br>
                         <p>필기 수수료: <span id="modalDocExamFee"></span></p>
                         <p>실기 수수료: <span id="modalPracExamFee"></span></p>
                     </div>

@@ -3,7 +3,7 @@
   text-align: center;
   font-size: 32px;
   padding: 20px 0;
-  color: #4A4A4A;
+  color: #000000;
 }
 
 /* 서치 폼 */
@@ -44,7 +44,7 @@
 }
 
 /* 전체 탭 스타일 */
-.container {
+/*.container {
   width: 100%;
   max-width: 875px;
   margin: 0 auto;
@@ -57,7 +57,7 @@
   color: #fff;
 }
 
-ul.tabs {
+ ul.tabs {
   display: flex;
   justify-content: space-around;
   text-align: center;
@@ -144,7 +144,7 @@ ul.tabs li.current {
   background-color: #006D77;
   color: white;
 
-}
+} */
 
 /* 검색 결과 */
 .results-container {
@@ -156,7 +156,6 @@ ul.tabs li.current {
 }
 
 .results-container p {
-  color: #4A4A4A;
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 15px;
@@ -212,38 +211,39 @@ ul.tabs li.current {
 
 .result-btn{
   border-radius: 5px;
+  height: 30px;
   background-color: #83C5BE;
-  border: none;
   margin-bottom: 15px;
 }
 
 /* 모달창 배경 */
 .modal {
-  display: none; /* 기본적으로 숨김 */
-  position: fixed; /* 화면에 고정 */
+  display: none; 
+  position: fixed; 
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* 어두운 배경 */
-  z-index: 1000; /* 모달을 다른 내용 위로 올리기 */
-  display: flex; /* Flexbox 사용하여 자식 요소 중앙 정렬 */
-  justify-content: center; /* 수평 중앙 */
-  align-items: center; /* 기본적으로 수직 중앙 정렬 */
+  background-color: rgba(0, 0, 0, 0.5); 
+  z-index: 1000; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
 }
 
 /* 모달창 내용 */
 .modal-content {
-  position: absolute; /* 절대 위치 */
-  top: 30%; /* 상단에서 30% 위치 */
-  left: 50%; /* 좌측에서 50% 위치 */
-  transform: translate(-50%, -30%); /* 정확히 중앙에 배치, 수직 위치 조정 */
-  background-color: white;
+  position: absolute; 
+  top: 30%; 
+  left: 50%; 
+  transform: translate(-50%, -30%); 
+  background-color: #EDF6F9;
+  border-color: #83C5BE;
   padding: 20px;
-  max-width: 600px; /* 최대 너비 */
-  width: 100%; /* 너비를 100%로 설정하여 부모 모달에 맞게 조정 */
-  margin: 0 auto; /* 수평 중앙 정렬 */
-  border-radius: 10px;
+  max-width: 600px; 
+  width: 100%; 
+  margin: 0 auto; 
+  border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
