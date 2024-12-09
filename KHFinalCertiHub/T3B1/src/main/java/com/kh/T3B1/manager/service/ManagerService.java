@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.kh.T3B1.common.vo.PageInfo;
+import com.kh.T3B1.common.vo.SearchOption;
 import com.kh.T3B1.community.model.vo.Board;
 import com.kh.T3B1.member.model.vo.Member;
+import com.kh.T3B1.personal.model.vo.License2;
 import com.kh.T3B1.study.model.vo.StudyBoard;
 public interface ManagerService {
 
@@ -33,5 +35,8 @@ public interface ManagerService {
 
 	// 인증되지 않은 자격증 신청 개수 불러오기
 	int countLicenseList(String keyword);
+
+	// 인증되지 않은 자격증 목록 불러오기
+	ArrayList<License2> selectLicenseList(PageInfo pi, SearchOption so);
 
 }

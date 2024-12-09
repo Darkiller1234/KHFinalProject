@@ -4,12 +4,13 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.T3B1.common.vo.PageInfo;
+import com.kh.T3B1.common.vo.SearchOption;
 import com.kh.T3B1.community.model.vo.Board;
 import com.kh.T3B1.member.model.vo.Member;
+import com.kh.T3B1.personal.model.vo.License2;
 import com.kh.T3B1.study.model.vo.StudyBoard;
 
 
@@ -63,6 +64,13 @@ public class ManagerDao {
 
 	public int countLicenseList(SqlSessionTemplate sqlSession, String keyword) {
 		return sqlSession.selectOne("managerMapper.countLicenseList", keyword);
+	}
+
+	public ArrayList<License2> selectLicenseList(SqlSessionTemplate sqlSession, PageInfo pi, SearchOption so) {
+		int offset = (pi.getCurrentPage() -1)* pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+
+		return (ArrayList)sqlSession.selectList("managerMapper.selectLicenseList", so, rowBounds);
 	}
 
 
