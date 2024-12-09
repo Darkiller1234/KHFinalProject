@@ -7,6 +7,7 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.T3B1.common.model.vo.Report;
 import com.kh.T3B1.member.model.vo.Member;
 import com.kh.T3B1.personal.model.vo.Calendar2;
 import com.kh.T3B1.personal.model.vo.FullCalendarVo;
@@ -134,6 +135,14 @@ public class PersonalDao {
 
 	public ArrayList<String> selectCertiList(SqlSessionTemplate sqlSession) {
 		return (ArrayList)sqlSession.selectList("boardMapper.selectCertiList");
+	}
+
+	public int checkReportMember(SqlSessionTemplate sqlSession, Map<String, Object> params) {
+		return sqlSession.selectOne("personalMapper.checkReportMember", params);
+	}
+
+	public int insertReportMember(SqlSessionTemplate sqlSession, Report r) {
+		return sqlSession.insert("personalMapper.insertReportMember", r);
 	}
 	
 }

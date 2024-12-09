@@ -93,6 +93,16 @@
 	  )
   </select>
   
+  <select id="countReportList" resultType="int">
+	SELECT COUNT(*)
+	FROM REPORT ML
+	INNER JOIN MEMBER M ON (ML.MEMBER_NO = M.MEMBER_NO)
+	WHERE CONFIRM_DATE IS NULL
+	<if test="keyword != null">
+		AND MEMBER_NICKNAME LIKE '%' || #{keyword} || '%'
+	</if>
+  </select>
+  
 
 </mapper>
 

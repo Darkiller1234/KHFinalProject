@@ -283,7 +283,7 @@
                 </span>
               </c:if>
               
-          </div>
+            </div>
             <div id="search-area">
               <div id="selectbox1" class="custom-select">
                 <!-- <select>

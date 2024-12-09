@@ -78,4 +78,9 @@ public class ManagerServiceImpl implements ManagerService {
 		return managerDao.selectLicenseList(sqlSession, pi, so);
 	}
 
+	@Override
+	public int countReportList(String keyword) {
+		return managerDao.countReportList(sqlSession, keyword);
+	}
+
 }
