@@ -9,7 +9,7 @@ function initMessageMain(contextPath) {
         managerNo: null, // 현재 선택한 톡방의 매니저 번호
         memberNo: null, // 현재 로그인한 멤버의 번호
         memberName: null, // 현재 로그인한 멤버의 닉네임
-        talkroomList: null, // 현재 유저가 속한 톡방 목록
+        // talkroomList: null, // 현재 유저가 속한 톡방 목록
 
         sideContent: sideContent, // 멘토, 멘티, 알림 선택메뉴
         messageContent: messageContent, // 메시지 추가되는 영역
@@ -98,12 +98,12 @@ function initMessageMain(contextPath) {
         state.talkroomList = res
     }
 
-    const onRecentMessage = (res, state) => {
-        console.log(res)
-    }
+    // const onRecentMessage = (res, state) => {
+    //     console.log(res)
+    // }
 
     ajaxLoadMemberInfo(state, onLoadMemberInfo)
-    ajaxLoadTalkroomList(state, onLoadTalkroomList)
+    // ajaxLoadTalkroomList(state, onLoadTalkroomList)
 
     initMenuButton(state);
     initSideScroll(state);
@@ -111,7 +111,7 @@ function initMessageMain(contextPath) {
     initChatEvent(state);
     initSearchTalk(state);
 
-    setInterval(ajaxRecentMessage(state, onRecentMessage), 3000);
+    // setInterval(ajaxRecentMessage(state, onRecentMessage), 3000);
 }
 
 function initMenuButton(state){
