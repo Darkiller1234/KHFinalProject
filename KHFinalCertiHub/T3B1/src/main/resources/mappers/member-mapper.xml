@@ -248,7 +248,7 @@
 	</select>
 	
 	<!-- 유저 검색 결과 갯수 쿼리 -->
-	<select id="CountUser" resultType="int">
+	<select id="countUserList" resultType="int">
 		SELECT COUNT(*)
 		FROM MEMBER
 		WHERE MEMBER_ID LIKE '%' || #{keyword} || '%'
