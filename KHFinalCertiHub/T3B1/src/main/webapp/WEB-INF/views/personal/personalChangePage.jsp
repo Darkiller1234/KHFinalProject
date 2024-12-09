@@ -122,9 +122,6 @@
                         </div>
 
                         <div class="right-view">
-                            <script>
-                                console.log(${loginMember.social})
-                            </script>
                             <c:if test="${empty loginMember.social}">
                                 <!-- 비밀번호 변경 텍스트와 버튼 -->
                                 <div class="password-change">

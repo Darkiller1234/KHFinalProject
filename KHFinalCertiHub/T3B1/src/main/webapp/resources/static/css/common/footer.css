@@ -4,20 +4,11 @@
 }
 
 
-.ft1{
+.logo-ft{
     background-color: #EDF6F9;
     height: 55px;
-    padding: 16px;
     width: 100%;
 
-}
-
-.ft1>a{
-    text-decoration: none;
-    border: none;
-    align-items: center;
-    font-size: 12px;
-    color: black;
 }
 
 .ft2{
@@ -27,4 +18,9 @@
     font-size: 12px;
     color: #EDF6F9;
     padding: 12px;
+}
+
+.logo-ft img {
+    width: 155px;
+    height: 50px;
 }
