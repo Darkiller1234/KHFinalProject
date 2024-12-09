@@ -13,12 +13,32 @@
   	<result column="CONFIRM_DATE" property="confirmDate"/>
   	<result column="LICENSE_NAME" property="licenseName"/>
   	<result column="LICENSE_DESC" property="licenseDesc"/>
+  	<result column="MEMBER_NICKNAME" property="memberName"/>
   </resultMap>
 
   <select id="countLicenseList" resultType="int">
 	SELECT COUNT(*)
-	FROM MEMBER_LICENSE
+	FROM MEMBER_LICENSE ML
+	INNER JOIN MEMBER M ON (ML.MEMBER_NO = M.MEMBER_NO)
 	WHERE CONFIRM_DATE IS NULL
+	<if test="keyword != null">
+		AND MEMBER_NICKNAME LIKE '%' || #{keyword} || '%'
+	</if>
+  </select>
+  
+   <select id="selectLicenseList" resultMap="LicenseResultSet">
+		SELECT ML.LICENSE_NO LICENSE_NO,
+		    L.LICENSE_NAME,
+		    ML.MEMBER_NO MEMBER_NO,
+		    ML.LICENSE_IMG LICENSE_IMG,
+		    M.MEMBER_NICKNAME MEMBER_NICKNAME
+		FROM MEMBER_LICENSE ML
+		INNER JOIN MEMBER M ON (ML.MEMBER_NO = M.MEMBER_NO)
+		INNER JOIN LICENSE L ON (L.LICENSE_NO = ML.LICENSE_NO)
+		WHERE CONFIRM_DATE IS NULL
+	<if test="keyword != null">
+		AND MEMBER_NICKNAME LIKE '%' || #{keyword} || '%'
+	</if>
   </select>
   
 

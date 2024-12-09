@@ -18,8 +18,12 @@ import com.kh.T3B1.common.vo.SearchOption;
 import com.kh.T3B1.community.model.vo.Board;
 import com.kh.T3B1.manager.service.ManagerService;
 import com.kh.T3B1.member.model.vo.Member;
+import com.kh.T3B1.personal.model.vo.License2;
 import com.kh.T3B1.study.model.vo.StudyBoard;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 @RequestMapping("/manager")
 public class ManagerController {
@@ -139,9 +143,12 @@ public class ManagerController {
 		SearchOption so = new SearchOption();
 		if(keyword != null && !keyword.equals("")) so.setKeyword(keyword);
 		
-		ArrayList<StudyBoard> boardList = managerService.selectLicenseList(pi, so);
+		ArrayList<License2> licenseList = managerService.selectLicenseList(pi, so);
+		
+		log.info("\nlicenseList : {}\n", licenseList);
+		
 		HashMap<String, String> jsonData =  new HashMap<>();
-		jsonData.put("board", new Gson().toJson(boardList));
+		jsonData.put("board", new Gson().toJson(licenseList));
 		jsonData.put("pageInfo", new Gson().toJson(pi));
 		
 		return new Gson().toJson(jsonData);

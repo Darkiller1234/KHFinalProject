@@ -1,9 +1,8 @@
 function initCertifyPage(contextPath) {
-    initCertifyBoard(contextPath);
-    initCertifyPageBar(contextPath);
+    initBoard(contextPath);
 }
 
-function initCertifyBoard(contextPath) {
+function initBoard(contextPath) {
     // 현재 페이지의 URL 주소
     const url = new URL(window.location.href);
     // URL의 파라미터값을 가진 객체
@@ -13,9 +12,6 @@ function initCertifyBoard(contextPath) {
     const boardLimit = urlParam.get("display") ?? 10
     const pageLimit = 5
         
-    const boardList = document.querySelector('.board-certify');
-    const pagingBar = document.querySelector('.certify-bar');
-
     // pageInfo = 객체 리터럴
     let pageInfo = {
         currentPage : currentPage,
@@ -28,6 +24,7 @@ function initCertifyBoard(contextPath) {
 
     // 콜백 함수
     const onBoardLoad = (data) => {
+        console.log(data)
         if(data){
             initList(contextPath, JSON.parse(data.board))
             initPageBar(contextPath, JSON.parse(data.pageInfo))
@@ -38,7 +35,34 @@ function initCertifyBoard(contextPath) {
     loadStudy(); 
 }
 
-function initCertifyPageBar(contextPath) {
+function initList(contextPath, data){
+    const boardList = document.querySelector('.board-certify');
+    
+    let boardInfo = {
+        url: contextPath + "/manager/certify?no=",
+        titleIndex: 2,
+        header : [
+            "신청자",
+            "신청자격증",
+            "첨부자료",
+            "수락하기",
+            "거절",
+        ],
+    }
+
+    boardInfo.boardList = data.map( board => [
+        null,
+        board.memberName,
+        board.licenseName,
+        board.licenseImg,
+        '<button>수락</button>',
+        '<button>거절</button>',
+    ])
+    
+    createList(boardList, boardInfo)
+}
+
+function initPageBar(contextPath, data) {
     const pagingBar = document.querySelector('.paging-bar');
     const url = new URL(window.location.href);
     const urlParam = url.searchParams;
@@ -63,7 +87,7 @@ function ajaxLoadBoard(pageInfo, callback){
     return function() {
         $.ajax({
             type:"post",
-            url:"boardList",
+            url:"licenseList",
             data: {
                 "currentPage" : pageInfo.currentPage,
                 "boardLimit" : pageInfo.boardLimit,
