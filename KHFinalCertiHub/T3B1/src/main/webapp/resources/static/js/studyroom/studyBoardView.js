@@ -9,7 +9,10 @@ function initStudyBoardView(contextPath, isRecruit){
         isRecruit : isRecruit,
         boardNo : boardNo,
         studyNo : document.getElementById("boardNo").value,
+        writerNo : document.getElementById("writer").value,
+        reportReason : document.getElementsByName('reportReason'),
         contextPath : contextPath,
+        reportType: 1,
     }
     initButtonEvent(state);
     initSelectBox(state);
@@ -31,6 +34,28 @@ function initButtonEvent(state){
             location.href = 'board/edit?no=' + state.boardNo;
         }
     }
+
+    const reportButton = document.querySelector('#report-submit-button')
+    if(reportButton){
+        reportButton.onclick = () => {
+            ajaxReportBoard(state, (res) => {
+                if(res.success == 'Y'){
+                    alert('신고 완료')
+                } else if(res.success == 'E') {
+                    alert('이미 신고한 게시글입니다.')
+                } else {
+                    alert('신고 실패')
+                }
+            })
+        }
+    }
+
+    const radioList = document.querySelectorAll('.report-choose-area input[type=radio]')
+    radioList.forEach((radio) => {
+        radio.onclick = () => {
+            state.reportType = radio.value
+        }
+    })
 }
 
 function initSelectBox(state){
@@ -119,6 +144,39 @@ function ajaxApplyStudy(studyNo, callback){
         success: callback,
         error: () => {
             console.log('스터디 신청 요청 실패')
+        }
+    })
+}
+
+//글 신고 여부
+function checkReportBoard(data, callback){
+    $.ajax({
+        url: "detail/checkReportBoard",
+        data: data,
+        success: function(res){
+            callback(res);
+        },
+        error: function(res){
+            console.log("글 신고여부 확인 ajax 오류");
+        }
+    })
+}
+
+//글 신고 insert
+function ajaxReportBoard(state, callback){
+    $.ajax({
+        url: state.contextPath + '/report/insert',
+        data: {
+            reportTypeNo: state.reportType,
+            studyBoardNo: state.boardNo,
+            reportDetail: state.reportReason.value,
+            accusedNo: state.writerNo,
+        },
+        success: function(res){
+            callback(res);
+        },
+        error: function(res){
+            console.log("글 신고 ajax 오류");
         }
     })
 }

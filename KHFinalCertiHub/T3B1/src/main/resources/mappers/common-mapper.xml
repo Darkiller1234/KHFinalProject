@@ -10,12 +10,89 @@
   	<result column="LICENSE_NAME" property="licenseName"/>
   	<result column="LICENSE_DESC" property="licenseDesc"/>
   </resultMap>
+  
+  <resultMap type="Report" id="ReportResultSet">
+	  <result column="STUDY_BOARD_NO" property="studyBoardNo"/>
+	  <result column="REPORT_TYPE_NO" property="reportTypeNo"/>
+	  <result column="REPORT_NO" property="reportNo"/>
+	  <result column="REPLY_NO" property="replyNo"/>
+	  <result column="MESSAGE_NO" property="messageNo"/>
+	  <result column="BOARD_NO" property="boardNo"/>
+	  <result column="ACCUSER_NO" property="accuserNo"/>
+	  <result column="ACCUSED_NO" property="accusedNo"/>
+	  <result column="REPORT_DETAIL" property="reportDetail"/>
+  </resultMap>
 
   <select id="selectLicenseList" resultMap="LicenseResultSet">
 	SELECT LICENSE_NO,
 		   LICENSE_NAME
 	  FROM LICENSE
   </select>
+  
+  <!-- 신고 -->
+  <insert id="insertReport">
+  	INSERT INTO REPORT(
+  		<if test="studyBoardNo != 0">
+    		STUDY_BOARD_NO,
+	    </if>
+	    REPORT_TYPE_NO,
+	    REPORT_NO,
+	    REPORT_DETAIL,
+	    <if test="replyNo != 0">
+	    	REPLY_NO,
+	    </if>
+	    <if test="messageNo != 0">
+	    	MESSAGE_NO,
+	    </if>
+	    <if test="boardNo != 0">
+	    	BOARD_NO,
+	    </if>
+	    ACCUSER_NO,
+	    ACCUSED_NO
+	) VALUES (
+		<if test="studyBoardNo != 0">
+	    	#{studyBoardNo},
+	    </if>
+	    #{reportTypeNo},
+	    REPORT_SEQ.NEXTVAL,
+	    #{reportDetail},
+	    <if test="replyNo != 0">
+	    	#{replyNo},
+	    </if>
+	    <if test="messageNo != 0">
+	    	#{messageNo},
+	    </if>
+	    <if test="boardNo != 0">
+		    #{boardNo},
+	    </if>
+	    #{accuserNo},
+	    #{accusedNo}
+	)
+  </insert>
+  
+  <select id="checkReported" resultType="int">
+	  SELECT 1 
+		FROM DUAL 
+	  WHERE EXISTS(
+		    SELECT 1
+		    FROM REPORT
+		  	WHERE ACCUSER_NO = #{accuserNo}
+	    	  AND ACCUSED_NO = #{accusedNo}
+	   		<if test="studyBoardNo != 0">
+				AND STUDY_BOARD_NO = #{studyBoardNo}
+			</if>
+	    	<if test="replyNo != 0">
+				AND REPLY_NO = #{replyNo}
+			</if>
+			<if test="messageNo != 0">
+				AND MESSAGE_NO = #{messageNo}
+			</if>
+   			<if test="boardNo != 0">
+				AND BOARD_NO = #{boardNo}
+			</if>
+	  )
+  </select>
+  
 
 </mapper>
 
