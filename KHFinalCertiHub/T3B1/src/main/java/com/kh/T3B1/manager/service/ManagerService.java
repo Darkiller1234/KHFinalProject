@@ -3,6 +3,7 @@ package com.kh.T3B1.manager.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.kh.T3B1.common.model.vo.Report;
 import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.common.vo.SearchOption;
 import com.kh.T3B1.community.model.vo.Board;
@@ -40,5 +41,7 @@ public interface ManagerService {
 	ArrayList<License2> selectLicenseList(PageInfo pi, SearchOption so);
 
 	int countReportList(String keyword);
+
+	ArrayList<Report> selectReportList(PageInfo pi, SearchOption so);
 
 }

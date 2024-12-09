@@ -46,11 +46,44 @@
                         <div class="board-certify">
                             <table class="board">
                                 <tr class="header bgcolor2">
-                                    <th  data-bs-toggle="modal" data-bs-target="#apply-modal">신청자</th>
-                                    <th class="title">신청자격증</th>
+                                    <th>신 고자</th>
+                                    <th>피신 고자</th>
+                                    <th>무엇을?</th>
+                                    <th>신고당한 내용</th>
+                                    <th>신고종류</th>
                                     <th>신고 사유</th>
                                     <th>삭제</th>
                                     <th>무시</th>
+                                </tr>
+                                <tr>
+                                    <td>윤대한</td>
+                                    <td>윤대한</td>
+                                    <td>유저</td>
+                                    <td data-bs-toggle="modal" data-bs-target="#apply-modal">-</td>
+                                    <td>신고종류</td>
+                                    <td>신고 사유</td>
+                                    <td><button>삭제</button></td>
+                                    <td><button>무시</button></td>
+                                </tr>
+                                <tr>
+                                    <td>윤대한</td>
+                                    <td>molru</td>
+                                    <td>댓글</td>
+                                    <td data-bs-toggle="modal" data-bs-target="#apply-modal">신고 내용</td>
+                                    <td>신고종류</td>
+                                    <td>신고 사유</td>
+                                    <td><button>삭제</button></td>
+                                    <td><button>무시</button></td>
+                                </tr>
+                                <tr>
+                                    <td>윤대한</td>
+                                    <td>molru</td>
+                                    <td>글</td>
+                                    <td><button>링크</button></td>
+                                    <td>신고종류</td>
+                                    <td>신고 사유</td>
+                                    <td><button>삭제</button></td>
+                                    <td><button>무시</button></td>
                                 </tr>
                             </table>
                         </div>

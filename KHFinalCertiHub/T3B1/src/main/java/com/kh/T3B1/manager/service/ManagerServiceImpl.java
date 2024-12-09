@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.T3B1.common.model.vo.Report;
 import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.common.vo.SearchOption;
 import com.kh.T3B1.community.model.vo.Board;
@@ -81,6 +82,11 @@ public class ManagerServiceImpl implements ManagerService {
 	@Override
 	public int countReportList(String keyword) {
 		return managerDao.countReportList(sqlSession, keyword);
+	}
+
+	@Override
+	public ArrayList<Report> selectReportList(PageInfo pi, SearchOption so) {
+		return managerDao.selectReportList(sqlSession, pi, so);
 	}
 
 }

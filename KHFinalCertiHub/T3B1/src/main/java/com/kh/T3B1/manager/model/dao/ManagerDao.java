@@ -6,6 +6,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.T3B1.common.model.vo.Report;
 import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.common.vo.SearchOption;
 import com.kh.T3B1.community.model.vo.Board;
@@ -75,6 +76,13 @@ public class ManagerDao {
 
 	public int countReportList(SqlSessionTemplate sqlSession, String keyword) {
 		return sqlSession.selectOne("commonMapper.countReportList", keyword);
+	}
+
+	public ArrayList<Report> selectReportList(SqlSessionTemplate sqlSession, PageInfo pi, SearchOption so) {
+		int offset = (pi.getCurrentPage() -1)* pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+
+		return (ArrayList)sqlSession.selectList("commonMapper.selectReportList", so, rowBounds);
 	}
 
 

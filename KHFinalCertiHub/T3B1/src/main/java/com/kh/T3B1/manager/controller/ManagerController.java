@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.kh.T3B1.common.model.vo.Report;
 import com.kh.T3B1.common.template.Template;
 import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.common.vo.SearchOption;
@@ -154,28 +155,21 @@ public class ManagerController {
 	
 	@ResponseBody
 	@PostMapping(value="reportList", produces="application/json; charset=UTF-8")
-	public String selectReportList(int currentPage, int boardLimit, int pageLimit, String keyword) {
-		// 요청 한번에 불러올 게시글의 수, 최대 20개 까지
-		pageLimit = pageLimit <= 20 ? pageLimit : 20;
-		
-		// 이미 마지막 게시판 페이지라면 DB에서 조회하지 않도록 막아준다
+	public String selectReportList(int currentPage, String keyword) {
 		int listCount = managerService.countReportList(keyword);
-		if((currentPage - 1) * pageLimit > listCount) {
-			return null;
-		}
 		
-		PageInfo pi = Template.getPageInfo(listCount, currentPage, pageLimit, boardLimit);
+		PageInfo pi = Template.getPageInfo(listCount, currentPage, 10, 10);
 		
 		// 검색 옵션 저장
 		SearchOption so = new SearchOption();
 		if(keyword != null && !keyword.equals("")) so.setKeyword(keyword);
 		
-		ArrayList<License2> licenseList = managerService.selectLicenseList(pi, so);
+		ArrayList<Report> reportList = managerService.selectReportList(pi, so);
 		
-		log.info("\nlicenseList : {}\n", licenseList);
+		log.info("\nlicenseList : {}\n", reportList);
 		
 		HashMap<String, String> jsonData =  new HashMap<>();
-		jsonData.put("board", new Gson().toJson(licenseList));
+		jsonData.put("board", new Gson().toJson(reportList));
 		jsonData.put("pageInfo", new Gson().toJson(pi));
 		
 		return new Gson().toJson(jsonData);
