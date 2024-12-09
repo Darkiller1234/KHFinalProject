@@ -9,13 +9,12 @@ function initBoard(contextPath) {
     const urlParam = url.searchParams;
     const keyword = urlParam.get('keyword')
     const currentPage = urlParam.get('p') ?? 1
-    const boardLimit = urlParam.get("display") ?? 10
     const pageLimit = 5
         
     // pageInfo = 객체 리터럴
     let pageInfo = {
         currentPage : currentPage,
-        boardLimit : boardLimit,
+        boardLimit : 10,
         pageLimit : pageLimit,
         keyword : keyword,
         isEnd : false,
@@ -63,7 +62,7 @@ function initList(contextPath, data){
 }
 
 function initPageBar(contextPath, data) {
-    const pagingBar = document.querySelector('.paging-bar');
+    const pagingBar = document.querySelector('.certify-bar');
     const url = new URL(window.location.href);
     const urlParam = url.searchParams;
     const keyword = urlParam.get('keyword')
@@ -73,7 +72,7 @@ function initPageBar(contextPath, data) {
         endPage :  data.endPage,
         currentPage : data.currentPage,
         maxPage : data.maxPage,
-        pageUrl : 'list?display=' + data.boardLimit + (keyword ? "&keyword=" + keyword : ""),
+        pageUrl : 'certify?' + (keyword ? "&keyword=" + keyword : ""),
         imgUrl : [
             contextPath + '/resources/static/img/button/arrow_left.png',
             contextPath + '/resources/static/img/button/arrow_right.png'
