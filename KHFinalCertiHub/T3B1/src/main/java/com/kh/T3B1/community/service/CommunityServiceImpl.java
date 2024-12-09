@@ -8,11 +8,11 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.T3B1.common.model.vo.Report;
 import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.community.model.dao.CommunityDao;
 import com.kh.T3B1.community.model.vo.Board;
 import com.kh.T3B1.community.model.vo.Reply;
-import com.kh.T3B1.community.model.vo.Report;
 import com.kh.T3B1.personal.model.vo.License2;
 
 import lombok.RequiredArgsConstructor;

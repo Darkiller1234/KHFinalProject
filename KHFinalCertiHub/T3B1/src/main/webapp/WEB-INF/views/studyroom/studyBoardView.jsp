@@ -99,6 +99,7 @@
     <div class="modal" id="report-board-modal">
         <div class="modal-dialog">
           <div class="modal-content">
+            <input id="writer" type="hidden" value="${board.managerNo}">
 
             <!-- Modal Header -->
             <div class="modal-header">
