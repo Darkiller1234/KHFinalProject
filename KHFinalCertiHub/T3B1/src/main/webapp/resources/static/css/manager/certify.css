@@ -5,7 +5,6 @@ body {
     margin: 0;
     display: flex; /* 플렉스 박스 사용 */
     flex-direction: column; /* 수직 방향 정렬 */
-    height: 100vh; /* 전체 화면 높이 */
 }
 
 .wrapper {
@@ -25,7 +24,6 @@ body {
     background-color: #EDF6F9; /* 사이드바 배경색 */
     width: 200px; /* 사이드바 너비 */
     padding: 20px;
-    height: calc(100vh - 100px); /* 헤더를 제외한 전체 높이 사용 */
     justify-content: flex-start;
 }
 
@@ -49,16 +47,6 @@ body {
     background-color: #ffffff; /* 콘텐츠 배경색 */
     padding: 40px; /* 패딩 추가 */
     border-radius: 8px; /* 모서리 둥글게 */
-    height: calc(100vh - 100px); /* 헤더를 제외한 전체 높이 사용 */
-}
-
-/* 콘텐츠 영역 스타일 */
-.content {
-    flex: 1; /* 남은 공간 차지 */
-    background-color: #ffffff; /* 콘텐츠 배경색 */
-    padding: 40px; /* 패딩 추가 */
-    border-radius: 8px; /* 모서리 둥글게 */
-    height: calc(100vh - 100px); /* 헤더를 제외한 전체 높이 사용 */
     display: flex; /* 플렉스 박스 사용 */
     flex-direction: column; /* 수직 방향 정렬 */
     align-items: center; /* 수평 중앙 정렬 */
@@ -84,6 +72,11 @@ body {
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+.board-certify .board th.title{
+    width:40%;
+}
+
 .pagination {
     margin-top: 10px;
 }
@@ -106,8 +99,7 @@ footer {
         width: 65%;
     }
 
-    /* '등록일' 열 숨기기 (3번째 열) */
-    .board tr td:nth-child(3) {
+    .board tr > :nth-child(1) {
         display: none;
     }
 }
@@ -117,15 +109,8 @@ footer {
         width: 100%;
     }
 
-    .board tr :nth-child(1) {
+    .board tr > :nth-child(1) {
         display: none;
     }
 
-    .board tr :nth-child(3) {
-        display: none;
-    }
-
-    .board tr :nth-child(4) {
-        display: none;
-    }
 }

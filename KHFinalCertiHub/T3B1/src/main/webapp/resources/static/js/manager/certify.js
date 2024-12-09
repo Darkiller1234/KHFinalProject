@@ -1,8 +1,17 @@
 function initCertifyPage(contextPath) {
-    initBoard(contextPath);
+    let state = {
+        contextPath: contextPath,
+        memberNo: null,
+        memberName: null,
+        licenseNo: null,
+        licenseName: null,
+        licenseImg: null,
+    }
+
+    initBoard(state);
 }
 
-function initBoard(contextPath) {
+function initBoard(state) {
     // 현재 페이지의 URL 주소
     const url = new URL(window.location.href);
     // URL의 파라미터값을 가진 객체
@@ -17,34 +26,54 @@ function initBoard(contextPath) {
         boardLimit : 10,
         pageLimit : pageLimit,
         keyword : keyword,
-        isEnd : false,
-        contextPath : contextPath,
+        contextPath : state.contextPath,
     }
 
     // 콜백 함수
     const onBoardLoad = (data) => {
-        console.log(data)
         if(data){
-            initList(contextPath, JSON.parse(data.board))
-            initPageBar(contextPath, JSON.parse(data.pageInfo))
+            initList(state, JSON.parse(data.board))
+            initPageBar(state, JSON.parse(data.pageInfo))
         }
     }
 
-    const loadStudy = ajaxLoadBoard(pageInfo, onBoardLoad)
-    loadStudy(); 
+    ajaxLoadBoard(pageInfo, onBoardLoad);
 }
 
-function initList(contextPath, data){
+function initList(state, data){
     const boardList = document.querySelector('.board-certify');
-    
+
+    const displayModal = () => {
+        const modal = new bootstrap.Modal(document.getElementById('licenseImg'))
+        const licenseImg = document.getElementById('license-img')
+        const licenseName = document.getElementById('license-name')
+        const userName = document.getElementById('user-name')
+
+        licenseImg.src = state.contextPath + data.licenseImg
+        userName.innerHTML = data.memberName
+        licenseName.innerHTML = data.licenseName
+        
+        modal.show()
+    }
+
     let boardInfo = {
-        url: contextPath + "/manager/certify?no=",
+        url: state.contextPath + "/manager/certify?no=",
         titleIndex: 2,
+        events: [
+            [
+                2, displayModal
+            ],
+            [
+                3, displayModal
+            ],
+            [
+                4, displayModal
+            ],
+        ],
         header : [
             "신청자",
             "신청자격증",
-            "첨부자료",
-            "수락하기",
+            "수락",
             "거절",
         ],
     }
@@ -53,7 +82,6 @@ function initList(contextPath, data){
         null,
         board.memberName,
         board.licenseName,
-        board.licenseImg,
         '<button>수락</button>',
         '<button>거절</button>',
     ])
@@ -61,7 +89,7 @@ function initList(contextPath, data){
     createList(boardList, boardInfo)
 }
 
-function initPageBar(contextPath, data) {
+function initPageBar(state, data) {
     const pagingBar = document.querySelector('.certify-bar');
     const url = new URL(window.location.href);
     const urlParam = url.searchParams;
@@ -74,8 +102,8 @@ function initPageBar(contextPath, data) {
         maxPage : data.maxPage,
         pageUrl : 'certify?' + (keyword ? "&keyword=" + keyword : ""),
         imgUrl : [
-            contextPath + '/resources/static/img/button/arrow_left.png',
-            contextPath + '/resources/static/img/button/arrow_right.png'
+            state.contextPath + '/resources/static/img/button/arrow_left.png',
+            state.contextPath + '/resources/static/img/button/arrow_right.png'
         ]
     }
 
@@ -83,20 +111,18 @@ function initPageBar(contextPath, data) {
 }
 
 function ajaxLoadBoard(pageInfo, callback){
-    return function() {
-        $.ajax({
-            type:"post",
-            url:"licenseList",
-            data: {
-                "currentPage" : pageInfo.currentPage,
-                "boardLimit" : pageInfo.boardLimit,
-                "pageLimit" :  pageInfo.pageLimit,
-                "keyword" : pageInfo.keyword,
-            },
-            success: callback,
-            error: () => {
-                console.log("게시글 목록 불러오기 실패")
-            }
-        })
-    }
+    $.ajax({
+        type:"post",
+        url:"licenseList",
+        data: {
+            "currentPage" : pageInfo.currentPage,
+            "boardLimit" : pageInfo.boardLimit,
+            "pageLimit" :  pageInfo.pageLimit,
+            "keyword" : pageInfo.keyword,
+        },
+        success: callback,
+        error: () => {
+            console.log("게시글 목록 불러오기 실패")
+        }
+    })
 }

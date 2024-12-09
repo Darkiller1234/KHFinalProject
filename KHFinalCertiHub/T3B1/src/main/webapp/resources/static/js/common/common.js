@@ -156,7 +156,15 @@ function createSelectBox(div, data){
     div : 안에 테이블을 생성할 영역
     data = {
         url: contextPath + "이동할 경로?no=" ex) contextPath + "/study/board?no=",
-        titleIndex: n( n번째 요소를 타이틀로 설정 )
+        titleIndex: n( n번째 요소를 타이틀로 설정 ),
+        events: [
+            [
+                2(이벤트 부여할 컬럼번호), eventfunction(부여할 이벤트 함수명)
+            ],
+            [
+                3, eventfunction
+            ]
+        ],
         header : [
             "제목",
             "작성자",
@@ -199,6 +207,7 @@ function createList(div, data){
     // titleIndex를 data에 넣지않으면, 맨 앞 요소를 title로 간주
     // titleIndex 값이 있다면 해당 숫자번째 요소를 title로 설정
     const titleIndex = data?.titleIndex === undefined ? 0 : data.titleIndex - 1;
+    const events = data.events;
 
     header.children[titleIndex].className = "title"
     board.appendChild(header)
@@ -217,6 +226,18 @@ function createList(div, data){
                 location.href= data.url + post[0]
             }
         }
+
+        // ev[0] : 이벤트를 부여할 컬럼 번호
+        // ev[1] : 해당 컬럼에 부여할 이벤트 함수
+        if(events != null){
+            events.forEach(ev => {
+                let eventIndex = ev[0] <= 0 ? 0 :ev[0] - 1;
+                tr.children[eventIndex].onclick = () => {
+                    ev[1]()
+                }
+            })
+        }
+
         board.appendChild(tr)
     })
 
