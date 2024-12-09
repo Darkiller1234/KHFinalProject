@@ -5,7 +5,37 @@ function initPersonalView(contextPath) {
     const urlParam = url.searchParams;
     getMemberInfo(urlParam.get('pno'), contextPath, urlParam); 
     
-    
+    $("#repoerBtn").on("click", function () {
+        checkReportMember({ pno: urlParam.get('pno') }, function(result){
+            if(result < 1){
+                $("#report-board-modal #report-submit-button").off("click");
+                $("#report-board-modal #report-submit-button").on("click", function(){
+                    const selectedElement = document.querySelector('#report-board-modal input[name="reportNumber"]:checked');
+                    if (selectedElement) {
+                        const selectedReportNumber = selectedElement.value;
+                        const reportReason = document.querySelector('#report-board-modal textarea[name=reportReason').value;
+                        insertReportMember({
+                            accusedNo: urlParam.get('pno'),
+                            reportTypeNo: selectedReportNumber,
+                            reportDetail: reportReason
+                        }, function(result){
+                            if(result > 0){
+                                alert("신고가 정상적으로 처리되었습니다.")
+                                location.reload(true);
+                            }else{
+                                alert("신고가 실패하였습니다. 다시 시도해주세요.")
+                            }
+                        })
+                    } else {
+                        alert("신고 사유를 선택해주세요.")
+                    }
+                })
+            } else {
+                document.querySelector("#report-board-modal .modal-body").innerHTML = "이미 신고하신 글입니다."
+                document.querySelector("#report-board-modal .modal-footer").innerHTML = ""  
+            }
+        })
+    });
 }
 
 

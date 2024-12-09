@@ -39,4 +39,6 @@ public interface ManagerService {
 	// 홍보게시글 목록 불러오기
 	ArrayList<StudyBoard> selectListList(PageInfo pi, SearchOption so);
 
+	int countReportList(String keyword);
+
 }

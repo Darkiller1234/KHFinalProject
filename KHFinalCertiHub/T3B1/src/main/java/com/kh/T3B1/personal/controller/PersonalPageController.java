@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.kh.T3B1.common.model.vo.Report;
 import com.kh.T3B1.member.model.vo.Member;
 import com.kh.T3B1.member.service.MemberService;
 import com.kh.T3B1.personal.model.vo.Calendar2;
@@ -135,6 +136,21 @@ public class PersonalPageController {
 	public String ajaxLookLicense(int pno, HttpSession session) {
 		ArrayList<License2> list = personalService.lookLicense(pno);
 		return new Gson().toJson(list);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="view/checkReportMember", produces="application/json; charset-UTF-8")
+	public String checkReportMember(int pno, HttpSession session) {
+		int result = personalService.checkReportMember(pno, ((Member)session.getAttribute("loginMember")).getMemberNo());
+		return new Gson().toJson(result);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="view/insertReportMember", produces="application/json; charset-UTF-8")
+	public String insertReportMember(Report R, HttpSession session) {
+		R.setAccuserNo(((Member)session.getAttribute("loginMember")).getMemberNo());
+		int result = personalService.insertReportMember(R);
+		return new Gson().toJson(result);
 	}
 	
 	@RequestMapping("viewSc")

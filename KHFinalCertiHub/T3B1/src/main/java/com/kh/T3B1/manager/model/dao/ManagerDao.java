@@ -73,6 +73,10 @@ public class ManagerDao {
 		return (ArrayList)sqlSession.selectList("studyMapper.selectListList", so, rowBounds);
 	}
 
+	public int countReportList(SqlSessionTemplate sqlSession, String keyword) {
+		return sqlSession.selectOne("commonMapper.countReportList", keyword);
+	}
+
 
 
 }

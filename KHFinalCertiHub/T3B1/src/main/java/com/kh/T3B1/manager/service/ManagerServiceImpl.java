@@ -77,5 +77,9 @@ public class ManagerServiceImpl implements ManagerService {
 	public ArrayList<StudyBoard> selectListList(PageInfo pi, SearchOption so) {
 		return managerDao.selectListList(sqlSession, pi, so);
 	}
+	
+	public int countReportList(String keyword) {
+		return managerDao.countReportList(sqlSession, keyword);
+	}
 
 }
