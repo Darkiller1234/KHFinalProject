@@ -29,39 +29,6 @@ public class ManagerDao {
 		return (ArrayList)sqlSession.selectList("boardMapper.managerList", pi, rowBounds);
 	}
 
-	public int CountUser(SqlSessionTemplate sqlSession, String keyword) {
-		return sqlSession.selectOne("memberMapper.CountUser",keyword);
-	}
-
-	public ArrayList<Member> selectUserList(SqlSessionTemplate sqlSession, PageInfo pi, String keyword) {
-		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
-		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-		// SQL 실행(selectList는 Mapper 에서 쿼리를 실행)
-		return (ArrayList)sqlSession.selectList("memberMapper.selectUserList", keyword, rowBounds);
-	}
-
-	public int Countstudylist(SqlSessionTemplate sqlSession, String keyword) {
-		return sqlSession.selectOne("studyMapper.Countstudylist",keyword);
-	}
-
-	public ArrayList<StudyBoard> StudyList(SqlSessionTemplate sqlSession, PageInfo pi, String keyword) {
-		int offset = (pi.getCurrentPage() -1)* pi.getBoardLimit();
-		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-		//SQL 실행(selectList는 Mapper에서 쿼리를 실행)
-		return (ArrayList)sqlSession.selectList("studyMapper.StudyList", keyword,rowBounds);
-	}
-
-	public int Countcommulist(SqlSessionTemplate sqlSession, String keyword) {
-		return sqlSession.selectOne("boardMapper.Countcommulist", keyword);
-	}
-
-	public ArrayList<Board> CommuList(SqlSessionTemplate sqlSession, PageInfo pi, String keyword) {
-		int offset = (pi.getCurrentPage() -1)* pi.getBoardLimit();
-		
-		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
-		return (ArrayList)sqlSession.selectList("boardMapper.CommuList", keyword, rowBounds);
-	}
-
 	public int countLicenseList(SqlSessionTemplate sqlSession, String keyword) {
 		return sqlSession.selectOne("managerMapper.countLicenseList", keyword);
 	}
@@ -71,6 +38,39 @@ public class ManagerDao {
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 
 		return (ArrayList)sqlSession.selectList("managerMapper.selectLicenseList", so, rowBounds);
+	}
+
+	public int countUserList(SqlSessionTemplate sqlSession, String keyword) {
+		return sqlSession.selectOne("memberMapper.countUserList", keyword);
+	}
+
+	public ArrayList<Member> selectUserList(SqlSessionTemplate sqlSession, PageInfo pi, SearchOption so) {
+		int offset = (pi.getCurrentPage() -1)* pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("memberMapper.selectUserList", so, rowBounds);
+	}
+
+	public int countCommuList(SqlSessionTemplate sqlSession, String keyword) {
+		return sqlSession.selectOne("boardMapper.countCommuList", keyword);
+	}
+
+	public ArrayList<Board> selectCommuList(SqlSessionTemplate sqlSession, PageInfo pi, SearchOption so) {
+		int offset = (pi.getCurrentPage() -1)* pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("boardMapper.selectCommuList", so, rowBounds);
+	}
+
+	public int countListList(SqlSessionTemplate sqlSession, String keyword) {
+		return sqlSession.selectOne("studyMapper.countListList", keyword);
+	}
+
+	public ArrayList<StudyBoard> selectListList(SqlSessionTemplate sqlSession, PageInfo pi, SearchOption so) {
+		int offset = (pi.getCurrentPage() -1)* pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("studyMapper.selectListList", so, rowBounds);
 	}
 
 

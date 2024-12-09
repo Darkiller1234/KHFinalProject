@@ -14,29 +14,29 @@ public interface ManagerService {
 	int managerListCount();
 
 	ArrayList<Board> managerList(PageInfo pi);
-	
-	// 유저 게시판 검색 총 갯수
-	int CountUser(String keyword);
-	
-	// 유저 게시판검색목록
-	ArrayList<Member> selectUserList(PageInfo pi, String keyword);
-	
-	// 홍보 게시판 검색 총 갯수
-	int Countstudylist(String keyword);
-	
-	// 홍보 게시판 검색목록
-	ArrayList<StudyBoard> StudyList(PageInfo pi, String keyword);
-	
-	// 커뮤 게시판 검색 총 갯수
-	int Countcommulist(String keyword);
-	
-	// 커뮤 게시판 검색목록
-	ArrayList<Board> CommuList(PageInfo pi, String keyword);
 
 	// 인증되지 않은 자격증 신청 개수 불러오기
 	int countLicenseList(String keyword);
 
 	// 인증되지 않은 자격증 목록 불러오기
 	ArrayList<License2> selectLicenseList(PageInfo pi, SearchOption so);
+	
+	// 회원가입 한 유저 개수 불러오기
+	int countUserList(String keyword);
+	
+	// 회원가입 한 유저 목록 불러오기
+	ArrayList<Member> selectUserList(PageInfo pi, SearchOption so);
+	
+	// 커뮤니티 게시글 개수 불러오기
+	int countCommuList(String keyword);
+	
+	// 커뮤니티 게시글 목록 불러오기
+	ArrayList<Board> selectCommuList(PageInfo pi, SearchOption so);
+	
+	// 홍보게시글 개수 불러오기
+	int countListList(String keyword);
+	
+	// 홍보게시글 목록 불러오기
+	ArrayList<StudyBoard> selectListList(PageInfo pi, SearchOption so);
 
 }
