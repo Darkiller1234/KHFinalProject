@@ -49,5 +49,6 @@
 		<mapper resource="mappers/chatbot-mapper.xml"/>
 		<mapper resource="mappers/message-mapper.xml"/>
 		<mapper resource="mappers/data-mapper.xml"/>
+		<mapper resource="mappers/manager-mapper.xml"/>
 	</mappers>
 </configuration>

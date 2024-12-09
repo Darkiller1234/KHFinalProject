@@ -61,6 +61,10 @@ public class ManagerDao {
 		return (ArrayList)sqlSession.selectList("boardMapper.CommuList", keyword, rowBounds);
 	}
 
+	public int countLicenseList(SqlSessionTemplate sqlSession, String keyword) {
+		return sqlSession.selectOne("managerMapper.countLicenseList", keyword);
+	}
+
 
 
 }
