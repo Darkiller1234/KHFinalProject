@@ -29,7 +29,7 @@ function initPersonalViewSc(contextPath) {
                         getCurrentDateInfo(info);
                     },
                     events: function (info, successCallback, failureCallback) {
-                        fetchExamSchedules('EIP', info.startStr, info.endStr, successCallback, failureCallback);
+                        fetchExamSchedules(info.startStr, info.endStr, successCallback, failureCallback);
                     },
                     eventContent: function (arg) {
                         // 한 줄로 병합된 텍스트 표시
@@ -58,129 +58,147 @@ function initPersonalViewSc(contextPath) {
 
 
 
-    // API 호출 함수
-    function fetchExamSchedules(certType, startStr, endStr, successCallback, failureCallback) {
-        var jmCd = getJmCd(certType);
+   // API 호출 함수
+   function fetchExamSchedules(startStr, endStr, successCallback, failureCallback) {
+    $.ajax({
+        url: 'https://apis.data.go.kr/B490007/qualExamSchd/getQualExamSchdList',
+        data: {
+            serviceKey: 'AiATDYDO2nw7aWzpDtDvC8aswTEabFvLtwjy0RwuM2KnGpfE+D4ffB3SmCH4VqDihRDB/NR8RmbluUBQL+o10w==',
+            numOfRows: 50, // 최대 50개까지 조회
+            pageNo: 1,
+            dataFormat: 'json',
+            implYy: 2024,
+            qualgbCd: 'T'
+        },
+        dataType: 'json',
+        success: function (data) {
+            console.log("API 호출 성공:", data); // 응답 데이터 확인
+            if (data && data.body && data.body.items) {
+                var events = parseScheduleData(data.body.items);
+                successCallback(events); // 모든 일정 반환
+            } else {
+                console.error("응답 데이터 형식이 예상과 다릅니다.", data); // 데이터 형식 오류 처리
+                failureCallback("Invalid data format");
+            }
+        },
+        error: function (error) {
+            console.error("API 호출 실패:", error);
+            failureCallback(error);
+        }
+    });
+}
 
-        $.ajax({
-            url: 'https://apis.data.go.kr/B490007/qualExamSchd/getQualExamSchdList',
-            data: {
-                serviceKey: 'AiATDYDO2nw7aWzpDtDvC8aswTEabFvLtwjy0RwuM2KnGpfE+D4ffB3SmCH4VqDihRDB/NR8RmbluUBQL+o10w==',
-                numOfRows: 20,
-                pageNo: 1,
-                dataFormat: 'json',
-                implYy: 2024,
-                qualgbCd: 'T',
-                jmCd: jmCd
-            },
-            dataType: 'json',
-            success: function (data) {
-                console.log("API 호출 성공:", data);
-                var events = parseScheduleData(data);
-                successCallback(events);
-            },
-            error: function (error) {
-                console.error("API 호출 실패:", error);
-                failureCallback(error);
+    // 일정 데이터 변환 및 그룹화
+    function parseScheduleData(items) {
+        var events = [];
+        var uniqueEvents = new Set();
+
+        items.forEach(function (item) {
+            let group = ''; // 기본 그룹은 빈 값으로 설정
+
+            // description을 기준으로 그룹화 (기능사 제외)
+            if (item.description.includes('기술사')) {
+                group = '기술사';
+            } else if (item.description.includes('기사')) {
+                group = '기사,산업기사';
+            } else if (item.description.includes('기능장')) {
+                group = '기능장';
+            }
+
+            // 기능사 일정 제외
+            if (group === '') return;
+
+            // 필기 원서 접수
+            if (item.docRegStartDt && item.docRegEndDt) {
+                const eventKey = `필기 원서접수-${item.docRegStartDt}-${item.docRegEndDt}-${group}`;
+                if (!uniqueEvents.has(eventKey)) {
+                    uniqueEvents.add(eventKey);
+                    events.push({
+                        title: `${group} 필기 원서접수`, // 시험명 추가
+                        start: formatDate(item.docRegStartDt),
+                        end: formatDate(item.docRegEndDt),
+                        group: group,
+                        color: getColorForGroup(group),
+                        dateRange: `${formatDate(item.docRegStartDt)} ~ ${formatDate(item.docRegEndDt)}`
+                    });
+                }
+            }
+            // 필기 시험
+            if (item.docExamStartDt && item.docExamEndDt) {
+                const eventKey = `필기 시험-${item.docExamStartDt}-${item.docExamEndDt}-${group}`;
+                if (!uniqueEvents.has(eventKey)) {
+                    uniqueEvents.add(eventKey);
+                    events.push({
+                        title: `${group} 필기 시험`, // 시험명 추가
+                        start: formatDate(item.docExamStartDt),
+                        end: formatDate(item.docExamEndDt),
+                        group: group,
+                        color: getColorForGroup(group),
+                        dateRange: `${formatDate(item.docExamStartDt)} ~ ${formatDate(item.docExamEndDt)}`
+                    });
+                }
+            }
+            // 실기 원서 접수
+            if (item.pracRegStartDt && item.pracRegEndDt) {
+                const eventKey = `실기 원서접수-${item.pracRegStartDt}-${item.pracRegEndDt}-${group}`;
+                if (!uniqueEvents.has(eventKey)) {
+                    uniqueEvents.add(eventKey);
+                    events.push({
+                        title: `${group} 실기 원서접수`, // 시험명 추가
+                        start: formatDate(item.pracRegStartDt),
+                        end: formatDate(item.pracRegEndDt),
+                        group: group,
+                        color: getColorForGroup(group),
+                        dateRange: `${formatDate(item.pracRegStartDt)} ~ ${formatDate(item.pracRegEndDt)}`
+                    });
+                }
+            }
+            // 실기 시험
+            if (item.pracExamStartDt && item.pracExamEndDt) {
+                const eventKey = `실기 시험-${item.pracExamStartDt}-${item.pracExamEndDt}-${group}`;
+                if (!uniqueEvents.has(eventKey)) {
+                    uniqueEvents.add(eventKey);
+                    events.push({
+                        title: `${group} 실기 시험`, // 시험명 추가
+                        start: formatDate(item.pracExamStartDt),
+                        end: formatDate(item.pracExamEndDt),
+                        group: group,
+                        color: getColorForGroup(group),
+                        dateRange: `${formatDate(item.pracExamStartDt)} ~ ${formatDate(item.pracExamEndDt)}`
+                    });
+                }
+            }
+            // 실기 합격 발표
+            if (item.pracPassDt) {
+                const eventKey = `실기 합격 발표-${item.pracPassDt}-${group}`;
+                if (!uniqueEvents.has(eventKey)) {
+                    uniqueEvents.add(eventKey);
+                    events.push({
+                        title: `${group} 실기 합격 발표`, // 시험명 추가
+                        start: formatDate(item.pracPassDt),
+                        group: group,
+                        color: getColorForGroup(group),
+                        dateRange: formatDate(item.pracPassDt)
+                    });
+                }
             }
         });
-    }
-
-    // 자격증 코드 설정
-    function getJmCd(certType) {
-        switch (certType) {
-            case 'EIP': return '1320'; // 정보처리기사
-            default: return '1320';
-        }
-    }
-
-    // 일정 데이터 변환 및 중복 제거
-    function parseScheduleData(data) {
-        var events = [];
-        var uniqueEvents = new Set(); // 중복 확인용 Set
-
-        if (data && data.body && data.body.items) {
-            var items = data.body.items;
-
-            items.forEach(function (item) {
-                // 이벤트 데이터 생성
-                const eventDetails = [
-                    // 필기시험 원서접수
-                    item.docRegStartDt && item.docRegEndDt
-                        ? {
-                            title: `기사 필기 원서접수`,
-                            start: formatDate(item.docRegStartDt),
-                            end: formatDate(item.docRegEndDt),
-                            color: '#FF6F61',
-                            dateRange: `${formatDate(item.docRegStartDt)} ~ ${formatDate(item.docRegEndDt)}`
-                        }
-                        : null,
-                    // 필기시험
-                    item.docExamStartDt && item.docExamEndDt
-                        ? {
-                            title: `기사 필기시험`,
-                            start: formatDate(item.docExamStartDt),
-                            end: formatDate(item.docExamEndDt),
-                            color: '#4CAF50',
-                            dateRange: `${formatDate(item.docExamStartDt)} ~ ${formatDate(item.docExamEndDt)}`
-                        }
-                        : null,
-                    // 필기 합격 발표
-                    item.docPassDt
-                        ? {
-                            title: `기사 필기 합격 발표`,
-                            start: formatDate(item.docPassDt),
-                            color: '#FFC107',
-                            dateRange: formatDate(item.docPassDt)
-                        }
-                        : null,
-                    // 실기시험 원서접수
-                    item.pracRegStartDt && item.pracRegEndDt
-                        ? {
-                            title: `기사 실기 원서접수`,
-                            start: formatDate(item.pracRegStartDt),
-                            end: formatDate(item.pracRegEndDt),
-                            color: '#FF9800',
-                            dateRange: `${formatDate(item.pracRegStartDt)} ~ ${formatDate(item.pracRegEndDt)}`
-                        }
-                        : null,
-                    // 실기시험
-                    item.pracExamStartDt && item.pracExamEndDt
-                        ? {
-                            title: `기사 실기시험`,
-                            start: formatDate(item.pracExamStartDt),
-                            end: formatDate(item.pracExamEndDt),
-                            color: '#2196F3',
-                            dateRange: `${formatDate(item.pracExamStartDt)} ~ ${formatDate(item.pracExamEndDt)}`
-                        }
-                        : null,
-                    // 실기 합격 발표
-                    item.pracPassDt
-                        ? {
-                            title: `기사시험 실기 합격 발표`,
-                            start: formatDate(item.pracPassDt),
-                            color: '#9C27B0',
-                            dateRange: formatDate(item.pracPassDt)
-                        }
-                        : null
-                ];
-
-                // 중복 이벤트 제거
-                eventDetails.forEach(event => {
-                    if (event) {
-                        const eventKey = `${event.title}-${event.start}-${event.end || ''}`; // 중복 체크 키
-                        if (!uniqueEvents.has(eventKey)) {
-                            uniqueEvents.add(eventKey);
-                            events.push(event);
-                        }
-                    }
-                });
-            });
-        } else {
-            console.error("응답 데이터가 예상과 다릅니다.", data);
-        }
 
         return events;
+    }
+
+    // 그룹에 맞는 색상 반환
+    function getColorForGroup(group) {
+        switch (group) {
+            case '기사,산업기사':
+                return '#1976D2'; // 파랑
+            case '기술사':
+                return '#4CAF50'; // 초록
+            case '기능장':
+                return '#FF9800'; // 노랑
+            default:
+                return '#9E9E9E'; // 기본 색상 (회색)
+        }
     }
 
     // 날짜 형식 변환 함수

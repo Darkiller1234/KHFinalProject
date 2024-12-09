@@ -122,7 +122,10 @@
                         </div>
 
                         <div class="right-view">
-                            <c:if test="${loginMember.social} !== 'N'">
+                            <script>
+                                console.log(${loginMember.social})
+                            </script>
+                            <c:if test="${empty loginMember.social}">
                                 <!-- 비밀번호 변경 텍스트와 버튼 -->
                                 <div class="password-change">
                                     <span class="label">비밀번호 변경</span>
@@ -184,7 +187,7 @@
                                 </h4>
                             </div>
                             <!-- Modal body -->
-                            <c:if test="${loginMember.social} !== 'N'">
+                            <c:if test="${empty loginMember.social}">
                                 <div class="modal-body">
                                     비밀번호를 입력하세요.
                                     <input type="password" class="form-control" id="userPwddelete" name="userPwddelete"
@@ -192,7 +195,7 @@
                                 </div>
                             </c:if> 
 
-                            <c:if test="${loginMember.social} === 'N'">
+                            <c:if test="${!empty loginMember.social}">
                                 <div class="modal-body">
                                     정말 탈퇴하시겠습니까?
                                     <input type="hidden"class="form-control" id="userPwddelete" name="userPwddelete" value="null">

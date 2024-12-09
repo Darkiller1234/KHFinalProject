@@ -73,16 +73,16 @@ public class MemberDao {
 		sqlSession.update("memberMapper.updatePassword",updateData);		
 	}
 
-	public int naverMemberCheck(SqlSessionTemplate sqlSession, String id) {
-		return sqlSession.selectOne("memberMapper.naverMemberCheck", id);
+	public int socialMemberCheck(SqlSessionTemplate sqlSession, String id) {
+		return sqlSession.selectOne("memberMapper.socialMemberCheck", id);
 	}
 
-	public int naverJoin(SqlSessionTemplate sqlSession, Member m) {
-		return sqlSession.insert("memberMapper.naverJoin", m);
+	public int socialJoin(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.insert("memberMapper.socialJoin", m);
 	}
 
-	public Member getNaverMember(SqlSessionTemplate sqlSession, String id) {
-		return sqlSession.selectOne("memberMapper.getNaverMember", id);
+	public Member getSocialMember(SqlSessionTemplate sqlSession, String id) {
+		return sqlSession.selectOne("memberMapper.getSocialMember", id);
 	}
 
 }

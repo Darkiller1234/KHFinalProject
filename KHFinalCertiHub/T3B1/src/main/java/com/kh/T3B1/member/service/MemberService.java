@@ -35,13 +35,13 @@ public interface MemberService {
     // 반환값: 임시 비밀번호 (String), 없으면 null
 	String findPwd(String memberId, String email);
 
-	// naver 회원가입여부 확인
-	// 매개변수: naver 로그인 고유값
+	// 소셜 계정 회원가입여부 확인
+	// 매개변수: naver/kakao 로그인 고유값
 	// 반환값: 여부(했음: 1, 안했음: 0)
-	int naverMemberCheck(String id);
+	int socialMemberCheck(String id);
 
-	int naverJoin(Member m);
+	int socialJoin(Member m);
 
-	Member getNaverMember(String id);
+	Member getSocialMember(String id);
 	
 }

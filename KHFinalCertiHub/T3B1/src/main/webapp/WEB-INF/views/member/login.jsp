@@ -48,26 +48,9 @@
                 </div>
             </form>
                     <div class="social-login">
-                        <button class="google-btn">Sign up with Google</button>
+                        <button class="google-btn" onclick="kakaoLogin()">카카오 로그인</button>
                         <button class="kakao-btn" onclick="naverLogin()">네이버 로그인</button>
                     </div>
-            <!--<input type ="button" onclick="naverLogin()" value="네이버 로그인"></input>-->
-            <!-- 
-                function naverLogin() {
-                    const clientId = "4LJAnwIdn34_pwVH8xJ8";
-                    // 리다이렉트 URL을 utf-8로 인스코딩해서 저장
-                    const redirectURL = encodeURLIComponent("http://localhost:5500/T3B1/member/login");
-
-                    const state = Math.random().toString(36).subString(2);
-
-                    let apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
-                    apiURL += "&client_id=" + clientId;
-                    apiURL += "&redirect_uri=" + redirectURL;
-                    apiURL += "&state=" + state;
-
-                    location.href = apiURL;
-                }
-            -->
         </div>
     </div>
 </body>

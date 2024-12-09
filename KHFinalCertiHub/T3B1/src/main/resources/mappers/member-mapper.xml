@@ -220,6 +220,7 @@
 			FROM MEMBER
 		WHERE MEMBER_NAME = #{memberName}
 			AND EMAIL = #{email}
+		AND SOCIAL IS NULL
 	</select>
 	
 	<!-- 비밀번호 찾기 -->
@@ -228,6 +229,7 @@
 			FROM MEMBER
 		WHERE MEMBER_ID = #{memberId}
 			AND EMAIL = #{email}
+		AND SOCIAL IS NULL
 	</select>
 	
 	<!-- 임시 비밀번호 -->
@@ -252,15 +254,15 @@
 		WHERE MEMBER_ID LIKE '%' || #{keyword} || '%'
 	</select>
 	
-	<!-- naver 가입여부 확인 -->
-	<select id="naverMemberCheck" resultType="_int">
+	<!-- 소셜 가입여부 확인 -->
+	<select id="socialMemberCheck" resultType="_int">
 		SELECT COUNT(*)
 			FROM MEMBER
 		WHERE SOCIAL_ID = #{id}
 	</select>
 	
-	<!-- naver계정으로 회원가입 -->
-	<insert id="naverJoin" parameterType="Member">
+	<!-- 소셜계정으로 회원가입 -->
+	<insert id="socialJoin" parameterType="Member">
 		INSERT INTO MEMBER(
 			MEMBER_NO,
 			MEMBER_ID,
@@ -285,8 +287,8 @@
 		)
 	</insert>
 	
-	<!-- naver로 가입한 계정 정보 조회 -->
-	<select id="getNaverMember" parameterType="Member" resultMap="memberResultSet">
+	<!-- 소셜로 가입한 계정 정보 조회 -->
+	<select id="getSocialMember" parameterType="Member" resultMap="memberResultSet">
 		SELECT MEMBER_NO,
 				MEMBER_ID,
 				MEMBER_PWD,

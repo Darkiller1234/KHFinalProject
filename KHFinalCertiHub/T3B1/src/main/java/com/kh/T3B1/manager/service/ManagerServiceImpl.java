@@ -1,16 +1,17 @@
 package com.kh.T3B1.manager.service;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.T3B1.common.vo.PageInfo;
+import com.kh.T3B1.common.vo.SearchOption;
 import com.kh.T3B1.community.model.vo.Board;
 import com.kh.T3B1.manager.model.dao.ManagerDao;
 import com.kh.T3B1.member.model.vo.Member;
+import com.kh.T3B1.personal.model.vo.License2;
 import com.kh.T3B1.study.model.vo.StudyBoard;
 
 @Service
@@ -65,6 +66,16 @@ public class ManagerServiceImpl implements ManagerService {
 	@Override
 	public ArrayList<Board> CommuList(PageInfo pi, String keyword) {
 		return managerDao.CommuList(sqlSession, pi, keyword);
+	}
+
+	@Override
+	public int countLicenseList(String keyword) {
+		return managerDao.countLicenseList(sqlSession, keyword);
+	}
+
+	@Override
+	public ArrayList<License2> selectLicenseList(PageInfo pi, SearchOption so) {
+		return managerDao.selectLicenseList(sqlSession, pi, so);
 	}
 
 }

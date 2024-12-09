@@ -28,7 +28,7 @@
 		<typeAlias type="com.kh.T3B1.personal.model.vo.Calendar2" alias ="Calendar2"/>
 		<typeAlias type="com.kh.T3B1.personal.model.vo.FullCalendarVo" alias ="FullCalendarVo"/>
 		<typeAlias type="com.kh.T3B1.common.vo.DataBoard" alias ="DataBoard"/>
-		<typeAlias type="com.kh.T3B1.community.model.vo.Report" alias ="Report"/>
+		<typeAlias type="com.kh.T3B1.common.model.vo.Report" alias ="Report"/>
 	</typeAliases>
 
 	<!-- environments : mybatis에서 연동할 db정보들을 등록하는 영역 environments에 기술했던 db연결관련 
@@ -49,5 +49,6 @@
 		<mapper resource="mappers/chatbot-mapper.xml"/>
 		<mapper resource="mappers/message-mapper.xml"/>
 		<mapper resource="mappers/data-mapper.xml"/>
+		<mapper resource="mappers/manager-mapper.xml"/>
 	</mappers>
 </configuration>

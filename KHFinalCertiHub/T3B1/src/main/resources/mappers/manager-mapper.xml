@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace: 해당 mapper파일의 고유한 별칭 -->
+<mapper namespace="managerMapper">
+  <resultMap type="License2" id="LicenseResultSet">
+	<result column="SYMBOL_LICENSE" property="symbolLicense"/>
+	<result column="MEMBER_NO" property="memberNo"/>
+  	<result column="LICENSE_NO" property="licenseNo"/>
+  	<result column="LICENSE_IMG" property="licenseImg"/>
+  	<result column="CONFIRM_DATE" property="confirmDate"/>
+  	<result column="LICENSE_NAME" property="licenseName"/>
+  	<result column="LICENSE_DESC" property="licenseDesc"/>
+  	<result column="MEMBER_NICKNAME" property="memberName"/>
+  </resultMap>
+
+  <select id="countLicenseList" resultType="int">
+	SELECT COUNT(*)
+	FROM MEMBER_LICENSE ML
+	INNER JOIN MEMBER M ON (ML.MEMBER_NO = M.MEMBER_NO)
+	WHERE CONFIRM_DATE IS NULL
+	<if test="keyword != null">
+		AND MEMBER_NICKNAME LIKE '%' || #{keyword} || '%'
+	</if>
+  </select>
+  
+   <select id="selectLicenseList" resultMap="LicenseResultSet">
+		SELECT ML.LICENSE_NO LICENSE_NO,
+		    L.LICENSE_NAME,
+		    ML.MEMBER_NO MEMBER_NO,
+		    ML.LICENSE_IMG LICENSE_IMG,
+		    M.MEMBER_NICKNAME MEMBER_NICKNAME
+		FROM MEMBER_LICENSE ML
+		INNER JOIN MEMBER M ON (ML.MEMBER_NO = M.MEMBER_NO)
+		INNER JOIN LICENSE L ON (L.LICENSE_NO = ML.LICENSE_NO)
+		WHERE CONFIRM_DATE IS NULL
+	<if test="keyword != null">
+		AND MEMBER_NICKNAME LIKE '%' || #{keyword} || '%'
+	</if>
+  </select>
+  
+
+</mapper>
+
