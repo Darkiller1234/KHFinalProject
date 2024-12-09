@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/manager/report.css">
-    <script src="${pageContext.request.contextPath}/resources/static/js/manager/report.js"></script>
     <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/static/js/manager/report.js"></script>
     
     <title>관리자 페이지</title>
 </head>
