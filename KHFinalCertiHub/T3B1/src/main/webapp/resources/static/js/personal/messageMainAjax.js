@@ -40,17 +40,17 @@ function ajaxLoadMemberInfo(state, callback){
     })
 }
 
-function ajaxLoadTalkroomList(state, callback){
-    $.ajax({
-        url:'getTalkroomList',
-        type: 'post',
-        async: false,
-        success: (res) => callback(res, state),
-        error: () => {
-            console.log("멤버 정보 로딩 실패")
-        }
-    })
-}
+// function ajaxLoadTalkroomList(state, callback){
+//     $.ajax({
+//         url:'getTalkroomList',
+//         type: 'post',
+//         async: false,
+//         success: (res) => callback(res, state),
+//         error: () => {
+//             console.log("멤버 정보 로딩 실패")
+//         }
+//     })
+// }
 
 function ajaxLoadMentor(state, callback){
     $.ajax({
@@ -147,16 +147,16 @@ function ajaxRejectApply(state, callback){
     })
 }
 
-function ajaxRecentMessage(state, callback){
-    $.ajax({
-        url:'getRecentMessage',
-        type:'post',
-        data: {
-            talkroomList : state?.talkroomList,
-        },
-        success: (res) => callback(res, state),
-        error: () => {
-            console.log("최신 메시지 로딩 실패")
-        }
-    })
-}
+// function ajaxRecentMessage(state, callback){
+//     $.ajax({
+//         url:'getRecentMessage',
+//         type:'post',
+//         data: {
+//             talkroomList : state?.talkroomList,
+//         },
+//         success: (res) => callback(res, state),
+//         error: () => {
+//             console.log("최신 메시지 로딩 실패")
+//         }
+//     })
+// }
