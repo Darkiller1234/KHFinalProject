@@ -5,15 +5,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/manager/report.css">
-    <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/static/js/manager/report.js"></script>
-    
     <title>관리자 페이지</title>
+
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/manager/report.css">
+    <script src="${pageContext.request.contextPath}/resources/static/js/manager/report.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
+
 </head>
 <body>
     <%@ include file="../common/header.jsp" %>
+
     <div class="wrapper">
         <div class="container">
             <!-- 사이드바 -->
@@ -31,19 +32,22 @@
             <div class="content">
                 <h2>관리자 페이지</h2>
 
+                <!-- 검색 폼 -->
                 <div class="search-form">
-                    <input type="text">
-                    <button class="rounded-circle" onclick="alert('클릭됨')">
+                    <input type="text" name="keyword" value="${keyword}">
+                    <button type="submit">
                         <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
                     </button> 
                 </div>
+                <br><br>
 
-                <div class="board-report">
+                <div class="board-certify">
                     
                 </div>
+                <br><br>
 
                 <!-- 페이징바 -->
-                <div class="report-bar"></div>
+                <div class="certify-bar"></div>
             </div>
         </div>
     </div>
