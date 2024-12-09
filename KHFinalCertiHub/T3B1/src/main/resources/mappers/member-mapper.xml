@@ -220,6 +220,7 @@
 			FROM MEMBER
 		WHERE MEMBER_NAME = #{memberName}
 			AND EMAIL = #{email}
+		AND SOCIAL IS NULL
 	</select>
 	
 	<!-- 비밀번호 찾기 -->
@@ -228,6 +229,7 @@
 			FROM MEMBER
 		WHERE MEMBER_ID = #{memberId}
 			AND EMAIL = #{email}
+		AND SOCIAL IS NULL
 	</select>
 	
 	<!-- 임시 비밀번호 -->
