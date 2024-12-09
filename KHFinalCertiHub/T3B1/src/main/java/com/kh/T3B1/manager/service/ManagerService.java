@@ -39,4 +39,6 @@ public interface ManagerService {
 	// 인증되지 않은 자격증 목록 불러오기
 	ArrayList<License2> selectLicenseList(PageInfo pi, SearchOption so);
 
+	int countReportList(String keyword);
+
 }
