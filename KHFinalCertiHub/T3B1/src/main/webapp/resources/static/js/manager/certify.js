@@ -107,7 +107,7 @@ function initPageBar(state, data) {
     }
 
     createPageBar(pagingBar, pageInfo)
-}
+} 
 
 function ajaxLoadBoard(pageInfo, callback){
     $.ajax({
