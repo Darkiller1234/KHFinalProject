@@ -34,18 +34,16 @@
                     <h2>관리자 페이지</h2>
 
                     <!-- 검색 폼 -->
-                    <div class="search-form">
+                    <form class="search-form">
                         <input type="text" name="keyword" value="${keyword}">
                         <button type="submit">
                             <img src="<%=contextPath%>/resources/static/img/button/search_icon.png" alt="검색">
                         </button>
-                    </div>
-                    <br><br>
+                    </form>
+                    <br>
 
-                    <div class="board-user">
-
-                    </div>
-                    <br><br>
+                    <div class="board-user"></div>
+                    <br>
 
                     <!-- 페이징바 -->
                     <div class="user-bar"></div>

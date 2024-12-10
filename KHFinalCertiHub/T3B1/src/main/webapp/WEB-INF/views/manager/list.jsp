@@ -5,15 +5,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 페이지</title>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/manager/list.css">
     <script src="${pageContext.request.contextPath}/resources/static/js/manager/list.js"></script>
     <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
 
-    <title>관리자 페이지</title>
 </head>
 <body>
     <%@ include file="../common/header.jsp" %>
+    
     <div class="wrapper">
         <div class="container">
             <!-- 사이드바 -->
@@ -32,22 +33,19 @@
                 <h2>관리자 페이지</h2>
 
                 <!-- 검색 폼 -->
-                <div class="search-form">
+                <form class="search-form">
                     <input type="text" name="keyword" value="${keyword}">
                     <button type="submit">
                         <img src="<%=contextPath%>/resources/static/img/button/search_icon.png" alt="검색">
                     </button> 
-                </div>
-                <br><br>
+                </form>
+                <br>
 
-                <div class="board-list">
-                    
-                </div>
-                <br><br>
+                <div class="board-list"></div>
+                <br>
+
                 <!-- 페이징바 -->
-                <div class="list-bar">
-                    
-                </div>
+                <div class="list-bar"></div>
             </div>
         </div>
     </div>
