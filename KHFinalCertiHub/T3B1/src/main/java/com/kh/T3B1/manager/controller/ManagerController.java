@@ -201,7 +201,16 @@ public class ManagerController {
 	@ResponseBody
 	@PostMapping(value="report/deleteReport", produces="application/json; charset=UTF-8")
 	public String deleteReport(String name, int reportNo) {
+		log.info(name);
 		int result = managerService.deleteReport(name, reportNo);
+		
+		return new Gson().toJson(result);
+	}
+	
+	@ResponseBody
+	@PostMapping(value="report/ignoreReport", produces="application/json; charset=UTF-8")
+	public String ignoreReport(int reportNo) {
+		int result = managerService.ignoreReport(reportNo);
 		
 		return new Gson().toJson(result);
 	}

@@ -62,4 +62,6 @@ public interface ManagerService {
 	// 자격증 인증 요청 삭제 결과 반환 성공 Y 실패 N
 	String rejectLicense(HashMap<String, Integer> updateInfo);
 
+	int ignoreReport(int reportNo);
+
 }

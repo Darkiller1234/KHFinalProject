@@ -107,21 +107,21 @@ public class ManagerDao {
 	}
 
 	public int getReportedId(SqlSessionTemplate sqlSession, Map<String, Object> params) {
-		return sqlSession.selectOne("managerMapper.getReportedId");
+		return sqlSession.selectOne("managerMapper.getReportedId", params);
 	}
 
-	public void deleteReported(SqlSessionTemplate sqlSession, Map<String, Object> params) {
-		sqlSession.update("managerMapper.deleteReported");
+	public int deleteReported(SqlSessionTemplate sqlSession, Map<String, Object> params) {
+		return sqlSession.update("managerMapper.deleteReported", params);
 		
 	}
 
-	public void deleteMessage(SqlSessionTemplate sqlSession, Map<String, Object> params) {
-		sqlSession.delete("managerMapper.deleteMessage");
+	public int deleteMessage(SqlSessionTemplate sqlSession, Map<String, Object> params) {
+		return sqlSession.delete("managerMapper.deleteMessage", params);
 		
 	}
 
 	public void deleteReport(SqlSessionTemplate sqlSession, int reportNo) {
-		sqlSession.delete("managerMapper.deleteReport");
+		sqlSession.delete("managerMapper.deleteReport", reportNo);
 	}
 	public Integer confirmLicense(SqlSessionTemplate sqlSession, HashMap<String, Integer> updateInfo) {
 		return sqlSession.update("managerMapper.confirmLicense", updateInfo);
@@ -129,6 +129,10 @@ public class ManagerDao {
 
 	public Integer rejectLicense(SqlSessionTemplate sqlSession, HashMap<String, Integer> updateInfo) {
 		return sqlSession.delete("managerMapper.rejectLicense", updateInfo);
+	}
+
+	public int ignoreReport(SqlSessionTemplate sqlSession, int reportNo) {
+		return sqlSession.delete("managerMapper.deleteReport", reportNo);
 	}
 
 

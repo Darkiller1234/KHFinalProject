@@ -43,18 +43,14 @@
   
   <select id="getReportedId" resultType="_int">
   	SELECT 
-  		<if test="name.equals('스터디')">
-  			STUDY_BOARD_NO
-  		</if>
-  		<if test="name.equals('댓글')">
-  			REPLY_NO
-  		</if>
-  		<if test="name.equals('글')">
-  			BOARD_NO
-  		</if>
-  		<if test="name.equals('메세지')">
-  			MESSAGE_NO
-  		</if>
+  		CASE 
+            WHEN #{name} = '스터디' THEN STUDY_BOARD_NO
+            WHEN #{name} = '댓글' THEN REPLY_NO
+            WHEN #{name} = '글' THEN BOARD_NO
+            WHEN #{name} = '메세지' THEN MESSAGE_NO
+            WHEN #{name} = '유저' THEN ACCUSED_NO
+            ELSE NULL
+        END AS REPORTED_ID
   	FROM REPORT
   	WHERE REPORT_NO = #{reportNo}
   </select>
@@ -66,34 +62,28 @@
   </delete>
 
   <update id="deleteReported">
-  	UPDATE
-  		<if test="name.equals('스터디')">
-  			STUDY_BOARD
-  		</if>
-  		<if test="name.equals('댓글')">
-  			REPLY
-  		</if>
-  		<if test="name.equals('글')">
-  			BOARD
-  		</if>
-  		<if test="name.equals('메세지')">
-  			MESSAGE
-  		</if>
-  	SET
-  	STATUS = "N"
-  	WHERE
-  		<if test="name.equals('스터디')">
-  			STUDY_BOARD_NO = #{id}
-  		</if>
-  		<if test="name.equals('댓글')">
-  			REPLY_NO = #{id}
-  		</if>
-  		<if test="name.equals('글')">
-  			BOARD_NO = #{id}
-  		</if>
-  		<if test="name.equals('메세지')">
-  			MESSAGE_NO = #{id}
-  		</if>
+  	<choose>
+        <when test='name.equals("스터디")'>
+            UPDATE STUDY_BOARD
+            SET STATUS = 'N'
+            WHERE STUDY_BOARD_NO = #{id}
+        </when>
+        <when test='name.equals("댓글")'>
+            UPDATE REPLY
+            SET STATUS = 'N'
+            WHERE REPLY_NO = #{id}
+        </when>
+        <when test='name.equals("글")'>
+            UPDATE BOARD
+            SET STATUS = 'N'
+            WHERE BOARD_NO = #{id}
+        </when>
+        <when test='name.equals("유저")'>
+            UPDATE MEMBER
+            SET STATUS = 'N'
+            WHERE MEMBER_NO = #{id}
+        </when>
+    </choose>
   </update>
   <update id="confirmLicense">
   	UPDATE MEMBER_LICENSE

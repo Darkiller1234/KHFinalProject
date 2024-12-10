@@ -9,8 +9,9 @@
         <title>관리자 페이지</title>
 
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/manager/report.css">
-        <script src="${pageContext.request.contextPath}/resources/static/js/manager/report.js"></script>
+        
         <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/static/js/manager/report.js"></script>
 
     </head>
 
@@ -35,17 +36,19 @@
                         <h2>관리자 페이지</h2>
 
                         <!-- 검색 폼 -->
-                        <div class="search-form">
-                            <input type="text" name="keyword" value="${keyword}">
-                            <button type="submit">
-                                <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
-                            </button>
-                        </div>
+                        <form class="search-section" action="report">
+                            <div class="search-form">
+                                <input type="text" name="keyword" value="${keyword}">
+                                <button type="submit">
+                                    <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
+                                </button>
+                            </div>
+                        </form>
                         <br><br>
 
                         <div class="board-certify">
-                            <table class="board">
-                                <tr class="header bgcolor2">
+                            <table class="board" id="tabledefault">
+                                <tr class="header bgcolor2" >
                                     <th>신 고자</th>
                                     <th>피신 고자</th>
                                     <th>무엇을?</th>
@@ -60,7 +63,11 @@
                         <br><br>
 
                         <!-- 페이징바 -->
-                        <div class="certify-bar"></div>
+                        <div class="certify-bar">
+                            <div class="spinner-border" role="status">
+                                <span class="sr-only">Loading...</span>
+                              </div>
+                        </div>
                     </div>
                 </div>
 

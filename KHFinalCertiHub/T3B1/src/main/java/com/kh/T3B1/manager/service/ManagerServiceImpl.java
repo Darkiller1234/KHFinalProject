@@ -120,23 +120,43 @@ public class ManagerServiceImpl implements ManagerService {
 	@Override
 	@Transactional
 	public int deleteReport(String name, int reportNo) {
+		if (name == null) {
+		    log.warn("Name is null!");
+		} else {
+		    log.info("Name value: [" + name + "]");
+		    if (name.trim().equals('글')) {
+		        log.info("으아아ㅏ아아ㅏㄱ");
+		    } else {
+		        log.info("Condition not matched: [" + name.trim() + "]");
+		    }
+		}
 		try {
 			Map<String, Object> params = new HashMap<>();
 			params.put("name", name);
 			params.put("reportNo", reportNo);
+			log.info("params: " + params);
 			int id = managerDao.getReportedId(sqlSession, params);
-			params.clear();
-			params.put("name", name);
+			log.info("Fetched ID: " + id);
+			log.info("1번 성공");
 			params.put("id", id);
 			if(name.equals("메세지")) {
-				managerDao.deleteMessage(sqlSession, params);
+				int result = managerDao.deleteMessage(sqlSession, params);
+				if(result == 0) {
+					return 0;
+				}
 			} else {
-				managerDao.deleteReported(sqlSession, params);
+				log.info("메세지 아님");
+				int result = managerDao.deleteReported(sqlSession, params);
+				if(result == 0) {
+					return 0;
+				}
 			}
+			log.info("2번 성공");
 			managerDao.deleteReport(sqlSession, reportNo);
+			log.info("3번 성공");
 			return 1;
 		} catch (Exception e) {
-			log.error("삭제 작업 실패: " + e.getMessage());
+			log.error("삭제 작업 실패: " + e);
             return 0; // 실패
 		}
 	}
@@ -159,6 +179,11 @@ public class ManagerServiceImpl implements ManagerService {
 		}
 		
 		return "N";
+	}
+
+	@Override
+	public int ignoreReport(int reportNo) {
+		return managerDao.ignoreReport(sqlSession, reportNo);
 	}
 
 }

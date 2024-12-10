@@ -12,11 +12,21 @@ function initReport(contextPath) {
     const table = $(".board-certify .board");
 
     // AJAX 요청
-    loadAjax(contextPath, 1, null)
+    loadAjax(contextPath, (urlParam.get("p") ? urlParam.get("p") : 1), urlParam.get("keyword"), table)
     
 }
 
-function loadAjax(contextPath, currentPage, keyword) {
+function loadAjax(contextPath, currentPage, keyword, table) {
+    $("#tabledefault").html(`<tr class="header bgcolor2" >
+                                    <th>신 고자</th>
+                                    <th>피신 고자</th>
+                                    <th>무엇을?</th>
+                                    <th>신고당한 내용</th>
+                                    <th>신고종류</th>
+                                    <th>신고 사유</th>
+                                    <th>삭제</th>
+                                    <th>무시</th>
+                                </tr> `);
     $.ajax({
         url: 'reportList', // API 엔드포인트 입력
         method: 'post',
@@ -25,8 +35,24 @@ function loadAjax(contextPath, currentPage, keyword) {
             currentPage: currentPage
         },
         success: function (data) {
-            const pageInfo = JSON.parse(data.pageInfo);
+            const page = JSON.parse(data.pageInfo);
             const board = JSON.parse(data.board);
+
+            const pageInfo = {
+                startPage : page.startPage,
+                endPage :  page.endPage,
+                currentPage : page.currentPage,
+                pageLimit : page.pageLimit,
+                maxPage : page.maxPage,
+                pageUrl : 'report?' + (keyword ? "&keyword=" + keyword : ""),
+                imgUrl : [
+                    contextPath + '/resources/static/img/button/arrow_left.png',
+                    contextPath + '/resources/static/img/button/arrow_right.png'
+                ]
+            }
+
+            $(".certify-bar").html(``);
+            createPageBar(document.querySelector(".certify-bar"), pageInfo)
             console.log(data)
             board.forEach(item => {
                 
@@ -243,14 +269,12 @@ function loadAjax(contextPath, currentPage, keyword) {
 
 
 
-
-            $('#delete-modal .modal-body').html("정말 삭제하시겠습니까?");
-                $('#delete-modal').modal('show'); // 모달 띄우기
             // 삭제 버튼 클릭 이벤트
             table.on("click", "button:contains('삭제')", function () {
                 
                 const name = $(this).data("name");
                 const id = $(this).data("id"); // 버튼의 data-id 가져오기
+                console.log(id);
                 if(name === "스터디") {
                     $('#delete-modal .modal-body').html("스터디 홍보글<br>삭제를 하시겠습니까?");
                 } else {
@@ -273,7 +297,11 @@ function loadAjax(contextPath, currentPage, keyword) {
                             if(res > 0){
                                 //삭제 성공 모달 띄우기
                                 $('#apply-modal .modal-body').html("삭제를 성공하였습니다.");
-                                loadAjax(contextPath, currentPage, keyword);
+                                loadAjax(contextPath, currentPage, keyword, table);
+                            }
+                            else {
+                                $('#apply-modal .modal-body').html("삭제 실패!");
+                                loadAjax(contextPath, currentPage, keyword, table);
                             }
                         },
                         error: function(res){
@@ -296,9 +324,11 @@ function loadAjax(contextPath, currentPage, keyword) {
                     },
                     success: function () {
                         $('#apply-modal .modal-body').html("정상적으로 처리되었습니다.");
+                        loadAjax(contextPath, currentPage, keyword, table);
                     },
                     error: function (xhr, status, error) {
                         $('#apply-modal .modal-body').html("실패! 서버 로그를 확인하세요");
+                        loadAjax(contextPath, currentPage, keyword, table);
                     }
                 });
             });
@@ -307,4 +337,6 @@ function loadAjax(contextPath, currentPage, keyword) {
             console.error("데이터 로드 실패:", error);
         }
     });
+    
+    
 }
