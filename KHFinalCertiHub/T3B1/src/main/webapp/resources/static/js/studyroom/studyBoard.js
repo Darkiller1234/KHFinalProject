@@ -124,6 +124,7 @@ function initPageBar(contextPath, data){
         startPage : data.startPage,
         endPage :  data.endPage,
         currentPage : data.currentPage,
+        pageLimit : data.pageLimit,
         maxPage : data.maxPage,
         pageUrl : 'list?display=' + data.boardLimit + (keyword ? "&keyword=" + keyword : ""),
         imgUrl : [

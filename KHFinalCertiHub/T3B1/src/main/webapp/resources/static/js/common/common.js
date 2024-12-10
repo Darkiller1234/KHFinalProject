@@ -259,6 +259,7 @@ function createList(div, data){
     }
 */
 function createPageBar(div, data){
+    console.log(data)
     const pageDiv = document.createElement('div')
     pageDiv.className = "pagination"
 
@@ -275,14 +276,16 @@ function createPageBar(div, data){
     leftArrow.appendChild(leftArrowImg)
     rightArrow.appendChild(rightArrowImg)
 
-    if(data.currentPage !== 1) {
+    if(data.startPage !== 1) {
         leftArrow.onclick = () => {
-            location.href = data.pageUrl + '&p=' + (data.currentPage - 1)
+            // location.href = data.pageUrl + '&p=' + (data.currentPage - 1)
+            location.href = data.pageUrl + '&p=' + (data.startPage - 1)
         }
     }
-    if(data.currentPage !== data.maxPage){
+    if(data.startPage + data.pageLimit < data.maxPage){
         rightArrow.onclick = () => {
-            location.href = data.pageUrl + '&p=' + (data.currentPage + 1)
+            // location.href = data.pageUrl + '&p=' + (data.currentPage + 1)
+            location.href = data.pageUrl + '&p=' + (data.endPage + 1)
         }
     }
 
