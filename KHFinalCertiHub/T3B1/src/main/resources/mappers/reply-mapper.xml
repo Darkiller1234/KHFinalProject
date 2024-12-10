@@ -138,6 +138,12 @@
   	 </where> 
   	 ORDER BY REPLY_NO ASC
   </select>
+  
+  <select id="getReply" resultMap="replyResult">
+  	SELECT REPLY_CONTENT
+  	FROM REPLY
+  	WHERE REPLY_NO = #{replyNo}
+  </select>
 </mapper>
 
 
