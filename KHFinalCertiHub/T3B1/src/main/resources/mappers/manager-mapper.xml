@@ -41,6 +41,18 @@
 	</if>
   </select>
   
+  <update id="confirmLicense">
+  	UPDATE MEMBER_LICENSE
+  	   SET CONFIRM_DATE = SYSDATE
+  	 WHERE MEMBER_NO = #{memberNo}
+  	   AND LICENSE_NO = #{licenseNo}
+  </update>
+  
+  <delete id="rejectLicense">
+  	DELETE FROM MEMBER_LICENSE
+  	 WHERE MEMBER_NO = #{memberNo}
+  	   AND LICENSE_NO = #{licenseNo}
+  </delete>
 
 </mapper>
 
