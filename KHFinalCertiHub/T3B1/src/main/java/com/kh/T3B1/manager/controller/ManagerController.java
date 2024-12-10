@@ -17,8 +17,10 @@ import com.kh.T3B1.common.template.Template;
 import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.common.vo.SearchOption;
 import com.kh.T3B1.community.model.vo.Board;
+import com.kh.T3B1.community.model.vo.Reply;
 import com.kh.T3B1.manager.service.ManagerService;
 import com.kh.T3B1.member.model.vo.Member;
+import com.kh.T3B1.message.model.vo.Message;
 import com.kh.T3B1.personal.model.vo.License2;
 import com.kh.T3B1.study.model.vo.StudyBoard;
 
@@ -110,6 +112,9 @@ public class ManagerController {
 	@ResponseBody
 	@PostMapping(value="reportList", produces="application/json; charset=UTF-8")
 	public String selectReportList(int currentPage, String keyword) {
+		if(keyword != null && keyword.replaceAll(" ", "").equals("")) {
+			keyword = null;
+		}
 		int listCount = managerService.countReportList(keyword);
 		
 		PageInfo pi = Template.getPageInfo(listCount, currentPage, 10, 10);
@@ -128,6 +133,48 @@ public class ManagerController {
 		
 		return new Gson().toJson(jsonData);
 	}
+	
+	@ResponseBody
+	@PostMapping(value="report/getStudy", produces="application/json; charset=UTF-8")
+	public String getStudy(int boardNo) {
+		StudyBoard sb = managerService.getStudy(boardNo);
+		
+		return new Gson().toJson(sb);
+	}
+	
+	@ResponseBody
+	@PostMapping(value="report/getBoard", produces="application/json; charset=UTF-8")
+	public String getBoard(int boardNo) {
+		Board b = managerService.getBoard(boardNo);
+		
+		return new Gson().toJson(b);
+	}
+	
+	@ResponseBody
+	@PostMapping(value="report/getReply", produces="application/json; charset=UTF-8")
+	public String getReply(int replyNo) {
+		Reply r = managerService.getReply(replyNo);
+		
+		return new Gson().toJson(r);
+	}
+	
+	@ResponseBody
+	@PostMapping(value="report/getMessage", produces="application/json; charset=UTF-8")
+	public String getMessage(int messageNo) {
+		Message m = managerService.getMessage(messageNo);
+		
+		return new Gson().toJson(m);
+	}
+	
+	@ResponseBody
+	@PostMapping(value="report/deleteReport", produces="application/json; charset=UTF-8")
+	public String deleteReport(String name, int reportNo) {
+		int result = managerService.deleteReport(name, reportNo);
+		
+		return new Gson().toJson(result);
+	}
+	
+	
 	
 	@ResponseBody
 	@PostMapping(value="userList", produces="application/json; charset=UTF-8")

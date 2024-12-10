@@ -1,6 +1,7 @@
 package com.kh.T3B1.manager.model.dao;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -10,7 +11,9 @@ import com.kh.T3B1.common.model.vo.Report;
 import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.common.vo.SearchOption;
 import com.kh.T3B1.community.model.vo.Board;
+import com.kh.T3B1.community.model.vo.Reply;
 import com.kh.T3B1.member.model.vo.Member;
+import com.kh.T3B1.message.model.vo.Message;
 import com.kh.T3B1.personal.model.vo.License2;
 import com.kh.T3B1.study.model.vo.StudyBoard;
 
@@ -83,6 +86,42 @@ public class ManagerDao {
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 
 		return (ArrayList)sqlSession.selectList("commonMapper.selectReportList", so, rowBounds);
+	}
+
+	public StudyBoard getStudy(SqlSessionTemplate sqlSession, int boardNo) {
+		return sqlSession.selectOne("studyMapper.selectBoard", boardNo);
+	}
+
+	public Board getBoard(SqlSessionTemplate sqlSession, int boardNo) {
+		int cno = boardNo;
+		return sqlSession.selectOne("boardMapper.selectBoardOne", cno);
+	}
+
+	public Reply getReply(SqlSessionTemplate sqlSession, int replyNo) {
+		return sqlSession.selectOne("replyMapper.getReply", replyNo);
+	}
+
+	public Message getMessage(SqlSessionTemplate sqlSession, int messageNo) {
+		return sqlSession.selectOne("messageMapper.getMessage", messageNo);
+	}
+
+	public int getReportedId(SqlSessionTemplate sqlSession, Map<String, Object> params) {
+		return sqlSession.selectOne("managerMapper.getReportedId");
+	}
+
+	public void deleteReported(SqlSessionTemplate sqlSession, Map<String, Object> params) {
+		sqlSession.update("managerMapper.deleteReported");
+		
+	}
+
+	public void deleteMessage(SqlSessionTemplate sqlSession, Map<String, Object> params) {
+		sqlSession.delete("managerMapper.deleteMessage");
+		
+	}
+
+	public void deleteReport(SqlSessionTemplate sqlSession, int reportNo) {
+		sqlSession.delete("managerMapper.deleteReport");
+		
 	}
 
 

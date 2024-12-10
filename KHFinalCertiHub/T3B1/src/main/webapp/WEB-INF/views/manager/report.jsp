@@ -54,37 +54,7 @@
                                     <th>신고 사유</th>
                                     <th>삭제</th>
                                     <th>무시</th>
-                                </tr>
-                                <tr>
-                                    <td>윤대한</td>
-                                    <td>윤대한</td>
-                                    <td>유저</td>
-                                    <td data-bs-toggle="modal" data-bs-target="#apply-modal">-</td>
-                                    <td>신고종류</td>
-                                    <td>신고 사유</td>
-                                    <td><button>삭제</button></td>
-                                    <td><button>무시</button></td>
-                                </tr>
-                                <tr>
-                                    <td>윤대한</td>
-                                    <td>molru</td>
-                                    <td>댓글</td>
-                                    <td data-bs-toggle="modal" data-bs-target="#apply-modal">신고 내용</td>
-                                    <td>신고종류</td>
-                                    <td>신고 사유</td>
-                                    <td><button>삭제</button></td>
-                                    <td><button>무시</button></td>
-                                </tr>
-                                <tr>
-                                    <td>윤대한</td>
-                                    <td>molru</td>
-                                    <td>글</td>
-                                    <td><button>링크</button></td>
-                                    <td>신고종류</td>
-                                    <td>신고 사유</td>
-                                    <td><button>삭제</button></td>
-                                    <td><button>무시</button></td>
-                                </tr>
+                                </tr>   
                             </table>
                         </div>
                         <br><br>
@@ -114,7 +84,36 @@
 
                             <!-- Modal footer -->
                             <div class="modal-footer">
-                                <button type="button" data-bs-dismiss="modal">닫기</button>
+                                <button type="button" data-bs-dismiss="modal">Close</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- 모달창 -->
+                <div class="modal" id="delete-modal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">
+                                    <img src="<%=contextPath%>/resources/static/img/logo/logo_big.png" ">
+                                </h4>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class=" modal-body">
+                                    잠시만 기다려주세요...
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" id="modalDeleteBtn">Delete</button>
+                                <button type="button" data-bs-dismiss="modal">Cancel</button>
                             </div>
 
                         </div>

@@ -246,4 +246,12 @@
 		WHERE MEMBER_NO = #{memberNo}
 	</select>
 	
+	
+	
+	<select id="getMessage" resultMap="messageResultSet">
+		SELECT MESSAGE_CONTENT
+		FROM MESSAGE
+		WHERE MESSAGE_NO = #{messageNo}
+	</select>
+	
 </mapper>

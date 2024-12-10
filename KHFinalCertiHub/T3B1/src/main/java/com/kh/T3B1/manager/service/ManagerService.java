@@ -1,13 +1,14 @@
 package com.kh.T3B1.manager.service;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.kh.T3B1.common.model.vo.Report;
 import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.common.vo.SearchOption;
 import com.kh.T3B1.community.model.vo.Board;
+import com.kh.T3B1.community.model.vo.Reply;
 import com.kh.T3B1.member.model.vo.Member;
+import com.kh.T3B1.message.model.vo.Message;
 import com.kh.T3B1.personal.model.vo.License2;
 import com.kh.T3B1.study.model.vo.StudyBoard;
 public interface ManagerService {
@@ -43,5 +44,15 @@ public interface ManagerService {
 	int countReportList(String keyword);
 
 	ArrayList<Report> selectReportList(PageInfo pi, SearchOption so);
+
+	StudyBoard getStudy(int boardNo);
+
+	Board getBoard(int boardNo);
+
+	Reply getReply(int replyNo);
+
+	Message getMessage(int messageNo);
+
+	int deleteReport(String name, int reportNo);
 
 }

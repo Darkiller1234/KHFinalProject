@@ -41,6 +41,69 @@
 	</if>
   </select>
   
+  <select id="getReportedId" resultType="_int">
+  	SELECT 
+  		<if test="name.equals('스터디')">
+  			STUDY_BOARD_NO
+  		</if>
+  		<if test="name.equals('댓글')">
+  			REPLY_NO
+  		</if>
+  		<if test="name.equals('글')">
+  			BOARD_NO
+  		</if>
+  		<if test="name.equals('메세지')">
+  			MESSAGE_NO
+  		</if>
+  	FROM REPORT
+  	WHERE REPORT_NO = #{reportNo}
+  </select>
+  
+  <delete id="deleteMessage">
+  	DELETE 
+  	FROM MESSAGE
+  	WHERE MESSAGE_NO = #{id}
+  </delete>
+  UPDATE BOARD
+  	SET
+  	VIEW_COUNT = VIEW_COUNT + 1
+  	WHERE
+  	BOARD_NO = #{cno}
+  <update id="deleteReported">
+  	UPDATE
+  		<if test="name.equals('스터디')">
+  			STUDY_BOARD
+  		</if>
+  		<if test="name.equals('댓글')">
+  			REPLY
+  		</if>
+  		<if test="name.equals('글')">
+  			BOARD
+  		</if>
+  		<if test="name.equals('메세지')">
+  			MESSAGE
+  		</if>
+  	SET
+  	STATUS = "N"
+  	WHERE
+  		<if test="name.equals('스터디')">
+  			STUDY_BOARD_NO = #{id}
+  		</if>
+  		<if test="name.equals('댓글')">
+  			REPLY_NO = #{id}
+  		</if>
+  		<if test="name.equals('글')">
+  			BOARD_NO = #{id}
+  		</if>
+  		<if test="name.equals('메세지')">
+  			MESSAGE_NO = #{id}
+  		</if>
+  </update>
 
+	<delete id="deleteReport">
+		DELETE 
+		FROM REPORT
+		WHERE REPORT_NO = #{reportNo}
+	</delete>
 </mapper>
 
