@@ -9,8 +9,9 @@
         <title>관리자 페이지</title>
 
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/manager/report.css">
-        <script src="${pageContext.request.contextPath}/resources/static/js/manager/report.js"></script>
+        
         <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/static/js/manager/report.js"></script>
 
     </head>
 
@@ -35,29 +36,38 @@
                         <h2>관리자 페이지</h2>
 
                         <!-- 검색 폼 -->
-                        <div class="search-form">
-                            <input type="text" name="keyword" value="${keyword}">
-                            <button type="submit">
-                                <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
-                            </button>
-                        </div>
+                        <form class="search-section" action="report">
+                            <div class="search-form">
+                                <input type="text" name="keyword" value="${keyword}">
+                                <button type="submit">
+                                    <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
+                                </button>
+                            </div>
+                        </form>
                         <br><br>
 
                         <div class="board-certify">
-                            <table class="board">
-                                <tr class="header bgcolor2">
-                                    <th  data-bs-toggle="modal" data-bs-target="#apply-modal">신청자</th>
-                                    <th class="title">신청자격증</th>
+                            <table class="board" id="tabledefault">
+                                <tr class="header bgcolor2" >
+                                    <th>신 고자</th>
+                                    <th>피신 고자</th>
+                                    <th>무엇을?</th>
+                                    <th>신고당한 내용</th>
+                                    <th>신고종류</th>
                                     <th>신고 사유</th>
                                     <th>삭제</th>
                                     <th>무시</th>
-                                </tr>
+                                </tr>   
                             </table>
                         </div>
                         <br><br>
 
                         <!-- 페이징바 -->
-                        <div class="certify-bar"></div>
+                        <div class="certify-bar">
+                            <div class="spinner-border" role="status">
+                                <span class="sr-only">Loading...</span>
+                              </div>
+                        </div>
                     </div>
                 </div>
 
@@ -81,7 +91,36 @@
 
                             <!-- Modal footer -->
                             <div class="modal-footer">
-                                <button type="button" data-bs-dismiss="modal">닫기</button>
+                                <button type="button" data-bs-dismiss="modal">Close</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- 모달창 -->
+                <div class="modal" id="delete-modal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">
+                                    <img src="<%=contextPath%>/resources/static/img/logo/logo_big.png" ">
+                                </h4>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class=" modal-body">
+                                    잠시만 기다려주세요...
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" id="modalDeleteBtn">Delete</button>
+                                <button type="button" data-bs-dismiss="modal">Cancel</button>
                             </div>
 
                         </div>

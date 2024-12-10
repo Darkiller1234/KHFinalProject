@@ -173,8 +173,7 @@
                 </div>
               </div>
               <c:forEach var="b" items="${notiList}">
-                <div <c:if test="${b.tabNo == 1}">class="listArea-noti"</c:if> onclick="DirectAttack('<%=contextPath%>
-                    /community/detail?certiNo=${certiNo}&cno=${b.boardNo}')">
+                <div <c:if test="${b.tabNo == 1}">class="listArea-noti"</c:if> onclick="DirectAttack('<%=contextPath%>/community/detail?certiNo=${certiNo}&cno=${b.boardNo}')">
                     <div>
                       <div class="listArea-div1-tab">
                         ${b.tabName}
@@ -203,8 +202,7 @@
                 </div>
               </c:forEach>
               <c:forEach var="b" items="${list}">
-                <div <c:if test="${b.tabNo == 1}">class="listArea-noti"</c:if> onclick="DirectAttack('<%=contextPath%>
-                    /community/detail?certiNo=${certiNo}&cno=${b.boardNo}')">
+                <div <c:if test="${b.tabNo == 1}">class="listArea-noti"</c:if> onclick="DirectAttack('<%=contextPath%>/community/detail?certiNo=${certiNo}&cno=${b.boardNo}')">
                     <div>
                       <div class="listArea-div1-tab">
                         ${b.tabName}
@@ -235,8 +233,7 @@
             </div>
             <div class="listArea-div2">
               <c:forEach var="b" items="${notiList}">
-                <div <c:if test="${b.tabNo == 1}">class="listArea-noti"</c:if> onclick="DirectAttack('<%=contextPath%>
-                    /community/detail?certiNo=${certiNo}&cno=${b.boardNo}')">
+                <div <c:if test="${b.tabNo == 1}">class="listArea-noti"</c:if> onclick="DirectAttack('<%=contextPath%>/community/detail?certiNo=${certiNo}&cno=${b.boardNo}')">
                     <div>
                       <div class="listArea-div2-tab">
                         ${b.tabName}
@@ -269,8 +266,7 @@
                 </div>
               </c:forEach>
               <c:forEach var="b" items="${list}">
-                <div <c:if test="${b.tabNo == 1}">class="listArea-noti"</c:if> onclick="DirectAttack('<%=contextPath%>
-                    /community/detail?certiNo=${certiNo}&cno=${b.boardNo}')">
+                <div <c:if test="${b.tabNo == 1}">class="listArea-noti"</c:if> onclick="DirectAttack('<%=contextPath%>/community/detail?certiNo=${certiNo}&cno=${b.boardNo}')">
                     <div>
                       <div class="listArea-div2-tab">
                         ${b.tabName}
