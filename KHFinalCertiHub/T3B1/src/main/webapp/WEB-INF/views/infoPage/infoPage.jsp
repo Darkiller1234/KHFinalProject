@@ -8,7 +8,7 @@
         <title>InfoPage</title>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script type="text/javascript"
-            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2a40239e8b746b411bf4057c27e822e9&libraries=services"></script>
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${KakaoAPI_KEY}&libraries=services"></script>
         <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
     </head>
 
@@ -31,6 +31,7 @@
                             <div class="accordion-item">
                                 <button class="accordion-toggle">응시자격</button>
                                 <div class="accordion-content">
+                                    <h3>기사 응시자격</h3> <br>
                                     <table>
                                         <colgroup class="first-table">
                                             <col>
@@ -78,6 +79,94 @@
                                             </tr>
                                         </tbody>
                                     </table>
+                                    <br><br>
+                                    <h3>기술사 응시자격</h3> <br>
+                                    <table>
+                                        <colgroup class="first-table">
+                                            <col>
+                                            <col>
+                                            <col>
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">구분</th>
+                                                <th scope="col">응시자격</th>
+                                                <th scope="col">제출서류</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td rowspan="3">학력응시</td>
+                                                <td>4년제: 관련학과 졸업 후 6년 경력</td>
+                                                <td>졸업/재학/휴학/수료/제적증명서 중 택1</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3년제: 관련학과 졸업 후 7년 경력</td>
+                                                <td>졸업증명서+경력(재직)증명서</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2년제: 관련학과 졸업 후 8년 경력</td>
+                                                <td>졸업증명서+경력(재직)증명서</td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="3">경력 응시</td>
+                                                <td>동일 직무 분야에서 9년 이상 실무경력</td>
+                                                <td>경력(재직)증명서</td>
+                                            </tr>
+                                            <tr>
+                                                <td>산업기사 수준 이수자 + 이수 후 8년 경력</td>
+                                                <td>경력(재직)증명서+자격증 사본</td>
+                                            </tr>
+                                            <tr>
+                                                <td>기사 수준 이수자 + 이수 후 6년 경력</td>
+                                                <td>경력(재직)증명서+자격증 사본</td>
+                                            </tr>
+                                            <tr>
+                                                <td>자격취득 <br>
+                                                    (동일 및 유사 직무분야)</td>
+                                                <td>기능사 취득 후 7년 경력 <br>
+                                                    산업기사 취득 후 5년 경력 <br>
+                                                    기사 취득 후 4년 경력 <br>
+                                                    기술사 취득</td>
+                                                <td>경력(재직)증명서+자격증 사본</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <br><br>
+                                    <h3>기능장 응시자격</h3> <br>
+                                    <table>
+                                        <colgroup class="first-table">
+                                            <col>
+                                            <col>
+                                            <col>
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">구분</th>
+                                                <th scope="col">응시자격</th>
+                                                <th scope="col">제출서류</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>경력 응시</td>
+                                                <td>동일 직무 분야에서 9년 이상 실무경력</td>
+                                                <td>경력(재직)증명서</td>
+                                            </tr>
+                                            <tr>
+                                                <td>자격취득 <br>
+                                                    (동일 및 유사 직무분야)</td>
+                                                <td>기능사 취득 후 기능대학의 기능장과정 이수자 또는 이수예정자 <br>
+                                                    기능사 취득 후 7년 경력 <br>
+                                                    산업기사 취득 후 5년 경력 <br>
+                                                    기능장 취득</td>
+                                                <td>경력(재직)증명서+자격증 사본</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <br><br>
+                                    <h3>기능장 응시자격</h3> <br>
+                                    <b>※ 응시자격 제한없음</b>
                                     <br><br>
                                     <div class="explan">
                                         <h4>** 응시자격사항 상세설명</h4> <br>
