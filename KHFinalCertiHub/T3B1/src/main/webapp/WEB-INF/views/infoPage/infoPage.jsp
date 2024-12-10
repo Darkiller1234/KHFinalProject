@@ -8,7 +8,7 @@
         <title>InfoPage</title>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script type="text/javascript"
-            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${KakaoAPI_KEY}&libraries=services"></script>
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2a40239e8b746b411bf4057c27e822e9&libraries=services"></script>
         <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
     </head>
 
