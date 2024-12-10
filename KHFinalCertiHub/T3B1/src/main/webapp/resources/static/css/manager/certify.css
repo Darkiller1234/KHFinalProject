@@ -59,13 +59,19 @@ body {
     width: 100%;
 }
 
+.search-section{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width:50%;
+}
+
 /* 검색폼 스타일 */
 .search-form {
     display: flex; /* 플렉스 박스 사용 */
     justify-content: center; /* 중앙 정렬 */
     margin: 20px 0; /* 위아래 여백 */
     width: 100%; /* 부모 요소의 너비를 차지 */
-    max-width: 400px; /* 최대 너비를 설정 */
 }
 
 /* 보드(테이블) css */
@@ -100,6 +106,14 @@ body {
     text-align: center;
 }
 
+#closeButton{
+    position:absolute;
+    background-color: inherit;
+    border:0;
+    right:10px;
+    top:10px;
+}
+
 /* 푸터 스타일 */
 footer {
     width: 100%; /* 전체 너비 사용 */
@@ -112,9 +126,8 @@ footer {
 }
 
 @media (min-width: 481px) and (max-width: 720px) {
-    /* 검색 텍스트 부분 */
-    .search-section .search-form {
-        width: 65%;
+    .search-section{
+        width:100%;
     }
 
     .board tr > :nth-child(1) {
@@ -129,8 +142,8 @@ footer {
 }
 
 @media (max-width: 480px) {
-    .search-section .search-form{
-        width: 100%;
+    .search-section{
+        width:100%;
     }
 
     .board tr > :nth-child(1) {

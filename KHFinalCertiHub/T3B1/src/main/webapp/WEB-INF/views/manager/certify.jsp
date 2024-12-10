@@ -32,12 +32,14 @@
             <h2>관리자 페이지</h2>
 
             <!-- 검색 폼 -->
-            <div class="search-form">
-                <input type="text">
-                <button class="rounded-circle" onclick="alert('클릭됨')">
-                    <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
-                </button> 
-            </div>
+            <form class="search-section" action="certify">
+                <div class="search-form">
+                    <input type="text" name="keyword">
+                    <button type="submit" class="rounded-circle">
+                        <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
+                    </button> 
+                </div>
+            </form>
 
             <div class="board-certify"></div>
 
@@ -49,7 +51,6 @@
     <div class="modal" id="licenseImg">
         <div class="modal-dialog">
             <div class="modal-content">
-        
                 <!-- Modal Header -->
                 <div class="modal-header">
                     <h4 class="modal-title">                
@@ -57,6 +58,11 @@
                         src="<%=contextPath%>/resources/static/img/logo/logo_big.png"
                         ">
                     </h4>
+                    <button id="closeButton" class="confirm" type="button" data-bs-dismiss="modal">
+                        <img
+                        src="<%=contextPath%>/resources/static/img/button/x_icon.png"
+                        >
+                    </button>
                 </div>
         
                 <!-- Modal body -->
