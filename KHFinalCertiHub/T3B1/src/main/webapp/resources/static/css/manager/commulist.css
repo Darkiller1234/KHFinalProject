@@ -5,7 +5,6 @@ body {
     margin: 0;
     display: flex; /* 플렉스 박스 사용 */
     flex-direction: column; /* 수직 방향 정렬 */
-    height: 100vh; /* 전체 화면 높이 */
 }
 
 .wrapper {
@@ -21,20 +20,23 @@ body {
     padding: 0 !important;
 }
 
+/* PC 메뉴 선택 */
 .sidebar {
     background-color: #EDF6F9; /* 사이드바 배경색 */
     width: 200px; /* 사이드바 너비 */
     padding: 20px;
-    height: calc(100vh - 100px); /* 헤더를 제외한 전체 높이 사용 */
     justify-content: flex-start;
+    flex-shrink: 0; /* flex 부모에 따라 크기 감소 삭제 */
 }
 
 .sidebar ul {
+    width: 100%;
     list-style-type: none; /* 리스트 스타일 제거 */
     padding: 0; /* 패딩 제거 */
 }
 
 .sidebar li {
+    width: 100%;
     margin-bottom: 15px; /* 항목 간 여백 */
 }
 
@@ -43,13 +45,18 @@ body {
     color: #006D77; /* 링크 색상 */
 }
 
-/* 콘텐츠 영역 스타일 */
-.content {
-    flex: 1; /* 남은 공간 차지 */
-    background-color: #ffffff; /* 콘텐츠 배경색 */
-    padding: 40px; /* 패딩 추가 */
-    border-radius: 8px; /* 모서리 둥글게 */
-    height: calc(100vh - 100px); /* 헤더를 제외한 전체 높이 사용 */
+/* 모바일 메뉴 선택 */
+#manageSelect{
+    display:none;
+}
+
+#testdiv{
+    text-align: center;
+}
+
+.navbar-toggler img{
+    max-width: 100%;
+    max-height: 100%;
 }
 
 /* 콘텐츠 영역 스타일 */
@@ -58,7 +65,6 @@ body {
     background-color: #ffffff; /* 콘텐츠 배경색 */
     padding: 40px; /* 패딩 추가 */
     border-radius: 8px; /* 모서리 둥글게 */
-    height: calc(100vh - 100px); /* 헤더를 제외한 전체 높이 사용 */
     display: flex; /* 플렉스 박스 사용 */
     flex-direction: column; /* 수직 방향 정렬 */
     align-items: center; /* 수평 중앙 정렬 */
@@ -71,51 +77,60 @@ body {
     width: 100%;
 }
 
-/* 검색폼 스타일 */
-.search-form {
-    display: flex;
-    margin: 0 auto;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    max-width: 750px;
-    height: 45px;
-    border: 3px solid #83C5BE;
-    border-radius: 25px;
-    padding-left: 15px;
-    padding-right: 3px;
-  }
-  
-  .search-form input[type="text"] {
-    width: 90%;
-    padding: 5px 10px;
-    font-size: 16px;
-    border: none;
-  }
-  
-  .search-form input[type="text"]:focus {
-    outline: none;
-  }
-  
-  .search-form button {
-    width: 35px;
-    height: 35px;
-    border: none;
-    background-color: #006D77;
-    display: flex;
-    border-radius: 50px;
+.search-section{
+    display:flex;
     justify-content: center;
     align-items: center;
-  }
+    width:50%;
+}
 
+/* 검색폼 스타일 */
+.search-form {
+    display: flex; /* 플렉스 박스 사용 */
+    justify-content: center; /* 중앙 정렬 */
+    margin: 20px 0; /* 위아래 여백 */
+    width: 100%; /* 부모 요소의 너비를 차지 */
+}
+
+/* 보드(테이블) css */
 .board {
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+.board-certify .board th.title{
+    width:40%;
+}
+
+.trow td button{
+    width: 100%;
+}
+
 .pagination {
     margin-top: 10px;
 }
 
+/* 모달창 */
+#license-img{
+    width: 400px;
+    height: 400px;
+}
+
+#license-name{
+    text-align: center;
+}
+
+#user-name{
+    text-align: center;
+}
+
+#closeButton{
+    position:absolute;
+    background-color: inherit;
+    border:0;
+    right:10px;
+    top:10px;
+}
 
 /* 푸터 스타일 */
 footer {
@@ -129,32 +144,54 @@ footer {
 }
 
 @media (min-width: 481px) and (max-width: 720px) {
-    /* 검색 텍스트 부분 */
-    .search-section .search-form {
-        width: 65%;
+    .search-section{
+        width:100%;
     }
 
-    /* '등록일' 열 숨기기 (3번째 열) */
-    .board tr td:nth-child(3) {
+    .board tr > :nth-child(1) {
         display: none;
     }
+
+    #license-img{
+        width: 300px;
+        height: 300px;
+    }
+    
 }
 
 @media (max-width: 480px) {
-    .search-section .search-form{
-        width: 100%;
+    .sidebar {
+        display:none;
     }
 
-    .board tr :nth-child(1) {
+    #manageSelect{
+        display:flex;
+    }
+
+    .content{
+        padding:20px;
+    }
+
+    .search-section{
+        width:100%;
+    }
+
+    .board tr > :nth-child(1) {
         display: none;
     }
 
-    .board tr :nth-child(3) {
+    .board tr > :nth-child(3) {
         display: none;
     }
 
-    .board tr :nth-child(4) {
+    .board tr > :nth-child(4) {
         display: none;
     }
+
+    #license-img{
+        width: 250px;
+        height: 250px;
+    }
+    
 
 }
