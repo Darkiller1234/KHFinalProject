@@ -64,11 +64,7 @@
   	FROM MESSAGE
   	WHERE MESSAGE_NO = #{id}
   </delete>
-  UPDATE BOARD
-  	SET
-  	VIEW_COUNT = VIEW_COUNT + 1
-  	WHERE
-  	BOARD_NO = #{cno}
+
   <update id="deleteReported">
   	UPDATE
   		<if test="name.equals('스터디')">
@@ -99,6 +95,18 @@
   			MESSAGE_NO = #{id}
   		</if>
   </update>
+  <update id="confirmLicense">
+  	UPDATE MEMBER_LICENSE
+  	   SET CONFIRM_DATE = SYSDATE
+  	 WHERE MEMBER_NO = #{memberNo}
+  	   AND LICENSE_NO = #{licenseNo}
+  </update>
+  
+  <delete id="rejectLicense">
+  	DELETE FROM MEMBER_LICENSE
+  	 WHERE MEMBER_NO = #{memberNo}
+  	   AND LICENSE_NO = #{licenseNo}
+  </delete>
 
 	<delete id="deleteReport">
 		DELETE 

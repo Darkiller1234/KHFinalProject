@@ -21,6 +21,7 @@ body {
     padding: 0 !important;
 }
 
+/* 사이드바 스타일 */
 .sidebar {
     background-color: #EDF6F9; /* 사이드바 배경색 */
     width: 200px; /* 사이드바 너비 */
@@ -71,15 +72,7 @@ body {
     width: 100%;
 }
 
-.board {
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-.pagination {
-    margin-top: 10px;
-}
-
-/* 서치 폼 */
+/* 검색폼 스타일 */
 .search-form {
     display: flex;
     margin: 0 auto;
@@ -116,55 +109,15 @@ body {
     align-items: center;
   }
 
-/* 테이블 css */
-table {
-    width: 100%;
-    table-layout: fixed;
-    border-collapse: collapse;
+/* 기본 테이블 스타일 */
+.board {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-table th {
-    background-color: #83C5BE;
-}
-
-table th,
-table td {
-    height: 35px;
-    border: 2px solid #83C5BE;
-    text-align: center;
-    word-wrap: break-word;
-}
-
-table th {
-    font-size: 14px;
-}
-
-table td {
-    font-size: 12px;
-}
-
-/* 페이징 바 css */
 .pagination {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .page-arrow, .page-num {
-    margin: 0 10px;
-    cursor: pointer;
-    color: #006D77;
-  }
-  
-  .page-num {
-    padding: 0px 8px;
-    border-radius: 25px;
-  }
-  
-  .page-num.active {
-    background-color: #006D77; 
-    color: white;
-  }
-
+    margin-top: 10px;
+}
 
 /* 푸터 스타일 */
 footer {
@@ -173,8 +126,9 @@ footer {
     text-align: center; /* 텍스트 중앙 정렬 */
 }
 
+/* 모바일 화면에서 사이드바 숨기기 */
 @media (min-width: 721px) {
-    /* 이 영역은 721px 이상 화면에 대한 스타일입니다. */
+    
 }
 
 @media (min-width: 481px) and (max-width: 720px) {
@@ -189,6 +143,7 @@ footer {
     }
 }
 
+/* 화면이 더 작은 경우 추가 조정 */
 @media (max-width: 480px) {
     .search-section .search-form{
         width: 100%;
@@ -203,6 +158,10 @@ footer {
     }
 
     .board tr :nth-child(4) {
+        display: none;
+    }
+
+    .board tr :nth-child(5) {
         display: none;
     }
 }

@@ -140,5 +140,25 @@ public class ManagerServiceImpl implements ManagerService {
             return 0; // 실패
 		}
 	}
+	public String confirmLicense(HashMap<String, Integer> updateInfo) {
+		Integer result = managerDao.confirmLicense(sqlSession, updateInfo);
+		
+		if(result != null && result > 0) {
+			return "Y";
+		}
+		
+		return "N";
+	}
+
+	@Override
+	public String rejectLicense(HashMap<String, Integer> updateInfo) {
+		Integer result = managerDao.rejectLicense(sqlSession, updateInfo);
+		
+		if(result != null && result > 0) {
+			return "Y";
+		}
+		
+		return "N";
+	}
 
 }
