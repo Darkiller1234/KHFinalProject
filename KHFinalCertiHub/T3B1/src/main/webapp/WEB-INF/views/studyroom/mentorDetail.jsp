@@ -60,7 +60,7 @@
                     <div class="mentor-intro">
                         <c:choose>
                             <c:when test="${mentor.mentorIntro ne null}">
-                                ${mentor.career}
+                                ${mentor.mentorIntro}
                             </c:when>
                             <c:otherwise>
                                 자기 소개가 없습니다.

@@ -1,6 +1,7 @@
 package com.kh.T3B1.manager.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -75,6 +76,14 @@ public class ManagerDao {
 
 	public int countReportList(SqlSessionTemplate sqlSession, String keyword) {
 		return sqlSession.selectOne("commonMapper.countReportList", keyword);
+	}
+
+	public Integer confirmLicense(SqlSessionTemplate sqlSession, HashMap<String, Integer> updateInfo) {
+		return sqlSession.update("managerMapper.confirmLicense", updateInfo);
+	}
+
+	public Integer rejectLicense(SqlSessionTemplate sqlSession, HashMap<String, Integer> updateInfo) {
+		return sqlSession.delete("managerMapper.rejectLicense", updateInfo);
 	}
 
 

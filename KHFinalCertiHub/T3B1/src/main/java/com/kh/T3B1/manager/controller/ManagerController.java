@@ -107,6 +107,38 @@ public class ManagerController {
 	}
 	
 	@ResponseBody
+	@PostMapping(value="confirmLicense", produces="application/json; charset=UTF-8")
+	public String confirmLicense(int licenseNo, int memberNo) {
+		String result = "N";
+		
+		HashMap<String, Integer> updateInfo = new HashMap<>();
+		updateInfo.put("licenseNo", licenseNo);
+		updateInfo.put("memberNo", memberNo);
+		
+		result = managerService.confirmLicense(updateInfo);
+		
+		HashMap<String, String> jsonData =  new HashMap<>();
+		jsonData.put("success", result);
+		return new Gson().toJson(jsonData);
+	}
+	
+	@ResponseBody
+	@PostMapping(value="rejectLicense", produces="application/json; charset=UTF-8")
+	public String rejectLicense(int licenseNo, int memberNo) {
+		String result = "N";
+		
+		HashMap<String, Integer> updateInfo = new HashMap<>();
+		updateInfo.put("licenseNo", licenseNo);
+		updateInfo.put("memberNo", memberNo);
+		
+		result = managerService.rejectLicense(updateInfo);
+		
+		HashMap<String, String> jsonData =  new HashMap<>();
+		jsonData.put("success", result);
+		return new Gson().toJson(jsonData);
+	}
+	
+	@ResponseBody
 	@PostMapping(value="reportList", produces="application/json; charset=UTF-8")
 	public String selectReportList(int currentPage, int boardLimit, int pageLimit, String keyword) {
 		// 요청 한번에 불러올 게시글의 수, 최대 20개 까지
