@@ -102,6 +102,10 @@ body {
     width:40%;
 }
 
+.board-certify .board td.title:hover{
+    color:#006D77;
+}
+
 .trow td button{
     width: 100%;
 }
