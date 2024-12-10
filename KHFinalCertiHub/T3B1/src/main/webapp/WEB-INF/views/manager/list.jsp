@@ -20,7 +20,6 @@
             <!-- 사이드바 -->
             <div class="sidebar">
                 <ul>
-                    <li><a href="<%=contextPath%>/manager/manager">공지</a></li>
                     <li><a href="<%=contextPath%>/manager/certify">자격증 인증</a></li>
                     <li><a href="<%=contextPath%>/manager/commulist">커뮤니티 게시글 관리</a></li>
                     <li><a href="<%=contextPath%>/manager/list">홍보 게시글 관리</a></li>
