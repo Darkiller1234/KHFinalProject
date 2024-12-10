@@ -21,6 +21,7 @@ body {
     padding: 0 !important;
 }
 
+/* 사이드바 스타일 */
 .sidebar {
     background-color: #EDF6F9; /* 사이드바 배경색 */
     width: 200px; /* 사이드바 너비 */
@@ -73,17 +74,47 @@ body {
 
 /* 검색폼 스타일 */
 .search-form {
-    display: flex; /* 플렉스 박스 사용 */
-    justify-content: center; /* 중앙 정렬 */
-    margin: 20px 0; /* 위아래 여백 */
-    width: 100%; /* 부모 요소의 너비를 차지 */
-    max-width: 400px; /* 최대 너비를 설정 */
-}
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 750px;
+    height: 45px;
+    border: 3px solid #83C5BE;
+    border-radius: 25px;
+    padding-left: 15px;
+    padding-right: 3px;
+  }
+  
+  .search-form input[type="text"] {
+    width: 90%;
+    padding: 5px 10px;
+    font-size: 16px;
+    border: none;
+  }
+  
+  .search-form input[type="text"]:focus {
+    outline: none;
+  }
+  
+  .search-form button {
+    width: 35px;
+    height: 35px;
+    border: none;
+    background-color: #006D77;
+    display: flex;
+    border-radius: 50px;
+    justify-content: center;
+    align-items: center;
+  }
 
+/* 기본 테이블 스타일 */
 .board {
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
 .pagination {
     margin-top: 10px;
 }
@@ -95,8 +126,9 @@ footer {
     text-align: center; /* 텍스트 중앙 정렬 */
 }
 
+/* 모바일 화면에서 사이드바 숨기기 */
 @media (min-width: 721px) {
-    /* 이 영역은 721px 이상 화면에 대한 스타일입니다. */
+    
 }
 
 @media (min-width: 481px) and (max-width: 720px) {
@@ -111,6 +143,7 @@ footer {
     }
 }
 
+/* 화면이 더 작은 경우 추가 조정 */
 @media (max-width: 480px) {
     .search-section .search-form{
         width: 100%;
@@ -125,6 +158,10 @@ footer {
     }
 
     .board tr :nth-child(4) {
+        display: none;
+    }
+
+    .board tr :nth-child(5) {
         display: none;
     }
 }
