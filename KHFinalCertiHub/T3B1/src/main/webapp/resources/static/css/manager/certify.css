@@ -20,25 +20,43 @@ body {
     padding: 0 !important;
 }
 
+/* PC 메뉴 선택 */
 .sidebar {
     background-color: #EDF6F9; /* 사이드바 배경색 */
     width: 200px; /* 사이드바 너비 */
     padding: 20px;
     justify-content: flex-start;
+    flex-shrink: 0; /* flex 부모에 따라 크기 감소 삭제 */
 }
 
 .sidebar ul {
+    width: 100%;
     list-style-type: none; /* 리스트 스타일 제거 */
     padding: 0; /* 패딩 제거 */
 }
 
 .sidebar li {
+    width: 100%;
     margin-bottom: 15px; /* 항목 간 여백 */
 }
 
 .sidebar a {
     text-decoration: none; /* 링크의 밑줄 제거 */
     color: #006D77; /* 링크 색상 */
+}
+
+/* 모바일 메뉴 선택 */
+#manageSelect{
+    display:none;
+}
+
+#testdiv{
+    text-align: center;
+}
+
+.navbar-toggler img{
+    max-width: 100%;
+    max-height: 100%;
 }
 
 /* 콘텐츠 영역 스타일 */
@@ -142,6 +160,18 @@ footer {
 }
 
 @media (max-width: 480px) {
+    .sidebar {
+        display:none;
+    }
+
+    #manageSelect{
+        display:flex;
+    }
+
+    .content{
+        padding:20px;
+    }
+
     .search-section{
         width:100%;
     }
