@@ -39,15 +39,7 @@ public class ManagerController {
 	}
 	
 	@RequestMapping("manager")
-	public String managerPage(@RequestParam(value="cpage",defaultValue="1")int currentPage, Model m) {
-		int managerboardCount = managerService.managerListCount();
-		
-		PageInfo pi = Template.getPageInfo(managerboardCount, currentPage, 1, 1);
-		ArrayList<Board> list = managerService.managerList(pi);
-		System.out.println("list :" + list);
-		System.out.print("pi :" + pi);
-		m.addAttribute("list", list);
-		m.addAttribute("pi", pi);
+	public String managerPage(Model m) {
 		m.addAttribute("pageName","managerPage");
 		return "manager/manager";
 	}
