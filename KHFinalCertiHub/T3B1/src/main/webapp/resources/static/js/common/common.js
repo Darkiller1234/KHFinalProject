@@ -232,7 +232,7 @@ function createList(div, data){
         if(events != null){
             events.forEach(ev => {
                 let eventIndex = ev[0] <= 0 ? 0 :ev[0] - 1;
-                tr.children[eventIndex].onclick = () => {
+                tr.children[eventIndex].onclick = () => { 
                     ev[1]()
                 }
             })

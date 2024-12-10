@@ -76,15 +76,14 @@ function initList(state, data){
             "수락",
             "거절",
         ],
+        boardList : data.map( board => [
+            null,
+            board.memberName,
+            board.licenseName,
+            '<button>수락</button>',
+            '<button>거절</button>',
+        ])
     }
-
-    boardInfo.boardList = data.map( board => [
-        null,
-        board.memberName,
-        board.licenseName,
-        '<button>수락</button>',
-        '<button>거절</button>',
-    ])
     
     createList(boardList, boardInfo)
 }
