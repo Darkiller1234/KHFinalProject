@@ -1,6 +1,7 @@
 package com.kh.T3B1.manager.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.kh.T3B1.common.vo.PageInfo;
@@ -40,5 +41,11 @@ public interface ManagerService {
 	ArrayList<StudyBoard> selectListList(PageInfo pi, SearchOption so);
 
 	int countReportList(String keyword);
+
+	// 자격증 인증 승인 결과 반환 성공 Y 실패 N
+	String confirmLicense(HashMap<String, Integer> updateInfo);
+
+	// 자격증 인증 요청 삭제 결과 반환 성공 Y 실패 N
+	String rejectLicense(HashMap<String, Integer> updateInfo);
 
 }

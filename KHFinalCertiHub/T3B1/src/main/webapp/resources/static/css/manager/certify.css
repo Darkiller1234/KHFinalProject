@@ -68,6 +68,7 @@ body {
     max-width: 400px; /* 최대 너비를 설정 */
 }
 
+/* 보드(테이블) css */
 .board {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -77,10 +78,27 @@ body {
     width:40%;
 }
 
+.trow td button{
+    width: 100%;
+}
+
 .pagination {
     margin-top: 10px;
 }
 
+/* 모달창 */
+#license-img{
+    width: 400px;
+    height: 400px;
+}
+
+#license-name{
+    text-align: center;
+}
+
+#user-name{
+    text-align: center;
+}
 
 /* 푸터 스타일 */
 footer {
@@ -102,6 +120,12 @@ footer {
     .board tr > :nth-child(1) {
         display: none;
     }
+
+    #license-img{
+        width: 300px;
+        height: 300px;
+    }
+    
 }
 
 @media (max-width: 480px) {
@@ -112,5 +136,11 @@ footer {
     .board tr > :nth-child(1) {
         display: none;
     }
+
+    #license-img{
+        width: 250px;
+        height: 250px;
+    }
+    
 
 }

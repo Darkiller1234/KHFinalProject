@@ -48,31 +48,25 @@
 
     <div class="modal" id="licenseImg">
         <div class="modal-dialog">
-        <div class="modal-content">
-    
-            <!-- Modal Header -->
-            <div class="modal-header">
-            <h4 class="modal-title">                
-                <img 
-                src="<%=contextPath%>/resources/static/img/logo/logo_big.png"
-                ">
-            </h4>
+            <div class="modal-content">
+        
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">                
+                        <img 
+                        src="<%=contextPath%>/resources/static/img/logo/logo_big.png"
+                        ">
+                    </h4>
+                </div>
+        
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <img id="license-img">
+                    <div id="license-name" class="font-size-title"></div>
+                    <div id="user-name" class="font-size-subtitle"></div>
+                </div>
+        
             </div>
-    
-            <!-- Modal body -->
-            <div class="modal-body">
-                <img id="license-img"></div>
-                <div id="license-name"></div>
-                <div id="user-name"></div>
-            </div>
-    
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button id="banButton" class="confirm" type="button" data-bs-dismiss="modal">확인</button>
-                <button type="button" data-bs-dismiss="modal">취소</button>
-            </div>
-    
-        </div>
         </div>
     </div>
 

@@ -214,6 +214,7 @@ function createList(div, data){
 
     data.boardList.forEach(post => {
         let tr = document.createElement('tr')
+        tr.className = "trow"
         post.slice(1,post.length).forEach(data => {
             let td = document.createElement('td')
             td.innerHTML = data;
