@@ -1,13 +1,3 @@
-/* 기본 스타일 */
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #ffffff; /* 페이지 배경색 */
-    margin: 0;
-    display: flex; /* 플렉스 박스 사용 */
-    flex-direction: column; /* 수직 방향 정렬 */
-    height: 100vh; /* 전체 화면 높이 */
-}
-
 .wrapper {
     display: flex; /* 플렉스 박스 사용 */
     flex: 1; /* 남은 공간 차지 */
@@ -28,7 +18,6 @@ body {
     background-color: #ffffff; /* 콘텐츠 배경색 */
     padding: 40px; /* 패딩 추가 */
     border-radius: 8px; /* 모서리 둥글게 */
-    height: calc(100vh - 100px); /* 헤더를 제외한 전체 높이 사용 */
 }
 
 /* 콘텐츠 영역 스타일 */
@@ -37,7 +26,6 @@ body {
     background-color: #ffffff; /* 콘텐츠 배경색 */
     padding: 40px; /* 패딩 추가 */
     border-radius: 8px; /* 모서리 둥글게 */
-    height: calc(100vh - 100px); /* 헤더를 제외한 전체 높이 사용 */
     display: flex; /* 플렉스 박스 사용 */
     flex-direction: column; /* 수직 방향 정렬 */
     align-items: center; /* 수평 중앙 정렬 */
@@ -50,13 +38,19 @@ body {
     width: 100%;
 }
 
+.search-section{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width:60%;
+}
+
 /* 검색폼 스타일 */
 .search-form {
     display: flex; /* 플렉스 박스 사용 */
     justify-content: center; /* 중앙 정렬 */
     margin: 20px 0; /* 위아래 여백 */
     width: 100%; /* 부모 요소의 너비를 차지 */
-    max-width: 400px; /* 최대 너비를 설정 */
 }
 
 /* 게시글 밑 설정 ( 글쓰기 버튼, 페이징바 )*/
@@ -88,8 +82,6 @@ body {
 .site-select {
     position: relative; /* 드롭다운 메뉴를 상대적인 위치에 배치 */
     margin-left: auto;  /* 오른쪽 정렬 */
-    margin-top: 20px;
-    margin-bottom: 20px;
 }
 
 
@@ -115,27 +107,39 @@ footer {
 }
 
 @media (min-width: 481px) and (max-width: 720px) {
+    .search-section{
+        width:100%;
+    }
+
     .option{
         flex-direction: column;
     }
     .option button{
         width:calc(100% - 1.25rem);
     }
+
+    .board tr :nth-child(3){
+        display:none;
+    }
 }
 
 @media (max-width: 480px) {
+    .search-section{
+        width:100%;
+    }
+
     .option{
         flex-direction: column;
     }
     .option button{
         width:calc(100% - 1.25rem);
     }
-}
 
-/* 작은 화면용 스타일 */
-@media (max-width: 480px) {
-    footer {
-        font-size: 14px; /* 작은 화면에서 글자 크기 조정 */
-        padding: 15px 10px; /* 패딩 추가 */
+    .board tr :nth-child(3){
+        display:none;
+    }
+
+    .board tr :nth-child(4){
+        display:none;
     }
 }
