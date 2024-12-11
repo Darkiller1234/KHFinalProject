@@ -72,7 +72,7 @@ function loadAjax(contextPath, currentPage, keyword, table) {
                 });
 
                 if(item.studyBoardNo !== 0){
-                    const td = $("<td></td>").text("스터디"); // td 생성
+                    const td = $("<td></td>").text("스터디홍보"); // td 생성
                     newRow.append(td); // tr에 추가
 
                     const detailTd = $("<td></td>");
@@ -116,8 +116,11 @@ function loadAjax(contextPath, currentPage, keyword, table) {
                     const td = $("<td></td>").text("유저"); // td 생성
                     newRow.append(td); // tr에 추가
 
-                    const t_d = $("<td></td>").text("-"); // td 생성
-                    newRow.append(t_d); // tr에 추가
+                    const detailTd = $("<td></td>");
+                    const detailButton = $("<button>정보</button>").attr("data-id", item.accusedNo); // ID 저장
+                    detailButton.attr("data-name", "유저");
+                    detailTd.append(detailButton);
+                    newRow.append(detailTd);
                 }
 
                 const reportType = $("<td></td>").text(item.reportTypeDetail);
@@ -176,7 +179,7 @@ function loadAjax(contextPath, currentPage, keyword, table) {
                 table.append(newRow);
             });
 
-            // 링크 버튼 클릭 이벤트
+            // 내용 버튼 클릭 이벤트
             // $('#apply-modal').modal('hide'); // 모달 닫기
             table.on("click", "button:contains('내용')", function () {
                 $('#apply-modal .modal-body').html("잠시만 기다려주세요...");
@@ -191,7 +194,7 @@ function loadAjax(contextPath, currentPage, keyword, table) {
                             },
                             success: function(res){
                                 let string = "";
-                                string += "제목: " + res.studyBoardTitle + "<br><br>" + res.studyBoardContent;
+                                string += "제목: " + res.boardTitle + "<br><br>" + res.boardContent;
                                 $('.modal-body').html(string);
                             },
                             error: function(res){
@@ -227,11 +230,11 @@ function loadAjax(contextPath, currentPage, keyword, table) {
                             },
                             success: function(res){
                                 let string = "";
-                                string += "제목: " + res.studyBoardTitle + "<br><br>" + res.studyBoardContent;
+                                string += res.messageContent;
                                 $('.modal-body').html(string);
                             },
                             error: function(res){
-                                console.log("스터디 보드 ajax 오류");
+                                console.log("메세지 ajax 오류");
                             }
                         })
                         break;
@@ -257,6 +260,12 @@ function loadAjax(contextPath, currentPage, keyword, table) {
                         $('.modal-body').html("이 버튼은 대체 뭐냐아아아...");
                         break;
                 }
+            });
+
+            // 정보 버튼 클릭
+            table.on("click", "button:contains('정보')", function () {
+                location.href = contextPath + "/personal/view?pno=" + $(this).data("id");
+                
             });
 
 

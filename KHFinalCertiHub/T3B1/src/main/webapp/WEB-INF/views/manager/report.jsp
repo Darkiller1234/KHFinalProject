@@ -84,7 +84,7 @@
                         <form class="search-section" action="report">
                             <div class="search-form">
                                 <input type="text" name="keyword" value="${keyword}">
-                                <button type="submit">
+                                <button type="submit" class="rounded-circle">
                                     <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
                                 </button>
                             </div>

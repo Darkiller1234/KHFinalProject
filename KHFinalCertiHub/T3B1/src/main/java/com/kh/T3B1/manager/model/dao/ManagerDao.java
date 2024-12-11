@@ -120,8 +120,8 @@ public class ManagerDao {
 		
 	}
 
-	public void deleteReport(SqlSessionTemplate sqlSession, int reportNo) {
-		sqlSession.delete("managerMapper.deleteReport", reportNo);
+	public void deleteReport(SqlSessionTemplate sqlSession, Map<String, Object> params) {
+		sqlSession.delete("managerMapper.deleteReport", params);
 	}
 	public Integer confirmLicense(SqlSessionTemplate sqlSession, HashMap<String, Integer> updateInfo) {
 		return sqlSession.update("managerMapper.confirmLicense", updateInfo);
