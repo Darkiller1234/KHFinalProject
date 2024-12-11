@@ -22,7 +22,6 @@ function loadAjax(contextPath, currentPage, keyword, table) {
                                     <th>피신고자</th>
                                     <th>대상</th>
                                     <th>내용</th>
-                                    <th>종류</th>
                                     <th>사유</th>
                                     <th>삭제</th>
                                     <th>무시</th>
@@ -72,7 +71,7 @@ function loadAjax(contextPath, currentPage, keyword, table) {
                 });
 
                 if(item.studyBoardNo !== 0){
-                    const td = $("<td></td>").text("스터디홍보"); // td 생성
+                    const td = $("<td></td>").text("스/글"); // td 생성
                     newRow.append(td); // tr에 추가
 
                     const detailTd = $("<td></td>");
@@ -123,15 +122,16 @@ function loadAjax(contextPath, currentPage, keyword, table) {
                     newRow.append(detailTd);
                 }
 
-                const reportType = $("<td></td>").text(item.reportTypeDetail);
-                newRow.append(reportType); // tr에 추가
-
                 if(item.reportDetail === null || item.reportDetail === undefined){
-                    const reportDetail = $("<td></td>").text("없음");
-                    newRow.append(reportDetail); // tr에 추가
+                    const detailTd = $("<td></td>");
+                    const detailButton = $("<button>보기</button>").attr("data-detail", item.reportDetail); // ID 저장
+                    detailButton.attr("data-type", "-")
+                    detailTd.append(detailButton);
+                    newRow.append(detailTd);
                 }else {
                     const detailTd = $("<td></td>");
                     const detailButton = $("<button>보기</button>").attr("data-detail", item.reportDetail); // ID 저장
+                    detailButton.attr("data-type", item.reportTypeDetail)
                     detailTd.append(detailButton);
                     newRow.append(detailTd);
                 }
@@ -272,7 +272,8 @@ function loadAjax(contextPath, currentPage, keyword, table) {
             // 신고 사유 버튼 클릭 이벤트
             table.on("click", "button:contains('보기')", function () {
                 const detail = $(this).data("detail"); // 버튼의 data-id 가져오기
-                $('.modal-body').html("사유: " + detail);
+                const type = $(this).data("type");
+                $('.modal-body').html(type + `<br>` + "사유: " + detail);
                 $('#apply-modal').modal('show'); // 모달 띄우기
             });
 

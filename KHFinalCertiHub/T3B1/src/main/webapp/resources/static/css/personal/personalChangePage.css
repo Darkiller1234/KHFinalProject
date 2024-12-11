@@ -197,7 +197,7 @@ input[type="text"]:focus {
 footer {
     width: 100%;
     background-color: #EDF6F9;
-    text-align: center;
+    /* text-align: center; */
     padding: 10px 0;
     box-sizing: border-box;
     margin-top: 13.8%;
