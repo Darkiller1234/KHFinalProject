@@ -15,6 +15,17 @@
   	<result column="LICENSE_DESC" property="licenseDesc"/>
   	<result column="MEMBER_NICKNAME" property="memberName"/>
   </resultMap>
+  
+   <resultMap type="NoticeBoard" id="boardResultSet">
+	<result column="NOTICE_BOARD_NO" property="boardNo"/>
+	<result column="MEMBER_NO" property="memberNo"/>
+  	<result column="NOTICE_BOARD_TITLE" property="boardTitle"/>
+  	<result column="NOTICE_BOARD_CONTENT" property="boardContent"/>
+  	<result column="VIEW_COUNT" property="viewCount"/>
+  	<result column="NOTICE_BOARD_DATE" property="boardDate"/>
+  	<result column="STATUS" property="status"/>
+  	<result column="MEMBER_NICKNAME" property="memberName"/>
+  </resultMap>
 
   <select id="countLicenseList" resultType="int">
 	SELECT COUNT(*)
@@ -41,6 +52,140 @@
 	</if>
   </select>
   
+  <select id="getReportedId" resultType="_int">
+  	SELECT 
+  		CASE 
+            WHEN #{name} = '스터디' THEN STUDY_BOARD_NO
+            WHEN #{name} = '댓글' THEN REPLY_NO
+            WHEN #{name} = '글' THEN BOARD_NO
+            WHEN #{name} = '메세지' THEN MESSAGE_NO
+            WHEN #{name} = '유저' THEN ACCUSED_NO
+            ELSE NULL
+        END AS REPORTED_ID
+  	FROM REPORT
+  	WHERE REPORT_NO = #{reportNo}
+  </select>
+  
+  <delete id="deleteMessage">
+  	DELETE 
+  	FROM MESSAGE
+  	WHERE MESSAGE_NO = #{id}
+  </delete>
 
+  <update id="deleteReported">
+  	<choose>
+        <when test='name.equals("스터디")'>
+            UPDATE STUDY_BOARD
+            SET STATUS = 'N'
+            WHERE STUDY_BOARD_NO = #{id}
+        </when>
+        <when test='name.equals("댓글")'>
+            UPDATE REPLY
+            SET STATUS = 'N'
+            WHERE REPLY_NO = #{id}
+        </when>
+        <when test='name.equals("글")'>
+            UPDATE BOARD
+            SET STATUS = 'N'
+            WHERE BOARD_NO = #{id}
+        </when>
+        <when test='name.equals("유저")'>
+            UPDATE MEMBER
+            SET STATUS = 'N'
+            WHERE MEMBER_NO = #{id}
+        </when>
+    </choose>
+  </update>
+  <update id="confirmLicense">
+  	UPDATE MEMBER_LICENSE
+  	   SET CONFIRM_DATE = SYSDATE
+  	 WHERE MEMBER_NO = #{memberNo}
+  	   AND LICENSE_NO = #{licenseNo}
+  </update>
+  
+  <delete id="rejectLicense">
+  	DELETE FROM MEMBER_LICENSE
+  	 WHERE MEMBER_NO = #{memberNo}
+  	   AND LICENSE_NO = #{licenseNo}
+  </delete>
+  
+   <select id="countBoard" resultType="int">
+		SELECT COUNT(*)
+		FROM NOTICE_BOARD NB
+		INNER JOIN MEMBER M ON (NB.MEMBER_NO = M.MEMBER_NO)
+		WHERE NB.STATUS = 'Y'
+		<if test="keyword != null">
+			AND NOTICE_BOARD_TITLE LIKE '%' || #{keyword} || '%'
+		</if>
+  </select>
+  
+  <select id="selectBoardList" resultMap="boardResultSet">
+	  SELECT NB.NOTICE_BOARD_NO NOTICE_BOARD_NO,
+	        NB.MEMBER_NO MEMBER_NO,
+	        NB.NOTICE_BOARD_TITLE NOTICE_BOARD_TITLE,
+	        NB.VIEW_COUNT VIEW_COUNT,
+			TO_CHAR(NB.NOTICE_BOARD_DATE,'YYYY-MM-DD') NOTICE_BOARD_DATE,
+	        NB.STATUS STATUS,
+	        M.MEMBER_NICKNAME MEMBER_NICKNAME
+		FROM NOTICE_BOARD NB
+		INNER JOIN MEMBER M ON (NB.MEMBER_NO = M.MEMBER_NO)
+		WHERE NB.STATUS = 'Y'
+		<if test="keyword != null">
+			AND NOTICE_BOARD_TITLE LIKE '%' || #{keyword} || '%'
+		</if>
+		ORDER BY NOTICE_BOARD_NO DESC
+  </select>
+
+	<delete id="deleteReport">
+		DELETE 
+		FROM REPORT
+		WHERE REPORT_NO = #{reportNo}
+	</delete>
+	
+	<update id="increaseView">
+		UPDATE NOTICE_BOARD
+		   SET VIEW_COUNT = VIEW_COUNT + 1
+		 WHERE NOTICE_BOARD_NO = #{no}
+	</update>
+	
+    <select id="selectBoard" resultMap="boardResultSet">
+	  SELECT NB.NOTICE_BOARD_NO NOTICE_BOARD_NO,
+	        NB.MEMBER_NO MEMBER_NO,
+	        NB.NOTICE_BOARD_TITLE NOTICE_BOARD_TITLE,
+	        NB.NOTICE_BOARD_CONTENT NOTICE_BOARD_CONTENT,
+	        M.MEMBER_NICKNAME MEMBER_NICKNAME
+		FROM NOTICE_BOARD NB
+		INNER JOIN MEMBER M ON (NB.MEMBER_NO = M.MEMBER_NO)
+		WHERE NB.STATUS = 'Y'
+		  AND NB.NOTICE_BOARD_NO = #{no}
+    </select>
+
+	<insert id="insertBoard">
+		INSERT INTO NOTICE_BOARD(
+			NOTICE_BOARD_NO,
+			MEMBER_NO,
+			NOTICE_BOARD_TITLE,
+			NOTICE_BOARD_CONTENT
+		) VALUES (
+			NOTICE_BOARD_SEQ.NEXTVAL,
+			#{memberNo},
+			#{boardTitle},
+			#{boardContent}
+		)
+	</insert>
+	
+	<update id="deleteBoard">
+		UPDATE NOTICE_BOARD
+		   SET STATUS = 'N'
+		 WHERE NOTICE_BOARD_NO = #{no}
+	</update>
+	
+	<update id="updateBoard">
+		UPDATE NOTICE_BOARD
+		   SET NOTICE_BOARD_TITLE = #{boardTitle},
+			   NOTICE_BOARD_CONTENT = #{boardContent}
+		 WHERE NOTICE_BOARD_NO = #{boardNo}
+	</update>
+	
 </mapper>
 

@@ -21,12 +21,14 @@
             <div class="content">
                 <h2>공지사항</h2>
 
-                <div class="search-form">
-                    <input type="text">
-                    <button class="rounded-circle" onclick="alert('클릭됨')">
-                        <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
-                    </button> 
-                </div>
+                <form class="search-section" action="notice">
+                    <div class="search-form">
+                        <input type="text" name="keyword">
+                        <button type="submit" class="rounded-circle">
+                            <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
+                        </button> 
+                    </div>
+                </form>
 
                 <!-- 셀렉트박스 -->
                 <div class="site-select"></div>
