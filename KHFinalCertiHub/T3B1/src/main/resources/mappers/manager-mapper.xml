@@ -15,6 +15,17 @@
   	<result column="LICENSE_DESC" property="licenseDesc"/>
   	<result column="MEMBER_NICKNAME" property="memberName"/>
   </resultMap>
+  
+   <resultMap type="NoticeBoard" id="boardResultSet">
+	<result column="NOTICE_BOARD_NO" property="boardNo"/>
+	<result column="MEMBER_NO" property="memberNo"/>
+  	<result column="NOTICE_BOARD_TITLE" property="boardTitle"/>
+  	<result column="NOTICE_BOARD_CONTENT" property="boardContent"/>
+  	<result column="VIEW_COUNT" property="viewCount"/>
+  	<result column="NOTICE_BOARD_DATE" property="boardDate"/>
+  	<result column="STATUS" property="status"/>
+  	<result column="MEMBER_NICKNAME" property="memberName"/>
+  </resultMap>
 
   <select id="countLicenseList" resultType="int">
 	SELECT COUNT(*)
@@ -97,6 +108,33 @@
   	 WHERE MEMBER_NO = #{memberNo}
   	   AND LICENSE_NO = #{licenseNo}
   </delete>
+  
+   <select id="countBoard" resultType="int">
+		SELECT COUNT(*)
+		FROM NOTICE_BOARD NB
+		INNER JOIN MEMBER M ON (NB.MEMBER_NO = M.MEMBER_NO)
+		WHERE NB.STATUS = 'Y'
+		<if test="keyword != null">
+			AND NOTICE_BOARD_TITLE LIKE '%' || #{keyword} || '%'
+		</if>
+  </select>
+  
+  <select id="selectBoardList" resultMap="boardResultSet">
+	  SELECT NB.NOTICE_BOARD_NO NOTICE_BOARD_NO,
+	        NB.MEMBER_NO MEMBER_NO,
+	        NB.NOTICE_BOARD_TITLE NOTICE_BOARD_TITLE,
+	        NB.NOTICE_BOARD_CONTENT NOTICE_BOARD_CONTENT,
+	        NB.VIEW_COUNT VIEW_COUNT,
+	        NB.NOTICE_BOARD_DATE NOTICE_BOARD_DATE,
+	        NB.STATUS STATUS,
+	        M.MEMBER_NICKNAME MEMBER_NICKNAME
+		FROM NOTICE_BOARD NB
+		INNER JOIN MEMBER M ON (NB.MEMBER_NO = M.MEMBER_NO)
+		WHERE NB.STATUS = 'Y'
+		<if test="keyword != null">
+			AND NOTICE_BOARD_TITLE LIKE '%' || #{keyword} || '%'
+		</if>
+  </select>
 
 	<delete id="deleteReport">
 		DELETE 
