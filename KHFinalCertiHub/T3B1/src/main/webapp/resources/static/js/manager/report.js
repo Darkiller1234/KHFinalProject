@@ -18,15 +18,15 @@ function initReport(contextPath) {
 
 function loadAjax(contextPath, currentPage, keyword, table) {
     $("#tabledefault").html(`<tr class="header bgcolor2" >
-                                    <th>신 고자</th>
-                                    <th>피신 고자</th>
-                                    <th>무엇을?</th>
-                                    <th>신고당한 내용</th>
-                                    <th>신고종류</th>
-                                    <th>신고 사유</th>
+                                    <th>신고자</th>
+                                    <th>피신고자</th>
+                                    <th>대상</th>
+                                    <th>내용</th>
+                                    <th>종류</th>
+                                    <th>사유</th>
                                     <th>삭제</th>
                                     <th>무시</th>
-                                </tr> `);
+                                </tr>  `);
     $.ajax({
         url: 'reportList', // API 엔드포인트 입력
         method: 'post',
