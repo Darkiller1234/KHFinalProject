@@ -88,8 +88,11 @@
                     </span>
                 </c:if>
             </div>
-
+            <div class="bottom-options">
+                <button onclick="topScroll()" class="top-button rounded-circle"><img src="${pageContext.request.contextPath}/resources/static/img/button/arrow_up_icon.png"></button>
+            </div>
             <script src="<%=contextPath%>/resources/static/js/infopage/searchPage.js"></script>
+            <script src="<%=contextPath%>/resources/static/js/common/common.js"></script>
 
             <%@ include file="../common/footer.jsp" %>
     </body>

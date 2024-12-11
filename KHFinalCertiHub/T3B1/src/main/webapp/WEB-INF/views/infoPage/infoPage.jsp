@@ -17,6 +17,7 @@
             <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/common/default.css">
             <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/infopage/infoPage.css">
             <link rel="stylesheet" href="<%=contextPath%>/resources/static/css/infopage/map.css">
+            
             <div class="wrapper">
                 <div class="container">
                     <h1>자료실</h1>
@@ -720,6 +721,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="bottom-options">
+                <button onclick="topScroll()" class="top-button rounded-circle"><img src="${pageContext.request.contextPath}/resources/static/img/button/arrow_up_icon.png"></button>
             </div>
             <script src="${pageContext.request.contextPath}/resources/static/js/infopage/infoPage.js"></script>
             <script src="${pageContext.request.contextPath}/resources/static/js/infopage/map.js"></script>
