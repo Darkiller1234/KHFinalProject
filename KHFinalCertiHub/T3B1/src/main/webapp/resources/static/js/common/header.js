@@ -142,6 +142,14 @@ function init(contextPath, pageName, optional){
             initNoticeWrite(contextPath);
             break;
 
+        case "noticepost":
+            initNoticePost(contextPath);
+            break;
+
+        case "noticeEdit":
+            initNoticeEdit(contextPath);
+            break;
+
         case "certifyPage":
             initCertifyPage(contextPath);
             break;
