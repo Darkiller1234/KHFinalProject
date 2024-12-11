@@ -176,6 +176,7 @@ function createApplyList(div, state){
 }
 
 function createMessageCard(state, data){
+    console.log(data)
     const messageDiv = document.createElement('div')
     messageDiv.className = data.memberNo == state.memberNo ? 'message mine' : 'message'
 
