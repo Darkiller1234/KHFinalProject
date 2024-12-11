@@ -18,8 +18,8 @@ public class SitenoticeDao {
 	}
 
 	public ArrayList<StudyBoard> selectBoardList(SqlSessionTemplate sqlSession, PageInfo pi, SearchOption so) {
-		int offset = (pi.getCurrentPage() - 1) * pi.getPageLimit();
-		RowBounds rowBounds = new RowBounds(offset, pi.getPageLimit());
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
 		return (ArrayList)sqlSession.selectList("managerMapper.selectBoardList", so, rowBounds);
 	}

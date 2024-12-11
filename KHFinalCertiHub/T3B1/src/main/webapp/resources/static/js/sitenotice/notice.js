@@ -3,7 +3,7 @@ function initNoticePage(contextPath) {
 }
 
 function initSelectBox(contextPath) {
-    const selectBoxList = document.querySelector(".site-select");
+    const selectBoxList = document.querySelectorAll(".site-select");
 
     const url = new URL(window.location.href);
     const urlParam = url.searchParams;
@@ -45,10 +45,6 @@ function initBoard(contextPath){
     const boardLimit = urlParam.get("display") ?? 10
     const pageLimit = 5
 
-    // 초기값 세팅
-    const boardList = document.querySelector('.board-content');
-    const pagingBar = document.querySelector('.paging-bar');
-    
     // pageInfo = 객체 리터럴
     let pageInfo = {
         currentPage : currentPage,

@@ -115,7 +115,7 @@
 		INNER JOIN MEMBER M ON (NB.MEMBER_NO = M.MEMBER_NO)
 		WHERE NB.STATUS = 'Y'
 		<if test="keyword != null">
-			AND MEMBER_NICKNAME LIKE '%' || #{keyword} || '%'
+			AND NOTICE_BOARD_TITLE LIKE '%' || #{keyword} || '%'
 		</if>
   </select>
   
@@ -132,7 +132,7 @@
 		INNER JOIN MEMBER M ON (NB.MEMBER_NO = M.MEMBER_NO)
 		WHERE NB.STATUS = 'Y'
 		<if test="keyword != null">
-			AND MEMBER_NICKNAME LIKE '%' || #{keyword} || '%'
+			AND NOTICE_BOARD_TITLE LIKE '%' || #{keyword} || '%'
 		</if>
   </select>
 
