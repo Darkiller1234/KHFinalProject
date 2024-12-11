@@ -3,6 +3,8 @@ package com.kh.T3B1.sitenotice.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,8 +15,8 @@ import com.google.gson.Gson;
 import com.kh.T3B1.common.template.Template;
 import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.common.vo.SearchOption;
+import com.kh.T3B1.sitenotice.model.vo.NoticeBoard;
 import com.kh.T3B1.sitenotice.service.SitenoticeService;
-import com.kh.T3B1.study.model.vo.StudyBoard;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -44,6 +46,20 @@ public class SitenoticeController {
 		return "sitenotice/noticewrite";
 	}
 	
+	@RequestMapping("board")
+	public String selectBoard(HttpSession session, Model m, int no) {
+		NoticeBoard board = noticeService.selectBoard(no);
+		
+		if(board == null) {
+			session.setAttribute("errorMsg", "게시글 조회에 실패했습니다.");
+			return "redirect:/error";
+		}
+		
+		m.addAttribute("board", board);
+		m.addAttribute("pageName","noticepost");
+		return "sitenotice/noticepost";
+	}
+	
 	@ResponseBody
 	@PostMapping(value="boardList", produces="application/json; charset=UTF-8")
 	public String selectBoardList(int currentPage, int boardLimit, int pageLimit, String keyword) {
@@ -62,7 +78,7 @@ public class SitenoticeController {
 		SearchOption so = new SearchOption();
 		if(keyword != null && !keyword.equals("")) so.setKeyword(keyword);
 		
-		ArrayList<StudyBoard> boardList = noticeService.selectBoardList(pi, so);
+		ArrayList<NoticeBoard> boardList = noticeService.selectBoardList(pi, so);
 		HashMap<String, String> jsonData =  new HashMap<>();
 		jsonData.put("board", new Gson().toJson(boardList));
 		jsonData.put("pageInfo", new Gson().toJson(pi));
