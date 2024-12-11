@@ -32,4 +32,16 @@ public class SitenoticeDao {
 		return sqlSession.selectOne("managerMapper.selectBoard", no);
 	}
 
+	public int insertBoard(SqlSessionTemplate sqlSession, NoticeBoard board) {
+		return sqlSession.insert("managerMapper.insertBoard", board);
+	}
+
+	public int deleteBoard(SqlSessionTemplate sqlSession, int no) {
+		return sqlSession.update("managerMapper.deleteBoard", no);
+	}
+
+	public int updateBoard(SqlSessionTemplate sqlSession, NoticeBoard board) {
+		return sqlSession.update("managerMapper.updateBoard", board);
+	}
+
 }

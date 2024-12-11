@@ -1,6 +1,7 @@
 package com.kh.T3B1.sitenotice.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.common.vo.SearchOption;
@@ -17,5 +18,15 @@ public interface SitenoticeService {
 
 	// 공지사항 조회
 	NoticeBoard selectBoard(int no);
+
+	// 공지사항 작성
+	int insertBoard(NoticeBoard board);
+
+	// 공지사항 삭제
+	int deleteBoard(int no);
+
+	// 공지사항 수정
+	int updateBoard(NoticeBoard board);
+
 
 }

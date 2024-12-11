@@ -1,4 +1,4 @@
-function initNoticeWrite(contextPath) {
+function initNoticeEdit(contextPath) {
     const summernote = $('#summernote')
 
     const fileUpload = (files) => {

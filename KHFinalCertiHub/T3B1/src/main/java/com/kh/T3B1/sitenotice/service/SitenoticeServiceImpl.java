@@ -1,6 +1,7 @@
 package com.kh.T3B1.sitenotice.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
@@ -44,5 +45,22 @@ public class SitenoticeServiceImpl implements SitenoticeService{
 		
 		return board;
 	}
+
+	@Override
+	public int insertBoard(NoticeBoard board) {
+		return noticeDao.insertBoard(sqlSession, board);
+	}
+
+	@Override
+	public int deleteBoard(int no) {
+		return noticeDao.deleteBoard(sqlSession, no);
+	}
+
+	@Override
+	public int updateBoard(NoticeBoard board) {
+		return noticeDao.updateBoard(sqlSession, board);
+	}
+
+	
 
 }

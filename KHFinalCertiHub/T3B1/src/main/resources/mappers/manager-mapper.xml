@@ -148,7 +148,7 @@
 		 WHERE NOTICE_BOARD_NO = #{no}
 	</update>
 	
-  <select id="selectBoard" resultMap="boardResultSet">
+    <select id="selectBoard" resultMap="boardResultSet">
 	  SELECT NB.NOTICE_BOARD_NO NOTICE_BOARD_NO,
 	        NB.MEMBER_NO MEMBER_NO,
 	        NB.NOTICE_BOARD_TITLE NOTICE_BOARD_TITLE,
@@ -158,8 +158,34 @@
 		INNER JOIN MEMBER M ON (NB.MEMBER_NO = M.MEMBER_NO)
 		WHERE NB.STATUS = 'Y'
 		  AND NB.NOTICE_BOARD_NO = #{no}
-  </select>
+    </select>
+
+	<insert id="insertBoard">
+		INSERT INTO NOTICE_BOARD(
+			NOTICE_BOARD_NO,
+			MEMBER_NO,
+			NOTICE_BOARD_TITLE,
+			NOTICE_BOARD_CONTENT
+		) VALUES (
+			NOTICE_BOARD_SEQ.NEXTVAL,
+			#{memberNo},
+			#{boardTitle},
+			#{boardContent}
+		)
+	</insert>
 	
+	<update id="deleteBoard">
+		UPDATE NOTICE_BOARD
+		   SET STATUS = 'N'
+		 WHERE NOTICE_BOARD_NO = #{no}
+	</update>
+	
+	<update id="updateBoard">
+		UPDATE NOTICE_BOARD
+		   SET NOTICE_BOARD_TITLE = #{boardTitle},
+			   NOTICE_BOARD_CONTENT = #{boardContent}
+		 WHERE NOTICE_BOARD_NO = #{boardNo}
+	</update>
 	
 </mapper>
 
