@@ -47,7 +47,7 @@ public class InfoPageController {
 		m.addAttribute("pi", pi); // 페이징 정보
 		m.addAttribute("keyword", keyword); // 검색 키워드 (페이징 후에도 검색어가 유지되도록)
 		m.addAttribute("pageName", "searchPage");
-
+		
 		// 검색 페이지로 이동
 		return "infoPage/searchPage";
 	}

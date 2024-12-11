@@ -3,11 +3,6 @@ function initUserPage(contextPath) {
         contextPath: contextPath,
         boardLimit: 10,
         pageLimit: 5,
-        memberNo: null,
-        memberName: null,
-        licenseNo: null,
-        licenseName: null,
-        licenseImg: null,
     }
 
     initUserBoard(state);
@@ -87,7 +82,14 @@ function initList(state, data) {
         let deleteBtn = row.children[5]
 
         deleteBtn.onclick = () => {
-            
+            // 삭제버튼 누르면 실행할 이벤트 ajax요청
+            ajaxDeleteUserLicense(data[index], (res) =>{
+                if(res.success == 'Y') {
+                    deleteBtn.disabled = true
+                }else {
+                    alert('유저 삭제에 실패했습니다.')
+                }
+            })
         }
     })
 }
@@ -130,12 +132,11 @@ function ajaxLoadBoard(pageInfo, callback){
         })
 }
 
-function ajaxConfirmLicense(data, callback){
+function ajaxDeleteUserLicense(data, callback){
     $.ajax({
         type:"post",
-        url:"confirmLicense",
+        url:"deleteUserLiscense",
         data: {
-            licenseNo: data.licenseNo,
             memberNo: data.memberNo,
         },
         success: callback,
