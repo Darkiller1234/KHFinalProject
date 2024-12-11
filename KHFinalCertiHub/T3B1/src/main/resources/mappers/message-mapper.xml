@@ -140,7 +140,7 @@
 		SELECT COUNT(*)
 		  FROM APPLY_LOG
 		 WHERE RECIPIENT_NO = #{memberNo}
-		   AND APPLY_DATE IS NOT NULL
+		   AND APPLY_DATE IS NULL
 	</select>
 	
 	<select id="selectApplyList" resultMap="applyLogResultSet">

@@ -85,6 +85,7 @@ function ajaxLoadStudy(state, callback){
 }
 
 function ajaxLoadApply(state, callback){
+    console.log(state)
     $.ajax({
         url:'loadApply',
         type: 'post',
