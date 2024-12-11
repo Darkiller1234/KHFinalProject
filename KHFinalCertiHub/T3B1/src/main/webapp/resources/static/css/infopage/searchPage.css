@@ -220,9 +220,6 @@ ul.tabs li.current {
   transition: all 0.2s ;
 }
 
-.result-btn:hover{
-  box-shadow: 5px 5px 0px 0px #EDF6F9;
-}
 
 /* 모달창 배경 */
 .modal {
@@ -262,3 +259,7 @@ ul.tabs li.current {
   font-size: 30px;
   cursor: pointer;
 }
+.bottom-options{
+  right: 20px;
+} 
+

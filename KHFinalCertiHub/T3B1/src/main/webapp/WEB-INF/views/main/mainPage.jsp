@@ -19,6 +19,7 @@
         <script src="${pageContext.request.contextPath}/resources/static/js/main/mainPage.js"></script>
         <script src="${pageContext.request.contextPath}/resources/static/js/main/mainPage2.js"></script>
         <script src="${pageContext.request.contextPath}/resources/static/js/calendar/calendar.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
         <!-- <script src="${pageContext.request.contextPath}/resources/static/config/apikey.js"></script> -->
 
     </head>
@@ -97,7 +98,9 @@
                 </div>
             </div>
             </div>
-
+            <div class="bottom-options">
+                <button onclick="topScroll()" class="top-button rounded-circle"><img src="${pageContext.request.contextPath}/resources/static/img/button/arrow_up_icon.png"></button>
+            </div>
             <%@ include file="../common/footer.jsp" %>
     </body>
 

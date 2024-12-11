@@ -266,3 +266,6 @@ span {
     word-break: break-word; /* 단어 중간에서 줄바꿈 */
     white-space: normal; /* 텍스트가 너무 길어도 줄바꿈을 허용 */
 }
+.bottom-options{
+    right: 20px;
+} 
