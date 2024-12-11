@@ -509,6 +509,11 @@
 		FROM BOARD
 		WHERE BOARD_NO LIKE '%' || #{keyword} || '%'
 	</select>
+	
+	<delete id="deleteCommuLicense">
+		DELETE FROM BOARD
+		WHERE BOARD_NO = #{boardNo}
+	</delete>
 </mapper>
 
 

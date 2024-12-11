@@ -3,11 +3,6 @@ function initCommulistPage(contextPath) {
         contextPath: contextPath,
         boardLimit: 10,
         pageLimit: 5,
-        memberNo: null,
-        memberName: null,
-        boardNo: null,
-        licenseName: null,
-        licenseImg: null,
     }
 
     initCommuBoard(state);
@@ -86,7 +81,7 @@ function initList(state, data) {
 
         deleteBtn.onclick = () => {
             // 삭제버튼 누르면 실행할 이벤트 ajax요청
-            ajaxDeleteLicense(data[index], (res) =>{
+            ajaxDeleteCommuLicense(data[index], (res) =>{
                 if(res.success == 'Y'){
                     deleteBtn.disabled = true
                 }else {
@@ -136,13 +131,12 @@ function ajaxLoadBoard(pageInfo, callback){
         })
 }
 
-function ajaxDeleteLicense(data, callback){
+function ajaxDeleteCommuLicense(data, callback){
     $.ajax({
         type:"post",
-        url:"deleteLicense",
+        url:"deleteCommuLicense",
         data: {
             boardNo: data.boardNo,
-            memberNo: data.memberNo,
         },
         success: callback,
         error: () => {

@@ -63,5 +63,11 @@ public interface ManagerService {
 	String rejectLicense(HashMap<String, Integer> updateInfo);
 
 	int ignoreReport(int reportNo);
+	
+	// 악성 커뮤 게시글 삭제 결과 반환 성공 Y 실패 N 
+	String deleteCommuLicense(HashMap<String, Integer> updateInfo);
+	
+	// 악성 홍보 게시글 삭제 결과 반환 성공 Y 실패 N
+	String deleteListLicense(HashMap<String, Integer> updateInfo);
 
 }

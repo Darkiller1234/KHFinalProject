@@ -308,5 +308,6 @@
 		WHERE SOCIAL_ID = #{id}
 		AND STATUS = 'Y'
 	</select>
+	
 </mapper>
 
