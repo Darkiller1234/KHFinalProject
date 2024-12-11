@@ -135,6 +135,14 @@ public class ManagerDao {
 		return sqlSession.delete("managerMapper.deleteReport", reportNo);
 	}
 
+	public Integer deleteCommuLicense(SqlSessionTemplate sqlSession, HashMap<String, Integer> updateInfo) {
+		return sqlSession.delete("boardMapper.deleteCommuLicense", updateInfo);
+	}
+
+	public Integer deleteListLicense(SqlSessionTemplate sqlSession, HashMap<String, Integer> updateInfo) {
+		return sqlSession.delete("studyMapper.deleteListLicense", updateInfo);
+	}
+
 
 
 }

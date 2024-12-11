@@ -186,4 +186,24 @@ public class ManagerServiceImpl implements ManagerService {
 		return managerDao.ignoreReport(sqlSession, reportNo);
 	}
 
+	@Override
+	public String deleteCommuLicense(HashMap<String, Integer> updateInfo) {
+		Integer result = managerDao.deleteCommuLicense(sqlSession, updateInfo);
+		
+		if(result != null && result > 0) {
+			return "Y";
+		}
+		return "N";
+	}
+
+	@Override
+	public String deleteListLicense(HashMap<String, Integer> updateInfo) {
+		Integer result = managerDao.deleteListLicense(sqlSession, updateInfo); 
+			
+		if(result != null && result > 0) {
+			return "Y";
+		}
+		return "N";
+	}
+	
 }

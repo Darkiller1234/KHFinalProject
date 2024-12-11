@@ -3,11 +3,6 @@ function initListPage(contextPath) {
         contextPath: contextPath,
         boardLimit: 10,
         pageLimit: 5,
-        memberNo: null,
-        memberName: null,
-        licenseNo: null,
-        licenseName: null,
-        licenseImg: null,
     }
 
     initListBoard(state);
@@ -86,6 +81,13 @@ function initList(state, data) {
 
         deleteBtn.onclick = () => {
             // 삭제버튼 누르면 실행할 이벤트 ajax요청
+            ajaxDeleteListLicense(data[index], (res) => {
+                if(res.success == 'Y') {
+                    deleteBtn.disabled = true
+                }else {
+                    alert('게시글 삭제에 실패했습니다.')
+                }
+            })
         }
     })
 }
@@ -128,13 +130,12 @@ function ajaxLoadBoard(pageInfo, callback) {
         })
 }
 
-function ajaxConfirmLicense(data, callback){
+function ajaxDeleteListLicense(data, callback){
     $.ajax({
         type:"post",
-        url:"confirmLicense",
+        url:"deleteListLicense",
         data: {
-            licenseNo: data.licenseNo,
-            memberNo: data.memberNo,
+            boardNo: data.boardNo,
         },
         success: callback,
         error: () => {
