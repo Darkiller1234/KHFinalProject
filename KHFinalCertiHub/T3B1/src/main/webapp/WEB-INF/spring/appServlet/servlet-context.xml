@@ -76,6 +76,18 @@
           <mapping path="/message/rejectApply"/>
           <beans:bean class="com.kh.T3B1.common.interceptor.LoginInterceptor" id="loginIntercepter" />
        </interceptor>
+       
+  		<interceptor>
+		  <mapping path="/notice/noticewrite"/>
+		  <mapping path="/notice/write"/>
+		  <mapping path="/notice/insertBoard"/>
+		  <mapping path="/notice/deleteBoard"/>
+		  <mapping path="/notice/board/edit"/>
+		  <mapping path="/notice/updateBoard"/>
+		  <mapping path="/notice/uploadImg"/>
+		  <mapping path="/manager/*"/>
+          <beans:bean class="com.kh.T3B1.common.interceptor.ManagerInterceptor" id="ManagerInterceptor" />
+       </interceptor>
     </interceptors>
     
     <!-- 메시지 소켓 -->

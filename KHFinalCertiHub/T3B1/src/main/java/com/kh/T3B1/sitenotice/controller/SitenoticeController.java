@@ -38,19 +38,7 @@ public class SitenoticeController {
 		m.addAttribute("pageName", "noticePage");
 		return "sitenotice/notice";
 	}
-	
-	@RequestMapping("noticepost") 
-	public String noticepostPage(Model m) {
-		m.addAttribute("pageName","noticepost");
-		return "sitenotice/noticepost";
-	}
-	
-	@RequestMapping("noticewrite") 
-	public String noticewritePage(Model m) {
-		m.addAttribute("pageName","noticeWrite");
-		return "sitenotice/noticewrite";
-	}
-	
+
 	@RequestMapping("board")
 	public String selectBoard(HttpSession session, Model m, int no) {
 		NoticeBoard board = noticeService.selectBoard(no);
@@ -65,7 +53,7 @@ public class SitenoticeController {
 		return "sitenotice/noticepost";
 	}
 	
-	@RequestMapping("write")
+	@RequestMapping("noticewrite")
 	public String studyWritePage(Model m, HttpSession session) {
 		m.addAttribute("pageName","noticewrite");
 		return "sitenotice/noticewrite";
