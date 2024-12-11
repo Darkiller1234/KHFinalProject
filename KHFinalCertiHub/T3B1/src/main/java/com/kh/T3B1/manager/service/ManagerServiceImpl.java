@@ -118,7 +118,7 @@ public class ManagerServiceImpl implements ManagerService {
 	}
 
 	@Override
-	@Transactional
+	@Transactional(rollbackFor = Exception.class)
 	public int deleteReport(String name, int reportNo) {
 		if (name == null) {
 		    log.warn("Name is null!");
@@ -139,25 +139,26 @@ public class ManagerServiceImpl implements ManagerService {
 			log.info("Fetched ID: " + id);
 			log.info("1번 성공");
 			params.put("id", id);
+			managerDao.deleteReport(sqlSession, params);
+			log.info("2번 성공");
 			if(name.equals("메세지")) {
 				int result = managerDao.deleteMessage(sqlSession, params);
 				if(result == 0) {
-					return 0;
+					throw new RuntimeException("메세지 삭제 실패");
 				}
 			} else {
 				log.info("메세지 아님");
 				int result = managerDao.deleteReported(sqlSession, params);
 				if(result == 0) {
-					return 0;
+					throw new RuntimeException("메세지 제외 다른거 STATUS 업데이트 실패");
 				}
 			}
-			log.info("2번 성공");
-			managerDao.deleteReport(sqlSession, reportNo);
+			
 			log.info("3번 성공");
 			return 1;
 		} catch (Exception e) {
 			log.error("삭제 작업 실패: " + e);
-            return 0; // 실패
+			throw new RuntimeException("뭔가 잘 안됐음");
 		}
 	}
 	public String confirmLicense(HashMap<String, Integer> updateInfo) {

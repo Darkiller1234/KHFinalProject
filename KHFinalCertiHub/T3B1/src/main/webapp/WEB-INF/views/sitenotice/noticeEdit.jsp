@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/sitenotice/noticewrite.css">
-    <script src="${pageContext.request.contextPath}/resources/static/js/sitenotice/noticewrite.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/static/js/sitenotice/noticeEdit.js"></script>
     <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
 
     <title>공지사항</title>
@@ -17,11 +17,12 @@
 
             <div class="notice-title">공지사항</div>
 
-            <form class="write-section" method="post" action="insertBoard">
-                <input type="text" class="title" name="boardTitle" placeholder="이곳에 제목을 입력해주세요.(300Bytes 까지 가능)">
+            <form class="write-section" method="post" action="${pageContext.request.contextPath}/notice/updateBoard">
+                <input type="hidden" value="${board.boardNo}" name="boardNo">
+                <input type="text" class="title" name="boardTitle" placeholder="이곳에 제목을 입력해주세요.(300Bytes 까지 가능)" value="${board.boardTitle}">
                 <div class="board-content">
 
-                    <textarea id="summernote" name="boardContent"></textarea>
+                    <textarea id="summernote" name="boardContent">${board.boardContent}</textarea>
 
                 </div>
         

@@ -123,9 +123,8 @@
 	  SELECT NB.NOTICE_BOARD_NO NOTICE_BOARD_NO,
 	        NB.MEMBER_NO MEMBER_NO,
 	        NB.NOTICE_BOARD_TITLE NOTICE_BOARD_TITLE,
-	        NB.NOTICE_BOARD_CONTENT NOTICE_BOARD_CONTENT,
 	        NB.VIEW_COUNT VIEW_COUNT,
-	        NB.NOTICE_BOARD_DATE NOTICE_BOARD_DATE,
+			TO_CHAR(NB.NOTICE_BOARD_DATE,'YYYY-MM-DD') NOTICE_BOARD_DATE,
 	        NB.STATUS STATUS,
 	        M.MEMBER_NICKNAME MEMBER_NICKNAME
 		FROM NOTICE_BOARD NB
@@ -134,12 +133,79 @@
 		<if test="keyword != null">
 			AND NOTICE_BOARD_TITLE LIKE '%' || #{keyword} || '%'
 		</if>
+		ORDER BY NOTICE_BOARD_NO DESC
   </select>
 
 	<delete id="deleteReport">
 		DELETE 
 		FROM REPORT
-		WHERE REPORT_NO = #{reportNo}
+		<choose>
+        <when test='name.equals("스터디")'>
+            WHERE STUDY_BOARD_NO = #{id}
+        </when>
+        <when test='name.equals("댓글")'>
+            WHERE REPLY_NO = #{id}
+        </when>
+        <when test='name.equals("글")'>
+            WHERE BOARD_NO = #{id}
+        </when>
+        <when test='name.equals("유저")'>
+            WHERE ACCUSED_NO = #{id}
+        </when>
+        <when test='name.equals("메세지")'>
+            WHERE MESSAGE_NO = #{id}
+        </when>
+        <otherwise>
+        	WHERE REPORT_NO = #{reportNo}
+        </otherwise>
+    </choose>
+		
 	</delete>
+	
+	<update id="increaseView">
+		UPDATE NOTICE_BOARD
+		   SET VIEW_COUNT = VIEW_COUNT + 1
+		 WHERE NOTICE_BOARD_NO = #{no}
+	</update>
+	
+    <select id="selectBoard" resultMap="boardResultSet">
+	  SELECT NB.NOTICE_BOARD_NO NOTICE_BOARD_NO,
+	        NB.MEMBER_NO MEMBER_NO,
+	        NB.NOTICE_BOARD_TITLE NOTICE_BOARD_TITLE,
+	        NB.NOTICE_BOARD_CONTENT NOTICE_BOARD_CONTENT,
+	        M.MEMBER_NICKNAME MEMBER_NICKNAME
+		FROM NOTICE_BOARD NB
+		INNER JOIN MEMBER M ON (NB.MEMBER_NO = M.MEMBER_NO)
+		WHERE NB.STATUS = 'Y'
+		  AND NB.NOTICE_BOARD_NO = #{no}
+    </select>
+
+	<insert id="insertBoard">
+		INSERT INTO NOTICE_BOARD(
+			NOTICE_BOARD_NO,
+			MEMBER_NO,
+			NOTICE_BOARD_TITLE,
+			NOTICE_BOARD_CONTENT
+		) VALUES (
+			NOTICE_BOARD_SEQ.NEXTVAL,
+			#{memberNo},
+			#{boardTitle},
+			#{boardContent}
+		)
+	</insert>
+	
+	<update id="deleteBoard">
+		UPDATE NOTICE_BOARD
+		   SET STATUS = 'N'
+		 WHERE NOTICE_BOARD_NO = #{no}
+	</update>
+	
+	<update id="updateBoard">
+		UPDATE NOTICE_BOARD
+		   SET NOTICE_BOARD_TITLE = #{boardTitle},
+			   NOTICE_BOARD_CONTENT = #{boardContent}
+		 WHERE NOTICE_BOARD_NO = #{boardNo}
+	</update>
+	
 </mapper>
 

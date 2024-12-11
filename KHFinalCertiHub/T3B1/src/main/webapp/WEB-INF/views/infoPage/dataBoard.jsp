@@ -34,7 +34,10 @@
                 <img src="${pageContext.request.contextPath}/resources/static/img/button/menu_icon.png">
                 목록
             </button>
-
+            <div class="bottom-options">
+                <button onclick="topScroll()" class="top-button rounded-circle"><img
+                        src="${pageContext.request.contextPath}/resources/static/img/button/arrow_up_icon.png"></button>
+            </div>
             <%@ include file="../common/footer.jsp" %>
     </body>
 
