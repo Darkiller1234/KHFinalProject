@@ -106,6 +106,7 @@ function initPageBar(state, data) {
     const pageInfo = {
         startPage : data.startPage,
         endPage : data.endPage,
+        pageLimit : data.pageLimit,
         currentPage : data.currentPage,
         maxPage : data.maxPage,
         pageUrl : 'commulist?' + (keyword ? "&keyword=" + keyword : ""),
