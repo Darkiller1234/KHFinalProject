@@ -70,4 +70,6 @@ public interface ManagerService {
 	// 악성 홍보 게시글 삭제 결과 반환 성공 Y 실패 N
 	String deleteListLicense(HashMap<String, Integer> updateInfo);
 
+	String deleteUserLiscense(HashMap<String, Integer> updateInfo);
+
 }
