@@ -107,6 +107,7 @@ function initPageBar(state, data) {
         startPage : data.startPage,
         endPage : data.endPage,
         currentPage : data.currentPage,
+        pageLimit : data.pageLimit,
         maxPage : data.maxPage,
         pageUrl : 'commulist?' + (keyword ? "&keyword=" + keyword : ""),
         imgUrl : [
