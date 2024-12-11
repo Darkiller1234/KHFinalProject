@@ -120,8 +120,8 @@ public class ManagerDao {
 		
 	}
 
-	public void deleteReport(SqlSessionTemplate sqlSession, int reportNo) {
-		sqlSession.delete("managerMapper.deleteReport", reportNo);
+	public void deleteReport(SqlSessionTemplate sqlSession, Map<String, Object> params) {
+		sqlSession.delete("managerMapper.deleteReport", params);
 	}
 	public Integer confirmLicense(SqlSessionTemplate sqlSession, HashMap<String, Integer> updateInfo) {
 		return sqlSession.update("managerMapper.confirmLicense", updateInfo);
@@ -133,6 +133,18 @@ public class ManagerDao {
 
 	public int ignoreReport(SqlSessionTemplate sqlSession, int reportNo) {
 		return sqlSession.delete("managerMapper.deleteReport", reportNo);
+	}
+
+	public Integer deleteCommuLicense(SqlSessionTemplate sqlSession, HashMap<String, Integer> updateInfo) {
+		return sqlSession.delete("boardMapper.deleteCommuLicense", updateInfo);
+	}
+
+	public Integer deleteListLicense(SqlSessionTemplate sqlSession, HashMap<String, Integer> updateInfo) {
+		return sqlSession.delete("studyMapper.deleteListLicense", updateInfo);
+	}
+
+	public Integer deleteUserLiscense(SqlSessionTemplate sqlSession, HashMap<String, Integer> updateInfo) {
+		return sqlSession.delete("memberMapper.deleteUserLiscense", updateInfo);
 	}
 
 

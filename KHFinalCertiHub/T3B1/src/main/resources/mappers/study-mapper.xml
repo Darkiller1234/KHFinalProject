@@ -349,5 +349,10 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{study
 		WHERE STUDY_BOARD_TITLE LIKE '%' || #{keyword} || '%'
 	</select>
 	
+	<delete id="deleteListLicense">
+		DELETE FROM STUDY_BOARD
+		WHERE STUDY_BOARD_NO = #{boardNo}
+	</delete>
+	
 </mapper>
 

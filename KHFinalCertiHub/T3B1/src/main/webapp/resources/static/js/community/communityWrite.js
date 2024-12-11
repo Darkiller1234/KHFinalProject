@@ -39,7 +39,10 @@ function insertFile(data, callback){
 
 function commuWInit(contextPath) {
     const summernote = $('#summernote')
-
+    // 현재 페이지의 URL 주소
+    const url = new URL(window.location.href);
+    // URL의 파라미터값을 가진 객체
+    const urlParam = url.searchParams;
     summernote.summernote({
         placeholder: '이곳에 글을 작성해주세요. (3000Bytes 까지 가능)',
         tabsize: 2,

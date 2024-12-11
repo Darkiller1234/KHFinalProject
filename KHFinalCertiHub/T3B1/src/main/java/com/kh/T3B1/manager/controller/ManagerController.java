@@ -239,6 +239,21 @@ public class ManagerController {
 	}
 	
 	@ResponseBody
+	@PostMapping(value="deleteUserLiscense", produces="application/json; charset=UTF-8")
+	public String deleteUserLiscense(int memberNo) {
+		String result = "N";
+		
+		HashMap<String, Integer> updateInfo = new HashMap<>();
+		updateInfo.put("memberNo", memberNo);
+		
+		result = managerService.deleteUserLiscense(updateInfo);
+		
+		HashMap<String, String> jsonData =  new HashMap<>();
+		jsonData.put("success", result);
+		return new Gson().toJson(jsonData);
+	}
+	
+	@ResponseBody
 	@PostMapping(value="commulistList", produces="application/json; charset=UTF-8")
 	public String selectCommuList(int currentPage, int boardLimit, int pageLimit, String keyword) {
 		// 요청 한번에 불러올 게시글의 수, 최대 20개까지
@@ -268,6 +283,21 @@ public class ManagerController {
 	}
 	
 	@ResponseBody
+	@PostMapping(value="deleteCommuLicense", produces="application/json; charset=UTF-8")
+	public String deleteLicense(int boardNo) {
+		String result = "N";
+		
+		HashMap<String, Integer> updateInfo = new HashMap<>();
+		updateInfo.put("boardNo", boardNo);
+		
+		result = managerService.deleteCommuLicense(updateInfo);
+		
+		HashMap<String, String> jsonData =  new HashMap<>();
+		jsonData.put("success", result);
+		return new Gson().toJson(jsonData);
+	}
+	
+	@ResponseBody
 	@PostMapping(value="promoteList", produces="application/json; charset=UTF-8")
 	public String selectlistList(int currentPage, int boardLimit, int pageLimit, String keyword) {
 		// 요청 한번에 불러올 게시글의 수, 최대 20개까지
@@ -293,6 +323,21 @@ public class ManagerController {
 		jsonData.put("board", new Gson().toJson(listlist));
 		jsonData.put("pageInfo", new Gson().toJson(pi));
 		
+		return new Gson().toJson(jsonData);
+	}
+	
+	@ResponseBody
+	@PostMapping(value="deleteListLicense", produces="application/json; charset=UTF-8")
+	public String deleteListLicense(int boardNo) {
+		String result = "N";
+		
+		HashMap<String, Integer> updateInfo = new HashMap<>();
+		updateInfo.put("boardNo", boardNo);
+		
+		result = managerService.deleteListLicense(updateInfo);
+		
+		HashMap<String, String> jsonData =  new HashMap<>();
+		jsonData.put("success", result);
 		return new Gson().toJson(jsonData);
 	}
 }

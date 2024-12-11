@@ -308,5 +308,11 @@
 		WHERE SOCIAL_ID = #{id}
 		AND STATUS = 'Y'
 	</select>
+	
+	<delete id="deleteUserLiscense">
+		DELETE FROM MEMBER
+		WHERE MEMBER_NO = #{memberNo}
+	</delete>
+	
 </mapper>
 

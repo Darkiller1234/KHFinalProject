@@ -139,7 +139,27 @@
 	<delete id="deleteReport">
 		DELETE 
 		FROM REPORT
-		WHERE REPORT_NO = #{reportNo}
+		<choose>
+        <when test='name.equals("스터디")'>
+            WHERE STUDY_BOARD_NO = #{id}
+        </when>
+        <when test='name.equals("댓글")'>
+            WHERE REPLY_NO = #{id}
+        </when>
+        <when test='name.equals("글")'>
+            WHERE BOARD_NO = #{id}
+        </when>
+        <when test='name.equals("유저")'>
+            WHERE ACCUSED_NO = #{id}
+        </when>
+        <when test='name.equals("메세지")'>
+            WHERE MESSAGE_NO = #{id}
+        </when>
+        <otherwise>
+        	WHERE REPORT_NO = #{reportNo}
+        </otherwise>
+    </choose>
+		
 	</delete>
 	
 	<update id="increaseView">
