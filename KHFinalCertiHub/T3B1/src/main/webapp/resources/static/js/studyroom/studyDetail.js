@@ -102,6 +102,9 @@ function createMemberCard(contextPath, res){
     res.forEach(data => {
         let member = document.createElement('div')
         member.className = "member"
+        member.onclick = () => {
+            window.open(contextPath + '/personal/view?pno=' + data.memberNo)
+        }
 
         let memberInfo = document.createElement('div')
         memberInfo.className = "member-info"
