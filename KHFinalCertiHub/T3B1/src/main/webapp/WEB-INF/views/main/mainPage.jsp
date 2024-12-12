@@ -88,7 +88,7 @@
                             <c:forEach var="board" items="${latestNotices}">
                                 <li>
                                     <a
-                                        href="${pageContext.request.contextPath}/community/detail?certiNo=${board.tabNo}&cno=${board.boardNo}">
+                                        href="${pageContext.request.contextPath}/notice/board?no=${board.boardNo}">
                                         ${board.boardTitle} (${board.viewCount} 조회)
                                     </a>
                                 </li>
