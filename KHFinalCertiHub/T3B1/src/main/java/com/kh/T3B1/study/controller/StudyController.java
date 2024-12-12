@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -105,11 +106,7 @@ public class StudyController {
 			session.setAttribute("errorMsg", "스터디 그룹 수정 권한이 없습니다.");
 			return "redirect:/error";
 		}
-		
-		Study study = studyService.selectStudy(no);
-		
-		m.addAttribute("study",study);
-		m.addAttribute("optional", study.getStudyRecruit());
+
 		m.addAttribute("pageName","studyDetailEdit");
 		return "studyroom/studyDetailEdit";
 	}
@@ -389,6 +386,14 @@ public class StudyController {
 	}
 	
 	@ResponseBody
+	@GetMapping(value="selectStudy", produces="application/json; charset=UTF-8")
+	public String selectStudy(int studyNo) {
+		Study study = studyService.selectStudy(studyNo);
+		
+		return new Gson().toJson(study);
+	}
+	
+	@ResponseBody
 	@PostMapping(value="manageStudy", produces="application/json; charset=UTF-8")
 	public String selectManageStudy(HttpSession session) {
 		log.info("ajax 요청 도착");
@@ -439,9 +444,10 @@ public class StudyController {
 	
 	@ResponseBody
 	@PostMapping(value="banMember", produces="application/json; charset=UTF-8")
-	public String banMember(HttpSession session, int memberNo, int studyNo) {
-		HashMap<String, String> resultObj = new HashMap<>(); // 결과값 반환용 객ㅔ
+	public String banMember(HttpSession session, int memberNo, int studyNo, int talkroomNo) {
+		HashMap<String, String> resultObj = new HashMap<>(); // 결과값 반환용 객체
 		String result = "N"; // 실패 N 성공 Y
+		int memberCount = 0;
 		Member manager = (Member)session.getAttribute("loginMember");
 		
 		// 스스로 추방하기 방지
@@ -461,10 +467,21 @@ public class StudyController {
 			searchInfo = new HashMap<>();
 			searchInfo.put("memberNo", memberNo); // 추방당할 유저의 번호
 			searchInfo.put("studyNo", studyNo);
-			result = studyService.deleteStudyMember(searchInfo);
+			searchInfo.put("talkroomNo", talkroomNo);
+			
+			try {
+				result = studyService.deleteStudyMember(searchInfo);
+			} catch (RuntimeException e) {
+				e.printStackTrace();
+			}
+			
+			if(result.equals("Y")) {
+				memberCount = studyService.countStudyMember(studyNo);
+			}
 		}
 		
 		resultObj.put("success",result);
+		if(memberCount != 0) resultObj.put("memberCount", Integer.toString(memberCount));
 
 		return new Gson().toJson(resultObj);
 	}

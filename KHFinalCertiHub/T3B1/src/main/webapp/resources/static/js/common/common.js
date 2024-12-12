@@ -259,7 +259,6 @@ function createList(div, data){
     }
 */
 function createPageBar(div, data){
-    console.log(data)
     const pageDiv = document.createElement('div')
     pageDiv.className = "pagination"
 

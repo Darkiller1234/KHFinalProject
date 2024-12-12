@@ -219,15 +219,22 @@ public class StudyServiceImpl implements StudyService{
 		return studyDao.updateStudy(sqlSession, study);
 	}
 
+	@Transactional(rollbackFor = {Exception.class})
 	@Override
 	public String deleteStudyMember(HashMap<String, Integer> searchInfo) {
-		int result = studyDao.deleteStudyMember(sqlSession, searchInfo);
+		int studyResult = studyDao.deleteStudyMember(sqlSession, searchInfo);
 		
-		if(result > 0) {
-			return "Y";
+		if(studyResult == 0) {
+			throw new RuntimeException("멤버 스터디그룹에서 삭제 실패");
 		}
 		
-		return "N";
+		int talkroomResult = studyDao.deleteTalkroomMember(sqlSession, searchInfo);
+		
+		if(talkroomResult == 0) {
+			throw new RuntimeException("멤버 스터디그룹에서 삭제 실패");
+		}
+		
+		return "Y";
 	}
 
 	@Override

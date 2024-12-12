@@ -176,7 +176,6 @@ function createApplyList(div, state){
 }
 
 function createMessageCard(state, data){
-    console.log(data)
     const messageDiv = document.createElement('div')
     messageDiv.className = data.memberNo == state.memberNo ? 'message mine' : 'message'
 
@@ -206,6 +205,13 @@ function createMessageCard(state, data){
     const content = document.createElement('div')
     content.className = 'content'
     content.innerText = data.messageContent;
+
+    // 매니저일 경우 매니저 표시
+    if(data.memberNo == state.managerNo) {
+        const managerMark = document.createElement('img')
+        managerMark.src = state.contextPath + "/resources/static/img/button/manager_icon.png"
+        userName.appendChild(managerMark)
+    }
 
     info.appendChild(userName)
     info.appendChild(content)
