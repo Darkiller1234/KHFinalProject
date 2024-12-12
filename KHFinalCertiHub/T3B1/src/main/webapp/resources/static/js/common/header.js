@@ -1,5 +1,11 @@
 function init(contextPath, pageName, optional){
+    let timer;
+
     window.onresize = () => {
+        clearTimeout(timer)
+        timer = setTimeout( () => {
+            onResizeHandler();
+        },20);
         onResizeHandler();
     };
     onResizeHandler();
