@@ -75,9 +75,11 @@
         <div class="message-section">
             <div class="message-window">
 
+                <!-- 날짜 표시 -->
+                <!--
                 <div class="date">
                     <div>2024년 11월 6일</div>
-                </div>
+                </div> -->
 
                 <!-- 채팅방 선택전 표시 -->
                 <!-- <div class="not-found">
