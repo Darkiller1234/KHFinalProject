@@ -499,6 +499,7 @@
 	<select id="selectCommuList" resultMap="boardResult">
 		SELECT BOARD_NO, BOARD_TITLE, BOARD_DATE, VIEW_COUNT
 		FROM BOARD
+		AND STATUS = 'Y'
 		WHERE BOARD_TITLE LIKE '%' || #{keyword} || '%'
 		ORDER BY BOARD_NO
 	</select>
