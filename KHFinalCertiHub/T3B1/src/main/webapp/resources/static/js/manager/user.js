@@ -86,6 +86,7 @@ function initList(state, data) {
             ajaxDeleteUserLicense(data[index], (res) =>{
                 if(res.success == 'Y') {
                     deleteBtn.disabled = true
+                    location.reload(true);
                 }else {
                     alert('유저 삭제에 실패했습니다.')
                 }
