@@ -45,9 +45,20 @@
                             <label class="btn btn-outline-primary" for="btnradio3"
                                 onclick="location.href='<%=contextPath%>/personal/certiRegi'">자격증 인증 신청</label>
     
-                            <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="btnradio4"
-                                onclick="location.href='<%=contextPath%>/personal/mentor'">멘토 정보 수정</label>
+                                <c:choose>
+                                    <c:when test="${loginMember.mentorStatus eq 'Y'}">
+                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio4"
+                                            autocomplete="off">
+                                        <label class="btn btn-outline-primary" for="btnradio4"
+                                            onclick="location.href='<%=contextPath%>/personal/mentor'">멘토 정보 수정</label>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio4"
+                                            autocomplete="off">
+                                        <label class="btn btn-outline-primary" for="btnradio4"
+                                            onclick="location.href='<%=contextPath%>/personal/mentor/enroll'">멘토 신청</label>
+                                    </c:otherwise>
+                                </c:choose>
     
                             <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off" checked>
                             <label class="btn btn-outline-primary" for="btnradio5"
@@ -85,8 +96,16 @@
                                                 href="<%=contextPath%>/personal/certiRegi">자격증 인증 신청</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page"
-                                                href="<%=contextPath%>/personal/mentor">멘토 정보 수정</a>
+                                            <c:choose>
+                                                <c:when test="${loginMember.mentorStatus eq 'Y'}">
+                                                    <a class="nav-link active" aria-current="page"
+                                                        href="<%=contextPath%>/personal/mentor">멘토 정보 수정</a>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <a class="nav-link active" aria-current="page"
+                                                        href="<%=contextPath%>/personal/mentor/enroll">멘토 신청</a>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link active" aria-current="page"
