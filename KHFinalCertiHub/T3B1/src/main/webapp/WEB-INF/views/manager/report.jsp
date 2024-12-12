@@ -89,7 +89,6 @@
                                 </button>
                             </div>
                         </form>
-                        <br><br>
 
                         <div class="board-certify">
                             <table class="board" id="tabledefault">

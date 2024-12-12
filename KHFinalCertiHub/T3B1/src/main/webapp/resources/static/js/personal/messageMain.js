@@ -214,6 +214,36 @@ function initSearchTalk(state){
             }
         }, 200)
     }
+
+    document.getElementById('searchBtn').onclick = (e) => {
+        if( (e.code !== 'Enter' && e.type !== 'click') ){
+            return;
+        }
+
+        clearTimeout(timer)
+
+        state.keyword = state.searchInput.value;
+
+        timer = setTimeout( ()=> {  
+            if(state.currentOption == 1) {
+                state.mentorCurrentPage = 1
+                document.querySelector('.mentorTalk').innerHTML = ""
+                ajaxLoadMentor(state, state.callbacks.onMentorLoad)
+            }
+            else if(state.currentOption == 2) {
+                state.studyCurrentPage = 1
+                document.querySelector('.studyTalk').innerHTML = ""
+                ajaxLoadStudy(state, state.callbacks.onStudyLoad)
+            }
+            
+            else if(state.currentOption == 3) {
+                state.applyCurrentPage = 1
+                document.querySelector('.applyList').innerHTML = ""
+                ajaxLoadApply(state, state.callbacks.onApplyLoad)
+            }
+        }, 200)
+    }
+
 }
 
 function initChatEvent(state){

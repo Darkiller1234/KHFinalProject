@@ -90,6 +90,10 @@ function initApplyButton(isLogin){
         applyButton.onclick = () => {
             ajaxApplyMentee(mentorNo, onApplyMentee)
         }
+    } else if(isLogin == 'E'){
+        applyButton.onclick = () => {
+            alert('본인에게 신청할 수 없습니다.')
+        }
     } else {
         applyButton.onclick = () => {
             alert('로그인한 유저만 신청할 수 있습니다.')
