@@ -50,7 +50,7 @@
                 <div class="side-search">
                     <div class="search-form">
                         <input id="searchInput" type="text">
-                        <button id="searchBtn"class="rounded-circle" onclick="alert('클릭됨')">
+                        <button id="searchBtn"class="rounded-circle">
                             <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
                         </button> 
                     </div>

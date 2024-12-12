@@ -126,7 +126,7 @@ textarea{
     }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 480px) {
     .all{
         flex-direction: column;
 

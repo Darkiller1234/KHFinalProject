@@ -279,7 +279,7 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{study
 			#{managerNo},
 			#{studyName},
 			#{studyInfo},
-			TALKROOM_SEQ.NEXTVAL,
+			TALKROOM_SEQ.NEXTVAL
   	        <if test="studyImg != null">
   	        ,#{studyImg}
   	        </if>
