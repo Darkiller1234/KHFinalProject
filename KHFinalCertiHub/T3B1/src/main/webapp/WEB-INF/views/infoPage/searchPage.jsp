@@ -6,6 +6,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>searchPage</title>
+        <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
+
     </head>
 
     <body>

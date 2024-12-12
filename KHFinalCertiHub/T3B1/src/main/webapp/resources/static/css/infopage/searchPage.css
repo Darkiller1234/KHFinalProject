@@ -193,6 +193,11 @@ ul.tabs li.current {
   justify-content: center;
 }
 
+.pagination a{
+  display: block;
+  padding: 10px;
+}
+
 .page-arrow, .page-num {
   margin: 0 10px;
   cursor: pointer;
