@@ -81,4 +81,6 @@ public interface CommunityService {
 	int insertReportReply(Report r);
 
 	ArrayList<License2> getCertiList(String search);
+
+	int getCertiNo(int cno);
 }
