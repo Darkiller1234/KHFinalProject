@@ -607,6 +607,11 @@ INSERT INTO LICENSE VALUES(LICENSE_SEQ.NEXTVAL, 'ÀüÀÚ»ê¾÷±â»ç','ÀüÀÚ»ê¾÷±â»ç´Â Ç
 '19,400¿ø','49,300¿ø','- ÇÊ±â' || CHR(10) || '1. µðÁöÅÐÀÀ¿ëÈ¸·Î' || CHR(10) || '2. ÀüÀÚÈ¸·Î¼³°è' || CHR(10) || '3. ÀüÀÚÈ¸·Î±¸Çö¼³°è' || CHR(10) || '4. ÀüÀÚÈ¸·ÎÃøÁ¤' || CHR(10) || '- ½Ç±â' || CHR(10) || 'ÀüÀÚÈ¸·Î ±¸Çö ¹× °ËÁõ ½Ç¹«');
 INSERT INTO LICENSE VALUES(LICENSE_SEQ.NEXTVAL,'¹ÝµµÃ¼¼³°è»ê¾÷±â»ç','¹ÝµµÃ¼¼³°è»ê¾÷±â»ç´Â ÇÑ±¹»ê¾÷ÀÎ·Â°ø´Ü¿¡¼­ ½ÃÇàÇÏ´Â ±¹°¡±â¼úÀÚ°Ý ÀüÀÚ ºÐ¾ßÀÇ »ê¾÷±â»ç µî±Þ¿¡ ÇØ´çÇÏ´Â ÀÚ°ÝÁõÀÌ´Ù.' || CHR(10) || 'Back-end ¼³°è ÀÎ·Â ¾ç¼ºÀÇ Àü±â¸¦ ¸¶·ÃÇÏ°í, »ê¾÷Ã¼´Â °ËÁõµÈ ÀÎ·ÂÀ» È®º¸ÇÒ »Ó¸¸ ¾Æ´Ï¶ó ÀçÅõÀÚÀÇ ºñ¿ëÀ» Àý°¨ÇÏ´Â Àü¹®ÀÎ·ÂÀÇ ¾ç¼ºÀÌ ÇÊ¿äÇÏ¿© ÀÚ°ÝÁ¦µµ Á¦Á¤',
 '19,400¿ø','27,800¿ø','- ÇÊ±â' || CHR(10) || '1. ¹ÝµµÃ¼°øÇÐ' || CHR(10) || '2. ÀüÀÚÈ¸·Î' || CHR(10) || '3. ³í¸®È¸·Î' || CHR(10) || '4. ÁýÀûÈ¸·Î ¼³°èÀÌ·Ð' || CHR(10) || '- ½Ç±â' || CHR(10) || '¹ÝµµÃ¼¼³°è ½Ç¹«(Á÷Á¢È¸·Î ·¹ÀÌ¾Æ¿ô ¼³°è ¹× °ËÁõ)');
+INSERT INTO LICENSE VALUES(LICENSE_SEQ.NEXTVAL,'»ç¹«ÀÚµ¿È­»ê¾÷±â»ç','°úÇÐ±â¼úÁ¤º¸Åë½ÅºÎ¡¤»ê¾÷Åë»óÀÚ¿øºÎ °øµ¿ ¼Ò°ü, ÇÑ±¹»ê¾÷ÀÎ·Â°ø´Ü¿¡¼­ ½ÃÇàÇÏ´Â Á¤º¸±â¼úºÐ¾ß »ê¾÷±â»ç ÀÚ°ÝÁõÀÇ ÀÏÁ¾.' || CHR(10) || '1993³â 7¿ù »ç¹«Á¤º¸±â±âÀÀ¿ë±â»ç 2±ÞÀ¸·Î ½Å¼³, 1998³â 5¿ù ±¹°¡±â¼úÀÚ°Ý Ã¼°è °³ÆíÀ¸·Î »ç¹«ÀÚµ¿È­»ê¾÷±â»ç·Î º¯°æµÇ¾î ÇöÀç¿¡ ÀÌ¸¥´Ù',
+'19,400¿ø','31,000¿ø','- ÇÊ±â' || CHR(10) || '1. »ç¹«ÀÚµ¿È­½Ã½ºÅÛ' || CHR(10) || '2. »ç¹«°æ¿µ°ü¸®°³·Ð' || CHR(10) || '3. ÇÁ·Î±×·¡¹ÖÀÏ¹Ý' || CHR(10) || '4. Á¤º¸Åë½Å°³·Ð' || CHR(10) || '- ½Ç±â' || CHR(10) || '»ç¹«ÀÚµ¿È­ ½Ç¹«');
+
+
+
 INSERT INTO REPORT_TYPE VALUES(REPORT_TYPE_SEQ.NEXTVAL,'È«º¸/µµ¹è');
 INSERT INTO REPORT_TYPE VALUES(REPORT_TYPE_SEQ.NEXTVAL,'À½¶õ¹°');
 INSERT INTO REPORT_TYPE VALUES(REPORT_TYPE_SEQ.NEXTVAL,'ºÒ¹ý');
