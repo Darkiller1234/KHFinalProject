@@ -220,14 +220,16 @@ function createMemberCard(contextPath, state, res){
         member.dataset.value = data.memberNo
 
         member.onclick = (ev) => {
-            const modal = new bootstrap.Modal(document.getElementById('banConfirm'))
             const banUserName = document.getElementById('ban-user-name')
             banUserName.innerText = data.memberNickname
             // ev.target : 이벤트를 발생시킨 요소( 클릭이면 내가 누른 요소 )
             // ev.currentTarget : 이벤트가 부착된 요소의 최상위 부모 반환
             state.currentMember = ev.currentTarget
 
-            modal.show()
+            // X 버튼(이미지)를 눌렀을떄는 실행되지 않음
+            if(ev.target.tagName == 'DIV'){
+                window.open(contextPath + '/personal/view?pno=' + data.memberNo)
+            }
         }
 
         let memberInfo = document.createElement('div')
@@ -253,7 +255,10 @@ function createMemberCard(contextPath, state, res){
 
         let deleteButton = document.createElement('button')
         deleteButton.className = "close-button"
-
+        deleteButton.onclick = () => {
+            const modal = new bootstrap.Modal(document.getElementById('banConfirm'))
+            modal.show()
+        }
 
         let buttonImg = document.createElement('img')
         buttonImg.src = contextPath + '/resources/static/img/button/x_icon.png'

@@ -499,6 +499,7 @@
 	<select id="selectCommuList" resultMap="boardResult">
 		SELECT BOARD_NO, BOARD_TITLE, BOARD_DATE, VIEW_COUNT
 		FROM BOARD
+		AND STATUS = 'Y'
 		WHERE BOARD_TITLE LIKE '%' || #{keyword} || '%'
 		ORDER BY BOARD_NO
 	</select>
@@ -515,6 +516,12 @@
 		SET STATUS = 'N'
 		WHERE BOARD_NO = #{boardNo}
 	</update>
+	
+	<select id="getCertiNo" resultType="_int">
+		SELECT LICENSE_NO
+		FROM BOARD
+		WHERE BOARD_NO = #{cno}
+	</select>
 </mapper>
 
 

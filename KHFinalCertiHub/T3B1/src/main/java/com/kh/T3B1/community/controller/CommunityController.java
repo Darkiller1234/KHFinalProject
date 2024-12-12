@@ -124,9 +124,12 @@ public class CommunityController {
 	
 	//커뮤니티 글 페이지 (여전히 글 리스트 불러오기 + 글 정보도 불러옴)
 	@RequestMapping("detail")
-	public String CommunityDetail(@RequestParam(value="certiNo", defaultValue="1") int certiNo, @RequestParam(value="cpage", defaultValue="-1") int cpage,
+	public String CommunityDetail(@RequestParam(value="certiNo", defaultValue="0") int certiNo, @RequestParam(value="cpage", defaultValue="-1") int cpage,
 			int cno,Model c) {
-		
+		if(certiNo == 0) {
+			int result = communityService.getCertiNo(cno);
+			return "redirect:/community/detail?cno=" + cno + "&certiNo=" + result;
+		}
 		boolean tmp = communityService.increaseViewCount(cno);
 		if(!tmp) {
 			
