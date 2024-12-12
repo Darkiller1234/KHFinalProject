@@ -219,4 +219,9 @@ public class CommunityServiceImpl implements CommunityService{
 	public ArrayList<License2> getCertiList(String search) {
 		return communityDao.getCertiList(sqlSession, search);
 	}
+
+	@Override
+	public int getCertiNo(int cno) {
+		return communityDao.getCertiNo(sqlSession, cno);
+	}
 }

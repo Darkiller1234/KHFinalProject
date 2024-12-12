@@ -148,4 +148,8 @@ public class CommunityDao {
 	public ArrayList<License2> getCertiList(SqlSessionTemplate sqlSession, String search) {
 		return (ArrayList)sqlSession.selectList("boardMapper.getCertiList", search);
 	}
+
+	public int getCertiNo(SqlSessionTemplate sqlSession, int cno) {
+		return sqlSession.selectOne("boardMapper.getCertiNo", cno);
+	}
 }
