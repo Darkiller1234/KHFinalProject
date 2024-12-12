@@ -34,6 +34,17 @@
 		<result column="LICENSE_DESC" property="licenseDesc"/>
 		<result column="LICENSE_IMG" property="licenseImg"/>
 	</resultMap>
+	
+	   <resultMap type="NoticeBoard" id="boardResultSet">
+	<result column="NOTICE_BOARD_NO" property="boardNo"/>
+	<result column="MEMBER_NO" property="memberNo"/>
+  	<result column="NOTICE_BOARD_TITLE" property="boardTitle"/>
+  	<result column="NOTICE_BOARD_CONTENT" property="boardContent"/>
+  	<result column="VIEW_COUNT" property="viewCount"/>
+  	<result column="NOTICE_BOARD_DATE" property="boardDate"/>
+  	<result column="STATUS" property="status"/>
+  	<result column="MEMBER_NICKNAME" property="memberName"/>
+  </resultMap>
 
   <!-- 게시글 총 갯수 조회 -->
   <select id="selectListCount" resultType="int">
@@ -317,14 +328,13 @@
     ]]>
 	</select>
 	<!-- 최신 공지사항 상위 5개 조회 -->
-	<select id="selectLatestNotices" resultType="Board" resultMap="boardResult">
+	<select id="selectLatestNotices" resultType="NoticeBoard" resultMap="boardResultSet">
        <![CDATA[
         SELECT * 
-        FROM (
+        FROM ( 
         SELECT * 
-        FROM BOARD
-        WHERE TAB_NO =1
-        ORDER BY BOARD_DATE DESC
+        FROM NOTICE_BOARD
+        ORDER BY NOTICE_BOARD_DATE DESC
     ) WHERE ROWNUM <= #{limit}
      ]]>
 	</select>
