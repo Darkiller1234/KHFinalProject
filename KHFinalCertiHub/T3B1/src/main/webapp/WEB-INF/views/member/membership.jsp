@@ -32,8 +32,8 @@ crossorigin="anonymous">
 
             <h2>간편 회원가입</h2>
             <div class="social-login">
-                <button class="google-btn">Sign up with Google</button>
-                <button class="kakao-btn" onclick="naverLogin()">네이버로 가입하기</button>
+                <img id="kakaoImg" src="<%=contextPath%>/resources/static/img/loginLogo/kakao_login_large_narrow.png" alt="카카오 로그인" onclick="kakaoLogin()">
+                <img id="naverImg" src="<%=contextPath%>/resources/static/img/loginLogo/naver_login_img.png" alt="네이버 로그인" onclick="naverLogin()">
             </div>
 
             <p>또는</p>

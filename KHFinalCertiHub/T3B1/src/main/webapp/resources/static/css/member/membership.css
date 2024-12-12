@@ -33,7 +33,7 @@
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
-    margin-bottom: 20px;
+    max-height: 75px;
 }
 
 .social-login button {
@@ -43,16 +43,6 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-}
-
-.google-btn {
-    background-color: #DB4437;
-    color: white;
-}
-
-.kakao-btn {
-    background-color: #2DB400;
-    color: white;
 }
 
 .form-group {
@@ -134,6 +124,11 @@ p {
 
 /* 미디어 쿼리 (모바일 환경) */
 
+img{
+    object-fit: contain;
+    width: 45%;
+}
+
 @media (min-width: 1250px) {
 
 }
@@ -156,6 +151,12 @@ p {
     .social-login button {
         padding: 10px;
         font-size: 14px; /* 글씨 크기 약간 줄이기 */
+    }
+
+    img{
+        object-fit: contain;
+        width: 180px;
+        height: 50px;
     }
 }
 
@@ -199,4 +200,27 @@ p {
         align-items: center;
         gap: 10px;
     }
+    
+    img{
+        object-fit: contain;
+        width: 90%;
+        height: 50px;
+    }
+
+    .social-login {
+        max-height: none;
+    }
 }
+
+#kakaoImg{
+    background-color: #fee500;
+    border-radius: 5px;
+}
+
+#naverImg{
+    background-color: #03c75a;
+    border-radius: 5px;
+}
+
+
+
