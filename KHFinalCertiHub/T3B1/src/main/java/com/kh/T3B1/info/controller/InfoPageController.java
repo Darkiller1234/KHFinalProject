@@ -36,8 +36,10 @@ public class InfoPageController {
 		// 검색 결과의 총 개수 조회
 		int searchCount = searchService.selectResultCount(keyword);
 
-		// 페이지 정보 객체 생성 (현재 페이지, 총 검색 개수, 한 페이지당 항목 수, 페이지 범위)
-		PageInfo pi = Template.getPageInfo(searchCount, currentPage, 10, 5);
+		// 페이지 정보 객체 생성 (현재 페이지, 총 검색 개수, 페이지 범위 , 한 페이지당 항목 수)
+		PageInfo pi = Template.getPageInfo(searchCount, currentPage, 5, 5);
+		// 한 블록에 5페이지, 한 페이지에 10개 항목
+
 
 		// 검색 결과 목록 조회
 		ArrayList<License> list = searchService.selectListResult(pi, keyword);
