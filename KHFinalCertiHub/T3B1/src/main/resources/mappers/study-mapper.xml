@@ -354,7 +354,8 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{study
 	</select>
 	
 	<update id="deleteListLicense">
-		UPDATE FROM STUDY_BOARD
+		UPDATE STUDY_BOARD
+		SET STATUS = 'N'
 		WHERE STUDY_BOARD_NO = #{boardNo}
 	</update>
 	

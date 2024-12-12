@@ -310,7 +310,8 @@
 	</select>
 	
 	<update id="deleteUserLiscense">
-		UPDATE FROM MEMBER
+		UPDATE MEMBER
+		SET STATUS = 'N'
 		WHERE MEMBER_NO = #{memberNo}
 	</update>
 	
