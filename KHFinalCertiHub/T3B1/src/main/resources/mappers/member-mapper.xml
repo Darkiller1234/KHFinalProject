@@ -309,10 +309,10 @@
 		AND STATUS = 'Y'
 	</select>
 	
-	<delete id="deleteUserLiscense">
-		DELETE FROM MEMBER
+	<update id="deleteUserLiscense">
+		UPDATE FROM MEMBER
 		WHERE MEMBER_NO = #{memberNo}
-	</delete>
+	</update>
 	
 </mapper>
 
