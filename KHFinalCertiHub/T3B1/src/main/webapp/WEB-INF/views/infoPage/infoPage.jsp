@@ -731,6 +731,7 @@
             <script src="${pageContext.request.contextPath}/resources/static/js/infopage/area.js"></script>
             <script src="${pageContext.request.contextPath}/resources/static/js/infopage/midWeather.js"></script>
             <script src="${pageContext.request.contextPath}/resources/static/js/infopage/shortWeather.js"></script>
+            
             <%@ include file="../common/footer.jsp" %>
     </body>
 
