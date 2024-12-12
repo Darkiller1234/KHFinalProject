@@ -77,12 +77,17 @@ public class StudyController {
 		
 		Member member = (Member)session.getAttribute("loginMember");
 		if(member != null) {
-			HashMap<String, Integer> searchInfo = new HashMap<>();
-			searchInfo.put("memberNo", member.getMemberNo());
-			searchInfo.put("studyNo", no);
-			
-			m.addAttribute("isApplied", studyService.isApplyExist(searchInfo));
-			m.addAttribute("optional","Y"); // 로그인 여부 전달
+			if(member.getMemberNo() == study.getManagerNo()) {
+				m.addAttribute("optional","E"); // 본인은 신청불가
+			}
+			else {
+				HashMap<String, Integer> searchInfo = new HashMap<>();
+				searchInfo.put("memberNo", member.getMemberNo());
+				searchInfo.put("studyNo", no);
+				
+				m.addAttribute("isApplied", studyService.isApplyExist(searchInfo));
+				m.addAttribute("optional","Y"); // 로그인 여부 전달
+			}
 		} else {
 			m.addAttribute("optional","N"); // 로그인 여부 전달
 		}

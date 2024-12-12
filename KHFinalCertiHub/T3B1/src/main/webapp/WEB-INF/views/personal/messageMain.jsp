@@ -50,7 +50,7 @@
                 <div class="side-search">
                     <div class="search-form">
                         <input id="searchInput" type="text">
-                        <button id="searchBtn"class="rounded-circle" onclick="alert('클릭됨')">
+                        <button id="searchBtn"class="rounded-circle">
                             <img src="<%=contextPath%>/resources/static/img/button/search_icon.png">
                         </button> 
                     </div>
@@ -75,9 +75,11 @@
         <div class="message-section">
             <div class="message-window">
 
+                <!-- 날짜 표시 -->
+                <!--
                 <div class="date">
                     <div>2024년 11월 6일</div>
-                </div>
+                </div> -->
 
                 <!-- 채팅방 선택전 표시 -->
                 <!-- <div class="not-found">

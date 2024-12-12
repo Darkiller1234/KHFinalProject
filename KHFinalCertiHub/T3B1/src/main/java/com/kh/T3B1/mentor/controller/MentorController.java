@@ -42,12 +42,16 @@ public class MentorController {
 		
 		Member member = (Member)session.getAttribute("loginMember");
 		if(member != null) {
-			HashMap<String, Integer> searchInfo = new HashMap<>();
-			searchInfo.put("memberNo", member.getMemberNo());
-			searchInfo.put("mentorNo", mentorNo);
-			
-			m.addAttribute("isApplied", mentorService.isApplyExist(searchInfo));
-			m.addAttribute("optional","Y"); // 로그인 여부 전달
+			if(member.getMemberNo() == no) {
+				m.addAttribute("optional","E"); // 본인은 신청 불가
+			} else {
+				HashMap<String, Integer> searchInfo = new HashMap<>();
+				searchInfo.put("memberNo", member.getMemberNo());
+				searchInfo.put("mentorNo", mentorNo);
+				
+				m.addAttribute("isApplied", mentorService.isApplyExist(searchInfo));
+				m.addAttribute("optional","Y"); // 로그인 여부 전달
+			}
 		} else {
 			m.addAttribute("optional","N"); // 로그인 여부 전달
 		}
