@@ -111,7 +111,7 @@
                 <div class="content">
                     <h2>비밀번호 입력</h2>
                     <div class="input-container">
-                        <input type="password" class="form-control" id="userPwd" placeholder="여기에 PlaceHolder 입력"
+                        <input type="password" class="form-control" id="userPwd" placeholder="여기에 비밀번호 입력"
                             name="userPwd" required>
                     </div>
                     <div class="btns">
