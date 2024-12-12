@@ -73,7 +73,7 @@
                         >삭제하기</button>
                     </div>
 
-                    <div class="font-size-title">참여회원 (${study.memberCount}명)</div>
+                    <div id="memberCount" class="font-size-title">참여회원 (${study.memberCount}명)</div>
 
                     <div class="search-member">
                         <div class="search-form">
