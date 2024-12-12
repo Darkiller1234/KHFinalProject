@@ -3086,7 +3086,7 @@ STUDY_NAME,
 STUDY_INFO,
 STUDY_IMG,
 TALKROOM_NO)
-VALUES(STUDY_SEQ.NEXTVAL, 40, '트릭컬', '릭컬하자 트릭컬', '/resources/static/img/studyProfile/kommi_juice.png', 13);
+VALUES(STUDY_SEQ.NEXTVAL, 40, '트릭컬', '릭컬하자 트릭컬', '/resources/static/img/studyProfile/kommi_juice.png', 15);
 
 INSERT INTO STUDY_MEMBER VALUES(40,13,SYSDATE);
 

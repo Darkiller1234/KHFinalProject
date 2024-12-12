@@ -75,7 +75,7 @@ function initBanButton(state){
 
             const memberCount = document.getElementById('memberCount')
             if(res.memberCount){
-                memberCount.innerHTML = '참여회원 (' + res.memberCount + ')명'
+                memberCount.innerHTML = '참여회원 (' + res.memberCount + '명)'
             }
         } else if(res.success == 'P') {
             alert('본인을 추방할수 없습니다!!!')
@@ -95,6 +95,7 @@ function ajaxBanMember(state, callback){
             data:{
                 memberNo: state.currentMember.dataset.value,
                 studyNo: state.studyNo,
+                talkroomNo: state.talkroomNo,
             },
             success: callback,
             error: () =>{

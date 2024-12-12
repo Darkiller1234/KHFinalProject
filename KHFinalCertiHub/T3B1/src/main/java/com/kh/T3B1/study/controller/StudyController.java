@@ -107,6 +107,10 @@ public class StudyController {
 			return "redirect:/error";
 		}
 
+		Study study = studyService.selectStudy(no);
+		
+		m.addAttribute("study", study);
+		m.addAttribute("optional", study.getStudyRecruit());
 		m.addAttribute("pageName","studyDetailEdit");
 		return "studyroom/studyDetailEdit";
 	}
