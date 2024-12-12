@@ -77,6 +77,7 @@ crossorigin="anonymous"></script>
                         <li class="submenu community">
                             <ul>
                                 <li><a href="<%=contextPath%>/community/selectCerti">커뮤니티</a></li>
+                                <li><a href="<%=contextPath%>/notice/notice">공지사항</a></li>
                             </ul>
                         </li> 
 
@@ -92,12 +93,9 @@ crossorigin="anonymous"></script>
                             <ul>
                                 <li><a href="<%=contextPath%>/personal/profile">개인 페이지</a></li>
                                 <li><a href="<%=contextPath%>/message/main">메시지</a></li>
-                                <c:choose>
-                                    <c:when test="${loginMember.managerStatus eq 'Y'}">
-                                        <li><a href="<%=contextPath%>/manager/certify">관리자 페이지</a></li>
-                                        <li><a href="<%=contextPath%>/notice/notice">관리자 게시판</a></li>
-                                    </c:when>
-                                </c:choose>
+                                <c:if test="${loginMember.managerStatus eq 'Y'}">
+                                    <li><a href="<%=contextPath%>/manager/certify">관리자 페이지</a></li>
+                                </c:if>
                             </ul>
                         </li> 
 
