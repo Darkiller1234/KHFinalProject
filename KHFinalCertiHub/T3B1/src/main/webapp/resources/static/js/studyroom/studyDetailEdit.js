@@ -10,14 +10,24 @@ function initStudyDetailEdit(contextPath, isRecruit){
         contextPath : contextPath,
         isRecruit : isRecruit,
         currentMember : null,
-        studyNo : no
+        studyNo : no,
+        talkroomNo : null,
     }
 
+    initStudyInfo(state)
     initForm()
     initDeleteButton(state)
     initBanButton(state)
     initSelectBox(state)
     initMemberList(state)
+}
+
+function initStudyInfo(state){
+    const onStudyLoad = (res) => {
+        state.talkroomNo = res.talkroomNo
+    }
+
+    ajaxSelectStudy(state, onStudyLoad)
 }
 
 function loadImg(_input){
@@ -62,6 +72,11 @@ function initBanButton(state){
     const onBanMember = (res) => {
         if(res.success == 'Y') {
             state.currentMember.remove()
+
+            const memberCount = document.getElementById('memberCount')
+            if(res.memberCount){
+                memberCount.innerHTML = '참여회원 (' + res.memberCount + '명)'
+            }
         } else if(res.success == 'P') {
             alert('본인을 추방할수 없습니다!!!')
         } else {
@@ -80,6 +95,7 @@ function ajaxBanMember(state, callback){
             data:{
                 memberNo: state.currentMember.dataset.value,
                 studyNo: state.studyNo,
+                talkroomNo: state.talkroomNo,
             },
             success: callback,
             error: () =>{
@@ -250,4 +266,18 @@ function createMemberCard(contextPath, state, res){
 
         studyList.appendChild(member)
     });
+}
+
+function ajaxSelectStudy(state, callback){
+    $.ajax({
+        url: state.contextPath + '/study/selectStudy',
+        async: false,
+        data:{
+            studyNo: state.studyNo,
+        },
+        success: callback,
+        error: () => {
+            console.log('스터디 정보 가져오기 실패')
+        }
+    })
 }

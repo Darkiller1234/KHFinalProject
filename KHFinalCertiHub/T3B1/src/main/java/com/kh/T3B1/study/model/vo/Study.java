@@ -10,6 +10,7 @@ public class Study {
 	private String studyInfo;
 	private String studyImg;
 	private String studyRecruit;
+	private int talkroomNo;
 	
 	// 스터디 그룹 멤버수
 	private int memberCount;

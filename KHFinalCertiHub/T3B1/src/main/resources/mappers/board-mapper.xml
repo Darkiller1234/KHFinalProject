@@ -510,10 +510,11 @@
 		WHERE BOARD_NO LIKE '%' || #{keyword} || '%'
 	</select>
 	
-	<delete id="deleteCommuLicense">
-		DELETE FROM BOARD
+	<update id="deleteCommuLicense">
+		UPDATE BOARD
+		SET STATUS = 'N'
 		WHERE BOARD_NO = #{boardNo}
-	</delete>
+	</update>
 </mapper>
 
 

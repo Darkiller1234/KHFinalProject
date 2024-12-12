@@ -68,7 +68,7 @@ class Main {
 
         title.innerHTML = titleText
         langDisplay.innerHTML = langDisplayText
-        textarea.innerHTML = defaultCode
+        textarea.value = defaultCode
     }
 }
 

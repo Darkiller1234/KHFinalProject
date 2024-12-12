@@ -43,7 +43,7 @@
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
-    margin-bottom: 20px;
+    max-height: 75px;
 }
 
 .social-login button {
@@ -129,12 +129,9 @@ p {
     margin-top: 5%;
 }
 
-.google-btn {
-    background-color: #DB4437;
-}
-
-.kakao-btn {
-    background-color: #2DB400;
+img{
+    object-fit: contain;
+    width: 45%;
 }
 
 /* 미디어 쿼리(모바일 환경) */
@@ -155,6 +152,12 @@ p {
     .social-login button {
         padding: 10px; /* 소셜 로그인 버튼 패딩 조정 */
         font-size: 14px;
+    }
+
+    img{
+        object-fit: contain;
+        width: 180px;
+        height: 50px;
     }
 }
 
@@ -186,4 +189,26 @@ p {
         align-items: center; /* 중앙 정렬 */
         gap: 10px; /* 각 항목 간격 조정 */
     }
+
+    img{
+        object-fit: contain;
+        width: 90%;
+        height: 50px;
+    }
+
+    .social-login {
+        max-height: none;
+    }
+}
+
+
+
+#kakaoImg{
+    background-color: #fee500;
+    border-radius: 5px;
+}
+
+#naverImg{
+    background-color: #03c75a;
+    border-radius: 5px;
 }
