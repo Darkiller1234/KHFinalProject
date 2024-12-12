@@ -28,14 +28,16 @@
     </div>
 
     <div class="option">
-        <button id="deleteButton" class="delete btn-primary">
-            <img src="${pageContext.request.contextPath}/resources/static/img/button/trash_icon.png">
-            삭제
-        </button>
-        <button id="editButton" class="modify btn-primary">
-            <img src="${pageContext.request.contextPath}/resources/static/img/button/scissors_icon.png">
-            수정
-        </button>
+        <c:if test="${loginMember.managerStatus eq 'Y'}">
+            <button id="deleteButton" class="delete btn-primary">
+                <img src="${pageContext.request.contextPath}/resources/static/img/button/trash_icon.png">
+                삭제
+            </button>
+            <button id="editButton" class="modify btn-primary">
+                <img src="${pageContext.request.contextPath}/resources/static/img/button/scissors_icon.png">
+                수정
+            </button>
+        </c:if>
         <button class="back btn-primary" onclick="location.href='${pageContext.request.contextPath}/notice/notice'">
             <img src="${pageContext.request.contextPath}/resources/static/img/button/menu_icon.png">
             목록
