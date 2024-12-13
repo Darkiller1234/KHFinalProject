@@ -142,7 +142,7 @@ function init(contextPath, pageName, optional){
             initNoticePage(contextPath);
             break;
 
-        case "noticeWrite":
+        case "noticewrite":
             initNoticeWrite(contextPath);
             break;
 
