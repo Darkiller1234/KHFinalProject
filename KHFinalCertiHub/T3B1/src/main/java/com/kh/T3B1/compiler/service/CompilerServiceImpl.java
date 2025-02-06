@@ -69,7 +69,7 @@ public class CompilerServiceImpl implements CompilerService{
 			
 			Process imageCheckProcess = Runtime.getRuntime().exec(imageCheck);
 			BufferedReader stdOut = new BufferedReader(new InputStreamReader(imageCheckProcess.getInputStream()));
-			BufferedReader stdErr = new BufferedReader(new InputStreamReader(imageCheckProcess.getInputStream()));
+			BufferedReader stdErr = new BufferedReader(new InputStreamReader(imageCheckProcess.getErrorStream()));
 			
 			// 이미지 파일이 존재하지 않으면 빌드한다
 			if(stdOut.readLine() == null) {
@@ -80,10 +80,14 @@ public class CompilerServiceImpl implements CompilerService{
 				Runtime.getRuntime().exec(build, null, filePath).waitFor();
 			}
 			
+			// --rm : 컨테이너 수행 후 삭제
 			// -v 서버 경로:컨테이너 경로 => 도커 공유 볼륨, 로컬(서버) 경로와 도커 컨테이너의 파일을 동기화한다.
-			// --memory => 메모리 용량 제한
+			// --memory => 메모리 용량 제한, --cpus => cpu 사용률 제한, 최대 1
+			// --network=none => 외부 네트워크 접근 차단
 			// -e key=value => 도커 컨테이너에 환경변수를 추가해준다.
-			String run = "docker run --rm --name="+ containerName +" --memory=64m -v " + dockerPath + "/code:/app/code "
+			String run = "docker run --rm --name="+ containerName 
+					+ " --memory=128m --cpus=0.2 --network=none -v " 
+					+ dockerPath + "/code:/app/code "
 					+ "-e uuid=" + containerName +" certihub_compiler_" + imageTag;
 
 			Process execResult = Runtime.getRuntime().exec(run, null, filePath); // 클래스 파일 실행

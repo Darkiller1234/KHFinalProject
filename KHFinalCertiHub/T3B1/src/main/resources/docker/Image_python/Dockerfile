@@ -1,6 +1,6 @@
 # 이미지 설정 (Python3)
 FROM python:3.9-slim
-b
+
 # 컨테이너 내 작업 경로 설정
 WORKDIR /app
 

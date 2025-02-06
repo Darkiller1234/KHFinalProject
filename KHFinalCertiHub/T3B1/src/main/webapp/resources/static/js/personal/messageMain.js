@@ -94,9 +94,9 @@ function initMessageMain(contextPath) {
         state.memberImg = res.memberImg
     }
 
-    const onLoadTalkroomList = (res, state) => {
-        state.talkroomList = res
-    }
+    // const onLoadTalkroomList = (res, state) => {
+    //     state.talkroomList = res
+    // }
 
     // const onRecentMessage = (res, state) => {
     //     console.log(res)
