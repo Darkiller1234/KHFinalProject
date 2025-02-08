@@ -194,7 +194,6 @@ function initMemberList(state){
 function ajaxLoadMember(pageInfo, callback){
     return function() {
         $.ajax({
-            type:"post",
             url: pageInfo.contextPath + "/study/memberList",
             data: {
                 "currentPage" : pageInfo.currentPage,

@@ -104,6 +104,7 @@ function initApplyButton(isLogin){
 function ajaxLikeMentor(likeInfo, callback){
     return () => {
         $.ajax({
+            type:'post',
             url:'likeMentor',
             data:{
                 mentorNo : likeInfo.mentorNo
@@ -131,6 +132,7 @@ function ajaxInitLike(likeInfo, callback){
 
 function ajaxApplyMentee(mentorNo, callback){
     $.ajax({
+        type:'post',
         url:'applyMentee',
         data:{
             mentorNo: mentorNo,

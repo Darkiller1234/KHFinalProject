@@ -281,4 +281,16 @@ public class StudyServiceImpl implements StudyService{
 		return result;
 	}
 
+	@Override
+	public boolean isStudyMember(HashMap<String, Integer> insertInfo) {
+		boolean isStudyMember = false;
+		
+		Integer result = studyDao.isStudyMember(sqlSession, insertInfo);
+		if(result != null) {
+			isStudyMember = true;
+		}
+		
+		return isStudyMember;
+	}
+
 }
