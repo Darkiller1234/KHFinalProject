@@ -61,9 +61,9 @@ function initForm(){
 function initDeleteButton(state) {
     const deleteButton = document.getElementById('deleteButton')
 
-    deleteButton.onclick = () => {
-        location.href = state.contextPath + '/study/deleteStudy?no=' + state.studyNo
-    }
+    deleteButton.onclick = ajaxDeleteStudy(state, ()=> {
+        location.href = state.contextPath + '/study/search'
+    })
 }
 
 function initBanButton(state){
@@ -284,4 +284,20 @@ function ajaxSelectStudy(state, callback){
             console.log('스터디 정보 가져오기 실패')
         }
     })
+}
+
+function ajaxDeleteStudy(state, callback){
+    return () => {
+        $.ajax({
+            method: 'POST',
+            url: state.contextPath + '/study/deleteStudy',
+            data:{
+                studyNo: state.studyNo,
+            },
+            success: callback,
+            error: () => {
+                console.log('스터디 삭제 실패')
+            }
+        })
+    }
 }

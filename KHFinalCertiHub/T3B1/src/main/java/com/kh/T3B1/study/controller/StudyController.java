@@ -97,7 +97,7 @@ public class StudyController {
 		return "studyroom/studyDetail";
 	}
 	
-	@RequestMapping("detail/edit")
+	@GetMapping("detail/edit")
 	public String studyDetailEditPage(HttpSession session, Model m, int no) {
 		int memberNo =((Member)session.getAttribute("loginMember")).getMemberNo();
 		
@@ -120,7 +120,7 @@ public class StudyController {
 		return "studyroom/studyDetailEdit";
 	}
 	
-	@RequestMapping("editStudy")
+	@PostMapping("editStudy")
 	public String editStudy(HttpSession session, 
 			@RequestParam(required = false) MultipartFile profileImg, Study study, Model m) {
 		int memberNo = ((Member)session.getAttribute("loginMember")).getMemberNo();
@@ -153,13 +153,13 @@ public class StudyController {
 		return "redirect:search";
 	}
 	
-	@RequestMapping("deleteStudy")
-	public String deleteStudy(HttpSession session, int no) {
+	@PostMapping("deleteStudy")
+	public String deleteStudy(HttpSession session, int studyNo) {
 		int memberNo = ((Member)session.getAttribute("loginMember")).getMemberNo();
 		
 		HashMap<String, Integer> searchInfo = new HashMap<>();
 		searchInfo.put("memberNo", memberNo);
-		searchInfo.put("studyNo", no);
+		searchInfo.put("studyNo", studyNo);
 
 		boolean isManager = studyService.isStudyManager(searchInfo);
 		if(!isManager) {
@@ -167,7 +167,7 @@ public class StudyController {
 			return "redirect:/error";
 		}
 		
-		int result = studyService.deleteStudy(no);
+		int result = studyService.deleteStudy(studyNo);
 		
 		if(result < 1) {
 			session.setAttribute("errorMsg", "스터디 그룹 삭제에 실패했습니다.");
