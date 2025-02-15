@@ -88,7 +88,7 @@ public interface StudyService {
 
 	/**
 	 * 요청 멤버가 스터디그룹 매니저인지 검사
-	 * @param HashMap key=memberNo(요청 멤버 번호),studyNo(스터디 그룹 번호)
+	 * @param HashMap key=memberNo(요청 멤버 번호),studyNo(스터디 그룹 번호) + 톡방 권한 확인 필요시 talkroomNo(톡방 번호)
 	 * @return true=본인, false=타인
 	 */
 	boolean isStudyManager(HashMap<String, Integer> searchInfo);

@@ -215,7 +215,7 @@ public class StudyController {
 		return "studyroom/studyBoardView";
 	}
 	
-	@RequestMapping("write")
+	@GetMapping("write")
 	public String studyWritePage(Model m, HttpSession session) {
 		int memberNo = ((Member)session.getAttribute("loginMember")).getMemberNo();
 		
@@ -469,17 +469,15 @@ public class StudyController {
 			return new Gson().toJson(resultObj);
 		}
 		
-		// 요창한 사용자가 해당 스터디그룹 매니저인지 권한 검사후 삭제 수행
+		// 요창한 사용자가 해당 스터디그룹과 톡방 매니저인지 권한 검사후 삭제 수행
 		HashMap<String, Integer> searchInfo = new HashMap<>();
 		searchInfo.put("memberNo",manager.getMemberNo()); // 요청을 보낸 멤버의 번호
 		searchInfo.put("studyNo",studyNo);
+		searchInfo.put("talkroomNo", talkroomNo);
 		boolean isManager = studyService.isStudyManager(searchInfo);
 		
 		if(isManager) {
-			searchInfo = new HashMap<>();
 			searchInfo.put("memberNo", memberNo); // 추방당할 유저의 번호
-			searchInfo.put("studyNo", studyNo);
-			searchInfo.put("talkroomNo", talkroomNo);
 			
 			try {
 				result = studyService.deleteStudyMember(searchInfo);

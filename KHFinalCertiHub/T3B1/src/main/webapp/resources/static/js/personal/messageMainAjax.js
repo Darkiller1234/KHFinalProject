@@ -31,7 +31,6 @@ function socketConnect(state){
 function ajaxLoadMemberInfo(state, callback){
     $.ajax({
         url:'getMemberInfo',
-        type: 'post',
         async: false,
         success: (res) => callback(res, state),
         error: () => {
@@ -40,22 +39,9 @@ function ajaxLoadMemberInfo(state, callback){
     })
 }
 
-// function ajaxLoadTalkroomList(state, callback){
-//     $.ajax({
-//         url:'getTalkroomList',
-//         type: 'post',
-//         async: false,
-//         success: (res) => callback(res, state),
-//         error: () => {
-//             console.log("멤버 정보 로딩 실패")
-//         }
-//     })
-// }
-
 function ajaxLoadMentor(state, callback){
     $.ajax({
         url:'loadMentor',
-        type: 'post',
         data: {
             currentPage : state.mentorCurrentPage,
             pageLimit : state.pageLimit,
@@ -71,7 +57,6 @@ function ajaxLoadMentor(state, callback){
 function ajaxLoadStudy(state, callback){
     $.ajax({
         url:'loadStudy',
-        type: 'post',
         data: {
             currentPage : state.studyCurrentPage,
             pageLimit : state.pageLimit,
@@ -87,7 +72,6 @@ function ajaxLoadStudy(state, callback){
 function ajaxLoadApply(state, callback){
     $.ajax({
         url:'loadApply',
-        type: 'post',
         data: {
             currentPage : state.applyCurrentPage,
             pageLimit : state.pageLimit,
@@ -103,7 +87,6 @@ function ajaxLoadApply(state, callback){
 function ajaxLoadMessage(state, callback){
     $.ajax({
         url:'loadMessage',
-        type:'post',
         data: {
             talkroomNo: state.talkroomNo,
             currentPage: state.currentPage,

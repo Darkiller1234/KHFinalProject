@@ -231,7 +231,7 @@ public class StudyServiceImpl implements StudyService{
 		int talkroomResult = studyDao.deleteTalkroomMember(sqlSession, searchInfo);
 		
 		if(talkroomResult == 0) {
-			throw new RuntimeException("멤버 스터디그룹에서 삭제 실패");
+			throw new RuntimeException("멤버 톡방에서 삭제 실패");
 		}
 		
 		return "Y";

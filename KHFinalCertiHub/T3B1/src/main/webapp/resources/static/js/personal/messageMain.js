@@ -35,7 +35,7 @@ function initMessageMain(contextPath) {
         mentorCurrentPage: 1,
         studyCurrentPage: 1,
         applyCurrentPage: 1,
-        pageLimit: 10, // 불러올 메시지 개수 제한
+        pageLimit: window.innerHeight <= 720 ? 10 : 20, // 불러올 메시지 개수 제한
         keyword: null, // 검색용 키워드
 
         callbacks:{

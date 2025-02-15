@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,7 +41,7 @@ public class MessageController {
 	}
 	
 	@ResponseBody
-	@PostMapping(value="getMemberInfo", produces="application/json; charset=UTF-8")
+	@GetMapping(value="getMemberInfo", produces="application/json; charset=UTF-8")
 	public String getMemberInfo(HttpSession session) {
 		Member member = (Member)session.getAttribute("loginMember");
 		
@@ -53,7 +54,7 @@ public class MessageController {
 	}
 	
 	@ResponseBody
-	@PostMapping(value="getTalkroomList", produces="application/json; charset=UTF-8")
+	@GetMapping(value="getTalkroomList", produces="application/json; charset=UTF-8")
 	public String getTalkroomList(HttpSession session) {
 		Member member = (Member)session.getAttribute("loginMember");
 
@@ -63,12 +64,12 @@ public class MessageController {
 	}
 	
 	@ResponseBody
-	@PostMapping(value="loadMentor", produces="application/json; charset=UTF-8")
+	@GetMapping(value="loadMentor", produces="application/json; charset=UTF-8")
 	public String loadMentor(HttpSession session, int currentPage, int pageLimit, String keyword) {
 		Member member = (Member)session.getAttribute("loginMember");
 		
-		// 요청 한번에 불러올 메시지의 수, 최대 10개 까지
-		pageLimit = pageLimit <= 10 ? pageLimit : 10;
+		// 요청 한번에 불러올 메시지의 수, 최대 20개 까지
+		pageLimit = pageLimit <= 10 ? pageLimit : 20;
 		
 		// 이미 마지막 페이지라면 DB에서 조회하지 않도록 막아준다
 		Integer mentorCount = messageService.countMentor(member.getMemberNo());
@@ -90,12 +91,12 @@ public class MessageController {
 	}
 	
 	@ResponseBody
-	@PostMapping(value="loadStudy", produces="application/json; charset=UTF-8")
+	@GetMapping(value="loadStudy", produces="application/json; charset=UTF-8")
 	public String loadStudy(HttpSession session, int currentPage, int pageLimit, String keyword) {
 		Member member = (Member)session.getAttribute("loginMember");
 		
-		// 요청 한번에 불러올 메시지의 수, 최대 10개 까지
-		pageLimit = pageLimit <= 10 ? pageLimit : 10;
+		// 요청 한번에 불러올 메시지의 수, 최대 20개 까지
+		pageLimit = pageLimit <= 10 ? pageLimit : 20;
 		
 		// 이미 마지막 페이지라면 DB에서 조회하지 않도록 막아준다
 		Integer countStudy = messageService.countStudy(member.getMemberNo());
@@ -117,12 +118,12 @@ public class MessageController {
 	}
 	
 	@ResponseBody
-	@PostMapping(value="loadApply", produces="application/json; charset=UTF-8")
+	@GetMapping(value="loadApply", produces="application/json; charset=UTF-8")
 	public String loadApply(HttpSession session, int pageLimit, int currentPage, String keyword) {
 		Member member = (Member)session.getAttribute("loginMember");
 		
-		// 요청 한번에 불러올 메시지의 수, 최대 10개 까지
-		pageLimit = pageLimit <= 10 ? pageLimit : 10;
+		// 요청 한번에 불러올 메시지의 수, 최대 20개 까지
+		pageLimit = pageLimit <= 10 ? pageLimit : 20;
 		
 		// 이미 마지막 페이지라면 DB에서 조회하지 않도록 막아준다
 		Integer applyCount = messageService.countApply(member.getMemberNo());
@@ -144,14 +145,14 @@ public class MessageController {
 	}
 	
 	@ResponseBody
-	@PostMapping(value="loadMessage", produces="application/json; charset=UTF-8")
+	@GetMapping(value="loadMessage", produces="application/json; charset=UTF-8")
 	public String loadMessage(HttpSession session, int pageLimit, int currentPage, int talkroomNo) {
 		session.setAttribute("talkroomNo", talkroomNo);
 		
 		Member member = (Member)session.getAttribute("loginMember");
 		
-		// 요청 한번에 불러올 메시지의 수, 최대 10개 까지
-		pageLimit = pageLimit <= 10 ? pageLimit : 10;
+		// 요청 한번에 불러올 메시지의 수, 최대 20개 까지
+		pageLimit = pageLimit <= 10 ? pageLimit : 20;
 		
 		// 이미 마지막 페이지라면 DB에서 조회하지 않도록 막아준다
 		Integer studyCount = messageService.countMessage(talkroomNo);
@@ -213,7 +214,7 @@ public class MessageController {
 	}
 	
 	@ResponseBody
-	@PostMapping(value="getRecentMessage", produces="application/json; charset=UTF-8")
+	@GetMapping(value="getRecentMessage", produces="application/json; charset=UTF-8")
 	public String getRecentMessage(HttpSession session, @RequestParam(value="arr[]") String[] talkroomList) {
 	    Map<String, Message> resultMessages = new HashMap<>();
 	    
