@@ -189,6 +189,9 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{study
 		     FROM STUDY
 		    WHERE MANAGER_NO = #{memberNo}
 		      AND STUDY_NO = #{studyNo}
+		      <if test="talkroomNo != null">
+		      	AND TALKROOM_NO = #{talkroomNo}
+		      </if>
 		)
   </select>
   
@@ -365,6 +368,17 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{study
 		 WHERE MEMBER_NO = #{memberNo}
 		   AND TALKROOM_NO = #{talkroomNo}
 	</delete>
+	
+	<select id="isStudyMember" resultType="int">
+		SELECT 1
+		FROM DUAL
+		WHERE EXISTS(
+		   SELECT 1
+			 FROM STUDY_MEMBER
+			WHERE MEMBER_NO = #{memberNo}
+			  AND STUDY_NO = #{studyNo}
+		)
+	</select>
 	
 </mapper>
 

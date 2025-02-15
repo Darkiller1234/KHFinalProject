@@ -98,7 +98,6 @@ function initMentorList(contextPath){
 
 function ajaxLoadLicense(callback){
     $.ajax({
-        type:"post",
         url:"licenseList",
         async: false, // ajax를 동기로 사용
         success: callback,
@@ -111,7 +110,6 @@ function ajaxLoadLicense(callback){
 function ajaxLoadMentor(pageInfo, callback){
     return function() {
         $.ajax({
-            type:"post",
             url:"list",
             data: {
                 "currentPage" : pageInfo.currentPage,

@@ -80,7 +80,7 @@ public interface StudyService {
 	int checkStudyManager(int memberNo);
 
 	/**
-	 * 멤버가 가입한 스터디 그룹 목록 조회
+	 * 멤버가 관리하고 있는 스터디 그룹 목록 조회
 	 * @param 멤버번호 memberNo
 	 * @return ArrayList<Study> study = studyNo(스터디 그룹 번호), studyName(스터디 그룹명)
 	 */
@@ -88,7 +88,7 @@ public interface StudyService {
 
 	/**
 	 * 요청 멤버가 스터디그룹 매니저인지 검사
-	 * @param HashMap key=memberNo(요청 멤버 번호),studyNo(스터디 그룹 번호)
+	 * @param HashMap key=memberNo(요청 멤버 번호),studyNo(스터디 그룹 번호) + 톡방 권한 확인 필요시 talkroomNo(톡방 번호)
 	 * @return true=본인, false=타인
 	 */
 	boolean isStudyManager(HashMap<String, Integer> searchInfo);
@@ -183,5 +183,12 @@ public interface StudyService {
 	 * @return 성공=Y, 실패= RuntimeException
 	 */
 	String joinStudy(HashMap<String, Integer> searchInfo);
+
+	/**
+	 * 스터디 그룹에 속해있는 멤버인지 확인
+	 * @param int memberNo, int studyNo
+	 * @return true=속함, false=없음
+	 */
+	boolean isStudyMember(HashMap<String, Integer> insertInfo);
 
 }

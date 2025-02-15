@@ -71,7 +71,7 @@ public class StudyController {
 		return "redirect:search";
 	}
 	
-	@RequestMapping("detail")
+	@GetMapping("detail")
 	public String studyDetailPage(HttpSession session, Model m, int no) {
 		Study study = studyService.selectStudy(no);
 		
@@ -97,7 +97,7 @@ public class StudyController {
 		return "studyroom/studyDetail";
 	}
 	
-	@RequestMapping("detail/edit")
+	@GetMapping("detail/edit")
 	public String studyDetailEditPage(HttpSession session, Model m, int no) {
 		int memberNo =((Member)session.getAttribute("loginMember")).getMemberNo();
 		
@@ -120,7 +120,7 @@ public class StudyController {
 		return "studyroom/studyDetailEdit";
 	}
 	
-	@RequestMapping("editStudy")
+	@PostMapping("editStudy")
 	public String editStudy(HttpSession session, 
 			@RequestParam(required = false) MultipartFile profileImg, Study study, Model m) {
 		int memberNo = ((Member)session.getAttribute("loginMember")).getMemberNo();
@@ -153,13 +153,13 @@ public class StudyController {
 		return "redirect:search";
 	}
 	
-	@RequestMapping("deleteStudy")
-	public String deleteStudy(HttpSession session, int no) {
+	@PostMapping("deleteStudy")
+	public String deleteStudy(HttpSession session, int studyNo) {
 		int memberNo = ((Member)session.getAttribute("loginMember")).getMemberNo();
 		
 		HashMap<String, Integer> searchInfo = new HashMap<>();
 		searchInfo.put("memberNo", memberNo);
-		searchInfo.put("studyNo", no);
+		searchInfo.put("studyNo", studyNo);
 
 		boolean isManager = studyService.isStudyManager(searchInfo);
 		if(!isManager) {
@@ -167,7 +167,7 @@ public class StudyController {
 			return "redirect:/error";
 		}
 		
-		int result = studyService.deleteStudy(no);
+		int result = studyService.deleteStudy(studyNo);
 		
 		if(result < 1) {
 			session.setAttribute("errorMsg", "스터디 그룹 삭제에 실패했습니다.");
@@ -215,7 +215,7 @@ public class StudyController {
 		return "studyroom/studyBoardView";
 	}
 	
-	@RequestMapping("write")
+	@GetMapping("write")
 	public String studyWritePage(Model m, HttpSession session) {
 		int memberNo = ((Member)session.getAttribute("loginMember")).getMemberNo();
 		
@@ -313,7 +313,7 @@ public class StudyController {
 	// =========================  AJAX 요청 핸들러  ==========================
 	
 	@ResponseBody
-	@PostMapping(value="studyList", produces="application/json; charset=UTF-8")
+	@GetMapping(value="studyList", produces="application/json; charset=UTF-8")
 	public String selectMentorList(int pageLimit, int currentPage,  String keyword, String recruit, Integer sort) {
 		// 요청 한번에 불러올 스터디 그룹의 수, 최대 20명 까지
 		pageLimit = pageLimit <= 20 ? pageLimit : 20;
@@ -341,7 +341,7 @@ public class StudyController {
 	}
 	
 	@ResponseBody
-	@PostMapping(value="memberList", produces="application/json; charset=UTF-8")
+	@GetMapping(value="memberList", produces="application/json; charset=UTF-8")
 	public String selectStudyMemberList(int pageLimit, int currentPage,  String keyword, int no) {
 		// 요청 한번에 불러올 스터디 그룹의 수, 최대 20명 까지
 		pageLimit = pageLimit <= 20 ? pageLimit : 20;
@@ -367,9 +367,8 @@ public class StudyController {
 		return new Gson().toJson(memberList);
 	}
 	
-	
 	@ResponseBody
-	@PostMapping(value="boardList", produces="application/json; charset=UTF-8")
+	@GetMapping(value="boardList", produces="application/json; charset=UTF-8")
 	public String selectBoardList(int currentPage, int boardLimit, int pageLimit, String keyword) {
 		// 요청 한번에 불러올 게시글의 수, 최대 20개 까지
 		pageLimit = pageLimit <= 20 ? pageLimit : 20;
@@ -403,9 +402,8 @@ public class StudyController {
 	}
 	
 	@ResponseBody
-	@PostMapping(value="manageStudy", produces="application/json; charset=UTF-8")
+	@GetMapping(value="manageStudy", produces="application/json; charset=UTF-8")
 	public String selectManageStudy(HttpSession session) {
-		log.info("ajax 요청 도착");
 		int memberNo = ((Member)session.getAttribute("loginMember")).getMemberNo();
 		// 매니저인 스터디 그룹 목록
 		ArrayList<Study> studyList = studyService.selectManagerStudy(memberNo);
@@ -437,12 +435,17 @@ public class StudyController {
 		
 		// 현재 스터디그룹 멤버 모집 중인지 확인한다
 		if(study.getStudyRecruit().equals("Y")) {
+			
+			// 신청한 사람이 이미 스터디 그룹에 속해있는지 확인
 			HashMap<String, Integer> insertInfo = new HashMap<>();
 			insertInfo.put("memberNo",member.getMemberNo());
-			insertInfo.put("recipientNo",study.getManagerNo());
 			insertInfo.put("studyNo",studyNo);
-
-			result = studyService.insertApply(insertInfo);
+			boolean isStudyMember = studyService.isStudyMember(insertInfo);
+			
+			if(!isStudyMember) {
+				insertInfo.put("recipientNo",study.getManagerNo());
+				result = studyService.insertApply(insertInfo);
+			}
 		}
 		
 		HashMap<String, String> resultObj = new HashMap<>();
@@ -466,17 +469,15 @@ public class StudyController {
 			return new Gson().toJson(resultObj);
 		}
 		
-		// 요창한 사용자가 해당 스터디그룹 매니저인지 권한 검사후 삭제 수행
+		// 요창한 사용자가 해당 스터디그룹과 톡방 매니저인지 권한 검사후 삭제 수행
 		HashMap<String, Integer> searchInfo = new HashMap<>();
 		searchInfo.put("memberNo",manager.getMemberNo()); // 요청을 보낸 멤버의 번호
 		searchInfo.put("studyNo",studyNo);
+		searchInfo.put("talkroomNo", talkroomNo);
 		boolean isManager = studyService.isStudyManager(searchInfo);
 		
 		if(isManager) {
-			searchInfo = new HashMap<>();
 			searchInfo.put("memberNo", memberNo); // 추방당할 유저의 번호
-			searchInfo.put("studyNo", studyNo);
-			searchInfo.put("talkroomNo", talkroomNo);
 			
 			try {
 				result = studyService.deleteStudyMember(searchInfo);

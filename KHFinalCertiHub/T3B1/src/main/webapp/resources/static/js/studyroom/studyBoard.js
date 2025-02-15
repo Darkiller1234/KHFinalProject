@@ -70,7 +70,6 @@ function initBoard(contextPath){
 function ajaxLoadBoard(pageInfo, callback){
     return function() {
         $.ajax({
-            type:"post",
             url:"boardList",
             data: {
                 "currentPage" : pageInfo.currentPage,

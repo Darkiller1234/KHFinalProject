@@ -79,7 +79,6 @@ function initMemberList(contextPath){
 function ajaxLoadMember(pageInfo, callback){
     return function() {
         $.ajax({
-            type:"post",
             url:"memberList",
             data: {
                 "currentPage" : pageInfo.currentPage,
