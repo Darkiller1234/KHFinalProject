@@ -82,4 +82,11 @@ public interface MessageService {
 	 */
 	ArrayList<Integer> selectTalkroomList(int memberNo);
 
+	/**
+	 * 요청한 톡방에 멤버가 속해있는지 확인
+	 * @param HashMap key=talkroomNo(톡방번호), memberNo(멤버번호)
+	 * @return true=포함, false=비포함
+	 */
+	boolean isTalkroomMember(HashMap<String, Integer> searchInfo);
+
 }

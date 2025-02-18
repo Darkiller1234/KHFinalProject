@@ -119,5 +119,16 @@ public class MessageServiceImpl implements MessageService {
 	public ArrayList<Integer> selectTalkroomList(int memberNo) {
 		return messageDao.selectTalkroomList(sqlSession, memberNo);
 	}
+
+	@Override
+	public boolean isTalkroomMember(HashMap<String, Integer> searchInfo) {
+		Integer result = messageDao.isTalkroomMember(sqlSession, searchInfo);
+		
+		if(result != null) {
+			return true;
+		}
+		
+		return false;
+	}
 	
 }

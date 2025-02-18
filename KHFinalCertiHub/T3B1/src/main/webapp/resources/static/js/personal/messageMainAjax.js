@@ -24,6 +24,7 @@ function socketConnect(state){
     socket.onmessage = function(ev){
         const receive = JSON.parse(ev.data);
         createMessageCard(state, receive)
+        updateTalkroom(state, receive)
     }
 
 }
@@ -87,6 +88,7 @@ function ajaxLoadApply(state, callback){
 function ajaxLoadMessage(state, callback){
     $.ajax({
         url:'loadMessage',
+        async:false,
         data: {
             talkroomNo: state.talkroomNo,
             currentPage: state.currentPage,
@@ -129,17 +131,3 @@ function ajaxRejectApply(state, callback){
         }
     })
 }
-
-// function ajaxRecentMessage(state, callback){
-//     $.ajax({
-//         url:'getRecentMessage',
-//         type:'post',
-//         data: {
-//             talkroomList : state?.talkroomList,
-//         },
-//         success: (res) => callback(res, state),
-//         error: () => {
-//             console.log("최신 메시지 로딩 실패")
-//         }
-//     })
-// }

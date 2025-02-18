@@ -53,15 +53,15 @@ public class MessageController {
 		return new Gson().toJson(memberInfo);
 	}
 	
-	@ResponseBody
-	@GetMapping(value="getTalkroomList", produces="application/json; charset=UTF-8")
-	public String getTalkroomList(HttpSession session) {
-		Member member = (Member)session.getAttribute("loginMember");
-
-		ArrayList<Integer> talkroomList = messageService.selectTalkroomList(member.getMemberNo());
-		
-		return new Gson().toJson(talkroomList);
-	}
+//	@ResponseBody
+//	@GetMapping(value="getTalkroomList", produces="application/json; charset=UTF-8")
+//	public String getTalkroomList(HttpSession session) {
+//		Member member = (Member)session.getAttribute("loginMember");
+//
+//		ArrayList<Integer> talkroomList = messageService.selectTalkroomList(member.getMemberNo());
+//		
+//		return new Gson().toJson(talkroomList);
+//	}
 	
 	@ResponseBody
 	@GetMapping(value="loadMentor", produces="application/json; charset=UTF-8")
@@ -211,20 +211,6 @@ public class MessageController {
 		
 		resultObj.put("result", result);
 		return new Gson().toJson(resultObj);
-	}
-	
-	@ResponseBody
-	@GetMapping(value="getRecentMessage", produces="application/json; charset=UTF-8")
-	public String getRecentMessage(HttpSession session, @RequestParam(value="arr[]") String[] talkroomList) {
-	    Map<String, Message> resultMessages = new HashMap<>();
-	    
-	    // 최근 메시지 조회
-	    for (String talkroomId : talkroomList) {
-	        Message recentMsg = messageSocketServer.getRecentMessage().get(talkroomId);
-            resultMessages.put(talkroomId, recentMsg);
-	    }
-
-	    return new Gson().toJson(resultMessages);
 	}
 
 }
