@@ -263,4 +263,12 @@
 		)
 	</select>
 	
+	<select id="isRecipient" resultType="int">
+		SELECT 1
+		  FROM APPLY_LOG
+		 WHERE APPLY_NO = #{applyNo}
+           AND RECIPIENT_NO = #{memberNo}
+           AND APPLICANT_NO = #{applicantNo}
+	</select>
+	
 </mapper>

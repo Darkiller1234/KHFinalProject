@@ -32,7 +32,6 @@ public class MessageController {
 	
 	public final MessageService messageService;
 	public final StudyService studyService;
-	private MessageSocketServer messageSocketServer;
 	
 	@RequestMapping("main")
 	public String messageMainPage(HttpSession session, Model m) {
@@ -52,16 +51,6 @@ public class MessageController {
 		
 		return new Gson().toJson(memberInfo);
 	}
-	
-//	@ResponseBody
-//	@GetMapping(value="getTalkroomList", produces="application/json; charset=UTF-8")
-//	public String getTalkroomList(HttpSession session) {
-//		Member member = (Member)session.getAttribute("loginMember");
-//
-//		ArrayList<Integer> talkroomList = messageService.selectTalkroomList(member.getMemberNo());
-//		
-//		return new Gson().toJson(talkroomList);
-//	}
 	
 	@ResponseBody
 	@GetMapping(value="loadMentor", produces="application/json; charset=UTF-8")
@@ -151,6 +140,16 @@ public class MessageController {
 		
 		Member member = (Member)session.getAttribute("loginMember");
 		
+		HashMap<String, Integer> searchInfo = new HashMap<>();
+		searchInfo.put("memberNo", member.getMemberNo());
+		searchInfo.put("talkroomNo", talkroomNo);
+		
+		// 톡방 멤버인지 권한검사
+		boolean isTalkroomMember = messageService.isTalkroomMember(searchInfo);
+		if(!isTalkroomMember) {
+			return null;
+		}
+		
 		// 요청 한번에 불러올 메시지의 수, 최대 20개 까지
 		pageLimit = pageLimit <= 10 ? pageLimit : 20;
 		
@@ -183,9 +182,15 @@ public class MessageController {
 		searchInfo.put("applicantNo", applicantNo);
 		searchInfo.put("applyNo", applyNo);
 		
+		// applyKind : 1 = 멘티 요청
 		if(applyKind == 1) {
-			result = messageService.createTalkroom(searchInfo);
-		}		
+			boolean isRecipient = messageService.isRecipient(searchInfo);
+			
+			if(isRecipient) {
+				result = messageService.createTalkroom(searchInfo);
+			}
+		}
+		// applyKind : 2 = 스터디 그룹 참가 요청
 		else if(applyKind == 2) {
 			searchInfo.put("studyNo", studyNo);
 			boolean isManager = studyService.isStudyManager(searchInfo);

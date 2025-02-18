@@ -89,4 +89,11 @@ public interface MessageService {
 	 */
 	boolean isTalkroomMember(HashMap<String, Integer> searchInfo);
 
+	/**
+	 * 요청을 받은 당사자인지 확인
+	 * @param HashMap key=applyNo(신청번호), applicantNo(신청인), memberNo(수취인)
+	 * @return true=본인, false=본인X
+	 */
+	boolean isRecipient(HashMap<String, Integer> searchInfo);
+
 }
