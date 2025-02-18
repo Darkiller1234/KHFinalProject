@@ -246,12 +246,21 @@
 		WHERE MEMBER_NO = #{memberNo}
 	</select>
 	
-	
-	
 	<select id="getMessage" resultMap="messageResultSet">
 		SELECT MESSAGE_CONTENT
 		FROM MESSAGE
 		WHERE MESSAGE_NO = #{messageNo}
+	</select>
+	
+	<select id="isTalkroomMember" resultType="int">
+		SELECT 1
+		FROM DUAL
+		WHERE EXISTS(
+		   SELECT 1
+			 FROM MEMBER_TALKROOM
+			WHERE MEMBER_NO = #{memberNo}
+			  AND TALKROOM_NO = #{talkroomNo}
+		)
 	</select>
 	
 </mapper>

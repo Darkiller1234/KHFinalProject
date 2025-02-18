@@ -102,4 +102,8 @@ public class MessageDao {
 		return (ArrayList)sqlSession.selectList("messageMapper.selectTalkroomList", memberNo);
 	}
 
+	public Integer isTalkroomMember(SqlSessionTemplate sqlSession, HashMap<String, Integer> searchInfo) {
+		return sqlSession.selectOne("messageMapper.isTalkroomMember", searchInfo);
+	}
+
 }
