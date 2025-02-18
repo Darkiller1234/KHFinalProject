@@ -130,5 +130,16 @@ public class MessageServiceImpl implements MessageService {
 		
 		return false;
 	}
+
+	@Override
+	public boolean isRecipient(HashMap<String, Integer> searchInfo) {
+		Integer result = messageDao.isRecipient(sqlSession, searchInfo);
+		
+		if(result != null) {
+			return true;
+		}
+		
+		return false;
+	}
 	
 }

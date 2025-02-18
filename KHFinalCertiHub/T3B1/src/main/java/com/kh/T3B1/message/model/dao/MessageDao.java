@@ -106,4 +106,8 @@ public class MessageDao {
 		return sqlSession.selectOne("messageMapper.isTalkroomMember", searchInfo);
 	}
 
+	public Integer isRecipient(SqlSessionTemplate sqlSession, HashMap<String, Integer> searchInfo) {
+		return sqlSession.selectOne("messageMapper.isRecipient", searchInfo);
+	}
+
 }
