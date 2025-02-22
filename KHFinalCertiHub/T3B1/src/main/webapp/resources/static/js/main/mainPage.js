@@ -15,7 +15,7 @@ $(document).ready(function () {
                 numOfRows: 20,
                 pageNo: 1,
                 dataFormat: 'json',
-                implYy: 2024,
+                implYy: 2025,
                 qualgbCd: 'T'
             },
             dataType: 'json',

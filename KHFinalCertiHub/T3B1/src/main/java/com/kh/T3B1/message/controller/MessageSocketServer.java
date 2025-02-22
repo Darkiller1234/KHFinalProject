@@ -26,7 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Component("MessageSocketServer")
 public class MessageSocketServer extends TextWebSocketHandler {
-	private final Map<Integer, WebSocketSession> userSessions = new ConcurrentHashMap<>(); // 유저번호당 세션 배열
+	private final Map<Integer, WebSocketSession> userSessions = new ConcurrentHashMap<>(); // 유저번호당 세션 목록
 	private final Map<Integer, Set<Integer>> talkroomUserList = new ConcurrentHashMap<>(); // 유저가 속한 톡방의 유저세션 목록
 	
 	public final MessageService messageService;

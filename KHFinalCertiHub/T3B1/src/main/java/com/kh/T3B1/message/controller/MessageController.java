@@ -2,7 +2,6 @@ package com.kh.T3B1.message.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -24,7 +23,9 @@ import com.kh.T3B1.message.service.MessageService;
 import com.kh.T3B1.study.service.StudyService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("message/")
@@ -180,22 +181,16 @@ public class MessageController {
 		HashMap<String, Integer> searchInfo = new HashMap<>();
 		searchInfo.put("memberNo", member.getMemberNo());
 		searchInfo.put("applicantNo", applicantNo);
+		searchInfo.put("applyKind", applyKind);
 		searchInfo.put("applyNo", applyNo);
+		searchInfo.put("studyNo", studyNo);
 		
-		// applyKind : 1 = 멘티 요청
-		if(applyKind == 1) {
-			boolean isRecipient = messageService.isRecipient(searchInfo);
-			
-			if(isRecipient) {
+		boolean isValidApplyHandle = messageService.isValidApplyHandle(searchInfo);
+		
+		if(isValidApplyHandle) {
+			if(applyKind == 1) {
 				result = messageService.createTalkroom(searchInfo);
-			}
-		}
-		// applyKind : 2 = 스터디 그룹 참가 요청
-		else if(applyKind == 2) {
-			searchInfo.put("studyNo", studyNo);
-			boolean isManager = studyService.isStudyManager(searchInfo);
-			
-			if(isManager) {
+			} else if(applyKind == 2) {
 				// DB 추가를 위해 memberNo를 매니저 번호에서 요청자 번호로 변경
 				searchInfo.put("memberNo", applicantNo);
 				result = studyService.joinStudy(searchInfo);
@@ -208,11 +203,24 @@ public class MessageController {
 	
 	@ResponseBody
 	@PostMapping(value="rejectApply", produces="application/json; charset=UTF-8")
-	public String rejectApply(HttpSession session, int applyNo) {
+	public String rejectApply(HttpSession session, int applyNo,
+			@RequestParam(required = false) int studyNo, int applicantNo, int applyKind) {
 		HashMap<String, String> resultObj = new HashMap<>();
 		String result = "N";
+		Member member = (Member)session.getAttribute("loginMember");
 		
-		result = messageService.deleteApplyLog(applyNo);
+		HashMap<String, Integer> searchInfo = new HashMap<>();
+		searchInfo.put("memberNo", member.getMemberNo());
+		searchInfo.put("applicantNo", applicantNo);
+		searchInfo.put("applyKind", applyKind);
+		searchInfo.put("applyNo", applyNo);
+		searchInfo.put("studyNo", studyNo);
+		
+		boolean isValidApplyHandle = messageService.isValidApplyHandle(searchInfo);
+		
+		if(isValidApplyHandle) {
+			result = messageService.deleteApplyLog(applyNo);
+		}
 		
 		resultObj.put("result", result);
 		return new Gson().toJson(resultObj);

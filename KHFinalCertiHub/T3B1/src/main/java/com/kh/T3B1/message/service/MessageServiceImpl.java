@@ -12,6 +12,7 @@ import com.kh.T3B1.message.model.dao.MessageDao;
 import com.kh.T3B1.message.model.vo.ApplyLog;
 import com.kh.T3B1.message.model.vo.Message;
 import com.kh.T3B1.message.model.vo.Talkroom;
+import com.kh.T3B1.study.model.dao.StudyDao;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,6 +23,7 @@ public class MessageServiceImpl implements MessageService {
 	public final SqlSessionTemplate sqlSession;
 	
 	public final MessageDao messageDao;
+	public final StudyDao studyDao;
 	
 	@Override
 	public Integer countMentor(int memberNo) {
@@ -140,6 +142,23 @@ public class MessageServiceImpl implements MessageService {
 		}
 		
 		return false;
+	}
+
+	@Override
+	public boolean isValidApplyHandle(HashMap<String, Integer> searchInfo) {
+		int applyKind = searchInfo.get("applyKind");
+		
+		// applyKind : 1 = 멘티 요청
+		if(applyKind == 1) {
+			return messageDao.isRecipient(sqlSession, searchInfo) != null ? true : false;
+		}
+		// applyKind : 2 = 스터디 그룹 참가 요청
+		else if(applyKind == 2) {
+			return studyDao.isStudyManager(sqlSession, searchInfo) != null ? true : false;
+		}
+		else {
+			return false;
+		}
 	}
 	
 }

@@ -35,7 +35,7 @@ public class ChatbotServiceImpl implements ChatbotService{
 	
 	public final ChatbotDao chatbotDao;
 
-	@Value("${spring.datasource.gptKey}")
+	@Value("${api.chatgpt.key}")
 	private String GPT_API_KEY;
 	
 	@Override
