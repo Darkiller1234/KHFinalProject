@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 numOfRows: 50, // 최대 50개까지 조회
                 pageNo: 1,
                 dataFormat: 'json',
-                implYy: 2024,
+                implYy: 2025,
                 qualgbCd: 'T'
             },
             dataType: 'json',
