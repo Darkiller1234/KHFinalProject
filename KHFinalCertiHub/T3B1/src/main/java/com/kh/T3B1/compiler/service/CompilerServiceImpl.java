@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 import com.kh.T3B1.compiler.model.dao.CompilerDao;
@@ -22,13 +23,14 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor
 @Service
+@PropertySource("classpath:/config/config.properties")
 public class CompilerServiceImpl implements CompilerService{
 	
 	public final CompilerDao compilerDao;
 	
 	public final SqlSessionTemplate sqlSession;
 	
-	@Value("${dockerPath}")
+	@Value("${dockerpath}")
 	private String DOCKER_PATH;
 
 	@Override
