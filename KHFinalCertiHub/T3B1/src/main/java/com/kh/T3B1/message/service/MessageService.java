@@ -82,4 +82,26 @@ public interface MessageService {
 	 */
 	ArrayList<Integer> selectTalkroomList(int memberNo);
 
+	/**
+	 * 요청한 톡방에 멤버가 속해있는지 확인
+	 * @param HashMap key=talkroomNo(톡방번호), memberNo(멤버번호)
+	 * @return true=포함, false=비포함
+	 */
+	boolean isTalkroomMember(HashMap<String, Integer> searchInfo);
+
+	/**
+	 * 요청을 받은 당사자인지 확인
+	 * @param HashMap key=applyNo(신청번호), applicantNo(신청인), memberNo(수취인)
+	 * @return true=본인, false=본인X
+	 */
+	boolean isRecipient(HashMap<String, Integer> searchInfo);
+
+	/**
+	 * 요청을 받은 당사자인지 확인. 스터디 그룹일 경우 매니저인지, 멘토일 경우 멘토 본인인지 확인
+	 * @param HashMap key=memberNo(수취자), applicantNo(신청자), applyNo(요청번호 키값), applyKind(요청 유형: 1=멘티, 2=스터디)
+	 * studyNo(필수X, applyKind=2 일 경우 스터디 번호)
+	 * @return true=본인, false=본인X
+	 */
+	boolean isValidApplyHandle(HashMap<String, Integer> searchInfo);
+
 }

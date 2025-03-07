@@ -51,22 +51,4 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
-function initInfoPage(contextPath) {
-    initPagingBar(contextPath);
-}
 
-// function initPagingBar(contextPath) {
-//     const pagingBar = document.querySelector('.pagination');
-
-//     const data = {
-//         startPage : 1,
-//         endPage : 5,
-//         currentPage : 1,
-//         pageUrl : contextPath +'/info/search??cpage=${page}&keyword=${keyword}',
-//         imgUrl : [
-//             contextPath + '/resources/static/img/button/arrow_left.png',
-//             contextPath + '/resources/static/img/button/arrow_right.png'
-//         ]
-//     }
-//     createPageBar(pagingBar, data)
-// }

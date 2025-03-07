@@ -281,7 +281,6 @@ function loadAjax(contextPath, currentPage, keyword, table) {
 
             // 삭제 버튼 클릭 이벤트
             table.on("click", "button:contains('삭제')", function () {
-                
                 const name = $(this).data("name");
                 const id = $(this).data("id"); // 버튼의 data-id 가져오기
                 console.log(id);
@@ -291,8 +290,8 @@ function loadAjax(contextPath, currentPage, keyword, table) {
                     $('#delete-modal .modal-body').html(`${name}<br>삭제를 하시겠습니까?`);
                 }
                 $('#delete-modal').modal('show');
+                $("#modalDeleteBtn").off("click")
                 $("#modalDeleteBtn").on("click", function(){
-                    $("#modalDeleteBtn").off("click");
                     $('#apply-modal .modal-body').html("잠시만 기다려주세요...");
                     $('#delete-modal').modal('hide');
                     $('#apply-modal').modal('show');

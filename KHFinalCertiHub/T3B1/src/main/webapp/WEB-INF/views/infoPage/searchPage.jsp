@@ -6,6 +6,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>searchPage</title>
+        <script src="${pageContext.request.contextPath}/resources/static/js/common/common.js"></script>
+
     </head>
 
     <body>
@@ -46,6 +48,7 @@
                         <p>시험 범위 <br> <span id="modalLicenseScope"></span></p> <br>
                         <p>필기 수수료: <span id="modalDocExamFee"></span></p>
                         <p>실기 수수료: <span id="modalPracExamFee"></span></p>
+                        
                     </div>
                 </div>
 
@@ -56,16 +59,16 @@
 
             <!-- 페이징바 -->
             <div class="pagination">
-                <!-- 이전 페이지 화살표 -->
-                <c:if test="${pi.currentPage > 1}">
+                <!-- 이전 블록 화살표 -->
+                <c:if test="${pi.startPage > 1}">
                     <span class="page-arrow">
-                        <a href="?cpage=${pi.currentPage - 1}&keyword=${keyword}">
-                            <img src="<%=contextPath%>/resources/static/img/button/arrow_left.png" alt="">
+                        <a href="?cpage=${pi.startPage - pi.pageLimit}&keyword=${keyword}">
+                            <img src="<%=contextPath%>/resources/static/img/button/arrow_left.png" alt="이전">
                         </a>
                     </span>
                 </c:if>
-
-                <!-- 페이지 번호들 -->
+            
+                <!-- 페이지 번호 -->
                 <c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
                     <c:choose>
                         <c:when test="${page == pi.currentPage}">
@@ -78,16 +81,17 @@
                         </c:otherwise>
                     </c:choose>
                 </c:forEach>
-
-                <!-- 다음 페이지 화살표 -->
-                <c:if test="${pi.currentPage < pi.maxPage}">
+            
+                <!-- 다음 블록 화살표 -->
+                <c:if test="${pi.endPage < pi.maxPage}">
                     <span class="page-arrow">
-                        <a href="?cpage=${pi.currentPage + 1}&keyword=${keyword}">
-                            <img src="<%=contextPath%>/resources/static/img/button/arrow_right.png" alt="">
+                        <a href="?cpage=${pi.startPage + pi.pageLimit}&keyword=${keyword}">
+                            <img src="<%=contextPath%>/resources/static/img/button/arrow_right.png" alt="다음">
                         </a>
                     </span>
                 </c:if>
             </div>
+            
 
             <script src="<%=contextPath%>/resources/static/js/infopage/searchPage.js"></script>
             <%@ include file="../common/footer.jsp" %>

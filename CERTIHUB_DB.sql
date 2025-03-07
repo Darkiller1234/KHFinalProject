@@ -5,7 +5,6 @@ DROP TABLE BOARD_LIKE_LOG;
 DROP TABLE BOARD_HATE_LOG;
 DROP TABLE MEMBER_CALENDAR;
 DROP TABLE MENTOR_LIKE_LOG;
-DROP TABLE ALERT;
 DROP TABLE MEMBER_TALKROOM;
 DROP TABLE MEMBER_LICENSE;
 DROP TABLE MEMBER_LOOK_LICENSE;
@@ -25,7 +24,6 @@ DROP TABLE BOARD_TAB;
 DROP TABLE LICENSE;
 DROP TABLE CHATBOT_LOG;
 --DROP TABLE CALENDAR;
-
 
 DROP SEQUENCE BOARD_TAB_SEQ;
 DROP SEQUENCE BOARD_SEQ;
@@ -115,6 +113,8 @@ COMMENT ON COLUMN MEMBER.MENTOR_STATUS IS '¸àÅä¿©ºÎ(Y/N)'; -- °ü¸®ÀÚ°¡ ¸àÅä ºÎ¿©
 COMMENT ON COLUMN MEMBER.MENTOR_VALID IS '¸àÅäÈ°µ¿¿©ºÎ(Y/N)'; -- ¸àÅäÀÎ À¯Àú°¡ ÀÓÀÇ·Î º¯°æ °¡´É
 COMMENT ON COLUMN MEMBER.MENTOR_INTRO IS '¸àÅä¼Ò°³';
 COMMENT ON COLUMN MEMBER.CAREER IS '¸àÅä°æ·Â';
+COMMENT ON COLUMN MEMBER.SOCIAL IS '¼Ò¼ÈÁ¾·ù';
+COMMENT ON COLUMN MEMBER.SOCIAL_ID IS '¼Ò¼È°íÀ¯Å°';
 
 CREATE TABLE STUDY(
     STUDY_NO NUMBER,
@@ -123,6 +123,7 @@ CREATE TABLE STUDY(
     STUDY_INFO VARCHAR2(3000),
     STUDY_IMG VARCHAR2(300) DEFAULT '/resources/static/img/studyProfile/default_profile.png' NOT NULL,
     STUDY_RECRUIT VARCHAR2(3) DEFAULT 'N' NOT NULL CHECK(STUDY_RECRUIT IN('Y','N')),
+    TALKROOM_NO NUMBER,
     CONSTRAINT S_SNO_PK PRIMARY KEY(STUDY_NO),
     CONSTRAINT S_MGNO_FK FOREIGN KEY(MANAGER_NO) REFERENCES MEMBER(MEMBER_NO) ON DELETE CASCADE
 );
@@ -132,6 +133,7 @@ COMMENT ON COLUMN STUDY.MANAGER_NO IS '°ü¸®ÀÚ¹øÈ£';
 COMMENT ON COLUMN STUDY.STUDY_INFO IS '½ºÅÍµð¼Ò°³±Û';
 COMMENT ON COLUMN STUDY.STUDY_IMG IS '½ºÅÍµðÇÁ·ÎÇÊ»çÁø';
 COMMENT ON COLUMN STUDY.STUDY_RECRUIT IS '¸ðÁý¿©ºÎ(Y/N)';
+COMMENT ON COLUMN STUDY.TALKROOM_NO IS '½ºÅÍµðÅå¹æ¹øÈ£';
 
 CREATE TABLE STUDY_MEMBER(
     MEMBER_NO NUMBER NOT NULL,
@@ -247,24 +249,12 @@ CREATE TABLE MENTOR_LIKE_LOG(
 COMMENT ON COLUMN MENTOR_LIKE_LOG.MEMBER_NO IS '¸â¹ö¹øÈ£';
 COMMENT ON COLUMN MENTOR_LIKE_LOG.MENTOR_NO IS '¸àÅä¹øÈ£';
 
-CREATE TABLE ALERT(
-    ALERT_NO NUMBER,
-    MEMBER_NO NUMBER NOT NULL,
-    ALERT_DETAIL VARCHAR2(300) NOT NULL,
-    CONSTRAINT AL_ANO_PK PRIMARY KEY(ALERT_NO),
-    CONSTRAINT AL_MNO_FK FOREIGN KEY(MEMBER_NO) REFERENCES MEMBER(MEMBER_NO) ON DELETE CASCADE
-);
-
-COMMENT ON COLUMN ALERT.ALERT_NO IS '¾Ë¸²°íÀ¯¹øÈ£';
-COMMENT ON COLUMN ALERT.MEMBER_NO IS '¸â¹ö¹øÈ£';
-COMMENT ON COLUMN ALERT.ALERT_DETAIL IS '¾Ë¸²³»¿ë';
-
 CREATE TABLE COMPILER_LOG(
     COMPILE_NO NUMBER,
     MEMBER_NO NUMBER NOT NULL,
-    CODE VARCHAR(2000) NOT NULL,
-    EXEC_RESULT VARCHAR(1000),
-    EXEC_TIME VARCHAR(30),
+    CODE VARCHAR2(2000) NOT NULL,
+    EXEC_RESULT VARCHAR2(1000),
+    EXEC_TIME VARCHAR2(30),
     COMPILE_DATE DATE DEFAULT SYSDATE NOT NULL,
     CONSTRAINT CL_CNO_PK PRIMARY KEY(COMPILE_NO),
     CONSTRAINT CL_MNO_FK FOREIGN KEY(MEMBER_NO) REFERENCES MEMBER(MEMBER_NO) ON DELETE CASCADE
@@ -605,6 +595,11 @@ INSERT INTO LICENSE VALUES(LICENSE_SEQ.NEXTVAL, 'ÀüÀÚ»ê¾÷±â»ç','ÀüÀÚ»ê¾÷±â»ç´Â Ç
 '19,400¿ø','49,300¿ø','- ÇÊ±â' || CHR(10) || '1. µðÁöÅÐÀÀ¿ëÈ¸·Î' || CHR(10) || '2. ÀüÀÚÈ¸·Î¼³°è' || CHR(10) || '3. ÀüÀÚÈ¸·Î±¸Çö¼³°è' || CHR(10) || '4. ÀüÀÚÈ¸·ÎÃøÁ¤' || CHR(10) || '- ½Ç±â' || CHR(10) || 'ÀüÀÚÈ¸·Î ±¸Çö ¹× °ËÁõ ½Ç¹«');
 INSERT INTO LICENSE VALUES(LICENSE_SEQ.NEXTVAL,'¹ÝµµÃ¼¼³°è»ê¾÷±â»ç','¹ÝµµÃ¼¼³°è»ê¾÷±â»ç´Â ÇÑ±¹»ê¾÷ÀÎ·Â°ø´Ü¿¡¼­ ½ÃÇàÇÏ´Â ±¹°¡±â¼úÀÚ°Ý ÀüÀÚ ºÐ¾ßÀÇ »ê¾÷±â»ç µî±Þ¿¡ ÇØ´çÇÏ´Â ÀÚ°ÝÁõÀÌ´Ù.' || CHR(10) || 'Back-end ¼³°è ÀÎ·Â ¾ç¼ºÀÇ Àü±â¸¦ ¸¶·ÃÇÏ°í, »ê¾÷Ã¼´Â °ËÁõµÈ ÀÎ·ÂÀ» È®º¸ÇÒ »Ó¸¸ ¾Æ´Ï¶ó ÀçÅõÀÚÀÇ ºñ¿ëÀ» Àý°¨ÇÏ´Â Àü¹®ÀÎ·ÂÀÇ ¾ç¼ºÀÌ ÇÊ¿äÇÏ¿© ÀÚ°ÝÁ¦µµ Á¦Á¤',
 '19,400¿ø','27,800¿ø','- ÇÊ±â' || CHR(10) || '1. ¹ÝµµÃ¼°øÇÐ' || CHR(10) || '2. ÀüÀÚÈ¸·Î' || CHR(10) || '3. ³í¸®È¸·Î' || CHR(10) || '4. ÁýÀûÈ¸·Î ¼³°èÀÌ·Ð' || CHR(10) || '- ½Ç±â' || CHR(10) || '¹ÝµµÃ¼¼³°è ½Ç¹«(Á÷Á¢È¸·Î ·¹ÀÌ¾Æ¿ô ¼³°è ¹× °ËÁõ)');
+INSERT INTO LICENSE VALUES(LICENSE_SEQ.NEXTVAL,'»ç¹«ÀÚµ¿È­»ê¾÷±â»ç','°úÇÐ±â¼úÁ¤º¸Åë½ÅºÎ¡¤»ê¾÷Åë»óÀÚ¿øºÎ °øµ¿ ¼Ò°ü, ÇÑ±¹»ê¾÷ÀÎ·Â°ø´Ü¿¡¼­ ½ÃÇàÇÏ´Â Á¤º¸±â¼úºÐ¾ß »ê¾÷±â»ç ÀÚ°ÝÁõÀÇ ÀÏÁ¾.' || CHR(10) || '1993³â 7¿ù »ç¹«Á¤º¸±â±âÀÀ¿ë±â»ç 2±ÞÀ¸·Î ½Å¼³, 1998³â 5¿ù ±¹°¡±â¼úÀÚ°Ý Ã¼°è °³ÆíÀ¸·Î »ç¹«ÀÚµ¿È­»ê¾÷±â»ç·Î º¯°æµÇ¾î ÇöÀç¿¡ ÀÌ¸¥´Ù',
+'19,400¿ø','31,000¿ø','- ÇÊ±â' || CHR(10) || '1. »ç¹«ÀÚµ¿È­½Ã½ºÅÛ' || CHR(10) || '2. »ç¹«°æ¿µ°ü¸®°³·Ð' || CHR(10) || '3. ÇÁ·Î±×·¡¹ÖÀÏ¹Ý' || CHR(10) || '4. Á¤º¸Åë½Å°³·Ð' || CHR(10) || '- ½Ç±â' || CHR(10) || '»ç¹«ÀÚµ¿È­ ½Ç¹«');
+
+
+
 INSERT INTO REPORT_TYPE VALUES(REPORT_TYPE_SEQ.NEXTVAL,'È«º¸/µµ¹è');
 INSERT INTO REPORT_TYPE VALUES(REPORT_TYPE_SEQ.NEXTVAL,'À½¶õ¹°');
 INSERT INTO REPORT_TYPE VALUES(REPORT_TYPE_SEQ.NEXTVAL,'ºÒ¹ý');

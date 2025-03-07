@@ -7,6 +7,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -28,13 +30,13 @@ public class MentorController {
 	
 	public final MentorService mentorService;
 	
-	@RequestMapping("search")
+	@GetMapping("search")
 	public String mentorSearchPage(Model m) {
 		m.addAttribute("pageName","mentorSearch");
 		return "studyroom/mentorSearch";
 	}
 	
-	@RequestMapping("detail")
+	@GetMapping("detail")
 	public String mentorDetailPage(HttpSession session, Model m, int no) {
 		int mentorNo = no;
 		
@@ -42,12 +44,16 @@ public class MentorController {
 		
 		Member member = (Member)session.getAttribute("loginMember");
 		if(member != null) {
-			HashMap<String, Integer> searchInfo = new HashMap<>();
-			searchInfo.put("memberNo", member.getMemberNo());
-			searchInfo.put("mentorNo", mentorNo);
-			
-			m.addAttribute("isApplied", mentorService.isApplyExist(searchInfo));
-			m.addAttribute("optional","Y"); // 로그인 여부 전달
+			if(member.getMemberNo() == no) {
+				m.addAttribute("optional","E"); // 본인은 신청 불가
+			} else {
+				HashMap<String, Integer> searchInfo = new HashMap<>();
+				searchInfo.put("memberNo", member.getMemberNo());
+				searchInfo.put("mentorNo", mentorNo);
+				
+				m.addAttribute("isApplied", mentorService.isApplyExist(searchInfo));
+				m.addAttribute("optional","Y"); // 로그인 여부 전달
+			}
 		} else {
 			m.addAttribute("optional","N"); // 로그인 여부 전달
 		}
@@ -60,7 +66,7 @@ public class MentorController {
 	// ==================== AJAX 핸들러 =====================
 	
 	@ResponseBody
-	@RequestMapping(value="list", produces="application/json; charset=UTF-8")
+	@GetMapping(value="list", produces="application/json; charset=UTF-8")
 	public String selectMentorList(int pageLimit, int currentPage,  String keyword, Integer license, Integer sort) {
 		// 요청 한번에 불러올 멘토의 수, 최대 20명 까지
 		pageLimit = pageLimit <= 20 ? pageLimit : 20;
@@ -88,7 +94,7 @@ public class MentorController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="licenseList", produces="application/json; charset=UTF-8")
+	@GetMapping(value="licenseList", produces="application/json; charset=UTF-8")
 	public String selectLicenseList() {
 		// 자격증 목록 조회
 		ArrayList<License> licenseList = mentorService.selectLicenseList();
@@ -96,7 +102,7 @@ public class MentorController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="likeMentor", produces="application/json; charset=UTF-8")
+	@PostMapping(value="likeMentor", produces="application/json; charset=UTF-8")
 	public String likeMentor(HttpSession session, int mentorNo) {
 		int memberNo = ((Member) session.getAttribute("loginMember")).getMemberNo();
 		
@@ -123,7 +129,7 @@ public class MentorController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="checkLike", produces="application/json; charset=UTF-8")
+	@GetMapping(value="checkLike", produces="application/json; charset=UTF-8")
 	public String checkLike(HttpSession session, int mentorNo) {
 		// 좋아요를 이미 눌렀는지 정보를 불러온다
 		Member member = (Member)session.getAttribute("loginMember");
@@ -150,7 +156,7 @@ public class MentorController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="applyMentee", produces="application/json; charset=UTF-8")
+	@PostMapping(value="applyMentee", produces="application/json; charset=UTF-8")
 	public String applyMentee(HttpSession session, int mentorNo) {
 		String result = "N"; // 실패 N 성공 Y
 		Member member = (Member)session.getAttribute("loginMember");

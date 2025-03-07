@@ -244,6 +244,7 @@
 		SELECT MEMBER_NO, MEMBER_NICKNAME, EMAIL, ENROLL_DATE, MENTOR_STATUS
 		FROM MEMBER
 		WHERE MEMBER_ID LIKE '%' || #{keyword} || '%'
+		AND STATUS = 'Y'
 		ORDER BY MEMBER_NO
 	</select>
 	
@@ -309,10 +310,11 @@
 		AND STATUS = 'Y'
 	</select>
 	
-	<delete id="deleteUserLiscense">
-		DELETE FROM MEMBER
+	<update id="deleteUserLiscense">
+		UPDATE MEMBER
+		SET STATUS = 'N'
 		WHERE MEMBER_NO = #{memberNo}
-	</delete>
+	</update>
 	
 </mapper>
 

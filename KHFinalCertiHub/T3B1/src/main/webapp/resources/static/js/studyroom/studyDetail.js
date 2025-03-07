@@ -79,7 +79,6 @@ function initMemberList(contextPath){
 function ajaxLoadMember(pageInfo, callback){
     return function() {
         $.ajax({
-            type:"post",
             url:"memberList",
             data: {
                 "currentPage" : pageInfo.currentPage,
@@ -102,6 +101,9 @@ function createMemberCard(contextPath, res){
     res.forEach(data => {
         let member = document.createElement('div')
         member.className = "member"
+        member.onclick = () => {
+            window.open(contextPath + '/personal/view?pno=' + data.memberNo)
+        }
 
         let memberInfo = document.createElement('div')
         memberInfo.className = "member-info"
@@ -157,7 +159,12 @@ function initApplyButton(isLogin){
         applyButton.onclick = () => {
             ajaxApplyStudy(studyNo, onApplyStudy)
         }
-    } else {
+    } else if(isLogin == 'E'){
+        applyButton.onclick = () => {
+            alert('매니저 본인은 신청할 수 없습니다.')
+        }
+    } 
+    else {
         applyButton.onclick = () => {
             alert('로그인한 유저만 신청할 수 있습니다.')
         }

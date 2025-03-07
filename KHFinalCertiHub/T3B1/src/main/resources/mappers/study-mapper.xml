@@ -11,6 +11,7 @@
   	<result column="STUDY_NAME" property="studyName"/>
  	<result column="STUDY_INFO" property="studyInfo"/>
   	<result column="STUDY_IMG" property="studyImg"/>
+  	<result column="TALKROOM_NO" property="talkroomNo"/>
   	<result column="STUDY_RECRUIT" property="studyRecruit"/>
   	<result column="MEMBER_COUNT" property="memberCount"/>
   	<result column="MANAGER_NAME" property="managerName"/>
@@ -96,12 +97,13 @@
 				S.STUDY_INFO,
 			    S.STUDY_RECRUIT,
 	            M.MEMBER_INTRO AS MANAGER_INTRO,
+	            S.TALKROOM_NO,
 	            COUNT(*) AS MEMBER_COUNT
 	       FROM STUDY S
 	    INNER JOIN STUDY_MEMBER SM ON (S.STUDY_NO = SM.STUDY_NO) AND S.STUDY_NO = #{studyNo}
 	    LEFT JOIN MEMBER M ON(M.MEMBER_NO = S.MANAGER_NO)
 	    GROUP BY S.STUDY_NO, S.MANAGER_NO, M.MEMBER_NICKNAME, S.STUDY_NAME, S.STUDY_INFO, S.STUDY_IMG, S.STUDY_RECRUIT, 
-	        M.MEMBER_INTRO
+	        M.MEMBER_INTRO, S.TALKROOM_NO
   </select>
   
   <select id="countStudyMember" resultType="_int">
@@ -187,6 +189,9 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{study
 		     FROM STUDY
 		    WHERE MANAGER_NO = #{memberNo}
 		      AND STUDY_NO = #{studyNo}
+		      <if test="talkroomNo != null">
+		      	AND TALKROOM_NO = #{talkroomNo}
+		      </if>
 		)
   </select>
   
@@ -267,7 +272,8 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{study
 			STUDY_NO,
 			MANAGER_NO,
 			STUDY_NAME,
-			STUDY_INFO
+			STUDY_INFO,
+			TALKROOM_NO
  	        <if test="studyImg != null">
 			, STUDY_IMG
 			</if>
@@ -275,7 +281,8 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{study
 			STUDY_SEQ.NEXTVAL,
 			#{managerNo},
 			#{studyName},
-			#{studyInfo}
+			#{studyInfo},
+			TALKROOM_SEQ.NEXTVAL
   	        <if test="studyImg != null">
   	        ,#{studyImg}
   	        </if>
@@ -339,6 +346,7 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{study
 	SELECT STUDY_BOARD_NO, STUDY_BOARD_TITLE, STUDY_BOARD_DATE, VIEW_COUNT
 	FROM STUDY_BOARD
 	WHERE STUDY_BOARD_TITLE LIKE '%' || #{keyword} || '%'
+	  AND STATUS = 'Y'
 	ORDER BY STUDY_BOARD_NO     
   </select>
   
@@ -349,10 +357,28 @@ INNER JOIN STUDY_MEMBER SM ON(M.MEMBER_NO = SM.MEMBER_NO) AND STUDY_NO = #{study
 		WHERE STUDY_BOARD_TITLE LIKE '%' || #{keyword} || '%'
 	</select>
 	
-	<delete id="deleteListLicense">
-		DELETE FROM STUDY_BOARD
+	<update id="deleteListLicense">
+		UPDATE STUDY_BOARD
+		SET STATUS = 'N'
 		WHERE STUDY_BOARD_NO = #{boardNo}
+	</update>
+	
+	<delete id="deleteTalkroomMember">
+		DELETE FROM MEMBER_TALKROOM
+		 WHERE MEMBER_NO = #{memberNo}
+		   AND TALKROOM_NO = #{talkroomNo}
 	</delete>
+	
+	<select id="isStudyMember" resultType="int">
+		SELECT 1
+		FROM DUAL
+		WHERE EXISTS(
+		   SELECT 1
+			 FROM STUDY_MEMBER
+			WHERE MEMBER_NO = #{memberNo}
+			  AND STUDY_NO = #{studyNo}
+		)
+	</select>
 	
 </mapper>
 

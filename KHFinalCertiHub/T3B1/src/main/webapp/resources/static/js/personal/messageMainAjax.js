@@ -24,6 +24,7 @@ function socketConnect(state){
     socket.onmessage = function(ev){
         const receive = JSON.parse(ev.data);
         createMessageCard(state, receive)
+        updateTalkroom(state, receive)
     }
 
 }
@@ -31,7 +32,6 @@ function socketConnect(state){
 function ajaxLoadMemberInfo(state, callback){
     $.ajax({
         url:'getMemberInfo',
-        type: 'post',
         async: false,
         success: (res) => callback(res, state),
         error: () => {
@@ -40,22 +40,9 @@ function ajaxLoadMemberInfo(state, callback){
     })
 }
 
-// function ajaxLoadTalkroomList(state, callback){
-//     $.ajax({
-//         url:'getTalkroomList',
-//         type: 'post',
-//         async: false,
-//         success: (res) => callback(res, state),
-//         error: () => {
-//             console.log("멤버 정보 로딩 실패")
-//         }
-//     })
-// }
-
 function ajaxLoadMentor(state, callback){
     $.ajax({
         url:'loadMentor',
-        type: 'post',
         data: {
             currentPage : state.mentorCurrentPage,
             pageLimit : state.pageLimit,
@@ -71,7 +58,6 @@ function ajaxLoadMentor(state, callback){
 function ajaxLoadStudy(state, callback){
     $.ajax({
         url:'loadStudy',
-        type: 'post',
         data: {
             currentPage : state.studyCurrentPage,
             pageLimit : state.pageLimit,
@@ -87,7 +73,6 @@ function ajaxLoadStudy(state, callback){
 function ajaxLoadApply(state, callback){
     $.ajax({
         url:'loadApply',
-        type: 'post',
         data: {
             currentPage : state.applyCurrentPage,
             pageLimit : state.pageLimit,
@@ -103,7 +88,7 @@ function ajaxLoadApply(state, callback){
 function ajaxLoadMessage(state, callback){
     $.ajax({
         url:'loadMessage',
-        type:'post',
+        async:false,
         data: {
             talkroomNo: state.talkroomNo,
             currentPage: state.currentPage,
@@ -139,6 +124,9 @@ function ajaxRejectApply(state, callback){
         type:'post',
         data: {
             applyNo: state.applyNo,
+            studyNo: state.studyNo,
+            applicantNo: state?.applicantNo,
+            applyKind: state.applyKind,
         },
         success: (res) => callback(res, state),
         error: () => {
@@ -146,17 +134,3 @@ function ajaxRejectApply(state, callback){
         }
     })
 }
-
-// function ajaxRecentMessage(state, callback){
-//     $.ajax({
-//         url:'getRecentMessage',
-//         type:'post',
-//         data: {
-//             talkroomList : state?.talkroomList,
-//         },
-//         success: (res) => callback(res, state),
-//         error: () => {
-//             console.log("최신 메시지 로딩 실패")
-//         }
-//     })
-// }

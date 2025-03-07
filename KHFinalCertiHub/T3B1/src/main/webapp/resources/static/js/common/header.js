@@ -1,11 +1,15 @@
 function init(contextPath, pageName, optional){
+    let timer;
+
     window.onresize = () => {
+        clearTimeout(timer)
+        timer = setTimeout( () => {
+            onResizeHandler();
+        },20);
         onResizeHandler();
     };
     onResizeHandler();
-
-    console.log("pageName : " + pageName)
-
+    
     switch(pageName){
         // 자격증 검색
         case "infoPage":
@@ -138,7 +142,7 @@ function init(contextPath, pageName, optional){
             initNoticePage(contextPath);
             break;
 
-        case "noticeWrite":
+        case "noticewrite":
             initNoticeWrite(contextPath);
             break;
 

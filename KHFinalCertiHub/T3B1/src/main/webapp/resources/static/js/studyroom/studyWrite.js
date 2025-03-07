@@ -76,7 +76,6 @@ function initSelectBox(contextPath){
 
 function ajaxLoadManagerStudy(callback){
     $.ajax({
-        type:"post",
         url:"manageStudy",
         async: false, // ajax를 동기로 사용
         success: callback,

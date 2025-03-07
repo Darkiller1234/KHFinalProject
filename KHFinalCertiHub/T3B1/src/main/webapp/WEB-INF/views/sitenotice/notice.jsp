@@ -37,12 +37,14 @@
                 <div class="site-notice"></div>
 
                 <!-- 버튼 -->
-                <div class="board-option">
-                    <button class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/notice/noticewrite'">
-                        <img src="${pageContext.request.contextPath}/resources/static/img/button/pencil_icon.png">
-                        글쓰기
-                    </button>
-                </div>
+                <c:if test="${loginMember.managerStatus eq 'Y'}">
+                    <div class="board-option">
+                        <button class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/notice/noticewrite'">
+                            <img src="${pageContext.request.contextPath}/resources/static/img/button/pencil_icon.png">
+                            글쓰기
+                        </button>
+                    </div>
+                </c:if>
 
                 <!-- 페이징바 -->
                 <div class="notice-bar">

@@ -140,7 +140,7 @@
 		SELECT COUNT(*)
 		  FROM APPLY_LOG
 		 WHERE RECIPIENT_NO = #{memberNo}
-		   AND APPLY_DATE IS NOT NULL
+		   AND APPLY_DATE IS NULL
 	</select>
 	
 	<select id="selectApplyList" resultMap="applyLogResultSet">
@@ -196,7 +196,7 @@
 			STUDY_NO,
 			TALKROOM_TYPE
 		) VALUES (
-			TALKROOM_SEQ.NEXTVAL,
+			TALKROOM_SEQ.CURRVAL,
 			#{memberNo},
 			STUDY_SEQ.CURRVAL,
 			2
@@ -246,12 +246,29 @@
 		WHERE MEMBER_NO = #{memberNo}
 	</select>
 	
-	
-	
 	<select id="getMessage" resultMap="messageResultSet">
 		SELECT MESSAGE_CONTENT
 		FROM MESSAGE
 		WHERE MESSAGE_NO = #{messageNo}
+	</select>
+	
+	<select id="isTalkroomMember" resultType="int">
+		SELECT 1
+		FROM DUAL
+		WHERE EXISTS(
+		   SELECT 1
+			 FROM MEMBER_TALKROOM
+			WHERE MEMBER_NO = #{memberNo}
+			  AND TALKROOM_NO = #{talkroomNo}
+		)
+	</select>
+	
+	<select id="isRecipient" resultType="int">
+		SELECT 1
+		  FROM APPLY_LOG
+		 WHERE APPLY_NO = #{applyNo}
+           AND RECIPIENT_NO = #{memberNo}
+           AND APPLICANT_NO = #{applicantNo}
 	</select>
 	
 </mapper>

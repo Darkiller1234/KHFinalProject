@@ -526,8 +526,8 @@ function persoMSInit(contextPath){
             } else {
                 const start = startDate + startTime;
                 const end = endDate + endTime;
-                const textColor = document.querySelector('#backColorInput').value;
-                const backgroundColor = document.querySelector('#fontColorInput').value;
+                const backgroundColor = document.querySelector('#backColorInput').value;
+                const textColor = document.querySelector('#fontColorInput').value;
                 $.ajax({
                     url: "makeSc/insertSc",
                     data: {

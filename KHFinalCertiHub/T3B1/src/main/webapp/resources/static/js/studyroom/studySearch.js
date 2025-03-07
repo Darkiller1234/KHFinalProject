@@ -100,7 +100,6 @@ function initStudyList(contextPath){
 function ajaxLoadStudy(pageInfo, callback){
     return function() {
         $.ajax({
-            type:"post",
             url:"studyList",
             data: {
                 "currentPage" : pageInfo.currentPage,

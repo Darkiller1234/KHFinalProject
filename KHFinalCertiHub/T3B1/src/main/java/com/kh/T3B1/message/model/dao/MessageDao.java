@@ -11,8 +11,10 @@ import com.kh.T3B1.common.vo.PageInfo;
 import com.kh.T3B1.message.model.vo.ApplyLog;
 import com.kh.T3B1.message.model.vo.Message;
 import com.kh.T3B1.message.model.vo.Talkroom;
-import com.kh.T3B1.study.model.vo.Study;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Repository
 public class MessageDao {
 	
@@ -56,7 +58,7 @@ public class MessageDao {
 	public ArrayList<ApplyLog> selectApplyList(SqlSessionTemplate sqlSession, PageInfo pi, HashMap<String, Object> searchInfo) {
 		int offset = (pi.getCurrentPage() - 1) * pi.getPageLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getPageLimit());
-		
+
 		return (ArrayList)sqlSession.selectList("messageMapper.selectApplyList", searchInfo, rowBounds);
 	}
 
@@ -98,6 +100,14 @@ public class MessageDao {
 
 	public ArrayList<Integer> selectTalkroomList(SqlSessionTemplate sqlSession, int memberNo) {
 		return (ArrayList)sqlSession.selectList("messageMapper.selectTalkroomList", memberNo);
+	}
+
+	public Integer isTalkroomMember(SqlSessionTemplate sqlSession, HashMap<String, Integer> searchInfo) {
+		return sqlSession.selectOne("messageMapper.isTalkroomMember", searchInfo);
+	}
+
+	public Integer isRecipient(SqlSessionTemplate sqlSession, HashMap<String, Integer> searchInfo) {
+		return sqlSession.selectOne("messageMapper.isRecipient", searchInfo);
 	}
 
 }

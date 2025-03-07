@@ -10,14 +10,24 @@ function initStudyDetailEdit(contextPath, isRecruit){
         contextPath : contextPath,
         isRecruit : isRecruit,
         currentMember : null,
-        studyNo : no
+        studyNo : no,
+        talkroomNo : null,
     }
 
+    initStudyInfo(state)
     initForm()
     initDeleteButton(state)
     initBanButton(state)
     initSelectBox(state)
     initMemberList(state)
+}
+
+function initStudyInfo(state){
+    const onStudyLoad = (res) => {
+        state.talkroomNo = res.talkroomNo
+    }
+
+    ajaxSelectStudy(state, onStudyLoad)
 }
 
 function loadImg(_input){
@@ -51,9 +61,9 @@ function initForm(){
 function initDeleteButton(state) {
     const deleteButton = document.getElementById('deleteButton')
 
-    deleteButton.onclick = () => {
-        location.href = state.contextPath + '/study/deleteStudy?no=' + state.studyNo
-    }
+    deleteButton.onclick = ajaxDeleteStudy(state, ()=> {
+        location.href = state.contextPath + '/study/search'
+    })
 }
 
 function initBanButton(state){
@@ -62,6 +72,11 @@ function initBanButton(state){
     const onBanMember = (res) => {
         if(res.success == 'Y') {
             state.currentMember.remove()
+
+            const memberCount = document.getElementById('memberCount')
+            if(res.memberCount){
+                memberCount.innerHTML = '참여회원 (' + res.memberCount + '명)'
+            }
         } else if(res.success == 'P') {
             alert('본인을 추방할수 없습니다!!!')
         } else {
@@ -80,6 +95,7 @@ function ajaxBanMember(state, callback){
             data:{
                 memberNo: state.currentMember.dataset.value,
                 studyNo: state.studyNo,
+                talkroomNo: state.talkroomNo,
             },
             success: callback,
             error: () =>{
@@ -178,7 +194,6 @@ function initMemberList(state){
 function ajaxLoadMember(pageInfo, callback){
     return function() {
         $.ajax({
-            type:"post",
             url: pageInfo.contextPath + "/study/memberList",
             data: {
                 "currentPage" : pageInfo.currentPage,
@@ -204,14 +219,16 @@ function createMemberCard(contextPath, state, res){
         member.dataset.value = data.memberNo
 
         member.onclick = (ev) => {
-            const modal = new bootstrap.Modal(document.getElementById('banConfirm'))
             const banUserName = document.getElementById('ban-user-name')
             banUserName.innerText = data.memberNickname
             // ev.target : 이벤트를 발생시킨 요소( 클릭이면 내가 누른 요소 )
             // ev.currentTarget : 이벤트가 부착된 요소의 최상위 부모 반환
             state.currentMember = ev.currentTarget
 
-            modal.show()
+            // X 버튼(이미지)를 눌렀을떄는 실행되지 않음
+            if(ev.target.tagName == 'DIV'){
+                window.open(contextPath + '/personal/view?pno=' + data.memberNo)
+            }
         }
 
         let memberInfo = document.createElement('div')
@@ -237,7 +254,10 @@ function createMemberCard(contextPath, state, res){
 
         let deleteButton = document.createElement('button')
         deleteButton.className = "close-button"
-
+        deleteButton.onclick = () => {
+            const modal = new bootstrap.Modal(document.getElementById('banConfirm'))
+            modal.show()
+        }
 
         let buttonImg = document.createElement('img')
         buttonImg.src = contextPath + '/resources/static/img/button/x_icon.png'
@@ -250,4 +270,34 @@ function createMemberCard(contextPath, state, res){
 
         studyList.appendChild(member)
     });
+}
+
+function ajaxSelectStudy(state, callback){
+    $.ajax({
+        url: state.contextPath + '/study/selectStudy',
+        async: false,
+        data:{
+            studyNo: state.studyNo,
+        },
+        success: callback,
+        error: () => {
+            console.log('스터디 정보 가져오기 실패')
+        }
+    })
+}
+
+function ajaxDeleteStudy(state, callback){
+    return () => {
+        $.ajax({
+            method: 'POST',
+            url: state.contextPath + '/study/deleteStudy',
+            data:{
+                studyNo: state.studyNo,
+            },
+            success: callback,
+            error: () => {
+                console.log('스터디 삭제 실패')
+            }
+        })
+    }
 }

@@ -11,6 +11,8 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 import com.kh.T3B1.compiler.model.dao.CompilerDao;
@@ -21,17 +23,20 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor
 @Service
+@PropertySource("classpath:/config/config.properties")
 public class CompilerServiceImpl implements CompilerService{
 	
 	public final CompilerDao compilerDao;
 	
 	public final SqlSessionTemplate sqlSession;
+	
+	@Value("${dockerpath}")
+	private String DOCKER_PATH;
 
 	@Override
 	public String runCode(HashMap<String, Object> compileInfo) {
 		String result = "";
 		String containerName = UUID.randomUUID().toString().replace("-", ""); // 랜덤 컨테이너명 부여
-		String dockerPath = "C:/KHFinalProject/KHFinalCertiHub/T3B1/src/main/resources/docker";
 		
 		String extension = ""; // 생성할 코드파일 확장자
 		String imageTag = ""; // 생성할 이미지 이름뒤에 붙일 구분자
@@ -52,7 +57,7 @@ public class CompilerServiceImpl implements CompilerService{
 		}
 		
 		// 코드를 저장
-		File inputCode = new File( dockerPath + "/code/" + containerName + extension);
+		File inputCode = new File( DOCKER_PATH + "/code/" + containerName + extension);
 		
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(inputCode, false));){
 			inputCode.createNewFile();
@@ -61,7 +66,7 @@ public class CompilerServiceImpl implements CompilerService{
 			e.printStackTrace();
 		}
 		
-		File filePath = new File(dockerPath + folder);
+		File filePath = new File(DOCKER_PATH + folder);
 		
 		try {
 			// 도커 이미지 찾기, 태그명 설정하지 않을시 기본 latest(최신버전) -q : 이미지 ID값만 가져오기
@@ -69,7 +74,7 @@ public class CompilerServiceImpl implements CompilerService{
 			
 			Process imageCheckProcess = Runtime.getRuntime().exec(imageCheck);
 			BufferedReader stdOut = new BufferedReader(new InputStreamReader(imageCheckProcess.getInputStream()));
-			BufferedReader stdErr = new BufferedReader(new InputStreamReader(imageCheckProcess.getInputStream()));
+			BufferedReader stdErr = new BufferedReader(new InputStreamReader(imageCheckProcess.getErrorStream()));
 			
 			// 이미지 파일이 존재하지 않으면 빌드한다
 			if(stdOut.readLine() == null) {
@@ -80,10 +85,14 @@ public class CompilerServiceImpl implements CompilerService{
 				Runtime.getRuntime().exec(build, null, filePath).waitFor();
 			}
 			
+			// --rm : 컨테이너 수행 후 삭제
 			// -v 서버 경로:컨테이너 경로 => 도커 공유 볼륨, 로컬(서버) 경로와 도커 컨테이너의 파일을 동기화한다.
-			// --memory => 메모리 용량 제한
+			// --memory => 메모리 용량 제한, --cpus => cpu 사용률 제한, 최대 1
+			// --network=none => 외부 네트워크 접근 차단
 			// -e key=value => 도커 컨테이너에 환경변수를 추가해준다.
-			String run = "docker run --rm --name="+ containerName +" --memory=64m -v " + dockerPath + "/code:/app/code "
+			String run = "docker run --rm --name="+ containerName 
+					+ " --memory=128m --cpus=0.2 --network=none -v " 
+					+ DOCKER_PATH + "/code:/app/code "
 					+ "-e uuid=" + containerName +" certihub_compiler_" + imageTag;
 
 			Process execResult = Runtime.getRuntime().exec(run, null, filePath); // 클래스 파일 실행

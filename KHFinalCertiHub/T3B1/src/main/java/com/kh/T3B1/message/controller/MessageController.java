@@ -2,12 +2,12 @@ package com.kh.T3B1.message.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,7 +23,9 @@ import com.kh.T3B1.message.service.MessageService;
 import com.kh.T3B1.study.service.StudyService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("message/")
@@ -31,7 +33,6 @@ public class MessageController {
 	
 	public final MessageService messageService;
 	public final StudyService studyService;
-	private MessageSocketServer messageSocketServer;
 	
 	@RequestMapping("main")
 	public String messageMainPage(HttpSession session, Model m) {
@@ -40,7 +41,7 @@ public class MessageController {
 	}
 	
 	@ResponseBody
-	@PostMapping(value="getMemberInfo", produces="application/json; charset=UTF-8")
+	@GetMapping(value="getMemberInfo", produces="application/json; charset=UTF-8")
 	public String getMemberInfo(HttpSession session) {
 		Member member = (Member)session.getAttribute("loginMember");
 		
@@ -53,22 +54,12 @@ public class MessageController {
 	}
 	
 	@ResponseBody
-	@PostMapping(value="getTalkroomList", produces="application/json; charset=UTF-8")
-	public String getTalkroomList(HttpSession session) {
-		Member member = (Member)session.getAttribute("loginMember");
-
-		ArrayList<Integer> talkroomList = messageService.selectTalkroomList(member.getMemberNo());
-		
-		return new Gson().toJson(talkroomList);
-	}
-	
-	@ResponseBody
-	@PostMapping(value="loadMentor", produces="application/json; charset=UTF-8")
+	@GetMapping(value="loadMentor", produces="application/json; charset=UTF-8")
 	public String loadMentor(HttpSession session, int currentPage, int pageLimit, String keyword) {
 		Member member = (Member)session.getAttribute("loginMember");
 		
-		// 요청 한번에 불러올 메시지의 수, 최대 10개 까지
-		pageLimit = pageLimit <= 10 ? pageLimit : 10;
+		// 요청 한번에 불러올 메시지의 수, 최대 20개 까지
+		pageLimit = pageLimit <= 10 ? pageLimit : 20;
 		
 		// 이미 마지막 페이지라면 DB에서 조회하지 않도록 막아준다
 		Integer mentorCount = messageService.countMentor(member.getMemberNo());
@@ -90,12 +81,12 @@ public class MessageController {
 	}
 	
 	@ResponseBody
-	@PostMapping(value="loadStudy", produces="application/json; charset=UTF-8")
+	@GetMapping(value="loadStudy", produces="application/json; charset=UTF-8")
 	public String loadStudy(HttpSession session, int currentPage, int pageLimit, String keyword) {
 		Member member = (Member)session.getAttribute("loginMember");
 		
-		// 요청 한번에 불러올 메시지의 수, 최대 10개 까지
-		pageLimit = pageLimit <= 10 ? pageLimit : 10;
+		// 요청 한번에 불러올 메시지의 수, 최대 20개 까지
+		pageLimit = pageLimit <= 10 ? pageLimit : 20;
 		
 		// 이미 마지막 페이지라면 DB에서 조회하지 않도록 막아준다
 		Integer countStudy = messageService.countStudy(member.getMemberNo());
@@ -117,12 +108,12 @@ public class MessageController {
 	}
 	
 	@ResponseBody
-	@PostMapping(value="loadApply", produces="application/json; charset=UTF-8")
+	@GetMapping(value="loadApply", produces="application/json; charset=UTF-8")
 	public String loadApply(HttpSession session, int pageLimit, int currentPage, String keyword) {
 		Member member = (Member)session.getAttribute("loginMember");
 		
-		// 요청 한번에 불러올 메시지의 수, 최대 10개 까지
-		pageLimit = pageLimit <= 10 ? pageLimit : 10;
+		// 요청 한번에 불러올 메시지의 수, 최대 20개 까지
+		pageLimit = pageLimit <= 10 ? pageLimit : 20;
 		
 		// 이미 마지막 페이지라면 DB에서 조회하지 않도록 막아준다
 		Integer applyCount = messageService.countApply(member.getMemberNo());
@@ -144,14 +135,24 @@ public class MessageController {
 	}
 	
 	@ResponseBody
-	@PostMapping(value="loadMessage", produces="application/json; charset=UTF-8")
+	@GetMapping(value="loadMessage", produces="application/json; charset=UTF-8")
 	public String loadMessage(HttpSession session, int pageLimit, int currentPage, int talkroomNo) {
 		session.setAttribute("talkroomNo", talkroomNo);
 		
 		Member member = (Member)session.getAttribute("loginMember");
 		
-		// 요청 한번에 불러올 메시지의 수, 최대 10개 까지
-		pageLimit = pageLimit <= 10 ? pageLimit : 10;
+		HashMap<String, Integer> searchInfo = new HashMap<>();
+		searchInfo.put("memberNo", member.getMemberNo());
+		searchInfo.put("talkroomNo", talkroomNo);
+		
+		// 톡방 멤버인지 권한검사
+		boolean isTalkroomMember = messageService.isTalkroomMember(searchInfo);
+		if(!isTalkroomMember) {
+			return null;
+		}
+		
+		// 요청 한번에 불러올 메시지의 수, 최대 20개 까지
+		pageLimit = pageLimit <= 10 ? pageLimit : 20;
 		
 		// 이미 마지막 페이지라면 DB에서 조회하지 않도록 막아준다
 		Integer studyCount = messageService.countMessage(talkroomNo);
@@ -180,16 +181,16 @@ public class MessageController {
 		HashMap<String, Integer> searchInfo = new HashMap<>();
 		searchInfo.put("memberNo", member.getMemberNo());
 		searchInfo.put("applicantNo", applicantNo);
+		searchInfo.put("applyKind", applyKind);
 		searchInfo.put("applyNo", applyNo);
+		searchInfo.put("studyNo", studyNo);
 		
-		if(applyKind == 1) {
-			result = messageService.createTalkroom(searchInfo);
-		}		
-		else if(applyKind == 2) {
-			searchInfo.put("studyNo", studyNo);
-			boolean isManager = studyService.isStudyManager(searchInfo);
-			
-			if(isManager) {
+		boolean isValidApplyHandle = messageService.isValidApplyHandle(searchInfo);
+		
+		if(isValidApplyHandle) {
+			if(applyKind == 1) {
+				result = messageService.createTalkroom(searchInfo);
+			} else if(applyKind == 2) {
 				// DB 추가를 위해 memberNo를 매니저 번호에서 요청자 번호로 변경
 				searchInfo.put("memberNo", applicantNo);
 				result = studyService.joinStudy(searchInfo);
@@ -202,28 +203,27 @@ public class MessageController {
 	
 	@ResponseBody
 	@PostMapping(value="rejectApply", produces="application/json; charset=UTF-8")
-	public String rejectApply(HttpSession session, int applyNo) {
+	public String rejectApply(HttpSession session, int applyNo,
+			@RequestParam(required = false) int studyNo, int applicantNo, int applyKind) {
 		HashMap<String, String> resultObj = new HashMap<>();
 		String result = "N";
+		Member member = (Member)session.getAttribute("loginMember");
 		
-		result = messageService.deleteApplyLog(applyNo);
+		HashMap<String, Integer> searchInfo = new HashMap<>();
+		searchInfo.put("memberNo", member.getMemberNo());
+		searchInfo.put("applicantNo", applicantNo);
+		searchInfo.put("applyKind", applyKind);
+		searchInfo.put("applyNo", applyNo);
+		searchInfo.put("studyNo", studyNo);
+		
+		boolean isValidApplyHandle = messageService.isValidApplyHandle(searchInfo);
+		
+		if(isValidApplyHandle) {
+			result = messageService.deleteApplyLog(applyNo);
+		}
 		
 		resultObj.put("result", result);
 		return new Gson().toJson(resultObj);
-	}
-	
-	@ResponseBody
-	@PostMapping(value="getRecentMessage", produces="application/json; charset=UTF-8")
-	public String getRecentMessage(HttpSession session, @RequestParam(value="arr[]") String[] talkroomList) {
-	    Map<String, Message> resultMessages = new HashMap<>();
-	    
-	    // 최근 메시지 조회
-	    for (String talkroomId : talkroomList) {
-	        Message recentMsg = messageSocketServer.getRecentMessage().get(talkroomId);
-            resultMessages.put(talkroomId, recentMsg);
-	    }
-
-	    return new Gson().toJson(resultMessages);
 	}
 
 }

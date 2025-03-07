@@ -133,5 +133,13 @@ public class StudyDao {
 	public int updateRecruit(SqlSessionTemplate sqlSession, HashMap<String, Object> updateInfo) {
 		return sqlSession.update("studyMapper.updateRecruit", updateInfo);
 	}
+
+	public int deleteTalkroomMember(SqlSessionTemplate sqlSession, HashMap<String, Integer> searchInfo) {
+		return sqlSession.delete("studyMapper.deleteTalkroomMember", searchInfo);
+	}
+
+	public Integer isStudyMember(SqlSessionTemplate sqlSession, HashMap<String, Integer> insertInfo) {
+		return sqlSession.selectOne("studyMapper.isStudyMember", insertInfo);
+	}
 	
 }
