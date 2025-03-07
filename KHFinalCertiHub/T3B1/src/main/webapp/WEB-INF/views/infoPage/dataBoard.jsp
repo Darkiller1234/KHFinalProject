@@ -20,16 +20,16 @@
                 <div class="subtitle">
                     <div class="page-title font-size-content">자료실게시판</div>
                 </div>
+            
 
-                <c:forEach var="board" items="${boardList}">
-                    <div class="page-title font-size-title">${board.dataBoardTitle}</div>
-    
-                    <div class="content">
-                        ${board.dataBoardContent}
-                    </div>
-                </c:forEach>
-            </div>
+            <c:forEach var="board" items="${boardList}">
+                <div class="page-title font-size-title">${board.dataBoardTitle}</div>
 
+                <div class="content">
+                    ${board.dataBoardContent}
+                </div>
+            </c:forEach>
+        </div>
             <button class="back-btn" onclick="location.href='${pageContext.request.contextPath}/info/lib'">
                 <img src="${pageContext.request.contextPath}/resources/static/img/button/menu_icon.png">
                 목록
