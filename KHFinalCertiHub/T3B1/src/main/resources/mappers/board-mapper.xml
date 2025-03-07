@@ -305,7 +305,7 @@
 		WHERE
 		BOARD_NO = #{cno}
 	</update>
-	<!-- 조회수 상위 5개의 게시물 조회 -->
+	<!-- 조회수 상위 10개의 게시물 조회 -->
 	<select id="selectTopPostsByViews" resultType="Board" resultMap="boardResult">
     <![CDATA[
    		SELECT * 
